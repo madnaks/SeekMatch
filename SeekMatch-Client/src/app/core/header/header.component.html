@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <!-- Logo -->
+  <a class="navbar-brand ps-3" href="#">
+    Navbar
+  </a>
+
+  <!-- Navbar items for larger screens -->
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Offres d’emplois</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Entreprises</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Tests / challenges</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Formations en lignes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Entretiens blancs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Créations d’un CV</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">S'inscrire</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Connexion</a>
+      </li>
+    </ul>
+
+    <!-- Language Button -->
+    <button class="btn btn-dark ms-3 me-3">Language</button>
+  </div>
+
+  <!-- Toggle button for small screens -->
+  <button class="navbar-toggler me-3" type="button" (click)="openOffcanvas(content)">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+</nav>
+
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" (click)="closeOffcanvas()"></button>
+  </div>
+  <div class="offcanvas-body">
+    <ul class="nav flex-column">
+      <li class="nav-item"><a class="nav-link" href="#">Offres d’emplois</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Entreprises</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Tests / challenges</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Formations en lignes</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Entretiens blancs</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Créations d’un CV</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Connexion</a></li>
+    </ul>
+    <button class="btn btn-outline-secondary mt-3">Language</button>
+  </div>
+</ng-template>
