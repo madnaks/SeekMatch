@@ -1,0 +1,14 @@
+{
+    "Navbar": {
+        "Menu": {
+            "JobOffers": "Job Offers",
+            "Companies":"Companies",
+            "Tests": "Tests",
+            "Training":"Training",
+            "CVCreation":"CV Creation",
+            "SignUp":"Sign Up",
+            "LogIn":"Log In",
+            "Language":"Language"
+        }
+    }
+}

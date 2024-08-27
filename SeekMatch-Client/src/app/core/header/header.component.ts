@@ -1,5 +1,6 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +9,23 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent {
 
-  constructor(private offcanvasService: NgbOffcanvas) {
+  constructor(private offcanvasService: NgbOffcanvas, private translate: TranslateService) {
   }
 
-  openOffcanvas(content: TemplateRef<any>) {
+  public openOffcanvas(content: TemplateRef<any>): void {
     this.offcanvasService.open(content, { position: 'end' });
   }
 
-  closeOffcanvas() {
+  public closeOffcanvas(): void {
     this.offcanvasService.dismiss();
+  }
+
+  changeLanguage() {
+    if (this.translate.currentLang == 'en') {
+      this.translate.use('fr');
+    } else {
+      this.translate.use('en');
+    }
   }
 
 }
