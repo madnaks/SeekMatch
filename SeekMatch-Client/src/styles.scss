@@ -1,1 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+// 1st theme: Professional and Trustworthy
+// Primary Color: #003366 (Dark Blue) - Represents professionalism and reliability.
+// Secondary Color: #0099CC (Sky Blue) - For highlights and call-to-action elements.
+// Accent Color: #F4A460 (Sandy Brown) - To add warmth and draw attention to important elements.
+// Background Color: #F4F4F4 (Light Grey) - Neutral background that keeps the content clean and readable.
+// Text Color: #333333 (Dark Grey) - For easy readability and a professional look.
+
+:root {
+    --primary-color: #003366;
+    --secondary-color: #0099CC;
+    --accent-color: #F4A460;
+    --background-color: #F4F4F4;
+    --text-color: #333333;
+}
+
+// 2nd theme
+// Primary Color: #2C3E50 (Midnight Blue) - For a modern and professional appearance.
+// Secondary Color: #E74C3C (Bright Red) - To attract attention to important buttons or links.
+// Accent Color: #ECF0F1 (Light Grey) - For subtle backgrounds or borders.
+// Background Color: #FFFFFF (White) - Clean and minimalistic background.
+// Text Color: #2C3E50 (Midnight Blue) - Consistent with the primary color for a cohesive look.
+
+// :root {
+//     --primary-color: #2C3E50;
+//     --secondary-color: ##E74C3C;
+//     --accent-color: #ECF0F1;
+//     --background-color: #FFFFFF;
+//     --text-color: #2C3E50;
+// }
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.navbar {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.button {
+    background-color: var(--secondary-color);
+    color: #ffffff;
+}
+
+.button:hover {
+    background-color: var(--accent-color);
+}
+
