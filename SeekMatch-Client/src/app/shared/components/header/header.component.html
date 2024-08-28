@@ -43,20 +43,18 @@
 
 <ng-template #content let-offcanvas>
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title">Menu</h5>
     <button type="button" class="btn-close" (click)="closeOffcanvas()"></button>
   </div>
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link" href="#">Offres d’emplois</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Entreprises</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Tests / challenges</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Formations en lignes</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Entretiens blancs</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Créations d’un CV</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">S'inscrire</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Connexion</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.JobOffers' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Companies' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Tests' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Training' | translate }}</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.SignUp' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.LogIn' | translate }}</a></li>
     </ul>
-    <button class="btn btn-outline-secondary mt-3">Language</button>
+    <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate }}</button>
   </div>
 </ng-template>
