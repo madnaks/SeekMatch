@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 text-block">
+            <h1>Welcome to Our Website</h1>
+            <div class="d-flex flex-row">
+                <h4 *ngFor="let tag of tags">
+                    <span class="badge bg-primary me-4">{{ tag }}</span>
+                </h4>
+            </div>
+            <p>This is a brief introduction about our services and what we offer. We provide high-quality solutions to help you achieve your goals.</p>
+            <p>Feel free to explore our website and learn more about what we do.</p>
+            <button type="button" class="btn btn-primary btn-lg">Search for jobs</button>
+        </div>
+        <div class="col-md-6 image-block">
+            <img src="assets\images\workers.png" alt="Description of Image" class="img-fluid">
+        </div>
+    </div>
+</div>
