@@ -1,14 +1,20 @@
 {
     "Navbar": {
         "Menu": {
-            "JobOffers": "Offres d’emplois",
+            "JobOffers": "Offres d'emplois",
             "Companies":"Entreprises",
             "Tests": "Tests",
             "Training":"Formations",
-            "CVCreation":"Créations d’un CV",
+            "CVCreation":"Créations d'un CV",
             "SignUp":"S'inscrire",
             "LogIn":"Connexion",
             "Language":"Langue"
         }
+    },
+    "Home": {
+        "Title": "Bienvenue sur notre site Web",
+        "Welcome-Paragraph-1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
+        "Welcome-Paragraph-2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
+        "Search-Jobs-Button": "Rechercher des emplois"
     }
 }

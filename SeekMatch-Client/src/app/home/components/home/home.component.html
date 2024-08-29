@@ -1,17 +1,17 @@
 <div class="container mt-5">
     <div class="row align-items-center">
         <div class="col-md-6 text-block">
-            <h1>Welcome to Our Website</h1>
+            <h1>{{ 'Home.Title' | translate }}</h1>
             <div class="d-flex flex-row">
                 <h4 *ngFor="let tag of tags">
                     <span class="badge me-4">{{ tag }}</span>
                 </h4>
             </div>
-            <p>This is a brief introduction about our services and what we offer. We provide high-quality solutions to help you achieve your goals.</p>
-            <p>Feel free to explore our website and learn more about what we do.</p>
+            <p>{{ 'Home.Welcome-Paragraph-1' | translate }}</p>
+            <p>{{ 'Home.Welcome-Paragraph-2' | translate }}</p>
             <button type="button" class="btn btn-lg">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                Search for jobs
+                {{ 'Home.Search-Jobs-Button' | translate }}
             </button>
         </div>
         <div class="col-md-6 image-block">
