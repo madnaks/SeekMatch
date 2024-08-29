@@ -38,12 +38,13 @@ body {
     color: #ffffff;
 }
 
-.button {
+.btn, .badge {
     background-color: var(--secondary-color);
     color: #ffffff;
 }
 
-.button:hover {
-    background-color: var(--accent-color);
+.btn:hover, .btn:active {
+    background-color: var(--accent-color) !important;
+    border-color: transparent !important;
 }
 
