@@ -32,7 +32,9 @@
     </ul>
 
     <!-- Language Button -->
-    <button class="btn btn-dark ms-3 me-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate }}</button>
+    <button class="btn btn-dark ms-3 me-3" (click)="changeLanguage()">
+      <i class="fa-solid fa-globe"></i>
+    </button>
   </div>
 
   <!-- Toggle button for small screens -->
@@ -51,10 +53,11 @@
       <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Companies' | translate }}</a></li>
       <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Tests' | translate }}</a></li>
       <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Training' | translate }}</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
       <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.SignUp' | translate }}</a></li>
       <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.LogIn' | translate }}</a></li>
     </ul>
-    <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate }}</button>
+    <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate
+      }}</button>
   </div>
 </ng-template>
