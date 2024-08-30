@@ -1,1 +1,24 @@
-<p>job-offers works!</p>
+<div class="container mt-5">
+    <div class="row align-items-center">
+        <!-- First Input -->
+        <div class="col-12 col-sm-10 col-md-6 mb-3 mb-md-0">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control" [placeholder]="'JobOffers.Search-Offers-Input' | translate"
+                    aria-label="search: Job title, keywords, or company">
+            </div>
+        </div>
+        <!-- Second Input -->
+        <div class="col-12 col-sm-10 col-md-6">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <input type="text" class="form-control" [placeholder]="'JobOffers.Where-Input' | translate"
+                    aria-label="search: Job title, keywords, or company">
+            </div>
+        </div>
+    </div>
+</div>

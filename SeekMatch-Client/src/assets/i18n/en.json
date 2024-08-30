@@ -16,5 +16,9 @@
         "Welcome-Paragraph-1": "This is a brief introduction about our services and what we offer. We provide high-quality solutions to help you achieve your goals.",
         "Welcome-Paragraph-2": "Feel free to explore our website and learn more about what we do.",
         "Search-Jobs-Button": "Search for jobs"
+    },
+    "JobOffers": {
+        "Search-Offers-Input" : "Job title, keywords or company",
+        "Where-Input" : "Where ?"
     }
 }
