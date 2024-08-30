@@ -1,19 +1,21 @@
 <div class="container mt-5">
     <div class="row align-items-center">
-        <div class="col-md-6 text-block">
+        <!-- First block -->
+        <div class="col-md-6 text-block text-center text-md-start mb-5 mb-md-0">
             <h1>{{ 'Home.Title' | translate }}</h1>
-            <div class="d-flex flex-row">
+            <div class="d-flex flex-row justify-content-center justify-content-md-start">
                 <h4 *ngFor="let tag of tags">
                     <span class="badge me-4">{{ tag }}</span>
                 </h4>
             </div>
             <p>{{ 'Home.Welcome-Paragraph-1' | translate }}</p>
             <p>{{ 'Home.Welcome-Paragraph-2' | translate }}</p>
-            <button type="button" class="btn btn-lg">
+            <button type="button" class="btn btn-lg" routerLink="/job/job-offers">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 {{ 'Home.Search-Jobs-Button' | translate }}
             </button>
         </div>
+        <!-- Second block -->
         <div class="col-md-6 image-block">
             <img src="assets\images\workers.png" alt="Description of Image" class="img-fluid">
         </div>

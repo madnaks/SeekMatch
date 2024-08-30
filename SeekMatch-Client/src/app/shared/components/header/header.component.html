@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
   <!-- Logo -->
-  <a class="navbar-brand ps-3" href="#">
+  <a class="navbar-brand ps-3" routerLink="/home">
     Navbar
   </a>
 
@@ -8,26 +8,26 @@
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.JobOffers' | translate }} </a>
+        <a class="nav-link" routerLink="/job/job-offers">{{ 'Navbar.Menu.JobOffers' | translate }} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.Companies' | translate }} </a>
+        <a class="nav-link" routerLink="/job/companies">{{ 'Navbar.Menu.Companies' | translate }} </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.Tests' | translate }}</a>
+        <a class="nav-link" routerLink="/career-development/test">{{ 'Navbar.Menu.Tests' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.Training' | translate }}</a>
+        <a class="nav-link" routerLink="/career-development/training">{{ 'Navbar.Menu.Training' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.CVCreation' | translate }}
+        <a class="nav-link" routerLink="/cv/cv-creation">{{ 'Navbar.Menu.CVCreation' | translate }}
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.SignUp' | translate }}</a>
+        <a class="nav-link" routerLink="/home">{{ 'Navbar.Menu.SignUp' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">{{ 'Navbar.Menu.LogIn' | translate }}</a>
+        <a class="nav-link disabled" routerLink="/home">{{ 'Navbar.Menu.LogIn' | translate }}</a>
       </li>
     </ul>
 
@@ -49,13 +49,13 @@
   </div>
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.JobOffers' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Companies' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Tests' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.Training' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.SignUp' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">{{ 'Navbar.Menu.LogIn' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/job/job-offers">{{ 'Navbar.Menu.JobOffers' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/job/companies">{{ 'Navbar.Menu.Companies' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/career-development/test">{{ 'Navbar.Menu.Tests' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/career-development/training">{{ 'Navbar.Menu.Training' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/cv/cv-creation">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/home">{{ 'Navbar.Menu.SignUp' | translate }}</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="/home">{{ 'Navbar.Menu.LogIn' | translate }}</a></li>
     </ul>
     <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate
       }}</button>
