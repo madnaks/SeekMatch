@@ -1,0 +1,40 @@
+.search-form {
+    .input-group-text {
+        background-color: white;
+    }
+
+    .form-control {
+        border-left: none;
+    }
+}
+
+#job-list-container {
+    height: 84vh;
+    overflow-y: scroll;
+    // ::-webkit-scrollbar: Styles the overall scrollbar (e.g., width, background).
+    // ::-webkit-scrollbar-track: Styles the track (the area the thumb slides along).
+    // ::-webkit-scrollbar-thumb: Styles the thumb (the part that you drag to scroll).
+    &::-webkit-scrollbar
+    {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar-thumb
+    {
+        background-color: #003366;
+        border: 2px solid #003366;
+    }
+    &::-webkit-scrollbar-track
+    {
+        background-color: transparent;
+    }
+}
+
+#job-details-container {
+    position: sticky;
+    border-radius: 0 6px 6px 0;
+    height: 84vh;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 0.606061px solid rgba(0, 0, 0, 0.176);
+}

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { JobOffersComponent } from './job-offers/job-offers.component';
-import { CompaniesComponent } from './companies/companies.component';
+import { JobOffersComponent } from './components/job-offers/job-offers.component';
+import { CompaniesComponent } from './components/companies/companies.component';
 
 const routes: Routes = [
   { path: 'job-offers', component: JobOffersComponent }, // Default path for the JobModule

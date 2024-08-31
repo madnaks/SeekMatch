@@ -1,5 +1,6 @@
 <div class="container mt-5">
-    <div class="row align-items-center">
+    <!-- First Row -->
+    <div class="row align-items-center mb-4 search-form">
         <!-- First Input -->
         <div class="col-12 col-sm-10 col-md-6 mb-3 mb-md-0">
             <div class="input-group">
@@ -19,6 +20,15 @@
                 <input type="text" class="form-control" [placeholder]="'JobOffers.Where-Input' | translate"
                     aria-label="search: Job title, keywords, or company">
             </div>
+        </div>
+    </div>
+    <!-- Second Row -->
+    <div class="row">
+        <div class="col-md-4" id="job-list-container">
+            <app-job-list></app-job-list>
+        </div>
+        <div class="col-md-8 job-details" id="job-details-container">
+            <app-job-details></app-job-details>
         </div>
     </div>
 </div>

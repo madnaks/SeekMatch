@@ -19,6 +19,9 @@
     },
     "JobOffers": {
         "Search-Offers-Input" : "Job title, keywords or company",
-        "Where-Input" : "Where ?"
+        "Where-Input" : "Where ?",
+        "Job-Details": {
+            "Job-Details": "Job Details"
+        }
     }
 }

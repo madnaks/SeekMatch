@@ -1,0 +1,74 @@
+
+[
+    {
+      "id": 1,
+      "title": "Frontend Developer",
+      "description": "Work on the latest front-end technologies including Angular.",
+      "company": "TechCorp",
+      "location": "San Francisco, CA"
+    },
+    {
+      "id": 2,
+      "title": "Backend Developer",
+      "description": "Build scalable backend systems using Node.js and Express.",
+      "company": "WebSolutions",
+      "location": "New York, NY"
+    },
+    {
+      "id": 3,
+      "title": "Full Stack Developer",
+      "description": "Work on both frontend and backend in a fast-paced environment.",
+      "company": "Innovatech",
+      "location": "Austin, TX"
+    },
+    {
+      "id": 4,
+      "title": "Data Scientist",
+      "description": "Analyze large datasets to derive business insights.",
+      "company": "DataWorks",
+      "location": "Chicago, IL"
+    },
+    {
+      "id": 5,
+      "title": "Mobile Developer",
+      "description": "Develop cutting-edge mobile applications for iOS and Android.",
+      "company": "AppMasters",
+      "location": "Seattle, WA"
+    },
+    {
+      "id": 6,
+      "title": "DevOps Engineer",
+      "description": "Ensure smooth deployment and operation of systems.",
+      "company": "CloudOps",
+      "location": "Denver, CO"
+    },
+    {
+      "id": 7,
+      "title": "Product Manager",
+      "description": "Lead product development teams and define the product vision.",
+      "company": "ProductHub",
+      "location": "Boston, MA"
+    },
+    {
+      "id": 8,
+      "title": "UI/UX Designer",
+      "description": "Design user interfaces and experiences for web and mobile apps.",
+      "company": "CreativeMinds",
+      "location": "Los Angeles, CA"
+    },
+    {
+      "id": 9,
+      "title": "QA Engineer",
+      "description": "Ensure the quality of software products through testing.",
+      "company": "QualityFirst",
+      "location": "Miami, FL"
+    },
+    {
+      "id": 10,
+      "title": "Cybersecurity Analyst",
+      "description": "Protect systems and networks from security threats.",
+      "company": "SecureNet",
+      "location": "Washington, DC"
+    }
+  ]
+  
