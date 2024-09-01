@@ -1,8 +1,8 @@
 <div class="container mt-5">
     <!-- First Row -->
-    <div class="row align-items-center mb-4 search-form">
+    <div class="row justify-content-center align-items-center mb-4 search-form">
         <!-- First Input -->
-        <div class="col-12 col-sm-10 col-md-6 mb-3 mb-md-0">
+        <div class="col-md-4 col-sm-10 mb-3 mb-md-0">
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -12,7 +12,7 @@
             </div>
         </div>
         <!-- Second Input -->
-        <div class="col-12 col-sm-10 col-md-6">
+        <div class="col-md-4 col-sm-10">
             <div class="input-group">
                 <span class="input-group-text">
                     <i class="fa-solid fa-location-dot"></i>
@@ -24,10 +24,10 @@
     </div>
     <!-- Second Row -->
     <div class="row">
-        <div class="col-md-4" id="job-list-container">
+        <div class="col-md-4 me-5 pe-0" id="job-list-container">
             <app-job-list></app-job-list>
         </div>
-        <div class="col-md-8 job-details" id="job-details-container">
+        <div class="col-md-7 job-details d-md-block d-none" id="job-details-container">
             <app-job-details></app-job-details>
         </div>
     </div>
