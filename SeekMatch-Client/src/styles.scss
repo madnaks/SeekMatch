@@ -13,21 +13,6 @@
     --text-color: #333333;
 }
 
-// 2nd theme
-// Primary Color: #2C3E50 (Midnight Blue) - For a modern and professional appearance.
-// Secondary Color: #E74C3C (Bright Red) - To attract attention to important buttons or links.
-// Accent Color: #ECF0F1 (Light Grey) - For subtle backgrounds or borders.
-// Background Color: #FFFFFF (White) - Clean and minimalistic background.
-// Text Color: #2C3E50 (Midnight Blue) - Consistent with the primary color for a cohesive look.
-
-// :root {
-//     --primary-color: #2C3E50;
-//     --secondary-color: ##E74C3C;
-//     --accent-color: #ECF0F1;
-//     --background-color: #FFFFFF;
-//     --text-color: #2C3E50;
-// }
-
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -38,20 +23,56 @@ body {
     color: #ffffff;
 }
 
-.btn, .badge {
+.btn {
     background-color: var(--secondary-color);
     color: #ffffff;
-}
-
-.btn:hover, .btn:active {
-    background-color: var(--accent-color) !important;
-    border-color: transparent !important;
+    &:hover, &:active {
+        background-color: var(--accent-color) !important;
+        border-color: transparent !important;
+    }
 }
 
 .badge {
+    background-color: var(--secondary-color);
+    color: #ffffff;
     user-select: none;
 }
 
+// We don't use href proprety on a element so we don't have the cursor
 a {
     cursor: pointer;
+}
+
+// Generale style for search-form class and their inputs
+.search-form {
+    input {
+        &.form-control {
+            border-left: none;
+        }
+
+        // Remove bootstrap focus style on input
+        &:focus {
+            box-shadow: unset;
+            border: unset;
+            border: 1px solid #dee2e6;
+            border-left: unset;
+        }
+    }
+
+    .input-group {
+        transition: all 0.3s ease;
+
+        &:focus-within {
+            color: var(--bs-body-color);
+            background-color: var(--bs-body-bg);
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            border-radius: 6px; 
+        }
+
+        .input-group-text {
+            background-color: white;
+        }
+    }
 }

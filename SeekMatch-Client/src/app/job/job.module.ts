@@ -6,9 +6,16 @@ import { JobRoutingModule } from './job-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
 
 @NgModule({
-  declarations: [CompaniesComponent, JobOffersComponent, JobListComponent, JobDetailsComponent],
+  declarations: [
+    CompaniesComponent, 
+    JobOffersComponent, 
+    JobListComponent, 
+    JobDetailsComponent, 
+    CompanyListComponent
+  ],
   imports: [
     CommonModule,
     JobRoutingModule,
