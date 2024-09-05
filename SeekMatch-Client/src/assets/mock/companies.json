@@ -1,0 +1,62 @@
+[
+    {
+      "name": "Tech Solutions Inc.",
+      "location": "San Francisco, CA",
+      "numberOfEmployees": 250,
+      "numberOfOffers": 10
+    },
+    {
+      "name": "Innovatech",
+      "location": "New York, NY",
+      "numberOfEmployees": 500,
+      "numberOfOffers": 25
+    },
+    {
+      "name": "Green Energy Corp.",
+      "location": "Austin, TX",
+      "numberOfEmployees": 100,
+      "numberOfOffers": 5
+    },
+    {
+      "name": "EduTech",
+      "location": "Boston, MA",
+      "numberOfEmployees": 150,
+      "numberOfOffers": 8
+    },
+    {
+      "name": "HealthPlus",
+      "location": "Chicago, IL",
+      "numberOfEmployees": 300,
+      "numberOfOffers": 15
+    },
+    {
+      "name": "Tech Solutions Inc.",
+      "location": "San Francisco, CA",
+      "numberOfEmployees": 250,
+      "numberOfOffers": 10
+    },
+    {
+      "name": "Innovatech",
+      "location": "New York, NY",
+      "numberOfEmployees": 500,
+      "numberOfOffers": 25
+    },
+    {
+      "name": "Green Energy Corp.",
+      "location": "Austin, TX",
+      "numberOfEmployees": 100,
+      "numberOfOffers": 5
+    },
+    {
+      "name": "EduTech",
+      "location": "Boston, MA",
+      "numberOfEmployees": 150,
+      "numberOfOffers": 8
+    },
+    {
+      "name": "HealthPlus",
+      "location": "Chicago, IL",
+      "numberOfEmployees": 300,
+      "numberOfOffers": 15
+    }
+  ]

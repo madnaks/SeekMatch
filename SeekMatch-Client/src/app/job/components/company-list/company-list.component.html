@@ -1,0 +1,21 @@
+<div class="company-list row d-flex justify-content-center">
+    <div *ngFor="let company of companies" class="card col-xl-2 col-lg-3 col-md-4 col-sm-8 col-10 me-3 mb-3">
+        <div class="card-body">
+            <img src="assets/images/Insert-Image-Here.png" class="card-img-top">
+
+            <h5 class="card-title">{{ company.name }}</h5>
+            <p class="card-text">
+                <i class="fa-solid fa-location-dot"></i>
+                {{ company.location }}
+            </p>
+            <p class="card-text">
+                <i class="fa-solid fa-users-line"></i>
+                {{ company.numberOfEmployees }} {{ 'Companies.Company-List.Employees' | translate }}
+            </p>
+            <p class="card-text">
+                <i class="fa-solid fa-briefcase"></i>
+                {{ company.numberOfOffers }} {{ 'Companies.Company-List.Job-Offers' | translate }}
+            </p>
+        </div>
+    </div>
+</div>

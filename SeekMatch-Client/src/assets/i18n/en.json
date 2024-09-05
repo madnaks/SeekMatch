@@ -23,5 +23,11 @@
         "Job-Details": {
             "Job-Details": "Job Details"
         }
+    },
+    "Companies": {
+        "Company-List": {
+            "Employees": "Employees",
+            "Job-Offers": "Job offers"
+        }
     }
 }

@@ -1,1 +1,19 @@
-<p>companies works!</p>
+<div class="container-fluid mt-5">
+    <!-- First Row -->
+    <div class="row justify-content-center align-items-center mb-4 search-form">
+        <!-- First Input -->
+        <div class="col-xl-4 col-lg-6 col-md-8 col-sm-8 col-10 mb-3 mb-md-0">
+            <div class="input-group">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+                <input type="text" class="form-control" [placeholder]="'JobOffers.Search-Offers-Input' | translate"
+                    aria-label="search: Job title, keywords, or company">
+            </div>
+        </div>
+    </div>
+    <!-- Second Row -->
+    <div class="row">
+        <app-company-list></app-company-list>
+    </div>
+</div>
