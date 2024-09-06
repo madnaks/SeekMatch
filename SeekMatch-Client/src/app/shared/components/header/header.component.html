@@ -10,7 +10,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">{{ 'Navbar.Menu.JobOffers' | translate }} </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item last-menu-item">
         <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">{{ 'Navbar.Menu.Companies' | translate }} </a>
       </li>
       <li class="nav-item" *ngIf="isMenuItemVisible">
@@ -27,7 +27,7 @@
         <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'Navbar.Menu.SignUp' | translate }}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" routerLink="/home" routerLinkActive="active">{{ 'Navbar.Menu.LogIn' | translate }}</a>
+        <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'Navbar.Menu.LogIn' | translate }}</a>
       </li>
     </ul>
 
