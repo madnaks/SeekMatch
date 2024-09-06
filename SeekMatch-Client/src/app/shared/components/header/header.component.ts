@@ -9,6 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderComponent {
 
+  isMenuItemVisible: boolean = false;
+
   constructor(private offcanvasService: NgbOffcanvas, private translate: TranslateService) {
   }
 
