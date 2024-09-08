@@ -17,5 +17,9 @@ export const routes: Routes = [
         path: 'cv',
         loadChildren: () => import('./cv/cv.module').then(m => m.CvModule)
     },
+    {
+        path: 'auth',
+        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
+    },
     { path: '**', redirectTo: '' }
 ];
