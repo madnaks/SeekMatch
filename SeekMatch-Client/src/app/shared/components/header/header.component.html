@@ -1,33 +1,47 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
+
   <!-- Logo -->
   <a class="navbar-brand ps-3" routerLink="/home">
     Navbar
   </a>
 
-  <!-- Navbar items for larger screens -->
+  <!-- Navbar menu items for larger screens -->
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ms-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">{{ 'Navbar.Menu.JobOffers' | translate }} </a>
+        <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">
+          {{ 'Navbar.Menu.JobOffers' | translate }}
+        </a>
       </li>
       <li class="nav-item last-menu-item">
-        <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">{{ 'Navbar.Menu.Companies' | translate }} </a>
+        <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">
+          {{ 'Navbar.Menu.Companies' | translate }}
+        </a>
       </li>
       <li class="nav-item" *ngIf="isMenuItemVisible">
-        <a class="nav-link" routerLink="/career-development/test" routerLinkActive="active">{{ 'Navbar.Menu.Tests' | translate }}</a>
+        <a class="nav-link" routerLink="/career-development/test" routerLinkActive="active">
+          {{ 'Navbar.Menu.Tests' | translate }}
+        </a>
       </li>
       <li class="nav-item" *ngIf="isMenuItemVisible">
-        <a class="nav-link" routerLink="/career-development/training" routerLinkActive="active">{{ 'Navbar.Menu.Training' | translate }}</a>
+        <a class="nav-link" routerLink="/career-development/training" routerLinkActive="active">
+          {{ 'Navbar.Menu.Training' | translate }}
+        </a>
       </li>
       <li class="nav-item" *ngIf="isMenuItemVisible">
-        <a class="nav-link" routerLink="/cv/cv-creation" routerLinkActive="active">{{ 'Navbar.Menu.CVCreation' | translate }}
+        <a class="nav-link" routerLink="/cv/cv-creation" routerLinkActive="active">
+          {{ 'Navbar.Menu.CVCreation' | translate }}
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'Navbar.Menu.SignUp' | translate }}</a>
+        <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
+          {{ 'Navbar.Menu.SignUp' | translate }}
+        </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/home" routerLinkActive="active">{{ 'Navbar.Menu.LogIn' | translate }}</a>
+        <a class="nav-link" routerLink="/auth/login-in" routerLinkActive="active">
+          {{ 'Navbar.Menu.LogIn' | translate }}
+        </a>
       </li>
     </ul>
 
@@ -41,23 +55,57 @@
   <button class="navbar-toggler me-3" type="button" (click)="openOffcanvas(content)">
     <span class="navbar-toggler-icon"></span>
   </button>
+
 </nav>
 
+<!-- Navbar menu items for smaller screens -->
 <ng-template #content let-offcanvas>
+
   <div class="offcanvas-header">
     <button type="button" class="btn-close" (click)="closeOffcanvas()"></button>
   </div>
+
   <div class="offcanvas-body">
     <ul class="nav flex-column">
-      <li class="nav-item"><a class="nav-link" routerLink="/job/job-offers">{{ 'Navbar.Menu.JobOffers' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/job/companies">{{ 'Navbar.Menu.Companies' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/career-development/test">{{ 'Navbar.Menu.Tests' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/career-development/training">{{ 'Navbar.Menu.Training' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/cv/cv-creation">{{ 'Navbar.Menu.CVCreation' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/home">{{ 'Navbar.Menu.SignUp' | translate }}</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/home">{{ 'Navbar.Menu.LogIn' | translate }}</a></li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/job/job-offers">
+          {{ 'Navbar.Menu.JobOffers' | translate }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/job/companies">
+          {{ 'Navbar.Menu.Companies' | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isMenuItemVisible">
+        <a class="nav-link" routerLink="/career-development/test">
+          {{ 'Navbar.Menu.Tests' | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isMenuItemVisible">
+        <a class="nav-link" routerLink="/career-development/training">
+          {{ 'Navbar.Menu.Training' | translate }}
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="isMenuItemVisible">
+        <a class="nav-link" routerLink="/cv/cv-creation">
+          {{ 'Navbar.Menu.CVCreation' | translate }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/auth/sign-up">
+          {{ 'Navbar.Menu.SignUp' | translate }}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/auth/login-in">
+          {{ 'Navbar.Menu.LogIn' | translate }}
+        </a>
+      </li>
     </ul>
-    <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">{{ 'Navbar.Menu.Language' | translate
-      }}</button>
+    <button class="btn btn-outline-secondary mt-3" (click)="changeLanguage()">
+      {{ 'Navbar.Menu.Language' | translate }}
+    </button>
   </div>
+
 </ng-template>
