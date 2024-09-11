@@ -1,0 +1,48 @@
+.container-fluid {
+    overflow: hidden;
+
+    .row {
+        display: flex;
+        height: 100vh;
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex: 1;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            color: black;
+            background-size: cover; /* Make sure the background image covers the column */
+            background-position: center;
+            background-blend-mode: overlay; /* Blend color and image together */
+            
+            &#first-column {
+                background-image: url('../../../../assets/images/job-seraching.jpg'); /* Set your background image */
+                // background-color: #003366cc; /* primary-color overlay */
+                border-right: 1px solid black;
+
+                &:hover {
+                    flex: 3; // Grows on hover
+                }
+            }
+
+            &#second-column {
+                background-image: url('../../../../assets/images/recruiters-2.jpg'); /* Set your background image */
+                // background-color: rgba(50, 91, 132, 0.8); /* secondary-color overlay */
+
+                &:hover {
+                    flex: 3; // Grows on hover
+                }
+            }
+        }
+
+        // Media query to switch to vertical layout on smaller screens
+        @media (max-width: 767.98px) {
+            flex-direction: column; // Switch to vertical layout
+        }
+    }
+}
