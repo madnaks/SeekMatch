@@ -1,38 +1,57 @@
+<app-header-simplified></app-header-simplified>
+
 <div class="container-fluid">
 
     <div class="row">
 
-        <!-- First Column -->
+        <!-- First Column : JOB SEEKER-->
         <div class="column justify-content-evenly" id="first-column">
 
-            <h2 class="text-center">I'm here to find my next opportunity</h2>
+            <h2 class="text-center d-none d-md-block">
+                {{ 'SignUp.Register.JobSeeker.Title' | translate }}
+            </h2>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie-svgrepo-com.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up job-seeker" routerLink="/job/job-offers">SIGNUP AS A JOB SEEKER</button>
+                <button class="btn btn-sign-up job-seeker" routerLink="/job/job-offers">
+                    {{ 'SignUp.Register.JobSeeker.Button' | translate }}
+                </button>
             </div>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <p class="m-0">Already have an account ?</p>
-                <p>Login</p>
+                <p class="m-0">
+                    {{ 'SignUp.Register.HaveAccount' | translate }}
+                </p>
+                <p>
+                    {{ 'SignUp.Register.Login' | translate }}
+                </p>
             </div>
 
         </div>
 
-        <!-- Second Column -->
+        <!-- Second Column : RECRUITER-->
         <div class="column justify-content-evenly" id="second-column">
 
-            <h2 class="text-center">I'm here to hire great talent</h2>
+            <h2 class="text-center d-none d-md-block">
+                {{ 'SignUp.Register.Recruiter.Title' | translate }}
+            </h2>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <img src="assets\images\man-with-magnifying-glass-svgrepo-com.svg" alt="Description of the image"
+                <img src="assets\images\woman-with-magnifying-glass-svgrepo-com.svg" alt="Description of the image"
                     width="200">
-                <button class="btn btn-sign-up recruiter" routerLink="/job/job-offers">SIGNUP AS A RECRUITER</button>
+                <button class="btn btn-sign-up recruiter" routerLink="/job/job-offers">
+                    {{ 'SignUp.Register.Recruiter.Button' | translate }}
+                </button>
             </div>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <p class="m-0">Already have an account ?</p>
-                <p>Login</p>
+                <p class="m-0"> 
+                    {{ 'SignUp.Register.HaveAccount' | translate }}
+                </p>
+                <!-- <p (click)="open(content)"> -->
+                    <p>
+                    {{ 'SignUp.Register.Login' | translate }}
+                </p>
             </div>
 
         </div>
@@ -41,7 +60,16 @@
 
 </div>
 
-<!-- 
-<div class="white-box d-flex justify-content-center align-items-center" routerLink="/home">
-
-</div> -->
+<!-- <ng-template #content let-c="close" let-d="dismiss">
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<p>Prêt à passer à l'étape suivante?</p>
+            <p> Créez un compte ou connectez-vous.</p>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-outline-secondary" (click)="c('Save click')">Save</button>
+	</div>
+</ng-template> -->
