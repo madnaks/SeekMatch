@@ -2,32 +2,46 @@
     "Navbar": {
         "Menu": {
             "JobOffers": "Offres d'emplois",
-            "Companies":"Entreprises",
+            "Companies": "Entreprises",
             "Tests": "Tests",
-            "Training":"Formations",
-            "CVCreation":"Créations d'un CV",
-            "SignUp":"S'inscrire",
-            "LogIn":"Connexion",
-            "Language":"Langue"
+            "Training": "Formations",
+            "CVCreation": "Créations d'un CV",
+            "SignUp": "S'inscrire",
+            "LogIn": "Connexion",
+            "Language": "Langue"
         }
     },
     "Home": {
         "Title": "Bienvenue sur notre site Web",
         "Welcome-Paragraph-1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
         "Welcome-Paragraph-2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
-        "Search-Jobs-Button": "Rechercher des emplois"
+        "SearchJobsButton": "Rechercher des emplois"
     },
     "JobOffers": {
-        "Search-Offers-Input" : "Titre de poste, mots-clés ou entreprise",
-        "Where-Input" : "Où ?",
-        "Job-Details": {
-            "Job-Details": "Détails du poste"
+        "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
+        "WhereInput": "Où ?",
+        "JobDetails": {
+            "JobDetails": "Détails du poste"
         }
     },
     "Companies": {
-        "Company-List": {
+        "CompanyList": {
             "Employees": "Employées",
-            "Job-Offers": "Offers d'emplois"
+            "JobOffers": "Offers d'emplois"
+        }
+    },
+    "SignUp": {
+        "Register": {
+            "JobSeeker": {
+                "Title": "Je suis ici pour trouver ma prochaine opportunité",
+                "Button": "INSCRIPTION EN TANT QUE CANDIDAT"
+            },
+            "Recruiter": {
+                "Title": "Je suis ici pour recruter de grands talents",
+                "Button": "INSCRIPTION EN TANT QUE RECRUTEUR"
+            },
+            "HaveAccount": "Vous avez déjà un compte ?",
+            "Login": "Connexion"
         }
     }
 }
