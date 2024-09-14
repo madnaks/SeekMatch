@@ -1,0 +1,29 @@
+<nav class="navbar navbar-expand navbar-simplified">
+
+    <!-- Logo -->
+    <a class="navbar-brand ps-3" routerLink="/home">
+        Navbar
+    </a>
+
+    <!-- Navbar menu items for larger screens -->
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+            <!-- <li class="nav-item">
+                <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
+                    {{ 'Navbar.Menu.SignUp' | translate }}
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/auth/log-in" routerLinkActive="active">
+                    {{ 'Navbar.Menu.LogIn' | translate }}
+                </a>
+            </li> -->
+        </ul>
+
+        <!-- Language Button -->
+        <button class="btn btn-dark ms-3 me-3" (click)="changeLanguage()">
+            <i class="fa-solid fa-globe"></i>
+        </button>
+    </div>
+
+</nav>
