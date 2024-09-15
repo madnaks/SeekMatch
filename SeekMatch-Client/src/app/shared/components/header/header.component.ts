@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
 
-  constructor(private offcanvasService: NgbOffcanvas, private translate: TranslateService, private router: Router) {
+  constructor(private offcanvasService: NgbOffcanvas, private translate: TranslateService, private router: Router,private modalService: NgbModal) {
   }
 
   ngOnInit() {
@@ -40,6 +40,10 @@ export class HeaderComponent implements OnInit {
     } else {
       this.translate.use('en');
     }
+  }
+  
+  open(content: any) {
+    this.modalService.open(content, { centered: true });
   }
 
 }
