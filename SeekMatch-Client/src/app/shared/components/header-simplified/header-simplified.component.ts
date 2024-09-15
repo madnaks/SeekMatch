@@ -8,7 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderSimplifiedComponent {
 
-  constructor(private translate: TranslateService) {
+  constructor(public translate: TranslateService) {
   }
 
   changeLanguage() {

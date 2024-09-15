@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
 
-  constructor(private offcanvasService: NgbOffcanvas, private translate: TranslateService, private router: Router,private modalService: NgbModal) {
+  constructor(private offcanvasService: NgbOffcanvas, public translate: TranslateService, private router: Router,private modalService: NgbModal) {
   }
 
   ngOnInit() {

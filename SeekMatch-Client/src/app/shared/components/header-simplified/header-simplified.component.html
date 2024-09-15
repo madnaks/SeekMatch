@@ -8,22 +8,13 @@
     <!-- Navbar menu items for larger screens -->
     <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-            <!-- <li class="nav-item">
-                <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
-                    {{ 'Navbar.Menu.SignUp' | translate }}
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/auth/log-in" routerLinkActive="active">
-                    {{ 'Navbar.Menu.LogIn' | translate }}
-                </a>
-            </li> -->
         </ul>
 
-        <!-- Language Button -->
-        <button class="btn btn-dark ms-3 me-3" (click)="changeLanguage()">
-            <i class="fa-solid fa-globe"></i>
-        </button>
+        <!-- Language Buttons -->
+        <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'fr'"
+            src="assets\images\flags\flag-uk.svg" width="20" (click)="changeLanguage()">
+        <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'en'"
+            src="assets\images\flags\flag-france.svg" width="20" (click)="changeLanguage()">
     </div>
 
 </nav>
