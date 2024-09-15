@@ -2,13 +2,13 @@
     "Navbar": {
         "Menu": {
             "JobOffers": "Job Offers",
-            "Companies":"Companies",
+            "Companies": "Companies",
             "Tests": "Tests",
-            "Training":"Training",
-            "CVCreation":"CV Creation",
-            "SignUp":"Sign Up",
-            "LogIn":"Log In",
-            "Language":"Language"
+            "Training": "Training",
+            "CVCreation": "CV Creation",
+            "SignUp": "Sign Up",
+            "LogIn": "Log In",
+            "Language": "Language"
         }
     },
     "Home": {
@@ -18,8 +18,8 @@
         "SearchJobsButton": "Search for jobs"
     },
     "JobOffers": {
-        "SearchOffersInput" : "Job title, keywords or company",
-        "WhereInput" : "Where ?",
+        "SearchOffersInput": "Job title, keywords or company",
+        "WhereInput": "Where ?",
         "JobDetails": {
             "JobDetails": "Job Details"
         }
@@ -31,17 +31,29 @@
         }
     },
     "SignUp": {
-        "Register": {
-            "JobSeeker": {
-                "Title" : "I'm here to find my next opportunity",
-                "Button": "SIGNUP AS A JOB SEEKER"
-            },
-            "Recruiter": {
-                "Title" : "I'm here to hire great talent",
-                "Button": "SIGNUP AS A RECRUITER"
-            },
-            "HaveAccount": "Already have an account ?",
-            "Login": "Login"
+        "JobSeeker": {
+            "Title": "I'm here to find my next opportunity",
+            "Button": "SIGNUP AS A JOB SEEKER"
+        },
+        "Recruiter": {
+            "Title": "I'm here to hire great talent",
+            "Button": "SIGNUP AS A RECRUITER"
+        },
+        "HaveAccount": "Already have an account ?",
+        "Login": "Login"
+    },
+    "Login": {
+        "Modal": {
+            "Title" : "Welcome back!",
+            "Body" : {
+                "FirstLine": "Ready to take the next step?",
+                "SecondLine": "Create an account or sign in.",
+                "Form": {
+                    "EmailLabel" : "Email address",
+                    "PasswordLabel" : "Password",
+                    "SubmitButton": "Login"
+                }
+            }
         }
     }
 }

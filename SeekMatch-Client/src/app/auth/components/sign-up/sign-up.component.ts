@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,16 +7,10 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
-  // constructor(
-  //   config: NgbModalConfig,
-  //   private modalService: NgbModal,
-  // ) {
-  //   // customize default values of modals used by this component tree
-  //   config.backdrop = 'static';
-  //   config.keyboard = false;
-  // }
+  constructor(private modalService: NgbModal) {
+  }
 
-  // open(content: any) {
-  //   this.modalService.open(content);
-  // }
+  open(content: any) {
+    this.modalService.open(content, { centered: true });
+  }
 }
