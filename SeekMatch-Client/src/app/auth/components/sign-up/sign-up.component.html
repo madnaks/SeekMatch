@@ -13,7 +13,7 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent)">
+                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent, 'job-seeker')">
                     {{ 'SignUp.JobSeeker.Button' | translate }}
                 </button>
             </div>
@@ -22,9 +22,9 @@
                 <p class="m-0">
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
-                <p (click)="open(loginContent)">
+                <button class="btn btn-sign-up job-seeker mt-2" (click)="open(loginContent, 'job-seeker')">
                     {{ 'SignUp.Login' | translate }}
-                </p>
+                </button>
             </div>
 
         </div>
@@ -37,9 +37,8 @@
             </h2>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
-                <img src="assets\images\woman-with-magnifying-glass.svg" alt="Description of the image"
-                    width="200">
-                <button class="btn btn-sign-up recruiter" (click)="open(signupContent)">
+                <img src="assets\images\woman-with-magnifying-glass.svg" alt="Description of the image" width="200">
+                <button class="btn btn-sign-up recruiter" (click)="open(signupContent, 'recruiter')">
                     {{ 'SignUp.Recruiter.Button' | translate }}
                 </button>
             </div>
@@ -48,9 +47,9 @@
                 <p class="m-0">
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
-                <p (click)="open(loginContent)">
+                <button class="btn btn-sign-up recruiter mt-2" (click)="open(loginContent, 'recruiter')">
                     {{ 'SignUp.Login' | translate }}
-                </p>
+                </button>
             </div>
 
         </div>
@@ -62,12 +61,12 @@
 <!-- login modal -->
 <ng-template #loginContent let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">{{ 'Login.Modal.Title' | translate }}</h4>
+        <h4 class="modal-title" id="modal-basic-title">
+            {{ 'Login.Modal.Title' | translate }}
+        </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p> {{ 'Login.Modal.Body.FirstLine' | translate }} </p>
-        <p> {{ 'Login.Modal.Body.SecondLine' | translate }} </p>
         <form>
             <div class="mb-3">
                 <label for="inputLoginEmail" class="form-label">
@@ -76,44 +75,54 @@
                 <input type="email" class="form-control" id="inputLoginEmail">
             </div>
             <div class="mb-3">
-                <label for="inputLoginPassword" class="form-label"> 
+                <label for="inputLoginPassword" class="form-label">
                     {{ 'Login.Modal.Body.Form.PasswordLabel' | translate }}
                 </label>
                 <input type="password" class="form-control" id="inputLoginPassword">
             </div>
+            <div class="mb-3 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary w-50" (click)="c('Save click')">
+                    {{ 'Login.Modal.Body.Form.SubmitButton' | translate }}
+                </button>
+            </div>
         </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Save click')">
-            {{ 'Login.Modal.Body.Form.SubmitButton' | translate }}
-        </button>
     </div>
 </ng-template>
 
 <!-- sign-up modal -->
 <ng-template #signupContent let-c="close" let-d="dismiss">
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Hi there!</h4>
+        <h4 class="modal-title" id="modal-basic-title">
+            {{ 'SignUp.Modal.Title' | translate }}
+        </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p> Prêt à passer à l'étape suivante?</p>
-        <p> Créez un compte ou connectez-vous.</p>
-
+        <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
+        <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
         <form>
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <label for="inputLoginPassword" class="form-label">
+                    {{ 'SignUp.Modal.Body.Form.EmailLabel' | translate }}
+                </label>
+                <input type="email" class="form-control" id="inputLoginPassword" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="inputLoginPassword" class="form-label">
+                    {{ 'SignUp.Modal.Body.Form.PasswordLabel' | translate }}
+                </label>
+                <input type="password" class="form-control" id="inputLoginPassword">
+            </div>
+            <div class="mb-3 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary w-50" (click)="c('Save click')">
+                    <span *ngIf="selectedRole == 'recruiter'">
+                        {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
+                    </span>
+                    <span *ngIf="selectedRole == 'job-seeker'">
+                        {{ 'SignUp.Modal.Body.Form.SubmitButtonJobSeeker' | translate }}
+                    </span>
+                </button>
             </div>
         </form>
-
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="c('Save click')">Submit</button>
     </div>
 </ng-template>

@@ -18,14 +18,18 @@ body {
     color: var(--text-color);
 }
 
-
-
 .btn {
     background-color: var(--secondary-color);
     color: #ffffff;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+
     &:hover, &:active {
         background-color: var(--accent-color) !important;
+        color: #ffffff;
+        box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
         border-color: transparent !important;
+        transform: translateY(-1px);
     }
 }
 

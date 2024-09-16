@@ -7,10 +7,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
+
+  selectedRole: string = '';
+
   constructor(private modalService: NgbModal) {
   }
 
-  open(content: any) {
+  open(content: any, userRole: string) {
+    this.selectedRole = userRole;
     this.modalService.open(content, { centered: true });
   }
 }

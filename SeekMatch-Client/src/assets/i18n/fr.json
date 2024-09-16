@@ -32,12 +32,25 @@
     },
     "SignUp": {
         "JobSeeker": {
-            "Title": "Je suis ici pour trouver ma prochaine opportunité",
+            "Title": "ICI POUR TROUVER MA PROCHAINE OPPORTUNITÉ ?",
             "Button": "INSCRIPTION EN TANT QUE CANDIDAT"
         },
         "Recruiter": {
-            "Title": "Je suis ici pour recruter de grands talents",
+            "Title": "ICI POUR RECRUTER DE GRANDS TALENTS ?",
             "Button": "INSCRIPTION EN TANT QUE RECRUTEUR"
+        },
+        "Modal": {
+            "Title" : "Bienvenue!",
+            "Body" : {
+                "FirstLine": "Prêt à passer à l'étape suivante ?",
+                "SecondLine": "Créez un compte ou connectez-vous.",
+                "Form": {
+                    "EmailLabel" : "Adresse e-mail",
+                    "PasswordLabel" : "Mot de passe",
+                    "SubmitButtonRecruter": "Créer un compte recruteur",
+                    "SubmitButtonJobSeeker": "Créer un compte"
+                }
+            }
         },
         "HaveAccount": "Vous avez déjà un compte ?",
         "Login": "Connexion"
@@ -46,8 +59,6 @@
         "Modal": {
             "Title": "Bienvenue à nouveau !",
             "Body": {
-                "FirstLine": "Prêt à passer à l'étape suivante ?",
-                "SecondLine": "Créez un compte ou connectez-vous.",
                 "Form": {
                     "EmailLabel": "Adresse e-mail",
                     "PasswordLabel": "Mot de passe",
