@@ -43,7 +43,7 @@ export class HeaderComponent implements OnInit {
   }
   
   open(content: any) {
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
   }
 
 }

@@ -15,6 +15,6 @@ export class SignUpComponent {
 
   open(content: any, userRole: string) {
     this.selectedRole = userRole;
-    this.modalService.open(content, { centered: true });
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
   }
 }
