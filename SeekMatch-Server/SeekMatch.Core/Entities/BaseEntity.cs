@@ -1,4 +1,4 @@
-﻿namespace SeekMatch_Core.Entities
+﻿namespace SeekMatch.Core.Entities
 {
     public abstract class BaseEntity
     {

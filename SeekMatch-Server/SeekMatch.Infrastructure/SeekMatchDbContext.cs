@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SeekMatch_Core.Entities;
+using SeekMatch.Core.Entities;
 
-namespace SeekMatch_Infrastructure
+namespace SeekMatch.Infrastructure
 {
     public class SeekMatchDbContext : DbContext
     {
-        public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
-
         public DbSet<User> Users { get; set; }
         public DbSet<JobSeeker> JobSeekers { get; set; }
         public DbSet<Recruiter> Recruiters { get; set; }
 
+        public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,16 +24,6 @@ namespace SeekMatch_Infrastructure
                 .HasOne(u => u.Recruiter)
                 .WithOne(r => r.User)
                 .HasForeignKey<Recruiter>(r => r.Id);
-
-            // Default value configuration for CreatedAt and UpdatedAt in BaseEntity
-            modelBuilder.Entity<BaseEntity>()
-                .Property(b => b.CreatedAt)
-                .HasDefaultValueSql("getutcdate()");
-
-            modelBuilder.Entity<BaseEntity>()
-                .Property(b => b.UpdatedAt)
-                .HasDefaultValueSql("getutcdate()");
         }
-
     }
 }

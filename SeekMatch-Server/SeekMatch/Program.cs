@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SeekMatch_Infrastructure;
+using SeekMatch.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 

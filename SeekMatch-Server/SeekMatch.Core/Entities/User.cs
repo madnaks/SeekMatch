@@ -1,4 +1,4 @@
-﻿namespace SeekMatch_Core.Entities
+﻿namespace SeekMatch.Core.Entities
 {
     public class User: BaseEntity
     {
@@ -7,12 +7,10 @@
         public UserRole Role { get; set; }
         public JobSeeker? JobSeeker { get; set; }
         public Recruiter? Recruiter { get; set; }
-
     }
     public enum UserRole
     {
         JobSeeker = 1,
         Recruiter = 2
     }
-
 }
