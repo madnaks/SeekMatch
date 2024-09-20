@@ -1,9 +1,11 @@
-﻿namespace SeekMatch.Core.Entities
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace SeekMatch.Core.Entities
 {
-    public class User: BaseEntity
+    public class User: IdentityUser
     {
-        public required string Email { get; set; }
-        public required string Password { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
         public UserRole Role { get; set; }
         public JobSeeker? JobSeeker { get; set; }
         public Recruiter? Recruiter { get; set; }
