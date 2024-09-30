@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs;
+using SeekMatch.Application.Interfaces;
+using SeekMatch.Application.Services;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 
 namespace SeekMatch.Controllers
 {
@@ -10,9 +13,11 @@ namespace SeekMatch.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        public AuthController(UserManager<User> userManager)
+        private readonly IJobSeekerService _jobSeekerService;
+        public AuthController(UserManager<User> userManager, IJobSeekerService jobSeekerService)
         {
             _userManager = userManager;
+            _jobSeekerService = jobSeekerService;
         }
 
         [HttpPost("register")]
@@ -30,6 +35,20 @@ namespace SeekMatch.Controllers
 
             if(!result.Succeeded)
                 return BadRequest(result.Errors);
+
+            //await _userManager.AddToRoleAsync(user, model.Role.ToString());
+
+            if (model.Role == UserRole.JobSeeker)
+            {
+                var jobSeeker = new JobSeeker()
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    User = user
+                };
+
+                await _jobSeekerService.CreateAsync(jobSeeker);
+            }
 
             return Ok(result);
         }

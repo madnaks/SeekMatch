@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
+using SeekMatch.Application.Interfaces;
+using SeekMatch.Application.Services;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Interfaces;
+using SeekMatch.Core.Repositories;
 using SeekMatch.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,11 +22,18 @@ builder.Services.AddIdentityCore<User>()
 
 // Add Authentication and Authorization services
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme)
+    .AddBearerToken(IdentityConstants.BearerScheme);
 
 // Configure the database context with Npgsql
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SeekMatchDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Register services
+builder.Services.AddScoped<IJobSeekerService, JobSeekerService>();
+
+//Register repositories
+builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 
 var app = builder.Build();
 
