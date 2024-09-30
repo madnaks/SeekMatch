@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SeekMatch.Core\SeekMatchCore.csproj" />
+    <ProjectReference Include="..\SeekMatch.Infrastructure\SeekMatchInfrastructure.csproj" />
   </ItemGroup>
 
 </Project>
