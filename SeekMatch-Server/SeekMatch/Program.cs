@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Win32;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Application.Services;
 using SeekMatch.Core.Entities;
