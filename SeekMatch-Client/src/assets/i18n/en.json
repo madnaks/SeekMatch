@@ -40,15 +40,18 @@
             "Button": "SIGNUP AS A RECRUITER"
         },
         "Modal": {
-            "Title" : "Hi there!",
+            "Title" : "Hi there! 👋",
             "Body" : {
                 "FirstLine": "Ready to take the next step?",
-                "SecondLine": "Create an account or sign in.",
+                "SecondLine": "Create an account.",
                 "Form": {
-                    "EmailLabel" : "Email address",
-                    "PasswordLabel" : "Password",
-                    "SubmitButtonRecruter": "Create a recruiter account",
-                    "SubmitButtonJobSeeker": "Create an account"
+                    "FirstName" : "First Name",
+                    "LastName" : "Last Name",
+                    "Email" : "Email address",
+                    "Password" : "Password",
+                    "ConfirmPassword" : "Confirm Password",
+                    "SubmitButtonRecruter": "Create Recruiter Account",
+                    "SubmitButtonJobSeeker": "Create Account"
                 }
             }
         },
@@ -57,7 +60,7 @@
     },
     "Login": {
         "Modal": {
-            "Title" : "Welcome back!",
+            "Title" : "Welcome back! 👋",
             "Body" : {
                 "Form": {
                     "EmailLabel" : "Email address",

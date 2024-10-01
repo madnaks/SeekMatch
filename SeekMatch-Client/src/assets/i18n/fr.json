@@ -40,15 +40,18 @@
             "Button": "INSCRIPTION EN TANT QUE RECRUTEUR"
         },
         "Modal": {
-            "Title" : "Bienvenue!",
+            "Title" : "Bienvenue! 👋",
             "Body" : {
                 "FirstLine": "Prêt à passer à l'étape suivante ?",
-                "SecondLine": "Créez un compte ou connectez-vous.",
+                "SecondLine": "Créez un compte.",
                 "Form": {
-                    "EmailLabel" : "Adresse e-mail",
-                    "PasswordLabel" : "Mot de passe",
-                    "SubmitButtonRecruter": "Créer un compte recruteur",
-                    "SubmitButtonJobSeeker": "Créer un compte"
+                    "FirstName" : "Prénom",
+                    "LastName" : "Nom",
+                    "Email" : "Email address",
+                    "Password" : "Mot de passe",
+                    "ConfirmPassword" : "Confirmer le mot de passe",
+                    "SubmitButtonRecruter": "Créé Recruiteur Profile",
+                    "SubmitButtonJobSeeker": "Créé Profile"
                 }
             }
         },
@@ -57,7 +60,7 @@
     },
     "Login": {
         "Modal": {
-            "Title": "Bienvenue à nouveau !",
+            "Title": "Bienvenue à nouveau ! 👋",
             "Body": {
                 "Form": {
                     "EmailLabel": "Adresse e-mail",
