@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -7,7 +8,8 @@ export const routes: Routes = [
     },
     {
         path: 'job',
-        loadChildren: () => import('./job/job.module').then(m => m.JobModule)
+        loadChildren: () => import('./job/job.module').then(m => m.JobModule),
+        // canActivate: [authGuard]
     },
     {
         path: 'career-development',
