@@ -34,6 +34,18 @@ builder.Services.AddScoped<IJobSeekerService, JobSeekerService>();
 //Register repositories
 builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("localhostOrigin", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials();
+
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,6 +53,8 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    // add localhost origin in development environment
+    app.UseCors("localhostOrigin");
 }
 
 app.UseHttpsRedirection();
