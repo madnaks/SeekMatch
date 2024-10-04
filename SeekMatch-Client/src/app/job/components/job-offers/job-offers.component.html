@@ -1,9 +1,9 @@
 <div class="container mt-5">
-    <!-- First Row -->
-    <div class="row justify-content-center align-items-center mb-4 search-form">
-        <!-- First Input -->
+    <!-- 1st row : Search Form  -->
+    <div class="row justify-content-center align-items-center mb-4">
+        <!-- 1st Input : Search with keyword -->
         <div class="col-md-4 col-sm-10 mb-3 mb-md-0">
-            <div class="input-group">
+            <div class="input-with-icon input-group">
                 <span class="input-group-text">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </span>
@@ -11,9 +11,9 @@
                     aria-label="search: Job title, keywords, or company">
             </div>
         </div>
-        <!-- Second Input -->
+        <!-- 2nd Input: Search location -->
         <div class="col-md-4 col-sm-10">
-            <div class="input-group">
+            <div class="input-with-icon input-group">
                 <span class="input-group-text">
                     <i class="fa-solid fa-location-dot"></i>
                 </span>
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <!-- Second Row -->
+    <!-- 2nd Row : list & details of job offers -->
     <div class="row">
         <div class="col-md-4 me-5 pe-0" id="job-list-container">
             <app-job-list></app-job-list>

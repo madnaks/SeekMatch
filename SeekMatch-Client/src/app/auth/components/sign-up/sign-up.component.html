@@ -113,7 +113,7 @@
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="inputLastName"
                         [placeholder]="'SignUp.Modal.Body.Form.LastName' | translate" formControlName="lastName">
-                    <div *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched"
+                    <div *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched"
                         class="text-danger">
                         Last name is required.
                     </div>
@@ -127,17 +127,27 @@
                 </div>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="inputPassword"
-                    [placeholder]="'SignUp.Modal.Body.Form.Password' | translate" formControlName="password">
+                <div class="password-input input-group">
+                    <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
+                        [placeholder]="'SignUp.Modal.Body.Form.Password' | translate" formControlName="password">
+                    <span class="input-group-text" (click)="togglePasswordVisibility()">
+                        <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                    </span>
+                </div>
                 <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
                     class="text-danger">
                     Password is required and must be at least 6 characters.
                 </div>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" id="inputConfirmPassword"
-                    [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
-                    formControlName="confirmPassword">
+                <div class="password-input input-group">
+                    <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control" id="inputConfirmPassword"
+                        [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
+                        formControlName="confirmPassword">
+                    <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
+                        <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                    </span>
+                </div>
                 <div *ngIf="signUpForm.errors?.['mismatch'] && signUpForm.get('confirmPassword')?.touched"
                     class="text-danger">
                     Passwords must match.

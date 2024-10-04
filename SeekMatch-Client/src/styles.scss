@@ -24,7 +24,8 @@ body {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 
-    &:hover, &:active {
+    &:hover,
+    &:active {
         background-color: var(--accent-color) !important;
         color: #ffffff;
         box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
@@ -39,28 +40,15 @@ body {
     user-select: none;
 }
 
-// We don't use href proprety on a element so we don't have the cursor
+// We don't use href proprety on a element, so we don't have the cursor
 a {
     cursor: pointer;
 }
 
-// Generale style for search-form class and their inputs
-.search-form {
-    input {
-        &.form-control {
-            border-left: none;
-        }
+// Style input that has icon on their left
+.input-with-icon {
 
-        // Remove bootstrap focus style on input
-        &:focus {
-            box-shadow: unset;
-            border: unset;
-            border: 1px solid #dee2e6;
-            border-left: unset;
-        }
-    }
-
-    .input-group {
+    &.input-group {
         transition: all 0.3s ease;
 
         &:focus-within {
@@ -69,12 +57,61 @@ a {
             border-color: #86b7fe;
             outline: 0;
             box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
-            border-radius: 6px; 
+            border-radius: 6px;
         }
 
         .input-group-text {
             background-color: white;
         }
+
+        input {
+            &.form-control {
+                border-left: none;
+            }
+
+            // Remove bootstrap focus style on input
+            &:focus {
+                box-shadow: unset;
+                border: 1px solid #dee2e6;
+                border-left: unset;
+            }
+        }
+
+    }
+}
+
+.password-input {
+
+    &.input-group {
+        transition: all 0.3s ease;
+
+        &:focus-within {
+            color: var(--bs-body-color);
+            background-color: var(--bs-body-bg);
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            border-radius: 6px;
+        }
+
+        input {
+            &.form-control {
+                border-right: none;
+            }
+
+            // Remove bootstrap focus style on input
+            &:focus {
+                box-shadow: unset;
+                border: 1px solid #dee2e6;
+                border-right: unset;
+            }
+        }
+
+        .input-group-text {
+            background-color: white;
+            cursor: pointer;
+        }
+
     }
 }
 
