@@ -24,9 +24,9 @@ export class AuthService {
       })
     );
   }
-  register(jobSeeker: JobSeeker, role: UserRole): Observable<any> {
-    debugger
-    return this.http.post(`${this.apiUrl}/register`, { jobSeeker, role });
+
+  register(jobSeeker: JobSeeker, userRole: UserRole): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, jobSeeker);
   }
 
   getToken(): string | null {

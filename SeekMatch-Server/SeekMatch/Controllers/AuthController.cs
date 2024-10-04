@@ -21,7 +21,7 @@ namespace SeekMatch.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto model)
+        public async Task<IActionResult> Register([FromBody] RegisterDto model, [FromQuery] UserRole userRole)
         {
             if (!ModelState.IsValid) 
                 return BadRequest(ModelState);
@@ -38,7 +38,7 @@ namespace SeekMatch.Controllers
 
             //await _userManager.AddToRoleAsync(user, model.Role.ToString());
 
-            if (model.Role == UserRole.JobSeeker)
+            if (userRole == UserRole.JobSeeker)
             {
                 var jobSeeker = new JobSeeker()
                 {
