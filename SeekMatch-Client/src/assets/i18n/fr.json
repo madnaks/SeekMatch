@@ -70,8 +70,8 @@
             "Title": "Bienvenue à nouveau ! 👋",
             "Body": {
                 "Form": {
-                    "EmailLabel": "Adresse e-mail",
-                    "PasswordLabel": "Mot de passe",
+                    "Email": "Adresse e-mail",
+                    "Password": "Mot de passe",
                     "SubmitButton": "Connexion"
                 }
             }

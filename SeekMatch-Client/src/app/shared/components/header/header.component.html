@@ -118,31 +118,6 @@
 
 <!-- login modal -->
 <ng-template #loginContent let-c="close" let-d="dismiss">
-  <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">
-          {{ 'Login.Modal.Title' | translate }}
-      </h4>
-      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-  </div>
-  <div class="modal-body">
-      <form>
-          <div class="mb-3">
-              <label for="inputLoginEmail" class="form-label">
-                  {{ 'Login.Modal.Body.Form.EmailLabel' | translate }}
-              </label>
-              <input type="email" class="form-control" id="inputLoginEmail">
-          </div>
-          <div class="mb-3">
-              <label for="inputLoginPassword" class="form-label">
-                  {{ 'Login.Modal.Body.Form.PasswordLabel' | translate }}
-              </label>
-              <input type="password" class="form-control" id="inputLoginPassword">
-          </div>
-          <div class="mb-3 d-flex justify-content-center">
-              <button type="button" class="btn btn-primary w-50" (click)="c('Save click')">
-                  {{ 'Login.Modal.Body.Form.SubmitButton' | translate }}
-              </button>
-          </div>
-      </form>
-  </div>
+  <app-login-modal [closeModal]="c" [dismissModal]="d">
+  </app-login-modal>
 </ng-template>

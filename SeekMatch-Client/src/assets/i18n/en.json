@@ -70,8 +70,8 @@
             "Title": "Welcome back! 👋",
             "Body": {
                 "Form": {
-                    "EmailLabel": "Email address",
-                    "PasswordLabel": "Password",
+                    "Email": "Email address",
+                    "Password": "Password",
                     "SubmitButton": "Login"
                 }
             }
