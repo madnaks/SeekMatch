@@ -18,21 +18,24 @@
           {{ 'Navbar.Menu.Companies' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      @if (isMenuItemVisible) {
+      <li class="nav-item">
         <a class="nav-link" routerLink="/career-development/test" routerLinkActive="active">
           {{ 'Navbar.Menu.Tests' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/career-development/training" routerLinkActive="active">
           {{ 'Navbar.Menu.Training' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/cv/cv-creation" routerLinkActive="active">
           {{ 'Navbar.Menu.CVCreation' | translate }}
         </a>
       </li>
+      }
+      @if (!isAuthenticated) {
       <li class="nav-item">
         <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
           {{ 'Navbar.Menu.SignUp' | translate }}
@@ -43,13 +46,25 @@
           {{ 'Navbar.Menu.LogIn' | translate }}
         </a>
       </li>
+      } @else {
+      <div ngbDropdown class="d-inline-block" display="dynamic">
+        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+          Profil
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem (click)="logout()">Logout</button>
+        </div>
+      </div>
+      }
     </ul>
 
     <!-- Language Buttons -->
-    <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'fr'" src="assets\images\flags\flag-uk.svg"
-      width="20" (click)="changeLanguage()">
-    <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'en'"
-      src="assets\images\flags\flag-france.svg" width="20" (click)="changeLanguage()">
+    @if (translate.currentLang == 'fr') {
+    <img class="language-button ms-3 me-3" src="assets\images\flags\flag-uk.svg" width="20" (click)="changeLanguage()">
+    } @else if (translate.currentLang == 'en') {
+    <img class="language-button ms-3 me-3" src="assets\images\flags\flag-france.svg" width="20"
+      (click)="changeLanguage()">
+    }
 
   </div>
 
@@ -57,7 +72,6 @@
   <button class="navbar-toggler me-3" type="button" (click)="openOffcanvas(content)">
     <span class="navbar-toggler-icon"></span>
   </button>
-
 
 </nav>
 
@@ -80,21 +94,23 @@
           {{ 'Navbar.Menu.Companies' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      @if (isMenuItemVisible) {
+      <li class="nav-item">
         <a class="nav-link" routerLink="/career-development/test">
           {{ 'Navbar.Menu.Tests' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/career-development/training">
           {{ 'Navbar.Menu.Training' | translate }}
         </a>
       </li>
-      <li class="nav-item" *ngIf="isMenuItemVisible">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/cv/cv-creation">
           {{ 'Navbar.Menu.CVCreation' | translate }}
         </a>
       </li>
+      }
       <li class="nav-item">
         <a class="nav-link" routerLink="/auth/sign-up">
           {{ 'Navbar.Menu.SignUp' | translate }}
@@ -108,10 +124,12 @@
     </ul>
 
     <!-- Language Buttons -->
-    <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'fr'" src="assets\images\flags\flag-uk.svg"
-      width="20" (click)="changeLanguage()">
-    <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'en'"
-      src="assets\images\flags\flag-france.svg" width="20" (click)="changeLanguage()">
+    @if (translate.currentLang == 'fr') {
+    <img class="language-button ms-3 me-3" src="assets\images\flags\flag-uk.svg" width="20" (click)="changeLanguage()">
+    } @else if (translate.currentLang == 'en') {
+    <img class="language-button ms-3 me-3" src="assets\images\flags\flag-france.svg" width="20"
+      (click)="changeLanguage()">
+    }
   </div>
 
 </ng-template>

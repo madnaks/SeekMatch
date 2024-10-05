@@ -5,25 +5,22 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
-            <!-- <label for="inputLoginEmail" class="form-label">
-                {{ 'Login.Modal.Body.Form.Email' | translate }}
-            </label> -->
             <input type="email" class="form-control" id="inputLoginEmail"
-                [placeholder]="'Login.Modal.Body.Form.Email' | translate">
+                [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
         </div>
         <div class="mb-3">
             <div class="password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="confirmPassword">
+                    [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="password">
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
         </div>
         <div class="mb-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary w-50">
+            <button type="submit" class="btn btn-primary w-50">
                 {{ 'Login.Modal.Body.Form.SubmitButton' | translate }}
             </button>
         </div>

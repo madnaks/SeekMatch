@@ -7,12 +7,12 @@
 <div class="modal-body">
     <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
     <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
-    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="row mb-3">
             <div class="col-md-6">
                 <input type="text" class="form-control" id="inputFirstName"
                     [placeholder]="'SignUp.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
-                @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched) {
+                @if (signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched) {
                 <div class="text-danger">
                     {{ 'SignUp.Modal.Body.Form.Validation.FirstName' | translate }}
                 </div>
@@ -21,7 +21,7 @@
             <div class="col-md-6">
                 <input type="text" class="form-control" id="inputLastName"
                     [placeholder]="'SignUp.Modal.Body.Form.LastName' | translate" formControlName="lastName">
-                @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched) {
+                @if (signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched) {
                 <div class="text-danger">
                     {{ 'SignUp.Modal.Body.Form.Validation.LastName' | translate }}
                 </div>
@@ -31,7 +31,7 @@
         <div class="mb-3">
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                 [placeholder]="'SignUp.Modal.Body.Form.Email' | translate" formControlName="email">
-            @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+            @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
             <div class="text-danger">
                 {{ 'SignUp.Modal.Body.Form.Validation.Email' | translate }}
             </div>
@@ -45,7 +45,7 @@
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
-            @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+            @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
             <div class="text-danger">
                 {{ 'SignUp.Modal.Body.Form.Validation.Password' | translate }}
             </div>
@@ -60,7 +60,7 @@
                     <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
-            @if (signUpForm.errors?.['mismatch'] && signUpForm.get('confirmPassword')?.touched) {
+            @if (signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched) {
             <div class="text-danger">
                 {{ 'SignUp.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
             </div>

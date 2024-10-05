@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,15 @@ export class HeaderComponent implements OnInit {
 
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
+  isAuthenticated: boolean = false;
 
-  constructor(private offcanvasService: NgbOffcanvas, public translate: TranslateService, private router: Router,private modalService: NgbModal) {
+  constructor(
+    private offcanvasService: NgbOffcanvas, 
+    public translate: TranslateService, 
+    private router: Router, 
+    private modalService: NgbModal, 
+    private authService: AuthService) {
+    this.isAuthenticated = authService.isAuthenticated();
   }
 
   ngOnInit() {
@@ -34,16 +42,20 @@ export class HeaderComponent implements OnInit {
     this.offcanvasService.dismiss();
   }
 
-  changeLanguage() {
+  public changeLanguage() {
     if (this.translate.currentLang == 'en') {
       this.translate.use('fr');
     } else {
       this.translate.use('en');
     }
   }
-  
-  open(content: any) {
+
+  public open(content: any) {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
+  }
+
+  public logout(): void {
+    this.authService.logout();
   }
 
 }

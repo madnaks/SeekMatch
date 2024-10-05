@@ -19,7 +19,7 @@ export class RegisterModalComponent {
   // create a variable and assing to it UserRole Enum so that it can be user in html
   UserRole = UserRole;
  
-  signUpForm: FormGroup;
+  signupForm: FormGroup;
   passwordVisible : boolean = false;
   confirmPasswordVisible : boolean = false;
 
@@ -27,10 +27,14 @@ export class RegisterModalComponent {
     private fb: NonNullableFormBuilder, 
     private authService: AuthService,
     private router: Router) {
-    this.signUpForm = this.initSignUpForm();
+    this.signupForm = this.initSignupForm();
+    // This code is for later, when implmenting recruiter
+    // if (this.userRole == UserRole.Recruiter) {
+    //   this.signUpForm.addControl('companyName',this.fb.control('', Validators.required))
+    // }
   }
 
-  private initSignUpForm(): FormGroup {
+  private initSignupForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -50,15 +54,15 @@ export class RegisterModalComponent {
   }
 
   public onSubmit(): void {
-    if (this.signUpForm.valid) {
+    if (this.signupForm.valid) {
       this.register();
     } else {
-      this.signUpForm.markAllAsTouched();
+      this.signupForm.markAllAsTouched();
     }
   }
 
   private register(): void {
-    const formValues = this.signUpForm.value;
+    const formValues = this.signupForm.value;
 
     const jobSeeker = new JobSeeker(
       formValues.firstName,

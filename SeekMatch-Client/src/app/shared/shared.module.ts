@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { HeaderSimplifiedComponent } from './components/header-simplified/header-simplified.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
     CommonModule,
     NgbModule,
     TranslateModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
