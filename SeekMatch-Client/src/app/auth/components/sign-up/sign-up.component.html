@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <!-- First Column : JOB SEEKER-->
+        <!-- 1st Column : JOB SEEKER -->
         <div class="column justify-content-evenly" id="first-column">
 
             <h2 class="text-center d-none d-md-block">
@@ -29,7 +29,7 @@
 
         </div>
 
-        <!-- Second Column : RECRUITER-->
+        <!-- 2nd Column : RECRUITER -->
         <div class="column justify-content-evenly" id="second-column">
 
             <h2 class="text-center d-none d-md-block">
@@ -105,26 +105,30 @@
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="inputFirstName"
                         [placeholder]="'SignUp.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
-                    <div *ngIf="signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched"
-                        class="text-danger">
-                        First name is required.
+                    @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched) {
+                    <div class="text-danger">
+                        {{ 'SignUp.Modal.Body.Form.Validation.FirstName' | translate }}
                     </div>
+                    }
                 </div>
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="inputLastName"
                         [placeholder]="'SignUp.Modal.Body.Form.LastName' | translate" formControlName="lastName">
-                    <div *ngIf="signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched"
-                        class="text-danger">
-                        Last name is required.
+                    @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched) {
+                    <div class="text-danger">
+                        {{ 'SignUp.Modal.Body.Form.Validation.LastName' | translate }}
                     </div>
+                    }
                 </div>
             </div>
             <div class="mb-3">
                 <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                     [placeholder]="'SignUp.Modal.Body.Form.Email' | translate" formControlName="email">
-                <div *ngIf="signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched" class="text-danger">
-                    A valid email is required.
+                @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
+                <div class="text-danger">
+                    {{ 'SignUp.Modal.Body.Form.Validation.Email' | translate }}
                 </div>
+                }
             </div>
             <div class="mb-3">
                 <div class="password-input input-group">
@@ -134,34 +138,40 @@
                         <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                     </span>
                 </div>
-                <div *ngIf="signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched"
-                    class="text-danger">
-                    Password is required and must be at least 6 characters.
+                @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
+                <div class="text-danger">
+                    {{ 'SignUp.Modal.Body.Form.Validation.Password' | translate }}
                 </div>
+                }
             </div>
             <div class="mb-3">
                 <div class="password-input input-group">
-                    <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control" id="inputConfirmPassword"
-                        [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
+                    <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
+                        id="inputConfirmPassword" [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
                         formControlName="confirmPassword">
                     <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                         <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                     </span>
                 </div>
-                <div *ngIf="signUpForm.errors?.['mismatch'] && signUpForm.get('confirmPassword')?.touched"
-                    class="text-danger">
-                    Passwords must match.
+                @if (signUpForm.errors?.['mismatch'] && signUpForm.get('confirmPassword')?.touched) {
+                <div class="text-danger">
+                    {{ 'SignUp.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
                 </div>
+                }
             </div>
             <div class="mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary w-50">
                     <i class="fa-solid fa-lock me-2"></i>
-                    <span *ngIf="selectedRole == 'recruiter'">
+                    @if (selectedRole == 'recruiter') {
+                    <span>
                         {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
                     </span>
-                    <span *ngIf="selectedRole == 'job-seeker'">
+                    }
+                    @else if (selectedRole == 'job-seeker') {
+                    <span>
                         {{ 'SignUp.Modal.Body.Form.SubmitButtonJobSeeker' | translate }}
                     </span>
+                    }
                 </button>
             </div>
         </form>

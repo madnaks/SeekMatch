@@ -40,18 +40,25 @@
             "Button": "INSCRIPTION EN TANT QUE RECRUTEUR"
         },
         "Modal": {
-            "Title" : "Bienvenue! 👋",
-            "Body" : {
+            "Title": "Bienvenue! 👋",
+            "Body": {
                 "FirstLine": "Prêt à passer à l'étape suivante ?",
                 "SecondLine": "Créez un compte.",
                 "Form": {
-                    "FirstName" : "Prénom",
-                    "LastName" : "Nom",
-                    "Email" : "Email address",
-                    "Password" : "Mot de passe",
-                    "ConfirmPassword" : "Confirmer le mot de passe",
+                    "FirstName": "Prénom",
+                    "LastName": "Nom",
+                    "Email": "Email address",
+                    "Password": "Mot de passe",
+                    "ConfirmPassword": "Confirmer le mot de passe",
                     "SubmitButtonRecruter": "Créé Recruiteur Profile",
-                    "SubmitButtonJobSeeker": "Créé Profile"
+                    "SubmitButtonJobSeeker": "Créé Profile",
+                    "Validation": {
+                        "FirstName": "Le prénom est requis.",
+                        "LastName": "Le nom de famille est requis.",
+                        "Email": "Un email valide est requis.",
+                        "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
+                        "ConfirmPassword": "Les mots de passe doivent correspondre."
+                    }
                 }
             }
         },
