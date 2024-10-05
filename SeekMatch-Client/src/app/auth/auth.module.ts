@@ -5,10 +5,12 @@ import { AuthRoutingModule } from './auth.routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterModalComponent } from './modals/register-modal/register-modal.component';
 
 @NgModule({
   declarations: [
-    SignUpComponent
+    SignUpComponent,
+    RegisterModalComponent
   ],
   imports: [
     CommonModule,

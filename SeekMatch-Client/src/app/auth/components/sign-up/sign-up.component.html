@@ -13,7 +13,7 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent, 'job-seeker')">
+                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent, UserRole.JobSeeker)">
                     {{ 'SignUp.JobSeeker.Button' | translate }}
                 </button>
             </div>
@@ -22,7 +22,7 @@
                 <p class="m-0">
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
-                <button class="btn btn-sign-up job-seeker mt-2" (click)="open(loginContent, 'job-seeker')">
+                <button class="btn btn-sign-up job-seeker mt-2" (click)="open(loginContent, UserRole.JobSeeker)">
                     {{ 'SignUp.Login' | translate }}
                 </button>
             </div>
@@ -38,7 +38,7 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\woman-with-magnifying-glass.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up recruiter" (click)="open(signupContent, 'recruiter')">
+                <button class="btn btn-sign-up recruiter" (click)="open(signupContent, UserRole.Recruiter)">
                     {{ 'SignUp.Recruiter.Button' | translate }}
                 </button>
             </div>
@@ -47,7 +47,7 @@
                 <p class="m-0">
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
-                <button class="btn btn-sign-up recruiter mt-2" (click)="open(loginContent, 'recruiter')">
+                <button class="btn btn-sign-up recruiter mt-2" (click)="open(loginContent, UserRole.Recruiter)">
                     {{ 'SignUp.Login' | translate }}
                 </button>
             </div>
@@ -66,89 +66,6 @@
 
 <!-- sign-up modal -->
 <ng-template #signupContent let-c="close" let-d="dismiss">
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-            {{ 'SignUp.Modal.Title' | translate }}
-        </h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
-        <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
-        <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-            <div class="row mb-3">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputFirstName"
-                        [placeholder]="'SignUp.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
-                    @if (signUpForm.get('firstName')?.invalid && signUpForm.get('firstName')?.touched) {
-                    <div class="text-danger">
-                        {{ 'SignUp.Modal.Body.Form.Validation.FirstName' | translate }}
-                    </div>
-                    }
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputLastName"
-                        [placeholder]="'SignUp.Modal.Body.Form.LastName' | translate" formControlName="lastName">
-                    @if (signUpForm.get('lastName')?.invalid && signUpForm.get('lastName')?.touched) {
-                    <div class="text-danger">
-                        {{ 'SignUp.Modal.Body.Form.Validation.LastName' | translate }}
-                    </div>
-                    }
-                </div>
-            </div>
-            <div class="mb-3">
-                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                    [placeholder]="'SignUp.Modal.Body.Form.Email' | translate" formControlName="email">
-                @if (signUpForm.get('email')?.invalid && signUpForm.get('email')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Modal.Body.Form.Validation.Email' | translate }}
-                </div>
-                }
-            </div>
-            <div class="mb-3">
-                <div class="password-input input-group">
-                    <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                        [placeholder]="'SignUp.Modal.Body.Form.Password' | translate" formControlName="password">
-                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                        <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                    </span>
-                </div>
-                @if (signUpForm.get('password')?.invalid && signUpForm.get('password')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Modal.Body.Form.Validation.Password' | translate }}
-                </div>
-                }
-            </div>
-            <div class="mb-3">
-                <div class="password-input input-group">
-                    <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                        id="inputConfirmPassword" [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
-                        formControlName="confirmPassword">
-                    <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
-                        <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                    </span>
-                </div>
-                @if (signUpForm.errors?.['mismatch'] && signUpForm.get('confirmPassword')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
-                </div>
-                }
-            </div>
-            <div class="mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary w-50">
-                    <i class="fa-solid fa-lock me-2"></i>
-                    @if (selectedRole == 'recruiter') {
-                    <span>
-                        {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
-                    </span>
-                    }
-                    @else if (selectedRole == 'job-seeker') {
-                    <span>
-                        {{ 'SignUp.Modal.Body.Form.SubmitButtonJobSeeker' | translate }}
-                    </span>
-                    }
-                </button>
-            </div>
-        </form>
-    </div>
+    <app-register-modal [userRole]="selectedUserRole" [closeModal]="c" [dismissModal]="d">
+    </app-register-modal>
 </ng-template>

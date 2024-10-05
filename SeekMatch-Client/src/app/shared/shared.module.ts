@@ -8,13 +8,21 @@ import { HeaderSimplifiedComponent } from './components/header-simplified/header
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 
 @NgModule({
-  declarations: [HeaderComponent, HeaderSimplifiedComponent, LoginModalComponent],
+  declarations: [
+    HeaderComponent,
+    HeaderSimplifiedComponent,
+    LoginModalComponent
+  ],
   imports: [
     CommonModule,
     NgbModule,
     TranslateModule,
     RouterModule
   ],
-  exports: [HeaderComponent, HeaderSimplifiedComponent, LoginModalComponent]
+  exports: [
+    HeaderComponent,
+    HeaderSimplifiedComponent,
+    LoginModalComponent
+  ]
 })
 export class SharedModule { }
