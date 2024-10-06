@@ -80,7 +80,7 @@ export class RegisterModalComponent {
       finalize(() => {
         this.isLoading = false;
     })).subscribe({
-      next: (value) => { 
+      next: () => { 
         this.router.navigate(['/home']);
         this.isSuccess = true;
       },
