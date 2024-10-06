@@ -2,8 +2,8 @@
 
 namespace SeekMatch.Application.Interfaces
 {
-    public interface IJobSeekerService
+    public interface ITalentService
     {
-        Task CreateAsync(JobSeeker jobSeeker);
+        Task CreateAsync(Talent talent);
     }
 }

@@ -11,7 +11,7 @@ export class SignUpComponent {
 
   // create a variable and assing to it UserRole Enum so that it can be user in html
   UserRole = UserRole;
-  selectedUserRole: UserRole = UserRole.JobSeeker;
+  selectedUserRole: UserRole = UserRole.Talent;
 
   constructor(private modalService: NgbModal) {
   }

@@ -4,17 +4,17 @@ using SeekMatch.Infrastructure;
 
 namespace SeekMatch.Core.Repositories
 {
-    public class JobSeekerRepository : IJobSeekerRepository
+    public class TalentRepository : ITalentRepository
     {
         public readonly SeekMatchDbContext _dbContext;
-        public JobSeekerRepository(SeekMatchDbContext dbContext)
+        public TalentRepository(SeekMatchDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task CreateAsync(JobSeeker jobSeeker)
+        public async Task CreateAsync(Talent talent)
         {
-            _dbContext.JobSeekers.Add(jobSeeker);
+            _dbContext.Talents.Add(talent);
             await _dbContext.SaveChangesAsync();
         }
     }

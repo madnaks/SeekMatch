@@ -1,4 +1,4 @@
-export class JobSeeker {
+export class Talent {
     constructor(
       public firstName: string,
       public lastName: string,

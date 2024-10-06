@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { JobSeeker } from '../../../shared/models/job-seeker';
+import { Talent } from '../../../shared/models/talent';
 import { UserRole } from '../../../shared/enums/enums';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterModalComponent {
 
-  @Input() userRole: UserRole = UserRole.JobSeeker;
+  @Input() userRole: UserRole = UserRole.Talent;
   @Input() closeModal: () => void = () => {};
   @Input() dismissModal: (reason: string) => void = () => {};
 
@@ -64,14 +64,14 @@ export class RegisterModalComponent {
   private register(): void {
     const formValues = this.signupForm.value;
 
-    const jobSeeker = new JobSeeker(
+    const talent = new Talent(
       formValues.firstName,
       formValues.lastName,
       formValues.email,
       formValues.password
     );
 
-    this.authService.register(jobSeeker, UserRole.JobSeeker).subscribe(
+    this.authService.register(talent, UserRole.Talent).subscribe(
       () => {
         this.router.navigate(['/home']);
       },

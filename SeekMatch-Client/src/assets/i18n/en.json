@@ -31,7 +31,7 @@
         }
     },
     "SignUp": {
-        "JobSeeker": {
+        "Talent": {
             "Title": "HERE TO FIND MY NEXT OPPORTUNITY ?",
             "Button": "SIGNUP AS A JOB SEEKER"
         },
@@ -51,7 +51,7 @@
                     "Password": "Password",
                     "ConfirmPassword": "Confirm Password",
                     "SubmitButtonRecruter": "Create Recruiter Account",
-                    "SubmitButtonJobSeeker": "Create Account",
+                    "SubmitButtonTalent": "Create Account",
                     "Validation": {
                         "FirstName": "First name is required.",
                         "LastName": "Last name is required.",

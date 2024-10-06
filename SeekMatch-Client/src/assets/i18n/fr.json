@@ -31,7 +31,7 @@
         }
     },
     "SignUp": {
-        "JobSeeker": {
+        "Talent": {
             "Title": "ICI POUR TROUVER MA PROCHAINE OPPORTUNITÉ ?",
             "Button": "INSCRIPTION EN TANT QUE CANDIDAT"
         },
@@ -51,7 +51,7 @@
                     "Password": "Mot de passe",
                     "ConfirmPassword": "Confirmer le mot de passe",
                     "SubmitButtonRecruter": "Créé Recruiteur Profile",
-                    "SubmitButtonJobSeeker": "Créé Profile",
+                    "SubmitButtonTalent": "Créé Profile",
                     "Validation": {
                         "FirstName": "Le prénom est requis.",
                         "LastName": "Le nom de famille est requis.",

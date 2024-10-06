@@ -29,10 +29,10 @@ builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SeekMatchDbContext>(opt
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Register services
-builder.Services.AddScoped<IJobSeekerService, JobSeekerService>();
+builder.Services.AddScoped<ITalentService, TalentService>();
 
 //Register repositories
-builder.Services.AddScoped<IJobSeekerRepository, JobSeekerRepository>();
+builder.Services.AddScoped<ITalentRepository, TalentRepository>();
 
 builder.Services.AddCors(options =>
 {

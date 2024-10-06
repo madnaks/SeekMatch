@@ -17,13 +17,13 @@ namespace SeekMatch.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly IJobSeekerService _jobSeekerService;
+        private readonly ITalentService _talentService;
         private readonly IConfiguration _configuration;
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, IJobSeekerService jobSeekerService, IConfiguration configuration)
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, ITalentService talentService, IConfiguration configuration)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _jobSeekerService = jobSeekerService;
+            _talentService = talentService;
             _configuration = configuration;
         }
 
@@ -46,16 +46,16 @@ namespace SeekMatch.Controllers
 
             //await _userManager.AddToRoleAsync(user, model.Role.ToString());
 
-            if (userRole == UserRole.JobSeeker)
+            if (userRole == UserRole.Talent)
             {
-                var jobSeeker = new JobSeeker()
+                var talent = new Talent()
                 {
                     FirstName = registerDto.FirstName,
                     LastName = registerDto.LastName,
                     User = user
                 };
 
-                await _jobSeekerService.CreateAsync(jobSeeker);
+                await _talentService.CreateAsync(talent);
             }
 
             return Ok(result);

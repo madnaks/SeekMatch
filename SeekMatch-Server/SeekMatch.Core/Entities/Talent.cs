@@ -1,6 +1,6 @@
 ﻿namespace SeekMatch.Core.Entities
 {
-    public class JobSeeker: BaseEntity
+    public class Talent: BaseEntity
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }

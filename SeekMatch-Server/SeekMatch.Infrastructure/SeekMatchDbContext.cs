@@ -6,7 +6,7 @@ namespace SeekMatch.Infrastructure
 {
     public class SeekMatchDbContext : IdentityDbContext<User>
     {
-        public DbSet<JobSeeker> JobSeekers { get; set; }
+        public DbSet<Talent> Talents { get; set; }
         public DbSet<Recruiter> Recruiters { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
@@ -16,9 +16,9 @@ namespace SeekMatch.Infrastructure
 
             // Configure relationships
             modelBuilder.Entity<User>()
-                .HasOne(u => u.JobSeeker)
+                .HasOne(u => u.Talent)
                 .WithOne(js => js.User)
-                .HasForeignKey<JobSeeker>(js => js.Id);
+                .HasForeignKey<Talent>(js => js.Id);
 
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Recruiter)

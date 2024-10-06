@@ -8,13 +8,13 @@
         <div class="column justify-content-evenly" id="first-column">
 
             <h2 class="text-center d-none d-md-block">
-                {{ 'SignUp.JobSeeker.Title' | translate }}
+                {{ 'SignUp.Talent.Title' | translate }}
             </h2>
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent, UserRole.JobSeeker)">
-                    {{ 'SignUp.JobSeeker.Button' | translate }}
+                <button class="btn btn-sign-up job-seeker" (click)="open(signupContent, UserRole.Talent)">
+                    {{ 'SignUp.Talent.Button' | translate }}
                 </button>
             </div>
 
@@ -22,7 +22,7 @@
                 <p class="m-0">
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
-                <button class="btn btn-sign-up job-seeker mt-2" (click)="open(loginContent, UserRole.JobSeeker)">
+                <button class="btn btn-sign-up job-seeker mt-2" (click)="open(loginContent, UserRole.Talent)">
                     {{ 'SignUp.Login' | translate }}
                 </button>
             </div>

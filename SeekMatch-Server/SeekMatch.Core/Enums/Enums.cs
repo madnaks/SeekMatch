@@ -2,7 +2,7 @@
 {
     public enum UserRole
     {
-        JobSeeker = 1,
+        Talent = 1,
         Recruiter = 2
     }
 }

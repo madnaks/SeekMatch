@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable, tap } from 'rxjs';
 import { UserRole } from '../shared/enums/enums';
-import { JobSeeker } from '../shared/models/job-seeker';
+import { Talent } from '../shared/models/talent';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +25,8 @@ export class AuthService {
     );
   }
 
-  register(jobSeeker: JobSeeker, userRole: UserRole): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, jobSeeker);
+  register(talent: Talent, userRole: UserRole): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
   }
 
   getToken(): string | null {
