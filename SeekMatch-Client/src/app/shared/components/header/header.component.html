@@ -13,7 +13,7 @@
           {{ 'Navbar.Menu.JobOffers' | translate }}
         </a>
       </li>
-      <li class="nav-item last-menu-item">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">
           {{ 'Navbar.Menu.Companies' | translate }}
         </a>
@@ -47,10 +47,10 @@
         </a>
       </li>
       } @else {
-      <div ngbDropdown class="d-inline-block" display="dynamic">
-        <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-          Profil
-        </button>
+      <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
+        display="dynamic">
+        <img class="ms-2 me-2" src="assets\images\male-default-profile-picture.svg" width="20"
+          id="dropdownBasic1" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem (click)="logout()">Logout</button>
         </div>

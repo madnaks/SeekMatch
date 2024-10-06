@@ -41,6 +41,7 @@ export class LoginModalComponent {
       this.authService.login(formValues.email, formValues.password).subscribe(
         () => {
           this.dismissModal('Login succed');
+          window.location.reload();
         },
         (error) => {
           console.error('Login failed', error);
