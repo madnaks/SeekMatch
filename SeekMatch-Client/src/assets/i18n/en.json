@@ -45,11 +45,11 @@
                 "FirstLine": "Ready to take the next step?",
                 "SecondLine": "Create an account.",
                 "Form": {
-                    "FirstName": "First Name",
-                    "LastName": "Last Name",
+                    "FirstName": "First name",
+                    "LastName": "Last name",
                     "Email": "Email address",
                     "Password": "Password",
-                    "ConfirmPassword": "Confirm Password",
+                    "ConfirmPassword": "Confirm password",
                     "SubmitButtonRecruter": "Create Recruiter Account",
                     "SubmitButtonTalent": "Create Account",
                     "Validation": {
@@ -59,6 +59,22 @@
                         "Password": "Password is required and must be at least 6 characters.",
                         "ConfirmPassword": "Passwords must match."
                     }
+                }
+            },
+            "Success": {
+                "Title": "Welecome To SeekMatch !",
+                "Body": {
+                    "Title": "One more thing",
+                    "Message": "Please check your email for the confirmation we just sent you.",
+                    "ResendEmailButton": "Resend email"
+                }
+            },
+            "Error": {
+                "Title": "There's a problem",
+                "Body": {
+                    "Message1": "We're sorry, something went wrong when attempting to sign up.",
+                    "Message2": "Please try again.",
+                    "ReturnButton": "Return"
                 }
             }
         },

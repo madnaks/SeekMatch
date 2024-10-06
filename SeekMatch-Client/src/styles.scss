@@ -32,6 +32,13 @@ body {
         border-color: transparent !important;
         transform: translateY(-1px);
     }
+
+    &:disabled, .btn.disabled {
+        opacity: 0.5;
+        background-color: var(--secondary-color);
+        color: #ffffff;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
 }
 
 .badge {

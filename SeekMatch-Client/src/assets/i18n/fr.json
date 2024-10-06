@@ -60,6 +60,22 @@
                         "ConfirmPassword": "Les mots de passe doivent correspondre."
                     }
                 }
+            },
+            "Success": {
+                "Title": "Bienvenue sur SeekMatch !",
+                "Body": {
+                    "Title": "Une chose de plus",
+                    "Message": "Veuillez vérifier votre email pour la confirmation que nous venons de vous envoyer.",
+                    "ResendEmailButton": "Renvoyer l'email"
+                }
+            },
+            "Error": {
+                "Title": "Il y a un problème",
+                "Body": {
+                    "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
+                    "Message2": "Veuillez réessayer.",
+                    "ReturnButton": "Retourner"
+                }
             }
         },
         "HaveAccount": "Vous avez déjà un compte ?",

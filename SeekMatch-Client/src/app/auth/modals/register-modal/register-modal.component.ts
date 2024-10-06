@@ -4,6 +4,7 @@ import { Talent } from '../../../shared/models/talent';
 import { UserRole } from '../../../shared/enums/enums';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-register-modal',
@@ -13,18 +14,21 @@ import { Router } from '@angular/router';
 export class RegisterModalComponent {
 
   @Input() userRole: UserRole = UserRole.Talent;
-  @Input() closeModal: () => void = () => {};
-  @Input() dismissModal: (reason: string) => void = () => {};
+  @Input() closeModal: () => void = () => { };
+  @Input() dismissModal: (reason: string) => void = () => { };
 
   // create a variable and assing to it UserRole Enum so that it can be user in html
   UserRole = UserRole;
- 
+
   signupForm: FormGroup;
-  passwordVisible : boolean = false;
-  confirmPasswordVisible : boolean = false;
+  passwordVisible: boolean = false;
+  confirmPasswordVisible: boolean = false;
+  isLoading: boolean = false;
+  isSuccess: boolean = false;
+  isError: boolean = false;
 
   constructor(
-    private fb: NonNullableFormBuilder, 
+    private fb: NonNullableFormBuilder,
     private authService: AuthService,
     private router: Router) {
     this.signupForm = this.initSignupForm();
@@ -55,6 +59,7 @@ export class RegisterModalComponent {
 
   public onSubmit(): void {
     if (this.signupForm.valid) {
+      this.isLoading = true;
       this.register();
     } else {
       this.signupForm.markAllAsTouched();
@@ -71,14 +76,19 @@ export class RegisterModalComponent {
       formValues.password
     );
 
-    this.authService.register(talent, UserRole.Talent).subscribe(
-      () => {
+    this.authService.register(talent, UserRole.Talent).pipe(
+      finalize(() => {
+        this.isLoading = false;
+    })).subscribe({
+      next: (value) => { 
         this.router.navigate(['/home']);
+        this.isSuccess = true;
       },
-      (error) => {
+      error: (error) => {
         console.error('Register failed', error);
+        this.isError = true;
       }
-    );
+    })
   }
 
   public togglePasswordVisibility(): void {

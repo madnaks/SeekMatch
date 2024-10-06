@@ -1,14 +1,18 @@
+@if (!isSuccess && !isError) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         {{ 'SignUp.Modal.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
+
 <div class="modal-body">
-    <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
-    <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
+    <div class="row mb-3">
+        <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
+        <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
+    </div>
     <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
-        <div class="row mb-3">
+        <div class="row mb-4">
             <div class="col-md-6">
                 <input type="text" class="form-control" id="inputFirstName"
                     [placeholder]="'SignUp.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
@@ -28,7 +32,7 @@
                 }
             </div>
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                 [placeholder]="'SignUp.Modal.Body.Form.Email' | translate" formControlName="email">
             @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
@@ -37,7 +41,7 @@
             </div>
             }
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
             <div class="password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
                     [placeholder]="'SignUp.Modal.Body.Form.Password' | translate" formControlName="password">
@@ -51,7 +55,7 @@
             </div>
             }
         </div>
-        <div class="mb-3">
+        <div class="mb-4">
             <div class="password-input input-group">
                 <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
                     id="inputConfirmPassword" [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
@@ -66,20 +70,68 @@
             </div>
             }
         </div>
-        <div class="mb-3 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary w-50">
-                <i class="fa-solid fa-lock me-2"></i>
+        <div class="mt-4 mb-4">
+            <p class="fs-6 fw-light">
+                By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
+                    href="">Global Privacy Statement.</a>
+            </p>
+        </div>
+        <div class="mb-4 d-flex justify-content-center">
+            <button type="submit" class="btn w-50" [disabled]="isLoading">
+                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
                 @if (userRole == UserRole.Recruiter) {
-                <span>
-                    {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
-                </span>
+                {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
                 }
                 @else if (userRole == UserRole.Talent) {
-                <span>
-                    {{ 'SignUp.Modal.Body.Form.SubmitButtonTalent' | translate }}
-                </span>
+                {{ 'SignUp.Modal.Body.Form.SubmitButtonTalent' | translate }}
                 }
             </button>
         </div>
     </form>
 </div>
+}
+
+@if (isSuccess) {
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'SignUp.Modal.Success.Title' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body main-success">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="assets\images\man-happy.svg" width="200">
+        <h5> {{ 'SignUp.Modal.Success.Body.Title' | translate }}</h5>
+        <p>{{ 'SignUp.Modal.Success.Body.Message' | translate }}</p>
+        <button type="button" class="btn w-50" (click)="isError = false">
+            <i class="fa-solid fa-paper-plane me-2"></i>
+            {{ 'SignUp.Modal.Success.Body.ResendEmailButton' | translate }}
+        </button>
+    </div>
+</div>
+} @else if (isError) {
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'SignUp.Modal.Error.Title' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body main-error">
+    <div class="mb-3">
+        <p>{{ 'SignUp.Modal.Error.Body.Message1' | translate }}</p>
+        <p>{{ 'SignUp.Modal.Error.Body.Message2' | translate }}</p>
+    </div>
+
+    <div class="mb-3 d-flex justify-content-center align-items-center">
+        <img src="assets\images\female-something-went-wrong.svg" width="200">
+    </div>
+    <div class="mb-3 d-flex justify-content-center">
+        <button type="button" class="btn w-50" (click)="isError = false">
+            <i class="fa-solid fa-circle-arrow-left me-2"></i>
+            {{ 'SignUp.Modal.Error.Body.ReturnButton' | translate }}
+        </button>
+    </div>
+</div>
+}

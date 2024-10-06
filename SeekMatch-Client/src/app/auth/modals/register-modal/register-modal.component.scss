@@ -1,0 +1,6 @@
+.modal-body {
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transitions */
+    // opacity: 0; /* Start hidden */
+    // transform: translateY(20px); /* Start slightly below */
+    // visibility: hidden; /* Hide by default */
+  }
