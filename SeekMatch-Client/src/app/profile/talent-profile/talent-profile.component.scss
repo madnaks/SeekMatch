@@ -1,0 +1,16 @@
+.container-fluid {
+    background-color: white;
+    height: 87vh;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.nav-link {
+    font-weight: bold;
+    color: #333333;
+    &.active {
+        background-color: rgba(0, 153, 204, 0.2);
+        border-radius: 5px;
+        color: #0099CC;
+    }
+}

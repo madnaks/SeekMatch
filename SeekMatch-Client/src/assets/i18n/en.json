@@ -92,5 +92,15 @@
                 }
             }
         }
+    },
+    "Profile": {
+        "Talent": {
+            "FirstName": "First name",
+            "LastName": "Last name",
+            "Email": "Email address",
+            "Password": "Password",
+            "Address": "Address",
+            "Phone": "Phone"
+        }
     }
 }

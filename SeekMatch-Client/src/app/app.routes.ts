@@ -8,8 +8,7 @@ export const routes: Routes = [
     },
     {
         path: 'job',
-        loadChildren: () => import('./job/job.module').then(m => m.JobModule),
-        // canActivate: [authGuard]
+        loadChildren: () => import('./job/job.module').then(m => m.JobModule)
     },
     {
         path: 'career-development',
@@ -18,6 +17,11 @@ export const routes: Routes = [
     {
         path: 'cv',
         loadChildren: () => import('./cv/cv.module').then(m => m.CvModule)
+    },
+    {
+        path: 'profile',
+        loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
+        canActivate: [authGuard]
     },
     {
         path: 'auth',

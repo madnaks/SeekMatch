@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-6">
+        <form [formGroup]="generaleForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputFirstName"
+                        [placeholder]="'Profile.Talent.FirstName' | translate" formControlName="firstName">
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="inputLastName"
+                        [placeholder]="'Profile.Talent.LastName' | translate" formControlName="lastName">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                        [placeholder]="'Profile.Talent.Email' | translate" formControlName="email">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <input class="form-control" id="inputPassword" [placeholder]="'Profile.Talent.Password' | translate"
+                        formControlName="password">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" name="dp" formControlName="model" ngbDatepicker
+                            #d="ngbDatepicker" />
+                        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()"
+                            type="button"></button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="inputAddress"
+                        [placeholder]="'Profile.Talent.Address' | translate" formControlName="address">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" id="inputPhone"
+                        [placeholder]="'Profile.Talent.Phone' | translate" formControlName="phone">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
