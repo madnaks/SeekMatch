@@ -26,8 +26,8 @@ export class AuthService {
   }
 
   register(talent: Talent, userRole: UserRole): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
-    // return of({ success: true, message: 'Registration successful!' }).pipe(delay(2000));
+    // return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
+    return of({ success: true, message: 'Registration successful!' }).pipe(delay(2000));
   }
 
   getToken(): string | null {
