@@ -5,8 +5,8 @@ import { ProfileRoutingModule } from './profile.routing.module';
 import { GeneraleProfileComponent } from './generale-profile/generale-profile.component';
 import { StudyProfileComponent } from './study-profile/study-profile.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
   declarations: [
@@ -18,9 +18,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     ProfileRoutingModule,
     TranslateModule,
-    NgbDatepickerModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule
   ]
 })
 export class ProfileModule { }
