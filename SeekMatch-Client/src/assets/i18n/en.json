@@ -99,6 +99,7 @@
             "LastName": "Last name",
             "Email": "Email address",
             "Password": "Password",
+            "DateOfBirth": "Date of Birth",
             "Address": "Address",
             "Phone": "Phone"
         }

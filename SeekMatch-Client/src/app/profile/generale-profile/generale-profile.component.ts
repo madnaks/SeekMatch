@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-generale-profile',
@@ -9,9 +10,16 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 export class GeneraleProfileComponent {
 
   generaleForm: FormGroup;
+  bsConfig?: Partial<BsDatepickerConfig>;
 
-  constructor( private fb: NonNullableFormBuilder) {
+  constructor(private fb: NonNullableFormBuilder) {
     this.generaleForm = this.initGeneraleForm();
+
+    this.bsConfig = Object.assign({}, {
+      containerClass: 'theme-blue', 
+      isAnimated: true,
+      showWeekNumbers: false
+    });
   }
 
   private initGeneraleForm(): FormGroup {
@@ -24,6 +32,5 @@ export class GeneraleProfileComponent {
       phone: ['', [Validators.required]]
     });
   }
-
 
 }
