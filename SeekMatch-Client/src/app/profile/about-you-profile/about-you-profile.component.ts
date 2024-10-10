@@ -3,11 +3,11 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-generale-profile',
-  templateUrl: './generale-profile.component.html',
-  styleUrl: './generale-profile.component.scss'
+  selector: 'app-about-you-profile',
+  templateUrl: './about-you-profile.component.html',
+  styleUrl: './about-you-profile.component.scss'
 })
-export class GeneraleProfileComponent {
+export class AboutYouProfileComponent {
 
   generaleForm: FormGroup;
   bsConfig?: Partial<BsDatepickerConfig>;
@@ -27,7 +27,6 @@ export class GeneraleProfileComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
       address: ['', [Validators.required]],
       phone: ['', [Validators.required]]
     });

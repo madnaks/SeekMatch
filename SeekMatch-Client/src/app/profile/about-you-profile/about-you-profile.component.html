@@ -13,26 +13,20 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                    <input type="email" class="form-control" id="inputEmail"
                         [placeholder]="'Profile.Talent.Email' | translate" formControlName="email">
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-md-12">
-                    <input class="form-control" id="inputPassword" [placeholder]="'Profile.Talent.Password' | translate"
-                        formControlName="password">
-                </div>
-            </div>
-            <div class="row mt-3">
                 <div class="col-md-6">
-                    <input type="text" [placeholder]="'Profile.Talent.DateOfBirth' | translate" class="form-control"
+                    <input type="text" class="form-control" [placeholder]="'Profile.Talent.DateOfBirth' | translate"
                         bsDatepicker [bsConfig]="bsConfig">
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <select class="form-select" aria-label="Default select example" placeholder="Gender">
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                        <select class="form-select">
+                            <option value="1">{{ 'Profile.Talent.GenderMale' | translate }}</option>
+                            <option value="2">{{ 'Profile.Talent.GenderFemale' | translate }}</option>
                         </select>
                     </div>
                 </div>
@@ -47,6 +41,14 @@
                 <div class="col-md-12">
                     <input type="text" class="form-control" id="inputPhone"
                         [placeholder]="'Profile.Talent.Phone' | translate" formControlName="phone">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-12 d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn w-25">
+                        <i class="fa-solid fa-floppy-disk me-2"></i>
+                        {{ 'Profile.Save' | translate }}
+                    </button>
                 </div>
             </div>
         </form>

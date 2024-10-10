@@ -100,8 +100,16 @@
             "Email": "Email address",
             "Password": "Password",
             "DateOfBirth": "Date of Birth",
+            "GenderMale": "Male",
+            "GenderFemale": "Female",
             "Address": "Address",
             "Phone": "Phone"
-        }
+        },
+        "MyProfile": "My Profile",
+        "AboutYou": "About You",
+        "Education": "Education",
+        "Experience": "Experience",
+        "Secruity": "Secruity",
+        "Save": "Save"
     }
 }

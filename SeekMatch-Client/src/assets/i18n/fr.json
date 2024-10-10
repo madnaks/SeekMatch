@@ -92,5 +92,24 @@
                 }
             }
         }
+    },
+    "Profile": {
+        "Talent": {
+            "FirstName": "Prénom",
+            "LastName": "Nom de famille",
+            "Email": "Adresse e-mail",
+            "Password": "Mot de passe",
+            "DateOfBirth": "Date de naissance",
+            "GenderMale": "Homme",
+            "GenderFemale": "Femme",
+            "Address": "Adresse",
+            "Phone": "Téléphone"
+        },
+        "MyProfile": "Mon Profil",
+        "AboutYou": "À propos de vous",
+        "Education": "Éducation",
+        "Experience": "Expérience",
+        "Secruity": "Sécurité",
+        "Save": "Sauvegarder"
     }
 }

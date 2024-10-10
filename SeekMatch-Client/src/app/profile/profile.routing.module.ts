@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
-import { GeneraleProfileComponent } from './generale-profile/generale-profile.component';
-import { StudyProfileComponent } from './study-profile/study-profile.component';
+import { AboutYouProfileComponent } from './about-you-profile/about-you-profile.component';
+import { EducationProfileComponent } from './education-profile/education-profile.component';
 
 const routes: Routes = [
   {
     path: 'talent', component: TalentProfileComponent,
     children: [
-      { path: 'general', component: GeneraleProfileComponent },
-      { path: 'study', component: StudyProfileComponent },
-      { path: '', redirectTo: 'general', pathMatch: 'full' }
+      { path: 'about-you', component: AboutYouProfileComponent },
+      { path: 'education', component: EducationProfileComponent },
+      { path: '', redirectTo: 'about-you', pathMatch: 'full' }
     ]
   }
 ];

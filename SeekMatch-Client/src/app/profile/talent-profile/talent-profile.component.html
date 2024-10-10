@@ -3,7 +3,7 @@
         <div class="col-md-2">
         </div>
         <div class="col-md-10">
-            <h2>My Profile</h2>
+            <h2>{{ 'Profile.MyProfile' | translate }}</h2>
         </div>
     </div>
 
@@ -11,10 +11,28 @@
         <div class="col-md-2">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="general" routerLinkActive="active">General</a>
+                    <a class="nav-link" routerLink="about-you" routerLinkActive="active">
+                        <i class="fa-solid fa-circle-info me-2"></i>
+                        {{ 'Profile.AboutYou' | translate }}
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="study" routerLinkActive="active">Study</a>
+                    <a class="nav-link" routerLink="education" routerLinkActive="active">
+                        <i class="fa-solid fa-graduation-cap me-2"></i>
+                        {{ 'Profile.Education' | translate }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="study" routerLinkActive="active">
+                        <i class="fa-solid fa-star me-2"></i>
+                        {{ 'Profile.Experience' | translate }}
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="study" routerLinkActive="active">
+                        <i class="fa-solid fa-shield-halved me-2"></i>
+                        {{ 'Profile.Secruity' | translate }}
+                    </a>
                 </li>
             </ul>
         </div>
