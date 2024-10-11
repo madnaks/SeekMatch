@@ -1,47 +1,63 @@
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-9">
         <form [formGroup]="generaleForm">
             <div class="row">
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputFirstName"
-                        [placeholder]="'Profile.Talent.FirstName' | translate" formControlName="firstName">
+                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.FirstName' | translate }}</label>
+                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" id="inputLastName"
-                        [placeholder]="'Profile.Talent.LastName' | translate" formControlName="lastName">
+                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.LastName' | translate }}</label>
+                    <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <input type="email" class="form-control" id="inputEmail"
-                        [placeholder]="'Profile.Talent.Email' | translate" formControlName="email">
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <input type="text" class="form-control" [placeholder]="'Profile.Talent.DateOfBirth' | translate"
-                        bsDatepicker [bsConfig]="bsConfig">
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select class="form-select">
-                            <option value="1">{{ 'Profile.Talent.GenderMale' | translate }}</option>
-                            <option value="2">{{ 'Profile.Talent.GenderFemale' | translate }}</option>
-                        </select>
-                    </div>
+                    <label for="inputProfileTitle" class="form-label">Profile Title</label>
+                    <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <input type="text" class="form-control" id="inputAddress"
-                        [placeholder]="'Profile.Talent.Address' | translate" formControlName="address">
+                    <label for="inputEmail" class="form-label">{{ 'Profile.Talent.Email' | translate }}</label>
+                    <input type="email" class="form-control" id="inputEmail" formControlName="email">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <input type="text" class="form-control" id="inputPhone"
-                        [placeholder]="'Profile.Talent.Phone' | translate" formControlName="phone">
+                    <label for="inputDateOfBirth" class="form-label">{{ 'Profile.Talent.DateOfBirth' | translate }}</label>
+                    <input type="text" class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth">
                 </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.Address' | translate }}</label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="address">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPhone" class="form-label">{{ 'Profile.Talent.Phone' | translate }}</label>
+                    <input type="text" class="form-control" id="inputPhone" formControlName="phone">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputCity" class="form-label">City</label>
+                    <input type="text" class="form-control" id="inputCity">
+                </div>
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">State</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Choose...</option>
+                        <option>...</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="inputZip" class="form-label">Zip</label>
+                    <input type="text" class="form-control" id="inputZip">
+                </div>
+            </div>
+            <div class="row mt-3">
+                
             </div>
             <div class="row mt-3">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">
