@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Application.Services;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Interfaces;
 using SeekMatch.Core.Repositories;
 using SeekMatch.Infrastructure;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,14 +22,29 @@ builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<SeekMatchDbContext>()
     .AddApiEndpoints();
 
-// Add Authentication and Authorization services
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme)
-    .AddBearerToken(IdentityConstants.BearerScheme);
-
 // Configure the database context with Npgsql
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SeekMatchDbContext>(opt =>
     opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Add Authentication and Authorization services
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Jwt:Issuer"], // Set these in appsettings.json
+        ValidAudience = builder.Configuration["Jwt:Audience"], // Set these in appsettings.json
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])) // Set this in appsettings.json
+    };
+});
 
 // Register services
 builder.Services.AddScoped<ITalentService, TalentService>();
