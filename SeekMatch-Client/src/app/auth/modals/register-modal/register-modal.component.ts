@@ -2,9 +2,9 @@ import { Component, Input } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { Talent } from '../../../shared/models/talent';
 import { UserRole } from '../../../shared/enums/enums';
-import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -69,26 +69,21 @@ export class RegisterModalComponent {
   private register(): void {
     const formValues = this.signupForm.value;
 
-    const talent = new Talent(
-      formValues.firstName,
-      formValues.lastName,
-      formValues.email,
-      formValues.password
-    );
-
+    let talent = new Talent(formValues);
+    
     this.authService.register(talent, UserRole.Talent).pipe(
       finalize(() => {
         this.isLoading = false;
-    })).subscribe({
-      next: () => { 
-        this.router.navigate(['/home']);
-        this.isSuccess = true;
-      },
-      error: (error) => {
-        console.error('Register failed', error);
-        this.isError = true;
-      }
-    })
+      })).subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+          this.isSuccess = true;
+        },
+        error: (error) => {
+          console.error('Register failed', error);
+          this.isError = true;
+        }
+      })
   }
 
   public togglePasswordVisibility(): void {

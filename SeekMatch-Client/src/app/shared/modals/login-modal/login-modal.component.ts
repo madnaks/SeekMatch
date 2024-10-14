@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { AuthService } from '../../../auth/auth.service';
 import { finalize } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-modal',
