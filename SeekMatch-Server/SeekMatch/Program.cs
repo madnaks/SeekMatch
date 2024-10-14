@@ -34,15 +34,22 @@ builder.Services.AddAuthentication(options =>
 })
 .AddJwtBearer(options =>
 {
+    var jwtKey = builder.Configuration["Jwt:Key"];
+
+    if (string.IsNullOrEmpty(jwtKey))
+    {
+        throw new InvalidOperationException("JWT key is not configured in the application settings.");
+    }
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Jwt:Issuer"], // Set these in appsettings.json
-        ValidAudience = builder.Configuration["Jwt:Audience"], // Set these in appsettings.json
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])) // Set this in appsettings.json
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
     };
 });
 

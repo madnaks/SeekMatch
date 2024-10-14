@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { delay, Observable, of, tap } from 'rxjs';
-import { UserRole } from '../shared/enums/enums';
-import { Talent } from '../shared/models/talent';
+import { UserRole } from '../enums/enums';
+import { Talent } from '../models/talent';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,8 @@ export class AuthService {
   }
 
   register(talent: Talent, userRole: UserRole): Observable<any> {
-    // return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
-    return of({ success: true, message: 'Registration successful!' }).pipe(delay(2000));
+    return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
+    // return of({ success: true, message: 'Registration successful!' }).pipe(delay(2000));
   }
 
   getToken(): string | null {
