@@ -17,5 +17,17 @@ namespace SeekMatch.Core.Repositories
             _dbContext.Talents.Add(talent);
             await _dbContext.SaveChangesAsync();
         }
+
+        public async Task<Talent?> GetAsync(string userId)
+        {
+            try
+            {
+                return await _dbContext.Talents.FindAsync(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the talent", ex);
+            }
+        }
     }
 }

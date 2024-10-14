@@ -14,6 +14,11 @@ namespace SeekMatch.Application.Services
         public async Task CreateAsync(Talent talent)
         {
             await _talentRepository.CreateAsync(talent);
+        } 
+        
+        public async Task<Talent?> GetAsync(string userId)
+        {
+            return await _talentRepository.GetAsync(userId);
         }
     }
 }

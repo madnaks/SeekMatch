@@ -16,13 +16,11 @@ namespace SeekMatch.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly ITalentService _talentService;
         private readonly IConfiguration _configuration;
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, ITalentService talentService, IConfiguration configuration)
+        public AuthController(UserManager<User> userManager, ITalentService talentService, IConfiguration configuration)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _talentService = talentService;
             _configuration = configuration;
         }
@@ -69,9 +67,9 @@ namespace SeekMatch.Controllers
             if (user == null)
                 return Unauthorized(new { message = "Invalid login credentials." });
 
-            var result = await _signInManager.PasswordSignInAsync(user, loginDto.Password, false, false);
+            var passwordValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
-            if (!result.Succeeded)
+            if (!passwordValid)
                 return Unauthorized(new { message = "Invalid login credentials." });
 
             var token = GenerateJwtToken(user);
@@ -84,10 +82,11 @@ namespace SeekMatch.Controllers
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Email, user.Email ?? string.Empty)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var jwtKey = _configuration["Jwt:Key"] ?? throw new InvalidOperationException("JWT key is missing from configuration.");
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
