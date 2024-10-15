@@ -1,8 +1,9 @@
-export class Talent {
+import { User } from "./user";
+
+export class Talent extends User {
 
   public firstName: string = '';
   public lastName: string = '';
-  public email: string = '';
   public password: string= '';
   public profileTitle : string= '';
   public dateOfBirth : Date | null = null;
@@ -13,6 +14,7 @@ export class Talent {
   public zip : string= '';
 
   constructor(init?:Partial<Talent>) {
+    super();
     Object.assign(this, init);
   }
 }

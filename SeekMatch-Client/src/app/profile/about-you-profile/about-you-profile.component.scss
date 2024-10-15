@@ -1,0 +1,24 @@
+.fade-in-form {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0s 0.5s;
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.5s ease, visibility 0s 0s;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.spinner-border {
+    color: #0099CC;
+    width: 3rem;
+    height: 3rem;
+}

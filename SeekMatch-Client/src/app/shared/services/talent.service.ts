@@ -16,7 +16,7 @@ export class TalentService {
   }
 
   saveAboutYouData(aboutYouData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}`, aboutYouData);
+    return this.http.put(`${this.apiUrl}/about-you`, aboutYouData);
   }
 
 }

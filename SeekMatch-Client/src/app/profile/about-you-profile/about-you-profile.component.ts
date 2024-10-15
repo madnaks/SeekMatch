@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { TalentService } from '../../services/talent.service';
+import { TalentService } from '../../shared/services/talent.service';
 
 @Component({
   selector: 'app-about-you-profile',
@@ -10,29 +10,54 @@ import { TalentService } from '../../services/talent.service';
 })
 export class AboutYouProfileComponent {
 
-  generaleForm: FormGroup;
+  aboutYouForm: FormGroup;
   bsConfig?: Partial<BsDatepickerConfig>;
+  isLoading: boolean = true;
 
   constructor(private fb: NonNullableFormBuilder, private talentService: TalentService) {
-    this.generaleForm = this.initGeneraleForm();
-
-    this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
-      isAnimated: true,
-      showWeekNumbers: false
-    });
+    this.aboutYouForm = this.initGeneraleForm();
+    this.configureDatePicker();
   }
 
   ngOnInit(): void {
-    this.talentService.getProfile().subscribe(profileData => {
-      this.generaleForm.patchValue({
-        firstName: profileData.firstName,
-        lastName: profileData.lastName,
-        profileTitle: profileData.profileTitle,
-        email: profileData.email,
-        address: profileData.address,
-        phone: profileData.phone
+    this.talentService.getProfile().subscribe(talent => {
+      this.aboutYouForm.patchValue({
+        firstName: talent.firstName,
+        lastName: talent.lastName,
+        profileTitle: talent.profileTitle,
+        // dateOfBirth: talent.dateOfBirth,
+        address: talent.address,
+        email: talent.email,
+        phone: talent.phone
       });
+      this.isLoading = false;
+    });
+  }
+
+  saveProfile() {
+    if (this.aboutYouForm.valid) {
+      debugger
+      const aboutYouData = this.aboutYouForm.value;
+      this.talentService.saveAboutYouData(aboutYouData).subscribe({
+          next: (response) => {
+            console.log('Profile saved successfully!', response);
+          },
+          error: (error) => {
+            console.error('Error saving profile!', error);
+          }
+        })
+    } else {
+      console.log('Form is not valid');
+    }
+  }
+
+
+  private configureDatePicker(): void {
+    this.bsConfig = Object.assign({}, {
+      containerClass: 'theme-blue',
+      dateInputFormat: 'YYYY-MM-DD',
+      isAnimated: true,
+      showWeekNumbers: false
     });
   }
 
@@ -40,10 +65,13 @@ export class AboutYouProfileComponent {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      profileTitle: ['', Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.required, Validators.email]],
-      address: ['', [Validators.required]],
-      phone: ['', [Validators.required]]
+      profileTitle: [''],
+      // dateOfBirth: [null],
+      email: [{ value: '', disabled: true }, [Validators.email]],
+      address: [''],
+      phone: [''],
+      city: [''],
+      zip: ['']
     });
   }
 
