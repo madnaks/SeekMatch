@@ -29,5 +29,22 @@ namespace SeekMatch.Core.Repositories
                 throw new Exception("An error occurred while fetching the talent", ex);
             }
         }
+
+        public async Task<bool> SaveChangesAsync(Talent talent)
+        {
+            try
+            {
+               _dbContext.Talents.Update(talent);
+
+                var result = await _dbContext.SaveChangesAsync(true);
+
+                return result > 0;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving changes of the talent", ex);
+            }
+        }
     }
 }

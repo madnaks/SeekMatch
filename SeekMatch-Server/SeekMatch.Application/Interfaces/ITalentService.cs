@@ -1,4 +1,5 @@
-﻿using SeekMatch.Core.Entities;
+﻿using SeekMatch.Application.DTOs;
+using SeekMatch.Core.Entities;
 
 namespace SeekMatch.Application.Interfaces
 {
@@ -6,5 +7,6 @@ namespace SeekMatch.Application.Interfaces
     {
         Task CreateAsync(Talent talent);
         Task<Talent?> GetAsync(string userId);
+        Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
     }
 }

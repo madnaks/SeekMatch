@@ -6,5 +6,6 @@ namespace SeekMatch.Core.Interfaces
     {
         Task CreateAsync(Talent talent);
         Task<Talent?> GetAsync(string userId);
+        Task<bool> SaveChangesAsync(Talent talent);
     }
 }
