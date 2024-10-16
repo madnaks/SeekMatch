@@ -29,9 +29,9 @@ namespace SeekMatch.Application.Services
 
             if (talent != null)
             {
-                // Update existing profile
                 talent.FirstName = aboutYouDto.FirstName;
                 talent.LastName = aboutYouDto.LastName;
+                talent.ProfileTitle = aboutYouDto.ProfileTitle;
                 talent.DateOfBirth = aboutYouDto.DateOfBirth;
                 talent.Address = aboutYouDto.Address;
                 talent.Phone = aboutYouDto.Phone;
