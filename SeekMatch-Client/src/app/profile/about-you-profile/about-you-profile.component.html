@@ -37,7 +37,7 @@
                         {{ 'Profile.Talent.DateOfBirth' | translate }}
                     </label>
                     <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
-                     placeholder="yyyy-mm-dd">
+                     placeholder="yyyy-mm-dd" formControlName="dateOfBirth">
                 </div>
             </div>
             <div class="row mt-3">
@@ -72,8 +72,8 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">
-                    <button type="submit" class="btn w-25">
-                        <i class="fa-solid fa-floppy-disk me-2"></i>
+                    <button type="submit" class="btn w-25" [disabled]="isSaving">
+                        <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
                         {{ 'Profile.Save' | translate }}
                     </button>
                 </div>

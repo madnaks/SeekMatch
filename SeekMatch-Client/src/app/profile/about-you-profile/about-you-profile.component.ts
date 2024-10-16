@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { TalentService } from '../../shared/services/talent.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-about-you-profile',
@@ -13,44 +14,42 @@ export class AboutYouProfileComponent {
   aboutYouForm: FormGroup;
   bsConfig?: Partial<BsDatepickerConfig>;
   isLoading: boolean = true;
+  isSaving: boolean = false;
 
   constructor(private fb: NonNullableFormBuilder, private talentService: TalentService) {
-    this.aboutYouForm = this.initGeneraleForm();
+    this.aboutYouForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
 
   ngOnInit(): void {
-    this.talentService.getProfile().subscribe(talent => {
-      this.aboutYouForm.patchValue({
-        firstName: talent.firstName,
-        lastName: talent.lastName,
-        profileTitle: talent.profileTitle,
-        // dateOfBirth: talent.dateOfBirth,
-        address: talent.address,
-        email: talent.email,
-        phone: talent.phone
-      });
-      this.isLoading = false;
-    });
+    this.initAboutYouFormValues();
   }
 
   saveProfile() {
     if (this.aboutYouForm.valid) {
-      debugger
+      this.isSaving = true;
       const aboutYouData = this.aboutYouForm.value;
-      this.talentService.saveAboutYouData(aboutYouData).subscribe({
-          next: (response) => {
-            console.log('Profile saved successfully!', response);
-          },
-          error: (error) => {
-            console.error('Error saving profile!', error);
-          }
+      // Check if dateOfBirth has a value and is not null
+      if (aboutYouData.dateOfBirth) {
+        // Extract 'yyyy-MM-dd'
+        aboutYouData.dateOfBirth = aboutYouData.dateOfBirth.toISOString().split('T')[0];
+      }
+      this.talentService.saveAboutYouData(aboutYouData).pipe(
+        finalize(() => {
+          this.isSaving = false;
         })
+      ).subscribe({
+        next: (response) => {
+          console.log('Profile saved successfully!', response);
+        },
+        error: (error) => {
+          console.error('Error saving profile!', error);
+        }
+      })
     } else {
       console.log('Form is not valid');
     }
   }
-
 
   private configureDatePicker(): void {
     this.bsConfig = Object.assign({}, {
@@ -61,17 +60,34 @@ export class AboutYouProfileComponent {
     });
   }
 
-  private initGeneraleForm(): FormGroup {
+  private initAboutYouForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       profileTitle: [''],
-      // dateOfBirth: [null],
+      dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
       address: [''],
       phone: [''],
       city: [''],
       zip: ['']
+    });
+  }
+
+  private initAboutYouFormValues() {
+    this.talentService.getProfile().subscribe(talent => {
+      const dateOfBirth = talent.dateOfBirth === '0001-01-01' ? null : talent.dateOfBirth;
+
+      this.aboutYouForm.patchValue({
+        firstName: talent.firstName,
+        lastName: talent.lastName,
+        profileTitle: talent.profileTitle,
+        dateOfBirth: dateOfBirth,
+        address: talent.address,
+        email: talent.email,
+        phone: talent.phone
+      });
+      this.isLoading = false;
     });
   }
 
