@@ -5,11 +5,11 @@ import { TalentService } from '../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-about-you-profile',
-  templateUrl: './about-you-profile.component.html',
-  styleUrl: './about-you-profile.component.scss'
+  selector: 'app-about-you',
+  templateUrl: './about-you.component.html',
+  styleUrl: './about-you.component.scss'
 })
-export class AboutYouProfileComponent {
+export class AboutYouComponent {
 
   aboutYouForm: FormGroup;
   bsConfig?: Partial<BsDatepickerConfig>;
@@ -31,9 +31,15 @@ export class AboutYouProfileComponent {
       const aboutYouData = this.aboutYouForm.value;
       // Check if dateOfBirth has a value and is not null
       if (aboutYouData.dateOfBirth) {
+
         // Extract 'yyyy-MM-dd'
-        aboutYouData.dateOfBirth = aboutYouData.dateOfBirth.toISOString().split('T')[0];
+        const formattedDateOfBirth = aboutYouData.dateOfBirth instanceof Date
+          ? aboutYouData.dateOfBirth.toISOString().split('T')[0]
+          : aboutYouData.dateOfBirth;
+
+        aboutYouData.dateOfBirth = formattedDateOfBirth;
       }
+      
       this.talentService.saveAboutYouData(aboutYouData).pipe(
         finalize(() => {
           this.isSaving = false;
