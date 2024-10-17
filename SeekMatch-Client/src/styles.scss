@@ -122,6 +122,40 @@ a {
     }
 }
 
+.datepicker-input {
+
+    &.input-group {
+        transition: all 0.3s ease;
+
+        &:focus-within {
+            color: var(--bs-body-color);
+            background-color: var(--bs-body-bg);
+            border-color: #86b7fe;
+            outline: 0;
+            box-shadow: 0 0 0 .25rem rgba(13, 110, 253, .25);
+            border-radius: 6px;
+        }
+
+        input {
+            &.form-control {
+                border-right: none;
+            }
+
+            // Remove bootstrap focus style on input
+            &:focus {
+                box-shadow: unset;
+                border: 1px solid #dee2e6;
+                border-right: unset;
+            }
+        }
+
+        .input-group-text {
+            background-color: white;
+        }
+
+    }
+}
+
 .language-button {
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;

@@ -7,14 +7,12 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     importProvidersFrom(HttpClientModule),
     importProvidersFrom(BrowserAnimationsModule),
-    importProvidersFrom(BsDatepickerModule.forRoot()),
     importProvidersFrom(TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
