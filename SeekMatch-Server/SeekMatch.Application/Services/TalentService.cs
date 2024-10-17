@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
@@ -9,18 +9,21 @@ namespace SeekMatch.Application.Services
     public class TalentService : ITalentService
     {
         private readonly ITalentRepository _talentRepository;
-        public TalentService(ITalentRepository talentRepository)
+        private readonly IMapper _mapper;
+        public TalentService(ITalentRepository talentRepository, IMapper mapper)
         {
             _talentRepository = talentRepository;
+            _mapper = mapper;
         }
         public async Task CreateAsync(Talent talent)
         {
             await _talentRepository.CreateAsync(talent);
         } 
         
-        public async Task<Talent?> GetAsync(string userId)
+        public async Task<TalentDto?> GetAsync(string userId)
         {
-            return await _talentRepository.GetAsync(userId);
+            var talent = await _talentRepository.GetAsync(userId);
+            return _mapper.Map<TalentDto>(await _talentRepository.GetAsync(userId));
         } 
         
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)

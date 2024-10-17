@@ -32,14 +32,14 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var talent = await _talentService.GetAsync(userId);
+            var talentDto = await _talentService.GetAsync(userId);
 
-            if (talent == null)
+            if (talentDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(talent);
+            return Ok(talentDto);
         }
 
         [Authorize]

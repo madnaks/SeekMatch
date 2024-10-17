@@ -6,7 +6,7 @@ namespace SeekMatch.Application.Interfaces
     public interface ITalentService
     {
         Task CreateAsync(Talent talent);
-        Task<Talent?> GetAsync(string userId);
+        Task<TalentDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
     }
 }
