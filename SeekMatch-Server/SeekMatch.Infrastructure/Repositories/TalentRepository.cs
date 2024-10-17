@@ -1,4 +1,5 @@
-﻿using SeekMatch.Core.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SeekMatch.Core.Entities;
 using SeekMatch.Core.Interfaces;
 using SeekMatch.Infrastructure;
 
@@ -22,7 +23,7 @@ namespace SeekMatch.Core.Repositories
         {
             try
             {
-                return await _dbContext.Talents.FindAsync(userId);
+                return await _dbContext.Talents.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == userId);
             }
             catch (Exception ex)
             {

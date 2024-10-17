@@ -8,6 +8,7 @@ namespace SeekMatch.Infrastructure
     {
         public DbSet<Talent> Talents { get; set; }
         public DbSet<Recruiter> Recruiters { get; set; }
+        public DbSet<Education> Educations { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -17,13 +18,19 @@ namespace SeekMatch.Infrastructure
             // Configure relationships
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Talent)
-                .WithOne(js => js.User)
-                .HasForeignKey<Talent>(js => js.Id);
+                .WithOne(t => t.User)
+                .HasForeignKey<Talent>(t => t.Id);
 
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Recruiter)
                 .WithOne(r => r.User)
                 .HasForeignKey<Recruiter>(r => r.Id);
+
+            modelBuilder.Entity<Education>()
+                .HasOne(e => e.Talent)
+                .WithMany(t => t.Educations)
+                .HasForeignKey(e => e.TalentId);
+
         }
     }
 }
