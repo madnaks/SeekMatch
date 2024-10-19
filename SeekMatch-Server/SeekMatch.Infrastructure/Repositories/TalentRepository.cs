@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SeekMatch.Core.Entities;
-using SeekMatch.Core.Interfaces;
-using SeekMatch.Infrastructure;
+using SeekMatch.Infrastructure.Interfaces;
 
-namespace SeekMatch.Core.Repositories
+namespace SeekMatch.Infrastructure.Repositories
 {
     public class TalentRepository : ITalentRepository
     {
@@ -40,7 +39,6 @@ namespace SeekMatch.Core.Repositories
                 var result = await _dbContext.SaveChangesAsync(true);
 
                 return result > 0;
-
             }
             catch (Exception ex)
             {

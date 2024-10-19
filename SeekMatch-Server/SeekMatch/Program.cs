@@ -5,9 +5,9 @@ using Microsoft.IdentityModel.Tokens;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Application.Services;
 using SeekMatch.Core.Entities;
-using SeekMatch.Core.Interfaces;
-using SeekMatch.Core.Repositories;
 using SeekMatch.Infrastructure;
+using SeekMatch.Infrastructure.Interfaces;
+using SeekMatch.Infrastructure.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -58,9 +58,11 @@ builder.Services.AddAuthentication(options =>
 
 // Register services
 builder.Services.AddScoped<ITalentService, TalentService>();
+builder.Services.AddScoped<IEducationService, EducationService>();
 
 //Register repositories
 builder.Services.AddScoped<ITalentRepository, TalentRepository>();
+builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 
 builder.Services.AddCors(options =>
 {

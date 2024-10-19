@@ -1,6 +1,6 @@
 ﻿using SeekMatch.Core.Entities;
 
-namespace SeekMatch.Core.Interfaces
+namespace SeekMatch.Infrastructure.Interfaces
 {
     public interface ITalentRepository
     {

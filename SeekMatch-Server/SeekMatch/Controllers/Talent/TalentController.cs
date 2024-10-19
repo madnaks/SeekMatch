@@ -15,10 +15,10 @@ namespace SeekMatch.Controllers
         private readonly UserManager<User> _userManager;
         private readonly ITalentService _talentService;
 
-        public TalentController(UserManager<User> userManager, ITalentService talentService1)
+        public TalentController(UserManager<User> userManager, ITalentService talentService)
         {
             _userManager = userManager;
-            _talentService = talentService1;
+            _talentService = talentService;
         }
 
         [Authorize]

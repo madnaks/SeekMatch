@@ -9,7 +9,7 @@
         public int StartMonth { get; set; }
         public int? FinishYear { get; set; }
         public int? FinishMonth { get; set; }
-        public bool StillStudying { get; set; }
+        public bool CurrentlyStudying { get; set; }
         public required Talent Talent { get; set; }
         public required string TalentId { get; set; }
     }

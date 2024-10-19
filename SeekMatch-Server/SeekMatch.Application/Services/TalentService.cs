@@ -2,7 +2,7 @@
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
-using SeekMatch.Core.Interfaces;
+using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
 {
@@ -22,7 +22,6 @@ namespace SeekMatch.Application.Services
         
         public async Task<TalentDto?> GetAsync(string userId)
         {
-            var talent = await _talentRepository.GetAsync(userId);
             return _mapper.Map<TalentDto>(await _talentRepository.GetAsync(userId));
         } 
         
