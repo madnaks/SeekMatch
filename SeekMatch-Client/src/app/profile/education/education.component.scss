@@ -1,0 +1,19 @@
+.empty-list {
+    height: 50vh;
+    p {
+        text-align: center;
+    }
+}
+
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+
+    .spinner-border {
+        color: #0099CC;
+        width: 3rem;
+        height: 3rem;
+    }
+}

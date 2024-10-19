@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        New education
+        New Education
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -8,14 +8,52 @@
 <div class="modal-body">
     <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <input type="text" class="form-control" id="inputInstitution" placeholder="Institution"
-                formControlName="institution">
+            <label for="inputInstitution" class="form-label">Institution</label>
+            <input type="text" class="form-control" id="inputInstitution" formControlName="institution">
         </div>
         <div class="mb-4">
-            <input type="text" class="form-control" id="inputDiploma" placeholder="Diploma" formControlName="diploma">
+            <label for="inputDiploma" class="form-label">Diploma</label>
+            <input type="text" class="form-control" id="inputDiploma" formControlName="diploma">
         </div>
         <div class="mb-4">
-            <input type="text" class="form-control" id="inputDomain" placeholder="Domain" formControlName="domain">
+            <label for="inputDomain" class="form-label">Domain</label>
+            <input type="text" class="form-control" id="inputDomain" formControlName="domain">
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="selectStartMonth" class="form-label">Start month</label>
+                <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
+                    <option *ngFor="let month of months" [value]="month.id"> {{ month.value }} </option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectStartYear" class="form-label">Start year</label>
+                <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
+                    <option value="0">Select Year</option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="selectFinishMonth" class="form-label">Finish month</label>
+                <select class="form-select form-select-sm" id="selectFinishMonth" formControlName="finishMonth">
+                    <option *ngFor="let month of months" [value]="month.id"> {{ month.value }} </option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectFinishYear" class="form-label">Finish year</label>
+                <select class="form-select form-select-sm" id="selectFinishYear" formControlName="finishYear">
+                    <option value="0">Select Year</option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-4">
+            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying" formControlName="currentlyStudying">
+            <label class="form-check-label" for="inputCurrentlyStudying">
+                Currently Studying
+            </label>
         </div>
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn w-50">
