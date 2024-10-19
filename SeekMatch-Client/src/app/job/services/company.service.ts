@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Company } from '../company';
+import { Company } from '../../shared/models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,5 @@ export class CompanyService {
 
   getCompanies() {
     return this.http.get<Company[]>(this.companiesUrl);
-    // API Call :return this.http.get<any[]>(`/api/jobs?page=${page}`);
   }
 }

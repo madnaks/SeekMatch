@@ -27,7 +27,7 @@ body {
     &:hover,
     &:active {
         background-color: var(--accent-color) !important;
-        color: #ffffff;
+        color: #ffffff !important;
         box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
         border-color: transparent !important;
         transform: translateY(-1px);
@@ -35,6 +35,12 @@ body {
 
     &:disabled, .btn.disabled {
         opacity: 0.5;
+        background-color: var(--secondary-color);
+        color: #ffffff;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    &:focus-visible {
         background-color: var(--secondary-color);
         color: #ffffff;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
