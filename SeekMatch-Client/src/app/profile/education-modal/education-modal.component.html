@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        New education
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <input type="text" class="form-control" id="inputInstitution" placeholder="Institution"
+                formControlName="institution">
+        </div>
+        <div class="mb-4">
+            <input type="text" class="form-control" id="inputDiploma" placeholder="Diploma" formControlName="diploma">
+        </div>
+        <div class="mb-4">
+            <input type="text" class="form-control" id="inputDomain" placeholder="Domain" formControlName="domain">
+        </div>
+        <div class="mb-4 d-flex justify-content-center">
+            <button type="submit" class="btn w-50">
+                <i class="me-2"
+                    [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
+                {{ 'Profile.Save' | translate }}
+            </button>
+        </div>
+    </form>
+</div>
