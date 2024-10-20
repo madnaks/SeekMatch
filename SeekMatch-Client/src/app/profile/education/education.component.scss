@@ -2,6 +2,7 @@
 
 .empty-list {
     height: 50vh;
+
     p {
         text-align: center;
     }
@@ -17,5 +18,21 @@
         color: $secondary-color;
         width: 3rem;
         height: 3rem;
+    }
+}
+
+.card-btn {
+    position: absolute;
+    cursor: pointer;
+    &.update-btn {
+        top: 15px;
+        right: 60px;
+    }
+    &.delete-btn {
+        top: 15px;
+        right: 20px;
+    }
+    &:hover {
+        color: $secondary-color;
     }
 }

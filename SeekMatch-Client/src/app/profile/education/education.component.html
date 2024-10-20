@@ -37,6 +37,12 @@
                 <div class="card mb-3" *ngFor="let education of educations">
                     <div class="card-body">
                         <h5 class="card-title">{{ education.institution }}</h5>
+                        <div class="card-btn update-btn">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        <div class="card-btn delete-btn" (click)="deleteEducation()">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
                         <p class="card-text">
                             {{ education.diploma }}, {{ education.domain }}
                         </p>

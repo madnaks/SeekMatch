@@ -40,4 +40,8 @@ export class EducationComponent implements OnInit {
     return month ? this.translate.instant(month.value) : '';
   }
 
+  public deleteEducation(): void {
+
+  }
+
 }
