@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
 nav {
     position: sticky;
     top: 0;
@@ -5,7 +7,7 @@ nav {
 }
 
 .navbar {
-    background-color: var(--primary-color);
+    background-color: $primary-color;
     color: #ffffff;
 }
 

@@ -1,32 +1,19 @@
-// 1st theme: Professional and Trustworthy
-// Primary Color: #003366 (Dark Blue) - Represents professionalism and reliability.
-// Secondary Color: #0099CC (Sky Blue) - For highlights and call-to-action elements.
-// Accent Color: #F4A460 (Sandy Brown) - To add warmth and draw attention to important elements.
-// Background Color: #F4F4F4 (Light Grey) - Neutral background that keeps the content clean and readable.
-// Text Color: #333333 (Dark Grey) - For easy readability and a professional look.
-
-:root {
-    --primary-color: #003366;
-    --secondary-color: #0099CC;
-    --accent-color: #F4A460;
-    --background-color: #F4F4F4;
-    --text-color: #333333;
-}
+@import '../src/assets/styles/styles-variables.scss';
 
 body {
-    background-color: var(--background-color);
-    color: var(--text-color);
+    background-color: $background-color;
+    color: $text-color;
 }
 
 .btn {
-    background-color: var(--secondary-color);
+    background-color: $secondary-color;
     color: #ffffff;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
 
     &:hover,
     &:active {
-        background-color: var(--accent-color) !important;
+        background-color: $accent-color !important;
         color: #ffffff !important;
         box-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
         border-color: transparent !important;
@@ -35,20 +22,24 @@ body {
 
     &:disabled, .btn.disabled {
         opacity: 0.5;
-        background-color: var(--secondary-color);
+        background-color: $secondary-color;
         color: #ffffff;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     }
 
     &:focus-visible {
-        background-color: var(--secondary-color);
+        background-color: $secondary-color;
         color: #ffffff;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     }
 }
 
+.btn-close:focus {
+    box-shadow: unset;
+}
+
 .badge {
-    background-color: var(--secondary-color);
+    background-color: $secondary-color;
     color: #ffffff;
     user-select: none;
 }

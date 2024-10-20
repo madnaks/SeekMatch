@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
 .container-fluid {
     overflow: hidden;
 
@@ -17,11 +19,11 @@
             color: white;
             
             &#first-column {
-                background-color: #003366; /* primary-color */
+                background-color: $primary-color;
             }
 
             &#second-column {
-                background-color: #0099CC; /* secondary-color */
+                background-color: $secondary-color;
             }
 
             .btn-sign-up {
@@ -32,11 +34,11 @@
 
 
                 &.job-seeker {
-                    color: #003366; /* primary-color */
+                    color: $primary-color;
                 }
 
                 &.recruiter {
-                    color: #0099CC; /* secondary-color */
+                    color: $secondary-color;
                 }
             }
 

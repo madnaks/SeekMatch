@@ -37,10 +37,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ education.institution }}</h5>
                     <p class="card-text">
-                        {{ education.diploma }}
-                    </p>
-                    <p class="card-text">
-                        {{ education.domain }}
+                        {{ education.diploma }}, {{ education.domain }}
                     </p>
                     <p class="card-text">
                         {{ getMonthName(education.startMonth) }} {{ education.startYear }} - {{ getMonthName(education.finishMonth) }} {{
