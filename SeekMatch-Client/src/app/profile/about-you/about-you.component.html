@@ -6,16 +6,17 @@
             <div class="spinner-border">
             </div>
         </div>
-        }
-
-        <form [formGroup]="aboutYouForm" [class.visible]="!isLoading" class="fade-in-form" (ngSubmit)="saveProfile()">
+        } @else {
+        <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.AboutYou.FirstName' | translate }}</label>
+                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.AboutYou.FirstName' | translate
+                        }}</label>
                     <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.AboutYou.LastName' | translate }}</label>
+                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.AboutYou.LastName' | translate
+                        }}</label>
                     <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
             </div>
@@ -41,14 +42,15 @@
                             placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
 
                         <span class="input-group-text">
-                            <i class="fa-regular fa-calendar-days"></i> 
+                            <i class="fa-regular fa-calendar-days"></i>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.AboutYou.Address' | translate }}</label>
+                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.AboutYou.Address' | translate
+                        }}</label>
                     <input type="text" class="form-control" id="inputAddress" formControlName="address">
                 </div>
                 <div class="col-md-6">
@@ -86,5 +88,6 @@
                 </div>
             </div>
         </form>
+        }
     </div>
 </div>

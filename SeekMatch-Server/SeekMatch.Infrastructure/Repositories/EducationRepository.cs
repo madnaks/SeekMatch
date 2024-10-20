@@ -16,7 +16,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.Educations.Where(e => e.TalentId == talentId).ToListAsync();
+                return await _dbContext.Educations.Where(e => e.TalentId == talentId).OrderByDescending(e => e.StartYear).ToListAsync();
             }
             catch (Exception ex)
             {
