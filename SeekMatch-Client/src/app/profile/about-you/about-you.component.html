@@ -11,11 +11,11 @@
         <form [formGroup]="aboutYouForm" [class.visible]="!isLoading" class="fade-in-form" (ngSubmit)="saveProfile()">
             <div class="row">
                 <div class="col-md-6">
-                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.FirstName' | translate }}</label>
+                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.AboutYou.FirstName' | translate }}</label>
                     <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.LastName' | translate }}</label>
+                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.AboutYou.LastName' | translate }}</label>
                     <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
             </div>
@@ -27,14 +27,14 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label for="inputEmail" class="form-label">{{ 'Profile.Talent.Email' | translate }}</label>
+                    <label for="inputEmail" class="form-label">{{ 'Profile.Talent.AboutYou.Email' | translate }}</label>
                     <input type="email" class="form-control" id="inputEmail" formControlName="email">
                 </div>
             </div>
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputDateOfBirth" class="form-label">
-                        {{ 'Profile.Talent.DateOfBirth' | translate }}
+                        {{ 'Profile.Talent.AboutYou.DateOfBirth' | translate }}
                     </label>
                     <div class="datepicker-input input-group">
                         <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
@@ -48,11 +48,11 @@
             </div>
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.Address' | translate }}</label>
+                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.AboutYou.Address' | translate }}</label>
                     <input type="text" class="form-control" id="inputAddress" formControlName="address">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPhone" class="form-label">{{ 'Profile.Talent.Phone' | translate }}</label>
+                    <label for="inputPhone" class="form-label">{{ 'Profile.Talent.AboutYou.Phone' | translate }}</label>
                     <input type="text" class="form-control" id="inputPhone" formControlName="phone">
                 </div>
             </div>

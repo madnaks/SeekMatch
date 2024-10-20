@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
 import { finalize } from 'rxjs';
+import { months } from '../../shared/constants/constants';
 
 @Component({
   selector: 'app-education-modal',
@@ -17,21 +18,7 @@ export class EducationModalComponent implements OnInit {
   isSaving: boolean = false;
   educationForm: FormGroup;
   years: number[] = [];
-  months = [
-    { id: 0, value: 'Select Month' },
-    { id: 1, value: 'January' },
-    { id: 2, value: 'February' },
-    { id: 3, value: 'March' },
-    { id: 4, value: 'April' },
-    { id: 5, value: 'May' },
-    { id: 6, value: 'June' },
-    { id: 7, value: 'July' },
-    { id: 8, value: 'August' },
-    { id: 9, value: 'September' },
-    { id: 10, value: 'October' },
-    { id: 11, value: 'November' },
-    { id: 12, value: 'December' }
-  ];
+  monthsList = months;
 
   constructor(private fb: NonNullableFormBuilder, private educationService: EducationService) {
     this.educationForm = this.initEducationForm();
@@ -98,7 +85,7 @@ export class EducationModalComponent implements OnInit {
 
   private generateYears(): void {
     const currentYear = new Date().getFullYear();
-    const startYear = currentYear - 50; // Change this to control how many years back you want
+    const startYear = currentYear - 50;
     for (let year = currentYear; year >= startYear; year--) {
       this.years.push(year);
     }

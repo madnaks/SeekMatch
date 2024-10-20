@@ -95,21 +95,58 @@
     },
     "Profile": {
         "Talent": {
-            "FirstName": "Prénom",
-            "LastName": "Nom de famille",
-            "Email": "Adresse e-mail",
-            "Password": "Mot de passe",
-            "DateOfBirth": "Date de naissance",
-            "GenderMale": "Homme",
-            "GenderFemale": "Femme",
-            "Address": "Adresse",
-            "Phone": "Téléphone"
+            "AboutYou": {
+                "FirstName": "Prénom",
+                "LastName": "Nom de famille",
+                "Email": "Adresse e-mail",
+                "Password": "Mot de passe",
+                "DateOfBirth": "Date de naissance",
+                "Address": "Adresse",
+                "Phone": "Téléphone"
+            },
+            "Education": {
+                "AddEducation": "Ajouter une formation",
+                "NoEducationMessage": "Commencez à construire votre profil en ajoutant votre historique scolaire",
+                "Modal": {
+                    "Title": "Nouvelle formation",
+                    "Body": {
+                        "Form": {
+                            "Institution": "Établissement",
+                            "Diploma": "Diplôme",
+                            "Domain": "Domaine",
+                            "StartMonth": "Mois de début",
+                            "StartYear": "Année de début",
+                            "FinishMonth": "Mois de fin",
+                            "FinishYear": "Année de fin",
+                            "CurrentlyStudying": "Études en cours",
+                            "SelectYear": "Sélectionner l'année"
+                        }
+                    }
+                }
+            }
         },
-        "MyProfile": "Mon Profil",
-        "AboutYou": "À propos de vous",
-        "Education": "Éducation",
-        "Experience": "Expérience",
-        "Secruity": "Sécurité",
-        "Save": "Sauvegarder"
+        "Sections": {
+            "AboutYou": "À propos de vous",
+            "Education": "Éducation",
+            "Experience": "Expérience",
+            "Secruity": "Sécurité"
+        },
+        "MyProfile": "Mon profil",
+        "Save": "Enregistrer"
+    },
+    "Month": {
+        "SelectMonth": "Sélectionner un mois",
+        "January": "Janvier",
+        "February": "Février",
+        "March": "Mars",
+        "April": "Avril",
+        "May": "Mai",
+        "June": "Juin",
+        "July": "Juillet",
+        "August": "Août",
+        "September": "Septembre",
+        "October": "Octobre",
+        "November": "Novembre",
+        "December": "Décembre"
     }
 }

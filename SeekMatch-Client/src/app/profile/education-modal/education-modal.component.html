@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        New Education
+        {{ 'Profile.Talent.Education.Modal.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -8,51 +8,70 @@
 <div class="modal-body">
     <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
         <div class="mb-4">
-            <label for="inputInstitution" class="form-label">Institution</label>
+            <label for="inputInstitution" class="form-label">
+                {{ 'Profile.Talent.Education.Modal.Body.Form.Institution' | translate }}
+            </label>
             <input type="text" class="form-control" id="inputInstitution" formControlName="institution">
         </div>
         <div class="mb-4">
-            <label for="inputDiploma" class="form-label">Diploma</label>
+            <label for="inputDiploma" class="form-label">
+                {{ 'Profile.Talent.Education.Modal.Body.Form.Diploma' | translate }}
+            </label>
             <input type="text" class="form-control" id="inputDiploma" formControlName="diploma">
         </div>
         <div class="mb-4">
-            <label for="inputDomain" class="form-label">Domain</label>
+            <label for="inputDomain" class="form-label">
+                {{ 'Profile.Talent.Education.Modal.Body.Form.Domain' | translate }}
+            </label>
             <input type="text" class="form-control" id="inputDomain" formControlName="domain">
         </div>
         <div class="row mb-4">
             <div class="col-md-6">
-                <label for="selectStartMonth" class="form-label">Start month</label>
+                <label for="selectStartMonth" class="form-label">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartMonth' | translate }}
+                </label>
                 <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
-                    <option *ngFor="let month of months" [value]="month.id"> {{ month.value }} </option>
+                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="selectStartYear" class="form-label">Start year</label>
+                <label for="selectStartYear" class="form-label">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartYear' | translate }}
+                </label>
                 <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
-                    <option value="0">Select Year</option>
+                    <option value="0">
+                        {{ 'Profile.Talent.Education.Modal.Body.Form.SelectYear' | translate }}
+                    </option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
             </div>
         </div>
         <div class="row mb-4">
             <div class="col-md-6">
-                <label for="selectFinishMonth" class="form-label">Finish month</label>
+                <label for="selectFinishMonth" class="form-label">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.FinishMonth' | translate }}
+                </label>
                 <select class="form-select form-select-sm" id="selectFinishMonth" formControlName="finishMonth">
-                    <option *ngFor="let month of months" [value]="month.id"> {{ month.value }} </option>
+                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="selectFinishYear" class="form-label">Finish year</label>
+                <label for="selectFinishYear" class="form-label">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.FinishYear' | translate }}
+                </label>
                 <select class="form-select form-select-sm" id="selectFinishYear" formControlName="finishYear">
-                    <option value="0">Select Year</option>
+                    <option value="0">
+                        {{ 'Profile.Talent.Education.Modal.Body.Form.SelectYear' | translate }}
+                    </option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
             </div>
         </div>
         <div class="mb-4">
-            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying" formControlName="currentlyStudying">
+            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying"
+                formControlName="currentlyStudying">
             <label class="form-check-label" for="inputCurrentlyStudying">
-                Currently Studying
+                {{ 'Profile.Talent.Education.Modal.Body.Form.CurrentlyStudying' | translate }}
             </label>
         </div>
         <div class="mb-4 d-flex justify-content-center">

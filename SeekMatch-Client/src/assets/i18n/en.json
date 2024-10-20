@@ -95,21 +95,58 @@
     },
     "Profile": {
         "Talent": {
-            "FirstName": "First name",
-            "LastName": "Last name",
-            "Email": "Email address",
-            "Password": "Password",
-            "DateOfBirth": "Date of Birth",
-            "GenderMale": "Male",
-            "GenderFemale": "Female",
-            "Address": "Address",
-            "Phone": "Phone"
+            "AboutYou": {
+                "FirstName": "First name",
+                "LastName": "Last name",
+                "Email": "Email address",
+                "Password": "Password",
+                "DateOfBirth": "Date of birth",
+                "Address": "Address",
+                "Phone": "Phone"
+            },
+            "Education": {
+                "AddEducation": "Add education",
+                "NoEducationMessage": "Start building your profile by adding your education history",
+                "Modal": {
+                    "Title": "New education",
+                    "Body": {
+                        "Form": {
+                            "Institution": "Institution",
+                            "Diploma": "Diploma",
+                            "Domain": "Domain",
+                            "StartMonth": "Start month",
+                            "StartYear": "Start year",
+                            "FinishMonth": "Finish month",
+                            "FinishYear": "Finish year",
+                            "CurrentlyStudying": "Currently studying",
+                            "SelectYear": "Select year"
+                        }
+                    }
+                }
+            }
         },
-        "MyProfile": "My Profile",
-        "AboutYou": "About You",
-        "Education": "Education",
-        "Experience": "Experience",
-        "Secruity": "Secruity",
+        "Sections": {
+            "AboutYou": "About You",
+            "Education": "Education",
+            "Experience": "Experience",
+            "Secruity": "Secruity"
+        },
+        "MyProfile": "My profile",
         "Save": "Save"
+    },
+    "Month": {
+        "SelectMonth": "Select month",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December"
     }
 }
