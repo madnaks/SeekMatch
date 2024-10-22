@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
@@ -38,10 +38,6 @@ export class EducationComponent implements OnInit {
   public getMonthName(monthId: number): string {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
-  }
-
-  public deleteEducation(): void {
-
   }
 
 }
