@@ -77,7 +77,7 @@
             </p>
         </div>
         <div class="mb-4 d-flex justify-content-center">
-            <button type="submit" class="btn w-50" [disabled]="isLoading">
+            <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
                 @if (userRole == UserRole.Recruiter) {
                 {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
@@ -104,7 +104,7 @@
         <img src="assets\images\man-happy.svg" width="200">
         <h5> {{ 'SignUp.Modal.Success.Body.Title' | translate }}</h5>
         <p>{{ 'SignUp.Modal.Success.Body.Message' | translate }}</p>
-        <button type="button" class="btn w-50" (click)="isError = false">
+        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-paper-plane me-2"></i>
             {{ 'SignUp.Modal.Success.Body.ResendEmailButton' | translate }}
         </button>
@@ -128,7 +128,7 @@
         <img src="assets\images\female-something-went-wrong.svg" width="200">
     </div>
     <div class="mb-3 d-flex justify-content-center">
-        <button type="button" class="btn w-50" (click)="isError = false">
+        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-circle-arrow-left me-2"></i>
             {{ 'SignUp.Modal.Error.Body.ReturnButton' | translate }}
         </button>
