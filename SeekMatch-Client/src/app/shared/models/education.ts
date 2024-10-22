@@ -1,5 +1,6 @@
 export class Education {
 
+  public id: string = '';
   public institution: string = '';
   public diploma: string = '';
   public domain: string = '';

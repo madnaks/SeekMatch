@@ -4,6 +4,7 @@ namespace SeekMatch.Application.DTOs
 {
     public class EducationDto
     {
+        public string? Id { get; set; }
         public string? Institution { get; set; }
         public string? Diploma { get; set; }
         public string? Domain { get; set; }
