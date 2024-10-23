@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -56,7 +57,7 @@ namespace SeekMatch.Controllers
 
             if (educationDto == null)
             {
-                return BadRequest("Talent data is null");
+                return BadRequest("Education data is null");
             }
 
             var result = await _educationService.CreateAsync(educationDto, talentId);
@@ -67,6 +68,33 @@ namespace SeekMatch.Controllers
             }
 
             return StatusCode(500, new { message = "An error occurred while creating the education" });
+        }
+        
+        [Authorize]
+        [HttpDelete("{educationId}")]
+        public async Task<IActionResult> Delete([FromRoute] string educationId)
+        {
+
+            var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (talentId == null)
+            {
+                return Unauthorized();
+            }
+
+            if (educationId == null)
+            {
+                return BadRequest("Education id is null");
+            }
+
+            var result = await _educationService.DeleteAsync(educationId);
+
+            if (result)
+            {
+                return Ok(new { message = "Education deleted successfully" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while deleting the education" });
         }
     }
 }

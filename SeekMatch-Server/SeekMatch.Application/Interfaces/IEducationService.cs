@@ -6,5 +6,6 @@ namespace SeekMatch.Application.Interfaces
     {
         Task<IList<EducationDto>?> GetAllAsync(string talentId);
         Task<bool> CreateAsync(EducationDto educationDto, string talentId);
+        Task<bool> DeleteAsync(string educationId);
     }
 }

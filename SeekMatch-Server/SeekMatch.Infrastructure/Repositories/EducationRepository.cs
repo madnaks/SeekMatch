@@ -38,5 +38,24 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while creating the education", ex);
             }
         }
+
+        public async Task<bool> DeleteAsync(string educationId)
+        {
+            try
+            {
+                var education = await _dbContext.Educations.FindAsync(educationId);
+                if (education != null)
+                {
+                    _dbContext.Educations.Remove(education);
+                    var result = await _dbContext.SaveChangesAsync();
+                    return result > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while deleting the education", ex);
+            }
+        }
     }
 }

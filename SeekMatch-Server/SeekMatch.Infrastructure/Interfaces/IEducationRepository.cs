@@ -6,5 +6,6 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task<IList<Education>?> GetAllAsync(string talentId);
         Task<bool> CreateAsync(Education education);
+        Task<bool> DeleteAsync(string educationId);
     }
 }

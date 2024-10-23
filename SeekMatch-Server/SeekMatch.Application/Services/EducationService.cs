@@ -29,5 +29,10 @@ namespace SeekMatch.Application.Services
             return await _educationRepository.CreateAsync(education);
         }
 
+        public async Task<bool> DeleteAsync(string educationId)
+        {
+            return await _educationRepository.DeleteAsync(educationId);
+        }
+
     }
 }

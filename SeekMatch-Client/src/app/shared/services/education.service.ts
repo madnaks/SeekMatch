@@ -20,4 +20,8 @@ export class EducationService {
     return this.http.post(`${this.apiUrl}`, education);
   }
 
+  delete(educationId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${educationId}`);
+  }
+
 }

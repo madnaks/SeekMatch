@@ -66,7 +66,7 @@ export class EducationModalComponent implements OnInit {
         error: (error) => {
           console.error('Register failed', error);
         }
-      })
+      });
   }
 
   private onCurrentlyStudyingChange(): void {

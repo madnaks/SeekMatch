@@ -1,6 +1,6 @@
 export class Education {
 
-  public id: string = '';
+  public id: string | undefined = undefined;
   public institution: string = '';
   public diploma: string = '';
   public domain: string = '';
