@@ -45,7 +45,7 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] EducationDto educationDto)
+        public async Task<IActionResult> Create([FromBody] CreateEducationDto createEducationDto)
         {
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -55,12 +55,12 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            if (educationDto == null)
+            if (createEducationDto == null)
             {
                 return BadRequest("Education data is null");
             }
 
-            var result = await _educationService.CreateAsync(educationDto, talentId);
+            var result = await _educationService.CreateAsync(createEducationDto, talentId);
 
             if (result)
             {

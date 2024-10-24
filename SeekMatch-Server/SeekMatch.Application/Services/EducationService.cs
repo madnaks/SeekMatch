@@ -22,9 +22,9 @@ namespace SeekMatch.Application.Services
             return _mapper.Map<IList<EducationDto>>(await _educationRepository.GetAllAsync(talentId));
         }
 
-        public async Task<bool> CreateAsync(EducationDto educationDto, string talentId)
+        public async Task<bool> CreateAsync(CreateEducationDto createEducationDto, string talentId)
         {
-            var education = _mapper.Map<Education>(educationDto);
+            var education = _mapper.Map<Education>(createEducationDto);
             education.TalentId = talentId;
             return await _educationRepository.CreateAsync(education);
         }
