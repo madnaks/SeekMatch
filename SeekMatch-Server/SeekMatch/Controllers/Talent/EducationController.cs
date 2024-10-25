@@ -69,6 +69,34 @@ namespace SeekMatch.Controllers
 
             return StatusCode(500, new { message = "An error occurred while creating the education" });
         }
+
+
+        [Authorize]
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] EducationDto educationDto)
+        {
+
+            var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (talentId == null)
+            {
+                return Unauthorized();
+            }
+
+            if (educationDto == null)
+            {
+                return BadRequest("Education data is null");
+            }
+
+            var result = await _educationService.UpdateAsync(educationDto);
+
+            if (result)
+            {
+                return Ok(new { message = "Education update successfully" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while updating the education" });
+        }
         
         [Authorize]
         [HttpDelete("{educationId}")]

@@ -29,6 +29,24 @@ namespace SeekMatch.Application.Services
             return await _educationRepository.CreateAsync(education);
         }
 
+        public async Task<bool> UpdateAsync(EducationDto educationDto)
+        {
+            if (educationDto != null && !string.IsNullOrEmpty(educationDto.Id))
+            {
+                var existingEducation = await _educationRepository.GetByIdAsync(educationDto.Id);
+                if (existingEducation == null)
+                {
+                    throw new Exception("Education not found");
+                }
+
+                _mapper.Map(educationDto, existingEducation);
+
+                return await _educationRepository.UpdateAsync(existingEducation);
+            }
+
+            return false;
+        }
+
         public async Task<bool> DeleteAsync(string educationId)
         {
             return await _educationRepository.DeleteAsync(educationId);
