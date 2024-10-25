@@ -108,7 +108,8 @@
                 "AddEducation": "Ajouter une formation",
                 "NoEducationMessage": "Commencez à construire votre profil en ajoutant votre historique scolaire",
                 "Modal": {
-                    "Title": "Nouvelle formation",
+                    "CreationTitle": "Nouvelle formation",
+                    "UpdateTitle": "Modifier formation",
                     "Body": {
                         "Form": {
                             "Institution": "Établissement",
@@ -118,8 +119,7 @@
                             "StartYear": "Année de début",
                             "FinishMonth": "Mois de fin",
                             "FinishYear": "Année de fin",
-                            "CurrentlyStudying": "Études en cours",
-                            "SelectYear": "Sélectionner l'année"
+                            "CurrentlyStudying": "Études en cours"
                         }
                     }
                 }
@@ -134,8 +134,9 @@
         "MyProfile": "Mon profil",
         "Save": "Enregistrer"
     },
-    "Month": {
+    "Date": {
         "SelectMonth": "Sélectionner un mois",
+        "SelectYear": "Sélectionner l'année",
         "January": "Janvier",
         "February": "Février",
         "March": "Mars",
@@ -147,6 +148,7 @@
         "September": "Septembre",
         "October": "Octobre",
         "November": "Novembre",
-        "December": "Décembre"
+        "December": "Décembre",
+        "Today": "Aujourd'hui"
     }
 }

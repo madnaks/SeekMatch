@@ -20,6 +20,10 @@ export class EducationService {
     return this.http.post(`${this.apiUrl}`, education);
   }
 
+  update(education: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}`, education);
+  }
+
   delete(educationId: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${educationId}`);
   }

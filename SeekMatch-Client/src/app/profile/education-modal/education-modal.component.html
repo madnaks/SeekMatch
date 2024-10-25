@@ -1,6 +1,10 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'Profile.Talent.Education.Modal.Title' | translate }}
+        @if (updateMode) {
+            {{ 'Profile.Talent.Education.Modal.UpdateTitle' | translate }}
+        } @else {
+            {{ 'Profile.Talent.Education.Modal.CreationTitle' | translate }}
+        }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -40,7 +44,7 @@
                 </label>
                 <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
                     <option value="0">
-                        {{ 'Profile.Talent.Education.Modal.Body.Form.SelectYear' | translate }}
+                        {{ 'Date.SelectYear' | translate }}
                     </option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
@@ -61,7 +65,7 @@
                 </label>
                 <select class="form-select form-select-sm" id="selectFinishYear" formControlName="finishYear">
                     <option value="0">
-                        {{ 'Profile.Talent.Education.Modal.Body.Form.SelectYear' | translate }}
+                        {{ 'Date.SelectYear' | translate }}
                     </option>
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>

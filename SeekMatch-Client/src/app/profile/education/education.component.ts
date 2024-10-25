@@ -27,12 +27,14 @@ export class EducationComponent implements OnInit {
     this.getEducations();
   }
 
-  public open(content: any): void {
+  public open(content: any, education?: Education): void {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
+    if (education != undefined) {
+      this.selectedEducation = education;
+    }
   }
 
   public openDeleteModal(content: any, education: Education): void {
-    debugger
     this.modalService.open(content, { centered: true, backdrop: 'static' });
     this.selectedEducation = education;
   }
@@ -45,7 +47,6 @@ export class EducationComponent implements OnInit {
   }
 
   public deleteEducation(): void {
-    debugger
     this.isSaving = true;
     if (this.selectedEducation.id) {
       this.educationService.delete(this.selectedEducation.id).pipe(

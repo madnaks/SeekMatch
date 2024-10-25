@@ -19,7 +19,6 @@
                     <button class="btn btn-primary" (click)="open(addEducationContent)">
                         <i class="fa-solid fa-plus"></i>
                         {{ 'Profile.Talent.Education.AddEducation' | translate }}
-
                     </button>
                 </div>
             </div>
@@ -37,19 +36,23 @@
                     <div class="card mb-3" *ngFor="let education of educations">
                         <div class="card-body">
                             <h5 class="card-title">{{ education.institution }}</h5>
-                            <div class="card-btn update-btn" (click)="open(updateEducationContent)">
+                            <div class="card-btn update-btn" (click)="open(updateEducationContent, education)">
                                 <i class="fa-solid fa-pen"></i>
                             </div>
                             <div class="card-btn delete-btn" (click)="openDeleteModal(deleteEducationContent, education)">
                                 <i class="fa-solid fa-trash"></i>
                             </div>
                             <p class="card-text">
-                                {{ education.diploma }}, {{ education.domain }}
+                                <span *ngIf="education.diploma">{{ education.diploma }}, </span>{{ education.domain }}
                             </p>
                             <p class="card-text">
-                                {{ getMonthName(education.startMonth) }} {{ education.startYear }} - {{
-                                getMonthName(education.finishMonth) }} {{
-                                education.finishYear }}
+                                @if (education.currentlyStudying) {
+                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
+                                    {{ 'Date.Today' | translate }}
+                                } @else {
+                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
+                                    {{ getMonthName(education.finishMonth) }} {{ education.finishYear }}
+                                }
                             </p>
                         </div>
                     </div>
@@ -69,7 +72,7 @@
 
 <!-- education modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
-    <app-education-modal [closeModal]="c" [dismissModal]="d">
+    <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation">
     </app-education-modal>
 </ng-template>
 
