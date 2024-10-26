@@ -9,6 +9,10 @@
             "SignUp": "S'inscrire",
             "LogIn": "Connexion",
             "Language": "Langue"
+        },
+        "User": {
+            "Profile": "Profil",
+            "Logout": "Déconnexion"
         }
     },
     "Home": {
@@ -119,7 +123,11 @@
                             "StartYear": "Année de début",
                             "FinishMonth": "Mois de fin",
                             "FinishYear": "Année de fin",
-                            "CurrentlyStudying": "Études en cours"
+                            "CurrentlyStudying": "Études en cours",
+                            "Validation": {
+                                "StartDate": "Veuillez renseigner à la fois le mois et l'année pour la date de début.",
+                                "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début."
+                            }
                         }
                     }
                 }

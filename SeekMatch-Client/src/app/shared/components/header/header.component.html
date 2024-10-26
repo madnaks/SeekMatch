@@ -52,9 +52,15 @@
         <img class="ms-2 me-2" src="assets\images\male-default-profile-picture.svg" width="20"
           id="dropdownBasic1" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem routerLink="/profile/talent">Profile</button>
+          <button ngbDropdownItem routerLink="/profile/talent">
+            <i class="fa-solid fa-user me-2"></i>          
+            {{ 'Navbar.Account.Profile' | translate }}
+          </button>
           <hr>
-          <button ngbDropdownItem (click)="logout()">Logout</button>
+          <button ngbDropdownItem (click)="logout()">
+            <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
+            {{ 'Navbar.Account.Logout' | translate }}
+          </button>
         </div>
       </div>
       }

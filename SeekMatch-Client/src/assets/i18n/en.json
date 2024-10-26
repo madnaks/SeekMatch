@@ -6,9 +6,13 @@
             "Tests": "Tests",
             "Training": "Training",
             "CVCreation": "CV Creation",
-            "SignUp": "Sign Up",
-            "LogIn": "Log In",
+            "SignUp": "Sign-up",
+            "LogIn": "Login",
             "Language": "Language"
+        },
+        "Account": {
+            "Profile": "Profile",
+            "Logout": "Logout"
         }
     },
     "Home": {
@@ -119,7 +123,11 @@
                             "StartYear": "Start year",
                             "FinishMonth": "Finish month",
                             "FinishYear": "Finish year",
-                            "CurrentlyStudying": "Currently studying"
+                            "CurrentlyStudying": "Currently studying",
+                            "Validation": {
+                                "StartDate": "Please enter both the month and year for the start date.",
+                                "InvalidDateRange": "End date cannot be earlier than start date."
+                            }
                         }
                     }
                 }
