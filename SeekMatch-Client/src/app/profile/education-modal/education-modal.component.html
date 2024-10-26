@@ -1,9 +1,9 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         @if (updateMode) {
-            {{ 'Profile.Talent.Education.Modal.UpdateTitle' | translate }}
+        {{ 'Profile.Talent.Education.Modal.UpdateTitle' | translate }}
         } @else {
-            {{ 'Profile.Talent.Education.Modal.CreationTitle' | translate }}
+        {{ 'Profile.Talent.Education.Modal.CreationTitle' | translate }}
         }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
@@ -11,24 +11,28 @@
 
 <div class="modal-body">
     <form [formGroup]="educationForm" (ngSubmit)="onSubmit()">
+        <!-- Institution -->
         <div class="mb-4">
             <label for="inputInstitution" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Institution' | translate }}
             </label>
             <input type="text" class="form-control" id="inputInstitution" formControlName="institution">
         </div>
+        <!-- Diploma -->
         <div class="mb-4">
             <label for="inputDiploma" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Diploma' | translate }}
             </label>
             <input type="text" class="form-control" id="inputDiploma" formControlName="diploma">
         </div>
+        <!-- Domain -->
         <div class="mb-4">
             <label for="inputDomain" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Domain' | translate }}
             </label>
             <input type="text" class="form-control" id="inputDomain" formControlName="domain">
         </div>
+        <!-- StartMonth & StartYear -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectStartMonth" class="form-label">
@@ -49,7 +53,16 @@
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
             </div>
+            <div class="col-md-12">
+                <!-- @if (educationForm.get('startMonth')?.hasError('requiredSelection')) { -->
+                @if ((educationForm.get('startMonth')?.invalid && educationForm.get('startMonth')?.touched) || (educationForm.get('startYear')?.invalid && educationForm.get('startYear')?.touched)) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
+                </div>
+                }
+            </div>
         </div>
+        <!-- FinishMonth & FinishYear -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectFinishMonth" class="form-label">
@@ -70,7 +83,15 @@
                     <option *ngFor="let year of years" [value]="year">{{ year }}</option>
                 </select>
             </div>
+            <div class="col-md-12">
+                @if (educationForm.errors?.['invalidDateRange']) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                </div>
+                }
+            </div>
         </div>
+        <!-- CurrentlyStudying -->
         <div class="mb-4">
             <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying"
                 formControlName="currentlyStudying">
@@ -78,6 +99,7 @@
                 {{ 'Profile.Talent.Education.Modal.Body.Form.CurrentlyStudying' | translate }}
             </label>
         </div>
+        <!-- Save -->
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50">
                 <i class="me-2"

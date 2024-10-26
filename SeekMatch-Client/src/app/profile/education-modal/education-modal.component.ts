@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
 import { finalize } from 'rxjs';
@@ -40,8 +40,8 @@ export class EducationModalComponent implements OnInit {
       institution: ['', Validators.required],
       diploma: [''],
       domain: [''],
-      startMonth: [0, Validators.required],
-      startYear: [0, Validators.required],
+      startMonth: [0, [Validators.required, this.nonZeroValidator]],
+      startYear: [0, [Validators.required, this.nonZeroValidator]],
       finishMonth: [0],
       finishYear: [0],
       currentlyStudying: [false]
@@ -50,26 +50,29 @@ export class EducationModalComponent implements OnInit {
     });
   }
 
-  private dateRangeValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const currentlyStudying = this.educationForm.get('currentlyStudying')?.value;
+  private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
-      if (currentlyStudying) return null;
+    const formGroup = control as FormGroup;
 
-      const startYear = this.educationForm.get('startYear')?.value;
-      const startMonth = this.educationForm.get('startMonth')?.value;
-      const finishYear = this.educationForm.get('finishYear')?.value;
-      const finishMonth = this.educationForm.get('finishMonth')?.value;
+    const currentlyStudying = formGroup.get('currentlyStudying')?.value;
 
-      const startDate = startYear + startMonth / 12;
-      const finishDate = finishYear + finishMonth / 12;
+    if (currentlyStudying) return null;
 
-      if (startDate > finishDate) {
-        return { invalidDateRange: true };
-      }
+    const startYear = formGroup.get('startYear')?.value;
+    const startMonth = formGroup.get('startMonth')?.value;
+    const finishYear = formGroup.get('finishYear')?.value;
+    const finishMonth = formGroup.get('finishMonth')?.value;
 
-      return null;
-    };
+    if (finishYear == 0 || finishMonth == 0) return null;
+
+    const startDate = startYear + startMonth / 12;
+    const finishDate = finishYear + finishMonth / 12;
+
+    if (startDate > finishDate) {
+      return { invalidDateRange: true };
+    }
+
+    return null;
   }
 
   private populateForm(education: Education): void {
@@ -85,6 +88,9 @@ export class EducationModalComponent implements OnInit {
     });
   }
 
+  private nonZeroValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    return control.value === 0 ? { requiredSelection: true } : null;
+  }
 
   public onSubmit(): void {
     if (this.educationForm.valid) {
