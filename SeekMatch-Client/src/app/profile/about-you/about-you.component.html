@@ -8,30 +8,42 @@
         </div>
         } @else {
         <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
+            <!-- Full name  -->
             <div class="row">
+                <!-- First name -->
                 <div class="col-md-6">
-                    <label for="inputFirstName" class="form-label">{{ 'Profile.Talent.AboutYou.FirstName' | translate
-                        }}</label>
+                    <label for="inputFirstName" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.FirstName' | translate }}
+                    </label>
                     <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
+                <!-- Last name -->
                 <div class="col-md-6">
-                    <label for="inputLastName" class="form-label">{{ 'Profile.Talent.AboutYou.LastName' | translate
-                        }}</label>
+                    <label for="inputLastName" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.LastName' | translate }}
+                    </label>
                     <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
             </div>
+            <!-- Profile title -->
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label for="inputProfileTitle" class="form-label">Profile Title</label>
+                    <label for="inputProfileTitle" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.ProfileTitle' | translate }}
+                    </label>
                     <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                 </div>
             </div>
+            <!-- Email -->
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label for="inputEmail" class="form-label">{{ 'Profile.Talent.AboutYou.Email' | translate }}</label>
+                    <label for="inputEmail" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Email' | translate }}
+                    </label>
                     <input type="email" class="form-control" id="inputEmail" formControlName="email">
                 </div>
             </div>
+            <!-- Date of birth -->
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputDateOfBirth" class="form-label">
@@ -40,29 +52,35 @@
                     <div class="datepicker-input input-group">
                         <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
                             placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
-
                         <span class="input-group-text">
                             <i class="fa-regular fa-calendar-days"></i>
                         </span>
                     </div>
                 </div>
             </div>
+            <!-- Address -->
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <label for="inputAddress" class="form-label">{{ 'Profile.Talent.AboutYou.Address' | translate
-                        }}</label>
+                    <label for="inputAddress" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Address' | translate }}
+                    </label>
                     <input type="text" class="form-control" id="inputAddress" formControlName="address">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputPhone" class="form-label">{{ 'Profile.Talent.AboutYou.Phone' | translate }}</label>
+                    <label for="inputPhone" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Phone' | translate }}
+                    </label>
                     <input type="text" class="form-control" id="inputPhone" formControlName="phone">
                 </div>
             </div>
+            <!-- Full Address -->
             <div class="row mt-3">
+                <!-- City -->
                 <div class="col-md-6">
                     <label for="inputCity" class="form-label">City</label>
                     <input type="text" class="form-control" id="inputCity" formControlName="city">
                 </div>
+                <!-- State -->
                 <div class="col-md-4">
                     <label for="inputState" class="form-label">State</label>
                     <select id="inputState" class="form-select">
@@ -70,20 +88,19 @@
                         <option>...</option>
                     </select>
                 </div>
+                <!-- Zip -->
                 <div class="col-md-2">
                     <label for="inputZip" class="form-label">Zip</label>
                     <input type="text" class="form-control" id="inputZip" formControlName="zip">
                 </div>
             </div>
-            <div class="row mt-3">
-
-            </div>
+            <!-- Save button -->
             <div class="row mt-3">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">
                     <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
                         <i class="me-2"
                             [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                        {{ 'Profile.Save' | translate }}
+                        {{ 'Shared.Button.Save' | translate }}
                     </button>
                 </div>
             </div>

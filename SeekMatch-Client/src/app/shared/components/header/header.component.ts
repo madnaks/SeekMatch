@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
     private router: Router, 
     private modalService: NgbModal, 
     private authService: AuthService) {
-    this.isAuthenticated = authService.isAuthenticated();
   }
 
   ngOnInit() {
@@ -30,6 +29,7 @@ export class HeaderComponent implements OnInit {
         // Check if the current route contains 'auth'
         const authRoutes = ['/log=in', '/sign-up', '/auth']; // Add your auth routes here
         this.showHeader = !authRoutes.some(route => event.url.includes(route));
+        this.isAuthenticated = this.authService.isAuthenticated();
       }
     });
   }
@@ -56,7 +56,8 @@ export class HeaderComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
-    window.location.reload();
+    // this.isAuthenticated = false;
+    this.router.navigate(['/home']);
   }
 
 }

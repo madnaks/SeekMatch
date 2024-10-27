@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-modal',
@@ -17,7 +18,10 @@ export class LoginModalComponent {
   loginForm: FormGroup;
   isLoading: boolean = false;
 
-  constructor(private fb: NonNullableFormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: NonNullableFormBuilder, 
+    private authService: AuthService, 
+    private router: Router) {
     this.loginForm = this.initLoginForm();
   }
 
@@ -47,7 +51,7 @@ export class LoginModalComponent {
     ).subscribe({
       next: () => {
         this.dismissModal('Login succed');
-        window.location.reload();
+        this.router.navigate(['/home']);
       },
       error: (error) => {
         console.error('Login failed', error);
