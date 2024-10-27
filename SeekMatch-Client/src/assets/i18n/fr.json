@@ -16,7 +16,7 @@
         }
     },
     "Home": {
-        "Title": "Bienvenue sur notre site Web",
+        "Title": "Bienvenue sur notre site web",
         "Welcome-Paragraph-1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
         "Welcome-Paragraph-2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
         "SearchJobsButton": "Rechercher des emplois"
@@ -51,6 +51,7 @@
                 "Form": {
                     "FirstName": "Prénom",
                     "LastName": "Nom",
+                    "ProfileTitle": "Titre du profil",
                     "Email": "Email address",
                     "Password": "Mot de passe",
                     "ConfirmPassword": "Confirmer le mot de passe",
@@ -114,19 +115,26 @@
                 "Modal": {
                     "CreationTitle": "Nouvelle formation",
                     "UpdateTitle": "Modifier formation",
+                    "DeleteTitle": "Supprimer formation",
                     "Body": {
+                        "DeleteMessage": "Etes-vous sûr de vouloir supprimer cette formation ?",
                         "Form": {
                             "Institution": "Établissement",
+                            "InstitutionPlaceHolder": "ex : Harvard, Collège communautaire",
                             "Diploma": "Diplôme",
+                            "DiplomaPlaceHolder": "ex : Licence, Master",
                             "Domain": "Domaine",
+                            "DomainPlaceHolder": "ex : Économie, Sciences",
                             "StartMonth": "Mois de début",
                             "StartYear": "Année de début",
                             "FinishMonth": "Mois de fin",
                             "FinishYear": "Année de fin",
                             "CurrentlyStudying": "Études en cours",
                             "Validation": {
+                                "Institution": "Établissement est requis.",
                                 "StartDate": "Veuillez renseigner à la fois le mois et l'année pour la date de début.",
-                                "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début."
+                                "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
+                                "InvalidfinishDateTwoFields": "L'année et le mois de fin doivent être tous deux remplis ou laissés vides."
                             }
                         }
                     }
@@ -139,8 +147,7 @@
             "Experience": "Expérience",
             "Secruity": "Sécurité"
         },
-        "MyProfile": "Mon profil",
-        "Save": "Enregistrer"
+        "MyProfile": "Mon profil"
     },
     "Date": {
         "SelectMonth": "Sélectionner un mois",
@@ -158,5 +165,11 @@
         "November": "Novembre",
         "December": "Décembre",
         "Today": "Aujourd'hui"
+    },
+    "Shared": {
+        "Button": {
+            "Save": "Enregistrer",
+            "Delete": "Supprimer"
+        }
     }
 }

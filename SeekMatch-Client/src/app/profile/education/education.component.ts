@@ -1,5 +1,5 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit } from '@angular/core';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,19 +14,24 @@ import { finalize } from 'rxjs';
 export class EducationComponent implements OnInit {
 
   public monthOptions = months;
-
-  educations: Education[] = [];
-  isLoading: boolean = true;
-  isSaving: boolean = false;
-  selectedEducation: Education = new Education;
-
-  constructor(private modalService: NgbModal, private educationService: EducationService, private translate: TranslateService) {
+  public educations: Education[] = [];
+  public isLoading: boolean = true;
+  public isSaving: boolean = false;
+  public selectedEducation: Education = new Education;
+  
+  private deleteModal: NgbModalRef | undefined;
+  
+  constructor(
+    private modalService: NgbModal, 
+    private educationService: EducationService, 
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
     this.getEducations();
   }
 
+  //#region : Modal functions
   public open(content: any, education?: Education): void {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
     if (education != undefined) {
@@ -35,13 +40,21 @@ export class EducationComponent implements OnInit {
   }
 
   public openDeleteModal(content: any, education: Education): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.deleteModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
     this.selectedEducation = education;
   }
 
+  private closeModal(): void {
+    if (this.deleteModal) {
+      this.deleteModal.close();
+      this.deleteModal = undefined;
+    }
+  }
+  //#endregion
+
   private getEducations(): void {
-    this.educationService.getAll().subscribe((newEducations) => {
-      this.educations = [...this.educations, ...newEducations];
+    this.educationService.getAll().subscribe((educations) => {
+      this.educations = educations;
       this.isLoading = false;
     });
   }
@@ -54,7 +67,8 @@ export class EducationComponent implements OnInit {
           this.isSaving = false;
         })).subscribe({
           next: () => {
-            window.location.reload();
+            this.closeModal();
+            this.getEducations();
           },
           error: (error) => {
             console.error('Deleting Education failed', error);
@@ -63,7 +77,6 @@ export class EducationComponent implements OnInit {
     } else {
       console.error('Education ID is undefined, cannot delete');
     }
-
   }
 
   public getMonthName(monthId: number): string {

@@ -16,21 +16,29 @@
             <label for="inputInstitution" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Institution' | translate }}
             </label>
-            <input type="text" class="form-control" id="inputInstitution" formControlName="institution">
+            <input type="text" class="form-control" id="inputInstitution" formControlName="institution"
+                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
+            @if ((educationForm.get('institution')?.invalid && educationForm.get('institution')?.touched)) {
+            <div class="text-danger">
+                {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.Institution' | translate }}
+            </div>
+            }
         </div>
         <!-- Diploma -->
         <div class="mb-4">
             <label for="inputDiploma" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Diploma' | translate }}
             </label>
-            <input type="text" class="form-control" id="inputDiploma" formControlName="diploma">
+            <input type="text" class="form-control" id="inputDiploma" formControlName="diploma"
+                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DiplomaPlaceHolder' | translate">
         </div>
         <!-- Domain -->
         <div class="mb-4">
             <label for="inputDomain" class="form-label">
                 {{ 'Profile.Talent.Education.Modal.Body.Form.Domain' | translate }}
             </label>
-            <input type="text" class="form-control" id="inputDomain" formControlName="domain">
+            <input type="text" class="form-control" id="inputDomain" formControlName="domain"
+                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DomainPlaceHolder' | translate">
         </div>
         <!-- StartMonth & StartYear -->
         <div class="row mb-4">
@@ -54,8 +62,10 @@
                 </select>
             </div>
             <div class="col-md-12">
-                <!-- @if (educationForm.get('startMonth')?.hasError('requiredSelection')) { -->
-                @if ((educationForm.get('startMonth')?.invalid && educationForm.get('startMonth')?.touched) || (educationForm.get('startYear')?.invalid && educationForm.get('startYear')?.touched)) {
+                @if ((educationForm.get('startMonth')?.hasError('requiredSelection') &&
+                educationForm.get('startMonth')?.touched) ||
+                (educationForm.get('startYear')?.hasError('requiredSelection') &&
+                educationForm.get('startYear')?.touched)) {
                 <div class="text-danger">
                     {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
                 </div>
@@ -89,6 +99,11 @@
                     {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
                 </div>
                 }
+                @if (educationForm.errors?.['invalidfinishDateTwoFields']) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidfinishDateTwoFields' | translate }}
+                </div>
+                }
             </div>
         </div>
         <!-- CurrentlyStudying -->
@@ -104,7 +119,7 @@
             <button type="submit" class="btn btn-primary w-50">
                 <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                {{ 'Profile.Save' | translate }}
+                {{ 'Shared.Button.Save' | translate }}
             </button>
         </div>
     </form>

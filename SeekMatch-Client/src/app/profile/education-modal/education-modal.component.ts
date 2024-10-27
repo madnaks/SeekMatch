@@ -40,39 +40,14 @@ export class EducationModalComponent implements OnInit {
       institution: ['', Validators.required],
       diploma: [''],
       domain: [''],
-      startMonth: [0, [Validators.required, this.nonZeroValidator]],
-      startYear: [0, [Validators.required, this.nonZeroValidator]],
+      startMonth: [0, this.nonZeroValidator],
+      startYear: [0, this.nonZeroValidator],
       finishMonth: [0],
       finishYear: [0],
       currentlyStudying: [false]
     }, {
-      validators: [this.dateRangeValidator]
+      validators: [this.dateRangeValidator, this.finishDateTwoFieldsValidator]
     });
-  }
-
-  private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
-    const formGroup = control as FormGroup;
-
-    const currentlyStudying = formGroup.get('currentlyStudying')?.value;
-
-    if (currentlyStudying) return null;
-
-    const startYear = formGroup.get('startYear')?.value;
-    const startMonth = formGroup.get('startMonth')?.value;
-    const finishYear = formGroup.get('finishYear')?.value;
-    const finishMonth = formGroup.get('finishMonth')?.value;
-
-    if (finishYear == 0 || finishMonth == 0) return null;
-
-    const startDate = startYear + startMonth / 12;
-    const finishDate = finishYear + finishMonth / 12;
-
-    if (startDate > finishDate) {
-      return { invalidDateRange: true };
-    }
-
-    return null;
   }
 
   private populateForm(education: Education): void {
@@ -88,10 +63,7 @@ export class EducationModalComponent implements OnInit {
     });
   }
 
-  private nonZeroValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-    return control.value === 0 ? { requiredSelection: true } : null;
-  }
-
+  //#region : Form controls events 
   public onSubmit(): void {
     if (this.educationForm.valid) {
       this.isSaving = true;
@@ -105,6 +77,22 @@ export class EducationModalComponent implements OnInit {
     }
   }
 
+  private onCurrentlyStudyingChange(): void {
+    this.educationForm.get('currentlyStudying')?.valueChanges.subscribe(currentlyStudying => {
+      if (currentlyStudying) {
+        this.educationForm.get('finishMonth')?.disable();
+        this.educationForm.get('finishMonth')?.setValue(0);
+        this.educationForm.get('finishYear')?.disable();
+        this.educationForm.get('finishYear')?.setValue(0);
+      } else {
+        this.educationForm.get('finishMonth')?.enable();
+        this.educationForm.get('finishYear')?.enable();
+      }
+    });
+  }
+  //#endregion
+
+
   private create(): void {
     const formValues = this.educationForm.value;
 
@@ -115,6 +103,7 @@ export class EducationModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
+          // TODO: Replace with something better, exp: Output
           window.location.reload();
         },
         error: (error) => {
@@ -134,26 +123,13 @@ export class EducationModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
+          // TODO: Replace with something better, exp: Output
           window.location.reload();
         },
         error: (error) => {
           console.error('Update of education failed', error);
         }
       });
-  }
-
-  private onCurrentlyStudyingChange(): void {
-    this.educationForm.get('currentlyStudying')?.valueChanges.subscribe(currentlyStudying => {
-      if (currentlyStudying) {
-        this.educationForm.get('finishMonth')?.disable();
-        this.educationForm.get('finishMonth')?.setValue(0);
-        this.educationForm.get('finishYear')?.disable();
-        this.educationForm.get('finishYear')?.setValue(0);
-      } else {
-        this.educationForm.get('finishMonth')?.enable();
-        this.educationForm.get('finishYear')?.enable();
-      }
-    });
   }
 
   private generateYears(): void {
@@ -169,5 +145,53 @@ export class EducationModalComponent implements OnInit {
       this.dismissModal(reason);
     }
   }
+
+  //#region : Form validation
+  private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+    const formGroup = control as FormGroup;
+
+    const currentlyStudying = formGroup.get('currentlyStudying')?.value;
+
+    if (currentlyStudying) return null;
+
+    const startYear = Number(formGroup.get('startYear')?.value);
+    const startMonth = Number(formGroup.get('startMonth')?.value);
+    const finishYear = Number(formGroup.get('finishYear')?.value);
+    const finishMonth = Number(formGroup.get('finishMonth')?.value);
+
+    if (finishYear == 0 || finishMonth == 0) return null;
+
+    const startDate = startYear + startMonth / 12;
+    const finishDate = finishYear + finishMonth / 12;
+
+    if (startDate > finishDate) {
+      return { invalidDateRange: true };
+    }
+
+    return null;
+  }
+
+  private nonZeroValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    return Number(control.value) === 0 ? { requiredSelection: true } : null;
+  }
+
+  /**
+   * finishMonth & finishYear are not required, but if one is filled the other most be required
+   * @param control 
+   * @returns 
+   */
+  private finishDateTwoFieldsValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+    const formGroup = control as FormGroup;
+
+    const finishYear = formGroup.get('finishYear')?.value;
+    const finishMonth = formGroup.get('finishMonth')?.value;
+
+    return (finishYear != 0 && finishMonth == 0) || (finishYear == 0 && finishMonth != 0)
+      ? { invalidfinishDateTwoFields: true }
+      : null;
+  }
+  //#endregion
 
 }

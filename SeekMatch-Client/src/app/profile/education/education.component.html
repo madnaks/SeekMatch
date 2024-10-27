@@ -35,23 +35,32 @@
                 <div class="col-md-12">
                     <div class="card mb-3" *ngFor="let education of educations">
                         <div class="card-body">
-                            <h5 class="card-title">{{ education.institution }}</h5>
+                            <!-- Institution -->
+                            <h5 class="card-title">
+                                {{ education.institution }}
+                            </h5>
+                            <!-- Update education button -->
                             <div class="card-btn update-btn" (click)="open(updateEducationContent, education)">
                                 <i class="fa-solid fa-pen"></i>
                             </div>
+                            <!-- Delete education button -->
                             <div class="card-btn delete-btn" (click)="openDeleteModal(deleteEducationContent, education)">
                                 <i class="fa-solid fa-trash"></i>
                             </div>
+                            <!-- Diploma + Domain -->
                             <p class="card-text">
                                 <span *ngIf="education.diploma">{{ education.diploma }}, </span>{{ education.domain }}
                             </p>
+                            <!-- Duration of the education -->
                             <p class="card-text">
                                 @if (education.currentlyStudying) {
                                     {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
                                     {{ 'Date.Today' | translate }}
-                                } @else {
+                                } @else if (education.finishMonth > 0 && education.finishYear > 0) {
                                     {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
                                     {{ getMonthName(education.finishMonth) }} {{ education.finishYear }}
+                                } @else {
+                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }}
                                 }
                             </p>
                         </div>
@@ -64,13 +73,13 @@
 </div>
 
 
-<!-- education modal -->
+<!-- education creation modal -->
 <ng-template #addEducationContent let-c="close" let-d="dismiss">
     <app-education-modal [closeModal]="c" [dismissModal]="d">
     </app-education-modal>
 </ng-template>
 
-<!-- education modal -->
+<!-- education edit modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
     <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation">
     </app-education-modal>
@@ -79,17 +88,21 @@
 <!-- delete modal -->
 <ng-template #deleteEducationContent let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Delete education</h4>
+        <h4 class="modal-title">
+            {{ 'Profile.Talent.Education.Modal.DeleteTitle' | translate }}
+        </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p>Are you sure you want to delete this education ?</p>
+        <p>            
+            {{ 'Profile.Talent.Education.Modal.Body.DeleteMessage' | translate }}
+        </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteEducation()">
             <i class="me-2"
             [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-            Delete
+            {{ 'Shared.Button.Delete' | translate }}
         </button>
     </div>
 </ng-template>
