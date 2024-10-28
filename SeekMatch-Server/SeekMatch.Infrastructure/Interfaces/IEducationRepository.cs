@@ -2,12 +2,12 @@
 
 namespace SeekMatch.Infrastructure.Interfaces
 {
-    public interface IEducationRepository
+    public interface IExperienceRepository
     {
-        Task<IList<Education>?> GetAllAsync(string talentId);
-        Task<Education?> GetByIdAsync(string id);
-        Task<bool> CreateAsync(Education education);
-        Task<bool> UpdateAsync(Education education);
-        Task<bool> DeleteAsync(string educationId);
+        Task<IList<Experience>?> GetAllAsync(string talentId);
+        Task<Experience?> GetByIdAsync(string id);
+        Task<bool> CreateAsync(Experience experience);
+        Task<bool> UpdateAsync(Experience experience);
+        Task<bool> DeleteAsync(string experienceId);
     }
 }

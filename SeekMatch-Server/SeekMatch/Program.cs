@@ -63,6 +63,7 @@ builder.Services.AddScoped<IEducationService, EducationService>();
 //Register repositories
 builder.Services.AddScoped<ITalentRepository, TalentRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
+builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
 
 builder.Services.AddCors(options =>
 {
