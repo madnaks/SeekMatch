@@ -42,8 +42,8 @@ export class EducationModalComponent implements OnInit {
       domain: [''],
       startMonth: [0, this.nonZeroValidator],
       startYear: [0, this.nonZeroValidator],
-      finishMonth: [0],
-      finishYear: [0],
+      endMonth: [0],
+      endYear: [0],
       currentlyStudying: [false]
     }, {
       validators: [this.dateRangeValidator, this.finishDateTwoFieldsValidator]
@@ -57,8 +57,8 @@ export class EducationModalComponent implements OnInit {
       domain: education.domain,
       startMonth: education.startMonth,
       startYear: education.startYear,
-      finishMonth: education.finishMonth,
-      finishYear: education.finishYear,
+      endMonth: education.endMonth,
+      endYear: education.endYear,
       currentlyStudying: education.currentlyStudying
     });
   }
@@ -80,13 +80,13 @@ export class EducationModalComponent implements OnInit {
   private onCurrentlyStudyingChange(): void {
     this.educationForm.get('currentlyStudying')?.valueChanges.subscribe(currentlyStudying => {
       if (currentlyStudying) {
-        this.educationForm.get('finishMonth')?.disable();
-        this.educationForm.get('finishMonth')?.setValue(0);
-        this.educationForm.get('finishYear')?.disable();
-        this.educationForm.get('finishYear')?.setValue(0);
+        this.educationForm.get('endMonth')?.disable();
+        this.educationForm.get('endMonth')?.setValue(0);
+        this.educationForm.get('endYear')?.disable();
+        this.educationForm.get('endYear')?.setValue(0);
       } else {
-        this.educationForm.get('finishMonth')?.enable();
-        this.educationForm.get('finishYear')?.enable();
+        this.educationForm.get('endMonth')?.enable();
+        this.educationForm.get('endYear')?.enable();
       }
     });
   }
@@ -157,13 +157,13 @@ export class EducationModalComponent implements OnInit {
 
     const startYear = Number(formGroup.get('startYear')?.value);
     const startMonth = Number(formGroup.get('startMonth')?.value);
-    const finishYear = Number(formGroup.get('finishYear')?.value);
-    const finishMonth = Number(formGroup.get('finishMonth')?.value);
+    const endYear = Number(formGroup.get('endYear')?.value);
+    const endMonth = Number(formGroup.get('endMonth')?.value);
 
-    if (finishYear == 0 || finishMonth == 0) return null;
+    if (endYear == 0 || endMonth == 0) return null;
 
     const startDate = startYear + startMonth / 12;
-    const finishDate = finishYear + finishMonth / 12;
+    const finishDate = endYear + endMonth / 12;
 
     if (startDate > finishDate) {
       return { invalidDateRange: true };
@@ -177,7 +177,7 @@ export class EducationModalComponent implements OnInit {
   }
 
   /**
-   * finishMonth & finishYear are not required, but if one is filled the other most be required
+   * endMonth & endYear are not required, but if one is filled the other most be required
    * @param control 
    * @returns 
    */
@@ -185,10 +185,10 @@ export class EducationModalComponent implements OnInit {
 
     const formGroup = control as FormGroup;
 
-    const finishYear = formGroup.get('finishYear')?.value;
-    const finishMonth = formGroup.get('finishMonth')?.value;
+    const endYear = formGroup.get('endYear')?.value;
+    const endMonth = formGroup.get('endMonth')?.value;
 
-    return (finishYear != 0 && finishMonth == 0) || (finishYear == 0 && finishMonth != 0)
+    return (endYear != 0 && endMonth == 0) || (endYear == 0 && endMonth != 0)
       ? { invalidfinishDateTwoFields: true }
       : null;
   }

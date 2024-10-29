@@ -6,8 +6,8 @@ export class Education {
   public domain: string = '';
   public startYear : number = 0;
   public startMonth : number = 0;
-  public finishYear : number = 0;
-  public finishMonth : number = 0;
+  public endYear : number = 0;
+  public endMonth : number = 0;
   public currentlyStudying : boolean = false;
 
   constructor(init?:Partial<Education>) {

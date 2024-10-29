@@ -56,9 +56,9 @@
                                 @if (education.currentlyStudying) {
                                     {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
                                     {{ 'Date.Today' | translate }}
-                                } @else if (education.finishMonth > 0 && education.finishYear > 0) {
+                                } @else if (education.endMonth > 0 && education.endYear > 0) {
                                     {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
-                                    {{ getMonthName(education.finishMonth) }} {{ education.finishYear }}
+                                    {{ getMonthName(education.endMonth) }} {{ education.endYear }}
                                 } @else {
                                     {{ getMonthName(education.startMonth) }} {{ education.startYear }}
                                 }

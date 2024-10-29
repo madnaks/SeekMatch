@@ -78,7 +78,7 @@
                 <label for="selectFinishMonth" class="form-label">
                     {{ 'Profile.Talent.Education.Modal.Body.Form.FinishMonth' | translate }}
                 </label>
-                <select class="form-select form-select-sm" id="selectFinishMonth" formControlName="finishMonth">
+                <select class="form-select form-select-sm" id="selectFinishMonth" formControlName="endMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
                 </select>
             </div>
@@ -86,7 +86,7 @@
                 <label for="selectFinishYear" class="form-label">
                     {{ 'Profile.Talent.Education.Modal.Body.Form.FinishYear' | translate }}
                 </label>
-                <select class="form-select form-select-sm" id="selectFinishYear" formControlName="finishYear">
+                <select class="form-select form-select-sm" id="selectFinishYear" formControlName="endYear">
                     <option value="0">
                         {{ 'Date.SelectYear' | translate }}
                     </option>
