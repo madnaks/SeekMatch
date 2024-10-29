@@ -127,14 +127,14 @@
                             "DomainPlaceHolder": "ex : Économie, Sciences",
                             "StartMonth": "Mois de début",
                             "StartYear": "Année de début",
-                            "FinishMonth": "Mois de fin",
-                            "FinishYear": "Année de fin",
+                            "EndMonth": "Mois de fin",
+                            "EndYear": "Année de fin",
                             "CurrentlyStudying": "Études en cours",
                             "Validation": {
                                 "Institution": "Établissement est requis.",
                                 "StartDate": "Veuillez renseigner à la fois le mois et l'année pour la date de début.",
                                 "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
-                                "InvalidfinishDateTwoFields": "L'année et le mois de fin doivent être tous deux remplis ou laissés vides."
+                                "InvalidEndDateTwoFields": "L'année et le mois de fin doivent être tous deux remplis ou laissés vides."
                             }
                         }
                     }

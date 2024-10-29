@@ -8,13 +8,17 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { EducationModalComponent } from './education-modal/education-modal.component';
+import { ExperienceComponent } from './experience/experience.component';
+import { ExperienceModalComponent } from './experience-modal/experience-modal.component';
 
 @NgModule({
   declarations: [
     TalentProfileComponent,
     AboutYouComponent,
     EducationComponent,
-    EducationModalComponent
+    EducationModalComponent,
+    ExperienceComponent,
+    ExperienceModalComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,108 @@
+<div class="row">
+
+    <div class="col-md-9">
+
+        @if (isLoading) {
+        <div class="loading-spinner">
+            <div class="spinner-border">
+            </div>
+        </div>
+        } @else {
+            @if (experiences.length === 0) {
+            <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+                <div class="col-6">
+                    <p style="text-align: center;">
+                        {{ 'Profile.Talent.Experience.NoExperienceMessage' | translate }}
+                    </p>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center">
+                    <button class="btn btn-primary" (click)="open(addExperienceContent)">
+                        <i class="fa-solid fa-plus"></i>
+                        {{ 'Profile.Talent.Experience.AddExperience' | translate }}
+                    </button>
+                </div>
+            </div>
+            } @else {
+            <div class="row mb-3">
+                <div class="col-md-12 d-flex justify-content-end">
+                    <button class="btn btn-primary" (click)="open(addExperienceContent)">
+                        <i class="fa-solid fa-plus"></i>
+                        {{ 'Profile.Talent.Experience.AddExperience' | translate }}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mb-3" *ngFor="let experience of experiences">
+                        <div class="card-body">
+                            <!-- CompanyName -->
+                            <h5 class="card-title">
+                                {{ experience.companyName }}
+                            </h5>
+                            <!-- Update experience button -->
+                            <div class="card-btn update-btn" (click)="open(updateExperienceContent, experience)">
+                                <i class="fa-solid fa-pen"></i>
+                            </div>
+                            <!-- Delete experience button -->
+                            <div class="card-btn delete-btn" (click)="openDeleteModal(deleteExperienceContent, experience)">
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                            <!-- JobTitle -->
+                            <p class="card-text">
+                                {{ experience.jobTitle }}
+                            </p>
+                            <!-- Duration of the experience -->
+                            <p class="card-text">
+                                @if (experience.currentlyWorking) {
+                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} - 
+                                    {{ 'Date.Today' | translate }}
+                                } @else if (experience.endMonth > 0 && experience.endYear > 0) {
+                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} - 
+                                    {{ getMonthName(experience.endMonth) }} {{ experience.endYear }}
+                                } @else {
+                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }}
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    </div>
+</div>
+
+
+<!-- experience creation modal -->
+<ng-template #addExperienceContent let-c="close" let-d="dismiss">
+    <app-experience-modal [closeModal]="c" [dismissModal]="d">
+    </app-experience-modal>
+</ng-template>
+
+<!-- experience edit modal -->
+<ng-template #updateExperienceContent let-c="close" let-d="dismiss">
+    <app-experience-modal [closeModal]="c" [dismissModal]="d" [selectedExperience]="selectedExperience">
+    </app-experience-modal>
+</ng-template>
+
+<!-- delete modal -->
+<ng-template #deleteExperienceContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">
+            {{ 'Profile.Talent.Experience.Modal.DeleteTitle' | translate }}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>            
+            {{ 'Profile.Talent.Experience.Modal.Body.DeleteMessage' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteExperience()">
+            <i class="me-2"
+            [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            {{ 'Shared.Button.Delete' | translate }}
+        </button>
+    </div>
+</ng-template>

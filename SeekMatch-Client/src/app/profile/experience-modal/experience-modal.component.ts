@@ -1,71 +1,71 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { EducationService } from '../../shared/services/education.service';
-import { Education } from '../../shared/models/education';
+import { ExperienceService } from '../../shared/services/experience.service';
+import { Experience } from '../../shared/models/experience';
 import { finalize } from 'rxjs';
 import { months } from '../../shared/constants/constants';
 
 @Component({
-  selector: 'app-education-modal',
-  templateUrl: './education-modal.component.html',
-  styleUrl: './education-modal.component.scss'
+  selector: 'app-experience-modal',
+  templateUrl: './experience-modal.component.html',
+  styleUrl: './experience-modal.component.scss'
 })
-export class EducationModalComponent implements OnInit {
+export class ExperienceModalComponent implements OnInit {
 
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
-  @Input() selectedEducation: Education | undefined = undefined;
+  @Input() selectedExperience: Experience | undefined = undefined;
 
   isSaving: boolean = false;
   updateMode: boolean = false;
-  educationForm: FormGroup;
+  experienceForm: FormGroup;
   years: number[] = [];
   monthsList = months;
 
-  constructor(private fb: NonNullableFormBuilder, private educationService: EducationService) {
-    this.educationForm = this.initEducationForm();
+  constructor(private fb: NonNullableFormBuilder, private experienceService: ExperienceService) {
+    this.experienceForm = this.initexperienceForm();
   }
 
   ngOnInit() {
     this.generateYears();
-    this.onCurrentlyStudyingChange();
-    if (this.selectedEducation != undefined) {
+    this.oncurrentlyWorkingChange();
+    if (this.selectedExperience != undefined) {
       this.updateMode = true;
-      this.populateForm(this.selectedEducation);
+      this.populateForm(this.selectedExperience);
     }
   }
 
-  private initEducationForm(): FormGroup {
+  private initexperienceForm(): FormGroup {
     return this.fb.group({
-      institution: ['', Validators.required],
-      diploma: [''],
-      domain: [''],
+      companyName: ['', Validators.required],
+      jobTitle: [''],
       startMonth: [0, this.nonZeroValidator],
       startYear: [0, this.nonZeroValidator],
       endMonth: [0],
       endYear: [0],
-      currentlyStudying: [false]
+      currentlyWorking: [false],
+      description: ['']
     }, {
       validators: [this.dateRangeValidator, this.endDateTwoFieldsValidator]
     });
   }
 
-  private populateForm(education: Education): void {
-    this.educationForm.patchValue({
-      institution: education.institution,
-      diploma: education.diploma,
-      domain: education.domain,
-      startMonth: education.startMonth,
-      startYear: education.startYear,
-      endMonth: education.endMonth,
-      endYear: education.endYear,
-      currentlyStudying: education.currentlyStudying
+  private populateForm(experience: Experience): void {
+    this.experienceForm.patchValue({
+      companyName: experience.companyName,
+      jobTitle: experience.jobTitle,
+      startMonth: experience.startMonth,
+      startYear: experience.startYear,
+      endMonth: experience.endMonth,
+      endYear: experience.endYear,
+      currentlyWorking: experience.currentlyWorking,
+      description: experience.description,
     });
   }
 
   //#region : Form controls events 
   public onSubmit(): void {
-    if (this.educationForm.valid) {
+    if (this.experienceForm.valid) {
       this.isSaving = true;
       if (this.updateMode) {
         this.update();
@@ -73,20 +73,20 @@ export class EducationModalComponent implements OnInit {
         this.create();
       }
     } else {
-      this.educationForm.markAllAsTouched();
+      this.experienceForm.markAllAsTouched();
     }
   }
 
-  private onCurrentlyStudyingChange(): void {
-    this.educationForm.get('currentlyStudying')?.valueChanges.subscribe(currentlyStudying => {
-      if (currentlyStudying) {
-        this.educationForm.get('endMonth')?.disable();
-        this.educationForm.get('endMonth')?.setValue(0);
-        this.educationForm.get('endYear')?.disable();
-        this.educationForm.get('endYear')?.setValue(0);
+  private oncurrentlyWorkingChange(): void {
+    this.experienceForm.get('currentlyWorking')?.valueChanges.subscribe(currentlyWorking => {
+      if (currentlyWorking) {
+        this.experienceForm.get('endMonth')?.disable();
+        this.experienceForm.get('endMonth')?.setValue(0);
+        this.experienceForm.get('endYear')?.disable();
+        this.experienceForm.get('endYear')?.setValue(0);
       } else {
-        this.educationForm.get('endMonth')?.enable();
-        this.educationForm.get('endYear')?.enable();
+        this.experienceForm.get('endMonth')?.enable();
+        this.experienceForm.get('endYear')?.enable();
       }
     });
   }
@@ -94,11 +94,11 @@ export class EducationModalComponent implements OnInit {
 
 
   private create(): void {
-    const formValues = this.educationForm.value;
+    const formValues = this.experienceForm.value;
 
-    let education = new Education(formValues);
+    let experience = new Experience(formValues);
 
-    this.educationService.create(education).pipe(
+    this.experienceService.create(experience).pipe(
       finalize(() => {
         this.isSaving = false;
       })).subscribe({
@@ -107,18 +107,18 @@ export class EducationModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Creation of education failed', error);
+          console.error('Creation of experience failed', error);
         }
       });
   }
 
   private update(): void {
-    const formValues = this.educationForm.value;
+    const formValues = this.experienceForm.value;
 
-    let education = new Education(formValues);
-    education.id = this.selectedEducation?.id;
+    let experience = new Experience(formValues);
+    experience.id = this.selectedExperience?.id;
 
-    this.educationService.update(education).pipe(
+    this.experienceService.update(experience).pipe(
       finalize(() => {
         this.isSaving = false;
       })).subscribe({
@@ -127,7 +127,7 @@ export class EducationModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Update of education failed', error);
+          console.error('Update of experience failed', error);
         }
       });
   }
@@ -151,9 +151,9 @@ export class EducationModalComponent implements OnInit {
 
     const formGroup = control as FormGroup;
 
-    const currentlyStudying = formGroup.get('currentlyStudying')?.value;
+    const currentlyWorking = formGroup.get('currentlyWorking')?.value;
 
-    if (currentlyStudying) return null;
+    if (currentlyWorking) return null;
 
     const startYear = Number(formGroup.get('startYear')?.value);
     const startMonth = Number(formGroup.get('startMonth')?.value);
