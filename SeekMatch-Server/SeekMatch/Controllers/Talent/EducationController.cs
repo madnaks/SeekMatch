@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
-using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers

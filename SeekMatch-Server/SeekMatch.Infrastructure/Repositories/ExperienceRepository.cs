@@ -4,60 +4,60 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class EducationRepository : IEducationRepository
+    public class ExperienceRepository : IExperienceRepository
     {
         public readonly SeekMatchDbContext _dbContext;
-        public EducationRepository(SeekMatchDbContext dbContext)
+        public ExperienceRepository(SeekMatchDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<IList<Education>?> GetAllAsync(string talentId)
+        public async Task<IList<Experience>?> GetAllAsync(string talentId)
         {
             try
             {
-                return await _dbContext.Educations.Where(e => e.TalentId == talentId).OrderByDescending(e => e.StartYear).ToListAsync();
+                return await _dbContext.Experiences.Where(e => e.TalentId == talentId).OrderByDescending(e => e.StartYear).ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching the education", ex);
+                throw new Exception("An error occurred while fetching the experience", ex);
             }
         }
 
-        public async Task<Education?> GetByIdAsync(string id)
+        public async Task<Experience?> GetByIdAsync(string id)
         {
             try
             {
-                return await _dbContext.Educations.FindAsync(id);
+                return await _dbContext.Experiences.FindAsync(id);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching the education", ex);
+                throw new Exception("An error occurred while fetching the experience", ex);
             }
         }
 
-        public async Task<bool> CreateAsync(Education education)
+        public async Task<bool> CreateAsync(Experience experience)
         {
             try
             {
-                _dbContext.Educations.Add(education);
+                _dbContext.Experiences.Add(experience);
                 var result = await _dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating the education", ex);
+                throw new Exception("An error occurred while creating the experience", ex);
             }
         }
 
-        public async Task<bool> UpdateAsync(Education education)
+        public async Task<bool> UpdateAsync(Experience experience)
         {
             try
             {
-                _dbContext.Educations.Attach(education);
+                _dbContext.Experiences.Attach(experience);
 
-                _dbContext.Entry(education).State = EntityState.Modified;
+                _dbContext.Entry(experience).State = EntityState.Modified;
 
                 var result = await _dbContext.SaveChangesAsync();
 
@@ -65,18 +65,18 @@ namespace SeekMatch.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating the education", ex);
+                throw new Exception("An error occurred while creating the experience", ex);
             }
         }
 
-        public async Task<bool> DeleteAsync(string educationId)
+        public async Task<bool> DeleteAsync(string experienceId)
         {
             try
             {
-                var education = await _dbContext.Educations.FindAsync(educationId);
-                if (education != null)
+                var experience = await _dbContext.Experiences.FindAsync(experienceId);
+                if (experience != null)
                 {
-                    _dbContext.Educations.Remove(education);
+                    _dbContext.Experiences.Remove(experience);
                     var result = await _dbContext.SaveChangesAsync();
                     return result > 0;
                 }
@@ -84,7 +84,7 @@ namespace SeekMatch.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while deleting the education", ex);
+                throw new Exception("An error occurred while deleting the experience", ex);
             }
         }
     }

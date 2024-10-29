@@ -11,7 +11,9 @@ namespace SeekMatch.Application
             CreateMap<Talent, TalentDto>()
                             .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
             CreateMap<Education, CreateEducationDto>().ReverseMap();
-            CreateMap<Education, EducationDto>().ReverseMap();
+            CreateMap<Education, EducationDto>().ReverseMap();          
+            CreateMap<Experience, CreateExperienceDto>().ReverseMap();
+            CreateMap<Experience, ExperienceDto>().ReverseMap();
         }
     }
 }

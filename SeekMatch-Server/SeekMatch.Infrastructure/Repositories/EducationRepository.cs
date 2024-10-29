@@ -4,60 +4,60 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class ExperienceRepository : IExperienceRepository
+    public class EducationRepository : IEducationRepository
     {
         public readonly SeekMatchDbContext _dbContext;
-        public ExperienceRepository(SeekMatchDbContext dbContext)
+        public EducationRepository(SeekMatchDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public async Task<IList<Experience>?> GetAllAsync(string talentId)
+        public async Task<IList<Education>?> GetAllAsync(string talentId)
         {
             try
             {
-                return await _dbContext.Experiences.Where(e => e.TalentId == talentId).OrderByDescending(e => e.StartYear).ToListAsync();
+                return await _dbContext.Educations.Where(e => e.TalentId == talentId).OrderByDescending(e => e.StartYear).ToListAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching the experience", ex);
+                throw new Exception("An error occurred while fetching the education", ex);
             }
         }
 
-        public async Task<Experience?> GetByIdAsync(string id)
+        public async Task<Education?> GetByIdAsync(string id)
         {
             try
             {
-                return await _dbContext.Experiences.FindAsync(id);
+                return await _dbContext.Educations.FindAsync(id);
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching the experience", ex);
+                throw new Exception("An error occurred while fetching the education", ex);
             }
         }
 
-        public async Task<bool> CreateAsync(Experience experience)
+        public async Task<bool> CreateAsync(Education education)
         {
             try
             {
-                _dbContext.Experiences.Add(experience);
+                _dbContext.Educations.Add(education);
                 var result = await _dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating the experience", ex);
+                throw new Exception("An error occurred while creating the education", ex);
             }
         }
 
-        public async Task<bool> UpdateAsync(Experience experience)
+        public async Task<bool> UpdateAsync(Education education)
         {
             try
             {
-                _dbContext.Experiences.Attach(experience);
+                _dbContext.Educations.Attach(education);
 
-                _dbContext.Entry(experience).State = EntityState.Modified;
+                _dbContext.Entry(education).State = EntityState.Modified;
 
                 var result = await _dbContext.SaveChangesAsync();
 
@@ -65,7 +65,7 @@ namespace SeekMatch.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while creating the experience", ex);
+                throw new Exception("An error occurred while creating the education", ex);
             }
         }
 
@@ -73,10 +73,10 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                var experience = await _dbContext.Experiences.FindAsync(educationId);
-                if (experience != null)
+                var education = await _dbContext.Educations.FindAsync(educationId);
+                if (education != null)
                 {
-                    _dbContext.Experiences.Remove(experience);
+                    _dbContext.Educations.Remove(education);
                     var result = await _dbContext.SaveChangesAsync();
                     return result > 0;
                 }
@@ -84,7 +84,7 @@ namespace SeekMatch.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while deleting the experience", ex);
+                throw new Exception("An error occurred while deleting the education", ex);
             }
         }
     }

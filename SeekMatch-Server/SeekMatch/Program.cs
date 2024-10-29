@@ -59,6 +59,7 @@ builder.Services.AddAuthentication(options =>
 // Register services
 builder.Services.AddScoped<ITalentService, TalentService>();
 builder.Services.AddScoped<IEducationService, EducationService>();
+builder.Services.AddScoped<IExperienceService, ExperienceService>();
 
 //Register repositories
 builder.Services.AddScoped<ITalentRepository, TalentRepository>();
