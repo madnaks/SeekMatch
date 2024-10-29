@@ -7,8 +7,8 @@
         public string? Domain { get; set; }
         public int StartYear { get; set; }
         public int StartMonth { get; set; }
-        public int? FinishYear { get; set; }
-        public int? FinishMonth { get; set; }
+        public int? EndYear { get; set; }
+        public int? EndMonth { get; set; }
         public bool CurrentlyStudying { get; set; }
         public required Talent Talent { get; set; }
         public required string TalentId { get; set; }

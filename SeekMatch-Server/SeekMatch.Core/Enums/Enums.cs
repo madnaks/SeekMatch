@@ -8,10 +8,10 @@
 
     public enum ExperienceType
     {
-        FullTime,
-        PartTime,
-        Internship,
-        Contract,
-        Freelance
+        FullTime = 1,
+        PartTime = 2,
+        Internship = 3,
+        Contract = 4,
+        Freelance = 5
     }
 }
