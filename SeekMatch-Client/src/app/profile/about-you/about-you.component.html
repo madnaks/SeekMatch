@@ -8,8 +8,36 @@
         </div>
         } @else {
         <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
+            <!-- Profile title -->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <p><b>Profile picture</b></p>
+                    <div>
+                        @if (profileImage) {
+                            <img [src]="profileImage" alt="Profile Image" class="img-thumbnail mb-2"
+                            style="max-width: 100px; height: auto; border-radius: 50%;">
+                        } @else {
+                            <img src="../../../assets/images/male-default-profile-picture.svg" alt="Profile Image" class="img-thumbnail mb-2"
+                            style="max-width: 100px; height: auto; border-radius: 50%;">
+                        }
+
+                        <!-- Custom button to trigger file input -->
+                        <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
+                            Choose Picture
+                        </button>
+
+                        <!-- Button to remove current image -->
+                        <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
+                            *ngIf="profileImage">Remove</button>
+
+                        <!-- Hidden file input element -->
+                        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+                    </div>
+
+                </div>
+            </div>
             <!-- Full name  -->
-            <div class="row">
+            <div class="row mt-3">
                 <!-- First name -->
                 <div class="col-md-6">
                     <label for="inputFirstName" class="form-label">
