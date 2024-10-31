@@ -1,9 +1,9 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         @if (updateMode) {
-        {{ 'Profile.Talent.Education.Modal.UpdateTitle' | translate }}
+        {{ 'Profile.Talent.Experience.Modal.UpdateTitle' | translate }}
         } @else {
-        {{ 'Profile.Talent.Education.Modal.CreationTitle' | translate }}
+        {{ 'Profile.Talent.Experience.Modal.CreationTitle' | translate }}
         }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
@@ -11,40 +11,32 @@
 
 <div class="modal-body">
     <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()">
-        <!-- Institution -->
+        <!-- CompanyName -->
         <div class="mb-4">
-            <label for="inputInstitution" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Institution' | translate }}
+            <label for="inputCompanyName" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
             </label>
-            <input type="text" class="form-control" id="inputInstitution" formControlName="institution"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
-            @if ((experienceForm.get('institution')?.invalid && experienceForm.get('institution')?.touched)) {
+            <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+            @if ((experienceForm.get('companyName')?.invalid && experienceForm.get('companyName')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.Institution' | translate }}
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.CompanyName' | translate }}
             </div>
             }
         </div>
-        <!-- Diploma -->
+        <!-- JobTitle -->
         <div class="mb-4">
-            <label for="inputDiploma" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Diploma' | translate }}
+            <label for="inputJobTitle" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.JobTitle' | translate }}
             </label>
-            <input type="text" class="form-control" id="inputDiploma" formControlName="diploma"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DiplomaPlaceHolder' | translate">
-        </div>
-        <!-- Domain -->
-        <div class="mb-4">
-            <label for="inputDomain" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Domain' | translate }}
-            </label>
-            <input type="text" class="form-control" id="inputDomain" formControlName="domain"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DomainPlaceHolder' | translate">
+            <input type="text" class="form-control" id="inputJobTitle" formControlName="jobTitle"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.JobTitlePlaceHolder' | translate">
         </div>
         <!-- StartMonth & StartYear -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectStartMonth" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartMonth' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.StartMonth' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
@@ -52,7 +44,7 @@
             </div>
             <div class="col-md-6">
                 <label for="selectStartYear" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartYear' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.StartYear' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
                     <option value="0">
@@ -67,7 +59,7 @@
                 (experienceForm.get('startYear')?.hasError('requiredSelection') &&
                 experienceForm.get('startYear')?.touched)) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.StartDate' | translate }}
                 </div>
                 }
             </div>
@@ -76,7 +68,7 @@
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectEndMonth" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.EndMonth' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.EndMonth' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectEndMonth" formControlName="endMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
@@ -84,7 +76,7 @@
             </div>
             <div class="col-md-6">
                 <label for="selectEndYear" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.EndYear' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.EndYear' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectEndYear" formControlName="endYear">
                     <option value="0">
@@ -96,23 +88,31 @@
             <div class="col-md-12">
                 @if (experienceForm.errors?.['invalidDateRange']) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
                 </div>
                 }
                 @if (experienceForm.errors?.['invalidEndDateTwoFields']) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
                 </div>
                 }
             </div>
         </div>
-        <!-- CurrentlyStudying -->
+        <!-- CurrentlyWorking -->
         <div class="mb-4">
-            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying"
-                formControlName="currentlyStudying">
-            <label class="form-check-label" for="inputCurrentlyStudying">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.CurrentlyStudying' | translate }}
+            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyWorking"
+                formControlName="currentlyWorking">
+            <label class="form-check-label" for="inputCurrentlyWorking">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.CurrentlyWorking' | translate }}
             </label>
+        </div>
+        <!-- Description -->
+        <div class="mb-4">
+            <label for="inputDescription" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.Description' | translate }}
+            </label>
+            <textarea class="form-control" id="inputDescription" formControlName="description"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
         </div>
         <!-- Save -->
         <div class="mb-4 d-flex justify-content-center">

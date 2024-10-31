@@ -139,6 +139,37 @@
                         }
                     }
                 }
+            },
+            "Experience": {
+                "AddExperience": "Ajouter une expérience",
+                "NoExperienceMessage": "Commencez à créer votre profil en ajoutant votre historique d'expérience",
+                "Modal": {
+                    "CreationTitle": "Nouvelle expérience",
+                    "UpdateTitle": "Mettre à jour l'expérience",
+                    "DeleteTitle": "Supprimer l'expérience",
+                    "Body": {
+                        "DeleteMessage": "Êtes-vous sûr de vouloir supprimer cette expérience ?",
+                        "Form": {
+                            "CompanyName": "Nom de l'entreprise",
+                            "CompanyNamePlaceholder": "ex., Microsoft, Google, Acme Corp.",
+                            "JobTitle": "Titre du poste",
+                            "JobTitlePlaceHolder": "ex., Ingénieur logiciel, Responsable marketing, Analyste de données",
+                            "StartMonth": "Mois de début",
+                            "StartYear": "Année de début",
+                            "EndMonth": "Mois de fin",
+                            "EndYear": "Année de fin",
+                            "CurrentlyWorking": "Travaille actuellement",
+                            "Description": "Description",
+                            "DescriptionPlaceholder": "ex., A dirigé une équipe de développeurs pour créer une plateforme e-commerce, augmentant les ventes de 30 %",
+                            "Validation": {
+                                "CompanyName": "Le nom de l'entreprise est requis.",
+                                "StartDate": "Veuillez entrer à la fois le mois et l'année pour la date de début.",
+                                "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
+                                "InvalidEndDateTwoFields": "L'année de fin et le mois de fin doivent être tous deux remplis, ou aucun des deux."
+                            }
+                        }
+                    }
+                }
             }
         },
         "Sections": {

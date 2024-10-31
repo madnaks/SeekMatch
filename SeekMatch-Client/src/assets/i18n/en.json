@@ -150,19 +150,19 @@
                     "Body": {
                         "DeleteMessage": "Are you sure you want to delete this experience ?",
                         "Form": {
-                            "Institution": "Institution",
-                            "InstitutionPlaceHolder": "e.g., Harvard, Community College",
-                            "Diploma": "Diploma",
-                            "DiplomaPlaceHolder": "e.g., Bachelor’s, Master’s",
-                            "Domain": "Domain",
-                            "DomainPlaceHolder": "e.g., Economics, Science",
+                            "CompanyName": "Company name",
+                            "CompanyNamePlaceholder": "e.g., Microsoft, Google, Acme Corp.",
+                            "JobTitle": "Job title",
+                            "JobTitlePlaceHolder": "e.g., Software Engineer, Marketing Manager, Data Analyst",
                             "StartMonth": "Start month",
                             "StartYear": "Start year",
                             "EndMonth": "End month",
                             "EndYear": "End year",
-                            "CurrentlyStudying": "Currently studying",
+                            "CurrentlyWorking": "Currently working",
+                            "Description": "Description",
+                            "DescriptionPlaceholder": "e.g., Led a team of developers to build an e-commerce platform, improving sales by 30%",
                             "Validation": {
-                                "Institution": "Institution is required.",
+                                "CompanyName": "Company name is required.",
                                 "StartDate": "Please enter both the month and year for the start date.",
                                 "InvalidDateRange": "End date cannot be earlier than start date.",
                                 "InvalidEndDateTwoFields": "Both end year and end month must be filled, or neither should be."
