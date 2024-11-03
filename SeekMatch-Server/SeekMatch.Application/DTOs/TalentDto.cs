@@ -12,5 +12,6 @@
         public string? State { get; set; }
         public string? Zip { get; set; }
         public string? Email { get; set; }
+        public byte[]? ProfilePicture { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace SeekMatch.Application.Interfaces
         Task CreateAsync(Talent talent);
         Task<TalentDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
+        Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId);
     }
 }

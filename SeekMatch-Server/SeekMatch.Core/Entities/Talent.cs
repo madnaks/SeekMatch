@@ -11,6 +11,7 @@
         public string? City { get; set; }
         public string? State { get; set; }
         public string? Zip { get; set; }
+        public byte[]? ProfilePicture { get; set; }
         public required User User { get; set; }
         public List<Education> Educations { get; set; } = new List<Education>();
         public List<Experience> Experiences { get; set; } = new List<Experience>();

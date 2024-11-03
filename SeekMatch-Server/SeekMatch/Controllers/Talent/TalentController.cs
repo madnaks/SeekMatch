@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
@@ -68,5 +69,38 @@ namespace SeekMatch.Controllers
 
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
+
+        [Authorize]
+        [HttpPost("upload-profile-picture")]
+        public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            if (profilePicture == null || profilePicture.Length == 0)
+            {
+                return BadRequest("No file uploaded.");
+            }
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await profilePicture.CopyToAsync(memoryStream);
+                var profilePictureData = memoryStream.ToArray();
+
+                var isSuccess = await _talentService.UpdateProfilePictureAsync(profilePictureData, userId);
+                if (!isSuccess)
+                {
+                    return NotFound("Talent not found.");
+                }
+            }
+
+            return Ok("Profile picture uploaded successfully.");
+
+        }
+
     }
 }
