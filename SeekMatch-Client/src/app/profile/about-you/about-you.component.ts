@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { TalentService } from '../../shared/services/talent.service';
 import { finalize } from 'rxjs';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-you',
@@ -16,9 +17,9 @@ export class AboutYouComponent {
   isLoading: boolean = true;
   isSaving: boolean = false;
 
-  profileImage: string | ArrayBuffer | null = null; // Load this from backend if available
+  profilePicture: SafeUrl | string | null = null;
 
-  constructor(private fb: NonNullableFormBuilder, private talentService: TalentService) {
+  constructor(private fb: NonNullableFormBuilder, private talentService: TalentService, private sanitizer: DomSanitizer) {
     this.aboutYouForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
@@ -95,6 +96,13 @@ export class AboutYouComponent {
         email: talent.email,
         phone: talent.phone
       });
+
+      if (talent.profilePicture) {
+        this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
+      } else {
+        this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+      }
+      
       this.isLoading = false;
     });
   }
@@ -104,15 +112,23 @@ export class AboutYouComponent {
     if (fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
       const reader = new FileReader();
+
       reader.onload = () => {
-        this.profileImage = reader.result;
+        this.profilePicture = reader.result;
       };
+
       reader.readAsDataURL(file);
+
+      this.talentService.uploadProfilePicture(file).subscribe({
+        next: () => console.log('Profile picture uploaded successfully'),
+        error: (err) => console.error('Error uploading profile picture', err)
+      });
+
     }
   }
 
   removeImage(): void {
-    this.profileImage = null;
+    this.profilePicture = null;
   }
 
 }

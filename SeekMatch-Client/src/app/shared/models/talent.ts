@@ -1,3 +1,4 @@
+import { SafeUrl } from "@angular/platform-browser";
 import { User } from "./user";
 
 export class Talent extends User {
@@ -12,6 +13,7 @@ export class Talent extends User {
   public city : string= '';
   public state : string= '';
   public zip : string= '';
+  public profilePicture : Uint8Array | null = null;
 
   constructor(init?:Partial<Talent>) {
     super();

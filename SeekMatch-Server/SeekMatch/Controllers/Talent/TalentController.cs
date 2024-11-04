@@ -47,7 +47,6 @@ namespace SeekMatch.Controllers
         [HttpPut("about-you")]
         public async Task<IActionResult> SaveProfile([FromBody] AboutYouDto aboutYouDto)
         {
-
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (userId == null)

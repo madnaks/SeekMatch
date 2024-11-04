@@ -49,11 +49,10 @@
       } @else {
       <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
         display="dynamic">
-        <img class="ms-2 me-2" src="assets\images\male-default-profile-picture.svg" width="20"
-          id="dropdownBasic1" ngbDropdownToggle>
+        <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem routerLink="/profile/talent">
-            <i class="fa-solid fa-user me-2"></i>          
+            <i class="fa-solid fa-user me-2"></i>
             {{ 'Navbar.Account.Profile' | translate }}
           </button>
           <hr>
@@ -70,8 +69,7 @@
     @if (translate.currentLang == 'fr') {
     <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
     } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20"
-      (click)="changeLanguage()">
+    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
     }
 
   </div>
@@ -135,8 +133,7 @@
     @if (translate.currentLang == 'fr') {
     <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
     } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20"
-      (click)="changeLanguage()">
+    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
     }
   </div>
 
