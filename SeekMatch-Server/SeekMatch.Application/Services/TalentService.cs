@@ -62,5 +62,20 @@ namespace SeekMatch.Application.Services
             return true;
 
         }
+
+        public async Task<bool> DeleteProfilePictureAsync(string userId)
+        {
+            var talent = await _talentRepository.GetAsync(userId);
+
+            if (talent == null)
+            {
+                return false;
+            }
+
+            talent.ProfilePicture = null;
+            await _talentRepository.SaveChangesAsync(talent);
+
+            return true;
+        }
     }
 }

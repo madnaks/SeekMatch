@@ -22,7 +22,7 @@
 
                         <!-- Button to remove current image -->
                         <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
-                            *ngIf="profilePicture">Remove</button>
+                            *ngIf="profilePicture && !defaultProfilePicture">Remove</button>
 
                         <!-- Hidden file input element -->
                         <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">

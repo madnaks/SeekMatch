@@ -3,7 +3,8 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { TalentService } from '../../shared/services/talent.service';
 import { finalize } from 'rxjs';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SafeUrl } from '@angular/platform-browser';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-about-you',
@@ -18,8 +19,9 @@ export class AboutYouComponent {
   isSaving: boolean = false;
 
   profilePicture: SafeUrl | string | null = null;
+  defaultProfilePicture: boolean = true;
 
-  constructor(private fb: NonNullableFormBuilder, private talentService: TalentService, private sanitizer: DomSanitizer) {
+  constructor(private fb: NonNullableFormBuilder, private talentService: TalentService) {
     this.aboutYouForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
@@ -42,7 +44,7 @@ export class AboutYouComponent {
 
         aboutYouData.dateOfBirth = formattedDateOfBirth;
       }
-      
+
       this.talentService.saveAboutYouData(aboutYouData).pipe(
         finalize(() => {
           this.isSaving = false;
@@ -99,10 +101,11 @@ export class AboutYouComponent {
 
       if (talent.profilePicture) {
         this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
+        this.defaultProfilePicture = false;
       } else {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
       }
-      
+
       this.isLoading = false;
     });
   }
@@ -120,7 +123,9 @@ export class AboutYouComponent {
       reader.readAsDataURL(file);
 
       this.talentService.uploadProfilePicture(file).subscribe({
-        next: () => console.log('Profile picture uploaded successfully'),
+        next: () => {
+          this.defaultProfilePicture  = false;
+        },
         error: (err) => console.error('Error uploading profile picture', err)
       });
 
@@ -128,7 +133,14 @@ export class AboutYouComponent {
   }
 
   removeImage(): void {
-    this.profilePicture = null;
+    this.talentService.deleteProfilePicture().subscribe({
+      next: () => {
+        this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+        this.defaultProfilePicture  = true;
+      },
+      error: (err) => console.error('Error deleting profile picture', err)
+    });
+
   }
 
 }

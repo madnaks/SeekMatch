@@ -97,8 +97,29 @@ namespace SeekMatch.Controllers
                 }
             }
 
-            return Ok("Profile picture uploaded successfully.");
+            return Ok(new { message = "Profile picture uploaded successfully." });
 
+        }
+
+        [Authorize]
+        [HttpDelete("delete-profile-picture")]
+        public async Task<IActionResult> DeleteProfilePicture()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var result = await _talentService.DeleteProfilePictureAsync(userId);
+
+            if (!result)
+            {
+                return NotFound("Profile picture not found.");
+            }
+
+            return NoContent();
         }
 
     }
