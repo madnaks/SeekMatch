@@ -11,18 +11,25 @@
             <!-- Profile title -->
             <div class="row mt-3">
                 <div class="col-md-12 profile-picture-section">
-                    <p><b>Profile picture</b></p>
+                    <p>
+                        <b>
+                            {{ 'Profile.Talent.AboutYou.ProfilePicture' | translate }}
+                        </b>
+                    </p>
+                    
                     <div>
                         <img [src]="profilePicture" class="img-thumbnail mb-2">
 
                         <!-- Custom button to trigger file input -->
                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                            Choose Picture
+                            {{ 'Profile.Talent.AboutYou.ChoosePicture' | translate }}
                         </button>
 
                         <!-- Button to remove current image -->
                         <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
-                            *ngIf="profilePicture && !defaultProfilePicture">Remove</button>
+                            *ngIf="profilePicture && !defaultProfilePicture">
+                            {{ 'Profile.Talent.AboutYou.Remove' | translate }}
+                        </button>
 
                         <!-- Hidden file input element -->
                         <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">

@@ -107,7 +107,10 @@
                 "Password": "Password",
                 "DateOfBirth": "Date of birth",
                 "Address": "Address",
-                "Phone": "Phone"
+                "Phone": "Phone",
+                "ProfilePicture": "Profile Picture",
+                "ChoosePicture": "Choose Picture",
+                "Remove": "Remove"
             },
             "Education": {
                 "AddEducation": "Add education",

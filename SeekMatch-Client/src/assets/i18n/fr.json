@@ -107,7 +107,10 @@
                 "Password": "Mot de passe",
                 "DateOfBirth": "Date de naissance",
                 "Address": "Adresse",
-                "Phone": "Téléphone"
+                "Phone": "Téléphone",
+                "ProfilePicture": "Photo de profil",
+                "ChoosePicture": "Choisir une photo",
+                "Remove": "Supprimer"
             },
             "Education": {
                 "AddEducation": "Ajouter une formation",
