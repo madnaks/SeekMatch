@@ -5,6 +5,7 @@ import { TalentService } from '../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../shared/services/toast.service';
+import { ToastType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-about-you',
@@ -21,7 +22,10 @@ export class AboutYouComponent {
   profilePicture: SafeUrl | string | null = null;
   defaultProfilePicture: boolean = true;
 
-  constructor(private fb: NonNullableFormBuilder, private talentService: TalentService) {
+  constructor(
+    private fb: NonNullableFormBuilder, 
+    private talentService: TalentService, 
+    private toastService: ToastService) {
     this.aboutYouForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
@@ -125,6 +129,7 @@ export class AboutYouComponent {
       this.talentService.uploadProfilePicture(file).subscribe({
         next: () => {
           this.defaultProfilePicture  = false;
+          this.toastService.show('Data saved successfully!', ToastType.Success);
         },
         error: (err) => console.error('Error uploading profile picture', err)
       });
@@ -137,6 +142,7 @@ export class AboutYouComponent {
       next: () => {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
         this.defaultProfilePicture  = true;
+        this.toastService.show('Profile picture removed successfully!', ToastType.Success);
       },
       error: (err) => console.error('Error deleting profile picture', err)
     });

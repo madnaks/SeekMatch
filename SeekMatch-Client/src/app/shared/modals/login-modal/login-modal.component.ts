@@ -3,6 +3,8 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../services/toast.service';
+import { ToastType } from '../../enums/enums';
 
 @Component({
   selector: 'app-login-modal',
@@ -20,7 +22,8 @@ export class LoginModalComponent {
 
   constructor(
     private fb: NonNullableFormBuilder, 
-    private authService: AuthService, 
+    private authService: AuthService,
+    private toastService: ToastService,
     private router: Router) {
     this.loginForm = this.initLoginForm();
   }
@@ -54,7 +57,7 @@ export class LoginModalComponent {
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        console.error('Login failed', error);
+        this.toastService.show('Login failed', ToastType.Error);
       }
     });
   }

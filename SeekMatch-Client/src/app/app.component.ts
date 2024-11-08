@@ -4,17 +4,19 @@ import { RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { ToastComponent } from "./shared/components/toast/toast.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
     RouterOutlet,
     HomeModule,
-    SharedModule, 
-    TranslateModule
-  ],
+    SharedModule,
+    TranslateModule,
+    ToastComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

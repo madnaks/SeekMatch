@@ -10,3 +10,10 @@ export enum ExperienceType {
     Contract = 4,
     Freelance = 5
 }
+
+export enum ToastType {
+    Success = 'success',
+    Error = 'error',
+    Warning = 'warning',
+    Info = 'info',
+  }
