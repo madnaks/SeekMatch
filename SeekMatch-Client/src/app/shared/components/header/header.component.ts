@@ -4,6 +4,8 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { TalentService } from '../../services/talent.service';
+import { ToastType } from '../../enums/enums';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +25,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private modalService: NgbModal,
     private authService: AuthService,
-    private talentService: TalentService) {
+    private talentService: TalentService,
+    private toastService: ToastService) {
   }
 
   ngOnInit() {
@@ -43,7 +46,7 @@ export class HeaderComponent implements OnInit {
             } else {
               this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
             }
-            
+
           });
         }
       }
@@ -72,6 +75,7 @@ export class HeaderComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
+    this.toastService.show('Logout succed', ToastType.Success)
     this.router.navigate(['/home']);
   }
 

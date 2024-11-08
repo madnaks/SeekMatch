@@ -54,6 +54,7 @@ export class LoginModalComponent {
     ).subscribe({
       next: () => {
         this.dismissModal('Login succed');
+        this.toastService.show('Login succed', ToastType.Success);
         this.router.navigate(['/home']);
       },
       error: (error) => {
