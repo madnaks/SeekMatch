@@ -2,21 +2,24 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './components/header/header.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbToast } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { HeaderSimplifiedComponent } from './components/header-simplified/header-simplified.component';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HeaderSimplifiedComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    ToastComponent
   ],
   imports: [
     CommonModule,
     NgbModule,
+    NgbToast,
     TranslateModule,
     RouterModule,
     ReactiveFormsModule
@@ -24,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     HeaderComponent,
     HeaderSimplifiedComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    ToastComponent
   ]
 })
 export class SharedModule { }
