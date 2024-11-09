@@ -5,6 +5,7 @@ import { UserRole } from '../../../shared/enums/enums';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../shared/services/auth.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-register-modal',
@@ -30,7 +31,8 @@ export class RegisterModalComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private authService: AuthService,
-    private router: Router) {
+    private router: Router,
+    private toastService: ToastService) {
     this.signupForm = this.initSignupForm();
     // This code is for later, when implmenting recruiter
     // if (this.userRole == UserRole.Recruiter) {
@@ -80,7 +82,7 @@ export class RegisterModalComponent {
           this.isSuccess = true;
         },
         error: (error) => {
-          console.error('Register failed', error);
+          this.toastService.showErrorMessage('Register failed', error);
           this.isError = true;
         }
       })

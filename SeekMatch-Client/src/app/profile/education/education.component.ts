@@ -5,6 +5,7 @@ import { Education } from '../../shared/models/education';
 import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../shared/constants/constants';
 import { finalize } from 'rxjs';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-education',
@@ -24,7 +25,8 @@ export class EducationComponent implements OnInit {
   constructor(
     private modalService: NgbModal, 
     private educationService: EducationService, 
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private toastService: ToastService) {
   }
 
   ngOnInit(): void {
@@ -71,11 +73,11 @@ export class EducationComponent implements OnInit {
             this.getEducations();
           },
           error: (error) => {
-            console.error('Deleting Education failed', error);
+            this.toastService.showErrorMessage('Deleting Education failed', error);
           }
         });
     } else {
-      console.error('Education ID is undefined, cannot delete');
+      this.toastService.showErrorMessage('Education ID is undefined, cannot delete');
     }
   }
 

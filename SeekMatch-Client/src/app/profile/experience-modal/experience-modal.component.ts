@@ -4,6 +4,7 @@ import { ExperienceService } from '../../shared/services/experience.service';
 import { Experience } from '../../shared/models/experience';
 import { finalize } from 'rxjs';
 import { months } from '../../shared/constants/constants';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-experience-modal',
@@ -22,7 +23,10 @@ export class ExperienceModalComponent implements OnInit {
   years: number[] = [];
   monthsList = months;
 
-  constructor(private fb: NonNullableFormBuilder, private experienceService: ExperienceService) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private experienceService: ExperienceService,
+    private toastService: ToastService) {
     this.experienceForm = this.initexperienceForm();
   }
 
@@ -107,7 +111,7 @@ export class ExperienceModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Creation of experience failed', error);
+          this.toastService.showErrorMessage('Creation of experience failed', error);
         }
       });
   }
@@ -127,7 +131,7 @@ export class ExperienceModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Update of experience failed', error);
+          this.toastService.showErrorMessage('Update of experience failed', error);
         }
       });
   }

@@ -9,7 +9,7 @@ export class ToastService {
 
   toasts: any[] = [];
 
-  show(message: string, type: ToastType = ToastType.Info, delay = 3000) {
+  show(message: string, type: ToastType = ToastType.Info, delay = 3000): void {
     let classname = 'toast-info';
     let statutIcon = 'assets/icons/status/';
     
@@ -37,6 +37,20 @@ export class ToastService {
 
   remove(toast: any) {
     this.toasts = this.toasts.filter((t) => t !== toast);
+  }
+
+  showSuccessMessage(defaultMessage: string): void {
+    this.show(defaultMessage, ToastType.Success);
+  }
+
+  showErrorMessage(defaultMessage: string, error?: any): void {
+    // Check if the error has a `message` property
+    let errorMessage = defaultMessage;
+    if (error && error.error && error.error.message) {
+      errorMessage = `${defaultMessage}: ${error.error.message}`;
+    }
+    
+    this.show(errorMessage, ToastType.Error);
   }
 
 }

@@ -4,6 +4,7 @@ import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
 import { finalize } from 'rxjs';
 import { months } from '../../shared/constants/constants';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-education-modal',
@@ -22,7 +23,10 @@ export class EducationModalComponent implements OnInit {
   years: number[] = [];
   monthsList = months;
 
-  constructor(private fb: NonNullableFormBuilder, private educationService: EducationService) {
+  constructor(
+    private fb: NonNullableFormBuilder, 
+    private educationService: EducationService,
+    private toastService: ToastService) {
     this.educationForm = this.initEducationForm();
   }
 
@@ -107,7 +111,7 @@ export class EducationModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Creation of education failed', error);
+          this.toastService.showErrorMessage('Creation of education failed', error);
         }
       });
   }
@@ -127,7 +131,7 @@ export class EducationModalComponent implements OnInit {
           window.location.reload();
         },
         error: (error) => {
-          console.error('Update of education failed', error);
+          this.toastService.showErrorMessage('Update of education failed', error);
         }
       });
   }

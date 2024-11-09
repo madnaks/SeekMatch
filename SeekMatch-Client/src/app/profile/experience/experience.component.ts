@@ -5,6 +5,7 @@ import { Experience } from '../../shared/models/experience';
 import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../shared/constants/constants';
 import { finalize } from 'rxjs';
+import { ToastService } from '../../shared/services/toast.service';
 
 @Component({
   selector: 'app-experience',
@@ -24,7 +25,8 @@ export class ExperienceComponent implements OnInit {
   constructor(
     private modalService: NgbModal, 
     private experienceService: ExperienceService, 
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private toastService: ToastService) {
   }
 
   ngOnInit(): void {
@@ -71,11 +73,11 @@ export class ExperienceComponent implements OnInit {
             this.getExperiences();
           },
           error: (error) => {
-            console.error('Deleting Experience failed', error);
+            this.toastService.showErrorMessage('Deleting Experience failed', error);
           }
         });
     } else {
-      console.error('Experience ID is undefined, cannot delete');
+      this.toastService.showErrorMessage('Experience ID is undefined, cannot delete');
     }
   }
 

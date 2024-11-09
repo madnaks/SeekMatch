@@ -5,7 +5,6 @@ import { TalentService } from '../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../shared/services/toast.service';
-import { ToastType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-about-you',
@@ -54,15 +53,15 @@ export class AboutYouComponent {
           this.isSaving = false;
         })
       ).subscribe({
-        next: (response) => {
-          console.log('Profile saved successfully!', response);
+        next: () => {
+          this.toastService.showSuccessMessage('Profile saved successfully!');
         },
         error: (error) => {
-          console.error('Error saving profile!', error);
+          this.toastService.showErrorMessage('Error saving profile!', error);
         }
       })
     } else {
-      console.log('Form is not valid');
+      this.toastService.showErrorMessage('Form is not valid');
     }
   }
 
@@ -129,9 +128,9 @@ export class AboutYouComponent {
       this.talentService.uploadProfilePicture(file).subscribe({
         next: () => {
           this.defaultProfilePicture  = false;
-          this.toastService.show('Data saved successfully!', ToastType.Success);
+          this.toastService.showSuccessMessage('Data saved successfully!');
         },
-        error: (err) => console.error('Error uploading profile picture', err)
+        error: (error) => this.toastService.showErrorMessage('Error uploading profile picture!', error)
       });
 
     }
@@ -142,9 +141,9 @@ export class AboutYouComponent {
       next: () => {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
         this.defaultProfilePicture  = true;
-        this.toastService.show('Profile picture removed successfully!', ToastType.Success);
+        this.toastService.showSuccessMessage('Profile picture removed successfully!');
       },
-      error: (err) => console.error('Error deleting profile picture', err)
+      error: (error) => this.toastService.showErrorMessage('Error deleting profile picture!', error)
     });
 
   }

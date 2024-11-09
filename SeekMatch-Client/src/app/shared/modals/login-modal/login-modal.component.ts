@@ -4,7 +4,6 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
-import { ToastType } from '../../enums/enums';
 
 @Component({
   selector: 'app-login-modal',
@@ -54,11 +53,11 @@ export class LoginModalComponent {
     ).subscribe({
       next: () => {
         this.dismissModal('Login succed');
-        this.toastService.show('Login succed', ToastType.Success);
+        this.toastService.showSuccessMessage('Login succed');
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        this.toastService.show('Login failed', ToastType.Error);
+        this.toastService.showErrorMessage('Login failed', error);
       }
     });
   }

@@ -4,7 +4,6 @@ import { NgbModal, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { TalentService } from '../../services/talent.service';
-import { ToastType } from '../../enums/enums';
 import { ToastService } from '../../services/toast.service';
 
 @Component({
@@ -75,7 +74,7 @@ export class HeaderComponent implements OnInit {
 
   public logout(): void {
     this.authService.logout();
-    this.toastService.show('Logout succed', ToastType.Success)
+    this.toastService.showSuccessMessage('Logout succed');
     this.router.navigate(['/home']);
   }
 
