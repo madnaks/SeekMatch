@@ -16,4 +16,9 @@ export enum ToastType {
     Error = 'error',
     Warning = 'warning',
     Info = 'info',
-  }
+}
+
+export enum ModalActionType {
+    Create = 1,
+    Update = 2
+}

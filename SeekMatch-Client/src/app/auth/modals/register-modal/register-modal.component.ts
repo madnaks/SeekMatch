@@ -80,6 +80,7 @@ export class RegisterModalComponent {
         next: () => {
           this.router.navigate(['/home']);
           this.isSuccess = true;
+          this.toastService.showSuccessMessage('Register account succeeded');
         },
         error: (error) => {
           this.toastService.showErrorMessage('Register failed', error);

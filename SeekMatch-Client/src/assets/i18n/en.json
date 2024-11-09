@@ -92,7 +92,11 @@
                 "Form": {
                     "Email": "Email address",
                     "Password": "Password",
-                    "SubmitButton": "Login"
+                    "SubmitButton": "Login",
+                    "Validation": {
+                        "Email": "Email required.",
+                        "Password": "Password required."
+                    }
                 }
             }
         }

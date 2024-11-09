@@ -72,16 +72,15 @@
     </div>
 </div>
 
-
 <!-- education creation modal -->
 <ng-template #addEducationContent let-c="close" let-d="dismiss">
-    <app-education-modal [closeModal]="c" [dismissModal]="d">
+    <app-education-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
     </app-education-modal>
 </ng-template>
 
 <!-- education edit modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
-    <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation">
+    <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation" (modalActionComplete)="modalActionComplete($event)">
     </app-education-modal>
 </ng-template>
 

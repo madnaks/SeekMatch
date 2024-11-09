@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { EducationService } from '../../shared/services/education.service';
 import { Education } from '../../shared/models/education';
 import { finalize } from 'rxjs';
 import { months } from '../../shared/constants/constants';
 import { ToastService } from '../../shared/services/toast.service';
+import { ModalActionType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-education-modal',
@@ -16,6 +17,8 @@ export class EducationModalComponent implements OnInit {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedEducation: Education | undefined = undefined;
+
+  @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   isSaving: boolean = false;
   updateMode: boolean = false;
@@ -107,8 +110,8 @@ export class EducationModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
-          // TODO: Replace with something better, exp: Output
-          window.location.reload();
+          this.modalActionComplete.emit(ModalActionType.Create);
+          this.dismiss();
         },
         error: (error) => {
           this.toastService.showErrorMessage('Creation of education failed', error);
@@ -127,8 +130,8 @@ export class EducationModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
-          // TODO: Replace with something better, exp: Output
-          window.location.reload();
+          this.modalActionComplete.emit(ModalActionType.Update);
+          this.dismiss();
         },
         error: (error) => {
           this.toastService.showErrorMessage('Update of education failed', error);
@@ -144,7 +147,7 @@ export class EducationModalComponent implements OnInit {
     }
   }
 
-  public dismiss(reason: string) {
+  public dismiss(reason: string = '') {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }

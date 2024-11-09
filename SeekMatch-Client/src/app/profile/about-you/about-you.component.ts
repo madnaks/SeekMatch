@@ -128,7 +128,7 @@ export class AboutYouComponent {
       this.talentService.uploadProfilePicture(file).subscribe({
         next: () => {
           this.defaultProfilePicture  = false;
-          this.toastService.showSuccessMessage('Data saved successfully!');
+          this.toastService.showSuccessMessage('Profile picture saved successfully!');
         },
         error: (error) => this.toastService.showErrorMessage('Error uploading profile picture!', error)
       });

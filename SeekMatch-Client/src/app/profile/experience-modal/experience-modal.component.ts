@@ -1,10 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ExperienceService } from '../../shared/services/experience.service';
 import { Experience } from '../../shared/models/experience';
 import { finalize } from 'rxjs';
 import { months } from '../../shared/constants/constants';
 import { ToastService } from '../../shared/services/toast.service';
+import { ModalActionType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-experience-modal',
@@ -16,6 +17,8 @@ export class ExperienceModalComponent implements OnInit {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedExperience: Experience | undefined = undefined;
+
+  @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   isSaving: boolean = false;
   updateMode: boolean = false;
@@ -107,8 +110,8 @@ export class ExperienceModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
-          // TODO: Replace with something better, exp: Output
-          window.location.reload();
+          this.modalActionComplete.emit(ModalActionType.Create);
+          this.dismiss();
         },
         error: (error) => {
           this.toastService.showErrorMessage('Creation of experience failed', error);
@@ -127,8 +130,8 @@ export class ExperienceModalComponent implements OnInit {
         this.isSaving = false;
       })).subscribe({
         next: () => {
-          // TODO: Replace with something better, exp: Output
-          window.location.reload();
+          this.modalActionComplete.emit(ModalActionType.Update);
+          this.dismiss();
         },
         error: (error) => {
           this.toastService.showErrorMessage('Update of experience failed', error);
@@ -144,7 +147,7 @@ export class ExperienceModalComponent implements OnInit {
     }
   }
 
-  public dismiss(reason: string) {
+  public dismiss(reason: string = '') {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }

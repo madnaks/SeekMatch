@@ -9,6 +9,11 @@
         <div class="mb-3">
             <input type="email" class="form-control" id="inputLoginEmail"
                 [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
+            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+            <div class="text-danger">
+                {{ 'Login.Modal.Body.Form.Validation.Email' | translate }}
+            </div>
+            }
         </div>
         <div class="mb-3">
             <div class="password-input input-group">
@@ -18,10 +23,16 @@
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
+            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+            <div class="text-danger">
+                {{ 'Login.Modal.Body.Form.Validation.Password' | translate }}
+            </div>
+            }
         </div>
         <div class="mb-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
-                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-right-to-bracket': !isLoading }"></i>
+                <i class="me-2"
+                    [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-right-to-bracket': !isLoading }"></i>
                 {{ 'Login.Modal.Body.Form.SubmitButton' | translate }}
             </button>
         </div>

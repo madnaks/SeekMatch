@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../shared/services/toast.service';
+import { ModalActionType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-experience',
@@ -60,6 +61,15 @@ export class ExperienceComponent implements OnInit {
       this.isLoading = false;
     });
   }
+  
+  public modalActionComplete(action: ModalActionType): void {
+    if (action == ModalActionType.Create) {
+      this.toastService.showSuccessMessage('Experience created successfully');
+    } else if (action == ModalActionType.Update) {
+      this.toastService.showSuccessMessage('Experience updated successfully');
+    }
+    this.getExperiences();
+  }
 
   public deleteExperience(): void {
     this.isSaving = true;
@@ -71,6 +81,7 @@ export class ExperienceComponent implements OnInit {
           next: () => {
             this.closeModal();
             this.getExperiences();
+            this.toastService.showSuccessMessage('Experience deleted successfully');
           },
           error: (error) => {
             this.toastService.showErrorMessage('Deleting Experience failed', error);

@@ -93,7 +93,11 @@
                 "Form": {
                     "Email": "Adresse e-mail",
                     "Password": "Mot de passe",
-                    "SubmitButton": "Connexion"
+                    "SubmitButton": "Connexion",
+                    "Validation": {
+                        "Email": "Email valide est requis.",
+                        "Password": "Mot de passe est requis."
+                    }
                 }
             }
         }

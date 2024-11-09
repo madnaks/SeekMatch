@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../shared/services/toast.service';
+import { ModalActionType } from '../../shared/enums/enums';
 
 @Component({
   selector: 'app-education',
@@ -61,6 +62,15 @@ export class EducationComponent implements OnInit {
     });
   }
 
+  public modalActionComplete(action: ModalActionType): void {
+    if (action == ModalActionType.Create) {
+      this.toastService.showSuccessMessage('Education created successfully');
+    } else if (action == ModalActionType.Update) {
+      this.toastService.showSuccessMessage('Education updated successfully');
+    }
+    this.getEducations();
+  }
+
   public deleteEducation(): void {
     this.isSaving = true;
     if (this.selectedEducation.id) {
@@ -71,6 +81,7 @@ export class EducationComponent implements OnInit {
           next: () => {
             this.closeModal();
             this.getEducations();
+            this.toastService.showSuccessMessage('Education deleted successfully');
           },
           error: (error) => {
             this.toastService.showErrorMessage('Deleting Education failed', error);
