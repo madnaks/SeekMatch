@@ -10,24 +10,29 @@ export class ToastService {
   toasts: any[] = [];
 
   show(message: string, type: ToastType = ToastType.Info, delay = 3000) {
-    let classname = '';
-
+    let classname = 'toast-info';
+    let statutIcon = 'assets/icons/status/';
+    
     switch (type) {
       case ToastType.Success:
-        classname = 'bg-success text-light';
+        classname = 'toast-success';
+        statutIcon += 'success.svg';
         break;
       case ToastType.Error:
-        classname = 'bg-danger text-light';
+        classname = 'toast-error';
+        statutIcon += 'error.svg';
         break;
       case ToastType.Warning:
-        classname = 'bg-warning text-dark';
+        classname = 'toast-warning';
+        statutIcon += 'warning.svg';
         break;
       case ToastType.Info:
-        classname = 'bg-info text-dark';
+        classname = 'toast-info';
+        statutIcon += 'information.svg';
         break;
     }
 
-    this.toasts.push({ message, classname, delay, type });
+    this.toasts.push({ message, classname, delay, type, statutIcon });
   }
 
   remove(toast: any) {

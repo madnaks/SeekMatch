@@ -1,7 +1,49 @@
+@import "../../../../assets/styles/styles-variables.scss";
+
 .toast-container {
     position: fixed;
     bottom: 15%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1060;
+    z-index: 1060; // More than Modal 1055
+    
+    .toast-success {
+        border-left: 6px solid $success-color;
+    }
+    
+    .toast-error {
+        border-left: 6px solid $error-color;
+    }
+    
+    .toast-warning {
+        border-left: 6px solid $warning-color;
+    }
+    
+    .toast-info {
+        border-left: 6px solid $info-color;
+    }
+
+    .toast-body {
+
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        border-radius: 4px;
+        box-shadow: 1px 7px 14px -5px rgba(0, 0, 0, 0.2);
+
+        .toast-icon {
+            img {
+                width: 30px;
+            }
+        }
+
+        .toast-content {
+            padding-left: 5%;
+
+            .toast-type {
+                font-weight: 700;
+            }
+        }
+    }
+
 }
