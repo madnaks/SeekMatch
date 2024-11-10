@@ -8,66 +8,68 @@
             </div>
         </div>
         } @else {
-            @if (educations.length === 0) {
-            <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                <div class="col-6">
-                    <p style="text-align: center;">
-                        {{ 'Profile.Talent.Education.NoEducationMessage' | translate }}
-                    </p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center">
-                    <button class="btn btn-primary" (click)="open(addEducationContent)">
-                        <i class="fa-solid fa-plus"></i>
-                        {{ 'Profile.Talent.Education.AddEducation' | translate }}
-                    </button>
-                </div>
+        @if (educations.length === 0) {
+        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+            <div class="col-6">
+                <p style="text-align: center;">
+                    {{ 'Profile.Talent.Education.NoEducationMessage' | translate }}
+                </p>
             </div>
-            } @else {
-            <div class="row mb-3">
-                <div class="col-md-12 d-flex justify-content-end">
-                    <button class="btn btn-primary" (click)="open(addEducationContent)">
-                        <i class="fa-solid fa-plus"></i>
-                        {{ 'Profile.Talent.Education.AddEducation' | translate }}
-                    </button>
-                </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <button class="btn btn-primary" (click)="open(addEducationContent)">
+                    <i class="fa-solid fa-plus"></i>
+                    {{ 'Profile.Talent.Education.AddEducation' | translate }}
+                </button>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-3" *ngFor="let education of educations">
-                        <div class="card-body">
-                            <!-- Institution -->
-                            <h5 class="card-title">
-                                {{ education.institution }}
-                            </h5>
-                            <!-- Update education button -->
-                            <div class="card-btn update-btn" (click)="open(updateEducationContent, education)">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                            <!-- Delete education button -->
-                            <div class="card-btn delete-btn" (click)="openDeleteModal(deleteEducationContent, education)">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                            <!-- Diploma + Domain -->
-                            <p class="card-text">
-                                <span *ngIf="education.diploma">{{ education.diploma }}, </span>{{ education.domain }}
-                            </p>
-                            <!-- Duration of the education -->
-                            <p class="card-text">
-                                @if (education.currentlyStudying) {
-                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
-                                    {{ 'Date.Today' | translate }}
-                                } @else if (education.endMonth > 0 && education.endYear > 0) {
-                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }} - 
-                                    {{ getMonthName(education.endMonth) }} {{ education.endYear }}
-                                } @else {
-                                    {{ getMonthName(education.startMonth) }} {{ education.startYear }}
-                                }
-                            </p>
+        </div>
+        } @else {
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="open(addEducationContent)">
+                    <i class="fa-solid fa-plus"></i>
+                    {{ 'Profile.Talent.Education.AddEducation' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3" *ngFor="let education of educations">
+                    <div class="card-body">
+                        <!-- Institution -->
+                        <h5 class="card-title">
+                            {{ education.institution }}
+                        </h5>
+                        <!-- Update education button -->
+                        <div class="card-btn update-btn" (click)="open(updateEducationContent, education)">
+                            <i class="fa-solid fa-pen"></i>
                         </div>
+                        <!-- Delete education button -->
+                        <div class="card-btn delete-btn" (click)="openDeleteModal(deleteEducationContent, education)">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                        <!-- Diploma + Domain -->
+                        <p class="card-text">
+                            <span *ngIf="education.diploma">{{ education.diploma }}</span>
+                            <span *ngIf="education.diploma && education.domain">, </span>
+                            <span *ngIf="education.domain">{{ education.domain }}</span>
+                        </p>
+                        <!-- Duration of the education -->
+                        <p class="card-text">
+                            @if (education.currentlyStudying) {
+                            {{ getMonthName(education.startMonth) }} {{ education.startYear }} -
+                            {{ 'Date.Today' | translate }}
+                            } @else if (education.endMonth > 0 && education.endYear > 0) {
+                            {{ getMonthName(education.startMonth) }} {{ education.startYear }} -
+                            {{ getMonthName(education.endMonth) }} {{ education.endYear }}
+                            } @else {
+                            {{ getMonthName(education.startMonth) }} {{ education.startYear }}
+                            }
+                        </p>
                     </div>
                 </div>
             </div>
-            }
+        </div>
+        }
         }
     </div>
 </div>
@@ -80,7 +82,8 @@
 
 <!-- education edit modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
-    <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation" (modalActionComplete)="modalActionComplete($event)">
+    <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation"
+        (modalActionComplete)="modalActionComplete($event)">
     </app-education-modal>
 </ng-template>
 
@@ -93,14 +96,13 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p>            
+        <p>
             {{ 'Profile.Talent.Education.Modal.Body.DeleteMessage' | translate }}
         </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteEducation()">
-            <i class="me-2"
-            [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
             {{ 'Shared.Button.Delete' | translate }}
         </button>
     </div>

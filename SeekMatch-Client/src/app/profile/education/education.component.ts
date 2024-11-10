@@ -96,5 +96,4 @@ export class EducationComponent implements OnInit {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
   }
-
 }
