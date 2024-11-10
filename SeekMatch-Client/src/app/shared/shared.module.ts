@@ -8,11 +8,13 @@ import { HeaderSimplifiedComponent } from './components/header-simplified/header
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './components/toast/toast.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     HeaderSimplifiedComponent,
+    FooterComponent,
     LoginModalComponent,
     ToastComponent
   ],
@@ -27,6 +29,7 @@ import { ToastComponent } from './components/toast/toast.component';
   exports: [
     HeaderComponent,
     HeaderSimplifiedComponent,
+    FooterComponent,
     LoginModalComponent,
     ToastComponent
   ]
