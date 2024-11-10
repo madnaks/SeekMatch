@@ -7,6 +7,29 @@
 </div>
 @if(currentStep === 1) {
 <div class="modal-body step step-active">
+    <div class="row d-flex flex-row align-items-center justify-content-evenly my-4">
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'company'}"
+                (click)="selectOption('company')">
+                <img src="assets\images\company.svg" width="100" />
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Represent a Company
+                </label>
+            </button>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'freelance'}"
+                (click)="selectOption('freelance')">
+                <img src="assets\images\business-persons.svg" width="100" />
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Freelance Recruiter
+                </label>
+            </button>
+        </div>
+    </div>
+</div>
+} @else if (currentStep === 2) {
+<div class="modal-body step step-active">
     <div class="row mb-3">
         <p> {{ 'SignUp.Recruiter.Modal.Body.FirstLine' | translate }} </p>
         <p> {{ 'SignUp.Recruiter.Modal.Body.SecondLine' | translate }} </p>
@@ -79,14 +102,6 @@
             </p>
         </div>
     </form>
-</div>
-} @else if (currentStep === 2) {
-<div class="modal-body step step-active">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti asperiores vero assumenda.
-        Officia, eos voluptate, nostrum, architecto beatae fugit earum tempora explicabo cumque ipsam dignissimos. Ipsum
-        animi ex neque odit!
-    </p>
 </div>
 } @else if (currentStep === 3) {
 <div class="modal-body step step-active">

@@ -19,6 +19,8 @@ export class RegisterRecruiterModalComponent {
   currentStep: number = 1;
   maxSteps: number = 3;
 
+  selectedOption: string | null = null;
+
   registerForm: FormGroup;
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
@@ -103,6 +105,10 @@ export class RegisterRecruiterModalComponent {
 
   public toggleConfirmPasswordVisibility(): void {
     this.confirmPasswordVisible = !this.confirmPasswordVisible;
+  }
+
+  public selectOption(option: string): void {
+    this.selectedOption = option;
   }
 
   public dismiss(reason: string) {
