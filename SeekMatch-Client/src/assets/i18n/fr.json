@@ -37,49 +37,87 @@
     "SignUp": {
         "Talent": {
             "Title": "ICI POUR TROUVER MA PROCHAINE OPPORTUNITÉ ?",
-            "Button": "INSCRIPTION EN TANT QUE CANDIDAT"
+            "Button": "INSCRIPTION EN TANT QUE CANDIDAT",
+            "Modal": {
+                "Title": "Bienvenue! 👋",
+                "Body": {
+                    "FirstLine": "Prêt à passer à l'étape suivante ?",
+                    "SecondLine": "Créez un compte.",
+                    "Form": {
+                        "FirstName": "Prénom",
+                        "LastName": "Nom",
+                        "ProfileTitle": "Titre du profil",
+                        "Email": "Email address",
+                        "Password": "Mot de passe",
+                        "ConfirmPassword": "Confirmer le mot de passe",
+                        "SubmitButton": "Créé Profile",
+                        "Validation": {
+                            "FirstName": "Le prénom est requis.",
+                            "LastName": "Le nom de famille est requis.",
+                            "Email": "Un email valide est requis.",
+                            "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
+                            "ConfirmPassword": "Les mots de passe doivent correspondre."
+                        }
+                    }
+                },
+                "Success": {
+                    "Title": "Bienvenue sur SeekMatch !",
+                    "Body": {
+                        "Title": "Une chose de plus",
+                        "Message": "Veuillez vérifier votre email pour la confirmation que nous venons de vous envoyer.",
+                        "ResendEmailButton": "Renvoyer l'email"
+                    }
+                },
+                "Error": {
+                    "Title": "Il y a un problème",
+                    "Body": {
+                        "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
+                        "Message2": "Veuillez réessayer.",
+                        "ReturnButton": "Retourner"
+                    }
+                }
+            }
         },
         "Recruiter": {
             "Title": "ICI POUR RECRUTER DE GRANDS TALENTS ?",
-            "Button": "INSCRIPTION EN TANT QUE RECRUTEUR"
-        },
-        "Modal": {
-            "Title": "Bienvenue! 👋",
-            "Body": {
-                "FirstLine": "Prêt à passer à l'étape suivante ?",
-                "SecondLine": "Créez un compte.",
-                "Form": {
-                    "FirstName": "Prénom",
-                    "LastName": "Nom",
-                    "ProfileTitle": "Titre du profil",
-                    "Email": "Email address",
-                    "Password": "Mot de passe",
-                    "ConfirmPassword": "Confirmer le mot de passe",
-                    "SubmitButtonRecruter": "Créé Recruiteur Profile",
-                    "SubmitButtonTalent": "Créé Profile",
-                    "Validation": {
-                        "FirstName": "Le prénom est requis.",
-                        "LastName": "Le nom de famille est requis.",
-                        "Email": "Un email valide est requis.",
-                        "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
-                        "ConfirmPassword": "Les mots de passe doivent correspondre."
+            "Button": "INSCRIPTION EN TANT QUE RECRUTEUR",
+            "Modal": {
+                "Title": "Bienvenue! 👋",
+                "Body": {
+                    "FirstLine": "Prêt à passer à l'étape suivante ?",
+                    "SecondLine": "Créez un compte.",
+                    "Form": {
+                        "FirstName": "Prénom",
+                        "LastName": "Nom",
+                        "ProfileTitle": "Titre du profil",
+                        "Email": "Email address",
+                        "Password": "Mot de passe",
+                        "ConfirmPassword": "Confirmer le mot de passe",
+                        "SubmitButton": "Créé Recruiteur Profile",
+                        "Validation": {
+                            "FirstName": "Le prénom est requis.",
+                            "LastName": "Le nom de famille est requis.",
+                            "Email": "Un email valide est requis.",
+                            "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
+                            "ConfirmPassword": "Les mots de passe doivent correspondre."
+                        }
                     }
-                }
-            },
-            "Success": {
-                "Title": "Bienvenue sur SeekMatch !",
-                "Body": {
-                    "Title": "Une chose de plus",
-                    "Message": "Veuillez vérifier votre email pour la confirmation que nous venons de vous envoyer.",
-                    "ResendEmailButton": "Renvoyer l'email"
-                }
-            },
-            "Error": {
-                "Title": "Il y a un problème",
-                "Body": {
-                    "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
-                    "Message2": "Veuillez réessayer.",
-                    "ReturnButton": "Retourner"
+                },
+                "Success": {
+                    "Title": "Bienvenue sur SeekMatch !",
+                    "Body": {
+                        "Title": "Une chose de plus",
+                        "Message": "Veuillez vérifier votre email pour la confirmation que nous venons de vous envoyer.",
+                        "ResendEmailButton": "Renvoyer l'email"
+                    }
+                },
+                "Error": {
+                    "Title": "Il y a un problème",
+                    "Body": {
+                        "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
+                        "Message2": "Veuillez réessayer.",
+                        "ReturnButton": "Retourner"
+                    }
                 }
             }
         },

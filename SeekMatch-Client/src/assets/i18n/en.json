@@ -37,48 +37,85 @@
     "SignUp": {
         "Talent": {
             "Title": "HERE TO FIND MY NEXT OPPORTUNITY ?",
-            "Button": "SIGNUP AS A JOB SEEKER"
+            "Button": "SIGNUP AS A JOB SEEKER",
+            "Modal": {
+                "Title": "Hi there! 👋",
+                "Body": {
+                    "FirstLine": "Ready to take the next step?",
+                    "SecondLine": "Create an account.",
+                    "Form": {
+                        "FirstName": "First name",
+                        "LastName": "Last name",
+                        "Email": "Email address",
+                        "Password": "Password",
+                        "ConfirmPassword": "Confirm password",
+                        "SubmitButton": "Create Account",
+                        "Validation": {
+                            "FirstName": "First name is required.",
+                            "LastName": "Last name is required.",
+                            "Email": "A valid email is required.",
+                            "Password": "Password is required and must be at least 6 characters.",
+                            "ConfirmPassword": "Passwords must match."
+                        }
+                    }
+                },
+                "Success": {
+                    "Title": "Welecome To SeekMatch !",
+                    "Body": {
+                        "Title": "One more thing",
+                        "Message": "Please check your email for the confirmation we just sent you.",
+                        "ResendEmailButton": "Resend email"
+                    }
+                },
+                "Error": {
+                    "Title": "There's a problem",
+                    "Body": {
+                        "Message1": "We're sorry, something went wrong when attempting to sign up.",
+                        "Message2": "Please try again.",
+                        "ReturnButton": "Return"
+                    }
+                }
+            }
         },
         "Recruiter": {
             "Title": "HERE TO HIRE GREAT TALENT ?",
-            "Button": "SIGNUP AS A RECRUITER"
-        },
-        "Modal": {
-            "Title": "Hi there! 👋",
-            "Body": {
-                "FirstLine": "Ready to take the next step?",
-                "SecondLine": "Create an account.",
-                "Form": {
-                    "FirstName": "First name",
-                    "LastName": "Last name",
-                    "Email": "Email address",
-                    "Password": "Password",
-                    "ConfirmPassword": "Confirm password",
-                    "SubmitButtonRecruter": "Create Recruiter Account",
-                    "SubmitButtonTalent": "Create Account",
-                    "Validation": {
-                        "FirstName": "First name is required.",
-                        "LastName": "Last name is required.",
-                        "Email": "A valid email is required.",
-                        "Password": "Password is required and must be at least 6 characters.",
-                        "ConfirmPassword": "Passwords must match."
+            "Button": "SIGNUP AS A RECRUITER",
+            "Modal": {
+                "Title": "Hi there! 👋",
+                "Body": {
+                    "FirstLine": "Ready to take the next step?",
+                    "SecondLine": "Create an account.",
+                    "Form": {
+                        "FirstName": "First name",
+                        "LastName": "Last name",
+                        "Email": "Email address",
+                        "Password": "Password",
+                        "ConfirmPassword": "Confirm password",
+                        "SubmitButton": "Create Recruiter Account",
+                        "Validation": {
+                            "FirstName": "First name is required.",
+                            "LastName": "Last name is required.",
+                            "Email": "A valid email is required.",
+                            "Password": "Password is required and must be at least 6 characters.",
+                            "ConfirmPassword": "Passwords must match."
+                        }
                     }
-                }
-            },
-            "Success": {
-                "Title": "Welecome To SeekMatch !",
-                "Body": {
-                    "Title": "One more thing",
-                    "Message": "Please check your email for the confirmation we just sent you.",
-                    "ResendEmailButton": "Resend email"
-                }
-            },
-            "Error": {
-                "Title": "There's a problem",
-                "Body": {
-                    "Message1": "We're sorry, something went wrong when attempting to sign up.",
-                    "Message2": "Please try again.",
-                    "ReturnButton": "Return"
+                },
+                "Success": {
+                    "Title": "Welecome To SeekMatch !",
+                    "Body": {
+                        "Title": "One more thing",
+                        "Message": "Please check your email for the confirmation we just sent you.",
+                        "ResendEmailButton": "Resend email"
+                    }
+                },
+                "Error": {
+                    "Title": "There's a problem",
+                    "Body": {
+                        "Message1": "We're sorry, something went wrong when attempting to sign up.",
+                        "Message2": "Please try again.",
+                        "ReturnButton": "Return"
+                    }
                 }
             }
         },

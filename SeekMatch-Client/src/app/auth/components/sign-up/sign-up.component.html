@@ -13,7 +13,7 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up btn-important  job-seeker" (click)="open(signupContent, UserRole.Talent)">
+                <button class="btn btn-sign-up btn-important  job-seeker" (click)="open(registerTalentContent, UserRole.Talent)">
                     {{ 'SignUp.Talent.Button' | translate }}
                 </button>
             </div>
@@ -38,7 +38,7 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\woman-with-magnifying-glass.svg" alt="Description of the image" width="200">
-                <button class="btn btn-sign-up btn-important recruiter" (click)="open(signupContent, UserRole.Recruiter)">
+                <button class="btn btn-sign-up btn-important recruiter" (click)="open(registerRecruiterContent, UserRole.Recruiter)">
                     {{ 'SignUp.Recruiter.Button' | translate }}
                 </button>
             </div>
@@ -64,8 +64,14 @@
     </app-login-modal>
 </ng-template>
 
-<!-- sign-up modal -->
-<ng-template #signupContent let-c="close" let-d="dismiss">
-    <app-register-modal [userRole]="selectedUserRole" [closeModal]="c" [dismissModal]="d">
-    </app-register-modal>
+<!-- register talent modal -->
+<ng-template #registerTalentContent let-c="close" let-d="dismiss">
+    <app-register-talent-modal [closeModal]="c" [dismissModal]="d">
+    </app-register-talent-modal>
+</ng-template>
+
+<!-- register recruiter modal -->
+<ng-template #registerRecruiterContent let-c="close" let-d="dismiss">
+    <app-register-recruiter-modal [closeModal]="c" [dismissModal]="d">
+    </app-register-recruiter-modal>
 </ng-template>

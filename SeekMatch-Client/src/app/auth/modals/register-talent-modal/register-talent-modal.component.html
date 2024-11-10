@@ -1,72 +1,72 @@
 @if (!isSuccess && !isError) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Modal.Title' | translate }}
+        {{ 'SignUp.Talent.Modal.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
 <div class="modal-body">
     <div class="row mb-3">
-        <p> {{ 'SignUp.Modal.Body.FirstLine' | translate }} </p>
-        <p> {{ 'SignUp.Modal.Body.SecondLine' | translate }} </p>
+        <p> {{ 'SignUp.Talent.Modal.Body.FirstLine' | translate }} </p>
+        <p> {{ 'SignUp.Talent.Modal.Body.SecondLine' | translate }} </p>
     </div>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="row mb-4">
             <div class="col-md-6">
                 <input type="text" class="form-control" id="inputFirstName"
-                    [placeholder]="'SignUp.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
-                @if (signupForm.get('firstName')?.invalid && signupForm.get('firstName')?.touched) {
+                    [placeholder]="'SignUp.Talent.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
+                @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
                 <div class="text-danger">
-                    {{ 'SignUp.Modal.Body.Form.Validation.FirstName' | translate }}
+                    {{ 'SignUp.Talent.Modal.Body.Form.Validation.FirstName' | translate }}
                 </div>
                 }
             </div>
             <div class="col-md-6">
                 <input type="text" class="form-control" id="inputLastName"
-                    [placeholder]="'SignUp.Modal.Body.Form.LastName' | translate" formControlName="lastName">
-                @if (signupForm.get('lastName')?.invalid && signupForm.get('lastName')?.touched) {
+                    [placeholder]="'SignUp.Talent.Modal.Body.Form.LastName' | translate" formControlName="lastName">
+                @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
                 <div class="text-danger">
-                    {{ 'SignUp.Modal.Body.Form.Validation.LastName' | translate }}
+                    {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
                 </div>
                 }
             </div>
         </div>
         <div class="mb-4">
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                [placeholder]="'SignUp.Modal.Body.Form.Email' | translate" formControlName="email">
-            @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
+                [placeholder]="'SignUp.Talent.Modal.Body.Form.Email' | translate" formControlName="email">
+            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
             <div class="text-danger">
-                {{ 'SignUp.Modal.Body.Form.Validation.Email' | translate }}
+                {{ 'SignUp.Talent.Modal.Body.Form.Validation.Email' | translate }}
             </div>
             }
         </div>
         <div class="mb-4">
             <div class="password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    [placeholder]="'SignUp.Modal.Body.Form.Password' | translate" formControlName="password">
+                    [placeholder]="'SignUp.Talent.Modal.Body.Form.Password' | translate" formControlName="password">
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
-            @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
+            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
             <div class="text-danger">
-                {{ 'SignUp.Modal.Body.Form.Validation.Password' | translate }}
+                {{ 'SignUp.Talent.Modal.Body.Form.Validation.Password' | translate }}
             </div>
             }
         </div>
         <div class="mb-4">
             <div class="password-input input-group">
                 <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                    id="inputConfirmPassword" [placeholder]="'SignUp.Modal.Body.Form.ConfirmPassword' | translate"
+                    id="inputConfirmPassword" [placeholder]="'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate"
                     formControlName="confirmPassword">
                 <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                     <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
             </div>
-            @if (signupForm.errors?.['mismatch'] && signupForm.get('confirmPassword')?.touched) {
+            @if (registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched) {
             <div class="text-danger">
-                {{ 'SignUp.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
+                {{ 'SignUp.Talent.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
             </div>
             }
         </div>
@@ -79,12 +79,7 @@
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
-                @if (userRole == UserRole.Recruiter) {
-                {{ 'SignUp.Modal.Body.Form.SubmitButtonRecruter' | translate }}
-                }
-                @else if (userRole == UserRole.Talent) {
-                {{ 'SignUp.Modal.Body.Form.SubmitButtonTalent' | translate }}
-                }
+                {{ 'SignUp.Talent.Modal.Body.Form.SubmitButton' | translate }}
             </button>
         </div>
     </form>
@@ -94,7 +89,7 @@
 @if (isSuccess) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Modal.Success.Title' | translate }}
+        {{ 'SignUp.Talent.Modal.Success.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -102,26 +97,26 @@
 <div class="modal-body main-success">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <img src="assets\images\man-happy.svg" width="200">
-        <h5> {{ 'SignUp.Modal.Success.Body.Title' | translate }}</h5>
-        <p>{{ 'SignUp.Modal.Success.Body.Message' | translate }}</p>
+        <h5> {{ 'SignUp.Talent.Modal.Success.Body.Title' | translate }}</h5>
+        <p>{{ 'SignUp.Talent.Modal.Success.Body.Message' | translate }}</p>
         <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-paper-plane me-2"></i>
-            {{ 'SignUp.Modal.Success.Body.ResendEmailButton' | translate }}
+            {{ 'SignUp.Talent.Modal.Success.Body.ResendEmailButton' | translate }}
         </button>
     </div>
 </div>
 } @else if (isError) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Modal.Error.Title' | translate }}
+        {{ 'SignUp.Talent.Modal.Error.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
 <div class="modal-body main-error">
     <div class="mb-3">
-        <p>{{ 'SignUp.Modal.Error.Body.Message1' | translate }}</p>
-        <p>{{ 'SignUp.Modal.Error.Body.Message2' | translate }}</p>
+        <p>{{ 'SignUp.Talent.Modal.Error.Body.Message1' | translate }}</p>
+        <p>{{ 'SignUp.Talent.Modal.Error.Body.Message2' | translate }}</p>
     </div>
 
     <div class="mb-3 d-flex justify-content-center align-items-center">
@@ -130,7 +125,7 @@
     <div class="mb-3 d-flex justify-content-center">
         <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-circle-arrow-left me-2"></i>
-            {{ 'SignUp.Modal.Error.Body.ReturnButton' | translate }}
+            {{ 'SignUp.Talent.Modal.Error.Body.ReturnButton' | translate }}
         </button>
     </div>
 </div>

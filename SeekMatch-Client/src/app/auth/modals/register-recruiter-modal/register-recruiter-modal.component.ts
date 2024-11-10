@@ -1,27 +1,25 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { Talent } from '../../../shared/models/talent';
 import { UserRole } from '../../../shared/enums/enums';
-import { Router } from '@angular/router';
-import { finalize } from 'rxjs';
+import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { AuthService } from '../../../shared/services/auth.service';
+import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
+import { Talent } from '../../../shared/models/talent';
+import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-register-modal',
-  templateUrl: './register-modal.component.html',
-  styleUrl: './register-modal.component.scss'
+  selector: 'app-register-recruiter-modal',
+  templateUrl: './register-recruiter-modal.component.html',
+  styleUrl: './register-recruiter-modal.component.scss'
 })
-export class RegisterModalComponent {
-
-  @Input() userRole: UserRole = UserRole.Talent;
+export class RegisterRecruiterModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
-  // create a variable and assing to it UserRole Enum so that it can be user in html
-  UserRole = UserRole;
+  currentStep: number = 1;
+  maxSteps: number = 3;
 
-  signupForm: FormGroup;
+  registerForm: FormGroup;
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   isLoading: boolean = false;
@@ -33,14 +31,10 @@ export class RegisterModalComponent {
     private authService: AuthService,
     private router: Router,
     private toastService: ToastService) {
-    this.signupForm = this.initSignupForm();
-    // This code is for later, when implmenting recruiter
-    // if (this.userRole == UserRole.Recruiter) {
-    //   this.signUpForm.addControl('companyName',this.fb.control('', Validators.required))
-    // }
+    this.registerForm = this.initregisterForm();
   }
 
-  private initSignupForm(): FormGroup {
+  private initregisterForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -59,21 +53,35 @@ export class RegisterModalComponent {
     };
   }
 
+  public goToNextStep(): void {
+    if (this.validateCurrentStep()) {
+      this.currentStep++;
+    }
+  }
+  
+  public goToPreviousStep(): void {
+    this.currentStep--;
+  }
+  
+  private validateCurrentStep(): boolean {
+    return true;
+  }
+
   public onSubmit(): void {
-    if (this.signupForm.valid) {
+    if (this.registerForm.valid) {
       this.isLoading = true;
       this.register();
     } else {
-      this.signupForm.markAllAsTouched();
+      this.registerForm.markAllAsTouched();
     }
   }
 
   private register(): void {
-    const formValues = this.signupForm.value;
+    const formValues = this.registerForm.value;
 
     let talent = new Talent(formValues);
-    
-    this.authService.register(talent, UserRole.Talent).pipe(
+
+    this.authService.register(talent, UserRole.Recruiter).pipe(
       finalize(() => {
         this.isLoading = false;
       })).subscribe({
