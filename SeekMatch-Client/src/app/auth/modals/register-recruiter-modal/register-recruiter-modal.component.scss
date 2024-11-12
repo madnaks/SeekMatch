@@ -1,40 +1,17 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
-.modal-body {
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.modal-footer {
-  justify-content: space-around;
-}
-
-.modal-body {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-/* Animate the active step */
-.modal-body.step-active {
-  opacity: 1;
-  transform: translateX(0);
-  position: relative;
-  animation: fadeIn 0.5s ease forwards;
-}
-
-/* Keyframes for fade-in effect */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateX(10px);
-    /* Optional slide-in effect */
   }
 
   to {
     opacity: 1;
-    transform: translateX(0);
   }
+}
+
+.modal-body {
+  animation: fadeIn 0.5s ease forwards;
 }
 
 .btn-recruiter-type-option {
@@ -43,19 +20,16 @@
   padding: 10px;
   border-radius: 8px;
   transition: all 0.3s, transform 0.3s;
-  cursor: pointer;
 
   &:hover {
     background-color: $accent-color;
     transform: scale(1.05);
-    border-radius: 8px;
     color: $background-color;
   }
 
   &.active {
     background-color: $secondary-color;
-    color:  $background-color;
-    border-radius: 8px;
     transform: scale(1.05);
+    color: $background-color;
   }
 }

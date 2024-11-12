@@ -17,11 +17,12 @@ export class RegisterRecruiterModalComponent {
   @Input() dismissModal: (reason: string) => void = () => { };
 
   currentStep: number = 1;
-  maxSteps: number = 3;
+  maxSteps: number = 4;
 
   selectedOption: string | null = null;
 
-  registerForm: FormGroup;
+  registerFreelancerForm: FormGroup;
+  registerCompanyForm: FormGroup;
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   isLoading: boolean = false;
@@ -33,10 +34,11 @@ export class RegisterRecruiterModalComponent {
     private authService: AuthService,
     private router: Router,
     private toastService: ToastService) {
-    this.registerForm = this.initregisterForm();
+    this.registerFreelancerForm = this.initRegisterFreelancerForm();
+    this.registerCompanyForm = this.fb.group({});
   }
 
-  private initregisterForm(): FormGroup {
+  private initRegisterFreelancerForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -70,16 +72,16 @@ export class RegisterRecruiterModalComponent {
   }
 
   public onSubmit(): void {
-    if (this.registerForm.valid) {
+    if (this.registerFreelancerForm.valid) {
       this.isLoading = true;
       this.register();
     } else {
-      this.registerForm.markAllAsTouched();
+      this.registerFreelancerForm.markAllAsTouched();
     }
   }
 
   private register(): void {
-    const formValues = this.registerForm.value;
+    const formValues = this.registerFreelancerForm.value;
 
     let talent = new Talent(formValues);
 
