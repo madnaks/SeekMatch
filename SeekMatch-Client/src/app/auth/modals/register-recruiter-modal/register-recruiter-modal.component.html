@@ -34,7 +34,7 @@
         </div>
     } 
     <!-- Step 2 : Verification Process -->
-    @else if (currentStep === 2) {
+    @if (currentStep === 2) {
         <!-- Modal Header -->
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">
@@ -63,7 +63,7 @@
         </div>
     }
     <!-- Step 3 : Getting informations -->
-    @else if (currentStep === 3) {
+    @if (currentStep === 3) {
         <!-- Freelancer Form -->
         @if (selectedOption === 'freelancer') {
             <div class="modal-header">
@@ -78,7 +78,9 @@
                     <p> {{ 'SignUp.Recruiter.Modal.Body.SecondLine' | translate }} </p>
                 </div>
                 <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
+                    <!-- Full Name -->
                     <div class="row mb-4">
+                        <!-- First Name -->
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="inputFirstName"
                                 [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
@@ -89,6 +91,7 @@
                             </div>
                             }
                         </div>
+                        <!-- Last Name -->
                         <div class="col-md-6">
                             <input type="text" class="form-control" id="inputLastName"
                                 [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" formControlName="lastName">
@@ -99,6 +102,7 @@
                             }
                         </div>
                     </div>
+                    <!-- Email -->
                     <div class="mb-4">
                         <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                             [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" formControlName="email">
@@ -108,6 +112,7 @@
                         </div>
                         }
                     </div>
+                    <!-- Password -->
                     <div class="mb-4">
                         <div class="password-input input-group">
                             <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
@@ -122,6 +127,7 @@
                         </div>
                         }
                     </div>
+                    <!-- Confirm Password -->
                     <div class="mb-4">
                         <div class="password-input input-group">
                             <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
@@ -138,6 +144,7 @@
                         </div>
                         }
                     </div>
+                    <!-- Terms & Privacy Statement -->
                     <div class="mt-4 mb-4">
                         <p class="fs-6 fw-light">
                             By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
@@ -149,12 +156,138 @@
         }
 
         <!-- Company Form -->
-        @else if (selectedOption === 'company') {
-
+        @if (selectedOption === 'company') {
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">
+                    Let’s Get to Know You
+                </h4>
+                <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="registerRepresentativeForm" (ngSubmit)="onSubmit()">
+                    <h4>Company</h4>
+                    <!-- Company Name -->
+                    <div class="mb-4">
+                        <input class="form-control" type="text" id="inputCompanyName"
+                            placeholder="Name" formControlName="companyName">
+                        @if (registerRepresentativeForm.get('companyName')?.invalid && registerRepresentativeForm.get('companyName')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Phone Number -->
+                    <div class="mb-4">
+                        <input class="form-control" type="text" id="inputCompanyPhoneNumber"
+                            placeholder="Phone Number" formControlName="companyPhoneNumber">
+                        @if (registerRepresentativeForm.get('companyPhoneNumber')?.invalid && registerRepresentativeForm.get('companyPhoneNumber')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Company Address -->
+                    <div class="mb-4">
+                        <input class="form-control" type="text" id="inputCompanyAddress"
+                            placeholder="Address" formControlName="companyAddress">
+                        @if (registerRepresentativeForm.get('companyAddress')?.invalid && registerRepresentativeForm.get('companyAddress')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <hr>
+                    <h4>Representative</h4>
+                    <!-- Full Name -->
+                    <div class="row mb-4">
+                        <!-- First Name -->
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" id="inputFirstName"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
+                                formControlName="firstName">
+                            @if (registerRepresentativeForm.get('firstName')?.invalid && registerRepresentativeForm.get('firstName')?.touched) {
+                            <div class="text-danger">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
+                            </div>
+                            }
+                        </div>
+                        <!-- Last Name -->
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="inputLastName"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" formControlName="lastName">
+                            @if (registerRepresentativeForm.get('lastName')?.invalid && registerRepresentativeForm.get('lastName')?.touched) {
+                            <div class="text-danger">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <!-- Position -->
+                    <div class="mb-4">
+                        <input class="form-control" type="text" id="inputPosition"
+                            placeholder="Position" formControlName="position">
+                        @if (registerRepresentativeForm.get('position')?.invalid && registerRepresentativeForm.get('position')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <input class="form-control" type="email" id="inputEmail" aria-describedby="emailHelp"
+                            [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" formControlName="email">
+                        @if (registerRepresentativeForm.get('email')?.invalid && registerRepresentativeForm.get('email')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Password -->
+                    <div class="mb-4">
+                        <div class="password-input input-group">
+                            <input class="form-control" [type]="passwordVisible ? 'text' : 'password'" id="inputPassword"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate" formControlName="password">
+                            <span class="input-group-text" (click)="togglePasswordVisibility()">
+                                <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                            </span>
+                        </div>
+                        @if (registerRepresentativeForm.get('password')?.invalid && registerRepresentativeForm.get('password')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Password' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Confirm Password -->
+                    <div class="mb-4">
+                        <div class="password-input input-group">
+                            <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
+                                id="inputConfirmPassword"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate"
+                                formControlName="confirmPassword">
+                            <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
+                                <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
+                            </span>
+                        </div>
+                        @if (registerRepresentativeForm.errors?.['mismatch'] && registerRepresentativeForm.get('confirmPassword')?.touched) {
+                        <div class="text-danger">
+                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <hr>
+                    <!-- Terms & Privacy Statement -->
+                    <div class="row mt-4 mb-4">
+                        <p class="fs-6 fw-light">
+                            By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
+                                href="">Global Privacy Statement.</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
         }
     } 
     <!-- Step 4 -->
-    @else if (currentStep === 3) {
+    @if (currentStep === 4) {
     <div class="modal-body">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti asperiores vero assumenda.

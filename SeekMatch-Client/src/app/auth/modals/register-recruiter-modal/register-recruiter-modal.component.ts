@@ -16,15 +16,18 @@ export class RegisterRecruiterModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
+  // Steps variable
   currentStep: number = 1;
   maxSteps: number = 4;
-
   selectedOption: string | null = null;
 
+  // Forms
   registerFreelancerForm: FormGroup;
-  registerCompanyForm: FormGroup;
+  registerRepresentativeForm: FormGroup;
+
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
+
   isLoading: boolean = false;
   isSuccess: boolean = false;
   isError: boolean = false;
@@ -35,13 +38,27 @@ export class RegisterRecruiterModalComponent {
     private router: Router,
     private toastService: ToastService) {
     this.registerFreelancerForm = this.initRegisterFreelancerForm();
-    this.registerCompanyForm = this.fb.group({});
+    this.registerRepresentativeForm = this.initRegisterRepresentativeForm();
   }
 
   private initRegisterFreelancerForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.required]
+    }, { validators: this.passwordsMatchValidator() });
+  }
+
+  private initRegisterRepresentativeForm(): FormGroup {
+    return this.fb.group({
+      companyName: ['', Validators.required],
+      companyPhoneNumber: ['', Validators.required],
+      companyAddress: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      position: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
