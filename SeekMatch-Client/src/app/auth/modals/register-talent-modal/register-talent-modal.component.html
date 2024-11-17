@@ -14,8 +14,12 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <div class="row mb-4">
             <div class="col-md-6">
-                <input type="text" class="form-control" id="inputFirstName"
-                    [placeholder]="'SignUp.Talent.Modal.Body.Form.FirstName' | translate" formControlName="firstName">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                    <label for="inputFirstName" class="form-label">
+                        {{ 'SignUp.Talent.Modal.Body.Form.FirstName' | translate }}
+                    </label>
+                </div>
                 @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
                 <div class="text-danger">
                     {{ 'SignUp.Talent.Modal.Body.Form.Validation.FirstName' | translate }}
@@ -23,8 +27,10 @@
                 }
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" id="inputLastName"
-                    [placeholder]="'SignUp.Talent.Modal.Body.Form.LastName' | translate" formControlName="lastName">
+                <label for="inputLastName" class="form-label">
+                    {{ 'SignUp.Talent.Modal.Body.Form.LastName' | translate }}
+                </label>
+                <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
                 <div class="text-danger">
                     {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
@@ -33,8 +39,11 @@
             </div>
         </div>
         <div class="mb-4">
+            <label for="inputEmail" class="form-label">
+                {{ 'SignUp.Talent.Modal.Body.Form.Email' | translate }}
+            </label>
             <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                [placeholder]="'SignUp.Talent.Modal.Body.Form.Email' | translate" formControlName="email">
+                formControlName="email">
             @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
             <div class="text-danger">
                 {{ 'SignUp.Talent.Modal.Body.Form.Validation.Email' | translate }}
@@ -42,9 +51,12 @@
             }
         </div>
         <div class="mb-4">
+            <label for="inputPassword" class="form-label">
+                {{ 'SignUp.Talent.Modal.Body.Form.Password' | translate }}
+            </label>
             <div class="password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    [placeholder]="'SignUp.Talent.Modal.Body.Form.Password' | translate" formControlName="password">
+                    formControlName="password">
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
@@ -56,10 +68,12 @@
             }
         </div>
         <div class="mb-4">
+            <label for="inputConfirmPassword" class="form-label">
+                {{ 'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate }}
+            </label>
             <div class="password-input input-group">
                 <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                    id="inputConfirmPassword" [placeholder]="'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate"
-                    formControlName="confirmPassword">
+                    id="inputConfirmPassword" formControlName="confirmPassword">
                 <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                     <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
