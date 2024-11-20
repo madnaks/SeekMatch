@@ -10,15 +10,15 @@
             "LogIn": "Connexion",
             "Language": "Langue"
         },
-        "User": {
+        "Account": {
             "Profile": "Profil",
             "Logout": "Déconnexion"
         }
     },
     "Home": {
         "Title": "Bienvenue sur notre site web",
-        "Welcome-Paragraph-1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
-        "Welcome-Paragraph-2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
+        "WelcomeParagraph1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
+        "WelcomeParagraph2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
         "SearchJobsButton": "Rechercher des emplois"
     },
     "JobOffers": {
@@ -45,7 +45,6 @@
                     "Form": {
                         "FirstName": "Prénom",
                         "LastName": "Nom",
-                        "ProfileTitle": "Titre du profil",
                         "Email": "Email address",
                         "Password": "Mot de passe",
                         "ConfirmPassword": "Confirmer le mot de passe",
@@ -88,7 +87,6 @@
                     "Form": {
                         "FirstName": "Prénom",
                         "LastName": "Nom",
-                        "ProfileTitle": "Titre du profil",
                         "Email": "Email address",
                         "Password": "Mot de passe",
                         "ConfirmPassword": "Confirmer le mot de passe",
@@ -144,6 +142,7 @@
             "AboutYou": {
                 "FirstName": "Prénom",
                 "LastName": "Nom de famille",
+                "ProfileTitle": "Titre du profil",
                 "Email": "Adresse e-mail",
                 "Password": "Mot de passe",
                 "DateOfBirth": "Date de naissance",
