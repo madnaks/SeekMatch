@@ -42,7 +42,6 @@
                 "Title": "Bienvenue! 👋",
                 "Body": {
                     "FirstLine": "Prêt à passer à l'étape suivante ?",
-                    "SecondLine": "Créez un compte.",
                     "Form": {
                         "FirstName": "Prénom",
                         "LastName": "Nom",

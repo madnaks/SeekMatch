@@ -42,7 +42,6 @@
                 "Title": "Hi there! 👋",
                 "Body": {
                     "FirstLine": "Ready to take the next step?",
-                    "SecondLine": "Create an account.",
                     "Form": {
                         "FirstName": "First name",
                         "LastName": "Last name",

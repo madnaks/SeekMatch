@@ -124,6 +124,11 @@ a {
             cursor: pointer;
         }
 
+        // Incrument z-index so it can be visible when the password-input is focused
+        label {
+            z-index: 6;
+        }
+
     }
 }
 

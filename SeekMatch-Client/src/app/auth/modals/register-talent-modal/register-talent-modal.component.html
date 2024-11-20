@@ -9,13 +9,15 @@
 <div class="modal-body">
     <div class="row mb-3">
         <p> {{ 'SignUp.Talent.Modal.Body.FirstLine' | translate }} </p>
-        <p> {{ 'SignUp.Talent.Modal.Body.SecondLine' | translate }} </p>
     </div>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- Full Name -->
         <div class="row mb-4">
+            <!-- First Name -->
             <div class="col-md-6">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                    <input type="text" class="form-control" id="inputFirstName" placeholder="FirstName"
+                        formControlName="firstName">
                     <label for="inputFirstName" class="form-label">
                         {{ 'SignUp.Talent.Modal.Body.Form.FirstName' | translate }}
                     </label>
@@ -26,11 +28,15 @@
                 </div>
                 }
             </div>
+            <!-- Last Name -->
             <div class="col-md-6">
-                <label for="inputLastName" class="form-label">
-                    {{ 'SignUp.Talent.Modal.Body.Form.LastName' | translate }}
-                </label>
-                <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="inputLastName" placeholder="LastName"
+                        formControlName="lastName">
+                    <label for="inputLastName" class="form-label">
+                        {{ 'SignUp.Talent.Modal.Body.Form.LastName' | translate }}
+                    </label>
+                </div>
                 @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
                 <div class="text-danger">
                     {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
@@ -38,25 +44,28 @@
                 }
             </div>
         </div>
+        <!-- Email -->
         <div class="mb-4">
-            <label for="inputEmail" class="form-label">
-                {{ 'SignUp.Talent.Modal.Body.Form.Email' | translate }}
-            </label>
-            <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                formControlName="email">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
+                <label for="inputEmail" class="form-label">
+                    {{ 'SignUp.Talent.Modal.Body.Form.Email' | translate }}
+                </label>
+            </div>
             @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
             <div class="text-danger">
                 {{ 'SignUp.Talent.Modal.Body.Form.Validation.Email' | translate }}
             </div>
             }
         </div>
+        <!-- Password -->
         <div class="mb-4">
-            <label for="inputPassword" class="form-label">
-                {{ 'SignUp.Talent.Modal.Body.Form.Password' | translate }}
-            </label>
-            <div class="password-input input-group">
+            <div class="form-floating password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    formControlName="password">
+                    formControlName="password" placeholder="Password">
+                <label for="inputPassword" class="form-label">
+                    {{ 'SignUp.Talent.Modal.Body.Form.Password' | translate }}
+                </label>
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
@@ -67,13 +76,14 @@
             </div>
             }
         </div>
+        <!-- Confirm Password -->
         <div class="mb-4">
-            <label for="inputConfirmPassword" class="form-label">
-                {{ 'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate }}
-            </label>
-            <div class="password-input input-group">
+            <div class="form-floating password-input input-group">
                 <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                    id="inputConfirmPassword" formControlName="confirmPassword">
+                    id="inputConfirmPassword" formControlName="confirmPassword" placeholder="ConfirmPassword">
+                <label for="inputConfirmPassword" class="form-label">
+                    {{ 'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate }}
+                </label>
                 <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                     <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
@@ -84,12 +94,14 @@
             </div>
             }
         </div>
+        <!-- Terms & Privacy Statement -->
         <div class="mt-4 mb-4">
             <p class="fs-6 fw-light">
                 By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
                     href="">Global Privacy Statement.</a>
             </p>
         </div>
+        <!-- Create button -->
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
