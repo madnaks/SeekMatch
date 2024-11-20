@@ -6,19 +6,29 @@
 </div>
 <div class="modal-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <!-- Email -->
         <div class="mb-3">
-            <input type="email" class="form-control" id="inputLoginEmail"
-                [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
+            <div class="form-floating">
+                <input type="email" class="form-control" id="inputLoginEmail"
+                    [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
+                <label for="inputEmail" class="form-label">
+                    {{ 'Login.Modal.Body.Form.Email' | translate }}
+                </label>
+            </div>
             @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
             <div class="text-danger">
                 {{ 'Login.Modal.Body.Form.Validation.Email' | translate }}
             </div>
             }
         </div>
+        <!-- Password -->
         <div class="mb-3">
-            <div class="password-input input-group">
+            <div class="form-floating password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
                     [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="password">
+                <label for="inputEmail" class="form-label">
+                    {{ 'Login.Modal.Body.Form.Password' | translate }}
+                </label>
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
                     <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                 </span>
@@ -29,6 +39,7 @@
             </div>
             }
         </div>
+        <!-- Login button -->
         <div class="mb-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
                 <i class="me-2"
