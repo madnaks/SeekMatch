@@ -16,17 +16,19 @@ export class RegisterRecruiterModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
-  // Steps variable
+  //#region  Stepping variables
   currentStep: number = 1;
   maxSteps: number = 4;
   selectedOption: string | null = null;
+  //#endregion
 
-  // Forms
+  //#region Forms variables
   registerFreelancerForm: FormGroup;
   registerRepresentativeForm: FormGroup;
-
   passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
+  //#endregion
+
 
   isLoading: boolean = false;
   isSuccess: boolean = false;
@@ -41,6 +43,7 @@ export class RegisterRecruiterModalComponent {
     this.registerRepresentativeForm = this.initRegisterRepresentativeForm();
   }
 
+  //#region Forms functions
   private initRegisterFreelancerForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
@@ -74,19 +77,34 @@ export class RegisterRecruiterModalComponent {
     };
   }
 
+  public togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
+  public toggleConfirmPasswordVisibility(): void {
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
+  }
+  //#endregion
+
+  //#region Stepping functions
   public goToNextStep(): void {
     if (this.validateCurrentStep()) {
       this.currentStep++;
     }
   }
-  
+
   public goToPreviousStep(): void {
     this.currentStep--;
   }
-  
+
   private validateCurrentStep(): boolean {
     return true;
   }
+
+  public selectOption(option: string): void {
+    this.selectedOption = option;
+  }
+  //#endregion
 
   public onSubmit(): void {
     if (this.registerFreelancerForm.valid) {
@@ -116,18 +134,6 @@ export class RegisterRecruiterModalComponent {
           this.isError = true;
         }
       })
-  }
-
-  public togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;
-  }
-
-  public toggleConfirmPasswordVisibility(): void {
-    this.confirmPasswordVisible = !this.confirmPasswordVisible;
-  }
-
-  public selectOption(option: string): void {
-    this.selectedOption = option;
   }
 
   public dismiss(reason: string) {

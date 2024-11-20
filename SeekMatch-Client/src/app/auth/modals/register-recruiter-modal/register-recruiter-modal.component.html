@@ -82,9 +82,14 @@
                     <div class="row mb-4">
                         <!-- First Name -->
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="inputFirstName"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
-                                formControlName="firstName">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="inputFirstName"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
+                                    formControlName="firstName">
+                                <label for="inputFirstName" class="form-label">
+                                    {{ 'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate }}
+                                </label>
+                            </div>
                             @if (registerFreelancerForm.get('firstName')?.invalid && registerFreelancerForm.get('firstName')?.touched) {
                             <div class="text-danger">
                                 {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
@@ -93,8 +98,14 @@
                         </div>
                         <!-- Last Name -->
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="inputLastName"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" formControlName="lastName">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="inputLastName"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" 
+                                    formControlName="lastName">
+                                <label for="inputLastName" class="form-label">
+                                    {{ 'SignUp.Recruiter.Modal.Body.Form.LastName' | translate }}
+                                </label>
+                            </div>
                             @if (registerFreelancerForm.get('lastName')?.invalid && registerFreelancerForm.get('lastName')?.touched) {
                             <div class="text-danger">
                                 {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
@@ -104,8 +115,14 @@
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
-                        <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
-                            [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" formControlName="email">
+                        <div class="form-floating">
+                            <input type="email" class="form-control" id="inputEmail"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" 
+                                formControlName="email">
+                            <label for="inputEmail" class="form-label">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Email' | translate }}
+                            </label>
+                        </div>
                         @if (registerFreelancerForm.get('email')?.invalid && registerFreelancerForm.get('email')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -114,9 +131,13 @@
                     </div>
                     <!-- Password -->
                     <div class="mb-4">
-                        <div class="password-input input-group">
-                            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate" formControlName="password">
+                        <div class="form-floating password-input input-group">
+                            <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" 
+                                id="inputPassword" formControlName="password"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate">
+                            <label for="inputPassword" class="form-label">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Password' | translate }}
+                            </label>
                             <span class="input-group-text" (click)="togglePasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                             </span>
@@ -129,11 +150,13 @@
                     </div>
                     <!-- Confirm Password -->
                     <div class="mb-4">
-                        <div class="password-input input-group">
+                        <div class="form-floating password-input input-group">
                             <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                                id="inputConfirmPassword"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate"
-                                formControlName="confirmPassword">
+                                id="inputConfirmPassword" formControlName="confirmPassword"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate">
+                                <label for="inputConfirmPassword" class="form-label">
+                                    {{ 'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate }}
+                                </label>
                             <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                             </span>
@@ -168,8 +191,13 @@
                     <h4>Company</h4>
                     <!-- Company Name -->
                     <div class="mb-4">
-                        <input class="form-control" type="text" id="inputCompanyName"
-                            placeholder="Name" formControlName="companyName">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="inputCompanyName"
+                                placeholder="Name" formControlName="companyName">
+                            <label for="inputCompanyName" class="form-label">
+                                Name
+                            </label>
+                        </div>
                         @if (registerRepresentativeForm.get('companyName')?.invalid && registerRepresentativeForm.get('companyName')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -178,8 +206,13 @@
                     </div>
                     <!-- Phone Number -->
                     <div class="mb-4">
-                        <input class="form-control" type="text" id="inputCompanyPhoneNumber"
-                            placeholder="Phone Number" formControlName="companyPhoneNumber">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="inputCompanyPhoneNumber"
+                                placeholder="Phone Number" formControlName="companyPhoneNumber">
+                            <label for="inputCompanyPhoneNumber" class="form-label">
+                                Phone Number
+                            </label>
+                        </div>
                         @if (registerRepresentativeForm.get('companyPhoneNumber')?.invalid && registerRepresentativeForm.get('companyPhoneNumber')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -188,8 +221,13 @@
                     </div>
                     <!-- Company Address -->
                     <div class="mb-4">
-                        <input class="form-control" type="text" id="inputCompanyAddress"
-                            placeholder="Address" formControlName="companyAddress">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="inputCompanyAddress"
+                                placeholder="Address" formControlName="companyAddress">
+                            <label for="inputCompanyAddress" class="form-label">
+                                Address
+                            </label>
+                        </div>
                         @if (registerRepresentativeForm.get('companyAddress')?.invalid && registerRepresentativeForm.get('companyAddress')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -202,9 +240,14 @@
                     <div class="row mb-4">
                         <!-- First Name -->
                         <div class="col-md-6">
-                            <input class="form-control" type="text" id="inputFirstName"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
-                                formControlName="firstName">
+                            <div class="form-floating">
+                                <input class="form-control" type="text" id="inputFirstName"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
+                                    formControlName="firstName">
+                                <label for="inputFirstName" class="form-label">
+                                    {{ 'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate }}
+                                </label>
+                            </div>
                             @if (registerRepresentativeForm.get('firstName')?.invalid && registerRepresentativeForm.get('firstName')?.touched) {
                             <div class="text-danger">
                                 {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
@@ -213,8 +256,14 @@
                         </div>
                         <!-- Last Name -->
                         <div class="col-md-6">
-                            <input type="text" class="form-control" id="inputLastName"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" formControlName="lastName">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="inputLastName"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" 
+                                    formControlName="lastName">
+                                <label for="inputLastName" class="form-label">
+                                    {{ 'SignUp.Recruiter.Modal.Body.Form.LastName' | translate }}
+                                </label>
+                            </div>
                             @if (registerRepresentativeForm.get('lastName')?.invalid && registerRepresentativeForm.get('lastName')?.touched) {
                             <div class="text-danger">
                                 {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
@@ -224,8 +273,13 @@
                     </div>
                     <!-- Position -->
                     <div class="mb-4">
-                        <input class="form-control" type="text" id="inputPosition"
-                            placeholder="Position" formControlName="position">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="inputPosition"
+                                placeholder="Position" formControlName="position">
+                            <label for="inputPosition" class="form-label">
+                                Position
+                            </label>
+                        </div>
                         @if (registerRepresentativeForm.get('position')?.invalid && registerRepresentativeForm.get('position')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -234,8 +288,14 @@
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
-                        <input class="form-control" type="email" id="inputEmail" aria-describedby="emailHelp"
-                            [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" formControlName="email">
+                        <div class="form-floating">
+                            <input class="form-control" type="email" id="inputEmail"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" 
+                                formControlName="email">
+                            <label for="inputEmail" class="form-label">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Email' | translate }}
+                            </label>
+                        </div>
                         @if (registerRepresentativeForm.get('email')?.invalid && registerRepresentativeForm.get('email')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
@@ -244,9 +304,13 @@
                     </div>
                     <!-- Password -->
                     <div class="mb-4">
-                        <div class="password-input input-group">
-                            <input class="form-control" [type]="passwordVisible ? 'text' : 'password'" id="inputPassword"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate" formControlName="password">
+                        <div class="form-floating password-input input-group">
+                            <input class="form-control" [type]="passwordVisible ? 'text' : 'password'" 
+                                id="inputPassword" formControlName="password"
+                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate">
+                            <label for="inputPassword" class="form-label">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.Password' | translate }}
+                            </label>
                             <span class="input-group-text" (click)="togglePasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                             </span>
@@ -259,11 +323,14 @@
                     </div>
                     <!-- Confirm Password -->
                     <div class="mb-4">
-                        <div class="password-input input-group">
+                        <div class="form-floating password-input input-group">
                             <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
                                 id="inputConfirmPassword"
                                 [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate"
                                 formControlName="confirmPassword">
+                            <label for="inputConfirmPassword" class="form-label">
+                                {{ 'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate }}
+                            </label>
                             <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
                             </span>
