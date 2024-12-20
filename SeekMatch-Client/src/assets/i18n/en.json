@@ -80,23 +80,55 @@
             "Title": "HERE TO HIRE GREAT TALENT ?",
             "Button": "SIGNUP AS A RECRUITER",
             "Modal": {
-                "Title": "Hi there! 👋",
-                "Body": {
-                    "FirstLine": "Ready to take the next step?",
-                    "SecondLine": "Create an account.",
-                    "Form": {
-                        "FirstName": "First name",
-                        "LastName": "Last name",
-                        "Email": "Email address",
-                        "Password": "Password",
-                        "ConfirmPassword": "Confirm password",
-                        "SubmitButton": "Create Recruiter Account",
-                        "Validation": {
-                            "FirstName": "First name is required.",
-                            "LastName": "Last name is required.",
-                            "Email": "A valid email is required.",
-                            "Password": "Password is required and must be at least 6 characters.",
-                            "ConfirmPassword": "Passwords must match."
+                "Step1": {
+                    "Title": "Hi there! 👋",
+                    "Body": {
+                        "RepresentCompany": "Represent a Company",
+                        "FreelanceRecruiter": "Freelancer Recruiter"
+                    }
+                },
+                "Step2": {
+                    "Title": "Verification Process",
+                    "Body": {
+                        "Line1": "To maintain a safe and reliable platform, we <strong>manually verify</strong> all recruiters.",
+                        "Line2": "After completing your registration, our team will contact you within <strong>1-3 business</strong> days to confirm your information and validate your identity.",
+                        "Line3": "In the meantime, you can explore the platform, create job offers, and customize your recruiter profile.",
+                        "Line4": "These will be private to you until your account is verified, at which point everything can be made public for talents to view.",
+                        "Line5": "This step ensures that talents can trust that all recruiters on our platform are legitimate.",
+                        "Line6": "Thank you for helping us create a safe and trusted community! 😊"
+                    }
+                },
+                "Step3": {
+                    "Title": "Let’s Get to Know You",
+                    "Body": {
+                        "RepresentCompany": "Represent a Company",
+                        "FreelanceRecruiter": "Freelancer Recruiter",
+                        "FirstLine": "Ready to take the next step?",
+                        "SecondLine": "Create an account.",
+                        "Form": {
+                            "Company": "Company",
+                            "Representative": "Representative",
+                            "CompanyName": "Name",
+                            "PhoneNumber": "Phone Number",
+                            "Address": "Address",
+                            "FirstName": "First name",
+                            "LastName": "Last name",
+                            "Email": "Email address",
+                            "Position": "Position",
+                            "Password": "Password",
+                            "ConfirmPassword": "Confirm password",
+                            "SubmitButton": "Create Recruiter Account",
+                            "Validation": {
+                                "CompanyName": "Company name is required.",
+                                "PhoneNumber": "Phone number is required.",
+                                "Address": "Company address is required.",
+                                "FirstName": "First name is required.",
+                                "LastName": "Last name is required.",
+                                "Position": "Position is required.",
+                                "Email": "A valid email is required.",
+                                "Password": "Password is required and must be at least 6 characters.",
+                                "ConfirmPassword": "Passwords must match."
+                            }
                         }
                     }
                 },

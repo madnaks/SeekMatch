@@ -5,7 +5,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">
-                {{ 'SignUp.Recruiter.Modal.Title' | translate }}
+                {{ 'SignUp.Recruiter.Modal.Step1.Title' | translate }}
             </h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
         </div>
@@ -17,7 +17,7 @@
                         (click)="selectOption('company')">
                         <img src="assets\images\company.svg" width="100" />
                         <label class="form-check-label" for="flexRadioDefault1">
-                            Represent a Company
+                            {{ 'SignUp.Recruiter.Modal.Step1.Body.RepresentCompany' | translate }}
                         </label>
                     </button>
                 </div>
@@ -26,7 +26,7 @@
                         (click)="selectOption('freelancer')">
                         <img src="assets\images\business-persons.svg" width="100" />
                         <label class="form-check-label" for="flexRadioDefault2">
-                            Freelancer Recruiter
+                            {{ 'SignUp.Recruiter.Modal.Step1.Body.FreelanceRecruiter' | translate }}
                         </label>
                     </button>
                 </div>
@@ -38,28 +38,18 @@
         <!-- Modal Header -->
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">
-                Verification Process
+                {{ 'SignUp.Recruiter.Modal.Step2.Title' | translate }}
             </h4>
             <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
         </div>
         <!-- Modal Body -->
         <div class="modal-body">
-            <p>
-                To maintain a safe and reliable platform, we <strong>manually verify</strong> all recruiters.
-                <br><br>
-                After completing your registration, our team will contact you within <strong>1-3 business</strong> days to
-                confirm your
-                information and validate your identity.
-                <br><br>
-                In the meantime, you can explore the platform, create job offers, and customize your recruiter profile.
-                <br>
-                These will be private to you until your account is verified, at which point everything can be made public for
-                talents to view.
-                <br><br>
-                This step ensures that talents can trust that all recruiters on our platform are legitimate.
-                <br><br>
-                Thank you for helping us create a safe and trusted community! 😊
-            </p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line1' | translate"></p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line2' | translate"></p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line3' | translate"></p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line4' | translate"></p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line5' | translate"></p>
+            <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line6' | translate"></p>
         </div>
     }
     <!-- Step 3 : Getting informations -->
@@ -68,14 +58,14 @@
         @if (selectedOption === 'freelancer') {
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-basic-title">
-                    Let’s Get to Know You
+                    {{ 'SignUp.Recruiter.Modal.Step3.Title' | translate }}
                 </h4>
                 <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
             </div>
             <div class="modal-body">
                 <div class="row mb-3">
-                    <p> {{ 'SignUp.Recruiter.Modal.Body.FirstLine' | translate }} </p>
-                    <p> {{ 'SignUp.Recruiter.Modal.Body.SecondLine' | translate }} </p>
+                    <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.FirstLine' | translate }} </p>
+                    <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.SecondLine' | translate }} </p>
                 </div>
                 <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
                     <!-- Full Name -->
@@ -84,15 +74,15 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="inputFirstName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate"
                                     formControlName="firstName">
                                 <label for="inputFirstName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate }}
+                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate }}
                                 </label>
                             </div>
                             @if (registerFreelancerForm.get('firstName')?.invalid && registerFreelancerForm.get('firstName')?.touched) {
                             <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.FirstName' | translate }}
                             </div>
                             }
                         </div>
@@ -100,15 +90,15 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="inputLastName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" 
+                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate" 
                                     formControlName="lastName">
                                 <label for="inputLastName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Body.Form.LastName' | translate }}
+                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate }}
                                 </label>
                             </div>
                             @if (registerFreelancerForm.get('lastName')?.invalid && registerFreelancerForm.get('lastName')?.touched) {
                             <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.LastName' | translate }}
                             </div>
                             }
                         </div>
@@ -117,15 +107,15 @@
                     <div class="mb-4">
                         <div class="form-floating">
                             <input type="email" class="form-control" id="inputEmail"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" 
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate" 
                                 formControlName="email">
                             <label for="inputEmail" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Email' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate }}
                             </label>
                         </div>
                         @if (registerFreelancerForm.get('email')?.invalid && registerFreelancerForm.get('email')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email' | translate }}
                         </div>
                         }
                     </div>
@@ -134,9 +124,9 @@
                         <div class="form-floating password-input input-group">
                             <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" 
                                 id="inputPassword" formControlName="password"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate">
                             <label for="inputPassword" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Password' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate }}
                             </label>
                             <span class="input-group-text" (click)="togglePasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
@@ -144,7 +134,7 @@
                         </div>
                         @if (registerFreelancerForm.get('password')?.invalid && registerFreelancerForm.get('password')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Password' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password' | translate }}
                         </div>
                         }
                     </div>
@@ -153,9 +143,9 @@
                         <div class="form-floating password-input input-group">
                             <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
                                 id="inputConfirmPassword" formControlName="confirmPassword"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.ConfirmPassword' | translate">
                                 <label for="inputConfirmPassword" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate }}
+                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.ConfirmPassword' | translate }}
                                 </label>
                             <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
@@ -163,7 +153,7 @@
                         </div>
                         @if (registerFreelancerForm.errors?.['mismatch'] && registerFreelancerForm.get('confirmPassword')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword' | translate }}
                         </div>
                         }
                     </div>
@@ -182,25 +172,26 @@
         @if (selectedOption === 'company') {
             <div class="modal-header">
                 <h4 class="modal-title" id="modal-basic-title">
-                    Let’s Get to Know You
+                    {{ 'SignUp.Recruiter.Modal.Step3.Title' | translate }}
                 </h4>
                 <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="registerRepresentativeForm" (ngSubmit)="onSubmit()">
-                    <h4>Company</h4>
+                    <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
                     <!-- Company Name -->
                     <div class="mb-4">
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyName"
-                                placeholder="Name" formControlName="companyName">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Name' | translate" 
+                                formControlName="companyName">
                             <label for="inputCompanyName" class="form-label">
-                                Name
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
                             </label>
                         </div>
                         @if (registerRepresentativeForm.get('companyName')?.invalid && registerRepresentativeForm.get('companyName')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName' | translate }}
                         </div>
                         }
                     </div>
@@ -208,14 +199,15 @@
                     <div class="mb-4">
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyPhoneNumber"
-                                placeholder="Phone Number" formControlName="companyPhoneNumber">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate" 
+                                formControlName="companyPhoneNumber">
                             <label for="inputCompanyPhoneNumber" class="form-label">
-                                Phone Number
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
                             </label>
                         </div>
                         @if (registerRepresentativeForm.get('companyPhoneNumber')?.invalid && registerRepresentativeForm.get('companyPhoneNumber')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber' | translate }}
                         </div>
                         }
                     </div>
@@ -223,34 +215,35 @@
                     <div class="mb-4">
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyAddress"
-                                placeholder="Address" formControlName="companyAddress">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"  
+                                formControlName="companyAddress">
                             <label for="inputCompanyAddress" class="form-label">
-                                Address
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
                             </label>
                         </div>
                         @if (registerRepresentativeForm.get('companyAddress')?.invalid && registerRepresentativeForm.get('companyAddress')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address' | translate }}
                         </div>
                         }
                     </div>
                     <hr>
-                    <h4>Representative</h4>
+                    <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
                     <!-- Full Name -->
                     <div class="row mb-4">
                         <!-- First Name -->
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input class="form-control" type="text" id="inputFirstName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate"
+                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate"
                                     formControlName="firstName">
                                 <label for="inputFirstName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Body.Form.FirstName' | translate }}
+                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate }}
                                 </label>
                             </div>
                             @if (registerRepresentativeForm.get('firstName')?.invalid && registerRepresentativeForm.get('firstName')?.touched) {
                             <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.FirstName' | translate }}
                             </div>
                             }
                         </div>
@@ -258,15 +251,15 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="inputLastName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Body.Form.LastName' | translate" 
+                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate" 
                                     formControlName="lastName">
                                 <label for="inputLastName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Body.Form.LastName' | translate }}
+                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate }}
                                 </label>
                             </div>
                             @if (registerRepresentativeForm.get('lastName')?.invalid && registerRepresentativeForm.get('lastName')?.touched) {
                             <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.LastName' | translate }}
                             </div>
                             }
                         </div>
@@ -275,14 +268,14 @@
                     <div class="mb-4">
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputPosition"
-                                placeholder="Position" formControlName="position">
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate"  formControlName="position">
                             <label for="inputPosition" class="form-label">
-                                Position
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate }}
                             </label>
                         </div>
                         @if (registerRepresentativeForm.get('position')?.invalid && registerRepresentativeForm.get('position')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position' | translate }}
                         </div>
                         }
                     </div>
@@ -290,15 +283,15 @@
                     <div class="mb-4">
                         <div class="form-floating">
                             <input class="form-control" type="email" id="inputEmail"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Email' | translate" 
+                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate" 
                                 formControlName="email">
                             <label for="inputEmail" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Email' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate }}
                             </label>
                         </div>
                         @if (registerRepresentativeForm.get('email')?.invalid && registerRepresentativeForm.get('email')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email' | translate }}
                         </div>
                         }
                     </div>
@@ -309,7 +302,7 @@
                                 id="inputPassword" formControlName="password"
                                 [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate">
                             <label for="inputPassword" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.Password' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate }}
                             </label>
                             <span class="input-group-text" (click)="togglePasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
@@ -317,7 +310,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('password')?.invalid && registerRepresentativeForm.get('password')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.Password' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password' | translate }}
                         </div>
                         }
                     </div>
@@ -329,7 +322,7 @@
                                 [placeholder]="'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate"
                                 formControlName="confirmPassword">
                             <label for="inputConfirmPassword" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Body.Form.ConfirmPassword' | translate }}
+                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.ConfirmPassword' | translate }}
                             </label>
                             <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
                                 <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
@@ -337,7 +330,7 @@
                         </div>
                         @if (registerRepresentativeForm.errors?.['mismatch'] && registerRepresentativeForm.get('confirmPassword')?.touched) {
                         <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword' | translate }}
                         </div>
                         }
                     </div>

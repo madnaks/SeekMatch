@@ -80,23 +80,55 @@
             "Title": "ICI POUR RECRUTER DE GRANDS TALENTS ?",
             "Button": "INSCRIPTION EN TANT QUE RECRUTEUR",
             "Modal": {
-                "Title": "Bienvenue! 👋",
-                "Body": {
-                    "FirstLine": "Prêt à passer à l'étape suivante ?",
-                    "SecondLine": "Créez un compte.",
-                    "Form": {
-                        "FirstName": "Prénom",
-                        "LastName": "Nom",
-                        "Email": "Email address",
-                        "Password": "Mot de passe",
-                        "ConfirmPassword": "Confirmer le mot de passe",
-                        "SubmitButton": "Créé Recruiteur Profile",
-                        "Validation": {
-                            "FirstName": "Le prénom est requis.",
-                            "LastName": "Le nom de famille est requis.",
-                            "Email": "Un email valide est requis.",
-                            "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
-                            "ConfirmPassword": "Les mots de passe doivent correspondre."
+                "Step1": {
+                    "Title": "Bonjour ! 👋",
+                    "Body": {
+                        "RepresentCompany": "Représenter une entreprise",
+                        "FreelanceRecruiter": "Recruteur indépendant"
+                    }
+                },
+                "Step2": {
+                    "Title": "Processus de vérification",
+                    "Body": {
+                        "Line1": "Pour maintenir une plateforme sûre et fiable, nous <strong>vérifions manuellement</strong> tous les recruteurs.",
+                        "Line2": "Après avoir terminé votre inscription, notre équipe vous contactera dans un délai de <strong>1 à 3 jours ouvrables</strong> pour confirmer vos informations et valider votre identité.",
+                        "Line3": "En attendant, vous pouvez explorer la plateforme, créer des offres d'emploi et personnaliser votre profil de recruteur.",
+                        "Line4": "Ces informations resteront privées jusqu'à ce que votre compte soit vérifié, après quoi tout pourra être rendu public pour que les talents puissent les consulter.",
+                        "Line5": "Cette étape garantit que les talents peuvent faire confiance à tous les recruteurs sur notre plateforme.",
+                        "Line6": "Merci de nous aider à créer une communauté sûre et fiable ! 😊"
+                    }
+                },
+                "Step3": {
+                    "Title": "Apprenons à vous connaître",
+                    "Body": {
+                        "RepresentCompany": "Représenter une entreprise",
+                        "FreelanceRecruiter": "Recruteur indépendant",
+                        "FirstLine": "Prêt à passer à l'étape suivante ?",
+                        "SecondLine": "Créez un compte.",
+                        "Form": {
+                            "Company": "Entreprise",
+                            "Representative": "Représentant",
+                            "CompanyName": "Nom",
+                            "PhoneNumber": "Numéro de téléphone",
+                            "Address": "Adresse",
+                            "FirstName": "Prénom",
+                            "LastName": "Nom",
+                            "Position": "Poste",
+                            "Email": "Email address",
+                            "Password": "Mot de passe",
+                            "ConfirmPassword": "Confirmer le mot de passe",
+                            "SubmitButton": "Créé Recruiteur Profile",
+                            "Validation": {
+                                "CompanyName": "Le nom de l'entreprise est requis.",
+                                "PhoneNumber": "Le numéro de téléphone est requis.",
+                                "Address": "L'adresse de l'entreprise est requise.",
+                                "FirstName": "Le prénom est requis.",
+                                "LastName": "Le nom de famille est requis.",
+                                "Position": "Le poste est requis.",
+                                "Email": "Un email valide est requis.",
+                                "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
+                                "ConfirmPassword": "Les mots de passe doivent correspondre."
+                            }
                         }
                     }
                 },
