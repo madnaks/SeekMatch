@@ -117,7 +117,6 @@
                             "Position": "Position",
                             "Password": "Password",
                             "ConfirmPassword": "Confirm password",
-                            "SubmitButton": "Create Recruiter Account",
                             "Validation": {
                                 "CompanyName": "Company name is required.",
                                 "PhoneNumber": "Phone number is required.",
@@ -131,6 +130,11 @@
                             }
                         }
                     }
+                },
+                "Footer": {
+                    "PreviousButton": "Previous",
+                    "NextButton": "Next",
+                    "SubmitButton": "Create Recruiter Account"
                 },
                 "Success": {
                     "Title": "Welecome To SeekMatch !",

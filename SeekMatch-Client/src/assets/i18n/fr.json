@@ -117,7 +117,6 @@
                             "Email": "Email address",
                             "Password": "Mot de passe",
                             "ConfirmPassword": "Confirmer le mot de passe",
-                            "SubmitButton": "Créé Recruiteur Profile",
                             "Validation": {
                                 "CompanyName": "Le nom de l'entreprise est requis.",
                                 "PhoneNumber": "Le numéro de téléphone est requis.",
@@ -131,6 +130,11 @@
                             }
                         }
                     }
+                },
+                "Footer": {
+                    "PreviousButton": "Précédent",
+                    "NextButton": "Suivant",
+                    "SubmitButton": "Créé Recruiteur Profile"
                 },
                 "Success": {
                     "Title": "Bienvenue sur SeekMatch !",

@@ -360,15 +360,16 @@
     <div class="modal-footer justify-content-between">
         <button class="btn btn-primary w-25" (click)="goToPreviousStep()" [disabled]="currentStep === 1">
             <i class="me-2 fa-solid fa-circle-left"></i>
-            Previous
+            {{ 'SignUp.Recruiter.Modal.Footer.PreviousButton' | translate }}
         </button>
         <button class="btn btn-primary w-25" (click)="goToNextStep()" *ngIf="currentStep < maxSteps"
             [disabled]="selectedOption == null">
-            Next<i class="ms-2 fa-solid fa-circle-right"></i>
+            {{ 'SignUp.Recruiter.Modal.Footer.NextButton' | translate }}
+            <i class="ms-2 fa-solid fa-circle-right"></i>
         </button>
         <button class="btn btn-primary w-50" (click)="onSubmit()" *ngIf="currentStep === maxSteps" [disabled]="isLoading">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
-            {{ 'SignUp.Recruiter.Modal.Body.Form.SubmitButton' | translate }}
+            {{ 'SignUp.Recruiter.Modal.Footer.SubmitButton' | translate }}
         </button>
     </div>
 }
