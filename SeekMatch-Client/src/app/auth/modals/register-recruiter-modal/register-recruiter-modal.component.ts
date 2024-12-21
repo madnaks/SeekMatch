@@ -98,6 +98,20 @@ export class RegisterRecruiterModalComponent {
   }
 
   private validateCurrentStep(): boolean {
+    if (this.currentStep === 3) {
+      if (this.selectedOption === 'freelancer') {
+        if (!this.registerFreelancerForm.valid) {
+          this.registerFreelancerForm.markAllAsTouched();
+          return false;
+        }
+      } else if (this.selectedOption === 'company') {
+        if (!this.registerRepresentativeForm.valid) {
+          this.registerRepresentativeForm.markAllAsTouched();
+          return false;
+        }
+      }
+    } 
+
     return true;
   }
 
@@ -107,11 +121,24 @@ export class RegisterRecruiterModalComponent {
   //#endregion
 
   public onSubmit(): void {
-    if (this.registerFreelancerForm.valid) {
-      this.isLoading = true;
-      this.register();
-    } else {
-      this.registerFreelancerForm.markAllAsTouched();
+    // Validate Freelancer Form
+    if (this.selectedOption === 'freelancer') {
+      if (this.registerFreelancerForm.valid) {
+        this.isLoading = true;
+        this.register();
+      } else {
+        this.registerFreelancerForm.markAllAsTouched();
+      }
+    } 
+    
+    // Validate Company Form
+    else if (this.selectedOption === 'company') {
+      if (this.registerRepresentativeForm.valid) {
+        this.isLoading = true;
+        this.register();
+      } else {
+        this.registerRepresentativeForm.markAllAsTouched();
+      }
     }
   }
 

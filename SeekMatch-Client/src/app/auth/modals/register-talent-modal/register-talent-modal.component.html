@@ -10,6 +10,7 @@
     <div class="row mb-3">
         <p> {{ 'SignUp.Talent.Modal.Body.FirstLine' | translate }} </p>
     </div>
+    <!-- Form -->
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
         <div class="row mb-4">
@@ -112,6 +113,7 @@
 </div>
 }
 
+<!-- Success / Error Display -->
 @if (isSuccess) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
