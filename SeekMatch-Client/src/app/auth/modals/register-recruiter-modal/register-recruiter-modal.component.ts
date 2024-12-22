@@ -18,7 +18,7 @@ export class RegisterRecruiterModalComponent {
 
   //#region  Stepping variables
   currentStep: number = 1;
-  maxSteps: number = 4;
+  maxSteps: number = 3;
   selectedOption: string | null = null;
   //#endregion
 
@@ -98,20 +98,6 @@ export class RegisterRecruiterModalComponent {
   }
 
   private validateCurrentStep(): boolean {
-    if (this.currentStep === 3) {
-      if (this.selectedOption === 'freelancer') {
-        if (!this.registerFreelancerForm.valid) {
-          this.registerFreelancerForm.markAllAsTouched();
-          return false;
-        }
-      } else if (this.selectedOption === 'company') {
-        if (!this.registerRepresentativeForm.valid) {
-          this.registerRepresentativeForm.markAllAsTouched();
-          return false;
-        }
-      }
-    } 
-
     return true;
   }
 
@@ -143,6 +129,12 @@ export class RegisterRecruiterModalComponent {
   }
 
   private register(): void {
+    if (this.selectedOption === 'freelancer') {
+      const formFreelancerValues = this.registerFreelancerForm.value;
+    }
+
+
+
     const formValues = this.registerFreelancerForm.value;
 
     let talent = new Talent(formValues);
