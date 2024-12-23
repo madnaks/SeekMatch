@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
 import { Talent } from '../../../shared/models/talent';
 import { finalize } from 'rxjs';
+import { Recruiter } from '../../../shared/models/recruiter';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -131,28 +132,24 @@ export class RegisterRecruiterModalComponent {
   private register(): void {
     if (this.selectedOption === 'freelancer') {
       const formFreelancerValues = this.registerFreelancerForm.value;
+
+      let recruiter = new Recruiter(formFreelancerValues);
+
+      this.authService.register(recruiter, UserRole.Recruiter).pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })).subscribe({
+          next: () => {
+            this.router.navigate(['/home']);
+            this.isSuccess = true;
+            this.toastService.showSuccessMessage('Register account succeeded');
+          },
+          error: (error) => {
+            this.toastService.showErrorMessage('Register failed', error);
+            this.isError = true;
+          }
+        });
     }
-
-
-
-    const formValues = this.registerFreelancerForm.value;
-
-    let talent = new Talent(formValues);
-
-    this.authService.register(talent, UserRole.Recruiter).pipe(
-      finalize(() => {
-        this.isLoading = false;
-      })).subscribe({
-        next: () => {
-          this.router.navigate(['/home']);
-          this.isSuccess = true;
-          this.toastService.showSuccessMessage('Register account succeeded');
-        },
-        error: (error) => {
-          this.toastService.showErrorMessage('Register failed', error);
-          this.isError = true;
-        }
-      })
   }
 
   public dismiss(reason: string) {

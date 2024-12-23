@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { delay, Observable, of, tap } from 'rxjs';
 import { UserRole } from '../enums/enums';
 import { Talent } from '../models/talent';
+import { Recruiter } from '../models/recruiter';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class AuthService {
     );
   }
 
-  register(talent: Talent, userRole: UserRole): Observable<any> {
+  register(talent: Talent | Recruiter, userRole: UserRole): Observable<any> {
     return this.http.post(`${this.apiUrl}/register?userRole=${userRole}`, talent);
     // return of({ success: true, message: 'Registration successful!' }).pipe(delay(2000));
   }

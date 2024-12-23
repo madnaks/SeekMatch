@@ -1,4 +1,3 @@
-import { SafeUrl } from "@angular/platform-browser";
 import { User } from "./user";
 
 export class Talent extends User {
