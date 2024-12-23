@@ -17,11 +17,17 @@ namespace SeekMatch.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly ITalentService _talentService;
+        private readonly IRecruiterService _recruiterService;
         private readonly IConfiguration _configuration;
-        public AuthController(UserManager<User> userManager, ITalentService talentService, IConfiguration configuration)
+        public AuthController(
+            UserManager<User> userManager, 
+            ITalentService talentService, 
+            IRecruiterService recruiterService, 
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _talentService = talentService;
+            _recruiterService = recruiterService;
             _configuration = configuration;
         }
 
@@ -54,6 +60,19 @@ namespace SeekMatch.Controllers
                 };
 
                 await _talentService.CreateAsync(talent);
+            }
+            else if (userRole == UserRole.Recruiter)
+            {
+                var recruiter = new Recruiter()
+                {
+                    FirstName = registerDto.FirstName,
+                    LastName = registerDto.LastName,
+                    // if its a creation of account it has to be a Freelance Recruiter
+                    IsFreelancer = true,
+                    User = user
+                };
+
+                await _recruiterService.CreateAsync(recruiter);
             }
 
             return Ok(result);

@@ -60,11 +60,13 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<ITalentService, TalentService>();
 builder.Services.AddScoped<IEducationService, EducationService>();
 builder.Services.AddScoped<IExperienceService, ExperienceService>();
+builder.Services.AddScoped<IRecruiterService, RecruiterService>();
 
 //Register repositories
 builder.Services.AddScoped<ITalentRepository, TalentRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
+builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
 
 builder.Services.AddCors(options =>
 {
