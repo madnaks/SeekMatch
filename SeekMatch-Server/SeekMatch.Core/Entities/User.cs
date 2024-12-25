@@ -10,6 +10,7 @@ namespace SeekMatch.Core.Entities
         public UserRole Role { get; set; }
         public Talent? Talent { get; set; }
         public Recruiter? Recruiter { get; set; }
+        public Representative? Representative { get; set; }
     }
 
 }

@@ -30,7 +30,7 @@ namespace SeekMatch.Infrastructure
                 .HasForeignKey<Recruiter>(r => r.Id);
 
             modelBuilder.Entity<User>()
-                .HasOne(u => u.Recruiter)
+                .HasOne(u => u.Representative)
                 .WithOne(r => r.User)
                 .HasForeignKey<Representative>(r => r.Id);
 
@@ -45,10 +45,10 @@ namespace SeekMatch.Infrastructure
                 .HasForeignKey(e => e.TalentId);
             
             modelBuilder.Entity<Representative>()
-            .HasOne(r => r.Company)
-            .WithMany(c => c.Representatives)
-            .HasForeignKey(r => r.CompanyId)
-            .OnDelete(DeleteBehavior.Restrict);
+                .HasOne(r => r.Company)
+                .WithMany(c => c.Representatives)
+                .HasForeignKey(r => r.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Recruiter>()
                 .HasOne(r => r.Company)
