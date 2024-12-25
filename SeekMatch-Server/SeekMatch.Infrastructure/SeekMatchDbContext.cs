@@ -8,6 +8,8 @@ namespace SeekMatch.Infrastructure
     {
         public DbSet<Talent> Talents { get; set; }
         public DbSet<Recruiter> Recruiters { get; set; }
+        public DbSet<Representative> Representatives { get; set; }
+        public DbSet<Company> Companies { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
 
@@ -27,6 +29,11 @@ namespace SeekMatch.Infrastructure
                 .WithOne(r => r.User)
                 .HasForeignKey<Recruiter>(r => r.Id);
 
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.Recruiter)
+                .WithOne(r => r.User)
+                .HasForeignKey<Representative>(r => r.Id);
+
             modelBuilder.Entity<Education>()
                 .HasOne(e => e.Talent)
                 .WithMany(t => t.Educations)
@@ -36,6 +43,18 @@ namespace SeekMatch.Infrastructure
                 .HasOne(e => e.Talent)
                 .WithMany(t => t.Experiences)
                 .HasForeignKey(e => e.TalentId);
+            
+            modelBuilder.Entity<Representative>()
+            .HasOne(r => r.Company)
+            .WithMany(c => c.Representatives)
+            .HasForeignKey(r => r.CompanyId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Recruiter>()
+                .HasOne(r => r.Company)
+                .WithMany(c => c.Recruiters)
+                .HasForeignKey(r => r.CompanyId)
+                .OnDelete(DeleteBehavior.Restrict);
 
         }
     }
