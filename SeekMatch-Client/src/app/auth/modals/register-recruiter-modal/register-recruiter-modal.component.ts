@@ -1,12 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { UserRole } from '../../../shared/enums/enums';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
-import { AuthService } from '../../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
-import { Talent } from '../../../shared/models/talent';
 import { finalize } from 'rxjs';
 import { Recruiter } from '../../../shared/models/recruiter';
+import { RecruiterService } from '../../../shared/services/recruiter.service';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -37,7 +35,7 @@ export class RegisterRecruiterModalComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private authService: AuthService,
+    private recruiterService: RecruiterService,
     private router: Router,
     private toastService: ToastService) {
     this.registerFreelancerForm = this.initRegisterFreelancerForm();
@@ -135,7 +133,7 @@ export class RegisterRecruiterModalComponent {
 
       let recruiter = new Recruiter(formFreelancerValues);
 
-      this.authService.register(recruiter, UserRole.Recruiter).pipe(
+      this.recruiterService.register(recruiter).pipe(
         finalize(() => {
           this.isLoading = false;
         })).subscribe({
