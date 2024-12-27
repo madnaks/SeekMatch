@@ -1,9 +1,9 @@
 ﻿using SeekMatch.Core.Enums;
 using System.ComponentModel.DataAnnotations;
 
-namespace SeekMatch.Application.DTOs
+namespace SeekMatch.Application.DTOs.Talent
 {
-    public class RegisterDto
+    public class RegisterTalentDto
     {
         [Required]
         [EmailAddress]
@@ -18,8 +18,5 @@ namespace SeekMatch.Application.DTOs
 
         [Required]
         public required string LastName { get; set; }
-
-        [Required]
-        public UserRole Role { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using SeekMatch.Application.DTOs;
+﻿using SeekMatch.Application.DTOs.Talent;
 
 namespace SeekMatch.Application.Interfaces
 {

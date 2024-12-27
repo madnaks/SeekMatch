@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SeekMatch.Application.DTOs;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using System.Security.Claims;

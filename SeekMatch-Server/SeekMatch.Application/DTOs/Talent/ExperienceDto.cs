@@ -1,6 +1,6 @@
 ﻿using SeekMatch.Core.Enums;
 
-namespace SeekMatch.Application.DTOs
+namespace SeekMatch.Application.DTOs.Talent
 {
     public class ExperienceDto
     {

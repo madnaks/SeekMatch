@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SeekMatch.Application.DTOs;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using System.Security.Claims;
@@ -20,6 +20,37 @@ namespace SeekMatch.Controllers
         {
             _userManager = userManager;
             _talentService = talentService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterTalentDto registerTalentDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = new User
+            {
+                UserName = registerTalentDto.Email,
+                Email = registerTalentDto.Email,
+            };
+
+            var result = await _userManager.CreateAsync(user, registerTalentDto.Password);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            //await _userManager.AddToRoleAsync(user, model.Role.ToString());
+
+            var talent = new Talent()
+            {
+                FirstName = registerTalentDto.FirstName,
+                LastName = registerTalentDto.LastName,
+                User = user
+            };
+
+            await _talentService.CreateAsync(talent);
+
+            return Ok(result);
         }
 
         [Authorize]

@@ -1,7 +1,8 @@
-﻿namespace SeekMatch.Application.DTOs
+﻿namespace SeekMatch.Application.DTOs.Talent
 {
-    public class CreateEducationDto
+    public class EducationDto
     {
+        public string? Id { get; set; }
         public string? Institution { get; set; }
         public string? Diploma { get; set; }
         public string? Domain { get; set; }

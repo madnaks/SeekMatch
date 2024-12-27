@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SeekMatch.Application.DTOs;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;

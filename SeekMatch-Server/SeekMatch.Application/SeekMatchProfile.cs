@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using SeekMatch.Application.DTOs;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Core.Entities;
 
 namespace SeekMatch.Application
