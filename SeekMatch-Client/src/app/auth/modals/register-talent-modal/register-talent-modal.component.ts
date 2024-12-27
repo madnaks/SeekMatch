@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { Talent } from '../../../shared/models/talent';
-import { UserRole } from '../../../shared/enums/enums';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { AuthService } from '../../../shared/services/auth.service';
 import { ToastService } from '../../../shared/services/toast.service';
+import { TalentService } from '../../../shared/services/talent.service';
 
 @Component({
   selector: 'app-register-talent-modal',
@@ -26,7 +25,7 @@ export class RegisterTalentModalComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private authService: AuthService,
+    private talentService: TalentService,
     private router: Router,
     private toastService: ToastService) {
     this.registerForm = this.initregisterForm();
@@ -65,7 +64,7 @@ export class RegisterTalentModalComponent {
 
     let talent = new Talent(formValues);
     
-    this.authService.register(talent, UserRole.Talent).pipe(
+    this.talentService.register(talent).pipe(
       finalize(() => {
         this.isLoading = false;
       })).subscribe({
