@@ -54,6 +54,8 @@ namespace SeekMatch.Controllers
             {
                 FirstName = registerRepresentativeDto.FirstName,
                 LastName = registerRepresentativeDto.LastName,
+                Company = company,
+                CompanyId = company.Id,
                 User = user
             };
 
