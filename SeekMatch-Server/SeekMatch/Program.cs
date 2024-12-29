@@ -56,17 +56,23 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Register services
+#region Register services
 builder.Services.AddScoped<ITalentService, TalentService>();
 builder.Services.AddScoped<IEducationService, EducationService>();
 builder.Services.AddScoped<IExperienceService, ExperienceService>();
 builder.Services.AddScoped<IRecruiterService, RecruiterService>();
+builder.Services.AddScoped<ICompanyService, CompanyService>();
+builder.Services.AddScoped<IRepresentativeService, RepresentativeService>();
+#endregion
 
-//Register repositories
+#region Register repositories
 builder.Services.AddScoped<ITalentRepository, TalentRepository>();
 builder.Services.AddScoped<IEducationRepository, EducationRepository>();
 builder.Services.AddScoped<IExperienceRepository, ExperienceRepository>();
 builder.Services.AddScoped<IRecruiterRepository, RecruiterRepository>();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddScoped<IRepresentativeRepository, RepresentativeRepository>();
+#endregion
 
 builder.Services.AddCors(options =>
 {
