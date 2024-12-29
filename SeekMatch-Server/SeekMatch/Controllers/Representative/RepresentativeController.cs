@@ -27,41 +27,48 @@ namespace SeekMatch.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRepresentativeDto registerRepresentativeDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var user = new User
+            try
             {
-                UserName = registerRepresentativeDto.Email,
-                Email = registerRepresentativeDto.Email,
-            };
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
-            var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);
+                var user = new User
+                {
+                    UserName = registerRepresentativeDto.Email,
+                    Email = registerRepresentativeDto.Email,
+                };
 
-            if (!result.Succeeded)
-                return BadRequest(result.Errors);
+                var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);
 
-            var company = new Company()
+                if (!result.Succeeded)
+                    return BadRequest(result.Errors);
+
+                var company = new Company()
+                {
+                    Name = registerRepresentativeDto.CompanyName,
+                    Address = registerRepresentativeDto.CompanyAddress,
+                    PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
+                };
+
+                await _companyService.CreateAsync(company);
+
+                var representative = new Representative()
+                {
+                    FirstName = registerRepresentativeDto.FirstName,
+                    LastName = registerRepresentativeDto.LastName,
+                    Position = registerRepresentativeDto.Position,
+                    Company = company,
+                    User = user
+                };
+
+                await _representativeService.CreateAsync(representative);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
             {
-                Name = registerRepresentativeDto.CompanyName,
-                Address = registerRepresentativeDto.CompanyAddress,
-                PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
-            };
-
-            await _companyService.CreateAsync(company);
-
-            var representative = new Representative()
-            {
-                FirstName = registerRepresentativeDto.FirstName,
-                LastName = registerRepresentativeDto.LastName,
-                Company = company,
-                CompanyId = company.Id,
-                User = user
-            };
-
-            await _representativeService.CreateAsync(representative);
-
-            return Ok(result);
+                return BadRequest(new { Error = "An error occurred while registering the representative." + ex.Message });
+            }
         }
     }
 }
