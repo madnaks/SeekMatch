@@ -184,12 +184,12 @@
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyName"
                                 [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Name' | translate" 
-                                formControlName="companyName">
+                                formControlName="name">
                             <label for="inputCompanyName" class="form-label">
                                 {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
                             </label>
                         </div>
-                        @if (registerRepresentativeForm.get('companyName')?.invalid && registerRepresentativeForm.get('companyName')?.touched) {
+                        @if (registerRepresentativeForm.get('name')?.invalid && registerRepresentativeForm.get('name')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName' | translate }}
                         </div>
@@ -200,12 +200,12 @@
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyPhoneNumber"
                                 [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate" 
-                                formControlName="companyPhoneNumber">
+                                formControlName="phoneNumber">
                             <label for="inputCompanyPhoneNumber" class="form-label">
                                 {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
                             </label>
                         </div>
-                        @if (registerRepresentativeForm.get('companyPhoneNumber')?.invalid && registerRepresentativeForm.get('companyPhoneNumber')?.touched) {
+                        @if (registerRepresentativeForm.get('phoneNumber')?.invalid && registerRepresentativeForm.get('phoneNumber')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber' | translate }}
                         </div>
@@ -216,12 +216,12 @@
                         <div class="form-floating">
                             <input class="form-control" type="text" id="inputCompanyAddress"
                                 [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"  
-                                formControlName="companyAddress">
+                                formControlName="address">
                             <label for="inputCompanyAddress" class="form-label">
                                 {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
                             </label>
                         </div>
-                        @if (registerRepresentativeForm.get('companyAddress')?.invalid && registerRepresentativeForm.get('companyAddress')?.touched) {
+                        @if (registerRepresentativeForm.get('address')?.invalid && registerRepresentativeForm.get('address')?.touched) {
                         <div class="text-danger">
                             {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address' | translate }}
                         </div>

@@ -5,6 +5,9 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { finalize } from 'rxjs';
 import { Recruiter } from '../../../shared/models/recruiter';
 import { RecruiterService } from '../../../shared/services/recruiter.service';
+import { Representative } from '../../../shared/models/representative';
+import { RepresentativeService } from '../../../shared/services/representative.service';
+import { Company } from '../../../shared/models/company';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -36,6 +39,7 @@ export class RegisterRecruiterModalComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private recruiterService: RecruiterService,
+    private representativeService: RepresentativeService,
     private router: Router,
     private toastService: ToastService) {
     this.registerFreelancerForm = this.initRegisterFreelancerForm();
@@ -55,9 +59,9 @@ export class RegisterRecruiterModalComponent {
 
   private initRegisterRepresentativeForm(): FormGroup {
     return this.fb.group({
-      companyName: ['', Validators.required],
-      companyPhoneNumber: ['', Validators.required],
-      companyAddress: ['', Validators.required],
+      name: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       position: ['', Validators.required],
@@ -134,6 +138,27 @@ export class RegisterRecruiterModalComponent {
       let recruiter = new Recruiter(formFreelancerValues);
 
       this.recruiterService.register(recruiter).pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })).subscribe({
+          next: () => {
+            this.router.navigate(['/home']);
+            this.isSuccess = true;
+            this.toastService.showSuccessMessage('Register account succeeded');
+          },
+          error: (error) => {
+            this.toastService.showErrorMessage('Register failed', error);
+            this.isError = true;
+          }
+        });
+    }
+    else if (this.selectedOption === 'company') {
+      const formRepresentativeValues = this.registerRepresentativeForm.value;
+
+      let representative = new Representative(formRepresentativeValues);
+      let company = new Company(formRepresentativeValues);
+
+      this.representativeService.register(representative, company).pipe(
         finalize(() => {
           this.isLoading = false;
         })).subscribe({
