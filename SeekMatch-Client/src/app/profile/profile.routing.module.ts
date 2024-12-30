@@ -12,7 +12,11 @@ const routes: Routes = [
     // ]
     path: 'talent',
     loadChildren: () => import('./talent/talent.module').then(m => m.TalentModule)
-  }
+  },
+  {
+    path: 'recruiter',
+    loadChildren: () => import('./recruiter/recruiter.module').then(m => m.RecruiterModule)
+  },
 ];
 
 @NgModule({

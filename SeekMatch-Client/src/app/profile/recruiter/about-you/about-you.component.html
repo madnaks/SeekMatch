@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-9">
+
+        @if (isLoading) {
+        <div class="loading-spinner">
+            <div class="spinner-border">
+            </div>
+        </div>
+        } @else {
+        <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
+            <!-- Profile title -->
+            <div class="row mt-3">
+                <div class="col-md-12 profile-picture-section">
+                    <p>
+                        <b>
+                            {{ 'Profile.Talent.AboutYou.ProfilePicture' | translate }}
+                        </b>
+                    </p>
+                    
+                    <div>
+                        <img [src]="profilePicture" class="img-thumbnail mb-2">
+
+                        <!-- Custom button to trigger file input -->
+                        <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
+                            {{ 'Profile.Talent.AboutYou.ChoosePicture' | translate }}
+                        </button>
+
+                        <!-- Button to remove current image -->
+                        <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
+                            *ngIf="profilePicture && !defaultProfilePicture">
+                            {{ 'Profile.Talent.AboutYou.Remove' | translate }}
+                        </button>
+
+                        <!-- Hidden file input element -->
+                        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+                    </div>
+
+                </div>
+            </div>
+            <!-- Full name  -->
+            <div class="row mt-3">
+                <!-- First name -->
+                <div class="col-md-6">
+                    <label for="inputFirstName" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.FirstName' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                </div>
+                <!-- Last name -->
+                <div class="col-md-6">
+                    <label for="inputLastName" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.LastName' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+                </div>
+            </div>
+            <!-- Profile title -->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="inputProfileTitle" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.ProfileTitle' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="inputEmail" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Email' | translate }}
+                    </label>
+                    <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                </div>
+            </div>
+            <!-- Date of birth -->
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="inputDateOfBirth" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.DateOfBirth' | translate }}
+                    </label>
+                    <div class="datepicker-input input-group">
+                        <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
+                            placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
+                        <span class="input-group-text">
+                            <i class="fa-regular fa-calendar-days"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <!-- Address -->
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <label for="inputAddress" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Address' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputAddress" formControlName="address">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPhone" class="form-label">
+                        {{ 'Profile.Talent.AboutYou.Phone' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputPhone" formControlName="phone">
+                </div>
+            </div>
+            <!-- Save button -->
+            <div class="row mt-3">
+                <div class="col-md-12 d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
+                        <i class="me-2"
+                            [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
+                        {{ 'Shared.Button.Save' | translate }}
+                    </button>
+                </div>
+            </div>
+        </form>
+        }
+    </div>
+</div>
