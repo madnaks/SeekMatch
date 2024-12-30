@@ -251,6 +251,17 @@
                 }
             }
         },
+        "Recruiter": {
+            "AboutYou": {
+                "FirstName": "First name",
+                "LastName": "Last name",
+                "Email": "Email address",
+                "Password": "Password",
+                "ProfilePicture": "Profile Picture",
+                "ChoosePicture": "Choose Picture",
+                "Remove": "Remove"
+            }
+        },
         "Sections": {
             "AboutYou": "About You",
             "Education": "Education",

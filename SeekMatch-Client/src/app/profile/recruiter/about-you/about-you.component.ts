@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { TalentService } from '../../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../../shared/services/toast.service';
+import { RecruiterService } from '../../../shared/services/recruiter.service';
 
 @Component({
   selector: 'app-about-you',
@@ -23,7 +23,7 @@ export class AboutYouComponent {
 
   constructor(
     private fb: NonNullableFormBuilder, 
-    private talentService: TalentService, 
+    private recruiterService: RecruiterService, 
     private toastService: ToastService) {
     this.aboutYouForm = this.initAboutYouForm();
     this.configureDatePicker();
@@ -48,7 +48,7 @@ export class AboutYouComponent {
         aboutYouData.dateOfBirth = formattedDateOfBirth;
       }
 
-      this.talentService.saveAboutYouData(aboutYouData).pipe(
+      this.recruiterService.saveAboutYouData(aboutYouData).pipe(
         finalize(() => {
           this.isSaving = false;
         })
@@ -89,21 +89,21 @@ export class AboutYouComponent {
   }
 
   private initAboutYouFormValues() {
-    this.talentService.getProfile().subscribe(talent => {
-      const dateOfBirth = talent.dateOfBirth === '0001-01-01' ? null : talent.dateOfBirth;
+    this.recruiterService.getProfile().subscribe(recruiter => {
+      const dateOfBirth = recruiter.dateOfBirth === '0001-01-01' ? null : recruiter.dateOfBirth;
 
       this.aboutYouForm.patchValue({
-        firstName: talent.firstName,
-        lastName: talent.lastName,
-        profileTitle: talent.profileTitle,
+        firstName: recruiter.firstName,
+        lastName: recruiter.lastName,
+        profileTitle: recruiter.profileTitle,
         dateOfBirth: dateOfBirth,
-        address: talent.address,
-        email: talent.email,
-        phone: talent.phone
+        address: recruiter.address,
+        email: recruiter.email,
+        phone: recruiter.phone
       });
 
-      if (talent.profilePicture) {
-        this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
+      if (recruiter.profilePicture) {
+        this.profilePicture = `data:image/jpeg;base64,${recruiter.profilePicture}`;
         this.defaultProfilePicture = false;
       } else {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
@@ -125,7 +125,7 @@ export class AboutYouComponent {
 
       reader.readAsDataURL(file);
 
-      this.talentService.uploadProfilePicture(file).subscribe({
+      this.recruiterService.uploadProfilePicture(file).subscribe({
         next: () => {
           this.defaultProfilePicture  = false;
           this.toastService.showSuccessMessage('Profile picture saved successfully!');
@@ -137,7 +137,7 @@ export class AboutYouComponent {
   }
 
   removeImage(): void {
-    this.talentService.deleteProfilePicture().subscribe({
+    this.recruiterService.deleteProfilePicture().subscribe({
       next: () => {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
         this.defaultProfilePicture  = true;
