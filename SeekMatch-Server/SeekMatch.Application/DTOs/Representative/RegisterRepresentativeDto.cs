@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SeekMatch.Application.DTOs.Recruiter
+namespace SeekMatch.Application.DTOs.Representative
 {
     public class RegisterRepresentativeDto
     {

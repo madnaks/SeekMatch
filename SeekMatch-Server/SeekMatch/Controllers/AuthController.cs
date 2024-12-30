@@ -31,53 +31,6 @@ namespace SeekMatch.Controllers
             _configuration = configuration;
         }
 
-        //[HttpPost("register")]
-        //public async Task<IActionResult> Register([FromBody] RegisterTalentDto registerDto, [FromQuery] UserRole userRole)
-        //{
-        //    if (!ModelState.IsValid)
-        //        return BadRequest(ModelState);
-
-        //    var user = new User
-        //    {
-        //        UserName = registerDto.Email,
-        //        Email = registerDto.Email,
-        //    };
-
-        //    var result = await _userManager.CreateAsync(user, registerDto.Password);
-
-        //    if (!result.Succeeded)
-        //        return BadRequest(result.Errors);
-
-        //    //await _userManager.AddToRoleAsync(user, model.Role.ToString());
-
-        //    if (userRole == UserRole.Talent)
-        //    {
-        //        var talent = new Talent()
-        //        {
-        //            FirstName = registerDto.FirstName,
-        //            LastName = registerDto.LastName,
-        //            User = user
-        //        };
-
-        //        await _talentService.CreateAsync(talent);
-        //    }
-        //    else if (userRole == UserRole.Recruiter)
-        //    {
-        //        var recruiter = new Recruiter()
-        //        {
-        //            FirstName = registerDto.FirstName,
-        //            LastName = registerDto.LastName,
-        //            // if its a creation of account it has to be a Freelance Recruiter
-        //            IsFreelancer = true,
-        //            User = user
-        //        };
-
-        //        await _recruiterService.CreateAsync(recruiter);
-        //    }
-
-        //    return Ok(result);
-        //}
-
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {

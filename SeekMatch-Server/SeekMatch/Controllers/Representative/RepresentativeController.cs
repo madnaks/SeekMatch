@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SeekMatch.Application.DTOs.Recruiter;
+using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 
@@ -58,6 +58,7 @@ namespace SeekMatch.Controllers
                     LastName = registerRepresentativeDto.LastName,
                     Position = registerRepresentativeDto.Position,
                     Company = company,
+                    CompanyId = company.Id,
                     User = user
                 };
 
