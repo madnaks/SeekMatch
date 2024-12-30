@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TalentProfileComponent } from './talent-profile/talent-profile.component';
+import { TalentProfileComponent } from './talent/talent-profile/talent-profile.component';
 import { ProfileRoutingModule } from './profile.routing.module';
 import { AboutYouComponent } from './talent/about-you/about-you.component';
 import { EducationComponent } from './talent/education/education.component';

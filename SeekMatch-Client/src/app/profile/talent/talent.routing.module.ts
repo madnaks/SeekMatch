@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TalentProfileComponent } from '../talent-profile/talent-profile.component';
+import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { AboutYouComponent } from './about-you/about-you.component';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
