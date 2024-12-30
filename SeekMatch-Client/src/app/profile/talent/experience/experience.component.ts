@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ExperienceService } from '../../shared/services/experience.service';
-import { Experience } from '../../shared/models/experience';
+import { ExperienceService } from '../../../shared/services/experience.service';
+import { Experience } from '../../../shared/models/experience';
 import { TranslateService } from '@ngx-translate/core';
-import { months } from '../../shared/constants/constants';
+import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
-import { ToastService } from '../../shared/services/toast.service';
-import { ModalActionType } from '../../shared/enums/enums';
+import { ToastService } from '../../../shared/services/toast.service';
+import { ModalActionType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-experience',

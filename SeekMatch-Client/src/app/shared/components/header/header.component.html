@@ -8,11 +8,13 @@
   <!-- Navbar menu items for larger screens -->
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ms-auto">
+      <!-- JobOffers -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">
           {{ 'Navbar.Menu.JobOffers' | translate }}
         </a>
       </li>
+      <!-- Companies -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">
           {{ 'Navbar.Menu.Companies' | translate }}
@@ -36,17 +38,20 @@
       </li>
       }
       @if (!isAuthenticated) {
+      <!-- Signup -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
           {{ 'Navbar.Menu.SignUp' | translate }}
         </a>
       </li>
+      <!-- Login -->
       <li class="nav-item">
         <a class="nav-link" (click)="open(loginContent)">
           {{ 'Navbar.Menu.LogIn' | translate }}
         </a>
       </li>
       } @else {
+      <!-- Profile dropdown -->
       <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
         display="dynamic">
         <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>

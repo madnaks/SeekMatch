@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { EducationService } from '../../shared/services/education.service';
-import { Education } from '../../shared/models/education';
+import { EducationService } from '../../../shared/services/education.service';
+import { Education } from '../../../shared/models/education';
 import { TranslateService } from '@ngx-translate/core';
-import { months } from '../../shared/constants/constants';
+import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
-import { ToastService } from '../../shared/services/toast.service';
-import { ModalActionType } from '../../shared/enums/enums';
+import { ToastService } from '../../../shared/services/toast.service';
+import { ModalActionType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-education',

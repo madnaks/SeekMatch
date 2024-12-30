@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { TalentService } from '../../shared/services/talent.service';
+import { TalentService } from '../../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
-import { ToastService } from '../../shared/services/toast.service';
+import { ToastService } from '../../../shared/services/toast.service';
 
 @Component({
   selector: 'app-about-you',
