@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from '../../services/auth.service';
 import { TalentService } from '../../services/talent.service';
 import { ToastService } from '../../services/toast.service';
+import { UserRole } from '../../enums/enums';
 
 @Component({
   selector: 'app-header',
@@ -70,6 +71,19 @@ export class HeaderComponent implements OnInit {
 
   public open(content: any) {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
+  }
+
+  public getProfileLink(): string | null{
+    var userRole = this.authService.getUserRole();
+    if (userRole == UserRole.Talent) {
+      return "/profile/talent";
+    } else if (userRole == UserRole.Recruiter) {
+      return "/profile/recruiter";
+    } else if (userRole == UserRole.Representative) {
+      return "/profile/representative";
+    }
+
+    return null;
   }
 
   public logout(): void {

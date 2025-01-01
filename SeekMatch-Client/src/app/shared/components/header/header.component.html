@@ -56,7 +56,7 @@
         display="dynamic">
         <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem routerLink="/profile/talent">
+          <button ngbDropdownItem [routerLink]="getProfileLink()">
             <i class="fa-solid fa-user me-2"></i>
             {{ 'Navbar.Account.Profile' | translate }}
           </button>

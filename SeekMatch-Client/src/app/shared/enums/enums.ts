@@ -1,6 +1,7 @@
 export enum UserRole {
     Talent = 1,
-    Recruiter = 2
+    Recruiter = 2,
+    Representative = 3
 }
 
 export enum ExperienceType {

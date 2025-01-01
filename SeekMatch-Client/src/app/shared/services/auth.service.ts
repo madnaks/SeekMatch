@@ -36,6 +36,23 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getUserRole(): UserRole | null {
+    debugger
+    const role = localStorage.getItem('role');
+    
+    if (!role) {
+      return null;
+    }
+  
+    const roleNumber = parseInt(role, 3);
+    if (roleNumber in UserRole) {
+      return roleNumber as UserRole;
+    }
+  
+    return null; 
+  }
+  
+
   isAuthenticated(): boolean {
     const token = this.getToken();
     return token ? !this.jwtHelper.isTokenExpired(token) : false;
