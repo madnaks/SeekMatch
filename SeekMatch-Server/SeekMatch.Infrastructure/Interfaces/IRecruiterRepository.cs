@@ -6,6 +6,6 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task CreateAsync(Recruiter recruiter);
         Task<Recruiter?> GetAsync(string userId);
-        Task<bool> SaveChangesAsync(Recruiter talent);
+        Task<bool> SaveChangesAsync(Recruiter recruiter);
     }
 }
