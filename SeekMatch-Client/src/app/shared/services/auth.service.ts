@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { delay, Observable, of, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserRole } from '../enums/enums';
 import { Talent } from '../models/talent';
 import { Recruiter } from '../models/recruiter';
@@ -22,6 +22,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('role', response.role);
       })
     );
   }
@@ -42,6 +43,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('role');
   }
 
 }
