@@ -37,13 +37,14 @@ export class AuthService {
   }
 
   getUserRole(): UserRole | null {
+    debugger
     const role = localStorage.getItem('role');
     
     if (!role) {
       return null;
     }
   
-    const roleNumber = parseInt(role, 3);
+    const roleNumber = parseInt(role, 4);
     if (roleNumber in UserRole) {
       return roleNumber as UserRole;
     }
