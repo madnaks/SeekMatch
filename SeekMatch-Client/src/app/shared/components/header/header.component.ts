@@ -6,6 +6,7 @@ import { AuthService } from '../../services/auth.service';
 import { TalentService } from '../../services/talent.service';
 import { ToastService } from '../../services/toast.service';
 import { UserRole } from '../../enums/enums';
+import { RecruiterService } from '../../services/recruiter.service';
 
 @Component({
   selector: 'app-header',
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
   isAuthenticated: boolean = false;
+  userRole: UserRole | null = null;
   profilePicture: string | null = null;
 
   constructor(
@@ -26,6 +28,7 @@ export class HeaderComponent implements OnInit {
     private modalService: NgbModal,
     private authService: AuthService,
     private talentService: TalentService,
+    private recruiteService: RecruiterService,
     private toastService: ToastService) {
   }
 
@@ -37,20 +40,39 @@ export class HeaderComponent implements OnInit {
 
         this.showHeader = !authRoutes.some(route => event.url.includes(route));
         this.isAuthenticated = this.authService.isAuthenticated();
+        this.userRole = this.authService.getUserRole();
 
         if (this.isAuthenticated) {
-          this.talentService.getProfile().subscribe(talent => {
-
-            if (talent.profilePicture) {
-              this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
-            } else {
-              this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
-            }
-
-          });
+          this.getProfilePicture();
         }
       }
     });
+  }
+
+  private getProfilePicture() {
+    switch (this.userRole) {
+      case UserRole.Talent:
+        this.talentService.getProfile().subscribe(talent => {
+          if (talent.profilePicture) {
+            this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
+          } else {
+            this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+          }
+        });
+        break;
+      case UserRole.Recruiter:
+        this.recruiteService.getProfile().subscribe(recruiter => {
+          if (recruiter.profilePicture) {
+            this.profilePicture = `data:image/jpeg;base64,${recruiter.profilePicture}`;
+          } else {
+            this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+          }
+        });
+        break;
+      default:
+        this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+        break;
+    }
   }
 
   public openOffcanvas(content: TemplateRef<any>): void {
@@ -73,17 +95,17 @@ export class HeaderComponent implements OnInit {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
   }
 
-  public getProfileLink(): string | null{
-    var userRole = this.authService.getUserRole();
-    if (userRole == UserRole.Talent) {
-      return "/profile/talent";
-    } else if (userRole == UserRole.Recruiter) {
-      return "/profile/recruiter";
-    } else if (userRole == UserRole.Representative) {
-      return "/profile/representative";
+  public getProfileLink(): string | null {
+    switch (this.userRole) {
+      case UserRole.Talent:
+        return "/profile/talent";
+      case UserRole.Recruiter:
+        return "/profile/recruiter";
+      case UserRole.Representative:
+        return "/profile/representative";
+      default:
+        return null
     }
-
-    return null;
   }
 
   public logout(): void {

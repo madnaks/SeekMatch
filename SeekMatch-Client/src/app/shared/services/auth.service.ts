@@ -37,7 +37,6 @@ export class AuthService {
   }
 
   getUserRole(): UserRole | null {
-    debugger
     const role = localStorage.getItem('role');
     
     if (!role) {
