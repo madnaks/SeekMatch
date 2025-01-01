@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 
 namespace SeekMatch.Controllers
 {
@@ -36,6 +37,7 @@ namespace SeekMatch.Controllers
                 {
                     UserName = registerRepresentativeDto.Email,
                     Email = registerRepresentativeDto.Email,
+                    Role = UserRole.Representative
                 };
 
                 var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);

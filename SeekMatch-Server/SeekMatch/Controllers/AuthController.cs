@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using SeekMatch.Application.DTOs;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
-using SeekMatch.Core.Enums;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -44,9 +43,12 @@ namespace SeekMatch.Controllers
             if (!passwordValid)
                 return Unauthorized(new { message = "Invalid login credentials." });
 
-            var token = GenerateJwtToken(user);
+            var jwtToken = GenerateJwtToken(user);
 
-            return Ok(new { token });
+            return Ok(new { 
+                token = jwtToken,
+                role = user.Role
+            });
         }
 
         private string GenerateJwtToken(User user)

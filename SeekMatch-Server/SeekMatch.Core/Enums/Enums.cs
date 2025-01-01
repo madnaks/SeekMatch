@@ -3,7 +3,8 @@
     public enum UserRole
     {
         Talent = 1,
-        Recruiter = 2
+        Recruiter = 2,
+        Representative = 3
     }
 
     public enum ExperienceType

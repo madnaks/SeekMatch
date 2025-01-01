@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -31,6 +32,7 @@ namespace SeekMatch.Controllers
             {
                 UserName = registerRecruiterDto.Email,
                 Email = registerRecruiterDto.Email,
+                Role = UserRole.Recruiter
             };
 
             var result = await _userManager.CreateAsync(user, registerRecruiterDto.Password);
