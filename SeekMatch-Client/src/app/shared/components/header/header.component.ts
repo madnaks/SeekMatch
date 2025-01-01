@@ -7,6 +7,7 @@ import { TalentService } from '../../services/talent.service';
 import { ToastService } from '../../services/toast.service';
 import { UserRole } from '../../enums/enums';
 import { RecruiterService } from '../../services/recruiter.service';
+import { RepresentativeService } from '../../services/representative.service';
 
 @Component({
   selector: 'app-header',
@@ -28,7 +29,8 @@ export class HeaderComponent implements OnInit {
     private modalService: NgbModal,
     private authService: AuthService,
     private talentService: TalentService,
-    private recruiteService: RecruiterService,
+    private recruiterService: RecruiterService,
+    private representativeService: RepresentativeService,
     private toastService: ToastService) {
   }
 
@@ -61,9 +63,18 @@ export class HeaderComponent implements OnInit {
         });
         break;
       case UserRole.Recruiter:
-        this.recruiteService.getProfile().subscribe(recruiter => {
+        this.recruiterService.getProfile().subscribe(recruiter => {
           if (recruiter.profilePicture) {
             this.profilePicture = `data:image/jpeg;base64,${recruiter.profilePicture}`;
+          } else {
+            this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+          }
+        });
+        break;
+      case UserRole.Representative:
+        this.representativeService.getProfile().subscribe(representative => {
+          if (representative.profilePicture) {
+            this.profilePicture = `data:image/jpeg;base64,${representative.profilePicture}`;
           } else {
             this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
           }

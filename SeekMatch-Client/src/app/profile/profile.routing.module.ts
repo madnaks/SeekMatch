@@ -3,19 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    // path: 'talent', component: TalentProfileComponent,
-    // children: [
-    //   { path: 'about-you', component: AboutYouComponent },
-    //   { path: 'education', component: EducationComponent },
-    //   { path: 'experience', component: ExperienceComponent },
-    //   { path: '', redirectTo: 'about-you', pathMatch: 'full' }
-    // ]
     path: 'talent',
     loadChildren: () => import('./talent/talent.module').then(m => m.TalentModule)
   },
   {
     path: 'recruiter',
     loadChildren: () => import('./recruiter/recruiter.module').then(m => m.RecruiterModule)
+  },
+  {
+    path: 'representative',
+    loadChildren: () => import('./representative/representative.module').then(m => m.RepresentativeModule)
   },
 ];
 
