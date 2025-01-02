@@ -8,6 +8,7 @@ namespace SeekMatch.Infrastructure
     {
         public DbSet<Talent> Talents { get; set; }
         public DbSet<Recruiter> Recruiters { get; set; }
+        public DbSet<JobOffer> JobOffers { get; set; }
         public DbSet<Representative> Representatives { get; set; }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Education> Educations { get; set; }
@@ -56,6 +57,11 @@ namespace SeekMatch.Infrastructure
                 .HasForeignKey(r => r.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<JobOffer>()
+                .HasOne(j => j.Recruiter)
+                .WithMany(r => r.JobOffers)
+                .HasForeignKey(j => j.RecruiterId)
+                .IsRequired();
         }
     }
 }
