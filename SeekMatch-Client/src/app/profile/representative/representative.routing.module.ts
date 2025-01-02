@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutYouComponent } from './about-you/about-you.component';
-import { RepresentativeProfileComponent } from './recruiter-profile/representative-profile.component';
+import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 
 const routes: Routes = [
   {

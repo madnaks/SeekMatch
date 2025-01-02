@@ -4,7 +4,7 @@ import { AboutYouComponent } from './about-you/about-you.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RepresentativeProfileComponent } from './recruiter-profile/representative-profile.component';
+import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RepresentativeRoutingModule } from './representative.routing.module';
 
 @NgModule({
