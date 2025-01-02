@@ -262,8 +262,20 @@
                 "Remove": "Supprimer"
             }
         },
+        "Representative": {
+            "AboutYou": {
+                "FirstName": "Prénom",
+                "LastName": "Nom de famille",
+                "Email": "Adresse e-mail",
+                "Password": "Mot de passe",
+                "ProfilePicture": "Photo de profil",
+                "ChoosePicture": "Choisir une photo",
+                "Remove": "Supprimer"
+            }
+        },
         "Sections": {
             "AboutYou": "À propos de vous",
+            "JobOffers": "Offers d'emplois",
             "Education": "Éducation",
             "Experience": "Expérience",
             "Secruity": "Sécurité"
