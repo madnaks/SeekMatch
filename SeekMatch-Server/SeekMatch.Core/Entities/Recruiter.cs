@@ -9,5 +9,6 @@
         public required User User { get; set; }
         public Company? Company { get; set; }
         public string? CompanyId { get; set; }
+        public ICollection<JobOffer> JobOffers { get; set; } = new List<JobOffer>();
     }
 }
