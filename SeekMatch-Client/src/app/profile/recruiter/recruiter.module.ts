@@ -6,11 +6,15 @@ import { AboutYouComponent } from './about-you/about-you.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JobOfferComponent } from './job-offer/job-offer.component';
+import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
 
 @NgModule({
   declarations: [
     RecruiterProfileComponent,
-    AboutYouComponent
+    AboutYouComponent,
+    JobOfferComponent,
+    JobOfferModalComponent
   ],
   imports: [
     CommonModule,

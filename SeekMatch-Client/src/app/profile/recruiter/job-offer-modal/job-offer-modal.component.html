@@ -1,0 +1,126 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        @if (updateMode) {
+        {{ 'Profile.Talent.Experience.Modal.UpdateTitle' | translate }}
+        } @else {
+        {{ 'Profile.Talent.Experience.Modal.CreationTitle' | translate }}
+        }
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+    <form [formGroup]="jobOfferForm" (ngSubmit)="onSubmit()">
+        <!-- CompanyName -->
+        <div class="mb-4">
+            <label for="inputCompanyName" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
+            </label>
+            <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+            @if ((jobOfferForm.get('companyName')?.invalid && jobOfferForm.get('companyName')?.touched)) {
+            <div class="text-danger">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.CompanyName' | translate }}
+            </div>
+            }
+        </div>
+        <!-- JobTitle -->
+        <div class="mb-4">
+            <label for="inputJobTitle" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.JobTitle' | translate }}
+            </label>
+            <input type="text" class="form-control" id="inputJobTitle" formControlName="jobTitle"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.JobTitlePlaceHolder' | translate">
+        </div>
+        <!-- StartMonth & StartYear -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="selectStartMonth" class="form-label">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.StartMonth' | translate }}
+                </label>
+                <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
+                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectStartYear" class="form-label">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.StartYear' | translate }}
+                </label>
+                <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
+                    <option value="0">
+                        {{ 'Date.SelectYear' | translate }}
+                    </option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                @if ((jobOfferForm.get('startMonth')?.hasError('requiredSelection') &&
+                jobOfferForm.get('startMonth')?.touched) ||
+                (jobOfferForm.get('startYear')?.hasError('requiredSelection') &&
+                jobOfferForm.get('startYear')?.touched)) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.StartDate' | translate }}
+                </div>
+                }
+            </div>
+        </div>
+        <!-- EndMonth & EndYear -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <label for="selectEndMonth" class="form-label">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.EndMonth' | translate }}
+                </label>
+                <select class="form-select form-select-sm" id="selectEndMonth" formControlName="endMonth">
+                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="selectEndYear" class="form-label">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.EndYear' | translate }}
+                </label>
+                <select class="form-select form-select-sm" id="selectEndYear" formControlName="endYear">
+                    <option value="0">
+                        {{ 'Date.SelectYear' | translate }}
+                    </option>
+                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+            </div>
+            <div class="col-md-12">
+                @if (jobOfferForm.errors?.['invalidDateRange']) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                </div>
+                }
+                @if (jobOfferForm.errors?.['invalidEndDateTwoFields']) {
+                <div class="text-danger">
+                    {{ 'Profile.Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
+                </div>
+                }
+            </div>
+        </div>
+        <!-- CurrentlyWorking -->
+        <div class="mb-4">
+            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyWorking"
+                formControlName="currentlyWorking">
+            <label class="form-check-label" for="inputCurrentlyWorking">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.CurrentlyWorking' | translate }}
+            </label>
+        </div>
+        <!-- Description -->
+        <div class="mb-4">
+            <label for="inputDescription" class="form-label">
+                {{ 'Profile.Talent.Experience.Modal.Body.Form.Description' | translate }}
+            </label>
+            <textarea class="form-control" id="inputDescription" formControlName="description"
+                [placeholder]="'Profile.Talent.Experience.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
+        </div>
+        <!-- Save -->
+        <div class="mb-4 d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary w-50">
+                <i class="me-2"
+                    [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
+                {{ 'Shared.Button.Save' | translate }}
+            </button>
+        </div>
+    </form>
+</div>
