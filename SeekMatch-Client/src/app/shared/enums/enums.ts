@@ -4,7 +4,7 @@ export enum UserRole {
     Representative = 3
 }
 
-export enum ExperienceType {
+export enum JobType {
     FullTime = 1,
     PartTime = 2,
     Internship = 3,

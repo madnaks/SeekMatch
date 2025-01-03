@@ -30,7 +30,7 @@ export class ExperienceModalComponent implements OnInit {
     private fb: NonNullableFormBuilder,
     private experienceService: ExperienceService,
     private toastService: ToastService) {
-    this.experienceForm = this.initexperienceForm();
+    this.experienceForm = this.initExperienceForm();
   }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ExperienceModalComponent implements OnInit {
     }
   }
 
-  private initexperienceForm(): FormGroup {
+  private initExperienceForm(): FormGroup {
     return this.fb.group({
       companyName: ['', Validators.required],
       jobTitle: [''],

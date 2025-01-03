@@ -24,8 +24,8 @@ export class ExperienceService {
     return this.http.put(`${this.apiUrl}`, experience);
   }
 
-  delete(educationId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${educationId}`);
+  delete(experienceId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${experienceId}`);
   }
 
 }

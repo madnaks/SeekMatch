@@ -7,12 +7,12 @@
         Representative = 3
     }
 
-    public enum ExperienceType
+    public enum JobType
     {
         FullTime = 1,
         PartTime = 2,
         Internship = 3,
-        Contract = 4,
+        Temporary = 4,
         Freelance = 5
     }
 }

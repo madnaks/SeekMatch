@@ -12,7 +12,7 @@ namespace SeekMatch.Core.Entities
         public int? EndMonth { get; set; }
         public bool CurrentlyWorking { get; set; }
         public string? Description { get; set; }
-        public ExperienceType Type { get; set; }
+        public JobType Type { get; set; }
         public required Talent Talent { get; set; }
         public required string TalentId { get; set; }
     }

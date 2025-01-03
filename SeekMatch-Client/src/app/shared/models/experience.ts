@@ -1,4 +1,4 @@
-import { ExperienceType } from "../enums/enums";
+import { JobType } from "../enums/enums";
 
 export class Experience {
 
@@ -11,7 +11,7 @@ export class Experience {
   public endMonth : number = 0;
   public currentlyWorking : boolean = false;
   public description: string = '';
-  public type: ExperienceType = ExperienceType.FullTime;
+  public type: JobType = JobType.FullTime;
 
   constructor(init?:Partial<Experience>) {
     Object.assign(this, init);

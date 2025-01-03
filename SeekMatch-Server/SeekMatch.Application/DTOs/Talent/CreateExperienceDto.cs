@@ -12,6 +12,6 @@ namespace SeekMatch.Application.DTOs.Talent
         public int? EndMonth { get; set; }
         public bool CurrentlyWorking { get; set; }
         public string? Description { get; set; }
-        public ExperienceType Type { get; set; }
+        public JobType Type { get; set; }
     }
 }
