@@ -7,9 +7,9 @@ export class JobOffer {
   public description: string = '';
   public companyName: string = '';
   public location: string = '';
-  public salary: number = 0;
-  public postedAt : Date = new Date();
-  public expiresAt : Date = new Date();
+  public salary: string = '';
+  public postedAt : Date | null = null;
+  public expiresAt : Date | null = null;
   public type: JobType = JobType.FullTime;
   public isActive: Boolean = false;
   
