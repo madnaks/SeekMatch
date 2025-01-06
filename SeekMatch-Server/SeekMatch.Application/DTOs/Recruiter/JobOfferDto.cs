@@ -12,7 +12,7 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public string? Salary { get; set; }
         public JobType Type { get; set; }
         public DateOnly? PostedAt { get; set; }
-        public DateTime? ExpiresAt { get; set; }
+        public DateOnly? ExpiresAt { get; set; }
         public bool IsActive { get; set; }
     }
 }
