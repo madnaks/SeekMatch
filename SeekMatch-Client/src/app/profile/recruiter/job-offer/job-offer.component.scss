@@ -36,3 +36,9 @@
         color: $secondary-color;
     }
 }
+
+.action-button {
+    &:hover {
+        cursor: pointer;
+    }
+}

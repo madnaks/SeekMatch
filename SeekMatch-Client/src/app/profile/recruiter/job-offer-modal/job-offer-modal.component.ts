@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { months } from '../../../shared/constants/constants';
+import { jobTypes } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ModalActionType } from '../../../shared/enums/enums';
+import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-job-offer-modal',
@@ -23,23 +24,31 @@ export class JobOfferModalComponent implements OnInit {
   isSaving: boolean = false;
   updateMode: boolean = false;
   jobOfferForm: FormGroup;
-  years: number[] = [];
-  monthsList = months;
+  jobTypesList = jobTypes;
+  bsConfig?: Partial<BsDatepickerConfig>;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private jobOfferService: JobOfferService,
     private toastService: ToastService) {
     this.jobOfferForm = this.initJobOfferFormForm();
+    this.configureDatePicker();
   }
 
   ngOnInit() {
-    this.generateYears();
-    this.oncurrentlyWorkingChange();
     if (this.selectedJobOffer != undefined) {
       this.updateMode = true;
       this.populateForm(this.selectedJobOffer);
     }
+  }
+
+  private configureDatePicker(): void {
+    this.bsConfig = Object.assign({}, {
+      containerClass: 'theme-blue',
+      dateInputFormat: 'YYYY-MM-DD',
+      isAnimated: true,
+      showWeekNumbers: false,
+    });
   }
 
   private initJobOfferFormForm(): FormGroup {
@@ -48,12 +57,11 @@ export class JobOfferModalComponent implements OnInit {
       description: [''],
       companyName: [''],
       location: [''],
-      salary: [0],
-      postedAt: [ new Date()],
-      expiresAt: [ new Date() ],
+      salary: [''],
+      postedAt: [new Date()],
+      expiresAt: [new Date()],
+      type: [JobType.FullTime],
       isActive: [false],
-    }, {
-      validators: [this.dateRangeValidator, this.endDateTwoFieldsValidator]
     });
   }
 
@@ -84,20 +92,6 @@ export class JobOfferModalComponent implements OnInit {
       this.jobOfferForm.markAllAsTouched();
     }
   }
-
-  private oncurrentlyWorkingChange(): void {
-    this.jobOfferForm.get('currentlyWorking')?.valueChanges.subscribe(currentlyWorking => {
-      if (currentlyWorking) {
-        this.jobOfferForm.get('endMonth')?.disable();
-        this.jobOfferForm.get('endMonth')?.setValue(0);
-        this.jobOfferForm.get('endYear')?.disable();
-        this.jobOfferForm.get('endYear')?.setValue(0);
-      } else {
-        this.jobOfferForm.get('endMonth')?.enable();
-        this.jobOfferForm.get('endYear')?.enable();
-      }
-    });
-  }
   //#endregion
 
 
@@ -126,6 +120,8 @@ export class JobOfferModalComponent implements OnInit {
     let jobOffer = new JobOffer(formValues);
     jobOffer.id = this.selectedJobOffer?.id;
 
+    debugger
+
     this.jobOfferService.update(jobOffer).pipe(
       finalize(() => {
         this.isSaving = false;
@@ -140,62 +136,9 @@ export class JobOfferModalComponent implements OnInit {
       });
   }
 
-  private generateYears(): void {
-    const currentYear = new Date().getFullYear();
-    const startYear = currentYear - 50;
-    for (let year = currentYear; year >= startYear; year--) {
-      this.years.push(year);
-    }
-  }
-
   public dismiss(reason: string = '') {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }
   }
-
-  //#region : Form validation
-  private dateRangeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
-    const formGroup = control as FormGroup;
-
-    const currentlyWorking = formGroup.get('currentlyWorking')?.value;
-
-    if (currentlyWorking) return null;
-
-    const startYear = Number(formGroup.get('startYear')?.value);
-    const startMonth = Number(formGroup.get('startMonth')?.value);
-    const endYear = Number(formGroup.get('endYear')?.value);
-    const endMonth = Number(formGroup.get('endMonth')?.value);
-
-    if (endYear == 0 || endMonth == 0) return null;
-
-    const startDate = startYear + startMonth / 12;
-    const endDate = endYear + endMonth / 12;
-
-    if (startDate > endDate) {
-      return { invalidDateRange: true };
-    }
-
-    return null;
-  }
-
-  /**
-   * endMonth & endYear are not required, but if one is filled the other most be required
-   * @param control 
-   * @returns 
-   */
-  private endDateTwoFieldsValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
-
-    const formGroup = control as FormGroup;
-
-    const endYear = formGroup.get('endYear')?.value;
-    const endMonth = formGroup.get('endMonth')?.value;
-
-    return (endYear != 0 && endMonth == 0) || (endYear == 0 && endMonth != 0)
-      ? { invalidEndDateTwoFields: true }
-      : null;
-  }
-  //#endregion
-
 }

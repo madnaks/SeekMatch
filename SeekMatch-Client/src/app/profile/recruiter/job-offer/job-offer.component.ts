@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ModalActionType } from '../../../shared/enums/enums';
+import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
 
@@ -25,8 +24,7 @@ export class JobOfferComponent implements OnInit {
   
   constructor(
     private modalService: NgbModal, 
-    private jobOfferService: JobOfferService, 
-    private translate: TranslateService,
+    private jobOfferService: JobOfferService,
     private toastService: ToastService) {
   }
 
@@ -47,6 +45,15 @@ export class JobOfferComponent implements OnInit {
     this.selectedJobOffer = experience;
   }
 
+  public modalActionComplete(action: ModalActionType): void {
+    if (action == ModalActionType.Create) {
+      this.toastService.showSuccessMessage('Job offer created successfully');
+    } else if (action == ModalActionType.Update) {
+      this.toastService.showSuccessMessage('Job offer updated successfully');
+    }
+    this.getJobOffers();
+  }
+
   private closeModal(): void {
     if (this.deleteModal) {
       this.deleteModal.close();
@@ -60,15 +67,6 @@ export class JobOfferComponent implements OnInit {
       this.jobOffers = jobOffers;
       this.isLoading = false;
     });
-  }
-  
-  public modalActionComplete(action: ModalActionType): void {
-    if (action == ModalActionType.Create) {
-      this.toastService.showSuccessMessage('Job offer created successfully');
-    } else if (action == ModalActionType.Update) {
-      this.toastService.showSuccessMessage('Job offer updated successfully');
-    }
-    this.getJobOffers();
   }
 
   public deleteJobOffer(): void {
@@ -92,9 +90,9 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public getMonthName(monthId: number): string {
-    const month = this.monthOptions.find(m => m.id === monthId);
-    return month ? this.translate.instant(month.value) : '';
+  public getJobTypeName(type: JobType): string {
+    return JobType[type];
   }
+
 
 }

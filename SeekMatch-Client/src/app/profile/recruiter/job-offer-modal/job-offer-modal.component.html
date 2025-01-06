@@ -45,6 +45,17 @@
             </div>
             }
         </div>
+        <!-- Job Type -->
+        <div class="mb-4">
+            <label for="inputJobType" class="form-label">
+                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.JobType' | translate }}
+            </label>
+            <select id="jobTypeSelect" class="form-select" formControlName="type">
+                <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
+                    {{ jobType.value | translate }}
+                </option>
+            </select>
+        </div>
         <!-- Location -->
         <div class="mb-4">
             <label for="inputLocation" class="form-label">
@@ -62,11 +73,38 @@
                 [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.SalaryPlaceholder' | translate">
         </div>
         <!-- PostedAt -->
+        <div class="mb-4">
+            <label for="inputPostedAt" class="form-label">
+                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.PostedAt' | translate }}
+            </label>
+            <div class="input-group">
+                <div class="datepicker-input input-group">
+                    <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputPostedAt"
+                        placeholder="yyyy-mm-dd" formControlName="postedAt" placement="top"/>
+                    <span class="input-group-text">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
         <!-- ExpiresAt -->
+        <div class="mb-4">
+            <label for="inputExpiresAt" class="form-label">
+                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.ExpiresAt' | translate }}
+            </label>
+            <div class="input-group">
+                <div class="datepicker-input input-group">
+                    <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputExpiresAt"
+                        placeholder="yyyy-mm-dd" formControlName="expiresAt" placement="top"/>
+                    <span class="input-group-text">
+                        <i class="fa-regular fa-calendar-days"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
         <!-- IsActive -->
         <div class="mb-4">
-            <input class="form-check-input me-2" type="checkbox" id="inputIsActive"
-                formControlName="isActive">
+            <input class="form-check-input me-2" type="checkbox" id="inputIsActive" formControlName="isActive">
             <label class="form-check-label" for="inputIsActive">
                 {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.IsActive' | translate }}
             </label>

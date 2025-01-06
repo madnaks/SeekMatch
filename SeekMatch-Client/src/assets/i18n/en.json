@@ -277,6 +277,7 @@
                             "DescriptionPlaceholder": "e.g., Responsible for developing, testing, and deploying scalable applications",
                             "CompanyName": "Company Name",
                             "CompanyNamePlaceholder": "e.g., Microsoft, Google, Acme Corp.",
+                            "JobType": "Job type",
                             "Location": "Location",
                             "LocationPlaceholder": "e.g., New York, San Francisco, Remote",
                             "Salary": "Salary",
@@ -337,6 +338,13 @@
         "Button": {
             "Save": "Save",
             "Delete": "Delete"
+        },
+        "JobType": {
+            "FullTime": "Full Time",
+            "PartTime": "Part Time",
+            "Internship": "Internship",
+            "Contract": "Contract",
+            "Freelance": "Freelance"
         }
     }
 }

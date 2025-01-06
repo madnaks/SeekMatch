@@ -337,6 +337,13 @@
         "Button": {
             "Save": "Enregistrer",
             "Delete": "Supprimer"
+        },
+        "JobType": {
+            "FullTime": "Temps plein",
+            "PartTime": "Temps partiel",
+            "Internship": "Stage",
+            "Contract": "Contrat",
+            "Freelance": "Freelance"
         }
     }
 }
