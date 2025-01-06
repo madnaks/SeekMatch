@@ -6,7 +6,7 @@ export class Talent extends User {
   public lastName: string = '';
   public password: string= '';
   public profileTitle : string= '';
-  public dateOfBirth : Date | null = null;
+  public dateOfBirth : string | null = null;
   public address : string= '';
   public phone : string= '';
   public city : string= '';

@@ -7,6 +7,7 @@ import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { formatDateToISO } from '../../../shared/utils';
 
 @Component({
   selector: 'app-job-offer-modal',
@@ -58,8 +59,8 @@ export class JobOfferModalComponent implements OnInit {
       companyName: [''],
       location: [''],
       salary: [''],
-      postedAt: [new Date()],
-      expiresAt: [new Date()],
+      postedAt: [null],
+      expiresAt: [null],
       type: [JobType.FullTime],
       isActive: [false],
     });
@@ -82,12 +83,18 @@ export class JobOfferModalComponent implements OnInit {
   //#region : Form controls events 
   public onSubmit(): void {
     if (this.jobOfferForm.valid) {
+      
       this.isSaving = true;
+
+      const formValues = this.jobOfferForm.value;
+      let jobOffer = new JobOffer(formValues);
+
       if (this.updateMode) {
-        this.update();
+        this.update(jobOffer);
       } else {
-        this.create();
+        this.create(jobOffer);
       }
+
     } else {
       this.jobOfferForm.markAllAsTouched();
     }
@@ -95,10 +102,7 @@ export class JobOfferModalComponent implements OnInit {
   //#endregion
 
 
-  private create(): void {
-    const formValues = this.jobOfferForm.value;
-
-    let jobOffer = new JobOffer(formValues);
+  private create(jobOffer: JobOffer): void {
 
     this.jobOfferService.create(jobOffer).pipe(
       finalize(() => {
@@ -114,13 +118,9 @@ export class JobOfferModalComponent implements OnInit {
       });
   }
 
-  private update(): void {
-    const formValues = this.jobOfferForm.value;
-
-    let jobOffer = new JobOffer(formValues);
+  private update(jobOffer: JobOffer): void {
+  
     jobOffer.id = this.selectedJobOffer?.id;
-
-    debugger
 
     this.jobOfferService.update(jobOffer).pipe(
       finalize(() => {

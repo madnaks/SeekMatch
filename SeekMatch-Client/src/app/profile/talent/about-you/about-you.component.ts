@@ -5,6 +5,7 @@ import { TalentService } from '../../../shared/services/talent.service';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../../shared/services/toast.service';
+import { formatDateToISO } from '../../../shared/utils';
 
 @Component({
   selector: 'app-about-you',
@@ -37,16 +38,8 @@ export class AboutYouComponent {
     if (this.aboutYouForm.valid) {
       this.isSaving = true;
       const aboutYouData = this.aboutYouForm.value;
-      // Check if dateOfBirth has a value and is not null
-      if (aboutYouData.dateOfBirth) {
 
-        // Extract 'yyyy-MM-dd'
-        const formattedDateOfBirth = aboutYouData.dateOfBirth instanceof Date
-          ? aboutYouData.dateOfBirth.toISOString().split('T')[0]
-          : aboutYouData.dateOfBirth;
-
-        aboutYouData.dateOfBirth = formattedDateOfBirth;
-      }
+      aboutYouData.dateOfBirth = formatDateToISO(aboutYouData.dateOfBirth);
 
       this.talentService.saveAboutYouData(aboutYouData).pipe(
         finalize(() => {
@@ -79,7 +72,7 @@ export class AboutYouComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       profileTitle: [''],
-      dateOfBirth: [null],
+      dateOfBirth: [null, Validators.required],
       email: [{ value: '', disabled: true }, [Validators.email]],
       address: [''],
       phone: [''],
