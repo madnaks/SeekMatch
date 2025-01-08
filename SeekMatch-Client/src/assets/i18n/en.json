@@ -314,6 +314,9 @@
             "JobOffers": "Job offers",
             "Education": "Education",
             "Experience": "Experience",
+            "CompanyInfo": "Company info",
+            "RecruiterTeam": "Recruiter team",
+            "Settings": "Settings",
             "Secruity": "Secruity"
         },
         "MyProfile": "My profile"
