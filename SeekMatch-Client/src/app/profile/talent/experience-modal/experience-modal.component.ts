@@ -3,9 +3,9 @@ import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, V
 import { ExperienceService } from '../../../shared/services/experience.service';
 import { Experience } from '../../../shared/models/experience';
 import { finalize } from 'rxjs';
-import { months } from '../../../shared/constants/constants';
+import { jobTypes, months } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ModalActionType } from '../../../shared/enums/enums';
+import { JobType, ModalActionType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-experience-modal',
@@ -25,6 +25,7 @@ export class ExperienceModalComponent implements OnInit {
   experienceForm: FormGroup;
   years: number[] = [];
   monthsList = months;
+  jobTypesList = jobTypes;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -46,6 +47,7 @@ export class ExperienceModalComponent implements OnInit {
     return this.fb.group({
       companyName: ['', Validators.required],
       jobTitle: [''],
+      type: [JobType.FullTime],
       startMonth: [0, this.nonZeroValidator],
       startYear: [0, this.nonZeroValidator],
       endMonth: [0],
@@ -61,6 +63,7 @@ export class ExperienceModalComponent implements OnInit {
     this.experienceForm.patchValue({
       companyName: experience.companyName,
       jobTitle: experience.jobTitle,
+      type: experience.type,
       startMonth: experience.startMonth,
       startYear: experience.startYear,
       endMonth: experience.endMonth,

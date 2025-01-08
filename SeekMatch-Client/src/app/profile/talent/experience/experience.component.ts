@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { ModalActionType } from '../../../shared/enums/enums';
+import { JobType, ModalActionType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-experience',
@@ -20,12 +20,12 @@ export class ExperienceComponent implements OnInit {
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedExperience: Experience = new Experience;
-  
+
   private deleteModal: NgbModalRef | undefined;
-  
+
   constructor(
-    private modalService: NgbModal, 
-    private experienceService: ExperienceService, 
+    private modalService: NgbModal,
+    private experienceService: ExperienceService,
     private translate: TranslateService,
     private toastService: ToastService) {
   }
@@ -61,7 +61,7 @@ export class ExperienceComponent implements OnInit {
       this.isLoading = false;
     });
   }
-  
+
   public modalActionComplete(action: ModalActionType): void {
     if (action == ModalActionType.Create) {
       this.toastService.showSuccessMessage('Experience created successfully');
@@ -95,6 +95,10 @@ export class ExperienceComponent implements OnInit {
   public getMonthName(monthId: number): string {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
+  }
+
+  public getJobTypeName(type: JobType): string {
+    return JobType[type];
   }
 
 }

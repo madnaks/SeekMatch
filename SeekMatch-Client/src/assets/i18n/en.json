@@ -233,6 +233,7 @@
                             "CompanyNamePlaceholder": "e.g., Microsoft, Google, Acme Corp.",
                             "JobTitle": "Job title",
                             "JobTitlePlaceHolder": "e.g., Software Engineer, Marketing Manager, Data Analyst",
+                            "JobType": "Job type",
                             "StartMonth": "Start month",
                             "StartYear": "Start year",
                             "EndMonth": "End month",
