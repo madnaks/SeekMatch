@@ -16,4 +16,13 @@
     <ProjectReference Include="..\SeekMatch.Infrastructure\SeekMatchInfrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interfaces\Talent\" />
+    <Folder Include="Interfaces\Representative\" />
+    <Folder Include="Interfaces\Recruiter\" />
+    <Folder Include="Services\Recruiter\" />
+    <Folder Include="Services\Representative\" />
+    <Folder Include="Services\Talent\" />
+  </ItemGroup>
+
 </Project>

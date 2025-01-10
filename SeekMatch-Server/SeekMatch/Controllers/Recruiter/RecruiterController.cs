@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
-using SeekMatch.Core.Enums;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -25,32 +24,22 @@ namespace SeekMatch.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRecruiterDto registerRecruiterDto)
         {
-            if (!ModelState.IsValid)
+            try
+            {
+                if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new User
+                var result = await _recruiterService.RegisterAsync(registerRecruiterDto);
+
+                if (!result.Succeeded)
+                    return BadRequest(result.Errors);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
             {
-                UserName = registerRecruiterDto.Email,
-                Email = registerRecruiterDto.Email,
-                Role = UserRole.Recruiter
-            };
-
-            var result = await _userManager.CreateAsync(user, registerRecruiterDto.Password);
-
-            if (!result.Succeeded)
-                return BadRequest(result.Errors);
-
-            var recruiter = new Recruiter()
-            {
-                FirstName = registerRecruiterDto.FirstName,
-                LastName = registerRecruiterDto.LastName,
-                IsFreelancer = true,
-                User = user
-            };
-
-            await _recruiterService.CreateAsync(recruiter);
-
-            return Ok(result);
+                return BadRequest(new { Error = "An error occurred while registering the recruiter." + ex.Message });
+            }
         }
 
         [Authorize]

@@ -1,11 +1,11 @@
-﻿using SeekMatch.Application.DTOs.Representative;
-using SeekMatch.Core.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using SeekMatch.Application.DTOs.Representative;
 
 namespace SeekMatch.Application.Interfaces
 {
     public interface IRepresentativeService
     {
-        Task CreateAsync(Representative representative);
+        Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto);
         Task<RepresentativeDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
         Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId);

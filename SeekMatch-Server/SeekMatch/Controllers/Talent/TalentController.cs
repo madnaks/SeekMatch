@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
-using SeekMatch.Core.Enums;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -13,12 +10,10 @@ namespace SeekMatch.Controllers
     [ApiController]
     public class TalentController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
         private readonly ITalentService _talentService;
 
-        public TalentController(UserManager<User> userManager, ITalentService talentService)
+        public TalentController(ITalentService talentService)
         {
-            _userManager = userManager;
             _talentService = talentService;
         }
 
@@ -28,30 +23,13 @@ namespace SeekMatch.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new User
-            {
-                UserName = registerTalentDto.Email,
-                Email = registerTalentDto.Email,
-                Role = UserRole.Talent
-            };
-
-            var result = await _userManager.CreateAsync(user, registerTalentDto.Password);
+            var result = await _talentService.RegisterAsync(registerTalentDto);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
-            //await _userManager.AddToRoleAsync(user, model.Role.ToString());
-
-            var talent = new Talent()
-            {
-                FirstName = registerTalentDto.FirstName,
-                LastName = registerTalentDto.LastName,
-                User = user
-            };
-
-            await _talentService.CreateAsync(talent);
-
             return Ok(result);
+
         }
 
         [Authorize]

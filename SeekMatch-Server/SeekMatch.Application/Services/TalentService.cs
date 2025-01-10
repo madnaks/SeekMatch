@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
@@ -10,14 +12,43 @@ namespace SeekMatch.Application.Services
     {
         private readonly ITalentRepository _talentRepository;
         private readonly IMapper _mapper;
-        public TalentService(ITalentRepository talentRepository, IMapper mapper)
+        private readonly UserManager<User> _userManager;
+
+        public TalentService(
+            ITalentRepository talentRepository, 
+            IMapper mapper,
+            UserManager<User> userManager)
         {
             _talentRepository = talentRepository;
             _mapper = mapper;
+            _userManager = userManager;
         }
-        public async Task CreateAsync(Talent talent)
+        public async Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto)
         {
+            var user = new User
+            {
+                UserName = registerTalentDto.Email,
+                Email = registerTalentDto.Email,
+                Role = UserRole.Talent
+            };
+
+            var result = await _userManager.CreateAsync(user, registerTalentDto.Password);
+
+            if (!result.Succeeded)
+                return result;
+
+            //await _userManager.AddToRoleAsync(user, model.Role.ToString());
+
+            var talent = new Talent()
+            {
+                FirstName = registerTalentDto.FirstName,
+                LastName = registerTalentDto.LastName,
+                User = user
+            };
+
             await _talentRepository.CreateAsync(talent);
+
+            return IdentityResult.Success;
         } 
         
         public async Task<TalentDto?> GetAsync(string userId)

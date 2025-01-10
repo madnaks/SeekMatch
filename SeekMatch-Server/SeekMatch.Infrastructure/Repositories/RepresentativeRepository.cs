@@ -12,7 +12,7 @@ namespace SeekMatch.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task CreateAsync(Representative representative)
+        public async Task RegisterAsync(Representative representative)
         {
             _dbContext.Representatives.Add(representative);
             await _dbContext.SaveChangesAsync();

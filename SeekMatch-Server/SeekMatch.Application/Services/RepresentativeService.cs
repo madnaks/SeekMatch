@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
-using SeekMatch.Infrastructure.Repositories;
 
 namespace SeekMatch.Application.Services
 {
@@ -11,15 +12,59 @@ namespace SeekMatch.Application.Services
     {
         private readonly IRepresentativeRepository _representativeRepository;
         private readonly IMapper _mapper;
-        public RepresentativeService(IRepresentativeRepository representativeRepository, IMapper mapper)
+        private readonly ICompanyService _companyService;
+        private readonly UserManager<User> _userManager;
+
+        public RepresentativeService(
+            IRepresentativeRepository representativeRepository, 
+            IMapper mapper,
+            ICompanyService companyService,
+            UserManager<User> userManager)
         {
             _representativeRepository = representativeRepository;
             _mapper = mapper;
+            _companyService = companyService;
+            _userManager = userManager;
         }
-        public async Task CreateAsync(Representative representative)
+
+        public async Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto)
         {
-            await _representativeRepository.CreateAsync(representative);
+            var user = new User
+            {
+                UserName = registerRepresentativeDto.Email,
+                Email = registerRepresentativeDto.Email,
+                Role = UserRole.Representative
+            };
+
+            var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);
+
+            if (!result.Succeeded)
+                return result;
+
+            var company = new Company()
+            {
+                Name = registerRepresentativeDto.CompanyName,
+                Address = registerRepresentativeDto.CompanyAddress,
+                PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
+            };
+
+            await _companyService.CreateAsync(company);
+
+            var representative = new Representative()
+            {
+                FirstName = registerRepresentativeDto.FirstName,
+                LastName = registerRepresentativeDto.LastName,
+                Position = registerRepresentativeDto.Position,
+                Company = company,
+                CompanyId = company.Id,
+                User = user
+            };
+
+            await _representativeRepository.RegisterAsync(representative);
+
+            return IdentityResult.Success;
         }
+
         public async Task<RepresentativeDto?> GetAsync(string userId)
         {
             return _mapper.Map<RepresentativeDto>(await _representativeRepository.GetAsync(userId));

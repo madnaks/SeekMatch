@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Application.Services;
-using SeekMatch.Core.Entities;
-using SeekMatch.Core.Enums;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -14,17 +10,12 @@ namespace SeekMatch.Controllers
     [ApiController]
     public class RepresentativeController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly ICompanyService _companyService;
         private readonly IRepresentativeService _representativeService;
 
         public RepresentativeController(
-            UserManager<User> userManager, 
             ICompanyService companyService, 
             IRepresentativeService representativeService)
         {
-            _userManager = userManager;
-            _companyService = companyService;
             _representativeService = representativeService;
         }
 
@@ -36,38 +27,10 @@ namespace SeekMatch.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var user = new User
-                {
-                    UserName = registerRepresentativeDto.Email,
-                    Email = registerRepresentativeDto.Email,
-                    Role = UserRole.Representative
-                };
-
-                var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);
+                var result = await _representativeService.RegisterAsync(registerRepresentativeDto);
 
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
-
-                var company = new Company()
-                {
-                    Name = registerRepresentativeDto.CompanyName,
-                    Address = registerRepresentativeDto.CompanyAddress,
-                    PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
-                };
-
-                await _companyService.CreateAsync(company);
-
-                var representative = new Representative()
-                {
-                    FirstName = registerRepresentativeDto.FirstName,
-                    LastName = registerRepresentativeDto.LastName,
-                    Position = registerRepresentativeDto.Position,
-                    Company = company,
-                    CompanyId = company.Id,
-                    User = user
-                };
-
-                await _representativeService.CreateAsync(representative);
 
                 return Ok(result);
             }

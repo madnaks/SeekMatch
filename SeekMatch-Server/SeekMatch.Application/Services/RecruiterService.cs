@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
@@ -10,14 +12,41 @@ namespace SeekMatch.Application.Services
     {
         private readonly IRecruiterRepository _recruiterRepository;
         private readonly IMapper _mapper;
-        public RecruiterService(IRecruiterRepository recruiterRepository, IMapper mapper)
+        private readonly UserManager<User> _userManager;
+        public RecruiterService(
+            IRecruiterRepository recruiterRepository, 
+            IMapper mapper,
+            UserManager<User> userManager)
         {
             _recruiterRepository = recruiterRepository;
             _mapper = mapper;
+            _userManager = userManager;
         }
-        public async Task CreateAsync(Recruiter recruiter)
+        public async Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto)
         {
+            var user = new User
+            {
+                UserName = registerRecruiterDto.Email,
+                Email = registerRecruiterDto.Email,
+                Role = UserRole.Recruiter
+            };
+
+            var result = await _userManager.CreateAsync(user, registerRecruiterDto.Password);
+            
+            if (!result.Succeeded)
+                return result;
+
+            var recruiter = new Recruiter()
+            {
+                FirstName = registerRecruiterDto.FirstName,
+                LastName = registerRecruiterDto.LastName,
+                IsFreelancer = true,
+                User = user
+            };
+
             await _recruiterRepository.CreateAsync(recruiter);
+
+            return IdentityResult.Success;
         }
         public async Task<RecruiterDto?> GetAsync(string userId)
         {

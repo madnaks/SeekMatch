@@ -1,11 +1,11 @@
-﻿using SeekMatch.Application.DTOs.Talent;
-using SeekMatch.Core.Entities;
+﻿using Microsoft.AspNetCore.Identity;
+using SeekMatch.Application.DTOs.Talent;
 
 namespace SeekMatch.Application.Interfaces
 {
     public interface ITalentService
     {
-        Task CreateAsync(Talent talent);
+        Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto);
         Task<TalentDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
         Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId);
