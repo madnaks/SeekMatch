@@ -1,5 +1,4 @@
-﻿using SeekMatch.Core.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SeekMatch.Application.DTOs.Talent
 {

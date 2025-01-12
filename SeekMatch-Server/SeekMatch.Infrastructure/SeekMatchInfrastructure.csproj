@@ -27,13 +27,4 @@
     <ProjectReference Include="..\SeekMatch.Core\SeekMatchCore.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Recruiter\" />
-    <Folder Include="Interfaces\Representative\" />
-    <Folder Include="Interfaces\Talent\" />
-    <Folder Include="Repositories\Recruiter\" />
-    <Folder Include="Repositories\Representative\" />
-    <Folder Include="Repositories\Talent\" />
-  </ItemGroup>
-
 </Project>

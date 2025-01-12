@@ -11,10 +11,4 @@
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.8" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\Recruiter\" />
-    <Folder Include="Entities\Representative\" />
-    <Folder Include="Entities\Talent\" />
-  </ItemGroup>
-
 </Project>
