@@ -22,9 +22,10 @@ namespace SeekMatch.Application.Services
             return _mapper.Map<IList<JobOfferDto>>(await _jobOfferRepository.GetAllAsync(recruiterId));
         }
 
-        public async Task<bool> CreateAsync(CreateJobOfferDto createJobOfferDto, string recruiterId)
+        public async Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId)
         {
-            var jobOffer = _mapper.Map<JobOffer>(createJobOfferDto);
+            var jobOffer = _mapper.Map<JobOffer>(jobOfferDto);
+            jobOffer.Id = Guid.NewGuid().ToString();
             jobOffer.RecruiterId = recruiterId;
             return await _jobOfferRepository.CreateAsync(jobOffer);
         }

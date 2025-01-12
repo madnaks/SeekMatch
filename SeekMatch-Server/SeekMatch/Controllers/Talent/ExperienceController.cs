@@ -44,7 +44,7 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateExperienceDto createExperienceDto)
+        public async Task<IActionResult> Create([FromBody] ExperienceDto experienceDto)
         {
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -54,12 +54,12 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            if (createExperienceDto == null)
+            if (experienceDto == null)
             {
                 return BadRequest("Experience data is null");
             }
 
-            var result = await _experienceService.CreateAsync(createExperienceDto, talentId);
+            var result = await _experienceService.CreateAsync(experienceDto, talentId);
 
             if (result)
             {

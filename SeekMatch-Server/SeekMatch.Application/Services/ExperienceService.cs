@@ -22,9 +22,10 @@ namespace SeekMatch.Application.Services
             return _mapper.Map<IList<ExperienceDto>>(await _experienceRepository.GetAllAsync(talentId));
         }
 
-        public async Task<bool> CreateAsync(CreateExperienceDto createExperienceDto, string talentId)
+        public async Task<bool> CreateAsync(ExperienceDto experienceDto, string talentId)
         {
-            var experience = _mapper.Map<Experience>(createExperienceDto);
+            var experience = _mapper.Map<Experience>(experienceDto);
+            experience.Id = Guid.NewGuid().ToString();
             experience.TalentId = talentId;
             return await _experienceRepository.CreateAsync(experience);
         }

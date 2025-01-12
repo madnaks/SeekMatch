@@ -44,7 +44,7 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateJobOfferDto createJobOfferDto)
+        public async Task<IActionResult> Create([FromBody] JobOfferDto jobOfferDto)
         {
 
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -54,12 +54,12 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            if (createJobOfferDto == null)
+            if (jobOfferDto == null)
             {
                 return BadRequest("Job offer data is null");
             }
 
-            var result = await _jobOfferService.CreateAsync(createJobOfferDto, recruiterId);
+            var result = await _jobOfferService.CreateAsync(jobOfferDto, recruiterId);
 
             if (result)
             {
