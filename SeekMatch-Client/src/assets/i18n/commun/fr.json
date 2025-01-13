@@ -1,0 +1,79 @@
+{
+    "Navbar": {
+        "Menu": {
+            "JobOffers": "Offres d'emplois",
+            "Companies": "Entreprises",
+            "Tests": "Tests",
+            "Training": "Formations",
+            "CVCreation": "Créations d'un CV",
+            "SignUp": "S'inscrire",
+            "LogIn": "Connexion",
+            "Language": "Langue"
+        },
+        "Account": {
+            "Profile": "Profil",
+            "Logout": "Déconnexion"
+        }
+    },
+    "Home": {
+        "Title": "Bienvenue sur notre site web",
+        "WelcomeParagraph1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
+        "WelcomeParagraph2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
+        "SearchJobsButton": "Rechercher des emplois"
+    },
+    "JobOffers": {
+        "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
+        "WhereInput": "Où ?",
+        "JobDetails": {
+            "JobDetails": "Détails du poste"
+        }
+    },
+    "Companies": {
+        "CompanyList": {
+            "Employees": "Employées",
+            "JobOffers": "Offers d'emplois"
+        }
+    },
+    "Profile": {
+        "Sections": {
+            "AboutYou": "À propos de vous",
+            "JobOffers": "Offers d'emplois",
+            "Education": "Éducation",
+            "Experience": "Expérience",
+            "CompanyInfo": "Infos entreprise",
+            "RecruiterTeam": "Équipe de recruteurs",
+            "Settings": "Paramètres",
+            "Secruity": "Sécurité"
+        },
+        "MyProfile": "Mon profil"
+    },
+    "Date": {
+        "SelectMonth": "Sélectionner un mois",
+        "SelectYear": "Sélectionner l'année",
+        "January": "Janvier",
+        "February": "Février",
+        "March": "Mars",
+        "April": "Avril",
+        "May": "Mai",
+        "June": "Juin",
+        "July": "Juillet",
+        "August": "Août",
+        "September": "Septembre",
+        "October": "Octobre",
+        "November": "Novembre",
+        "December": "Décembre",
+        "Today": "Aujourd'hui"
+    },
+    "Button": {
+        "Create": "Créer",
+        "Save": "Enregistrer",
+        "Delete": "Supprimer"
+    },
+    "JobType": {
+        "FullTime": "Temps plein",
+        "PartTime": "Temps partiel",
+        "Internship": "Stage",
+        "Contract": "Contrat",
+        "Freelance": "Freelance"
+    }
+}

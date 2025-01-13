@@ -1,9 +1,9 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         @if (updateMode) {
-        {{ 'Profile.Recruiter.JobOffer.Modal.UpdateTitle' | translate }}
+        {{ 'Recruiter.JobOffer.Modal.UpdateTitle' | translate }}
         } @else {
-        {{ 'Profile.Recruiter.JobOffer.Modal.CreationTitle' | translate }}
+        {{ 'Recruiter.JobOffer.Modal.CreationTitle' | translate }}
         }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
@@ -14,41 +14,41 @@
         <!-- Title -->
         <div class="mb-4">
             <label for="inputTitle" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Title' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Title' | translate }}
             </label>
             <input type="text" class="form-control" id="inputTitle" formControlName="title"
-                [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
+                [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
             @if ((jobOfferForm.get('title')?.invalid && jobOfferForm.get('title')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Validation.Title' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Title' | translate }}
             </div>
             }
         </div>
         <!-- Description -->
         <div class="mb-4">
             <label for="inputDescription" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
             </label>
             <textarea class="form-control" id="inputDescription" formControlName="description"
-                [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
+                [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
         </div>
         <!-- CompanyName -->
         <div class="mb-4">
             <label for="inputCompanyName" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.CompanyName' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.CompanyName' | translate }}
             </label>
             <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
-                [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+                [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
             @if ((jobOfferForm.get('companyName')?.invalid && jobOfferForm.get('companyName')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Validation.CompanyName' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.CompanyName' | translate }}
             </div>
             }
         </div>
         <!-- Job Type -->
         <div class="mb-4">
             <label for="inputJobType" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.JobType' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.JobType' | translate }}
             </label>
             <select id="jobTypeSelect" class="form-select" formControlName="type">
                 <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
@@ -59,23 +59,23 @@
         <!-- Location -->
         <div class="mb-4">
             <label for="inputLocation" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Location' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Location' | translate }}
             </label>
             <input type="text" class="form-control" id="inputLocation" formControlName="location"
-                [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.LocationPlaceholder' | translate">
+                [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.LocationPlaceholder' | translate">
         </div>
         <!-- Salary -->
         <div class="mb-4">
             <label for="inputSalary" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.Salary' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.Salary' | translate }}
             </label>
             <input type="text" class="form-control" id="inputSalary" formControlName="salary"
-                [placeholder]="'Profile.Recruiter.JobOffer.Modal.Body.Form.SalaryPlaceholder' | translate">
+                [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.SalaryPlaceholder' | translate">
         </div>
         <!-- PostedAt -->
         <div class="mb-4">
             <label for="inputPostedAt" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.PostedAt' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.PostedAt' | translate }}
             </label>
             <div class="input-group">
                 <div class="datepicker-input input-group">
@@ -90,7 +90,7 @@
         <!-- ExpiresAt -->
         <div class="mb-4">
             <label for="inputExpiresAt" class="form-label">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.ExpiresAt' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.ExpiresAt' | translate }}
             </label>
             <div class="input-group">
                 <div class="datepicker-input input-group">
@@ -106,7 +106,7 @@
         <div class="mb-4">
             <input class="form-check-input me-2" type="checkbox" id="inputIsActive" formControlName="isActive">
             <label class="form-check-label" for="inputIsActive">
-                {{ 'Profile.Recruiter.JobOffer.Modal.Body.Form.IsActive' | translate }}
+                {{ 'Recruiter.JobOffer.Modal.Body.Form.IsActive' | translate }}
             </label>
         </div>
         <!-- Save -->
@@ -114,7 +114,7 @@
             <button type="submit" class="btn btn-primary w-50">
                 <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                {{ 'Shared.Button.Save' | translate }}
+                {{ 'Button.Save' | translate }}
             </button>
         </div>
     </form>

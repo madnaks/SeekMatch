@@ -1,9 +1,9 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         @if (updateMode) {
-        {{ 'Profile.Talent.Education.Modal.UpdateTitle' | translate }}
+        {{ 'Talent.Education.Modal.UpdateTitle' | translate }}
         } @else {
-        {{ 'Profile.Talent.Education.Modal.CreationTitle' | translate }}
+        {{ 'Talent.Education.Modal.CreationTitle' | translate }}
         }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
@@ -14,37 +14,37 @@
         <!-- Institution -->
         <div class="mb-4">
             <label for="inputInstitution" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Institution' | translate }}
+                {{ 'Talent.Education.Modal.Body.Form.Institution' | translate }}
             </label>
             <input type="text" class="form-control" id="inputInstitution" formControlName="institution"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
+                [placeholder]="'Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
             @if ((educationForm.get('institution')?.invalid && educationForm.get('institution')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.Institution' | translate }}
+                {{ 'Talent.Education.Modal.Body.Form.Validation.Institution' | translate }}
             </div>
             }
         </div>
         <!-- Diploma -->
         <div class="mb-4">
             <label for="inputDiploma" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Diploma' | translate }}
+                {{ 'Talent.Education.Modal.Body.Form.Diploma' | translate }}
             </label>
             <input type="text" class="form-control" id="inputDiploma" formControlName="diploma"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DiplomaPlaceHolder' | translate">
+                [placeholder]="'Talent.Education.Modal.Body.Form.DiplomaPlaceHolder' | translate">
         </div>
         <!-- Domain -->
         <div class="mb-4">
             <label for="inputDomain" class="form-label">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.Domain' | translate }}
+                {{ 'Talent.Education.Modal.Body.Form.Domain' | translate }}
             </label>
             <input type="text" class="form-control" id="inputDomain" formControlName="domain"
-                [placeholder]="'Profile.Talent.Education.Modal.Body.Form.DomainPlaceHolder' | translate">
+                [placeholder]="'Talent.Education.Modal.Body.Form.DomainPlaceHolder' | translate">
         </div>
         <!-- StartMonth & StartYear -->
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectStartMonth" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartMonth' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.StartMonth' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-6">
                 <label for="selectStartYear" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.StartYear' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.StartYear' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
                     <option value="0">
@@ -67,7 +67,7 @@
                 (educationForm.get('startYear')?.hasError('requiredSelection') &&
                 educationForm.get('startYear')?.touched)) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
                 </div>
                 }
             </div>
@@ -76,7 +76,7 @@
         <div class="row mb-4">
             <div class="col-md-6">
                 <label for="selectEndMonth" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.EndMonth' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.EndMonth' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectEndMonth" formControlName="endMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
@@ -84,7 +84,7 @@
             </div>
             <div class="col-md-6">
                 <label for="selectEndYear" class="form-label">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.EndYear' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.EndYear' | translate }}
                 </label>
                 <select class="form-select form-select-sm" id="selectEndYear" formControlName="endYear">
                     <option value="0">
@@ -96,12 +96,12 @@
             <div class="col-md-12">
                 @if (educationForm.errors?.['invalidDateRange']) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
                 </div>
                 }
                 @if (educationForm.errors?.['invalidEndDateTwoFields']) {
                 <div class="text-danger">
-                    {{ 'Profile.Talent.Education.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
+                    {{ 'Talent.Education.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
                 </div>
                 }
             </div>
@@ -111,7 +111,7 @@
             <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyStudying"
                 formControlName="currentlyStudying">
             <label class="form-check-label" for="inputCurrentlyStudying">
-                {{ 'Profile.Talent.Education.Modal.Body.Form.CurrentlyStudying' | translate }}
+                {{ 'Talent.Education.Modal.Body.Form.CurrentlyStudying' | translate }}
             </label>
         </div>
         <!-- Save -->
@@ -120,11 +120,11 @@
                 @if (updateMode) {
                     <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                    {{ 'Shared.Button.Save' | translate }}
+                    {{ 'Button.Save' | translate }}
                 } @else {
                     <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
-                    {{ 'Shared.Button.Create' | translate }}
+                    {{ 'Button.Create' | translate }}
                 }
             </button>
         </div>

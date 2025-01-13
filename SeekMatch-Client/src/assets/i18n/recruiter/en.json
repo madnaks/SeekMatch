@@ -1,0 +1,48 @@
+{
+    "Recruiter": {
+        "AboutYou": {
+            "FirstName": "First name",
+            "LastName": "Last name",
+            "Email": "Email address",
+            "Password": "Password",
+            "ProfilePicture": "Profile Picture",
+            "ChoosePicture": "Choose Picture",
+            "Remove": "Remove"
+        },
+        "JobOffer": {
+            "AddJobOffer": "Add job offer",
+            "NoJobOfferMessage": "Start adding job offers",
+            "Modal": {
+                "CreationTitle": "New job offer",
+                "UpdateTitle": "Update job offer",
+                "DeleteTitle": "Delete job offer",
+                "Body": {
+                    "DeleteMessage": "Are you sure you want to delete this job offer ?",
+                    "Form": {
+                        "Title": "Title",
+                        "TitlePlaceholder": "e.g., Software Engineer, Marketing Manager, Data Analyst",
+                        "Description": "Description",
+                        "DescriptionPlaceholder": "e.g., Responsible for developing, testing, and deploying scalable applications",
+                        "CompanyName": "Company Name",
+                        "CompanyNamePlaceholder": "e.g., Microsoft, Google, Acme Corp.",
+                        "JobType": "Job type",
+                        "Location": "Location",
+                        "LocationPlaceholder": "e.g., New York, San Francisco, Remote",
+                        "Salary": "Salary",
+                        "SalaryPlaceholder": "e.g., $60,000 - $80,000 per year",
+                        "PostedAt": "Posted at",
+                        "ExpiresAt": "Expires at",
+                        "IsActive": "Active",
+                        "Validation": {
+                            "Title": "Title is required.",
+                            "CompanyName": "Company name is required.",
+                            "StartDate": "Please enter both the month and year for the start date.",
+                            "InvalidDateRange": "End date cannot be earlier than start date.",
+                            "InvalidEndDateTwoFields": "Both end year and end month must be filled, or neither should be."
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

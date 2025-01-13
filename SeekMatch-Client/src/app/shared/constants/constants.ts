@@ -17,9 +17,9 @@ export const months = [
 ];
 
 export const jobTypes = [
-  { key: JobType.FullTime, value: 'Shared.JobType.FullTime' },
-  { key: JobType.PartTime, value: 'Shared.JobType.PartTime' },
-  { key: JobType.Internship, value: 'Shared.JobType.Internship' },
-  { key: JobType.Contract, value: 'Shared.JobType.Contract' },
-  { key: JobType.Freelance, value: 'Shared.JobType.Freelance' },
+  { key: JobType.FullTime, value: 'JobType.FullTime' },
+  { key: JobType.PartTime, value: 'JobType.PartTime' },
+  { key: JobType.Internship, value: 'JobType.Internship' },
+  { key: JobType.Contract, value: 'JobType.Contract' },
+  { key: JobType.Freelance, value: 'JobType.Freelance' },
 ];

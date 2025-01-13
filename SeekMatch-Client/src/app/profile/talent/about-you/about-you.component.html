@@ -13,7 +13,7 @@
                 <div class="col-md-12 profile-picture-section">
                     <p>
                         <b>
-                            {{ 'Profile.Talent.AboutYou.ProfilePicture' | translate }}
+                            {{ 'Talent.AboutYou.ProfilePicture' | translate }}
                         </b>
                     </p>
                     
@@ -22,13 +22,13 @@
 
                         <!-- Custom button to trigger file input -->
                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                            {{ 'Profile.Talent.AboutYou.ChoosePicture' | translate }}
+                            {{ 'Talent.AboutYou.ChoosePicture' | translate }}
                         </button>
 
                         <!-- Button to remove current image -->
                         <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                             *ngIf="profilePicture && !defaultProfilePicture">
-                            {{ 'Profile.Talent.AboutYou.Remove' | translate }}
+                            {{ 'Talent.AboutYou.Remove' | translate }}
                         </button>
 
                         <!-- Hidden file input element -->
@@ -42,14 +42,14 @@
                 <!-- First name -->
                 <div class="col-md-6">
                     <label for="inputFirstName" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.FirstName' | translate }}
+                        {{ 'Talent.AboutYou.FirstName' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
                 <!-- Last name -->
                 <div class="col-md-6">
                     <label for="inputLastName" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.LastName' | translate }}
+                        {{ 'Talent.AboutYou.LastName' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
@@ -58,7 +58,7 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputProfileTitle" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.ProfileTitle' | translate }}
+                        {{ 'Talent.AboutYou.ProfileTitle' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                 </div>
@@ -67,7 +67,7 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputEmail" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.Email' | translate }}
+                        {{ 'Talent.AboutYou.Email' | translate }}
                     </label>
                     <input type="email" class="form-control" id="inputEmail" formControlName="email">
                 </div>
@@ -76,7 +76,7 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputDateOfBirth" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.DateOfBirth' | translate }}
+                        {{ 'Talent.AboutYou.DateOfBirth' | translate }}
                     </label>
                     <div class="datepicker-input input-group">
                         <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
@@ -91,13 +91,13 @@
             <div class="row mt-3">
                 <div class="col-md-6">
                     <label for="inputAddress" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.Address' | translate }}
+                        {{ 'Talent.AboutYou.Address' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputAddress" formControlName="address">
                 </div>
                 <div class="col-md-6">
                     <label for="inputPhone" class="form-label">
-                        {{ 'Profile.Talent.AboutYou.Phone' | translate }}
+                        {{ 'Talent.AboutYou.Phone' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputPhone" formControlName="phone">
                 </div>
@@ -129,7 +129,7 @@
                     <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
                         <i class="me-2"
                             [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                        {{ 'Shared.Button.Save' | translate }}
+                        {{ 'Button.Save' | translate }}
                     </button>
                 </div>
             </div>

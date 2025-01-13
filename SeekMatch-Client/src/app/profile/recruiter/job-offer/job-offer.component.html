@@ -14,13 +14,13 @@
                 <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
                     <div class="col-6">
                         <p style="text-align: center;">
-                            {{ 'Profile.Recruiter.JobOffer.NoJobOfferMessage' | translate }}
+                            {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
                         </p>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center">
                         <button class="btn btn-primary" (click)="open(addJobOfferContent)">
                             <i class="fa-solid fa-plus"></i>
-                            {{ 'Profile.Recruiter.JobOffer.AddJobOffer' | translate }}
+                            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
                         </button>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12 d-flex justify-content-end">
                         <button class="btn btn-primary" (click)="open(addJobOfferContent)">
                             <i class="fa-solid fa-plus"></i>
-                            {{ 'Profile.Recruiter.JobOffer.AddJobOffer' | translate }}
+                            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
                         </button>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                                         {{ jobOffer.companyName }}
                                     </td>
                                     <td>            
-                                        {{ 'Shared.JobType.' + getJobTypeName(jobOffer.type) | translate }}
+                                        {{ 'JobType.' + getJobTypeName(jobOffer.type) | translate }}
                                     </td>
                                     <td>            
                                         {{ jobOffer.salary }}
@@ -102,19 +102,19 @@
 <ng-template #deleteJobOfferContent let-modal>
     <div class="modal-header">
         <h4 class="modal-title">
-            {{ 'Profile.Recruiter.JobOffer.Modal.DeleteTitle' | translate }}
+            {{ 'Recruiter.JobOffer.Modal.DeleteTitle' | translate }}
         </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <p>
-            {{ 'Profile.Recruiter.JobOffer.Modal.Body.DeleteMessage' | translate }}
+            {{ 'Recruiter.JobOffer.Modal.Body.DeleteMessage' | translate }}
         </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteJobOffer()">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-            {{ 'Shared.Button.Delete' | translate }}
+            {{ 'Button.Delete' | translate }}
         </button>
     </div>
 </ng-template>

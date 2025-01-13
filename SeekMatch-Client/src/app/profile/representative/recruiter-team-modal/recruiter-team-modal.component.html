@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'Profile.Representative.Recruiter.Modal.CreationTitle' | translate }}
+        {{ 'Representative.Recruiter.Modal.CreationTitle' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -11,14 +11,14 @@
         <div class="mb-4">
             <div class="form-floating">
                 <input type="text" class="form-control" id="inputFirstName" formControlName="firstName"
-                    [placeholder]="'Profile.Representative.Recruiter.Modal.Body.Form.FirstName' | translate">
+                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.FirstName' | translate">
                 <label for="inputFirstName" class="form-label">
-                    {{ 'Profile.Representative.Recruiter.Modal.Body.Form.FirstName' | translate }}
+                    {{ 'Representative.Recruiter.Modal.Body.Form.FirstName' | translate }}
                 </label>
             </div>
             @if ((recruiterForm.get('firstName')?.invalid && recruiterForm.get('firstName')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Representative.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
+                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
             </div>
             }
         </div>
@@ -26,14 +26,14 @@
         <div class="mb-4">
             <div class="form-floating">
                 <input type="text" class="form-control" id="inputLastName" formControlName="lastName"
-                    [placeholder]="'Profile.Representative.Recruiter.Modal.Body.Form.LastName' | translate">
+                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.LastName' | translate">
                 <label for="inputLastName" class="form-label">
-                    {{ 'Profile.Representative.Recruiter.Modal.Body.Form.LastName' | translate }}
+                    {{ 'Representative.Recruiter.Modal.Body.Form.LastName' | translate }}
                 </label>
             </div>
             @if ((recruiterForm.get('lastName')?.invalid && recruiterForm.get('lastName')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Representative.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
+                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
             </div>
             }
         </div>
@@ -41,14 +41,14 @@
         <div class="mb-4">
             <div class="form-floating">
                 <input type="text" class="form-control" id="inputEmail" formControlName="email"
-                    [placeholder]="'Profile.Representative.Recruiter.Modal.Body.Form.LastName' | translate">
+                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.LastName' | translate">
                 <label for="inputEmail" class="form-label">
-                    {{ 'Profile.Representative.Recruiter.Modal.Body.Form.Email' | translate }}
+                    {{ 'Representative.Recruiter.Modal.Body.Form.Email' | translate }}
                 </label>
             </div>
             @if ((recruiterForm.get('email')?.invalid && recruiterForm.get('email')?.touched)) {
             <div class="text-danger">
-                {{ 'Profile.Representative.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
+                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
             </div>
             }
         </div>
@@ -57,7 +57,7 @@
             <button type="submit" class="btn btn-primary w-50">
                 <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
-                    {{ 'Shared.Button.Create' | translate }}
+                    {{ 'Button.Create' | translate }}
             </button>
         </div>
     </form>

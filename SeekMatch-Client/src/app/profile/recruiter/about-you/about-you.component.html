@@ -13,7 +13,7 @@
                 <div class="col-md-12 profile-picture-section">
                     <p>
                         <b>
-                            {{ 'Profile.Recruiter.AboutYou.ProfilePicture' | translate }}
+                            {{ 'Recruiter.AboutYou.ProfilePicture' | translate }}
                         </b>
                     </p>
                     
@@ -22,13 +22,13 @@
 
                         <!-- Custom button to trigger file input -->
                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                            {{ 'Profile.Recruiter.AboutYou.ChoosePicture' | translate }}
+                            {{ 'Recruiter.AboutYou.ChoosePicture' | translate }}
                         </button>
 
                         <!-- Button to remove current image -->
                         <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                             *ngIf="profilePicture && !defaultProfilePicture">
-                            {{ 'Profile.Recruiter.AboutYou.Remove' | translate }}
+                            {{ 'Recruiter.AboutYou.Remove' | translate }}
                         </button>
 
                         <!-- Hidden file input element -->
@@ -42,14 +42,14 @@
                 <!-- First name -->
                 <div class="col-md-6">
                     <label for="inputFirstName" class="form-label">
-                        {{ 'Profile.Recruiter.AboutYou.FirstName' | translate }}
+                        {{ 'Recruiter.AboutYou.FirstName' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                 </div>
                 <!-- Last name -->
                 <div class="col-md-6">
                     <label for="inputLastName" class="form-label">
-                        {{ 'Profile.Recruiter.AboutYou.LastName' | translate }}
+                        {{ 'Recruiter.AboutYou.LastName' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                 </div>
@@ -58,7 +58,7 @@
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="inputEmail" class="form-label">
-                        {{ 'Profile.Recruiter.AboutYou.Email' | translate }}
+                        {{ 'Recruiter.AboutYou.Email' | translate }}
                     </label>
                     <input type="email" class="form-control" id="inputEmail" formControlName="email">
                 </div>
@@ -69,7 +69,7 @@
                     <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
                         <i class="me-2"
                             [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                        {{ 'Shared.Button.Save' | translate }}
+                        {{ 'Button.Save' | translate }}
                     </button>
                 </div>
             </div>

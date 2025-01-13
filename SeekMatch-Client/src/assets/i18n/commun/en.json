@@ -1,0 +1,79 @@
+{
+    "Navbar": {
+        "Menu": {
+            "JobOffers": "Job offers",
+            "Companies": "Companies",
+            "Tests": "Tests",
+            "Training": "Training",
+            "CVCreation": "CV creation",
+            "SignUp": "Sign-up",
+            "LogIn": "Login",
+            "Language": "Language"
+        },
+        "Account": {
+            "Profile": "Profile",
+            "Logout": "Logout"
+        }
+    },
+    "Home": {
+        "Title": "Welcome to our website",
+        "WelcomeParagraph1": "This is a brief introduction about our services and what we offer. We provide high-quality solutions to help you achieve your goals.",
+        "WelcomeParagraph2": "Feel free to explore our website and learn more about what we do.",
+        "SearchJobsButton": "Search for jobs"
+    },
+    "JobOffers": {
+        "SearchOffersInput": "Job title, keywords or company",
+        "WhereInput": "Where ?",
+        "JobDetails": {
+            "JobDetails": "Job details"
+        }
+    },
+    "Companies": {
+        "CompanyList": {
+            "Employees": "Employees",
+            "JobOffers": "Job offers"
+        }
+    },
+    "Profile": {
+        "Sections": {
+            "AboutYou": "About You",
+            "JobOffers": "Job offers",
+            "Education": "Education",
+            "Experience": "Experience",
+            "CompanyInfo": "Company info",
+            "RecruiterTeam": "Recruiter team",
+            "Settings": "Settings",
+            "Secruity": "Secruity"
+        },
+        "MyProfile": "My profile"
+    },
+    "Date": {
+        "SelectMonth": "Select month",
+        "SelectYear": "Select year",
+        "January": "January",
+        "February": "February",
+        "March": "March",
+        "April": "April",
+        "May": "May",
+        "June": "June",
+        "July": "July",
+        "August": "August",
+        "September": "September",
+        "October": "October",
+        "November": "November",
+        "December": "December",
+        "Today": "Today"
+    },
+    "Button": {
+        "Create": "Create",
+        "Save": "Save",
+        "Delete": "Delete"
+    },
+    "JobType": {
+        "FullTime": "Full Time",
+        "PartTime": "Part Time",
+        "Internship": "Internship",
+        "Contract": "Contract",
+        "Freelance": "Freelance"
+    }
+}

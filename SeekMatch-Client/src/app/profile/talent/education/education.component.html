@@ -12,13 +12,13 @@
         <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
             <div class="col-6">
                 <p style="text-align: center;">
-                    {{ 'Profile.Talent.Education.NoEducationMessage' | translate }}
+                    {{ 'Talent.Education.NoEducationMessage' | translate }}
                 </p>
             </div>
             <div class="col-md-6 d-flex justify-content-center">
                 <button class="btn btn-primary" (click)="open(addEducationContent)">
                     <i class="fa-solid fa-circle-plus me-2"></i>
-                    {{ 'Profile.Talent.Education.AddEducation' | translate }}
+                    {{ 'Talent.Education.AddEducation' | translate }}
                 </button>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="col-md-12 d-flex justify-content-end">
                 <button class="btn btn-primary" (click)="open(addEducationContent)">
                     <i class="fa-solid fa-circle-plus me-2"></i>
-                    {{ 'Profile.Talent.Education.AddEducation' | translate }}
+                    {{ 'Talent.Education.AddEducation' | translate }}
                 </button>
             </div>
         </div>
@@ -91,19 +91,19 @@
 <ng-template #deleteEducationContent let-modal>
     <div class="modal-header">
         <h4 class="modal-title">
-            {{ 'Profile.Talent.Education.Modal.DeleteTitle' | translate }}
+            {{ 'Talent.Education.Modal.DeleteTitle' | translate }}
         </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <p>
-            {{ 'Profile.Talent.Education.Modal.Body.DeleteMessage' | translate }}
+            {{ 'Talent.Education.Modal.Body.DeleteMessage' | translate }}
         </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteEducation()">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-            {{ 'Shared.Button.Delete' | translate }}
+            {{ 'Button.Delete' | translate }}
         </button>
     </div>
 </ng-template>

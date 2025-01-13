@@ -7,6 +7,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { MultiTranslateHttpLoader } from './shared/loaders/multi-translate-http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,6 +25,12 @@ export const appConfig: ApplicationConfig = {
   ]
 };
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
+  return new MultiTranslateHttpLoader(http, [
+    './assets/i18n/commun/',
+    './assets/i18n/auth/',
+    './assets/i18n/talent/',
+    './assets/i18n/recruiter/',
+    './assets/i18n/representative/'
+  ]);
 }

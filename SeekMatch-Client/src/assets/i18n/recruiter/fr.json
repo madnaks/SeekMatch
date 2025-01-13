@@ -1,0 +1,50 @@
+{
+    "Profile": {
+        "Recruiter": {
+            "AboutYou": {
+                "FirstName": "Prénom",
+                "LastName": "Nom de famille",
+                "Email": "Adresse e-mail",
+                "Password": "Mot de passe",
+                "ProfilePicture": "Photo de profil",
+                "ChoosePicture": "Choisir une photo",
+                "Remove": "Supprimer"
+            },
+            "JobOffer": {
+                "AddJobOffer": "Ajouter une offre d'emploi",
+                "NoJobOfferMessage": "Commencez par ajouter des offres d'emploi",
+                "Modal": {
+                    "CreationTitle": "Nouvelle offre d'emploi",
+                    "UpdateTitle": "Modifier l'offre d'emploi",
+                    "DeleteTitle": "Supprimer l'offre d'emploi",
+                    "Body": {
+                        "DeleteMessage": "Êtes-vous sûr de vouloir supprimer cette offre d'emploi ?",
+                        "Form": {
+                            "Title": "Titre",
+                            "TitlePlaceholder": "par ex., Ingénieur logiciel, Responsable marketing, Analyste de données",
+                            "Description": "Description",
+                            "DescriptionPlaceholder": "par ex., Responsable du développement, des tests et du déploiement d'applications évolutives",
+                            "CompanyName": "Nom de l'entreprise",
+                            "CompanyNamePlaceholder": "par ex., Microsoft, Google, Acme Corp.",
+                            "JobType": "Type de travail",
+                            "Location": "Lieu",
+                            "LocationPlaceholder": "par ex., New York, San Francisco, Télétravail",
+                            "Salary": "Salaire",
+                            "SalaryPlaceholder": "par ex., 60 000 $ - 80 000 $ par an",
+                            "PostedAt": "Publié le",
+                            "ExpiresAt": "Expire le",
+                            "IsActive": "Actif",
+                            "Validation": {
+                                "Title": "Le titre est obligatoire.",
+                                "CompanyName": "Le nom de l'entreprise est obligatoire.",
+                                "StartDate": "Veuillez indiquer à la fois le mois et l'année pour la date de début.",
+                                "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
+                                "InvalidEndDateTwoFields": "L'année et le mois de fin doivent tous deux être renseignés, ou aucun des deux."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
