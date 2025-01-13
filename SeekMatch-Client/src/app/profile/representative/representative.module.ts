@@ -6,11 +6,15 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RepresentativeRoutingModule } from './representative.routing.module';
+import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
+import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 
 @NgModule({
   declarations: [
     RepresentativeProfileComponent,
-    AboutYouComponent
+    AboutYouComponent,
+    RecruiterTeamComponent,
+    RecruiterTeamModalComponent
   ],
   imports: [
     CommonModule,

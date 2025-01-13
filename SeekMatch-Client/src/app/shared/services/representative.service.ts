@@ -47,4 +47,16 @@ export class RepresentativeService {
   deleteProfilePicture(): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete-profile-picture`);
   }
+
+  getRecruiters(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get-all-recruiters`);
+  }
+
+  createRecruiter(recruiter: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/create-recruiter`, recruiter);
+  }
+
+  updateRecruiter(recruiter: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update-recruiter`, recruiter);
+  }
 }
