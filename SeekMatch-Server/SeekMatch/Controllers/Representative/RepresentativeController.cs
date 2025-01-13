@@ -149,6 +149,27 @@ namespace SeekMatch.Controllers
 
         #region Company Recruiter Management
         [Authorize]
+        [HttpGet("get-all-recruiters")]
+        public async Task<IActionResult> GetAllRecruiter()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var recruitersDto = await _representativeService.GetAllRecruitersAsync(userId);
+
+            if (recruitersDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(recruitersDto);
+        }
+        
+        [Authorize]
         [HttpPost("create-recruiter")]
         public async Task<IActionResult> CreateRecruiter([FromBody] RecruiterDto recruiterDto)
         {

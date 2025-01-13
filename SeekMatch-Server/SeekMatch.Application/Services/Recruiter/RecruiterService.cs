@@ -123,7 +123,6 @@ namespace SeekMatch.Application.Services
             {
                 FirstName = recruiterDto.FirstName,
                 LastName = recruiterDto.LastName,
-                IsFreelancer = true,
                 User = user
             };
 

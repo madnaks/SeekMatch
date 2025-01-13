@@ -21,7 +21,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.Representatives.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == userId);
+                return await _dbContext.Representatives
+                    .Include(r => r.Company)
+                    .ThenInclude(c => c.Recruiters)
+                    .Include(t => t.User)
+                    .FirstOrDefaultAsync(t => t.Id == userId);
             }
             catch (Exception ex)
             {

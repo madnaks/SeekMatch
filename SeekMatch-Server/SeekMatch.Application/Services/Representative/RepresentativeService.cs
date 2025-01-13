@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
+using AboutYouDto = SeekMatch.Application.DTOs.Representative.AboutYouDto;
 
 namespace SeekMatch.Application.Services
 {
@@ -85,6 +87,7 @@ namespace SeekMatch.Application.Services
             return false;
         }
 
+        #region Profile picture management
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
             var representative = await _representativeRepository.GetAsync(userId);
@@ -113,6 +116,20 @@ namespace SeekMatch.Application.Services
             await _representativeRepository.SaveChangesAsync(representative);
 
             return true;
+        }
+        #endregion
+
+        public async Task<List<RecruiterDto>> GetAllRecruitersAsync(string userId)
+        {
+            var representative = await _representativeRepository.GetAsync(userId);
+
+            if (representative != null)
+            {
+                var recruiters = representative.Company.Recruiters;
+                return _mapper.Map<List<RecruiterDto>>(recruiters);
+            }
+
+            return new List<RecruiterDto>();
         }
     }
 }
