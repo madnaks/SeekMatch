@@ -67,6 +67,7 @@ builder.Services.AddScoped<IRecruiterService, RecruiterService>();
 builder.Services.AddScoped<IJobOfferService, JobOfferService>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IRepresentativeService, RepresentativeService>();
+builder.Services.AddScoped<IEmailService, EmailService>();
 #endregion
 
 #region Register repositories
@@ -105,6 +106,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapIdentityApi<User>();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using System.Security.Claims;
+using AboutYouDto = SeekMatch.Application.DTOs.Representative.AboutYouDto;
 
 namespace SeekMatch.Controllers
 {
@@ -11,12 +13,15 @@ namespace SeekMatch.Controllers
     public class RepresentativeController : ControllerBase
     {
         private readonly IRepresentativeService _representativeService;
+        private readonly IRecruiterService _recruiterService;
 
         public RepresentativeController(
             ICompanyService companyService, 
-            IRepresentativeService representativeService)
+            IRepresentativeService representativeService,
+            IRecruiterService recruiterService)
         {
             _representativeService = representativeService;
+            _recruiterService = recruiterService;
         }
 
         [HttpPost("register")]
@@ -87,6 +92,7 @@ namespace SeekMatch.Controllers
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
 
+        #region Profile picture management
         [Authorize]
         [HttpPost("upload-profile-picture")]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
@@ -139,5 +145,37 @@ namespace SeekMatch.Controllers
 
             return NoContent();
         }
+        #endregion
+
+        #region Company Recruiter Management
+        [Authorize]
+        [HttpPost("create-recruiter")]
+        public async Task<IActionResult> CreateRecruiter([FromBody] RecruiterDto recruiterDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await _recruiterService.CreateAsync(recruiterDto);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors);
+
+            return Ok(result);
+        }
+
+        //[Authorize]
+        //[HttpPost("update-recruiter")]
+        //public async Task<IActionResult> UpdateRecruiter([FromBody] RecruiterDto recruiterDto)
+        //{
+
+        //}
+
+        //[Authorize]
+        //[HttpPost("delete-recruiter")]
+        //public async Task<IActionResult> DeleteRecruiter([FromBody] RecruiterDto recruiterDto)
+        //{
+
+        //}
+        #endregion
     }
 }

@@ -8,7 +8,14 @@ namespace SeekMatch.Application.Interfaces
         Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto);
         Task<RecruiterDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
+
+        #region Profile picture management
         Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId);
         Task<bool> DeleteProfilePictureAsync(string userId);
+        #endregion
+
+        #region Company Recruiter Management
+        Task<IdentityResult> CreateAsync(RecruiterDto recruiterDto);
+        #endregion
     }
 }
