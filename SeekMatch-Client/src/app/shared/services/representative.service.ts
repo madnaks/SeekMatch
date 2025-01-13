@@ -55,8 +55,4 @@ export class RepresentativeService {
   createRecruiter(recruiter: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-recruiter`, recruiter);
   }
-
-  updateRecruiter(recruiter: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update-recruiter`, recruiter);
-  }
 }

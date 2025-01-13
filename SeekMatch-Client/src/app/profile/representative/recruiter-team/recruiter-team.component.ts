@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { months } from '../../../shared/constants/constants';
-import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType } from '../../../shared/enums/enums';
+import { ModalActionType } from '../../../shared/enums/enums';
 import { Recruiter } from '../../../shared/models/recruiter';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 
@@ -31,36 +30,6 @@ export class RecruiterTeamComponent implements OnInit {
   ngOnInit(): void {
     this.getRecruiters();
   }
-
-  //#region : Modal functions
-  public open(content: any, recruiter?: Recruiter): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
-    if (recruiter != undefined) {
-      this.selectedRecruiter = recruiter;
-    }
-  }
-
-  public openDeleteModal(content: any, experience: Recruiter): void {
-    this.deleteModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
-    this.selectedRecruiter = experience;
-  }
-
-  public modalActionComplete(action: ModalActionType): void {
-    if (action == ModalActionType.Create) {
-      this.toastService.showSuccessMessage('Job offer created successfully');
-    } else if (action == ModalActionType.Update) {
-      this.toastService.showSuccessMessage('Job offer updated successfully');
-    }
-    this.getRecruiters();
-  }
-
-  private closeModal(): void {
-    if (this.deleteModal) {
-      this.deleteModal.close();
-      this.deleteModal = undefined;
-    }
-  }
-  //#endregion
 
   private getRecruiters(): void {
     this.representativeService.getRecruiters().subscribe((recruiters) => {
@@ -90,9 +59,31 @@ export class RecruiterTeamComponent implements OnInit {
     // }
   }
 
-  public getJobTypeName(type: JobType): string {
-    return JobType[type];
+  //#region : Modal functions
+  public open(content: any, recruiter?: Recruiter): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    if (recruiter != undefined) {
+      this.selectedRecruiter = recruiter;
+    }
   }
 
+  public openDeleteModal(content: any, experience: Recruiter): void {
+    this.deleteModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.selectedRecruiter = experience;
+  }
 
+  public modalActionComplete(action: ModalActionType): void {
+    if (action == ModalActionType.Create) {
+      this.toastService.showSuccessMessage('Recruiter created successfully');
+    } 
+    this.getRecruiters();
+  }
+
+  private closeModal(): void {
+    if (this.deleteModal) {
+      this.deleteModal.close();
+      this.deleteModal = undefined;
+    }
+  }
+  //#endregion
 }

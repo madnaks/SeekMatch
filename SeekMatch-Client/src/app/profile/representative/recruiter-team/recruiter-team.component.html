@@ -39,7 +39,6 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Title</th>
                                     <th scope="col">Full name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Actions</th>
@@ -58,7 +57,6 @@
                                         {{ recruiter.email }}
                                     </td>
                                     <td>
-                                        <i class="action-button fa-solid fa-pen me-4" (click)="open(updateRecruiterContent, recruiter)"></i>
                                         <i class="action-button fa-solid fa-trash" (click)="openDeleteModal(deleteRecruiterContent, recruiter)"></i>
                                     </td>
                                 </tr>
@@ -77,13 +75,6 @@
 <!-- Recruiter creation modal -->
 <ng-template #addRecruiterContent let-c="close" let-d="dismiss">
     <app-recruiter-team-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
-    </app-recruiter-team-modal>
-</ng-template>
-
-<!-- Recruiter edit modal -->
-<ng-template #updateRecruiterContent let-c="close" let-d="dismiss">
-    <app-recruiter-team-modal [closeModal]="c" [dismissModal]="d" [selectedRecruiter]="selectedRecruiter"
-        (modalActionComplete)="modalActionComplete($event)">
     </app-recruiter-team-modal>
 </ng-template>
 

@@ -22,7 +22,6 @@ export class RecruiterTeamModalComponent implements OnInit {
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   isSaving: boolean = false;
-  updateMode: boolean = false;
   recruiterForm: FormGroup;
   jobTypesList = jobTypes;
   bsConfig?: Partial<BsDatepickerConfig>;
@@ -36,7 +35,6 @@ export class RecruiterTeamModalComponent implements OnInit {
 
   ngOnInit() {
     if (this.selectedRecruiter != undefined) {
-      this.updateMode = true;
       this.populateForm(this.selectedRecruiter);
     }
   }
@@ -66,11 +64,7 @@ export class RecruiterTeamModalComponent implements OnInit {
       const formValues = this.recruiterForm.value;
       let recruiter = new Recruiter(formValues);
 
-      if (this.updateMode) {
-        this.update(recruiter);
-      } else {
-        this.create(recruiter);
-      }
+      this.create(recruiter);
 
     } else {
       this.recruiterForm.markAllAsTouched();
@@ -91,24 +85,6 @@ export class RecruiterTeamModalComponent implements OnInit {
         },
         error: (error) => {
           this.toastService.showErrorMessage('Creation of job offer failed', error);
-        }
-      });
-  }
-
-  private update(recruiter: Recruiter): void {
-  
-    recruiter.id = this.selectedRecruiter?.id;
-
-    this.representativeService.updateRecruiter(recruiter).pipe(
-      finalize(() => {
-        this.isSaving = false;
-      })).subscribe({
-        next: () => {
-          this.modalActionComplete.emit(ModalActionType.Update);
-          this.dismiss();
-        },
-        error: (error) => {
-          this.toastService.showErrorMessage('Update of job offer failed', error);
         }
       });
   }
