@@ -117,9 +117,15 @@
         <!-- Save -->
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50">
-                <i class="me-2"
+                @if (updateMode) {
+                    <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                {{ 'Shared.Button.Save' | translate }}
+                    {{ 'Shared.Button.Save' | translate }}
+                } @else {
+                    <i class="me-2"
+                    [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
+                    {{ 'Shared.Button.Create' | translate }}
+                }
             </button>
         </div>
     </form>
