@@ -21,7 +21,7 @@ namespace SeekMatch.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while fetching the recruiter", ex);
+                throw new Exception("An error occurred while fetching the company", ex);
             }
         }
 
@@ -29,6 +29,22 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             _dbContext.Companies.Add(company);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<bool> UpdateAsync(Company company)
+        {
+            try
+            {
+                _dbContext.Companies.Update(company);
+
+                var result = await _dbContext.SaveChangesAsync(true);
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving changes of the company", ex);
+            }
         }
     }
 }

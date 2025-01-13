@@ -3,6 +3,7 @@ using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
+using SeekMatch.Infrastructure.Repositories;
 
 namespace SeekMatch.Application.Services
 {
@@ -24,6 +25,22 @@ namespace SeekMatch.Application.Services
         public async Task CreateAsync(Company company)
         {
             await _companyRepository.CreateAsync(company);
+        }
+
+        public async Task<bool> UpdateAsync(CompanyDto companyDto, string id)
+        {
+            var company = await _companyRepository.GetAsync(id);
+
+            if (company != null)
+            {
+                company.Name = companyDto.Name;
+                company.PhoneNumber = companyDto.PhoneNumber;
+                company.Address = companyDto.Address;
+
+                return await _companyRepository.UpdateAsync(company);
+            }
+
+            return false;
         }
     }
 }

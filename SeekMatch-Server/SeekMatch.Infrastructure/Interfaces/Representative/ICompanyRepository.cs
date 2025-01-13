@@ -6,5 +6,6 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task<Company?> GetAsync(string id);
         Task CreateAsync(Company company);
+        Task<bool> UpdateAsync(Company company);
     }
 }

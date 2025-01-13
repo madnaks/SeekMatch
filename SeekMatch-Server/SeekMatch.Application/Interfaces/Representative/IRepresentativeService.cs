@@ -16,7 +16,9 @@ namespace SeekMatch.Application.Interfaces
         Task<bool> DeleteProfilePictureAsync(string userId);
         #endregion
 
+        #region Company Recruiter Management
         Task<List<RecruiterDto>> GetAllRecruitersAsync(string userId);
+        #endregion
 
     }
 }

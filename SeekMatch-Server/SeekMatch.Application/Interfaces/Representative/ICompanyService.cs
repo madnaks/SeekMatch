@@ -7,5 +7,6 @@ namespace SeekMatch.Application.Interfaces
     {
         Task<CompanyDto?> GetAsync(string id);
         Task CreateAsync(Company company);
+        Task<bool> UpdateAsync(CompanyDto companyDto, string id);
     }
 }

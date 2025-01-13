@@ -25,7 +25,8 @@ namespace SeekMatch.Application
 
             #region Representative
             CreateMap<Representative, RepresentativeDto>()
-                    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
+                    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
+                    .ForMember(dest => dest.CompanyDto, opt => opt.MapFrom(src => src.Company));
             CreateMap<Company, CompanyDto>().ReverseMap();
             #endregion 
 

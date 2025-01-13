@@ -149,6 +149,62 @@ namespace SeekMatch.Controllers
         }
         #endregion
 
+        #region Company
+        [Authorize]
+        [HttpGet("get-company")]
+        public async Task<IActionResult> GetCompany()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var representativeDto = await _representativeService.GetAsync(userId);
+
+            if (representativeDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(representativeDto.CompanyDto);
+        }
+
+        [Authorize]
+        [HttpPut("update-company")]
+        public async Task<IActionResult> UpdateCompany([FromBody] CompanyDto companyDto)
+        {
+            if (companyDto == null)
+            {
+                return BadRequest("Company data is null");
+            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var representativeDto = await _representativeService.GetAsync(userId);
+
+            if (representativeDto == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _companyService.UpdateAsync(companyDto, representativeDto.CompanyId);
+
+            if (result)
+            {
+                return Ok(new { message = "Representative profile saved successfully" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while saving the profile" });
+        }
+        #endregion
+
         #region Company Recruiter Management
         [Authorize]
         [HttpGet("get-all-recruiters")]
@@ -198,13 +254,6 @@ namespace SeekMatch.Controllers
 
             return Ok(result);
         }
-
-        //[Authorize]
-        //[HttpPost("update-recruiter")]
-        //public async Task<IActionResult> UpdateRecruiter([FromBody] RecruiterDto recruiterDto)
-        //{
-
-        //}
 
         //[Authorize]
         //[HttpPost("delete-recruiter")]

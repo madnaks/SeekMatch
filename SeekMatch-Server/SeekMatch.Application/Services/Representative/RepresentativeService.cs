@@ -119,6 +119,7 @@ namespace SeekMatch.Application.Services
         }
         #endregion
 
+        #region Company Recruiter Management
         public async Task<List<RecruiterDto>> GetAllRecruitersAsync(string userId)
         {
             var representative = await _representativeRepository.GetAsync(userId);
@@ -131,5 +132,6 @@ namespace SeekMatch.Application.Services
 
             return new List<RecruiterDto>();
         }
+        #endregion
     }
 }

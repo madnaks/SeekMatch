@@ -8,5 +8,6 @@
         public string? Email { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public required string CompanyId { get; set; }
+        public required CompanyDto CompanyDto { get; set; }
     }
 }
