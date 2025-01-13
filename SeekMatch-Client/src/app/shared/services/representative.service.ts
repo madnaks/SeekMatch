@@ -37,6 +37,7 @@ export class RepresentativeService {
     return this.http.put(`${this.apiUrl}/about-you`, aboutYouData);
   }
 
+  //#region Profile picture management
   uploadProfilePicture(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('profilePicture', file);
@@ -47,7 +48,19 @@ export class RepresentativeService {
   deleteProfilePicture(): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete-profile-picture`);
   }
+  //#endregion
 
+  //#region Company
+  getCompany(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get-company`);
+  }
+
+  updateCompanyData(companyData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update-company`, companyData);
+  }
+  //#endregion
+
+  //#region  Company Recruiter Management
   getRecruiters(): Observable<any> {
     return this.http.get(`${this.apiUrl}/get-all-recruiters`);
   }
@@ -55,4 +68,7 @@ export class RepresentativeService {
   createRecruiter(recruiter: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-recruiter`, recruiter);
   }
+  //#endregion
+
+  
 }

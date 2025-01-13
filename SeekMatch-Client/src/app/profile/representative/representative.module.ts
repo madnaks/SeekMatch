@@ -8,13 +8,15 @@ import { RepresentativeProfileComponent } from './representative-profile/represe
 import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
+import { CompanyInfoComponent } from './company-info/company-info.component';
 
 @NgModule({
   declarations: [
     RepresentativeProfileComponent,
     AboutYouComponent,
     RecruiterTeamComponent,
-    RecruiterTeamModalComponent
+    RecruiterTeamModalComponent,
+    CompanyInfoComponent
   ],
   imports: [
     CommonModule,
