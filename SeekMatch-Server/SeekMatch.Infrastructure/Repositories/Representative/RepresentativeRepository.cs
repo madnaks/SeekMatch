@@ -24,6 +24,7 @@ namespace SeekMatch.Infrastructure.Repositories
                 return await _dbContext.Representatives
                     .Include(r => r.Company)
                     .ThenInclude(c => c.Recruiters)
+                    .ThenInclude(recruiter => recruiter.User)
                     .Include(t => t.User)
                     .FirstOrDefaultAsync(t => t.Id == userId);
             }

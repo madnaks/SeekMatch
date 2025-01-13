@@ -14,14 +14,16 @@ namespace SeekMatch.Controllers
     {
         private readonly IRepresentativeService _representativeService;
         private readonly IRecruiterService _recruiterService;
+        private readonly ICompanyService _companyService;
 
         public RepresentativeController(
-            ICompanyService companyService, 
             IRepresentativeService representativeService,
-            IRecruiterService recruiterService)
+            IRecruiterService recruiterService,
+            ICompanyService companyService)
         {
             _representativeService = representativeService;
             _recruiterService = recruiterService;
+            _companyService = companyService;
         }
 
         [HttpPost("register")]
@@ -176,7 +178,20 @@ namespace SeekMatch.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _recruiterService.CreateAsync(recruiterDto);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var representativeDto = await _representativeService.GetAsync(userId);
+
+            if (representativeDto == null) { 
+                return NotFound(); 
+            }
+
+            var result = await _recruiterService.CreateAsync(recruiterDto, representativeDto.CompanyId);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);

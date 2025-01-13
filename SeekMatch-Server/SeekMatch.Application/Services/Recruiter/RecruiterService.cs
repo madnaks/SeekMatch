@@ -103,7 +103,7 @@ namespace SeekMatch.Application.Services
         #endregion
 
         #region Company Recruiter Management
-        public async Task<IdentityResult> CreateAsync(RecruiterDto recruiterDto)
+        public async Task<IdentityResult> CreateAsync(RecruiterDto recruiterDto, string companyId)
         {
             var user = new User
             {
@@ -123,6 +123,7 @@ namespace SeekMatch.Application.Services
             {
                 FirstName = recruiterDto.FirstName,
                 LastName = recruiterDto.LastName,
+                CompanyId = companyId,
                 User = user
             };
 
