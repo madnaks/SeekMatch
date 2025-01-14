@@ -63,7 +63,7 @@ export class JobOfferComponent implements OnInit {
   //#endregion
 
   private getJobOffers(): void {
-    this.jobOfferService.getAll().subscribe((jobOffers) => {
+    this.jobOfferService.getAllByRecruiter().subscribe((jobOffers) => {
       this.jobOffers = jobOffers;
       this.isLoading = false;
     });

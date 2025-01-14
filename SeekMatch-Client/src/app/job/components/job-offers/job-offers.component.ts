@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JobOffer } from '../../../shared/models/job-offer';
 
 @Component({
   selector: 'app-job-offers',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrl: './job-offers.component.scss'
 })
 export class JobOffersComponent {
+
+  selectedJobOffer: JobOffer | null = null;
+
+  onJobOfferSelected(jobOffer: any) {
+    this.selectedJobOffer = jobOffer;
+  }
+
 
 }

@@ -1,5 +1,6 @@
-import { Component, HostListener } from '@angular/core';
-import { JobService } from '../../services/job.service';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { JobOffer } from '../../../shared/models/job-offer';
+import { JobOfferService } from '../../../shared/services/jobOffer.service';
 
 @Component({
   selector: 'app-job-list',
@@ -7,20 +8,23 @@ import { JobService } from '../../services/job.service';
   styleUrl: './job-list.component.scss'
 })
 export class JobListComponent {
-  jobs: any[] = [];
+
+  @Output() jobOfferSelected = new EventEmitter<any>();
+
+  jobOffers: JobOffer[] = [];
   page: number = 1;
   isLoading: boolean = false;
 
-  constructor(private jobService: JobService) { }
+  constructor(private jobOfferService: JobOfferService) { }
 
   ngOnInit() {
-    this.loadJobs();
+    this.loadJobOffers();
   }
 
-  loadJobs() {
+  private loadJobOffers():void {
     this.isLoading = true;
-    this.jobService.getJobs(this.page).subscribe((newJobs) => {
-      this.jobs = [...this.jobs, ...newJobs];
+    this.jobOfferService.getAll().subscribe((newJobs) => {
+      this.jobOffers = [...this.jobOffers, ...newJobs];
       this.isLoading = false;
     });
   }
@@ -30,13 +34,14 @@ export class JobListComponent {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
       if (!this.isLoading) {
         this.page++;
-        this.loadJobs();
+        this.loadJobOffers();
       }
     }
   }
 
-  selectJob(job: any) {
-    this.jobService.setSelectedJob(job);
+  public selectJobOffer(jobOffer: any): void {
+    this.jobOfferSelected.emit(jobOffer);
+    // this.jobOfferService.setSelectedJobOffer(jobOffer);
   }
 
 }

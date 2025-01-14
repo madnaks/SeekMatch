@@ -1,8 +1,8 @@
 <div class="job-list">
-    <div *ngFor="let job of jobs" class="card mb-3" (click)="selectJob(job)">
+    <div *ngFor="let jobOffer of jobOffers" class="card mb-3" (click)="selectJobOffer(jobOffer)">
         <div class="card-body">
-            <h5 class="card-title">{{ job.title }}</h5>
-            <p class="card-text">{{ job.description }}</p>
+            <h5 class="card-title">{{ jobOffer.title }}</h5>
+            <p class="card-text">{{ jobOffer.description }}</p>
         </div>
     </div>
     <div *ngIf="isLoading" class="text-center">

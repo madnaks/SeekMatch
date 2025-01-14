@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { JobService } from '../../services/job.service';
-import { Job } from '../../../shared/models/job';
+import { Component, Input } from '@angular/core';
+import { JobOffer } from '../../../shared/models/job-offer';
 
 @Component({
   selector: 'app-job-details',
@@ -8,16 +7,7 @@ import { Job } from '../../../shared/models/job';
   styleUrl: './job-details.component.scss'
 })
 export class JobDetailsComponent {
-  job: Job | null = null;
 
-  constructor(private jobService: JobService) {}
-
-  ngOnInit(): void {
-    // Subscribe to changes in the selected job
-    this.jobService.selectedJob$.subscribe(selectedJob => {
-      this.job = selectedJob;
-    });
-  }
-
+  @Input() jobOffer: JobOffer | null = null;
 
 }

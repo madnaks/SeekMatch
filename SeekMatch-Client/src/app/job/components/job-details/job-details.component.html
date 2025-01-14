@@ -1,11 +1,11 @@
-<div class="job-details" *ngIf="job">
-    <h2>{{ job.title }}</h2>
-    <h6>{{ job.company }}</h6>
-    <span><i class="fa-solid fa-location-dot"></i> {{ job.location }}</span>
+<div class="job-details" *ngIf="jobOffer">
+    <h2>{{ jobOffer.title }}</h2>
+    <h6>{{ jobOffer.companyName }}</h6>
+    <span><i class="fa-solid fa-location-dot"></i> {{ jobOffer.location }}</span>
     <hr>
     <h5>{{ 'JobOffers.JobDetails.JobDetails' | translate }}</h5>
-    <p>{{ job.description }}</p>
+    <p>{{ jobOffer.description }}</p>
 </div>
-<div *ngIf="!job" class="text-center">
+<div *ngIf="!jobOffer" class="text-center">
     <p>Select a job to see details</p>
 </div>
