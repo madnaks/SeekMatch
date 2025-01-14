@@ -21,8 +21,7 @@ namespace SeekMatch.Controllers
             _jobOfferService = jobOfferService;
         }
 
-        [Authorize]
-        [HttpGet]
+        [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -32,7 +31,28 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var jobOffersDto = await _jobOfferService.GetAllAsync(recruiterId);
+            var jobOffersDto = await _jobOfferService.GetAllAsync();
+
+            if (jobOffersDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(jobOffersDto);
+        }
+        
+        [Authorize]
+        [HttpGet("get-all-by-recruiter")]
+        public async Task<IActionResult> GetAllByRecruiter()
+        {
+            var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (recruiterId == null)
+            {
+                return Unauthorized();
+            }
+
+            var jobOffersDto = await _jobOfferService.GetAllByRecruiterAsync(recruiterId);
 
             if (jobOffersDto == null)
             {

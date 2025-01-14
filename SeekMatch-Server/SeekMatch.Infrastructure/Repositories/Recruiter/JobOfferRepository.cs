@@ -12,7 +12,22 @@ namespace SeekMatch.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IList<JobOffer>?> GetAllAsync(string recruiterId)
+        public async Task<IList<JobOffer>?> GetAllAsync()
+        {
+            try
+            {
+                return await _dbContext.JobOffers
+                    .Where(j => j.IsActive)
+                    .OrderBy(e => e.CreatedAt)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the job offer", ex);
+            }
+        }
+        
+        public async Task<IList<JobOffer>?> GetAllByRecruiterAsync(string recruiterId)
         {
             try
             {
