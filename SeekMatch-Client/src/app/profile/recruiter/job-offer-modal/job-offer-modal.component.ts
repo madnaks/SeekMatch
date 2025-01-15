@@ -7,7 +7,6 @@ import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { formatDateToISO } from '../../../shared/utils';
 
 @Component({
   selector: 'app-job-offer-modal',

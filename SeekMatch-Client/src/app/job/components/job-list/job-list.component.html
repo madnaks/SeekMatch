@@ -1,8 +1,24 @@
 <div class="job-list">
     <div *ngFor="let jobOffer of jobOffers" class="card mb-3" (click)="selectJobOffer(jobOffer)">
         <div class="card-body">
-            <h5 class="card-title">{{ jobOffer.title }}</h5>
-            <p class="card-text">{{ jobOffer.description }}</p>
+            <h5 class="card-title">
+                {{ jobOffer.title }}
+            </h5>
+            <h6 class="card-text">
+                <small class="text-muted">
+                    {{ jobOffer.companyName }}
+                </small>
+            </h6>
+            <h6 class="card-text">
+                <small class="text-muted">
+                    {{ jobOffer.location }}
+                </small>
+            </h6>
+            <div class="card-text">
+                <span class="description">
+                    {{ jobOffer.description }}
+                </span>
+            </div>
         </div>
     </div>
     <div *ngIf="isLoading" class="text-center">

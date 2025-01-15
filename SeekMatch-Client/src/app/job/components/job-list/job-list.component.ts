@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
 
@@ -12,7 +12,6 @@ export class JobListComponent {
   @Output() jobOfferSelected = new EventEmitter<any>();
 
   jobOffers: JobOffer[] = [];
-  page: number = 1;
   isLoading: boolean = false;
 
   constructor(private jobOfferService: JobOfferService) { }
@@ -29,19 +28,8 @@ export class JobListComponent {
     });
   }
 
-  @HostListener('window:scroll', ['$event'])
-  onScroll() {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      if (!this.isLoading) {
-        this.page++;
-        this.loadJobOffers();
-      }
-    }
-  }
-
   public selectJobOffer(jobOffer: any): void {
     this.jobOfferSelected.emit(jobOffer);
-    // this.jobOfferService.setSelectedJobOffer(jobOffer);
   }
 
 }

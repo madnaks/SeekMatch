@@ -1,10 +1,30 @@
 <div class="job-details" *ngIf="jobOffer">
-    <h2>{{ jobOffer.title }}</h2>
-    <h6>{{ jobOffer.companyName }}</h6>
-    <span><i class="fa-solid fa-location-dot"></i> {{ jobOffer.location }}</span>
+    <!-- Job offer Title -->
+    <h2>
+        {{ jobOffer.title }}
+    </h2>
+    <!-- Company name -->
+    <h6>
+        {{ jobOffer.companyName }}
+    </h6>
+    <!-- Location -->
+    <div>
+        <i class="fa-solid fa-location-dot"></i> 
+        {{ jobOffer.location }}
+    </div>
+    <!-- Job offer type -->
+    <div>
+        <i class="fa-solid fa-briefcase"></i>
+        {{ 'JobType.' + getJobTypeName(jobOffer.type) | translate }}
+    </div>
     <hr>
-    <h5>{{ 'JobOffers.JobDetails.JobDetails' | translate }}</h5>
-    <p>{{ jobOffer.description }}</p>
+    <h5>
+        {{ 'JobOffers.JobDetails.JobDetails' | translate }}
+    </h5>
+    <!-- Description -->
+    <p>
+        {{ jobOffer.description }}
+    </p>
 </div>
 <div *ngIf="!jobOffer" class="text-center">
     <p>Select a job to see details</p>

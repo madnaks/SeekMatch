@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
+import { JobType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-job-details',
@@ -9,5 +10,9 @@ import { JobOffer } from '../../../shared/models/job-offer';
 export class JobDetailsComponent {
 
   @Input() jobOffer: JobOffer | null = null;
+
+  public getJobTypeName(type: JobType): string {
+    return JobType[type];
+  }
 
 }

@@ -14,5 +14,4 @@ export class JobOffersComponent {
     this.selectedJobOffer = jobOffer;
   }
 
-
 }
