@@ -24,13 +24,6 @@ namespace SeekMatch.Controllers
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
-            var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (recruiterId == null)
-            {
-                return Unauthorized();
-            }
-
             var jobOffersDto = await _jobOfferService.GetAllAsync();
 
             if (jobOffersDto == null)
