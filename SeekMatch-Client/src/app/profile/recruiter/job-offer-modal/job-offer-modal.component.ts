@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { jobTypes } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
@@ -53,10 +53,10 @@ export class JobOfferModalComponent implements OnInit {
 
   private initJobOfferFormForm(): FormGroup {
     return this.fb.group({
-      title: [''],
-      description: [''],
+      title: ['', Validators.required],
+      description: ['', Validators.required],
       companyName: [''],
-      location: [''],
+      location: ['', Validators.required],
       salary: [''],
       postedAt: [null],
       expiresAt: [null],
