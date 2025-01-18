@@ -36,7 +36,7 @@ export class ExperienceComponent implements OnInit {
 
   //#region : Modal functions
   public open(content: any, experience?: Experience): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (experience != undefined) {
       this.selectedExperience = experience;
     }

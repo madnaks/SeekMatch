@@ -11,131 +11,141 @@
 
 <div class="modal-body">
     <form [formGroup]="experienceForm" (ngSubmit)="onSubmit()">
-        <!-- Company name -->
-        <div class="mb-4">
-            <label for="inputCompanyName" class="form-label">
-                {{ 'Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
-            </label>
-            <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
-                [placeholder]="'Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
-            @if ((experienceForm.get('companyName')?.invalid && experienceForm.get('companyName')?.touched)) {
-            <div class="text-danger">
-                {{ 'Talent.Experience.Modal.Body.Form.Validation.CompanyName' | translate }}
-            </div>
-            }
-        </div>
-        <!-- Job Title -->
-        <div class="mb-4">
-            <label for="inputJobTitle" class="form-label">
-                {{ 'Talent.Experience.Modal.Body.Form.JobTitle' | translate }}
-            </label>
-            <input type="text" class="form-control" id="inputJobTitle" formControlName="jobTitle"
-                [placeholder]="'Talent.Experience.Modal.Body.Form.JobTitlePlaceHolder' | translate">
-        </div>
-        <!-- Job Type -->
-        <div class="mb-4">
-            <label for="inputJobType" class="form-label">
-                {{ 'Talent.Experience.Modal.Body.Form.JobType' | translate }}
-            </label>
-            <select id="jobTypeSelect" class="form-select" formControlName="type">
-                <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
-                    {{ jobType.value | translate }}
-                </option>
-            </select>
-        </div>
-        <!-- Start month & Start year -->
-        <div class="row mb-4">
+        <div class="row">
+            <!-- Left Column for Fields -->
             <div class="col-md-6">
-                <label for="selectStartMonth" class="form-label">
-                    {{ 'Talent.Experience.Modal.Body.Form.StartMonth' | translate }}
-                </label>
-                <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
-                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="selectStartYear" class="form-label">
-                    {{ 'Talent.Experience.Modal.Body.Form.StartYear' | translate }}
-                </label>
-                <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
-                    <option value="0">
-                        {{ 'Date.SelectYear' | translate }}
-                    </option>
-                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                </select>
-            </div>
-            <div class="col-md-12">
-                @if ((experienceForm.get('startMonth')?.hasError('requiredSelection') &&
-                experienceForm.get('startMonth')?.touched) ||
-                (experienceForm.get('startYear')?.hasError('requiredSelection') &&
-                experienceForm.get('startYear')?.touched)) {
-                <div class="text-danger">
-                    {{ 'Talent.Experience.Modal.Body.Form.Validation.StartDate' | translate }}
+                <!-- Company name -->
+                <div class="mb-4">
+                    <label for="inputCompanyName" class="form-label">
+                        {{ 'Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
+                        [placeholder]="'Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+                    @if ((experienceForm.get('companyName')?.invalid && experienceForm.get('companyName')?.touched)) {
+                    <div class="text-danger">
+                        {{ 'Talent.Experience.Modal.Body.Form.Validation.CompanyName' | translate }}
+                    </div>
+                    }
                 </div>
-                }
-            </div>
-        </div>
-        <!-- End month & End year -->
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <label for="selectEndMonth" class="form-label">
-                    {{ 'Talent.Experience.Modal.Body.Form.EndMonth' | translate }}
-                </label>
-                <select class="form-select form-select-sm" id="selectEndMonth" formControlName="endMonth">
-                    <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="selectEndYear" class="form-label">
-                    {{ 'Talent.Experience.Modal.Body.Form.EndYear' | translate }}
-                </label>
-                <select class="form-select form-select-sm" id="selectEndYear" formControlName="endYear">
-                    <option value="0">
-                        {{ 'Date.SelectYear' | translate }}
-                    </option>
-                    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-                </select>
-            </div>
-            <div class="col-md-12">
-                @if (experienceForm.errors?.['invalidDateRange']) {
-                <div class="text-danger">
-                    {{ 'Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                <!-- Job Title -->
+                <div class="mb-4">
+                    <label for="inputJobTitle" class="form-label">
+                        {{ 'Talent.Experience.Modal.Body.Form.JobTitle' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputJobTitle" formControlName="jobTitle"
+                        [placeholder]="'Talent.Experience.Modal.Body.Form.JobTitlePlaceHolder' | translate">
                 </div>
-                }
-                @if (experienceForm.errors?.['invalidEndDateTwoFields']) {
-                <div class="text-danger">
-                    {{ 'Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
+                <!-- Job Type -->
+                <div class="mb-4">
+                    <label for="inputJobType" class="form-label">
+                        {{ 'Talent.Experience.Modal.Body.Form.JobType' | translate }}
+                    </label>
+                    <select id="jobTypeSelect" class="form-select" formControlName="type">
+                        <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
+                            {{ jobType.value | translate }}
+                        </option>
+                    </select>
                 </div>
-                }
+                <!-- Start month & Start year -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="selectStartMonth" class="form-label">
+                            {{ 'Talent.Experience.Modal.Body.Form.StartMonth' | translate }}
+                        </label>
+                        <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
+                            <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="selectStartYear" class="form-label">
+                            {{ 'Talent.Experience.Modal.Body.Form.StartYear' | translate }}
+                        </label>
+                        <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
+                            <option value="0">
+                                {{ 'Date.SelectYear' | translate }}
+                            </option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        @if ((experienceForm.get('startMonth')?.hasError('requiredSelection') &&
+                        experienceForm.get('startMonth')?.touched) ||
+                        (experienceForm.get('startYear')?.hasError('requiredSelection') &&
+                        experienceForm.get('startYear')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.Experience.Modal.Body.Form.Validation.StartDate' | translate }}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <!-- End month & End year -->
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="selectEndMonth" class="form-label">
+                            {{ 'Talent.Experience.Modal.Body.Form.EndMonth' | translate }}
+                        </label>
+                        <select class="form-select form-select-sm" id="selectEndMonth" formControlName="endMonth">
+                            <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="selectEndYear" class="form-label">
+                            {{ 'Talent.Experience.Modal.Body.Form.EndYear' | translate }}
+                        </label>
+                        <select class="form-select form-select-sm" id="selectEndYear" formControlName="endYear">
+                            <option value="0">
+                                {{ 'Date.SelectYear' | translate }}
+                            </option>
+                            <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        @if (experienceForm.errors?.['invalidDateRange']) {
+                        <div class="text-danger">
+                            {{ 'Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
+                        </div>
+                        }
+                        @if (experienceForm.errors?.['invalidEndDateTwoFields']) {
+                        <div class="text-danger">
+                            {{ 'Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <!-- Currently working -->
+                <div class="mb-4">
+                    <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyWorking"
+                        formControlName="currentlyWorking">
+                    <label class="form-check-label" for="inputCurrentlyWorking">
+                        {{ 'Talent.Experience.Modal.Body.Form.CurrentlyWorking' | translate }}
+                    </label>
+                </div>
             </div>
-        </div>
-        <!-- Currently working -->
-        <div class="mb-4">
-            <input class="form-check-input me-2" type="checkbox" id="inputCurrentlyWorking"
-                formControlName="currentlyWorking">
-            <label class="form-check-label" for="inputCurrentlyWorking">
-                {{ 'Talent.Experience.Modal.Body.Form.CurrentlyWorking' | translate }}
-            </label>
-        </div>
-        <!-- Description -->
-        <div class="mb-4">
-            <label for="inputDescription" class="form-label">
-                {{ 'Talent.Experience.Modal.Body.Form.Description' | translate }}
-            </label>
-            <textarea class="form-control" id="inputDescription" formControlName="description"
-                [placeholder]="'Talent.Experience.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
+
+            <div class="col-md-6 d-flex flex-column">
+                <!-- Description -->
+                <div class="mb-4 flex-grow-1">
+                    <label for="inputDescription" class="form-label">
+                        {{ 'Talent.Experience.Modal.Body.Form.Description' | translate }}
+                    </label>
+                    <textarea class="form-control" id="inputDescription" formControlName="description"
+                        [placeholder]="'Talent.Experience.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea>
+                </div>
+            </div>
         </div>
         <!-- Save -->
         <div class="mb-4 d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary w-50">
+            <button type="submit" class="btn btn-primary w-25">
                 @if (updateMode) {
-                    <i class="me-2"
+                <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                    {{ 'Button.Save' | translate }}
+                {{ 'Button.Save' | translate }}
                 } @else {
-                    <i class="me-2"
+                <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
-                    {{ 'Button.Create' | translate }}
+                {{ 'Button.Create' | translate }}
                 }
             </button>
         </div>
