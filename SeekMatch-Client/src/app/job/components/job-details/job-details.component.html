@@ -22,8 +22,7 @@
         {{ 'JobOffers.JobDetails.JobDetails' | translate }}
     </h5>
     <!-- Description -->
-    <p>
-        {{ jobOffer.description }}
+    <p [innerHTML]="sanitizedDescription(jobOffer.description)">
     </p>
 </div>
 <div *ngIf="!jobOffer" class="text-center">

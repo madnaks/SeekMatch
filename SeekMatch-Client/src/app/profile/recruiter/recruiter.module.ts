@@ -8,6 +8,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.compon
     FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule,
-    TranslateModule
+    TranslateModule,
+    QuillModule.forRoot()
   ]
 })
 export class RecruiterModule { }

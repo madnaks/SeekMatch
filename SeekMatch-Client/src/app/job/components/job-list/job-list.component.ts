@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/jobOffer.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-job-list',
@@ -14,7 +15,7 @@ export class JobListComponent {
   jobOffers: JobOffer[] = [];
   isLoading: boolean = false;
 
-  constructor(private jobOfferService: JobOfferService) { }
+  constructor(private jobOfferService: JobOfferService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.loadJobOffers();
@@ -30,6 +31,10 @@ export class JobListComponent {
 
   public selectJobOffer(jobOffer: any): void {
     this.jobOfferSelected.emit(jobOffer);
+  }
+
+  public sanitizedDescription(description: string) {
+    return this.sanitizer.bypassSecurityTrustHtml(description);
   }
 
 }

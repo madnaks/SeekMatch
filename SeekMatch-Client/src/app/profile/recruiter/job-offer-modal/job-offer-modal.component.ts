@@ -27,6 +27,15 @@ export class JobOfferModalComponent implements OnInit {
   jobTypesList = jobTypes;
   bsConfig?: Partial<BsDatepickerConfig>;
 
+  editorModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'], // toggle buttons
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }], // lists
+      ['clean'] // remove formatting button
+    ]
+  };
+
+
   constructor(
     private fb: NonNullableFormBuilder,
     private jobOfferService: JobOfferService,
@@ -50,6 +59,7 @@ export class JobOfferModalComponent implements OnInit {
       showWeekNumbers: false,
     });
   }
+  
 
   private initJobOfferFormForm(): FormGroup {
     return this.fb.group({

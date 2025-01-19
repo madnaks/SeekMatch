@@ -15,8 +15,7 @@
                 </small>
             </h6>
             <div class="card-text">
-                <span class="description">
-                    {{ jobOffer.description }}
+                <span class="description" [innerHTML]="sanitizedDescription(jobOffer.description)">
                 </span>
             </div>
         </div>
