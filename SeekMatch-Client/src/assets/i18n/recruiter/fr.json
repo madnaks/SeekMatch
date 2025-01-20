@@ -36,7 +36,8 @@
                             "IsActive": "Actif",
                             "Validation": {
                                 "Title": "Le titre est obligatoire.",
-                                "CompanyName": "Le nom de l'entreprise est obligatoire.",
+                                "Location": "Le Lieu est obligatoire.",
+                                "Description": "Description est obligatoire.",
                                 "StartDate": "Veuillez indiquer à la fois le mois et l'année pour la date de début.",
                                 "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
                                 "InvalidEndDateTwoFields": "L'année et le mois de fin doivent tous deux être renseignés, ou aucun des deux."

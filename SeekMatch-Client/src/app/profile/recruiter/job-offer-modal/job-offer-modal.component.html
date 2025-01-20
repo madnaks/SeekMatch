@@ -34,11 +34,6 @@
                     </label>
                     <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
-                    @if ((jobOfferForm.get('companyName')?.invalid && jobOfferForm.get('companyName')?.touched)) {
-                    <div class="text-danger">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.CompanyName' | translate }}
-                    </div>
-                    }
                 </div>
                 <!-- Job Type -->
                 <div class="mb-4">
@@ -58,6 +53,11 @@
                     </label>
                     <input type="text" class="form-control" id="inputLocation" formControlName="location"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.LocationPlaceholder' | translate">
+                    @if ((jobOfferForm.get('location')?.invalid && jobOfferForm.get('location')?.touched)) {
+                    <div class="text-danger">
+                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Location' | translate }}
+                    </div>
+                    }
                 </div>
                 <!-- Salary -->
                 <div class="mb-4">
@@ -109,13 +109,13 @@
             <div class="col-md-8 d-flex flex-column">
                 <!-- Description -->
                 <div class="mb-4 flex-grow-1">
-                    <!-- <label for="inputDescription" class="form-label">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
-                    </label> -->
-                    <!-- <textarea class="form-control" id="inputDescription" formControlName="description"
-                    [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.DescriptionPlaceholder' | translate"></textarea> -->
                     <quill-editor formControlName="description" [modules]="editorModules">
                     </quill-editor>
+                    @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
+                    <div class="text-danger">
+                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Description' | translate }}
+                    </div>
+                    }
                 </div>
             </div>
             <!-- Save -->

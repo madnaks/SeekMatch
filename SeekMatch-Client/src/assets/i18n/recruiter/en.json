@@ -35,7 +35,8 @@
                         "IsActive": "Active",
                         "Validation": {
                             "Title": "Title is required.",
-                            "CompanyName": "Company name is required.",
+                            "Location": "Location is required.",
+                            "Description": "Description is required.",
                             "StartDate": "Please enter both the month and year for the start date.",
                             "InvalidDateRange": "End date cannot be earlier than start date.",
                             "InvalidEndDateTwoFields": "Both end year and end month must be filled, or neither should be."

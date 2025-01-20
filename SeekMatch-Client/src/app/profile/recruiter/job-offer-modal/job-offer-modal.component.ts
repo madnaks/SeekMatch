@@ -60,7 +60,6 @@ export class JobOfferModalComponent implements OnInit {
     });
   }
   
-
   private initJobOfferFormForm(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
