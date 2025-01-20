@@ -19,8 +19,9 @@ export class JobDetailsComponent {
     return JobType[type];
   }
   
-  public sanitizedDescription(description: string, ) {
-    return this.sanitizer.bypassSecurityTrustHtml(description);
+  public sanitizedDescription(description: string) {
+    const normalizedDescription = description.replace(/&nbsp;/g, ' ');
+    return this.sanitizer.bypassSecurityTrustHtml(normalizedDescription);
   }
 }
   

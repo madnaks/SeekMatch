@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { jobTypes } from '../../../shared/constants/constants';
+import { EDITOR_MODULES, jobTypes } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
 import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
@@ -27,14 +27,7 @@ export class JobOfferModalComponent implements OnInit {
   jobTypesList = jobTypes;
   bsConfig?: Partial<BsDatepickerConfig>;
 
-  editorModules = {
-    toolbar: [
-      ['bold', 'italic', 'underline'], // toggle buttons
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }], // lists
-      ['clean'] // remove formatting button
-    ]
-  };
-
+  editorModules = EDITOR_MODULES;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -108,7 +101,6 @@ export class JobOfferModalComponent implements OnInit {
     }
   }
   //#endregion
-
 
   private create(jobOffer: JobOffer): void {
 

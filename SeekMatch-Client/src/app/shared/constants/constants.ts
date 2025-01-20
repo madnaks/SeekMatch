@@ -23,3 +23,11 @@ export const jobTypes = [
   { key: JobType.Contract, value: 'JobType.Contract' },
   { key: JobType.Freelance, value: 'JobType.Freelance' },
 ];
+
+export const EDITOR_MODULES = {
+  toolbar: [
+    ['bold', 'italic', 'underline'],
+    [{ list: 'ordered' }, { list: 'bullet' }],
+    ['clean'],
+  ],
+};

@@ -33,8 +33,4 @@ export class JobListComponent {
     this.jobOfferSelected.emit(jobOffer);
   }
 
-  public sanitizedDescription(description: string) {
-    return this.sanitizer.bypassSecurityTrustHtml(description);
-  }
-
 }

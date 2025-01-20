@@ -1,3 +1,27 @@
-.description {
-    word-wrap: break-word;
+@import '../../../../assets/styles/styles-variables.scss';
+
+.job-details {
+    height: 100%; /* Ensure it takes the full height of its parent */
+    max-height: 100vh; /* Or you can set a specific height like 600px */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 1rem; /* Optional: Add some padding for better spacing */
+    box-sizing: border-box; /* Ensure padding and borders are included in the height */
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $primary-color;
+        border: 2px solid $primary-color;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+}
+
+.description{
+    word-break: break-word;
 }
