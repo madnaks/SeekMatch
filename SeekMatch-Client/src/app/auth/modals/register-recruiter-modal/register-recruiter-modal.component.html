@@ -16,7 +16,7 @@
                     <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'company'}"
                         (click)="selectOption('company')">
                         <img src="assets\images\company.svg" width="100" />
-                        <label class="form-check-label" for="flexRadioDefault1">
+                        <label class="form-check-label">
                             {{ 'SignUp.Recruiter.Modal.Step1.Body.RepresentCompany' | translate }}
                         </label>
                     </button>
@@ -25,7 +25,7 @@
                     <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'freelancer'}"
                         (click)="selectOption('freelancer')">
                         <img src="assets\images\business-persons.svg" width="100" />
-                        <label class="form-check-label" for="flexRadioDefault2">
+                        <label class="form-check-label">
                             {{ 'SignUp.Recruiter.Modal.Step1.Body.FreelanceRecruiter' | translate }}
                         </label>
                     </button>

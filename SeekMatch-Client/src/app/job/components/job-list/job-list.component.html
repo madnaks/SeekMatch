@@ -14,10 +14,6 @@
                     {{ jobOffer.location }}
                 </small>
             </h6>
-            <div class="card-text">
-                <span class="description" [innerHTML]="sanitizedDescription(jobOffer.description)">
-                </span>
-            </div>
         </div>
     </div>
     <div *ngIf="isLoading" class="text-center">
