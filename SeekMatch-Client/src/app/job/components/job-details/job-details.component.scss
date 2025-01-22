@@ -1,11 +1,11 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 .job-details {
-    height: 100%; /* Ensure it takes the full height of its parent */
-    max-height: 100vh; /* Or you can set a specific height like 600px */
-    overflow-y: auto; /* Enable vertical scrolling */
-    padding: 1rem; /* Optional: Add some padding for better spacing */
-    box-sizing: border-box; /* Ensure padding and borders are included in the height */
+    height: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 1rem;
+    box-sizing: border-box;
 
     &::-webkit-scrollbar {
         width: 5px;
@@ -24,4 +24,19 @@
 
 .description{
     word-break: break-word;
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+.save-job-btn {
+    margin-left: auto;
 }

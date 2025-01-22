@@ -25,7 +25,8 @@
         "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
         "WhereInput": "Où ?",
         "JobDetails": {
-            "JobDetails": "Détails du poste"
+            "JobDetails": "Détails du poste",
+            "Apply": "Postuler"
         }
     },
     "Companies": {

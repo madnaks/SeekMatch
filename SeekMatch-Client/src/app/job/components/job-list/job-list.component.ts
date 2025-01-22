@@ -25,6 +25,9 @@ export class JobListComponent {
     this.isLoading = true;
     this.jobOfferService.getAll().subscribe((newJobs) => {
       this.jobOffers = [...this.jobOffers, ...newJobs];
+      if (this.jobOffers.length > 0) {
+        this.selectJobOffer(this.jobOffers[0]);
+      }
       this.isLoading = false;
     });
   }
