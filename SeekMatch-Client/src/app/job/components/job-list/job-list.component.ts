@@ -14,6 +14,7 @@ export class JobListComponent {
 
   jobOffers: JobOffer[] = [];
   isLoading: boolean = false;
+  selectedJobOffer: JobOffer | null = null;
 
   constructor(private jobOfferService: JobOfferService, private sanitizer: DomSanitizer) { }
 
@@ -33,6 +34,7 @@ export class JobListComponent {
   }
 
   public selectJobOffer(jobOffer: any): void {
+    this.selectedJobOffer = jobOffer;
     this.jobOfferSelected.emit(jobOffer);
   }
 

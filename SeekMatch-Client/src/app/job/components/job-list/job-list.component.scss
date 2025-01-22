@@ -1,24 +1,17 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
 .card-body {
     cursor: pointer;
     transition: all 0.3s ease;
-    
-    .card-text {
-        .description {
-            display: -webkit-box;
-            line-clamp: 3; /* Change to the desired number of lines */
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            height: calc(1.5em * 3);
-            line-height: 1.5;
-        }
-    }
+
     &:hover {
-        // border: 1px solid black;
-        // border-radius: 0.375rem;
         .card-title {
             text-decoration: underline;
         }
     }
+}
+
+.selected-job-offer {
+    border: 1px solid rgba(0, 0, 0, 0.661);
+    // border-radius: 4px;
 }

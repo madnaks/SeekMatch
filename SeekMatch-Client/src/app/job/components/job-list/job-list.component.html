@@ -1,5 +1,8 @@
 <div class="job-list">
-    <div *ngFor="let jobOffer of jobOffers" class="card mb-3" (click)="selectJobOffer(jobOffer)">
+    <div 
+        *ngFor="let jobOffer of jobOffers" class="card mb-3"  
+        [ngClass]="{'selected-job-offer': jobOffer === selectedJobOffer}" 
+        (click)="selectJobOffer(jobOffer)">
         <div class="card-body">
             <h5 class="card-title">
                 {{ jobOffer.title }}
