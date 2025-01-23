@@ -5,7 +5,7 @@ import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobOfferService } from '../../../shared/services/jobOffer.service';
+import { JobOfferService } from '../../../shared/services/job-offer.service';
 
 @Component({
   selector: 'app-job-offer',

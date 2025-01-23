@@ -1,18 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobType } from '../../../shared/enums/enums';
+import { JobType, UserRole } from '../../../shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
   styleUrl: './job-details.component.scss'
 })
-export class JobDetailsComponent {
+export class JobDetailsComponent implements OnInit {
  
   @Input() jobOffer: JobOffer | null = null;
+  userRole: UserRole | null = null;
+  canApply: boolean = false;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(
+    private sanitizer: DomSanitizer,
+    private authService: AuthService) {
+  }
+
+  ngOnInit() {
+    this.userRole = this.authService.getUserRole();
+    // Only Talent can Apply
+    this.canApply = this.userRole == UserRole.Talent;
   }
  
   public getJobTypeName(type: JobType): string {

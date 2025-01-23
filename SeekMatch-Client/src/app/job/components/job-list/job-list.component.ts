@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobOfferService } from '../../../shared/services/jobOffer.service';
+import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({

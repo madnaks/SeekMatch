@@ -5,7 +5,7 @@ import { EDITOR_MODULES, jobTypes } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
 import { JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobOfferService } from '../../../shared/services/jobOffer.service';
+import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
