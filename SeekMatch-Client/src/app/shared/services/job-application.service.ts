@@ -20,8 +20,8 @@ export class JobApplicationService {
     return this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-recruiter`);
   }
 
-  apply(jobApplication: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, jobApplication);
+  apply(jobOfferId: string | undefined): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${jobOfferId}`, null);
   }
 
   delete(jobApplicationId: string): Observable<any> {
