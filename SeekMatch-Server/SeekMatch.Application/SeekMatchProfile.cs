@@ -21,6 +21,7 @@ namespace SeekMatch.Application
             CreateMap<Recruiter, RecruiterDto>()
                     .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
             CreateMap<JobOffer, JobOfferDto>().ReverseMap();
+            CreateMap<JobApplication, JobApplicationDto>().ReverseMap();
             #endregion 
 
             #region Representative
