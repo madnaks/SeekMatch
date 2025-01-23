@@ -17,9 +17,9 @@ namespace SeekMatch.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync()
+        public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync(string talentId)
         {
-            return _mapper.Map<IList<JobApplicationDto>>(await _jobApplicationRepository.GetAllByTalentAsync());
+            return _mapper.Map<IList<JobApplicationDto>>(await _jobApplicationRepository.GetAllByTalentAsync(talentId));
         }
 
         public async Task<IList<JobApplicationDto>?> GetAllByRecruiterAsync()
@@ -27,14 +27,24 @@ namespace SeekMatch.Application.Services
             return _mapper.Map<IList<JobApplicationDto>>(await _jobApplicationRepository.GetAllByRecruiterAsync());
         }
 
-        public async Task<bool> CreateAsync(string talentId, string jobOfferId)
+        public async Task<bool> ApplyAsync(string talentId, string jobOfferId)
         {
+            // Check if the talent has already applied for the job offer
+            var existingApplication = await _jobApplicationRepository
+                .FindByTalentAndJobOfferAsync(talentId, jobOfferId);
+
+            if (existingApplication != null)
+            {
+                throw new Exception("You have already applied for this job offer.");
+            }
+
             var jobApplication = new JobApplication() { 
                 Id = Guid.NewGuid().ToString(),
+                AppliedAt = DateTime.UtcNow,
                 JobOfferId = jobOfferId,
                 TalentId = talentId
             };
-            return await _jobApplicationRepository.CreateAsync(jobApplication);
+            return await _jobApplicationRepository.ApplyAsync(jobApplication);
         }
 
         public async Task<bool> DeleteAsync(string jobApplicationId)

@@ -24,14 +24,21 @@ namespace SeekMatch.Controllers
         [HttpGet("get-all-by-talent")]
         public async Task<IActionResult> GetAllByTalent()
         {
-            var jobOffersDto = await _jobApplicationService.GetAllByTalentAsync();
+            var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            if (jobOffersDto == null)
+            if (talentId == null)
+            {
+                return Unauthorized();
+            }
+
+            var jobApplicationsDto = await _jobApplicationService.GetAllByTalentAsync(talentId);
+
+            if (jobApplicationsDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(jobOffersDto);
+            return Ok(jobApplicationsDto);
         }
         
         [Authorize]
@@ -45,46 +52,51 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var jobOffersDto = await _jobApplicationService.GetAllByRecruiterAsync();
+            var jobApplicationsDto = await _jobApplicationService.GetAllByRecruiterAsync();
 
-            if (jobOffersDto == null)
+            if (jobApplicationsDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(jobOffersDto);
+            return Ok(jobApplicationsDto);
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] JobOfferDto jobOfferDto)
+        [HttpPost("{jobOfferId}")]
+        public async Task<IActionResult> Apply([FromRoute] string jobOfferId)
         {
-
-            var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (recruiterId == null)
+            try
             {
-                return Unauthorized();
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job application data is null");
+                }
+
+                var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (talentId == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await _jobApplicationService.ApplyAsync(talentId, jobOfferId);
+
+                if (result)
+                {
+                    return Ok(new { message = "Job application created successfully" });
+                }
+
+                return StatusCode(500, new { message = "An error occurred while creating the job application" });
+            } 
+            catch (Exception ex) {
+                return StatusCode(500, new { message = ex.Message });
             }
-
-            if (jobOfferDto == null)
-            {
-                return BadRequest("Job offer data is null");
-            }
-
-            var result = await _jobApplicationService.CreateAsync("", "");
-
-            if (result)
-            {
-                return Ok(new { message = "Job offer created successfully" });
-            }
-
-            return StatusCode(500, new { message = "An error occurred while creating the job offer" });
         }
         
         [Authorize]
-        [HttpDelete("{jobOfferId}")]
-        public async Task<IActionResult> Delete([FromRoute] string jobOfferId)
+        [HttpDelete("{jobApplicationId}")]
+        public async Task<IActionResult> Delete([FromRoute] string jobApplicationId)
         {
 
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -94,19 +106,19 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            if (jobOfferId == null)
+            if (jobApplicationId == null)
             {
-                return BadRequest("Job offer id is null");
+                return BadRequest("Job application id is null");
             }
 
-            var result = await _jobApplicationService.DeleteAsync(jobOfferId);
+            var result = await _jobApplicationService.DeleteAsync(jobApplicationId);
 
             if (result)
             {
-                return Ok(new { message = "Job offer deleted successfully" });
+                return Ok(new { message = "Job application deleted successfully" });
             }
 
-            return StatusCode(500, new { message = "An error occurred while deleting the job offer" });
+            return StatusCode(500, new { message = "An error occurred while deleting the job application" });
         }
     }
 }

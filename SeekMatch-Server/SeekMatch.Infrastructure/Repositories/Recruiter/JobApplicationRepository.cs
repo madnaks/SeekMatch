@@ -12,11 +12,13 @@ namespace SeekMatch.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IList<JobApplication>?> GetAllByTalentAsync()
+        public async Task<IList<JobApplication>?> GetAllByTalentAsync(string talentId)
         {
             try
             {
-                return await _dbContext.JobApplications.ToListAsync();
+                return await _dbContext.JobApplications
+                    .Where(j => j.TalentId == talentId)
+                    .ToListAsync();
             }
             catch (Exception ex)
             {
@@ -36,7 +38,13 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> CreateAsync(JobApplication jobApplication)
+        public async Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId)
+        {
+            return await _dbContext.JobApplications
+                .FirstOrDefaultAsync(ja => ja.TalentId == talentId && ja.JobOfferId == jobOfferId);
+        }
+
+        public async Task<bool> ApplyAsync(JobApplication jobApplication)
         {
             try
             {
