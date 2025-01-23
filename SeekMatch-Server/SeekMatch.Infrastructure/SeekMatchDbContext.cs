@@ -13,6 +13,7 @@ namespace SeekMatch.Infrastructure
         public DbSet<Company> Companies { get; set; }
         public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
+        public DbSet<JobApplication> JobApplications { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -62,6 +63,16 @@ namespace SeekMatch.Infrastructure
                 .WithMany(r => r.JobOffers)
                 .HasForeignKey(j => j.RecruiterId)
                 .IsRequired();
+
+            modelBuilder.Entity<JobApplication>()
+                .HasOne(j => j.Talent)
+                .WithMany(t => t.JobApplications)
+                .HasForeignKey(j => j.TalentId);
+
+            modelBuilder.Entity<JobApplication>()
+                .HasOne(j => j.JobOffer)
+                .WithMany(o => o.JobApplications)
+                .HasForeignKey(j => j.JobOfferId);
         }
     }
 }
