@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './recruiter-profile.component.scss'
 })
 export class RecruiterProfileComponent {
+  jobMenuOpen = false;
+
+  toggleJobMenu() {
+    this.jobMenuOpen = !this.jobMenuOpen;
+  }
 
 }

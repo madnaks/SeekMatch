@@ -18,10 +18,27 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
+                    <a 
+                        class="nav-link" 
+                        (click)="toggleJobMenu()">
                         <i class="fa-solid fa-briefcase me-2"></i>
-                        {{ 'Profile.Sections.JobOffers' | translate }}
+                        Jobs
+                        <i [class]="jobMenuOpen ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'" class="float-end"></i>
                     </a>
+                    <ul *ngIf="jobMenuOpen" class="nav flex-column ps-3">
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
+                                <i class="fa-solid fa-briefcase me-2"></i>
+                                {{ 'Profile.Sections.JobOffers' | translate }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLink="job-application" routerLinkActive="active">
+                                <i class="fa-solid fa-briefcase me-2"></i>
+                                {{ 'Profile.Sections.JobApplications' | translate }}
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
