@@ -25,65 +25,76 @@
                     </div>
                 </div>
             } @else {
-                <div class="row mb-3">
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <button class="btn btn-primary" (click)="open(addJobOfferContent)">
-                            <i class="fa-solid fa-plus"></i>
-                            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
-                        </button>
+                @if (!isViewingApplication) {
+                    <div class="row mb-3">
+                        <div class="col-md-12 d-flex justify-content-end">
+                            <button class="btn btn-primary" (click)="open(addJobOfferContent)">
+                                <i class="fa-solid fa-circle-plus me-2"></i>
+                                {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Company name</th>
-                                    <th scope="col">Job type</th>
-                                    <th scope="col">Salary</th>
-                                    <th scope="col">Active</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
-                                <tr>
-                                    <th scope="row">
-                                        {{ i + 1 }}
-                                    </th>
-                                    <td>
-                                        {{ jobOffer.title }}
-                                    </td>
-                                    <td>
-                                        {{ jobOffer.companyName }}
-                                    </td>
-                                    <td>            
-                                        {{ 'JobType.' + getJobTypeName(jobOffer.type) | translate }}
-                                    </td>
-                                    <td>            
-                                        {{ jobOffer.salary }}
-                                    </td>
-                                    <td>            
-                                        <input class="form-check-input me-2" type="checkbox"  [(ngModel)]="jobOffer.isActive" disabled>
-                                    </td>
-                                    <td>
-                                        <i class="action-button fa-solid fa-pen me-4" (click)="open(updateJobOfferContent, jobOffer)"></i>
-                                        <i class="action-button fa-solid fa-trash" (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
-                                    </td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Company name</th>
+                                        <th scope="col">Job type</th>
+                                        <th scope="col">Salary</th>
+                                        <th scope="col">Active</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
+                                    <tr>
+                                        <th scope="row">
+                                            {{ i + 1 }}
+                                        </th>
+                                        <td>
+                                            {{ jobOffer.title }}
+                                        </td>
+                                        <td>
+                                            {{ jobOffer.companyName }}
+                                        </td>
+                                        <td>            
+                                            {{ 'JobType.' + getJobTypeName(jobOffer.type) | translate }}
+                                        </td>
+                                        <td>            
+                                            {{ jobOffer.salary }}
+                                        </td>
+                                        <td>            
+                                            <input class="form-check-input me-2" type="checkbox"  [(ngModel)]="jobOffer.isActive" disabled>
+                                        </td>
+                                        <td>
+                                            <i class="action-button fa-solid fa-pen me-4" (click)="open(updateJobOfferContent, jobOffer)"></i>
+                                            <i class="action-button fa-solid fa-trash me-4" (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
+                                            <i class="action-button fa-solid fa-circle-info" (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                } @else {
+                    <div class="row mb-3">
+                        <div class="col-md-12 d-flex justify-content-start">
+                            <button class="btn btn-primary" (click)="isViewingApplication = false">
+                                <i class="fa-solid fa-arrow-left me-2"></i>
+                                Back
+                            </button>
+                        </div>
+                    </div>
+                }
+                
             }
         }
     </div>
 </div>
-
 
 <!-- Job offer creation modal -->
 <ng-template #addJobOfferContent let-c="close" let-d="dismiss">
