@@ -18,6 +18,7 @@ namespace SeekMatch.Infrastructure.Repositories
             {
                 return await _dbContext.JobApplications
                     .Where(j => j.TalentId == talentId)
+                    .Include(j => j.JobOffer)
                     .ToListAsync();
             }
             catch (Exception ex)
