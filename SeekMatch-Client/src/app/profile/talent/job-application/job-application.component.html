@@ -1,0 +1,54 @@
+<div class="row">
+
+    <div class="col-md-9">
+
+        <!-- Loading -->
+        @if (isLoading) {
+        <div class="loading-spinner">
+            <div class="spinner-border">
+            </div>
+        </div>
+        } @else {
+            <!-- No data -->
+            @if (jobApplications.length === 0) {
+                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+                    <div class="col-6">
+                        <p style="text-align: center;">
+                            {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
+                        </p>
+                    </div>
+                </div>
+            } @else {
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Applied at</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (jobApplication of jobApplications; track jobApplication.id; let i = $index) {
+                                <tr>
+                                    <th scope="row">
+                                        {{ i + 1 }}
+                                    </th>
+                                    <td>
+                                        {{ jobApplication.jobOfferDto?.title }}
+                                    </td>
+                                    <td>
+                                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

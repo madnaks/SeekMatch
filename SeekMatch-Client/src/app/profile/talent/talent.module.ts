@@ -10,6 +10,7 @@ import { TalentProfileComponent } from './talent-profile/talent-profile.componen
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { JobApplicationComponent } from './job-application/job-application.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EducationComponent,
     EducationModalComponent,
     ExperienceComponent,
-    ExperienceModalComponent
+    ExperienceModalComponent,
+    JobApplicationComponent
   ],
   imports: [
     CommonModule,
