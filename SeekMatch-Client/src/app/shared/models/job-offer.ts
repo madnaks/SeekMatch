@@ -1,5 +1,6 @@
 import { JobType } from "../enums/enums";
 import { formatDateToISO } from "../utils";
+import { JobApplication } from "./job-application";
 
 export class JobOffer {
 
@@ -13,6 +14,7 @@ export class JobOffer {
   public expiresAt : string | null = null;
   public type: JobType = JobType.FullTime;
   public isActive: Boolean = false;
+  public jobApplications : JobApplication[] = [];
   
   constructor(init?:Partial<JobOffer>) {
     Object.assign(this, init);

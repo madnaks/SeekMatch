@@ -18,7 +18,7 @@ export class JobOfferComponent implements OnInit {
   public jobOffers: JobOffer[] = [];
   public isLoading: boolean = true;
   public isSaving: boolean = false;
-  public isViewingApplication = true;
+  public isViewingApplication = false;
   public selectedJobOffer: JobOffer = new JobOffer;
   
   private deleteModal: NgbModalRef | undefined;
@@ -94,6 +94,5 @@ export class JobOfferComponent implements OnInit {
   public getJobTypeName(type: JobType): string {
     return JobType[type];
   }
-
 
 }

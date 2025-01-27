@@ -72,7 +72,7 @@
                                         <td>
                                             <i class="action-button fa-solid fa-pen me-4" (click)="open(updateJobOfferContent, jobOffer)"></i>
                                             <i class="action-button fa-solid fa-trash me-4" (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
-                                            <i class="action-button fa-solid fa-circle-info" (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
+                                            <i class="action-button fa-solid fa-user-group" (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
                                         </td>
                                     </tr>
                                     }
@@ -82,15 +82,64 @@
                     </div>
                 } @else {
                     <div class="row mb-3">
-                        <div class="col-md-12 d-flex justify-content-start">
+                        <div class="col-md-6 d-flex justify-content-start">
                             <button class="btn btn-primary" (click)="isViewingApplication = false">
                                 <i class="fa-solid fa-arrow-left me-2"></i>
                                 Back
                             </button>
                         </div>
+                        <div class="col-md-6 d-flex justify-content-end">
+                            Number of Job Applications: {{ selectedJobOffer.jobApplications.length || 0 }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
+                                <p class="card-text">
+                                <strong>Location:</strong> {{ selectedJobOffer.location }}<br>
+                                <strong>Salary:</strong> {{ selectedJobOffer.salary }}<br>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Full name</th>
+                                        <th scope="col">Applied at</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
+                                    <tr>
+                                        <th scope="row">
+                                            {{ i + 1 }}
+                                        </th>
+                                        <td>
+                                            {{ jobApplication.talentFullName }}
+                                        </td>
+                                        <td>
+                                            {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                        </td>
+                                        <td>
+                                            In progress
+                                        </td>
+                                        <td>
+                                            <i class="action-button fa-solid fa-circle-xmark"></i>                                
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 }
-                
             }
         }
     </div>
