@@ -33,6 +33,8 @@ namespace SeekMatch.Infrastructure.Repositories
             {
                 return await _dbContext.JobOffers
                     .Where(e => e.RecruiterId == recruiterId)
+                    .Include(e => e.JobApplications)
+                    .ThenInclude(t => t.Talent)
                     .OrderBy(e => e.CreatedAt)
                     .ToListAsync();
             }

@@ -14,5 +14,6 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public DateOnly? PostedAt { get; set; }
         public DateOnly? ExpiresAt { get; set; }
         public bool IsActive { get; set; }
+        public List<JobApplicationDto> JobApplications { get; set; } = new List<JobApplicationDto>();
     }
 }

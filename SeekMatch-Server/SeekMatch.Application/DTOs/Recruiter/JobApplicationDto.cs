@@ -8,7 +8,8 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public string? Id { get; set; }
         public DateTime? AppliedAt { get; set; }
         public string? TalentId { get; set; }
+        public string? TalentFullName { get; set; }
         public string? JobOfferId { get; set; }
-        public required JobOfferDto JobOfferDto { get; set; }
+        public string? JobOfferTitle { get; set; }
     }
 }
