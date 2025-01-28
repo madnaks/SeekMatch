@@ -40,12 +40,12 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Title</th>
-                                        <th scope="col">Company name</th>
-                                        <th scope="col">Job type</th>
-                                        <th scope="col">Salary</th>
-                                        <th scope="col">Active</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.CompanyName' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.JobType' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.Salary' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.IsActive' | translate }}</th>
+                                        <th scope="col">{{ 'Table.Actions' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,11 +85,11 @@
                         <div class="col-md-6 d-flex justify-content-start">
                             <button class="btn btn-primary" (click)="isViewingApplication = false">
                                 <i class="fa-solid fa-arrow-left me-2"></i>
-                                Back
+                                {{ 'Button.Back' | translate }}
                             </button>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end">
-                            Number of Job Applications: {{ selectedJobOffer.jobApplications.length || 0 }}
+                            {{ 'Recruiter.JobApplication.NumberOfApplications' | translate }} {{ selectedJobOffer.jobApplications.length || 0 }}
                         </div>
                     </div>
                     <div class="row">
@@ -97,48 +97,60 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
                                 <p class="card-text">
-                                <strong>Location:</strong> {{ selectedJobOffer.location }}<br>
-                                <strong>Salary:</strong> {{ selectedJobOffer.salary }}<br>
+                                <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong> {{ selectedJobOffer.companyName }}<br>
+                                <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong> {{ selectedJobOffer.location }}<br>
+                                <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong> {{ selectedJobOffer.salary }}<br>
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Full name</th>
-                                        <th scope="col">Applied at</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
-                                    <tr>
-                                        <th scope="row">
-                                            {{ i + 1 }}
-                                        </th>
-                                        <td>
-                                            {{ jobApplication.talentFullName }}
-                                        </td>
-                                        <td>
-                                            {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
-                                        </td>
-                                        <td>
-                                            In progress
-                                        </td>
-                                        <td>
-                                            <i class="action-button fa-solid fa-circle-xmark"></i>                                
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
+                    @if (selectedJobOffer.jobApplications.length === 0) {
+                        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+                        <div class="col-6">
+                            <h5 style="text-align: center;">
+                                {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
+                            </h5>
                         </div>
                     </div>
+                    }
+                    @else {
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
+                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
+                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
+                                            <th scope="col">{{ 'Table.Actions' | translate }}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
+                                        <tr>
+                                            <th scope="row">
+                                                {{ i + 1 }}
+                                            </th>
+                                            <td>
+                                                {{ jobApplication.talentFullName }}
+                                            </td>
+                                            <td>
+                                                {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                            </td>
+                                            <td>
+                                                In progress
+                                            </td>
+                                            <td>
+                                                <i class="action-button fa-solid fa-circle-xmark"></i>                                
+                                            </td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
                 }
             }
         }
