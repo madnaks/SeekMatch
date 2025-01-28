@@ -1,4 +1,4 @@
-import { JobOffer } from "./job-offer";
+import { JobApplicationStatus } from "../enums/enums";
 
 export class JobApplication {
 
@@ -8,6 +8,7 @@ export class JobApplication {
   public talentFullName: string = '';
   public jobOfferId: string = '';
   public jobOfferTitle: string = '';
+  public status: JobApplicationStatus = JobApplicationStatus.Pending;
   
   constructor(init?:Partial<JobApplication>) {
     Object.assign(this, init);

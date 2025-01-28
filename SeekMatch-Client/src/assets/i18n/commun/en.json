@@ -72,12 +72,22 @@
         "Delete": "Delete",
         "Back": "Back"
     },
-    "JobType": {
-        "FullTime": "Full Time",
-        "PartTime": "Part Time",
-        "Internship": "Internship",
-        "Contract": "Contract",
-        "Freelance": "Freelance"
+    "Enum": {
+        "JobType": {
+            "FullTime": "Full Time",
+            "PartTime": "Part Time",
+            "Internship": "Internship",
+            "Contract": "Contract",
+            "Freelance": "Freelance"
+        },
+        "JobApplicationStatus": {
+            "Pending": "Pending",
+            "Shortlisted": "Shortlisted",
+            "InterviewScheduled": "Interview Scheduled",
+            "Offered": "Offered",
+            "Rejected": "Rejected",
+            "Withdrawn": "Withdrawn"
+        }
     },
     "Table": {
         "Actions": "Actions"

@@ -31,7 +31,7 @@
     <!-- Job offer type -->
     <div>
         <i class="fa-solid fa-briefcase"></i>
-        {{ 'JobType.' + getJobTypeName(jobOffer.type) | translate }}
+        {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }}
     </div>
     <!-- Job offer salary -->
      @if (jobOffer.salary) {

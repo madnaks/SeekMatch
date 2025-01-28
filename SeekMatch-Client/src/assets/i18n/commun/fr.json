@@ -72,12 +72,22 @@
         "Delete": "Supprimer",
         "Back": "Retour"
     },
-    "JobType": {
-        "FullTime": "Temps plein",
-        "PartTime": "Temps partiel",
-        "Internship": "Stage",
-        "Contract": "Contrat",
-        "Freelance": "Freelance"
+    "Enum": {
+        "JobType": {
+            "FullTime": "Temps plein",
+            "PartTime": "Temps partiel",
+            "Internship": "Stage",
+            "Contract": "Contrat",
+            "Freelance": "Freelance"
+        },
+        "JobApplicationStatus": {
+            "Pending": "En attente",
+            "Shortlisted": "Présélectionné",
+            "InterviewScheduled": "Entretien planifié",
+            "Offered": "Offre envoyée",
+            "Rejected": "Rejeté",
+            "Withdrawn": "Retiré"
+        }
     },
     "Table": {
         "Actions": "Actions"

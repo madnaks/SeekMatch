@@ -47,7 +47,7 @@ body {
     box-shadow: unset;
 }
 
-.badge {
+.badge.bg-custom {
     background-color: $secondary-color;
     color: #ffffff;
     user-select: none;

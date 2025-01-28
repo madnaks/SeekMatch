@@ -3,7 +3,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType } from '../../../shared/enums/enums';
+import { JobApplicationStatus, JobType, ModalActionType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 
@@ -93,6 +93,29 @@ export class JobOfferComponent implements OnInit {
 
   public getJobTypeName(type: JobType): string {
     return JobType[type];
+  }
+
+  public getJobApplicationStatus(status: JobApplicationStatus): string {
+    return JobApplicationStatus[status];
+  }
+
+  public getStatusClass(status: JobApplicationStatus): string {
+    switch (status) {
+      case JobApplicationStatus.Pending:
+        return 'bg-warning';
+      case JobApplicationStatus.Shortlisted:
+        return 'bg-primary';
+      case JobApplicationStatus.InterviewScheduled:
+        return 'bg-info';
+      case JobApplicationStatus.Offered:
+        return 'bg-success';
+      case JobApplicationStatus.Rejected:
+        return 'bg-danger';
+      case JobApplicationStatus.Withdrawn:
+        return 'bg-secondary';
+      default:
+        return 'bg-light';
+    }
   }
 
 }
