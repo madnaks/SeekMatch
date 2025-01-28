@@ -14,7 +14,7 @@
                 <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
                     <div class="col-6">
                         <p style="text-align: center;">
-                            {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
+                            {{ 'Talent.JobApplication.NoJobApplicationMessage' | translate }}
                         </p>
                     </div>
                 </div>
@@ -25,8 +25,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Applied at</th>
+                                    <th scope="col">{{ 'Talent.JobApplication.Table.Title' | translate }}</th>
+                                    <th scope="col">{{ 'Talent.JobApplication.Table.AppliedAt' | translate }}</th>
+                                    <th scope="col">{{ 'Talent.JobApplication.Table.Status' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,6 +41,11 @@
                                     </td>
                                     <td>
                                         {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                    </td>
+                                    <td>
+                                        <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">
+                                            {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) | translate }}
+                                        </span>
                                     </td>
                                 </tr>
                                 }

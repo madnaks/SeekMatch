@@ -75,6 +75,15 @@
                     }
                 }
             }
+        },
+        "JobApplication": {
+            "NoJobApplicationMessage": "Il n'y a actuellement aucune candidature",
+            "NumberOfApplications": "Nombre de candidatures :",
+            "Table": {
+                "Title": "Titre",
+                "AppliedAt": "Postulé le",
+                "Status": "Statut"
+            }
         }
     }
 }

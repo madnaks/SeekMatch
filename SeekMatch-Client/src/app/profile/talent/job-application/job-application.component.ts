@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JobApplication } from '../../../shared/models/job-application';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
+import { JobApplicationStatus } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-job-application',
@@ -13,7 +14,7 @@ export class JobApplicationComponent implements OnInit {
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedJobApplication: JobApplication = new JobApplication;
-    
+
   constructor(
     private jobApplicationService: JobApplicationService) {
   }
@@ -28,5 +29,29 @@ export class JobApplicationComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  public getJobApplicationStatus(status: JobApplicationStatus): string {
+    return JobApplicationStatus[status];
+  }
+
+  public getStatusClass(status: JobApplicationStatus): string {
+    switch (status) {
+      case JobApplicationStatus.Pending:
+        return 'bg-warning';
+      case JobApplicationStatus.Shortlisted:
+        return 'bg-primary';
+      case JobApplicationStatus.InterviewScheduled:
+        return 'bg-info';
+      case JobApplicationStatus.Offered:
+        return 'bg-success';
+      case JobApplicationStatus.Rejected:
+        return 'bg-danger';
+      case JobApplicationStatus.Withdrawn:
+        return 'bg-secondary';
+      default:
+        return 'bg-light';
+    }
+  }
+
 
 }
