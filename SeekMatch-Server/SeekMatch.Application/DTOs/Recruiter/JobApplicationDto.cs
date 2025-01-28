@@ -11,5 +11,6 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public string? TalentFullName { get; set; }
         public string? JobOfferId { get; set; }
         public string? JobOfferTitle { get; set; }
+        public JobApplicationStatus Status { get; set; }
     }
 }
