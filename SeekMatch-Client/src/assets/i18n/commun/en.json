@@ -69,7 +69,8 @@
     "Button": {
         "Create": "Create",
         "Save": "Save",
-        "Delete": "Delete"
+        "Delete": "Delete",
+        "Back": "Back"
     },
     "JobType": {
         "FullTime": "Full Time",
@@ -77,5 +78,8 @@
         "Internship": "Internship",
         "Contract": "Contract",
         "Freelance": "Freelance"
+    },
+    "Table": {
+        "Actions": "Actions"
     }
 }
