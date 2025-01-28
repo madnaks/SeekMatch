@@ -43,6 +43,29 @@
                         }
                     }
                 }
+            },
+            "Table": {
+                "Title": "Title",
+                "CompanyName": "Company Name",
+                "JobType": "Job type",
+                "Salary": "Salary",
+                "IsActive": "Active"
+            },
+            "Card": {
+                "Company": "Company :",
+                "Location": "Location:",
+                "Salary": "Salary:"
+            }
+        },
+        "JobApplication": {
+            "NoJobApplicationMessage": "There are currently no job applications",
+            "NumberOfApplications":"Number of Job Applications:",
+            "Table": {
+                "FullName": "Full name",
+                "AppliedAt": "Applied at",
+                "Status": "Status",
+                "Salary": "Salary",
+                "IsActive": "Active"
             }
         }
     }
