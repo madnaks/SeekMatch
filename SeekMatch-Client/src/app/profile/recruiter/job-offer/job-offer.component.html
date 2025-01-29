@@ -144,7 +144,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <i class="action-button fa-solid fa-id-card me-4"></i>
+                                                <i class="action-button fa-solid fa-id-card me-4" (click)="open(previewTalentContent)"></i>
                                                 <i class="action-button fa-solid fa-circle-xmark"></i>                                
                                             </td>
                                         </tr>
@@ -192,4 +192,10 @@
             {{ 'Button.Delete' | translate }}
         </button>
     </div>
+</ng-template>
+
+<!-- Talent Preview Modal -->
+<ng-template #previewTalentContent let-c="close" let-d="dismiss">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d">
+    </app-talent-preview-modal>
 </ng-template>

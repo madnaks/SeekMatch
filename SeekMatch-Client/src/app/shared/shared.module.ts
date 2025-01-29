@@ -9,6 +9,7 @@ import { LoginModalComponent } from './modals/login-modal/login-modal.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './components/toast/toast.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderSimplifiedComponent,
     FooterComponent,
     LoginModalComponent,
+    TalentPreviewModalComponent,
     ToastComponent
   ],
   imports: [
@@ -31,6 +33,7 @@ import { FooterComponent } from './components/footer/footer.component';
     HeaderSimplifiedComponent,
     FooterComponent,
     LoginModalComponent,
+    TalentPreviewModalComponent,
     ToastComponent
   ]
 })

@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
 import { QuillModule } from 'ngx-quill';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { QuillModule } from 'ngx-quill';
     ReactiveFormsModule,
     BsDatepickerModule,
     TranslateModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
+    SharedModule
   ]
 })
 export class RecruiterModule { }
