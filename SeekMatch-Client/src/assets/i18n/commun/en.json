@@ -36,12 +36,18 @@
         }
     },
     "Profile": {
+        "Headers": {
+            "Profile": "Profile",
+            "JobManagement": "Job management",
+            "AccountSecurity": "Account & Security"
+        },
         "Sections": {
             "AboutYou": "About You",
             "JobOffers": "Job offers",
             "Education": "Education",
             "Experience": "Experience",
             "JobApplications": "Job applications",
+            "SavedJobs": "Saved jobs",
             "CompanyInfo": "Company info",
             "RecruiterTeam": "Recruiter team",
             "Settings": "Settings",

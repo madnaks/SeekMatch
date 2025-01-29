@@ -10,6 +10,12 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="nav flex-column">
+                <!-- Profile -->
+                <li class="nav-item">
+                    <h6 class="nav-header">
+                        {{ 'Profile.Headers.Profile' | translate }}
+                    </h6>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="about-you" routerLinkActive="active">
                         <i class="fa-solid fa-circle-info me-2"></i>
@@ -28,11 +34,29 @@
                         {{ 'Profile.Sections.Experience' | translate }}
                     </a>
                 </li>
+                <!-- Job Management -->
+                <li class="nav-item">
+                    <h6 class="nav-header">
+                        {{ 'Profile.Headers.JobManagement' | translate }}
+                    </h6>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="job-application" routerLinkActive="active">
-                        <i class="fa-solid fa-briefcase me-2"></i>
+                        <i class="fa-solid fa-bullhorn me-2"></i>
                         {{ 'Profile.Sections.JobApplications' | translate }}
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="saved-jobs" routerLinkActive="active">
+                        <i class="fa-solid fa-bookmark me-2"></i>
+                        {{ 'Profile.Sections.SavedJobs' | translate }}
+                    </a>
+                </li>
+                <!-- Account & Security -->
+                <li class="nav-item">
+                    <h6 class="nav-header">
+                        {{ 'Profile.Headers.AccountSecurity' | translate }}
+                    </h6>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
