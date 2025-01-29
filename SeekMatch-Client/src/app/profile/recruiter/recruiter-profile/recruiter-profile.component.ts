@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class RecruiterProfileComponent {
   jobMenuOpen = true;
 
-  toggleJobMenu() {
+  public toggleJobMenu(): void {
     this.jobMenuOpen = !this.jobMenuOpen;
   }
 
