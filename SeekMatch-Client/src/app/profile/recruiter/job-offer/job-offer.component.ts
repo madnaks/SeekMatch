@@ -20,6 +20,7 @@ export class JobOfferComponent implements OnInit {
   public isSaving: boolean = false;
   public isViewingApplication = false;
   public selectedJobOffer: JobOffer = new JobOffer;
+  public selectedTalentId: string = '';
   
   private deleteModal: NgbModalRef | undefined;
   
@@ -35,10 +36,16 @@ export class JobOfferComponent implements OnInit {
 
   //#region : Modal functions
   public open(content: any, jobOffer?: JobOffer): void {
-    debugger
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobOffer != undefined) {
       this.selectedJobOffer = jobOffer;
+    }
+  }
+
+  public openTalentPreviewModal(content: any, talentId?: string): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
+    if (talentId != undefined) {
+      this.selectedTalentId = talentId;
     }
   }
 

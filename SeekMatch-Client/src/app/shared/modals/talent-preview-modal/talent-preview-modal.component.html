@@ -1,4 +1,4 @@
-<div class="modal-header">
+<!-- <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
         {{ 'Login.Modal.Title' | translate }}
     </h4>
@@ -6,4 +6,66 @@
 </div>
 <div class="modal-body">
     Test
-</div>
+</div> -->
+
+
+<!-- ChatGPT -->
+<div class="modal-header">
+    <h4 class="modal-title">{{ selectedTalent?.firstName }} {{ selectedTalent?.lastName }}</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="dismiss('Cross click')"
+    ></button>
+  </div>
+  
+  <div class="modal-body">
+    <div class="card">
+      <div class="card-header text-center">
+        <h5>{{ selectedTalent?.profileTitle }}</h5>
+      </div>
+      <div class="card-body">
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <strong>Date of Birth:</strong> {{ selectedTalent?.dateOfBirth | date: 'mediumDate' }}
+          </div>
+          <div class="col-md-6">
+            <strong>Email:</strong> {{ selectedTalent?.email }}
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <strong>Phone:</strong> {{ selectedTalent?.phone }}
+          </div>
+          <div class="col-md-6">
+            <strong>Address:</strong>
+            {{ selectedTalent?.address }}, {{ selectedTalent?.city }}, {{ selectedTalent?.state }} - {{ selectedTalent?.zip }}
+          </div>
+        </div>
+  
+        <hr />
+  
+        <div>
+          <h6>Education</h6>
+          <ul>
+            <li *ngFor="let education of selectedTalent?.educations">
+              {{ education.diploma }} - {{ education.institution }}
+              <small class="text-muted">({{ education.startYear }} - {{ education.endYear }})</small>
+            </li>
+          </ul>
+        </div>
+  
+        <div>
+          <h6>Experience</h6>
+          <ul>
+            <li *ngFor="let experience of selectedTalent?.experiences">
+              <strong>{{ experience.jobTitle }}</strong> at {{ experience.companyName }}
+              <small class="text-muted">({{ experience.startYear }} - {{ experience.endYear }})</small>
+              <p>{{ experience.description }}</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

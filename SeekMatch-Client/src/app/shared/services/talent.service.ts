@@ -16,6 +16,10 @@ export class TalentService {
     return this.http.post(`${this.apiUrl}/register`, talent);
   }
 
+  getById(talentId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/get-by-id/${talentId}`);
+  }
+
   getProfile(): Observable<any> {
     return this.http.get(`${this.apiUrl}/profile`);
   }

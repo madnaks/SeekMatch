@@ -1,3 +1,5 @@
+import { Education } from "./education";
+import { Experience } from "./experience";
 import { User } from "./user";
 
 export class Talent extends User {
@@ -13,6 +15,8 @@ export class Talent extends User {
   public state : string= '';
   public zip : string= '';
   public profilePicture : Uint8Array | null = null;
+  public educations : Education[] = [];
+  public experiences : Experience[] = [];
 
   constructor(init?:Partial<Talent>) {
     super();
