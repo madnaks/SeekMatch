@@ -1,4 +1,6 @@
-﻿namespace SeekMatch.Application.DTOs.Talent
+﻿using SeekMatch.Core.Entities;
+
+namespace SeekMatch.Application.DTOs.Talent
 {
     public class TalentDto
     {
@@ -13,5 +15,7 @@
         public string? Zip { get; set; }
         public string? Email { get; set; }
         public byte[]? ProfilePicture { get; set; }
+        public List<EducationDto> Educations { get; set; } = new List<EducationDto>();
+        public List<ExperienceDto> Experiences { get; set; } = new List<ExperienceDto>();
     }
 }

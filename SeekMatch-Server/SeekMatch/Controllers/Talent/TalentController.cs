@@ -33,6 +33,25 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-by-id/{talentId}")]
+        public async Task<IActionResult> GetById(string talentId)
+        {
+            if (string.IsNullOrWhiteSpace(talentId))
+            {
+                return BadRequest("Talent Id cannot be empty.");
+            }
+
+            var talentDto = await _talentService.GetAsync(talentId);
+
+            if (talentDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(talentDto);
+        }
+        
+        [Authorize]
         [HttpGet("profile")]
         public async Task<IActionResult> GetProfile()
         {
