@@ -22,11 +22,26 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.Talents
+                var talent = await _dbContext.Talents
                     .Include(t => t.User)
                     .Include(t => t.Educations)
                     .Include(t => t.Experiences)
                     .FirstOrDefaultAsync(t => t.Id == userId);
+
+                if (talent != null)
+                {
+                    talent.Educations = talent.Educations
+                        .OrderByDescending(e => e.StartYear)
+                        .ThenByDescending(e => e.StartMonth)
+                        .ToList();
+
+                    talent.Experiences = talent.Experiences
+                        .OrderByDescending(e => e.StartYear)
+                        .ThenByDescending(e => e.StartMonth)
+                        .ToList();
+                }
+
+                return talent;
             }
             catch (Exception ex)
             {
