@@ -9,63 +9,110 @@
 </div> -->
 
 
-<!-- ChatGPT -->
+<!-- Deep Seek -->
 <div class="modal-header">
-    <h4 class="modal-title">{{ selectedTalent?.firstName }} {{ selectedTalent?.lastName }}</h4>
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="dismiss('Cross click')"
-    ></button>
-  </div>
-  
-  <div class="modal-body">
-    <div class="card">
-      <div class="card-header text-center">
-        <h5>{{ selectedTalent?.profileTitle }}</h5>
-      </div>
-      <div class="card-body">
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <strong>Date of Birth:</strong> {{ selectedTalent?.dateOfBirth | date: 'mediumDate' }}
-          </div>
-          <div class="col-md-6">
-            <strong>Email:</strong> {{ selectedTalent?.email }}
-          </div>
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ selectedTalent?.firstName }} {{ selectedTalent?.lastName }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+        <!-- Basic Information -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h5 class="text-primary">Basic Information</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Name:</strong> 
+                            {{ selectedTalent?.firstName }} {{ selectedTalent?.lastName }}
+                        </p>
+                        <p>
+                            <strong>Profile Title:</strong> 
+                            {{ selectedTalent?.profileTitle }}
+                        </p>
+                        <p>
+                            <strong>Date of Birth:</strong> 
+                            {{ selectedTalent?.dateOfBirth | date }}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            <strong>Email:</strong> {{ selectedTalent?.email }}
+                        </p>
+                        <p>
+                            <strong>Phone:</strong> {{ selectedTalent?.phone }}
+                        </p>
+                        <p>
+                            <strong>Address:</strong> 
+                            {{ selectedTalent?.address }}, {{ selectedTalent?.city }}, 
+                            {{ selectedTalent?.state }}, {{ selectedTalent?.zip }}
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <strong>Phone:</strong> {{ selectedTalent?.phone }}
-          </div>
-          <div class="col-md-6">
-            <strong>Address:</strong>
-            {{ selectedTalent?.address }}, {{ selectedTalent?.city }}, {{ selectedTalent?.state }} - {{ selectedTalent?.zip }}
-          </div>
+
+        <!-- Education -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h5 class="text-primary">Education</h5>
+                <div ngbAccordion #accordion="ngbAccordion" activeIds="edu0">
+                    <div *ngFor="let education of selectedTalent?.educations; let i = index"
+                        ngbAccordionItem="edu{{ i }}">
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                {{ education.diploma }} in {{ education.domain }}
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <p>
+                                    <strong>Institution:</strong> 
+                                    {{ education.institution }}
+                                </p>
+                                <p>
+                                    <strong>Duration:</strong> 
+                                    {{ education.startYear }} - {{ education.endYear | date }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-  
-        <hr />
-  
-        <div>
-          <h6>Education</h6>
-          <ul>
-            <li *ngFor="let education of selectedTalent?.educations">
-              {{ education.diploma }} - {{ education.institution }}
-              <small class="text-muted">({{ education.startYear }} - {{ education.endYear }})</small>
-            </li>
-          </ul>
+
+        <!-- Experience -->
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <h5 class="text-primary">Experience</h5>
+                <div ngbAccordion #accordion="ngbAccordion" activeIds="exp0">
+                    <div *ngFor="let experience of selectedTalent?.experiences; let i = index"
+                        ngbAccordionItem="exp{{ i }}">
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                {{ experience.jobTitle }} at {{ experience.companyName }}
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <p>
+                                    <strong>Duration:</strong> 
+                                    {{ experience.startYear }} - {{ experience.endYear || 'Today' }}
+                                </p>
+                                <p [hidden]="!experience.description?.trim()">
+                                    <strong>Description:</strong> 
+                                    {{ experience.description }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-  
-        <div>
-          <h6>Experience</h6>
-          <ul>
-            <li *ngFor="let experience of selectedTalent?.experiences">
-              <strong>{{ experience.jobTitle }}</strong> at {{ experience.companyName }}
-              <small class="text-muted">({{ experience.startYear }} - {{ experience.endYear }})</small>
-              <p>{{ experience.description }}</p>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="dismiss('Close click')">Close</button>
+</div>

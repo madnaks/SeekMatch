@@ -1,54 +1,68 @@
-// .modal-body {
-//     padding: 20px;
-// }
+.modal-body {
+    padding: 20px;
+}
 
-// .card {
-//     border: 1px solid #ddd;
-//     border-radius: 8px;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-// }
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-// .card-title {
-//     color: #007bff;
-// }
+.card-title {
+    color: #007bff;
+}
 
-// .text-primary {
-//     color: #007bff !important;
-// }
+.text-primary {
+    color: #007bff !important;
+}
+
+ngb-accordion .accordion-button {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+ngb-accordion .accordion-button:focus {
+    box-shadow: none;
+}
+
+ngb-accordion .accordion-body {
+    font-size: 14px;
+    background-color: #ffffff;
+}
 
 // CHAT GPT
 // .card {
 //     border-radius: 12px;
 //     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 //   }
-  
+
 //   .card-header {
 //     background-color: #f8f9fa;
 //     font-size: 1.2rem;
 //     font-weight: bold;
 //   }
-  
+
 //   h6 {
 //     margin-top: 20px;
 //     font-weight: bold;
 //     color: #495057;
 //   }
-  
+
 //   ul {
 //     padding-left: 20px;
 //   }
-  
+
 //   li {
 //     margin-bottom: 10px;
 //   }
-  
+
 //   .modal-header {
 //     background-color: #007bff;
 //     color: #fff;
 //   }
-  
+
 //   .modal-body {
 //     max-height: 70vh;
 //     overflow-y: auto;
 //   }
-  
