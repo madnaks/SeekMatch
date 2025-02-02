@@ -101,7 +101,7 @@
                                     <strong>Duration:</strong> 
                                     {{ experience.startYear }} - {{ experience.endYear || 'Today' }}
                                 </p>
-                                <p [hidden]="!experience.description?.trim()">
+                                <p [hidden]="!experience.description">
                                     <strong>Description:</strong> 
                                     {{ experience.description }}
                                 </p>
