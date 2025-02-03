@@ -17,11 +17,11 @@ export const months = [
 ];
 
 export const jobTypes = [
-  { key: JobType.FullTime, value: 'JobType.FullTime' },
-  { key: JobType.PartTime, value: 'JobType.PartTime' },
-  { key: JobType.Internship, value: 'JobType.Internship' },
-  { key: JobType.Contract, value: 'JobType.Contract' },
-  { key: JobType.Freelance, value: 'JobType.Freelance' },
+  { key: JobType.FullTime, value: 'Enum.JobType.FullTime' },
+  { key: JobType.PartTime, value: 'Enum.JobType.PartTime' },
+  { key: JobType.Internship, value: 'Enum.JobType.Internship' },
+  { key: JobType.Contract, value: 'Enum.JobType.Contract' },
+  { key: JobType.Freelance, value: 'Enum.JobType.Freelance' },
 ];
 
 export const EDITOR_MODULES = {
