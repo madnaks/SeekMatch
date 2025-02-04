@@ -84,6 +84,27 @@
                 "AppliedAt": "Postulé le",
                 "Status": "Statut"
             }
+        },
+        "PreviewModal": {
+            "Headers": {
+                "TalentCard": "Carte du talent",
+                "BasicInformation": "Informations de base",
+                "Education": "Éducation",
+                "Experience": "Expérience"
+            },
+            "FullName": "Nom complet :",
+            "ProfileTitle": "Titre du profil :",
+            "DateOfBirth": "Date de naissance :",
+            "Email": "Courriel :",
+            "Phone": "Téléphone :",
+            "Address": "Adresse :",
+            "Institution": "Établissement :",
+            "Duration": "Durée :",
+            "Description": "Description :",
+            "NoEducations": "Ce talent n'a partagé aucune information sur son éducation.",
+            "NoExperiences": "Ce talent n'a partagé aucune information sur son expérience professionnelle.",
+            "In": "en",
+            "At": "chez"
         }
     }
 }

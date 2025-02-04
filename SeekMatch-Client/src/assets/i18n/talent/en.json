@@ -84,6 +84,27 @@
                 "AppliedAt": "Applied at",
                 "Status": "Status"
             }
+        },
+        "PreviewModal": {
+            "Headers": {
+                "TalentCard": "Talent card",
+                "BasicInformation": "Basic information",
+                "Education": "Education",
+                "Experience": "Experience"
+            },
+            "FullName": "Full name:",
+            "ProfileTitle": "Profile title:",
+            "DateOfBirth": "Date of birth:",
+            "Email": "Email:",
+            "Phone": "Phone:",
+            "Address": "Address:",
+            "Institution": "Institution:",
+            "Duration": "Duration:",
+            "Description": "Description:",
+            "NoEducations": "This talent has not shared any education information.",
+            "NoExperiences": "This talent has not shared any professional experience.",
+            "In": "in",
+            "At": "at"
         }
     }
 }
