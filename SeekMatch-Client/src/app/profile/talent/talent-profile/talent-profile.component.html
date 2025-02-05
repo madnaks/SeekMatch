@@ -1,10 +1,21 @@
 <div class="container-fluid col-lg-8 col-md-10 col-12 mt-5 p-3">
     <div class="row mt-3 mb-3">
-        <div class="col-md-3">
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <button class="btn btn-primary" (click)="openPreviewModal()">
+                <i class="fa-solid fa-eye me-2"></i>
+                <!-- {{ 'Profile.Actions.ViewAsRecruiter' | translate }} -->
+                View as Recruiter
+            </button> 
         </div>
-        <div class="col-md-9">
+        <div class="col-md-6">
             <h2>{{ 'Profile.MyProfile' | translate }}</h2>
+            
         </div>
+        <!-- <div class="col-md-3">
+            <button class="btn btn-primary w-50">
+                See my profile
+            </button>
+        </div> -->
     </div>
 
     <div class="row">
@@ -78,3 +89,9 @@
     </div>
 
 </div>
+
+<!-- Talent Preview Modal -->
+<ng-template #previewTalentContent let-c="close" let-d="dismiss">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d">
+    </app-talent-preview-modal>
+</ng-template>

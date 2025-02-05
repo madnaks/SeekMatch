@@ -11,4 +11,9 @@ export class TalentProfileComponent {
   public toggleJobMenu(): void {
     this.jobMenuOpen = !this.jobMenuOpen;
   }
+
+  public openPreviewModal(): void {
+    // Open your ngx-bootstrap or ng-bootstrap modal
+  }
+
 }

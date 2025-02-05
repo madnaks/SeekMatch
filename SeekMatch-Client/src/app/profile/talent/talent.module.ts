@@ -11,6 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobApplicationComponent } from './job-application/job-application.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { JobApplicationComponent } from './job-application/job-application.compo
     FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule,
-    TalentRoutingModule
+    TalentRoutingModule,
+    SharedModule
   ]
 })
 export class TalentModule { }
