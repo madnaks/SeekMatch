@@ -51,22 +51,27 @@
         </a>
       </li>
       } @else {
-      <!-- Profile dropdown -->
-      <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
-        display="dynamic">
-        <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem [routerLink]="getProfileLink()">
-            <i class="fa-solid fa-user me-2"></i>
-            {{ 'Navbar.Account.Profile' | translate }}
-          </button>
-          <hr>
-          <button ngbDropdownItem (click)="logout()">
-            <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
-            {{ 'Navbar.Account.Logout' | translate }}
-          </button>
+        <li class="nav-item">
+          <a class="nav-link" (click)="open(loginContent)">
+            <i class="fa-solid fa-bell fa-lg me-1"></i>
+          </a>
+        </li>
+        <!-- Profile dropdown -->
+        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
+          display="dynamic">
+          <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem [routerLink]="getProfileLink()">
+              <i class="fa-solid fa-user me-2"></i>
+              {{ 'Navbar.Account.Profile' | translate }}
+            </button>
+            <hr>
+            <button ngbDropdownItem (click)="logout()">
+              <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
+              {{ 'Navbar.Account.Logout' | translate }}
+            </button>
+          </div>
         </div>
-      </div>
       }
     </ul>
 
