@@ -11,9 +11,10 @@ export class TalentPreviewModalComponent implements OnInit {
 
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
+  @Input() selectedTalent: Talent | null = null;
   @Input() selectedTalentId: string = "";
   
-  public selectedTalent: Talent | null = null;
+  public currentTalent: Talent | null = null;
 
   constructor(private talentService: TalentService) {
   }
@@ -21,8 +22,10 @@ export class TalentPreviewModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.selectedTalentId !== "") {
       this.talentService.getById(this.selectedTalentId).subscribe(talent => {
-        this.selectedTalent = new Talent(talent);
+        this.currentTalent = new Talent(talent);
       });
+    } else if (this.selectedTalent !== null) {
+      this.currentTalent = this.selectedTalent;
     }
   }
 

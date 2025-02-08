@@ -18,19 +18,19 @@
                             <strong>
                                 {{ 'Talent.PreviewModal.FullName' | translate }}
                             </strong> 
-                            {{ selectedTalent?.firstName }} {{ selectedTalent?.lastName }}
+                            {{ currentTalent?.firstName }} {{ currentTalent?.lastName }}
                         </p>
                         <p>
                             <strong>
                                 {{ 'Talent.PreviewModal.ProfileTitle' | translate }}
                             </strong> 
-                            {{ selectedTalent?.profileTitle }}
+                            {{ currentTalent?.profileTitle }}
                         </p>
                         <p>
                             <strong>
                                 {{ 'Talent.PreviewModal.DateOfBirth' | translate }}
                             </strong> 
-                            {{ selectedTalent?.dateOfBirth | date }}
+                            {{ currentTalent?.dateOfBirth | date }}
                         </p>
                     </div>
                     <div class="col-md-4">
@@ -38,20 +38,20 @@
                             <strong>
                                 {{ 'Talent.PreviewModal.Email' | translate }}
                             </strong> 
-                            {{ selectedTalent?.email }}
+                            {{ currentTalent?.email }}
                         </p>
                         <p>
                             <strong>
                                 {{ 'Talent.PreviewModal.Phone' | translate }}
                             </strong> 
-                            {{ selectedTalent?.phone }}
+                            {{ currentTalent?.phone }}
                         </p>
                         <p>
                             <strong>
                                 {{ 'Talent.PreviewModal.Address' | translate }}
                             </strong> 
-                            {{ selectedTalent?.address }}, {{ selectedTalent?.city }}, 
-                            {{ selectedTalent?.state }}, {{ selectedTalent?.zip }}
+                            {{ currentTalent?.address }}, {{ currentTalent?.city }}, 
+                            {{ currentTalent?.state }}, {{ currentTalent?.zip }}
                         </p>
                     </div>
                 </div>
@@ -64,9 +64,9 @@
                 <h5 class="text-primary">
                     {{ 'Talent.PreviewModal.Headers.Education' | translate }}
                 </h5>
-                @if (selectedTalent?.educations?.length != 0) {
+                @if (currentTalent?.educations?.length != 0) {
                     <div ngbAccordion #accordion="ngbAccordion" activeIds="edu0">
-                        <div *ngFor="let education of selectedTalent?.educations; let i = index"
+                        <div *ngFor="let education of currentTalent?.educations; let i = index"
                             ngbAccordionItem="edu{{ i }}">
                             <h2 ngbAccordionHeader>
                                 <button ngbAccordionButton>
@@ -103,9 +103,9 @@
                 <h5 class="text-primary">
                     {{ 'Talent.PreviewModal.Headers.Experience' | translate }}
                 </h5>
-                @if (selectedTalent?.educations?.length != 0) {
+                @if (currentTalent?.educations?.length != 0) {
                     <div ngbAccordion #accordion="ngbAccordion" activeIds="exp0">
-                        <div *ngFor="let experience of selectedTalent?.experiences; let i = index"
+                        <div *ngFor="let experience of currentTalent?.experiences; let i = index"
                             ngbAccordionItem="exp{{ i }}">
                             <h2 ngbAccordionHeader>
                                 <button ngbAccordionButton>
