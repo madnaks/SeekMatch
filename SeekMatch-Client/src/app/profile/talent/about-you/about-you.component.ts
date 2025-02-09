@@ -6,6 +6,8 @@ import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../../shared/services/toast.service';
 import { formatDateToISO } from '../../../shared/utils';
+import { Talent } from '../../../shared/models/talent';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-about-you',
@@ -22,7 +24,11 @@ export class AboutYouComponent {
   profilePicture: SafeUrl | string | null = null;
   defaultProfilePicture: boolean = true;
 
+  // new props
+  currentTalent: Talent | null = null;
+
   constructor(
+    private modalService: NgbModal,
     private fb: NonNullableFormBuilder, 
     private talentService: TalentService, 
     private toastService: ToastService) {
@@ -32,6 +38,17 @@ export class AboutYouComponent {
 
   ngOnInit(): void {
     this.initAboutYouFormValues();
+    this.initCurrentTalent();
+  }
+  
+  private initCurrentTalent() {
+    this.talentService.getProfile().subscribe(talent => {
+      this.currentTalent = new Talent(talent);
+    });
+  }
+
+  public openTalentPreviewModal(content: any): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
   }
 
   saveProfile() {

@@ -16,17 +16,21 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>
-                            Mohamed Iskander, Haoeum
+                            {{ currentTalent?.firstName }},  {{ currentTalent?.lastName }}
                         </h3>
                         <h5>
-                            Quebec City, Canada
+                            {{ currentTalent?.profileTitle }}
                         </h5>
+                        <h6>
+                            <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
+                            Quebec City, Canada
+                        </h6>
                     </div>
                     <div class="col-md-6">
                          <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3">
                             Edit profile
                         </button>
-                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3">
+                         <button type="button" class="btn btn-outline-secondary btn-md mt-2" (click)="openTalentPreviewModal(previewTalentContent)">
                             View profile
                         </button>
                     </div>
@@ -65,3 +69,9 @@
         }
     </div>
 </div>
+
+<!-- Talent Preview Modal -->
+<ng-template #previewTalentContent let-c="close" let-d="dismiss">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalent]="currentTalent">
+    </app-talent-preview-modal>
+</ng-template>
