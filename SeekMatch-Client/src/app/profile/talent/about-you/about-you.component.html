@@ -7,7 +7,7 @@
             </div>
         </div>
         } @else {
-
+        
         <div class="row">
             <div class="col-md-2 profile-picture-section">
                 <img [src]="profilePicture" class="img-thumbnail mb-2">
@@ -27,7 +27,7 @@
                         </h6>
                     </div>
                     <div class="col-md-6">
-                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3">
+                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="openEditProfileModal(addEditProfileContent)">
                             Edit profile
                         </button>
                          <button type="button" class="btn btn-outline-secondary btn-md mt-2" (click)="openTalentPreviewModal(previewTalentContent)">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-       
+       <!-- Educations & Experiences Tabs -->
         <div class="row">
             <nav ngbNav #nav="ngbNav" class="nav-tabs">
                 <ng-container ngbNavItem>
@@ -60,15 +60,19 @@
                         <app-education></app-education>
                     </ng-template>
                 </ng-container>
-                
             </nav>
-            
             <div [ngbNavOutlet]="nav" class="mt-2"></div>
         </div>
-        
         }
     </div>
 </div>
+
+<!-- Edit Profile Modal -->
+<ng-template #addEditProfileContent let-c="close" let-d="dismiss">
+    <app-edit-profile-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
+    </app-edit-profile-modal>
+</ng-template>
+
 
 <!-- Talent Preview Modal -->
 <ng-template #previewTalentContent let-c="close" let-d="dismiss">
