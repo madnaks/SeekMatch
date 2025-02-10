@@ -1,6 +1,13 @@
 {
     "Talent": {
-        "AboutYou": {
+        "Profile": {
+            "EditProfile": "Edit profile",
+            "ViewProfile": "View profile",
+            "Educations": "Educations",
+            "Experiences": "Experiences"
+        },
+        "EditProfile": {
+            "Title": "Edit profile",
             "FirstName": "First name",
             "LastName": "Last name",
             "ProfileTitle": "Profile title",
@@ -9,9 +16,12 @@
             "DateOfBirth": "Date of birth",
             "Address": "Address",
             "Phone": "Phone",
-            "ProfilePicture": "Profile Picture",
-            "ChoosePicture": "Choose Picture",
-            "Remove": "Remove"
+            "ProfilePicture": "Profile picture",
+            "ChoosePicture": "Choose picture",
+            "Remove": "Remove",
+            "City": "City",
+            "State": "State",
+            "Zip": "Zip"
         },
         "Education": {
             "AddEducation": "Add education",

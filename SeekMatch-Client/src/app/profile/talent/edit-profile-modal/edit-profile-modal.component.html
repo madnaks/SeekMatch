@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        Edit profile
+        {{ 'Talent.EditProfile.Title' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
@@ -20,7 +20,7 @@
                     <div class="col-md-12 profile-picture-section">
                         <p>
                             <b>
-                                {{ 'Talent.AboutYou.ProfilePicture' | translate }}
+                                {{ 'Talent.EditProfile.ProfilePicture' | translate }}
                             </b>
                         </p>
                         
@@ -29,13 +29,13 @@
     
                             <!-- Custom button to trigger file input -->
                             <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                                {{ 'Talent.AboutYou.ChoosePicture' | translate }}
+                                {{ 'Talent.EditProfile.ChoosePicture' | translate }}
                             </button>
     
                             <!-- Button to remove current image -->
                             <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                                 *ngIf="profilePicture && !defaultProfilePicture">
-                                {{ 'Talent.AboutYou.Remove' | translate }}
+                                {{ 'Talent.EditProfile.Remove' | translate }}
                             </button>
     
                             <!-- Hidden file input element -->
@@ -49,14 +49,14 @@
                     <!-- First name -->
                     <div class="col-md-6">
                         <label for="inputFirstName" class="form-label">
-                            {{ 'Talent.AboutYou.FirstName' | translate }}
+                            {{ 'Talent.EditProfile.FirstName' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
                     </div>
                     <!-- Last name -->
                     <div class="col-md-6">
                         <label for="inputLastName" class="form-label">
-                            {{ 'Talent.AboutYou.LastName' | translate }}
+                            {{ 'Talent.EditProfile.LastName' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
                     </div>
@@ -65,7 +65,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label for="inputProfileTitle" class="form-label">
-                            {{ 'Talent.AboutYou.ProfileTitle' | translate }}
+                            {{ 'Talent.EditProfile.ProfileTitle' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                     </div>
@@ -74,7 +74,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label for="inputEmail" class="form-label">
-                            {{ 'Talent.AboutYou.Email' | translate }}
+                            {{ 'Talent.EditProfile.Email' | translate }}
                         </label>
                         <input type="email" class="form-control" id="inputEmail" formControlName="email">
                     </div>
@@ -83,7 +83,7 @@
                 <div class="row mt-3">
                     <div class="col-md-12">
                         <label for="inputDateOfBirth" class="form-label">
-                            {{ 'Talent.AboutYou.DateOfBirth' | translate }}
+                            {{ 'Talent.EditProfile.DateOfBirth' | translate }}
                         </label>
                         <div class="datepicker-input input-group">
                             <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
@@ -98,13 +98,13 @@
                 <div class="row mt-3">
                     <div class="col-md-6">
                         <label for="inputAddress" class="form-label">
-                            {{ 'Talent.AboutYou.Address' | translate }}
+                            {{ 'Talent.EditProfile.Address' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputAddress" formControlName="address">
                     </div>
                     <div class="col-md-6">
                         <label for="inputPhone" class="form-label">
-                            {{ 'Talent.AboutYou.Phone' | translate }}
+                            {{ 'Talent.EditProfile.Phone' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputPhone" formControlName="phone">
                     </div>
@@ -113,12 +113,16 @@
                 <div class="row mt-3">
                     <!-- City -->
                     <div class="col-md-6">
-                        <label for="inputCity" class="form-label">City</label>
+                        <label for="inputCity" class="form-label">
+                            {{ 'Talent.EditProfile.City' | translate }}
+                        </label>
                         <input type="text" class="form-control" id="inputCity" formControlName="city">
                     </div>
                     <!-- State -->
                     <div class="col-md-4">
-                        <label for="inputState" class="form-label">State</label>
+                        <label for="inputState" class="form-label">
+                            {{ 'Talent.EditProfile.State' | translate }}
+                        </label>
                         <select id="inputState" class="form-select">
                             <option selected>Choose...</option>
                             <option>...</option>
@@ -126,7 +130,9 @@
                     </div>
                     <!-- Zip -->
                     <div class="col-md-2">
-                        <label for="inputZip" class="form-label">Zip</label>
+                        <label for="inputZip" class="form-label">
+                            {{ 'Talent.EditProfile.Zip' | translate }}
+                        </label>
                         <input type="text" class="form-control" id="inputZip" formControlName="zip">
                     </div>
                 </div>

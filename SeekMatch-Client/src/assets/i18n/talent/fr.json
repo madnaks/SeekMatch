@@ -1,6 +1,13 @@
 {
     "Talent": {
-        "AboutYou": {
+        "Profile": {
+            "EditProfile": "Modifier le profil",
+            "ViewProfile": "Voir le profil",
+            "Educations": "Formations",
+            "Experiences": "Expériences"
+        },
+        "EditProfile": {
+            "Title": "Modifier le profil",
             "FirstName": "Prénom",
             "LastName": "Nom de famille",
             "ProfileTitle": "Titre du profil",
@@ -11,7 +18,10 @@
             "Phone": "Téléphone",
             "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
-            "Remove": "Supprimer"
+            "Remove": "Supprimer",
+            "City": "Ville",
+            "State": "État",
+            "Zip": "Code postal"
         },
         "Education": {
             "AddEducation": "Ajouter une formation",
