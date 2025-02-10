@@ -7,7 +7,6 @@
             </div>
         </div>
         } @else {
-        
         <div class="row">
             <div class="col-md-2 profile-picture-section">
                 <img [src]="profilePicture" class="img-thumbnail mb-2">
@@ -16,7 +15,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>
-                            {{ currentTalent?.firstName }},  {{ currentTalent?.lastName }}
+                            {{ currentTalent?.firstName }}, {{ currentTalent?.lastName }}
                         </h3>
                         <h5>
                             {{ currentTalent?.profileTitle }}
@@ -27,10 +26,14 @@
                         </h6>
                     </div>
                     <div class="col-md-6">
-                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="openEditProfileModal(addEditProfileContent)">
+                        <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3"
+                            (click)="openEditProfileModal(addEditProfileContent)">
+                            <i class="fa-solid fa-user-pen me-2"></i>
                             Edit profile
                         </button>
-                         <button type="button" class="btn btn-outline-secondary btn-md mt-2" (click)="openTalentPreviewModal(previewTalentContent)">
+                        <button type="button" class="btn btn-outline-secondary btn-md mt-2"
+                            (click)="openTalentPreviewModal(previewTalentContent)">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>
                             View profile
                         </button>
                     </div>
@@ -38,24 +41,30 @@
                 <div class="row">
                     <div class="col-md-8">
                         <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, laudantium! 
-                            Quibusdam sed impedit veritatis nisi vel labore obcaecati odit blanditiis sapiente mollitia porro natus expedita cum accusantium, incidunt non voluptas!
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, laudantium!
+                            Quibusdam sed impedit veritatis nisi vel labore obcaecati odit blanditiis sapiente mollitia
+                            porro natus expedita cum accusantium, incidunt non voluptas!
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-       <!-- Educations & Experiences Tabs -->
+        <!-- Educations & Experiences Tabs -->
         <div class="row">
             <nav ngbNav #nav="ngbNav" class="nav-tabs">
                 <ng-container ngbNavItem>
-                    <a ngbNavLink>Experiences</a>
+                    <a ngbNavLink>
+                        <i class="fa-solid fa-graduation-cap me-2"></i>
+                        Experiences</a>
                     <ng-template ngbNavContent>
                         <app-experience></app-experience>
                     </ng-template>
                 </ng-container>
                 <ng-container ngbNavItem>
-                    <a ngbNavLink>Educations</a>
+                    <a ngbNavLink>
+                        <i class="fa-solid fa-star me-2"></i>
+                        Educations
+                    </a>
                     <ng-template ngbNavContent>
                         <app-education></app-education>
                     </ng-template>

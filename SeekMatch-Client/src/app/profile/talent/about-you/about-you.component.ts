@@ -33,12 +33,18 @@ export class AboutYouComponent {
   private initCurrentTalent() {
     this.talentService.getProfile().subscribe(talent => {
       this.currentTalent = new Talent(talent);
+      if (this.currentTalent.profilePicture) {
+        this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
+        this.defaultProfilePicture = false;
+      } else {
+        this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
+      }
       this.isLoading = false;
     });
   }
 
   public openEditProfileModal(content: any): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'lg' });
   }
 
   public openTalentPreviewModal(content: any): void {
