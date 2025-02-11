@@ -1,6 +1,6 @@
 ﻿namespace SeekMatch.Application.DTOs.Talent
 {
-    public class AboutYouDto
+    public class ProfileDto
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
