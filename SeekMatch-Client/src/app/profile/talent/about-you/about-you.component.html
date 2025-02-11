@@ -7,133 +7,84 @@
             </div>
         </div>
         } @else {
-        <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
-            <!-- Profile title -->
-            <div class="row mt-3">
-                <div class="col-md-12 profile-picture-section">
-                    <p>
-                        <b>
-                            {{ 'Talent.AboutYou.ProfilePicture' | translate }}
-                        </b>
-                    </p>
-                    
-                    <div>
-                        <img [src]="profilePicture" class="img-thumbnail mb-2">
-
-                        <!-- Custom button to trigger file input -->
-                        <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                            {{ 'Talent.AboutYou.ChoosePicture' | translate }}
-                        </button>
-
-                        <!-- Button to remove current image -->
-                        <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
-                            *ngIf="profilePicture && !defaultProfilePicture">
-                            {{ 'Talent.AboutYou.Remove' | translate }}
-                        </button>
-
-                        <!-- Hidden file input element -->
-                        <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
+        <div class="row">
+            <div class="col-md-2 profile-picture-section">
+                <img [src]="profilePicture" class="img-thumbnail mb-2">
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>
+                            {{ currentTalent?.firstName }}, {{ currentTalent?.lastName }}
+                        </h3>
+                        <h5>
+                            {{ currentTalent?.profileTitle }}
+                        </h5>
+                        <h6>
+                            <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
+                            Quebec City, Canada
+                        </h6>
                     </div>
-
+                    <div class="col-md-6">
+                        <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3"
+                            (click)="openEditProfileModal(addEditProfileContent)">
+                            <i class="fa-solid fa-user-pen me-2"></i>
+                            {{ 'Talent.Profile.EditProfile' | translate }}
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-md mt-2"
+                            (click)="openTalentPreviewModal(previewTalentContent)">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i>
+                            {{ 'Talent.Profile.ViewProfile' | translate }}
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <!-- Full name  -->
-            <div class="row mt-3">
-                <!-- First name -->
-                <div class="col-md-6">
-                    <label for="inputFirstName" class="form-label">
-                        {{ 'Talent.AboutYou.FirstName' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
-                </div>
-                <!-- Last name -->
-                <div class="col-md-6">
-                    <label for="inputLastName" class="form-label">
-                        {{ 'Talent.AboutYou.LastName' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
-                </div>
-            </div>
-            <!-- Profile title -->
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label for="inputProfileTitle" class="form-label">
-                        {{ 'Talent.AboutYou.ProfileTitle' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
-                </div>
-            </div>
-            <!-- Email -->
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label for="inputEmail" class="form-label">
-                        {{ 'Talent.AboutYou.Email' | translate }}
-                    </label>
-                    <input type="email" class="form-control" id="inputEmail" formControlName="email">
-                </div>
-            </div>
-            <!-- Date of birth -->
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <label for="inputDateOfBirth" class="form-label">
-                        {{ 'Talent.AboutYou.DateOfBirth' | translate }}
-                    </label>
-                    <div class="datepicker-input input-group">
-                        <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
-                            placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
-                        <span class="input-group-text">
-                            <i class="fa-regular fa-calendar-days"></i>
-                        </span>
+                <div class="row">
+                    <div class="col-md-8">
+                        <p>
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Expedita, laudantium!
+                            Quibusdam sed impedit veritatis nisi vel labore obcaecati odit blanditiis sapiente mollitia
+                            porro natus expedita cum accusantium, incidunt non voluptas!
+                        </p>
                     </div>
                 </div>
             </div>
-            <!-- Address -->
-            <div class="row mt-3">
-                <div class="col-md-6">
-                    <label for="inputAddress" class="form-label">
-                        {{ 'Talent.AboutYou.Address' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputAddress" formControlName="address">
-                </div>
-                <div class="col-md-6">
-                    <label for="inputPhone" class="form-label">
-                        {{ 'Talent.AboutYou.Phone' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputPhone" formControlName="phone">
-                </div>
-            </div>
-            <!-- Full Address -->
-            <div class="row mt-3">
-                <!-- City -->
-                <div class="col-md-6">
-                    <label for="inputCity" class="form-label">City</label>
-                    <input type="text" class="form-control" id="inputCity" formControlName="city">
-                </div>
-                <!-- State -->
-                <div class="col-md-4">
-                    <label for="inputState" class="form-label">State</label>
-                    <select id="inputState" class="form-select">
-                        <option selected>Choose...</option>
-                        <option>...</option>
-                    </select>
-                </div>
-                <!-- Zip -->
-                <div class="col-md-2">
-                    <label for="inputZip" class="form-label">Zip</label>
-                    <input type="text" class="form-control" id="inputZip" formControlName="zip">
-                </div>
-            </div>
-            <!-- Save button -->
-            <div class="row mt-3">
-                <div class="col-md-12 d-flex justify-content-center align-items-center">
-                    <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
-                        <i class="me-2"
-                            [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                        {{ 'Button.Save' | translate }}
-                    </button>
-                </div>
-            </div>
-        </form>
+        </div>
+        <!-- Educations & Experiences Tabs -->
+        <div class="row">
+            <nav ngbNav #nav="ngbNav" class="nav-tabs">
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>
+                        <i class="fa-solid fa-graduation-cap me-2"></i>
+                        {{ 'Talent.Profile.Experiences' | translate }}
+                    </a>
+                    <ng-template ngbNavContent>
+                        <app-experience></app-experience>
+                    </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>
+                        <i class="fa-solid fa-star me-2"></i>
+                        {{ 'Talent.Profile.Educations' | translate }}
+                    </a>
+                    <ng-template ngbNavContent>
+                        <app-education></app-education>
+                    </ng-template>
+                </ng-container>
+            </nav>
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
         }
     </div>
 </div>
+
+<!-- Edit Profile Modal -->
+<ng-template #addEditProfileContent let-c="close" let-d="dismiss">
+    <app-edit-profile-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
+    </app-edit-profile-modal>
+</ng-template>
+
+<!-- Talent Preview Modal -->
+<ng-template #previewTalentContent let-c="close" let-d="dismiss">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalent]="currentTalent">
+    </app-talent-preview-modal>
+</ng-template>

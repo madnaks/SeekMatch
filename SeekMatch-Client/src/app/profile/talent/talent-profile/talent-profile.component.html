@@ -1,56 +1,16 @@
 <div class="container-fluid col-lg-8 col-md-10 col-12 mt-5 p-3">
-    <div class="row mt-3 mb-3">
-        <div class="col-md-3 d-flex justify-content-center align-items-center">
-            <button class="btn btn-primary" (click)="openPreviewModal()">
-                <i class="fa-solid fa-eye me-2"></i>
-                <!-- {{ 'Profile.Actions.ViewAsRecruiter' | translate }} -->
-                View as Recruiter
-            </button> 
-        </div>
-        <div class="col-md-6">
-            <h2>{{ 'Profile.MyProfile' | translate }}</h2>
-            
-        </div>
-        <!-- <div class="col-md-3">
-            <button class="btn btn-primary w-50">
-                See my profile
-            </button>
-        </div> -->
-    </div>
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-3">
             <ul class="nav flex-column">
                 <!-- Profile -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.Profile' | translate }}
-                    </h6>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="about-you" routerLinkActive="active">
                         <i class="fa-solid fa-circle-info me-2"></i>
                         {{ 'Profile.Sections.AboutYou' | translate }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="education" routerLinkActive="active">
-                        <i class="fa-solid fa-graduation-cap me-2"></i>
-                        {{ 'Profile.Sections.Education' | translate }}
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="experience" routerLinkActive="active">
-                        <i class="fa-solid fa-star me-2"></i>
-                        {{ 'Profile.Sections.Experience' | translate }}
-                    </a>
-                </li>
                 <!-- Job Management -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.JobManagement' | translate }}
-                    </h6>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="job-application" routerLinkActive="active">
                         <i class="fa-solid fa-bullhorn me-2"></i>
@@ -64,11 +24,6 @@
                     </a>
                 </li>
                 <!-- Account & Security -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.AccountSecurity' | translate }}
-                    </h6>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
                         <i class="fa-solid fa-gear me-2"></i>

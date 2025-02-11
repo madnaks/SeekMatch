@@ -12,6 +12,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { SharedModule } from '../../shared/shared.module';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { SharedModule } from '../../shared/shared.module';
     EducationModalComponent,
     ExperienceComponent,
     ExperienceModalComponent,
-    JobApplicationComponent
+    JobApplicationComponent,
+    EditProfileModalComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +33,8 @@ import { SharedModule } from '../../shared/shared.module';
     ReactiveFormsModule,
     BsDatepickerModule,
     TalentRoutingModule,
-    SharedModule
+    SharedModule,
+    NgbNavModule
   ]
 })
 export class TalentModule { }
