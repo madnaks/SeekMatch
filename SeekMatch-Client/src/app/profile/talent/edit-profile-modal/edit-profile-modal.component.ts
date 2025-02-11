@@ -93,10 +93,12 @@ export class EditProfileModalComponent implements OnInit {
         })
       ).subscribe({
         next: () => {
-          this.toastService.showSuccessMessage('Profile saved successfully!');
+          this.modalActionComplete.emit(ModalActionType.Update);
+          this.dismiss();
         },
         error: (error) => {
           this.toastService.showErrorMessage('Error saving profile!', error);
+          this.dismiss();
         }
       })
     } else {

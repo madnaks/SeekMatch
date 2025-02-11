@@ -52,10 +52,9 @@ export class TalentProfileComponent {
   }
 
   public modalActionComplete(action: ModalActionType): void {
-    if (action == ModalActionType.Create) {
-      this.toastService.showSuccessMessage('Education created successfully');
-    } else if (action == ModalActionType.Update) {
-      this.toastService.showSuccessMessage('Education updated successfully');
+    if (action == ModalActionType.Update) {
+      this.toastService.showSuccessMessage('Profile saved successfully');
+      this.initCurrentTalent();
     }
   }
 
