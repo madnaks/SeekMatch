@@ -42,6 +42,7 @@
             "AccountSecurity": "Compte et Sécurité"
         },
         "Sections": {
+            "Profile": "Profil",
             "AboutYou": "À propos de vous",
             "JobOffers": "Offers d'emplois",
             "Education": "Éducation",

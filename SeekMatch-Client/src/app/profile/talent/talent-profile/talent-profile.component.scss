@@ -1,22 +1,22 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
-.container-fluid {
-    background-color: white;
-    height: 87vh;
-    border-radius: 5px;
-}
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
 
-.nav-link {
-    font-weight: bold;
-    color: $text-color;
-    &.active {
-        background-color: rgba(0, 153, 204, 0.2);
-        border-radius: 5px;
+    .spinner-border {
         color: $secondary-color;
+        width: 3rem;
+        height: 3rem;
     }
 }
 
-.nav-header {
-    user-select: none;
-    margin: 0.5rem 0;
+.profile-picture-section {
+    img {
+        max-width: 100px;
+        height: auto;
+        border-radius: 50%;
+    }
 }

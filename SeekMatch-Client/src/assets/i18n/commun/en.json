@@ -42,6 +42,7 @@
             "AccountSecurity": "Account & Security"
         },
         "Sections": {
+            "Profile": "Profile",
             "AboutYou": "About You",
             "JobOffers": "Job offers",
             "Education": "Education",
