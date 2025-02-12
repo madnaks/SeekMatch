@@ -7,6 +7,7 @@ namespace SeekMatch.Application.DTOs.Talent
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? ProfileTitle { get; set; }
+        public string? Summary { get; set; }
         public DateOnly DateOfBirth { get; set; }
         public string? Address { get; set; }
         public string? Phone { get; set; }

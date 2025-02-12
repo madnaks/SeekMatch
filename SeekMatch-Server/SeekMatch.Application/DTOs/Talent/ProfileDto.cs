@@ -1,6 +1,6 @@
-﻿namespace SeekMatch.Core.Entities
+﻿namespace SeekMatch.Application.DTOs.Talent
 {
-    public class Talent: BaseEntity
+    public class ProfileDto
     {
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
@@ -12,10 +12,5 @@
         public string? City { get; set; }
         public string? State { get; set; }
         public string? Zip { get; set; }
-        public byte[]? ProfilePicture { get; set; }
-        public required User User { get; set; }
-        public List<Education> Educations { get; set; } = new List<Education>();
-        public List<Experience> Experiences { get; set; } = new List<Experience>();
-        public List<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
     }
 }

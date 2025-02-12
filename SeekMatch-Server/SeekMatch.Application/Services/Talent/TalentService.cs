@@ -65,6 +65,7 @@ namespace SeekMatch.Application.Services
                 talent.FirstName = profileDto.FirstName;
                 talent.LastName = profileDto.LastName;
                 talent.ProfileTitle = profileDto.ProfileTitle;
+                talent.Summary = profileDto.Summary;
                 talent.DateOfBirth = profileDto.DateOfBirth;
                 talent.Address = profileDto.Address;
                 talent.Phone = profileDto.Phone;
