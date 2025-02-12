@@ -11,6 +11,7 @@
             "FirstName": "Prénom",
             "LastName": "Nom de famille",
             "ProfileTitle": "Titre du profil",
+            "Summary": "Résumé",
             "Email": "Adresse e-mail",
             "Password": "Mot de passe",
             "DateOfBirth": "Date de naissance",

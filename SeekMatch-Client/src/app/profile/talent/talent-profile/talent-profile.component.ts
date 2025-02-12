@@ -15,11 +15,9 @@ export class TalentProfileComponent {
 
   isLoading: boolean = true;
   profilePicture: SafeUrl | string | null = null;
-  defaultProfilePicture: boolean = true;
-
-  // new props
   currentTalent: Talent | null = null;
-
+  isSummaryExpanded = false;
+  
   constructor(
     private modalService: NgbModal,
     private talentService: TalentService,
@@ -35,7 +33,6 @@ export class TalentProfileComponent {
       this.currentTalent = new Talent(talent);
       if (this.currentTalent.profilePicture) {
         this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
-        this.defaultProfilePicture = false;
       } else {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
       }
@@ -56,6 +53,10 @@ export class TalentProfileComponent {
       this.toastService.showSuccessMessage('Profile saved successfully');
       this.initCurrentTalent();
     }
+  }
+
+  public get hasLongSummary(): boolean {
+    return !!this.currentTalent?.summary && this.currentTalent.summary.length > 150;
   }
 
 }
