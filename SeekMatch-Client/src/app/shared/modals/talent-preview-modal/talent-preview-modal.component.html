@@ -9,50 +9,37 @@
         <!-- Basic Information -->
         <div class="row mb-4">
             <div class="col-md-12">
-                <h5 class="text-primary">
-                    {{ 'Talent.PreviewModal.Headers.BasicInformation' | translate }}
-                </h5>
                 <div class="row">
-                    <div class="col-md-4">
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.FullName' | translate }}
-                            </strong> 
-                            {{ currentTalent?.firstName }} {{ currentTalent?.lastName }}
-                        </p>
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.ProfileTitle' | translate }}
-                            </strong> 
-                            {{ currentTalent?.profileTitle }}
-                        </p>
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.DateOfBirth' | translate }}
-                            </strong> 
-                            {{ currentTalent?.dateOfBirth | date }}
-                        </p>
+                    <div class="col-md-2 profile-picture-section">
+                        <img [src]="profilePicture" class="img-thumbnail mb-2">
                     </div>
-                    <div class="col-md-4">
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.Email' | translate }}
-                            </strong> 
-                            {{ currentTalent?.email }}
-                        </p>
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.Phone' | translate }}
-                            </strong> 
-                            {{ currentTalent?.phone }}
-                        </p>
-                        <p>
-                            <strong>
-                                {{ 'Talent.PreviewModal.Address' | translate }}
-                            </strong> 
-                            {{ currentTalent?.address }}, {{ currentTalent?.city }}, 
-                            {{ currentTalent?.state }}, {{ currentTalent?.zip }}
-                        </p>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3>
+                                    {{ currentTalent?.firstName }}, {{ currentTalent?.lastName }}
+                                </h3>
+                                <h5>
+                                    {{ currentTalent?.profileTitle }}
+                                </h5>
+                                <h6>
+                                    <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
+                                    Quebec City, Canada
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p>
+                                    {{ isSummaryExpanded ? currentTalent?.summary : (currentTalent?.summary | slice:0:150) + '...' }}
+                                    <a *ngIf="hasLongSummary" class="link-primary" (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
+                                        {{ isSummaryExpanded ? 'Less' : 'More' }}
+                                    </a>
+                                </p>
+                                
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -137,7 +124,4 @@
             </div>
         </div>
     </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="dismiss('Close click')">Close</button>
 </div>

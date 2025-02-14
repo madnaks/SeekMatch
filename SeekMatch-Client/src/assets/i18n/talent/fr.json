@@ -99,7 +99,6 @@
         "PreviewModal": {
             "Headers": {
                 "TalentCard": "Carte du talent",
-                "BasicInformation": "Informations de base",
                 "Education": "Éducation",
                 "Experience": "Expérience"
             },
