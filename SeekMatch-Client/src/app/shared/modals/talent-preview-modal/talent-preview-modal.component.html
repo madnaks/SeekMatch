@@ -69,10 +69,8 @@
                                         {{ education.institution }}
                                     </p>
                                     <p>
-                                        <strong>
-                                            {{ 'Talent.PreviewModal.Duration' | translate }}
-                                        </strong> 
-                                        {{ education.startYear }} - {{ education.endYear || 'Today' }}
+                                        <i class="fa-regular fa-clock me-2"></i>
+                                        {{ getEducationDuration(education) }}
                                     </p>
                                 </div>
                             </div>
@@ -102,10 +100,8 @@
                             <div ngbAccordionCollapse>
                                 <div ngbAccordionBody>
                                     <p>
-                                        <strong>
-                                            {{ 'Talent.PreviewModal.Duration' | translate }}
-                                        </strong> 
-                                        {{ experience.startYear }} - {{ experience.endYear || 'Today' }}
+                                        <i class="fa-regular fa-clock me-2"></i>
+                                        {{ getExperienceDuration(experience) }}
                                     </p>
                                     <p [hidden]="!experience.description">
                                         <strong>
