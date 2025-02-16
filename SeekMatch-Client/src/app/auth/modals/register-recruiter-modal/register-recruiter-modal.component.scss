@@ -33,3 +33,26 @@
     color: $background-color;
   }
 }
+
+.stepper {
+  .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba($secondary-color, 0.3);
+
+    i {
+      color: white;
+    }
+
+    &.active {
+      background-color: $secondary-color;
+    }
+    &.completed {
+      background-color: $success-color;
+    }
+  }
+}
