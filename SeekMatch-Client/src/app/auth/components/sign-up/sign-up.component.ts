@@ -16,7 +16,7 @@ export class SignUpComponent {
   constructor(private modalService: NgbModal) {
   }
 
-  open(content: any, userRole: UserRole) {
+  public open(content: any, userRole: UserRole): void {
     this.selectedUserRole = userRole;
     this.modalService.open(content, { centered: true, backdrop: 'static' });
   }

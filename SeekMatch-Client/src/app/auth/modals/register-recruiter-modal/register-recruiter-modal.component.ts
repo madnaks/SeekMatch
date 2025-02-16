@@ -31,7 +31,6 @@ export class RegisterRecruiterModalComponent {
   confirmPasswordVisible: boolean = false;
   //#endregion
 
-
   isLoading: boolean = false;
   isSuccess: boolean = false;
   isError: boolean = false;
@@ -93,13 +92,27 @@ export class RegisterRecruiterModalComponent {
   public goToNextStep(): void {
     if (this.validateCurrentStep()) {
       this.currentStep++;
+      this.updateModalSize();
     }
   }
 
   public goToPreviousStep(): void {
     this.currentStep--;
+    this.updateModalSize();
   }
 
+  private updateModalSize(): void {
+    const modalElement = document.querySelector('.modal-dialog');
+    if (modalElement) {
+      if (this.currentStep === 3 && this.selectedOption === 'company') {
+        modalElement.classList.add('modal-xl'); // Add xl size at step 3
+      } else {
+        modalElement.classList.remove('modal-xl'); // Remove xl size at other steps
+      }
+    }
+  }
+
+  // its here if we need it in the future
   private validateCurrentStep(): boolean {
     return true;
   }
@@ -118,8 +131,8 @@ export class RegisterRecruiterModalComponent {
       } else {
         this.registerFreelancerForm.markAllAsTouched();
       }
-    } 
-    
+    }
+
     // Validate Company Form
     else if (this.selectedOption === 'company') {
       if (this.registerRepresentativeForm.valid) {
