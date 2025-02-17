@@ -51,6 +51,20 @@
     &.active {
       background-color: $secondary-color;
     }
+
+    &.completed {
+      background-color: $success-color;
+    }
+  }
+
+  .line {
+    background-color: rgba($secondary-color, 0.3);
+    width: 100px;
+    height: 2px;
+    &.active {
+      background-color: $secondary-color;
+    }
+
     &.completed {
       background-color: $success-color;
     }
