@@ -8,6 +8,7 @@ import { formatDateToISO } from '../../../shared/utils';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -23,22 +24,28 @@ export class EditProfileModalComponent implements OnInit {
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   isSaving: boolean = false;
-  aboutYouForm: FormGroup;
+  profileForm: FormGroup;
   profilePicture: SafeUrl | string | null = null;
   defaultProfilePicture: boolean = true;
   isLoading: boolean = true;
   bsConfig?: Partial<BsDatepickerConfig>;
 
+  separateDialCode = false;
+	SearchCountryField = SearchCountryField;
+	CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+	preferredCountries: CountryISO[] = [this.CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+
   constructor(
     private fb: NonNullableFormBuilder,
     private talentService: TalentService,
     private toastService: ToastService) {
-    this.aboutYouForm = this.initAboutYouForm();
+    this.profileForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
 
   ngOnInit() {
-    this.initAboutYouFormValues();
+    this.initProfileFormValues();
   }
 
   private initAboutYouForm(): FormGroup {
@@ -56,11 +63,11 @@ export class EditProfileModalComponent implements OnInit {
     });
   }
 
-  private initAboutYouFormValues() {
+  private initProfileFormValues() {
     this.talentService.getProfile().subscribe(talent => {
       const dateOfBirth = talent.dateOfBirth === '0001-01-01' ? null : talent.dateOfBirth;
 
-      this.aboutYouForm.patchValue({
+      this.profileForm.patchValue({
         firstName: talent.firstName,
         lastName: talent.lastName,
         profileTitle: talent.profileTitle,
@@ -83,13 +90,13 @@ export class EditProfileModalComponent implements OnInit {
   }
 
   public saveProfile(): void {
-    if (this.aboutYouForm.valid) {
+    if (this.profileForm.valid) {
       this.isSaving = true;
-      const aboutYouData = this.aboutYouForm.value;
+      const profileData = this.profileForm.value;
 
-      aboutYouData.dateOfBirth = formatDateToISO(aboutYouData.dateOfBirth);
+      profileData.dateOfBirth = formatDateToISO(profileData.dateOfBirth);
 
-      this.talentService.saveAboutYouData(aboutYouData).pipe(
+      this.talentService.saveProfile(profileData).pipe(
         finalize(() => {
           this.isSaving = false;
         })

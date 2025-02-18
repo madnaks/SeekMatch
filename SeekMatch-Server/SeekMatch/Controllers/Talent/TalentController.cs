@@ -52,7 +52,7 @@ namespace SeekMatch.Controllers
         }
         
         [Authorize]
-        [HttpGet("profile")]
+        [HttpGet("get-profile")]
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -73,7 +73,7 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
-        [HttpPut("about-you")]
+        [HttpPut("save-profile")]
         public async Task<IActionResult> SaveProfile([FromBody] ProfileDto profileDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
