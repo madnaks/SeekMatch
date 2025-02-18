@@ -5,3 +5,9 @@
         border-radius: 50%;
     }
 }
+
+::ng-deep ngx-intl-tel-input .iti__country-list {
+    max-height: 200px;
+    /* Adjust dropdown height */
+    overflow-y: auto;
+}

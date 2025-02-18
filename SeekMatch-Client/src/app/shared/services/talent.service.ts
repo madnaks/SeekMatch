@@ -21,11 +21,11 @@ export class TalentService {
   }
 
   getProfile(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/profile`);
+    return this.http.get(`${this.apiUrl}/get-profile`);
   }
 
-  saveAboutYouData(aboutYouData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/about-you`, aboutYouData);
+  saveProfile(aboutYouData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/save-profile`, aboutYouData);
   }
 
   uploadProfilePicture(file: File): Observable<any> {

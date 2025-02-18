@@ -14,7 +14,7 @@
                 </div>
             </div>
             } @else {
-            <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
+            <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
                 <!-- Profile title -->
                 <div class="row mt-3">
                     <div class="col-md-12 profile-picture-section">
@@ -103,19 +103,34 @@
                         </div>
                     </div>
                 </div>
-                <!-- Address -->
                 <div class="row mt-3">
+                    <!-- Address -->
                     <div class="col-md-6">
                         <label for="inputAddress" class="form-label">
                             {{ 'Talent.EditProfile.Address' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputAddress" formControlName="address">
                     </div>
+                    <!-- Phone -->
                     <div class="col-md-6">
                         <label for="inputPhone" class="form-label">
                             {{ 'Talent.EditProfile.Phone' | translate }}
                         </label>
-                        <input type="text" class="form-control" id="inputPhone" formControlName="phone">
+                        <ngx-intl-tel-input
+                            [cssClass]="'custom'"
+                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="true"
+                            [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [selectFirstCountry]="false"
+                            [selectedCountryISO]="CountryISO.Tunisia"
+                            [maxLength]="15"
+                            [phoneValidation]="true"
+                            name="phone"
+                            formControlName="phone"
+                        ></ngx-intl-tel-input>
+                        <!-- <input type="text" class="form-control" id="inputPhone" formControlName="phone"> -->
                     </div>
                 </div>
                 <!-- Full Address -->

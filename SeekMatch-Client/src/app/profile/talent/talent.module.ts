@@ -14,6 +14,7 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-modal.component';
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { TalentProfileComponent } from './talent-profile/talent-profile.componen
     BsDatepickerModule,
     TalentRoutingModule,
     SharedModule,
-    NgbNavModule
+    NgbNavModule,
+    NgxIntlTelInputModule
   ]
 })
 export class TalentModule { }
