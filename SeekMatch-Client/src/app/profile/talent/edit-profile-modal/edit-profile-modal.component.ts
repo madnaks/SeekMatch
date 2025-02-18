@@ -93,8 +93,11 @@ export class EditProfileModalComponent implements OnInit {
     if (this.profileForm.valid) {
       this.isSaving = true;
       const profileData = this.profileForm.value;
+      const phoneNumberObject = profileData.phone;
 
+      const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
       profileData.dateOfBirth = formatDateToISO(profileData.dateOfBirth);
+      profileData.phone = formattedPhoneNumber;
 
       this.talentService.saveProfile(profileData).pipe(
         finalize(() => {

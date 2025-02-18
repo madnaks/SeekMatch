@@ -117,8 +117,8 @@
                             {{ 'Talent.EditProfile.Phone' | translate }}
                         </label>
                         <ngx-intl-tel-input
-                            [cssClass]="'custom'"
-                            [preferredCountries]="[CountryISO.UnitedStates, CountryISO.UnitedKingdom]"
+                            [cssClass]="'form-control'"
+                            [preferredCountries]="[CountryISO.Tunisia]"
                             [enableAutoCountrySelect]="false"
                             [enablePlaceholder]="true"
                             [searchCountryFlag]="true"
@@ -129,6 +129,7 @@
                             [phoneValidation]="true"
                             name="phone"
                             formControlName="phone"
+                            id="inputPhone"
                         ></ngx-intl-tel-input>
                         <!-- <input type="text" class="form-control" id="inputPhone" formControlName="phone"> -->
                     </div>

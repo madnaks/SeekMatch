@@ -6,6 +6,10 @@
     }
 }
 
+ngx-intl-tel-input {
+    display: block;
+}
+
 ::ng-deep ngx-intl-tel-input .iti__country-list {
     max-height: 200px;
     /* Adjust dropdown height */

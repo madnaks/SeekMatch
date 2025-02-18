@@ -24,8 +24,8 @@ export class TalentService {
     return this.http.get(`${this.apiUrl}/get-profile`);
   }
 
-  saveProfile(aboutYouData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/save-profile`, aboutYouData);
+  saveProfile(profileData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/save-profile`, profileData);
   }
 
   uploadProfilePicture(file: File): Observable<any> {
