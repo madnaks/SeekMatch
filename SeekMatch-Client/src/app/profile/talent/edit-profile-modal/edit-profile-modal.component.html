@@ -118,20 +118,19 @@
                         </label>
                         <ngx-intl-tel-input
                             [cssClass]="'form-control'"
-                            [preferredCountries]="[CountryISO.Tunisia]"
                             [enableAutoCountrySelect]="false"
                             [enablePlaceholder]="true"
                             [searchCountryFlag]="true"
                             [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]"
                             [selectFirstCountry]="false"
-                            [selectedCountryISO]="CountryISO.Tunisia"
+                            [selectedCountryISO]="selectedCountryISO"
                             [maxLength]="15"
                             [phoneValidation]="true"
                             name="phone"
                             formControlName="phone"
                             id="inputPhone"
                         ></ngx-intl-tel-input>
-                        <!-- <input type="text" class="form-control" id="inputPhone" formControlName="phone"> -->
                     </div>
                 </div>
                 <!-- Full Address -->

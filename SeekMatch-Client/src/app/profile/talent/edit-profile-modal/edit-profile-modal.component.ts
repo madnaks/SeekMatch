@@ -8,7 +8,7 @@ import { formatDateToISO } from '../../../shared/utils';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { SearchCountryField, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -23,18 +23,18 @@ export class EditProfileModalComponent implements OnInit {
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
-  isSaving: boolean = false;
   profileForm: FormGroup;
+  isSaving: boolean = false;
+  isLoading: boolean = true;
+  // Profile picture propreties 
   profilePicture: SafeUrl | string | null = null;
   defaultProfilePicture: boolean = true;
-  isLoading: boolean = true;
+  // Date Input propreties
   bsConfig?: Partial<BsDatepickerConfig>;
-
-  separateDialCode = false;
-	SearchCountryField = SearchCountryField;
-	CountryISO = CountryISO;
-  PhoneNumberFormat = PhoneNumberFormat;
-	preferredCountries: CountryISO[] = [this.CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+  // Phone Input propreties
+  SearchCountryField = SearchCountryField;
+  CountryISO = CountryISO;
+  selectedCountryISO = CountryISO.Tunisia;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -77,6 +77,8 @@ export class EditProfileModalComponent implements OnInit {
         email: talent.email,
         phone: talent.phone
       });
+
+      this.selectedCountryISO = this.getCountryISO(talent.phone);
 
       if (talent.profilePicture) {
         this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;
@@ -141,7 +143,7 @@ export class EditProfileModalComponent implements OnInit {
 
       this.talentService.uploadProfilePicture(file).subscribe({
         next: () => {
-          this.defaultProfilePicture  = false;
+          this.defaultProfilePicture = false;
           this.toastService.showSuccessMessage('Profile picture saved successfully!');
         },
         error: (error) => this.toastService.showErrorMessage('Error uploading profile picture!', error)
@@ -154,7 +156,7 @@ export class EditProfileModalComponent implements OnInit {
     this.talentService.deleteProfilePicture().subscribe({
       next: () => {
         this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
-        this.defaultProfilePicture  = true;
+        this.defaultProfilePicture = true;
         this.toastService.showSuccessMessage('Profile picture removed successfully!');
       },
       error: (error) => this.toastService.showErrorMessage('Error deleting profile picture!', error)
@@ -165,5 +167,15 @@ export class EditProfileModalComponent implements OnInit {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }
+  }
+
+  // Function to extract country ISO code from phone number
+  getCountryISO(phoneNumber: string): CountryISO {
+    if (phoneNumber.startsWith('+1')) {
+      return CountryISO.Canada;
+    } else if (phoneNumber.startsWith('+33')) {
+      return CountryISO.France;
+    }
+    return CountryISO.Tunisia; // Default fallback
   }
 }
