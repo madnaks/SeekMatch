@@ -1,4 +1,4 @@
-import { JobType } from "../enums/enums";
+import { JobType, WorkplaceType } from "../enums/enums";
 import { formatDateToISO } from "../utils";
 import { JobApplication } from "./job-application";
 
@@ -13,6 +13,7 @@ export class JobOffer {
   public postedAt : string | null = null;
   public expiresAt : string | null = null;
   public type: JobType = JobType.FullTime;
+  public workplaceType: WorkplaceType = WorkplaceType.OnSite;
   public isActive: Boolean = false;
   public jobApplications : JobApplication[] = [];
   

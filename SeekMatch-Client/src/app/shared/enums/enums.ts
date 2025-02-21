@@ -12,6 +12,13 @@ export enum JobType {
     Freelance = 5
 }
 
+export enum WorkplaceType
+{
+    OnSite = 1,
+    Hybrid = 2,
+    Remote = 3
+}
+
 export enum ToastType {
     Success = 'success',
     Error = 'error',

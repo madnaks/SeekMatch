@@ -10,6 +10,7 @@ namespace SeekMatch.Core.Entities
         public required string Location { get; set; }
         public string? Salary { get; set; }
         public JobType Type { get; set; }
+        public WorkplaceType WorkplaceType { get; set; }
         public DateOnly? PostedAt { get; set; }
         public DateOnly? ExpiresAt { get; set; }
         public bool IsActive { get; set; }

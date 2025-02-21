@@ -16,6 +16,13 @@
         Freelance = 5
     }
 
+    public enum WorkplaceType
+    {
+        OnSite = 1,
+        Hybrid = 2,
+        Remote = 3
+    }
+
     public enum JobApplicationStatus
     {
         Pending = 0,
