@@ -29,6 +29,11 @@ export class JobOfferModalComponent implements OnInit {
 
   editorModules = EDITOR_MODULES;
 
+  //#region  Stepping variables
+  currentStep: number = 1;
+  maxSteps: number = 2;
+  //#endregion
+
   constructor(
     private fb: NonNullableFormBuilder,
     private jobOfferService: JobOfferService,
@@ -52,7 +57,7 @@ export class JobOfferModalComponent implements OnInit {
       showWeekNumbers: false,
     });
   }
-  
+
   private initJobOfferFormForm(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
@@ -84,7 +89,7 @@ export class JobOfferModalComponent implements OnInit {
   //#region : Form controls events 
   public onSubmit(): void {
     if (this.jobOfferForm.valid) {
-      
+
       this.isSaving = true;
 
       const formValues = this.jobOfferForm.value;
@@ -119,7 +124,7 @@ export class JobOfferModalComponent implements OnInit {
   }
 
   private update(jobOffer: JobOffer): void {
-  
+
     jobOffer.id = this.selectedJobOffer?.id;
 
     this.jobOfferService.update(jobOffer).pipe(
@@ -141,4 +146,27 @@ export class JobOfferModalComponent implements OnInit {
       this.dismissModal(reason);
     }
   }
+
+  //#region Stepping functions
+  public goToNextStep(): void {
+    this.currentStep++;
+    this.updateModalSize();
+  }
+
+  public goToPreviousStep(): void {
+    this.currentStep--;
+    this.updateModalSize();
+  }
+
+  private updateModalSize(): void {
+    const modalElement = document.querySelector('.modal-dialog');
+    if (modalElement) {
+      if (this.currentStep === 2) {
+        modalElement.classList.add('modal-xl'); // Add xl size at step 3
+      } else {
+        modalElement.classList.remove('modal-xl'); // Remove xl size at other steps
+      }
+    }
+  }
+  //#endregion
 }

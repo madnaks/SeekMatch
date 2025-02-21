@@ -9,11 +9,13 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
+
 <div class="modal-body">
     <form [formGroup]="jobOfferForm" (ngSubmit)="onSubmit()">
+        @if(currentStep === 1) {
         <div class="row">
             <!-- Left Column for Fields -->
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <!-- Title -->
                 <div class="mb-4">
                     <label for="inputTitle" class="form-label">
@@ -105,27 +107,40 @@
                     </label>
                 </div>
             </div>
-            <!-- Right Column for Description -->
-            <div class="col-md-8 d-flex flex-column">
+        </div>
+        }
+        @if(currentStep === 2) {
+        <div class="row" style="height: 50vh;">
+            <div class="col-md-12">
                 <!-- Description -->
-                <div class="mb-4 flex-grow-1">
-                    <quill-editor formControlName="description" [modules]="editorModules">
-                    </quill-editor>
-                    @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
-                    <div class="text-danger">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Description' | translate }}
-                    </div>
-                    }
+                <quill-editor formControlName="description" [modules]="editorModules">
+                </quill-editor>
+                @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
+                <div class="text-danger">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Description' | translate }}
                 </div>
-            </div>
-            <!-- Save -->
-            <div class="mb-4 d-flex justify-content-center">
-                <button type="submit" class="btn btn-primary w-25">
-                    <i class="me-2"
-                        [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                    {{ 'Button.Save' | translate }}
-                </button>
+                }
             </div>
         </div>
+        }
     </form>
+</div>
+
+<div class="modal-footer justify-content-around">
+    <!-- Previous button -->
+    <button class="btn btn-primary" [ngClass]="{ 'w-25': !(currentStep === maxSteps) }"
+        (click)="goToPreviousStep()" [disabled]="currentStep === 1">
+        <i class="me-2 fa-solid fa-circle-left"></i>
+        {{ 'SignUp.Recruiter.Modal.Footer.PreviousButton' | translate }}
+    </button>
+    <!-- Next button -->
+    <button class="btn btn-primary w-25" (click)="goToNextStep()" *ngIf="currentStep < maxSteps">
+        {{ 'SignUp.Recruiter.Modal.Footer.NextButton' | translate }}
+        <i class="ms-2 fa-solid fa-circle-right"></i>
+    </button>
+    <!-- Save button -->
+    <button type="submit" class="btn btn-primary w-25" *ngIf="currentStep === maxSteps">
+        <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
+        {{ 'Button.Save' | translate }}
+    </button>
 </div>

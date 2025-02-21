@@ -35,8 +35,8 @@ export class JobOfferComponent implements OnInit {
   }
 
   //#region : Modal functions
-  public open(content: any, jobOffer?: JobOffer): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
+  public openJobOfferModal(content: any, jobOffer?: JobOffer): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
     if (jobOffer != undefined) {
       this.selectedJobOffer = jobOffer;
     }

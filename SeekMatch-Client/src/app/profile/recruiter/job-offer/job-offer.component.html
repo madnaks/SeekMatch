@@ -18,7 +18,7 @@
                         </p>
                     </div>
                     <div class="col-md-6 d-flex justify-content-center">
-                        <button class="btn btn-primary" (click)="open(addJobOfferContent)">
+                        <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
                             <i class="fa-solid fa-plus"></i>
                             {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
                         </button>
@@ -28,7 +28,7 @@
                 @if (!isViewingApplication) {
                     <div class="row mb-3">
                         <div class="col-md-12 d-flex justify-content-end">
-                            <button class="btn btn-primary" (click)="open(addJobOfferContent)">
+                            <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
                                 <i class="fa-solid fa-circle-plus me-2"></i>
                                 {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
                             </button>
@@ -70,7 +70,7 @@
                                             <input class="form-check-input me-2" type="checkbox"  [(ngModel)]="jobOffer.isActive" disabled>
                                         </td>
                                         <td>
-                                            <i class="action-button fa-solid fa-pen me-4" (click)="open(updateJobOfferContent, jobOffer)"></i>
+                                            <i class="action-button fa-solid fa-pen me-4" (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
                                             <i class="action-button fa-solid fa-trash me-4" (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
                                             <i class="action-button fa-solid fa-user-group" (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
                                         </td>

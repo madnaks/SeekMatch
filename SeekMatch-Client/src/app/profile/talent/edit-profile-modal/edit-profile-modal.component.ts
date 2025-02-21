@@ -117,7 +117,6 @@ export class EditProfileModalComponent implements OnInit {
       })
     } else {
       this.toastService.showErrorMessage('Form is not valid');
-      console.log('Form is invalid:', this.profileForm.errors);
     }
   }
 
