@@ -54,7 +54,7 @@ export class EditProfileModalComponent implements OnInit {
       lastName: ['', Validators.required],
       profileTitle: [''],
       summary: [''],
-      dateOfBirth: [null, Validators.required],
+      dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
       address: [''],
       phone: [''],
@@ -117,6 +117,7 @@ export class EditProfileModalComponent implements OnInit {
       })
     } else {
       this.toastService.showErrorMessage('Form is not valid');
+      console.log('Form is invalid:', this.profileForm.errors);
     }
   }
 
@@ -169,8 +170,11 @@ export class EditProfileModalComponent implements OnInit {
     }
   }
 
-  // Function to extract country ISO code from phone number
-  getCountryISO(phoneNumber: string): CountryISO {
+  public onCountryChange(): void {
+    this.profileForm.patchValue({phone: ''});
+  }
+
+  private getCountryISO(phoneNumber: string): CountryISO {
     if (phoneNumber.startsWith('+1')) {
       return CountryISO.Canada;
     } else if (phoneNumber.startsWith('+33')) {

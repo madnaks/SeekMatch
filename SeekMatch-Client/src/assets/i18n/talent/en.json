@@ -22,7 +22,12 @@
             "Remove": "Remove",
             "City": "City",
             "State": "State",
-            "Zip": "Zip"
+            "Zip": "Zip",
+            "Validation": {
+                "FirstName": "First name is required.",
+                "LastName": "Last name is required.",
+                "PhoneNumber": "Invalid phone number format."
+            }
         },
         "Education": {
             "AddEducation": "Add education",
@@ -89,7 +94,7 @@
         },
         "JobApplication": {
             "NoJobApplicationMessage": "There are currently no job applications",
-            "NumberOfApplications":"Number of Job Applications:",
+            "NumberOfApplications": "Number of Job Applications:",
             "Table": {
                 "Title": "Title",
                 "AppliedAt": "Applied at",

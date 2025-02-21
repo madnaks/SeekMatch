@@ -23,25 +23,26 @@
                                 {{ 'Talent.EditProfile.ProfilePicture' | translate }}
                             </b>
                         </p>
-                        
+
                         <div>
                             <img [src]="profilePicture" class="img-thumbnail mb-2">
-    
+
                             <!-- Custom button to trigger file input -->
-                            <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
+                            <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3"
+                                (click)="fileInput.click()">
                                 {{ 'Talent.EditProfile.ChoosePicture' | translate }}
                             </button>
-    
+
                             <!-- Button to remove current image -->
                             <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                                 *ngIf="profilePicture && !defaultProfilePicture">
                                 {{ 'Talent.EditProfile.Remove' | translate }}
                             </button>
-    
+
                             <!-- Hidden file input element -->
                             <input type="file" #fileInput (change)="onFileSelected($event)" style="display: none;">
                         </div>
-    
+
                     </div>
                 </div>
                 <!-- Full name  -->
@@ -52,6 +53,11 @@
                             {{ 'Talent.EditProfile.FirstName' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                        @if ((profileForm.get('firstName')?.invalid && profileForm.get('firstName')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
+                        </div>
+                        }
                     </div>
                     <!-- Last name -->
                     <div class="col-md-6">
@@ -59,6 +65,11 @@
                             {{ 'Talent.EditProfile.LastName' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+                        @if ((profileForm.get('lastName')?.invalid && profileForm.get('lastName')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.LastName' | translate }}
+                        </div>
+                        }
                     </div>
                 </div>
                 <!-- Profile title -->
@@ -116,21 +127,19 @@
                         <label for="inputPhone" class="form-label">
                             {{ 'Talent.EditProfile.Phone' | translate }}
                         </label>
-                        <ngx-intl-tel-input
-                            [cssClass]="'form-control'"
-                            [enableAutoCountrySelect]="false"
-                            [enablePlaceholder]="true"
-                            [searchCountryFlag]="true"
+                        <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="true" [searchCountryFlag]="true"
                             [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
                             [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]"
-                            [selectFirstCountry]="false"
-                            [selectedCountryISO]="selectedCountryISO"
-                            [maxLength]="15"
-                            [phoneValidation]="true"
-                            name="phone"
-                            formControlName="phone"
-                            id="inputPhone"
-                        ></ngx-intl-tel-input>
+                            [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
+                            [phoneValidation]="true" name="phone" formControlName="phone" id="inputPhone"
+                            (countryChange)="onCountryChange()">
+                        </ngx-intl-tel-input>
+                        @if ((profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.PhoneNumber' | translate }}
+                        </div>
+                        }
                     </div>
                 </div>
                 <!-- Full Address -->

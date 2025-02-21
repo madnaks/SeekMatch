@@ -22,7 +22,12 @@
             "Remove": "Supprimer",
             "City": "Ville",
             "State": "État",
-            "Zip": "Code postal"
+            "Zip": "Code postal",
+            "Validation": {
+                "FirstName": "Le prénom est requis.",
+                "LastName": "Le nom de famille est requis.",
+                "PhoneNumber": "Format de numéro de téléphone invalide."
+            }
         },
         "Education": {
             "AddEducation": "Ajouter une formation",
