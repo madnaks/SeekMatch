@@ -87,6 +87,11 @@
             "Contract": "Contrat",
             "Freelance": "Freelance"
         },
+        "WorkplaceType": {
+            "OnSite": "Présentiel",
+            "Hybrid": "Hybride",
+            "Remote": "Télétravail"
+        },
         "JobApplicationStatus": {
             "Pending": "En attente",
             "Shortlisted": "Présélectionné",

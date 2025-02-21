@@ -87,6 +87,11 @@
             "Contract": "Contract",
             "Freelance": "Freelance"
         },
+        "WorkplaceType": {
+            "OnSite": "On-Site",
+            "Hybrid": "Hybrid",
+            "Remote": "Remote"
+        },
         "JobApplicationStatus": {
             "Pending": "Pending",
             "Shortlisted": "Shortlisted",

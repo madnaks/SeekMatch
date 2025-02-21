@@ -1,4 +1,4 @@
-import { JobType } from "../enums/enums";
+import { JobType, WorkplaceType } from "../enums/enums";
 
 export const months = [
   { id: 0, value: 'Date.SelectMonth' },
@@ -22,6 +22,12 @@ export const jobTypes = [
   { key: JobType.Internship, value: 'Enum.JobType.Internship' },
   { key: JobType.Contract, value: 'Enum.JobType.Contract' },
   { key: JobType.Freelance, value: 'Enum.JobType.Freelance' },
+];
+
+export const workplaceTypeList = [
+  { key: WorkplaceType.OnSite, value: 'Enum.WorkplaceType.OnSite' },
+  { key: WorkplaceType.Hybrid, value: 'Enum.WorkplaceType.Hybrid' },
+  { key: WorkplaceType.Remote, value: 'Enum.WorkplaceType.Remote' }
 ];
 
 export const EDITOR_MODULES = {

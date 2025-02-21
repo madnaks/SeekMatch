@@ -48,6 +48,7 @@
                 "Title": "Title",
                 "CompanyName": "Company Name",
                 "JobType": "Job type",
+                "WorkplaceType": "Workplace type",
                 "Salary": "Salary",
                 "IsActive": "Active"
             },

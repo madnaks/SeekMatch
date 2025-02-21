@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { EDITOR_MODULES, jobTypes } from '../../../shared/constants/constants';
+import { EDITOR_MODULES, jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType } from '../../../shared/enums/enums';
+import { JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -25,6 +25,7 @@ export class JobOfferModalComponent implements OnInit {
   updateMode: boolean = false;
   jobOfferForm: FormGroup;
   jobTypesList = jobTypes;
+  workplaceTypeList = workplaceTypeList;
   bsConfig?: Partial<BsDatepickerConfig>;
 
   editorModules = EDITOR_MODULES;
@@ -68,6 +69,7 @@ export class JobOfferModalComponent implements OnInit {
       postedAt: [null],
       expiresAt: [null],
       type: [JobType.FullTime],
+      workplaceType: [WorkplaceType.OnSite],
       isActive: [false],
     });
   }
@@ -82,6 +84,7 @@ export class JobOfferModalComponent implements OnInit {
       postedAt: jobOffer.postedAt,
       expiresAt: jobOffer.expiresAt,
       type: jobOffer.type,
+      workplaceType: jobOffer.workplaceType,
       isActive: jobOffer.isActive,
     });
   }
