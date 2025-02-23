@@ -101,7 +101,7 @@
                 </div>
                 <!-- Date of birth -->
                 <div class="row mt-3">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label for="inputDateOfBirth" class="form-label">
                             {{ 'Talent.EditProfile.DateOfBirth' | translate }}
                         </label>
@@ -112,15 +112,6 @@
                                 <i class="fa-regular fa-calendar-days"></i>
                             </span>
                         </div>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <!-- Address -->
-                    <div class="col-md-6">
-                        <label for="inputAddress" class="form-label">
-                            {{ 'Talent.EditProfile.Address' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputAddress" formControlName="address">
                     </div>
                     <!-- Phone -->
                     <div class="col-md-6">
@@ -133,7 +124,7 @@
                             [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]"
                             [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
                             [phoneValidation]="true" name="phone" formControlName="phone" id="inputPhone"
-                            (countryChange)="onCountryChange()">
+                            (countryChange)="onPhoneCountryChange()">
                         </ngx-intl-tel-input>
                         @if ((profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched)) {
                         <div class="text-danger">
@@ -142,31 +133,31 @@
                         }
                     </div>
                 </div>
-                <!-- Full Address -->
+                <!-- Address -->
                 <div class="row mt-3">
+                     <!-- Country -->
+                     <div class="col-md-6">
+                        <label for="inputCountry" class="form-label">
+                            {{ 'Talent.EditProfile.Country' | translate }}
+                        </label>
+                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)">
+                            <option selected>Choose...</option>
+                            <option *ngFor="let country of countries" [value]="country.code">
+                                {{ country.name }}
+                            </option>
+                        </select>
+                    </div>
                     <!-- City -->
                     <div class="col-md-6">
                         <label for="inputCity" class="form-label">
                             {{ 'Talent.EditProfile.City' | translate }}
                         </label>
-                        <input type="text" class="form-control" id="inputCity" formControlName="city">
-                    </div>
-                    <!-- State -->
-                    <div class="col-md-4">
-                        <label for="inputState" class="form-label">
-                            {{ 'Talent.EditProfile.State' | translate }}
-                        </label>
-                        <select id="inputState" class="form-select">
-                            <option selected>Choose...</option>
-                            <option>...</option>
+                        <select id="inputCity" class="form-select">
+                            <option *ngIf="cities.length === 0" selected>Choose...</option>
+                            <option *ngFor="let city of cities" [value]="city.name">
+                                {{ city.name }}
+                            </option>
                         </select>
-                    </div>
-                    <!-- Zip -->
-                    <div class="col-md-2">
-                        <label for="inputZip" class="form-label">
-                            {{ 'Talent.EditProfile.Zip' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputZip" formControlName="zip">
                     </div>
                 </div>
                 <!-- Save button -->

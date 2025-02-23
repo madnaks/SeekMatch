@@ -10,11 +10,9 @@ export class Talent extends User {
   public profileTitle : string= '';
   public summary : string= '';
   public dateOfBirth : string | null = null;
-  public address : string= '';
   public phone : string= '';
+  public country : string= '';
   public city : string= '';
-  public state : string= '';
-  public zip : string= '';
   public profilePicture : Uint8Array | null = null;
   public educations : Education[] = [];
   public experiences : Experience[] = [];

@@ -9,6 +9,7 @@ import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
+import { GeonamesService } from '../../../shared/services/geonames.service';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -35,11 +36,20 @@ export class EditProfileModalComponent implements OnInit {
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   selectedCountryISO = CountryISO.Tunisia;
+  // Address
+  countries = [
+    { name: 'Canada', code: 'CA' },
+    { name: 'United States', code: 'US' },
+    { name: 'France', code: 'FR' },
+    { name: 'Tunisia', code: 'TN' }
+  ];  
+  cities: { name: string }[] = [];
 
   constructor(
     private fb: NonNullableFormBuilder,
     private talentService: TalentService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private geonamesService: GeonamesService) {
     this.profileForm = this.initAboutYouForm();
     this.configureDatePicker();
   }
@@ -56,10 +66,9 @@ export class EditProfileModalComponent implements OnInit {
       summary: [''],
       dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
-      address: [''],
       phone: [''],
+      country: [''],
       city: [''],
-      zip: ['']
     });
   }
 
@@ -73,9 +82,10 @@ export class EditProfileModalComponent implements OnInit {
         profileTitle: talent.profileTitle,
         summary: talent.summary,
         dateOfBirth: dateOfBirth,
-        address: talent.address,
         email: talent.email,
-        phone: talent.phone
+        phone: talent.phone,
+        country: talent.country,
+        city: talent.city
       });
 
       this.selectedCountryISO = this.getCountryISO(talent.phone);
@@ -169,8 +179,8 @@ export class EditProfileModalComponent implements OnInit {
     }
   }
 
-  public onCountryChange(): void {
-    this.profileForm.patchValue({phone: ''});
+  public onPhoneCountryChange(): void {
+    this.profileForm.patchValue({ phone: '' });
   }
 
   private getCountryISO(phoneNumber: string): CountryISO {
@@ -181,4 +191,12 @@ export class EditProfileModalComponent implements OnInit {
     }
     return CountryISO.Tunisia; // Default fallback
   }
+
+  public onCountrySelect(event: any): void {
+    const countryCode = event.target.value;
+    this.geonamesService.getCities(countryCode).subscribe( cities => {
+      this.cities = cities.geonames;
+    });
+  }
+
 }
