@@ -9,11 +9,9 @@ namespace SeekMatch.Application.DTOs.Talent
         public string? ProfileTitle { get; set; }
         public string? Summary { get; set; }
         public DateOnly DateOfBirth { get; set; }
-        public string? Address { get; set; }
         public string? Phone { get; set; }
+        public string? Country { get; set; }
         public string? City { get; set; }
-        public string? State { get; set; }
-        public string? Zip { get; set; }
         public string? Email { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public List<EducationDto> Educations { get; set; } = new List<EducationDto>();

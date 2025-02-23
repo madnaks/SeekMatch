@@ -67,11 +67,9 @@ namespace SeekMatch.Application.Services
                 talent.ProfileTitle = profileDto.ProfileTitle;
                 talent.Summary = profileDto.Summary;
                 talent.DateOfBirth = profileDto.DateOfBirth;
-                talent.Address = profileDto.Address;
                 talent.Phone = profileDto.Phone;
+                talent.Country = profileDto.Country;
                 talent.City = profileDto.City;
-                talent.State = profileDto.State;
-                talent.Zip = profileDto.Zip;
 
                 return await _talentRepository.SaveChangesAsync(talent);
             }
