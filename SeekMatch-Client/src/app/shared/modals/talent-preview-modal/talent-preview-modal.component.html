@@ -30,7 +30,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <p>
+                                <p *ngIf="currentTalent?.summary">
                                     {{ isSummaryExpanded ? currentTalent?.summary : (currentTalent?.summary | slice:0:150) + '...' }}
                                     <a *ngIf="hasLongSummary" class="link-primary" (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                                         {{ isSummaryExpanded ? 'Less' : 'More' }}
