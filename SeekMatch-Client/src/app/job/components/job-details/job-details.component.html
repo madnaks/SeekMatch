@@ -25,18 +25,18 @@
     </h6>
     <!-- Location -->
     <div>
-        <i class="fa-solid fa-location-dot"></i>
+        <i class="fa-solid fa-location-dot me-2"></i>
         {{ jobOffer.location }}
     </div>
     <!-- Job offer type -->
     <div>
-        <i class="fa-solid fa-briefcase"></i>
-        {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }}
+        <i class="fa-solid fa-briefcase me-2"></i>
+        {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }} • {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
     </div>
     <!-- Job offer salary -->
      @if (jobOffer.salary) {
          <div>
-             <i class="fa-solid fa-money-bills"></i>
+             <i class="fa-solid fa-money-bills me-2"></i>
              {{ jobOffer.salary}}
          </div>
      }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { WorkplaceType } from '../../../shared/enums/enums';
 
 @Component({
   selector: 'app-job-list',
@@ -22,7 +23,7 @@ export class JobListComponent {
     this.loadJobOffers();
   }
 
-  private loadJobOffers():void {
+  private loadJobOffers(): void {
     this.isLoading = true;
     this.jobOfferService.getAll().subscribe((newJobs) => {
       this.jobOffers = [...this.jobOffers, ...newJobs];
@@ -38,4 +39,7 @@ export class JobListComponent {
     this.jobOfferSelected.emit(jobOffer);
   }
 
+  public getWorkplaceTypeName(workplaceType: WorkplaceType): string {
+    return WorkplaceType[workplaceType];
+  }
 }

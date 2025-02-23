@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobType, UserRole } from '../../../shared/enums/enums';
+import { JobType, UserRole, WorkplaceType } from '../../../shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../../shared/services/auth.service';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
@@ -34,6 +34,10 @@ export class JobDetailsComponent implements OnInit {
 
   public getJobTypeName(type: JobType): string {
     return JobType[type];
+  }
+
+  public getWorkplaceTypeName(workplaceType: WorkplaceType): string {
+    return WorkplaceType[workplaceType];
   }
 
   public sanitizedDescription(description: string) {
