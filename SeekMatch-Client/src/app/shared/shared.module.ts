@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastComponent } from './components/toast/toast.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
+import { CountryNamePipe } from './pipes/country-name.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talen
     FooterComponent,
     LoginModalComponent,
     TalentPreviewModalComponent,
-    ToastComponent
+    ToastComponent,
+    CountryNamePipe
   ],
   imports: [
     CommonModule,
@@ -34,7 +36,8 @@ import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talen
     FooterComponent,
     LoginModalComponent,
     TalentPreviewModalComponent,
-    ToastComponent
+    ToastComponent,
+    CountryNamePipe
   ]
 })
 export class SharedModule { }
