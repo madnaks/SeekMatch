@@ -140,8 +140,10 @@
                         <label for="inputCountry" class="form-label">
                             {{ 'Talent.EditProfile.Country' | translate }}
                         </label>
-                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)">
-                            <option selected>Choose...</option>
+                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)" formControlName="country">
+                            <option *ngIf="!profileForm.get('country')?.value" value="" selected>
+                                Choose...
+                            </option>
                             <option *ngFor="let country of countries" [value]="country.code">
                                 {{ country.name }}
                             </option>
@@ -152,8 +154,10 @@
                         <label for="inputCity" class="form-label">
                             {{ 'Talent.EditProfile.City' | translate }}
                         </label>
-                        <select id="inputCity" class="form-select">
-                            <option *ngIf="cities.length === 0" selected>Choose...</option>
+                        <select id="inputCity" class="form-select" formControlName="city">
+                            <option *ngIf="cities.length === 0" value="" selected>
+                                Choose...
+                            </option>
                             <option *ngFor="let city of cities" [value]="city.name">
                                 {{ city.name }}
                             </option>

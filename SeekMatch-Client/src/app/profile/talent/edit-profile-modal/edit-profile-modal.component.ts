@@ -10,6 +10,7 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 import { GeonamesService } from '../../../shared/services/geonames.service';
+import { countries } from '../../../shared/constants/constants';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -37,12 +38,7 @@ export class EditProfileModalComponent implements OnInit {
   CountryISO = CountryISO;
   selectedCountryISO = CountryISO.Tunisia;
   // Address
-  countries = [
-    { name: 'Canada', code: 'CA' },
-    { name: 'United States', code: 'US' },
-    { name: 'France', code: 'FR' },
-    { name: 'Tunisia', code: 'TN' }
-  ];  
+  countries = countries;  
   cities: { name: string }[] = [];
 
   constructor(
@@ -87,6 +83,8 @@ export class EditProfileModalComponent implements OnInit {
         country: talent.country,
         city: talent.city
       });
+
+      this.getCities(talent.country);
 
       this.selectedCountryISO = this.getCountryISO(talent.phone);
 
@@ -179,6 +177,7 @@ export class EditProfileModalComponent implements OnInit {
     }
   }
 
+  //#region Phone Input Events
   public onPhoneCountryChange(): void {
     this.profileForm.patchValue({ phone: '' });
   }
@@ -191,12 +190,21 @@ export class EditProfileModalComponent implements OnInit {
     }
     return CountryISO.Tunisia; // Default fallback
   }
+  //#endregion
 
   public onCountrySelect(event: any): void {
     const countryCode = event.target.value;
-    this.geonamesService.getCities(countryCode).subscribe( cities => {
-      this.cities = cities.geonames;
-    });
+    this.getCities(countryCode);
+  }
+
+  private getCities(countryCode: string): void {
+    if (!countryCode) {  
+      this.cities = [];
+    } else {
+      this.geonamesService.getCities(countryCode).subscribe( cities => {
+        this.cities = cities.geonames;
+      });
+    }
   }
 
 }
