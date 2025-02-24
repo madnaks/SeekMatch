@@ -38,7 +38,8 @@ export class EditProfileModalComponent implements OnInit {
   CountryISO = CountryISO;
   selectedCountryISO = CountryISO.Tunisia;
   // Address
-  countries = countries;  
+  countries = countries;
+  provinces: { geonameId: number, toponymName:string }[] = [];
   cities: { name: string }[] = [];
 
   constructor(
@@ -64,6 +65,7 @@ export class EditProfileModalComponent implements OnInit {
       email: [{ value: '', disabled: true }, [Validators.email]],
       phone: [''],
       country: [''],
+      province: [''],
       city: [''],
     });
   }
@@ -84,7 +86,7 @@ export class EditProfileModalComponent implements OnInit {
         city: talent.city
       });
 
-      this.getCities(talent.country);
+      // this.getCities(talent.country);
 
       this.selectedCountryISO = this.getCountryISO(talent.phone);
 
@@ -192,19 +194,38 @@ export class EditProfileModalComponent implements OnInit {
   }
   //#endregion
 
+  //#region Address events
   public onCountrySelect(event: any): void {
     const countryCode = event.target.value;
-    this.getCities(countryCode);
+    // this.getProvinces(countryCode);
+
+    this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
+      if (geonameId) {
+        this.geonamesService.getProvinces(geonameId).subscribe(provinces => {
+          console.log(provinces);
+          this.provinces = provinces;
+        });
+      }
+    });
+
   }
 
-  private getCities(countryCode: string): void {
-    if (!countryCode) {  
-      this.cities = [];
-    } else {
-      this.geonamesService.getCities(countryCode).subscribe( cities => {
-        this.cities = cities.geonames;
-      });
-    }
+  public onProvinceSelect(event: any): void {
+    const provinceGeoId = event.target.value;
+    this.geonamesService.getCities(provinceGeoId).subscribe(cities => {
+      this.cities = cities;
+    });
   }
+
+  // private getCities(countryCode: string): void {
+  //   if (!countryCode) {
+  //     this.cities = [];
+  //   } else {
+  //     this.geonamesService.getCities(countryCode).subscribe(cities => {
+  //       this.cities = cities.geonames;
+  //     });
+  //   }
+  // }
+  //#endregion
 
 }
