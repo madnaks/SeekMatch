@@ -17,6 +17,7 @@
             "DateOfBirth": "Date de naissance",
             "Phone": "Téléphone",
             "Country": "Pays",
+            "ProvinceOrRegion": "Province/Région",
             "City": "Ville",
             "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",

@@ -39,7 +39,7 @@ export class EditProfileModalComponent implements OnInit {
   selectedCountryISO = CountryISO.Tunisia;
   // Address
   countries = countries;
-  provinces: { geonameId: number, toponymName:string }[] = [];
+  provinces: { geonameId: number, toponymName: string }[] = [];
   cities: { name: string }[] = [];
 
   constructor(
@@ -87,7 +87,13 @@ export class EditProfileModalComponent implements OnInit {
         city: talent.city
       });
 
-      // this.getCities(talent.country);
+      if (talent.country) {
+        this.getProvinces(talent.country);
+      }
+
+      if (talent.provinceOrRegion) {
+        this.getCities(talent.provinceOrRegion);
+      }
 
       this.selectedCountryISO = this.getCountryISO(talent.phone);
 
@@ -198,17 +204,16 @@ export class EditProfileModalComponent implements OnInit {
   //#region Address events
   public onCountrySelect(event: any): void {
     const countryCode = event.target.value;
-    // this.getProvinces(countryCode);
+    this.provinces = [];
+    this.cities = [];
 
     this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
       if (geonameId) {
         this.geonamesService.getProvinces(geonameId).subscribe(provinces => {
-          console.log(provinces);
           this.provinces = provinces;
         });
       }
     });
-
   }
 
   public onProvinceSelect(event: any): void {
@@ -218,15 +223,30 @@ export class EditProfileModalComponent implements OnInit {
     });
   }
 
-  // private getCities(countryCode: string): void {
-  //   if (!countryCode) {
-  //     this.cities = [];
-  //   } else {
-  //     this.geonamesService.getCities(countryCode).subscribe(cities => {
-  //       this.cities = cities.geonames;
-  //     });
-  //   }
-  // }
+  private getProvinces(countryCode: string): void {
+    if (!countryCode) {
+      this.provinces = [];
+      this.cities = [];
+    } else {
+      this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
+        if (geonameId) {
+          this.geonamesService.getProvinces(geonameId).subscribe(provinces => {
+            this.provinces = provinces;
+          });
+        }
+      });
+    }
+  }
+
+  private getCities(provinceOrRegionGeoId: number): void {
+    if (!provinceOrRegionGeoId) {
+      this.cities = [];
+    } else {
+      this.geonamesService.getCities(provinceOrRegionGeoId).subscribe(cities => {
+        this.cities = cities;
+      });
+    }
+  }
   //#endregion
 
 }

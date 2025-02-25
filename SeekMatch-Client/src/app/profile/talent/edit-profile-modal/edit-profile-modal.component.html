@@ -152,7 +152,7 @@
                     <!-- Province -->
                     <div class="col-md-4">
                         <label for="inputProvince" class="form-label">
-                            {{ 'Talent.EditProfile.Province' | translate }}
+                            {{ 'Talent.EditProfile.ProvinceOrRegion' | translate }}
                         </label>
                         <select id="inputProvince" class="form-select" (change)="onProvinceSelect($event)" formControlName="provinceOrRegion">
                             <option *ngIf="!profileForm.get('province')?.value" value="" selected>
