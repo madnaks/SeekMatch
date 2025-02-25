@@ -65,7 +65,7 @@ export class EditProfileModalComponent implements OnInit {
       email: [{ value: '', disabled: true }, [Validators.email]],
       phone: [''],
       country: [''],
-      province: [''],
+      provinceOrRegion: [''],
       city: [''],
     });
   }
@@ -83,6 +83,7 @@ export class EditProfileModalComponent implements OnInit {
         email: talent.email,
         phone: talent.phone,
         country: talent.country,
+        provinceOrRegion: talent.provinceOrRegion,
         city: talent.city
       });
 

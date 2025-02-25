@@ -12,6 +12,7 @@ export class Talent extends User {
   public dateOfBirth : string | null = null;
   public phone : string= '';
   public country : string= '';
+  public provinceOrRegion : string= '';
   public city : string= '';
   public profilePicture : Uint8Array | null = null;
   public educations : Education[] = [];

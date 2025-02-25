@@ -11,6 +11,7 @@ namespace SeekMatch.Application.DTOs.Talent
         public DateOnly DateOfBirth { get; set; }
         public string? Phone { get; set; }
         public string? Country { get; set; }
+        public string? ProvinceOrRegion { get; set; }
         public string? City { get; set; }
         public string? Email { get; set; }
         public byte[]? ProfilePicture { get; set; }
