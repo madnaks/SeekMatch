@@ -142,7 +142,7 @@
                         </label>
                         <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)" formControlName="country">
                             <option *ngIf="!profileForm.get('country')?.value" value="" selected>
-                                Choose...
+                                {{ 'Talent.EditProfile.ChooseCountry' | translate }}
                             </option>
                             <option *ngFor="let country of countries" [value]="country.code">
                                 {{ country.name }}
@@ -156,7 +156,7 @@
                         </label>
                         <select id="inputProvince" class="form-select" (change)="onProvinceSelect($event)" formControlName="provinceOrRegion">
                             <option *ngIf="!profileForm.get('province')?.value" value="" selected>
-                                Choose...
+                                {{ 'Talent.EditProfile.ChooseProvinceOrRegion' | translate }}
                             </option>
                             <option *ngFor="let province of provinces" [value]="province.geonameId">
                                 {{ province.toponymName }}
@@ -170,7 +170,7 @@
                         </label>
                         <select id="inputCity" class="form-select" formControlName="city">
                             <option *ngIf="cities.length === 0" value="" selected>
-                                Choose...
+                                {{ 'Talent.EditProfile.ChooseCity' | translate }}
                             </option>
                             <option *ngFor="let city of cities" [value]="city.name">
                                 {{ city.name }}
