@@ -219,6 +219,8 @@ export class EditProfileModalComponent implements OnInit {
   public onProvinceSelect(event: any): void {
     const provinceGeoId = event.target.value;
     this.geonamesService.getCities(provinceGeoId).subscribe(cities => {
+      console.log(cities);
+      
       this.cities = cities;
     });
   }
