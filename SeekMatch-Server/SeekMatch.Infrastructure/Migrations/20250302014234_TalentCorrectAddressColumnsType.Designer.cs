@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SeekMatch.Infrastructure;
@@ -11,9 +12,11 @@ using SeekMatch.Infrastructure;
 namespace SeekMatch.Infrastructure.Migrations
 {
     [DbContext(typeof(SeekMatchDbContext))]
-    partial class SeekMatchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250302014234_TalentCorrectAddressColumnsType")]
+    partial class TalentCorrectAddressColumnsType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -473,7 +476,7 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.Property<string>("ProfileTitle")
                         .HasColumnType("text");
 
-                    b.Property<int?>("Region")
+                    b.Property<int?>("ProvinceOrRegion")
                         .HasColumnType("integer");
 
                     b.Property<string>("Summary")

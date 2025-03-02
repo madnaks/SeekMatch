@@ -9,7 +9,7 @@
         public DateOnly DateOfBirth { get; set; }
         public string? Phone { get; set; }
         public string? Country { get; set; }
-        public string? ProvinceOrRegion { get; set; }
-        public string? City { get; set; }
+        public int? Region { get; set; }
+        public int? City { get; set; }
     }
 }

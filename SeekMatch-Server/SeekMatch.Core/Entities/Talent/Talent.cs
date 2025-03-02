@@ -9,8 +9,8 @@
         public DateOnly DateOfBirth { get; set; }
         public string? Phone { get; set; }
         public string? Country { get; set; }
-        public string? ProvinceOrRegion { get; set; }
-        public string? City { get; set; }
+        public int? Region { get; set; }
+        public int? City { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public required User User { get; set; }
         public List<Education> Educations { get; set; } = new List<Education>();

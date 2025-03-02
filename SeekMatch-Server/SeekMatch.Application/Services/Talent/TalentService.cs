@@ -69,7 +69,7 @@ namespace SeekMatch.Application.Services
                 talent.DateOfBirth = profileDto.DateOfBirth;
                 talent.Phone = profileDto.Phone;
                 talent.Country = profileDto.Country;
-                talent.ProvinceOrRegion = profileDto.ProvinceOrRegion;
+                talent.Region = profileDto.Region;
                 talent.City = profileDto.City;
 
                 return await _talentRepository.SaveChangesAsync(talent);
