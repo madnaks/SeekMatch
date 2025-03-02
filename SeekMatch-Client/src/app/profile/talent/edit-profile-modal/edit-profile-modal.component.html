@@ -149,17 +149,17 @@
                             </option>
                         </select>
                     </div>
-                    <!-- Province -->
+                    <!-- Region -->
                     <div class="col-md-4">
-                        <label for="inputProvince" class="form-label">
-                            {{ 'Talent.EditProfile.ProvinceOrRegion' | translate }}
+                        <label for="inputRegion" class="form-label">
+                            {{ 'Talent.EditProfile.Region' | translate }}
                         </label>
-                        <select id="inputProvince" class="form-select" (change)="onProvinceSelect($event)" formControlName="provinceOrRegion">
-                            <option *ngIf="provinces.length === 0" value="" selected>
-                                {{ 'Talent.EditProfile.ChooseProvinceOrRegion' | translate }}
+                        <select id="inputRegion" class="form-select" (change)="onRegionSelect($event)" formControlName="region">
+                            <option [value]="null" selected>
+                                {{ 'Talent.EditProfile.ChooseRegion' | translate }}
                             </option>
-                            <option *ngFor="let province of provinces" [value]="province.geonameId">
-                                {{ province.toponymName }}
+                            <option *ngFor="let region of regions" [value]="region.geonameId">
+                                {{ region.toponymName }}
                             </option>
                         </select>
                     </div>
@@ -169,10 +169,10 @@
                             {{ 'Talent.EditProfile.City' | translate }}
                         </label>
                         <select id="inputCity" class="form-select" formControlName="city">
-                            <option *ngIf="cities.length === 0" value="" selected>
+                            <option [value]="null" selected>
                                 {{ 'Talent.EditProfile.ChooseCity' | translate }}
                             </option>
-                            <option *ngFor="let city of cities" [value]="city.name">
+                            <option *ngFor="let city of cities" [value]="city.geonameId">
                                 {{ city.name }}
                             </option>
                         </select>

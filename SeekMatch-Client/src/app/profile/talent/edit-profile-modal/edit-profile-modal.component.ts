@@ -39,8 +39,8 @@ export class EditProfileModalComponent implements OnInit {
   selectedCountryISO = CountryISO.Tunisia;
   // Address
   countries = countries;
-  provinces: { geonameId: number, toponymName: string }[] = [];
-  cities: { name: string }[] = [];
+  regions: { geonameId: number, toponymName: string } [] = [];
+  cities: { geonameId: number, name: string } [] = [];
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -65,8 +65,8 @@ export class EditProfileModalComponent implements OnInit {
       email: [{ value: '', disabled: true }, [Validators.email]],
       phone: [''],
       country: [''],
-      provinceOrRegion: [''],
-      city: [''],
+      region: [null],
+      city: [null],
     });
   }
 
@@ -83,16 +83,16 @@ export class EditProfileModalComponent implements OnInit {
         email: talent.email,
         phone: talent.phone,
         country: talent.country,
-        provinceOrRegion: talent.provinceOrRegion,
+        region: talent.region,
         city: talent.city
       });
 
       if (talent.country) {
-        this.getProvinces(talent.country);
+        this.getRegions(talent.country);
       }
 
-      if (talent.provinceOrRegion) {
-        this.getCities(talent.provinceOrRegion);
+      if (talent.region) {
+        this.getCities(talent.region);
       }
 
       this.selectedCountryISO = this.getCountryISO(talent.phone);
@@ -203,48 +203,49 @@ export class EditProfileModalComponent implements OnInit {
 
   //#region Address events
   public onCountrySelect(event: any): void {
-    const countryCode = event.target.value;
-    this.provinces = [];
+    this.regions = [];
     this.cities = [];
 
+    this.profileForm.patchValue({ region: null });
+    this.profileForm.patchValue({ city: null });
+    
+    const countryCode = event.target.value;
     this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
       if (geonameId) {
-        this.geonamesService.getProvinces(geonameId).subscribe(provinces => {
-          this.provinces = provinces;
+        this.geonamesService.getRegions(geonameId).subscribe(regions => {
+          this.regions = regions;
         });
       }
     });
   }
 
-  public onProvinceSelect(event: any): void {
-    const provinceGeoId = event.target.value;
-    this.geonamesService.getCities(provinceGeoId).subscribe(cities => {
-      console.log(cities);
-      
+  public onRegionSelect(event: any): void {
+    const regionGeoId = event.target.value;
+    this.geonamesService.getCities(regionGeoId).subscribe(cities => {
       this.cities = cities;
     });
   }
 
-  private getProvinces(countryCode: string): void {
+  private getRegions(countryCode: string): void {
     if (!countryCode) {
-      this.provinces = [];
+      this.regions = [];
       this.cities = [];
     } else {
       this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
         if (geonameId) {
-          this.geonamesService.getProvinces(geonameId).subscribe(provinces => {
-            this.provinces = provinces;
+          this.geonamesService.getRegions(geonameId).subscribe(regions => {
+            this.regions = regions;
           });
         }
       });
     }
   }
 
-  private getCities(provinceOrRegionGeoId: number): void {
-    if (!provinceOrRegionGeoId) {
+  private getCities(regionGeoId: number): void {
+    if (!regionGeoId) {
       this.cities = [];
     } else {
-      this.geonamesService.getCities(provinceOrRegionGeoId).subscribe(cities => {
+      this.geonamesService.getCities(regionGeoId).subscribe(cities => {
         this.cities = cities;
       });
     }

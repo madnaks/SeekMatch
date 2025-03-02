@@ -25,6 +25,7 @@ export class TalentService {
   }
 
   saveProfile(profileData: any): Observable<any> {
+    debugger
     return this.http.put(`${this.apiUrl}/save-profile`, profileData);
   }
 
