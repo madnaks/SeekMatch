@@ -24,7 +24,7 @@
                                 </h5>
                                 <h6>
                                     <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
-                                    {{ currentTalent?.city }}, {{ currentTalent?.country || '' | countryName }}
+                                    {{ currentTalent?.city || null | geoName | async }}, {{ currentTalent?.region || null | geoName | async }}, {{ currentTalent?.country || '' | countryName }}
                                 </h6>
                             </div>
                         </div>

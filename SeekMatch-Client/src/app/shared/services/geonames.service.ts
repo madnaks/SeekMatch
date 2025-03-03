@@ -11,11 +11,6 @@ export class GeonamesService {
 
     constructor(private http: HttpClient) { }
 
-    getCountries(): Observable<any> {
-        const url = `http://api.geonames.org/countryInfoJSON?username=${this.username}`;
-        return this.http.get<any>(url);
-    }
-
     getCountryGeoId(countryCode: string): Observable<number | null> {
         const url = `http://api.geonames.org/searchJSON?username=${this.username}&q=${countryCode}&featureClass=A&maxRows=1`;
         return this.http.get<any>(url).pipe(
@@ -39,17 +34,11 @@ export class GeonamesService {
         );
     }
 
-    getRegionByGeonameId(regionGeonameId: number): Observable<any> {
-        const url = `http://api.geonames.org/childrenJSON?geonameId=${regionGeonameId}&username=${this.username}`;
+    getGeoNameById(geonameId: number): Observable<any> {
+        const url = `http://api.geonames.org/getJSON?geonameId=${geonameId}&username=${this.username}`;
         return this.http.get<any>(url).pipe(
             map(response => response || null)
         );
     }
-
-    getCityByGeonameId(cityGeonameId: number): Observable<any> {
-        const url = `http://api.geonames.org/childrenJSON?geonameId=${cityGeonameId}&username=${this.username}`;
-        return this.http.get<any>(url).pipe(
-            map(response => response || null)
-        );
-    }
+  
 }
