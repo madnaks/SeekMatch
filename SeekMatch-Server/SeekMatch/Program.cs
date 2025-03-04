@@ -95,6 +95,7 @@ builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IRepresentativeService, RepresentativeService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IJobApplicationService, JobApplicationService>();
+builder.Services.AddScoped<INotificationService, NotificationService>();
 #endregion
 
 #region Register repositories
@@ -106,6 +107,7 @@ builder.Services.AddScoped<IJobOfferRepository, JobOfferRepository>();
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IRepresentativeRepository, RepresentativeRepository>();
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 #endregion
 
 builder.Services.AddCors(options =>
