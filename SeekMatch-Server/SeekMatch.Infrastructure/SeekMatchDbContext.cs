@@ -14,6 +14,7 @@ namespace SeekMatch.Infrastructure
         public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -73,6 +74,12 @@ namespace SeekMatch.Infrastructure
                 .HasOne(j => j.JobOffer)
                 .WithMany(o => o.JobApplications)
                 .HasForeignKey(j => j.JobOfferId);
+
+            modelBuilder.Entity<Notification>()
+                .HasOne(n => n.user)
+                .WithMany()
+                .HasForeignKey(n => n.userId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
