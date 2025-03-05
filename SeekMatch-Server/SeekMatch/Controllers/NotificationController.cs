@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using System.Security.Claims;
+using SeekMatch.Application.DTOs;
 
 namespace SeekMatch.Controllers
 {
@@ -38,7 +39,7 @@ namespace SeekMatch.Controllers
         /// Create a notification (For system events, not direct use).
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> CreateNotification([FromBody] NotificationCreateDto notificationDto)
+        public async Task<IActionResult> CreateNotification([FromBody] NotificationDto notificationDto)
         {
             await _notificationService.CreateNotificationAsync(notificationDto.UserId, notificationDto.Message);
             return Ok(new { message = "Notification created successfully" });
@@ -53,11 +54,5 @@ namespace SeekMatch.Controllers
             await _notificationService.MarkAsReadAsync(id);
             return NoContent();
         }
-    }
-
-    public class NotificationCreateDto
-    {
-        public string UserId { get; set; }
-        public string Message { get; set; }
     }
 }
