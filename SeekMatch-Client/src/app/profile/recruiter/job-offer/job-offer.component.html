@@ -149,7 +149,7 @@
                                             </td>
                                             <td>
                                                 <i class="action-button fa-solid fa-id-card me-4" (click)="openTalentPreviewModal(previewTalentContent, jobApplication.talentId)"></i>
-                                                <i class="action-button fa-solid fa-circle-xmark"></i>
+                                                <i class="action-button fa-solid fa-circle-xmark" (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
                                             </td>
                                         </tr>
                                         }
@@ -194,6 +194,28 @@
         <button type="button" class="btn btn-danger" (click)="deleteJobOffer()">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
             {{ 'Button.Delete' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Reject Modal -->
+<ng-template #rejectJobApplicationModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">
+            Reject this job application ?
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <label for="inputRejectReason" class="form-label">
+            Raison
+        </label>
+        <textarea rows="5" class="form-control" id="inputRejectReason"></textarea>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteJobOffer()">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            Reject
         </button>
     </div>
 </ng-template>

@@ -6,6 +6,7 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { JobApplicationStatus, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
+import { JobApplication } from '../../../shared/models/job-application';
 
 @Component({
   selector: 'app-job-offer',
@@ -52,6 +53,11 @@ export class JobOfferComponent implements OnInit {
   public openDeleteModal(content: any, experience: JobOffer): void {
     this.deleteModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
     this.selectedJobOffer = experience;
+  }
+
+  public openRejectJobApplicationModal(content: any, JobApplication: JobApplication): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    // this.selectedJobOffer = experience;
   }
 
   public modalActionComplete(action: ModalActionType): void {
