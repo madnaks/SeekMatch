@@ -67,6 +67,11 @@
                 "Status": "Statut",
                 "Salary": "Salaire",
                 "IsActive": "Actif"
+            },
+            "RejectModal": {
+                "Title": "Rejeter cette candidature ?",
+                "Reason": "Raison",
+                "Reject": "Rejeter"
             }
         }
     }

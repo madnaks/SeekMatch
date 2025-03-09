@@ -202,20 +202,20 @@
 <ng-template #rejectJobApplicationModal let-modal>
     <div class="modal-header">
         <h4 class="modal-title">
-            Reject this job application ?
+            {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
         </h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <label for="inputRejectReason" class="form-label">
-            Raison
+            {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
         </label>
         <textarea rows="5" class="form-control" id="inputRejectReason"></textarea>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteJobOffer()">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-            Reject
+            {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
         </button>
     </div>
 </ng-template>
