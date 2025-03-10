@@ -105,6 +105,10 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
+  public rejectJobApplication(): void {
+    // To implement
+  }
+
   public getJobTypeName(jobType: JobType): string {
     return JobType[jobType];
   }
