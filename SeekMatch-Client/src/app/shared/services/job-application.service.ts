@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { JobApplication } from '../models/job-application';
 
 @Injectable({
@@ -22,6 +22,10 @@ export class JobApplicationService {
 
   apply(jobOfferId: string | undefined): Observable<any> {
     return this.http.post(`${this.apiUrl}/${jobOfferId}`, null);
+  }
+
+  reject(jobApplicationId: string, rejectionReason: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${jobApplicationId}`, { rejectionReason });
   }
 
   delete(jobApplicationId: string): Observable<any> {

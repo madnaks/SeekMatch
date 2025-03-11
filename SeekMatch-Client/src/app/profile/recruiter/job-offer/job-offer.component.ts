@@ -7,6 +7,7 @@ import { JobApplicationStatus, JobType, ModalActionType, WorkplaceType } from '.
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { JobApplication } from '../../../shared/models/job-application';
+import { JobApplicationService } from '../../../shared/services/job-application.service';
 
 @Component({
   selector: 'app-job-offer',
@@ -21,6 +22,7 @@ export class JobOfferComponent implements OnInit {
   public isSaving: boolean = false;
   public isViewingApplication = false;
   public selectedJobOffer: JobOffer = new JobOffer;
+  public selectedJobApplication: JobApplication = new JobApplication;
   public selectedTalentId: string = '';
   
   private deleteModal: NgbModalRef | undefined;
@@ -28,6 +30,7 @@ export class JobOfferComponent implements OnInit {
   constructor(
     private modalService: NgbModal, 
     private jobOfferService: JobOfferService,
+    private jobApplicationService: JobApplicationService,
     private toastService: ToastService) {
   }
 
@@ -55,9 +58,9 @@ export class JobOfferComponent implements OnInit {
     this.selectedJobOffer = experience;
   }
 
-  public openRejectJobApplicationModal(content: any, JobApplication: JobApplication): void {
+  public openRejectJobApplicationModal(content: any, jobApplication: JobApplication): void {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
-    // this.selectedJobOffer = experience;
+    this.selectedJobApplication = jobApplication;
   }
 
   public modalActionComplete(action: ModalActionType): void {
@@ -105,8 +108,25 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public rejectJobApplication(): void {
-    // To implement
+  public rejectJobApplication(rejectionReason:string): void {
+    this.isSaving = true;
+    if (this.selectedJobApplication.id) {
+      this.jobApplicationService.reject(this.selectedJobApplication.id, rejectionReason).pipe(
+        finalize(() => {
+          this.isSaving = false;
+        })).subscribe({
+          next: () => {
+            this.closeModal();
+            this.getJobOffers();
+            this.toastService.showSuccessMessage('Job application rejected successfully');
+          },
+          error: (error) => {
+            this.toastService.showErrorMessage('Rejecting Job application failed', error);
+          }
+        });
+    } else {
+      this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
+    }
   }
 
   public getJobTypeName(jobType: JobType): string {

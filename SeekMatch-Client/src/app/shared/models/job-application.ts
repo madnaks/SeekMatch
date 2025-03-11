@@ -9,6 +9,7 @@ export class JobApplication {
   public jobOfferId: string = '';
   public jobOfferTitle: string = '';
   public status: JobApplicationStatus = JobApplicationStatus.Pending;
+  public rejectionReason: string = '';
   
   constructor(init?:Partial<JobApplication>) {
     Object.assign(this, init);

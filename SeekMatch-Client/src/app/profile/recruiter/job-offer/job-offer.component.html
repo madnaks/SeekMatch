@@ -207,13 +207,13 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <label for="inputRejectReason" class="form-label">
+        <label for="inputRejectionReason" class="form-label">
             {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
         </label>
-        <textarea rows="5" class="form-control" id="inputRejectReason"></textarea>
+        <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason></textarea>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="rejectJobApplication()">
+        <button type="button" class="btn btn-danger" (click)="rejectJobApplication(inputRejectionReason.value)">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
             {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
         </button>
