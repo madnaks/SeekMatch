@@ -10,5 +10,6 @@ namespace SeekMatch.Core.Entities
         public required string JobOfferId { get; set; }
         public JobOffer? JobOffer { get; set; }
         public JobApplicationStatus Status { get; set; } = JobApplicationStatus.Pending;
+        public string? RejectionReason { get; set; }
     }
 }

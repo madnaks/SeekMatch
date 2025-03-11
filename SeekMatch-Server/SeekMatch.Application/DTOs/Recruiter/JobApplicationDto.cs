@@ -1,5 +1,4 @@
-﻿using SeekMatch.Application.DTOs.Representative;
-using SeekMatch.Core.Enums;
+﻿using SeekMatch.Core.Enums;
 
 namespace SeekMatch.Application.DTOs.Recruiter
 {
@@ -12,5 +11,6 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public string? JobOfferId { get; set; }
         public string? JobOfferTitle { get; set; }
         public JobApplicationStatus Status { get; set; }
+        public string? RejectionReason { get; set; }
     }
 }
