@@ -50,9 +50,7 @@ namespace SeekMatch.Infrastructure.Repositories
             try
             {
                 _dbContext.JobApplications.Add(jobApplication);
-                var result = await _dbContext.SaveChangesAsync();
-
-                return result > 0;
+                return await _dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception ex)
             {
@@ -60,16 +58,35 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
+        public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
+        {
+            try
+            {
+                var jobApplication = await _dbContext.JobApplications.FindAsync(jobApplicationId);
+                if (jobApplication != null)
+                {
+                    jobApplication.Status = Core.Enums.JobApplicationStatus.Rejected;
+                    jobApplication.RejectionReason = rejectionReason;
+                    
+                    return await _dbContext.SaveChangesAsync() > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while rejecting the job application", ex);
+            }
+        }
+        
         public async Task<bool> DeleteAsync(string jobApplicationId)
         {
             try
             {
-                var jobOffer = await _dbContext.JobApplications.FindAsync(jobApplicationId);
-                if (jobOffer != null)
+                var jobApplication = await _dbContext.JobApplications.FindAsync(jobApplicationId);
+                if (jobApplication != null)
                 {
-                    _dbContext.JobApplications.Remove(jobOffer);
-                    var result = await _dbContext.SaveChangesAsync();
-                    return result > 0;
+                    _dbContext.JobApplications.Remove(jobApplication);
+                    return await _dbContext.SaveChangesAsync() > 0;
                 }
                 return false;
             }

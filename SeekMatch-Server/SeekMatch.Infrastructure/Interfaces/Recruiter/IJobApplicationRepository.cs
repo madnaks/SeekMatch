@@ -8,6 +8,7 @@ namespace SeekMatch.Infrastructure.Interfaces
         Task<IList<JobApplication>?> GetAllByRecruiterAsync();
         Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId);
         Task<bool> ApplyAsync(JobApplication jobApplication);
+        Task<bool> RejectAsync(string jobApplicationId, string rejectionReason);
         Task<bool> DeleteAsync(string jobApplicationId);
     }
 }

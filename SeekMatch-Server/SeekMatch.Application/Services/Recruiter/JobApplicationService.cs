@@ -9,11 +9,13 @@ namespace SeekMatch.Application.Services
     public class JobApplicationService : IJobApplicationService
     {
         private readonly IJobApplicationRepository _jobApplicationRepository;
+        private readonly INotificationRepository _notificationRepository;
         private readonly IMapper _mapper;
 
-        public JobApplicationService(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
+        public JobApplicationService(IJobApplicationRepository jobApplicationRepository, INotificationRepository notificationRepository, IMapper mapper)
         {
             _jobApplicationRepository = jobApplicationRepository;
+            _notificationRepository = notificationRepository;
             _mapper = mapper;
         }
 
@@ -45,6 +47,15 @@ namespace SeekMatch.Application.Services
                 TalentId = talentId
             };
             return await _jobApplicationRepository.ApplyAsync(jobApplication);
+        }
+
+        public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
+        {
+            var result = await _jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);
+            // Add notification
+            //await _notificationRepository.AddNotificationAsync()
+
+            return result;
         }
 
         public async Task<bool> DeleteAsync(string jobApplicationId)

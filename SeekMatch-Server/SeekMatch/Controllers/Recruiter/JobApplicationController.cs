@@ -95,6 +95,33 @@ namespace SeekMatch.Controllers
         }
         
         [Authorize]
+        [HttpPut("{jobApplicationId}")]
+        public async Task<IActionResult> Reject(string jobApplicationId, [FromBody] string rejectionReason)
+        {
+
+            var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (recruiterId == null)
+            {
+                return Unauthorized();
+            }
+
+            if (jobApplicationId == null)
+            {
+                return BadRequest("Job application id is null");
+            }
+
+            var result = await _jobApplicationService.RejectAsync(jobApplicationId, rejectionReason);
+
+            if (result)
+            {
+                return Ok(new { message = "Job application rejected successfully" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while rejecting the job application" });
+        } 
+        
+        [Authorize]
         [HttpDelete("{jobApplicationId}")]
         public async Task<IActionResult> Delete([FromRoute] string jobApplicationId)
         {
