@@ -4,6 +4,7 @@ namespace SeekMatch.Infrastructure.Interfaces
 {
     public interface IJobApplicationRepository
     {
+        Task<JobApplication?> GetByIdAsync(string jobApplicationId);
         Task<IList<JobApplication>?> GetAllByTalentAsync(string talentId);
         Task<IList<JobApplication>?> GetAllByRecruiterAsync();
         Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId);

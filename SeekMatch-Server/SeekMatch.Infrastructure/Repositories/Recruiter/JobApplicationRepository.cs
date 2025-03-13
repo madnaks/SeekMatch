@@ -12,6 +12,18 @@ namespace SeekMatch.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
+        public async Task<JobApplication?> GetByIdAsync(string jobApplicationId)
+        {
+            try
+            {
+                return await _dbContext.JobApplications.FindAsync(jobApplicationId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the job application", ex);
+            }
+        }
+        
         public async Task<IList<JobApplication>?> GetAllByTalentAsync(string talentId)
         {
             try
