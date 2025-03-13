@@ -17,6 +17,7 @@ import { JobApplicationService } from '../../../shared/services/job-application.
 export class JobOfferComponent implements OnInit {
 
   public monthOptions = months;
+  public JobApplicationStatus = JobApplicationStatus;
   public jobOffers: JobOffer[] = [];
   public isLoading: boolean = true;
   public isSaving: boolean = false;
@@ -26,6 +27,7 @@ export class JobOfferComponent implements OnInit {
   public selectedTalentId: string = '';
   
   private deleteModal: NgbModalRef | undefined;
+  private rejectModal: NgbModalRef | undefined;
   
   constructor(
     private modalService: NgbModal, 
@@ -59,7 +61,7 @@ export class JobOfferComponent implements OnInit {
   }
 
   public openRejectJobApplicationModal(content: any, jobApplication: JobApplication): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.rejectModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
     this.selectedJobApplication = jobApplication;
   }
 
@@ -72,10 +74,17 @@ export class JobOfferComponent implements OnInit {
     this.getJobOffers();
   }
 
-  private closeModal(): void {
+  private closeDeleteModal(): void {
     if (this.deleteModal) {
       this.deleteModal.close();
       this.deleteModal = undefined;
+    }
+  }
+
+  private closeRejectModal(): void {
+    if (this.rejectModal) {
+      this.rejectModal.close();
+      this.rejectModal = undefined;
     }
   }
   //#endregion
@@ -95,7 +104,7 @@ export class JobOfferComponent implements OnInit {
           this.isSaving = false;
         })).subscribe({
           next: () => {
-            this.closeModal();
+            this.closeDeleteModal();
             this.getJobOffers();
             this.toastService.showSuccessMessage('Job offer deleted successfully');
           },
@@ -116,7 +125,7 @@ export class JobOfferComponent implements OnInit {
           this.isSaving = false;
         })).subscribe({
           next: () => {
-            this.closeModal();
+            this.closeRejectModal();
             this.getJobOffers();
             this.toastService.showSuccessMessage('Job application rejected successfully');
           },

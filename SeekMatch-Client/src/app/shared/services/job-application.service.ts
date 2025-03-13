@@ -25,7 +25,9 @@ export class JobApplicationService {
   }
 
   reject(jobApplicationId: string, rejectionReason: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${jobApplicationId}`, { rejectionReason });
+    return this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   delete(jobApplicationId: string): Observable<any> {

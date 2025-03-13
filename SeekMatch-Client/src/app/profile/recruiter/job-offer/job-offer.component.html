@@ -149,7 +149,7 @@
                                             </td>
                                             <td>
                                                 <i class="action-button fa-solid fa-id-card me-4" (click)="openTalentPreviewModal(previewTalentContent, jobApplication.talentId)"></i>
-                                                <i class="action-button fa-solid fa-circle-xmark" (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
+                                                <i class="action-button fa-solid fa-circle-xmark" *ngIf="jobApplication.status != JobApplicationStatus.Rejected" (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
                                             </td>
                                         </tr>
                                         }
