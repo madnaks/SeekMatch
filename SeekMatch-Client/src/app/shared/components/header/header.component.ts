@@ -8,6 +8,7 @@ import { ToastService } from '../../services/toast.service';
 import { UserRole } from '../../enums/enums';
 import { RecruiterService } from '../../services/recruiter.service';
 import { RepresentativeService } from '../../services/representative.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-header',
@@ -20,6 +21,7 @@ export class HeaderComponent implements OnInit {
   showHeader: boolean = true;
   isAuthenticated: boolean = false;
   userRole: UserRole | null = null;
+  notifications: Notification[] = [];
   profilePicture: string | null = null;
 
   constructor(
@@ -31,7 +33,8 @@ export class HeaderComponent implements OnInit {
     private talentService: TalentService,
     private recruiterService: RecruiterService,
     private representativeService: RepresentativeService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private notificationService: NotificationService) {
   }
 
   ngOnInit() {
@@ -45,9 +48,20 @@ export class HeaderComponent implements OnInit {
         this.userRole = this.authService.getUserRole();
 
         if (this.isAuthenticated) {
+          this.getUserNotification();
           this.getProfilePicture();
         }
       }
+    });
+  }
+
+  private getUserNotification() {
+    this.notificationService.getUserNotifications().subscribe(notifications => {
+      if (notifications) {
+        this.notifications = notifications;
+        console.log(this.notifications);
+        
+      } 
     });
   }
 
