@@ -58,19 +58,12 @@
         </li>
 
         <!-- Notification dropdown -->
-        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center"
-          display="dynamic">
+        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center" display="dynamic">
           <i class="fa-solid fa-bell fa-lg me-1" ngbDropdownToggle></i>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem [routerLink]="getProfileLink()">
-              <i class="fa-solid fa-user me-2"></i>
-              {{ 'Navbar.Account.Profile' | translate }}
-            </button>
-            <hr>
-            <button ngbDropdownItem (click)="logout()">
-              <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
-              {{ 'Navbar.Account.Logout' | translate }}
-            </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
+            <div *ngFor="let notification of notifications" class="ms-2 me-2">
+              {{ notification.message }}
+            </div>
           </div>
         </div>
 

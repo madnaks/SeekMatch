@@ -9,6 +9,7 @@ import { UserRole } from '../../enums/enums';
 import { RecruiterService } from '../../services/recruiter.service';
 import { RepresentativeService } from '../../services/representative.service';
 import { NotificationService } from '../../services/notification.service';
+import { Notification } from '../../models/notification';
 
 @Component({
   selector: 'app-header',
