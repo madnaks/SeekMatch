@@ -60,8 +60,6 @@ export class HeaderComponent implements OnInit {
     this.notificationService.getUserNotifications().subscribe(notifications => {
       if (notifications) {
         this.notifications = notifications;
-        console.log(this.notifications);
-        
       } 
     });
   }
