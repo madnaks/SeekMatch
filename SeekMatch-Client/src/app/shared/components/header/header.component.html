@@ -58,19 +58,16 @@
         </li>
 
         <!-- Notification dropdown -->
-        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center" display="dynamic">
-          <i class="fa-solid fa-bell fa-lg me-1" ngbDropdownToggle></i>
+        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center notification" display="dynamic">
+          <i class="fa-solid fa-bell fa-lg me-1 icon" ngbDropdownToggle></i>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
-            <div *ngFor="let notification of notifications" class="ms-2 me-2">
-              <div class="row">
-                <span class="col-md-10" style="cursor: pointer; user-select: none;">
+            <div *ngFor="let notification of notifications" ngbDropdownItem>
+                <span class="message">
                   {{ notification.message }}
                 </span>
-                <span class="col-md-2">
-                  <i class="fa-solid fa-circle" style="color: red;"></i>
+                <span *ngIf="!notification.isRead">
+                  <i class="fa-solid fa-circle fa-xs ms-2 isRead"></i>
                 </span>
-
-              </div>
             </div>
           </div>
         </div>
