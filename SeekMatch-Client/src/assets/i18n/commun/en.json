@@ -13,6 +13,9 @@
         "Account": {
             "Profile": "Profile",
             "Logout": "Logout"
+        },
+        "Notification": {
+            "SeeAllNotifications": "See all notifications"
         }
     },
     "Home": {
