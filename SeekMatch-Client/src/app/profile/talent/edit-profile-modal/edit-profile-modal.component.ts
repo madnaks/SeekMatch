@@ -95,7 +95,9 @@ export class EditProfileModalComponent implements OnInit {
         this.getCities(talent.region);
       }
 
-      this.selectedCountryISO = this.getCountryISO(talent.phone);
+      if (talent.phone) {
+        this.selectedCountryISO = this.getCountryISO(talent.phone);
+      }
 
       if (talent.profilePicture) {
         this.profilePicture = `data:image/jpeg;base64,${talent.profilePicture}`;

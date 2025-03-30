@@ -24,7 +24,16 @@
                                 </h5>
                                 <h6>
                                     <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
-                                    {{ currentTalent?.city || null | geoName | async }}, {{ currentTalent?.region || null | geoName | async }}, {{ currentTalent?.country || '' | countryName }}
+                                    @if(currentTalent?.city) {
+                                        {{ currentTalent?.city || null | geoName | async }},
+                                    }
+                                    @if (currentTalent?.region) {
+                                        {{ currentTalent?.region || null | geoName | async }},
+                                    }
+                                    {{ currentTalent?.country || '' | countryName }}
+                                    @if (!(currentTalent?.city && currentTalent?.region && currentTalent?.country)) {
+                                        {{ 'Talent.EditProfile.AddressNotSpecified' | translate }}
+                                    }                                
                                 </h6>
                             </div>
                         </div>

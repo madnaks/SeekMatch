@@ -22,6 +22,7 @@
             "ChooseRegion": "Choose a region or province",
             "City": "City",
             "ChooseCity": "Choose a city",
+            "AddressNotSpecified": "Address not specified",
             "ProfilePicture": "Profile picture",
             "ChoosePicture": "Choose picture",
             "Remove": "Remove",
