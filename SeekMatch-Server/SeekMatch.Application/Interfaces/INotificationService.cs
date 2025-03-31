@@ -6,7 +6,7 @@ namespace SeekMatch.Application.Interfaces
     {
         Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId);
         Task CreateNotificationAsync(string userId, string message);
-        Task MarkAsReadAsync(Guid notificationId);
+        Task MarkAsReadAsync(string notificationId);
     }
 
 }

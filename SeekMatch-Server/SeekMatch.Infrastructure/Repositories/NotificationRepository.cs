@@ -27,7 +27,7 @@ namespace SeekMatch.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task MarkAsReadAsync(Guid notificationId)
+        public async Task MarkAsReadAsync(string notificationId)
         {
             var notification = await _context.Notifications.FindAsync(notificationId);
             if (notification != null)

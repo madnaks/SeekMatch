@@ -29,7 +29,7 @@ namespace SeekMatch.Application.Services
             await _notificationRepository.AddNotificationAsync(notification);
         }
 
-        public async Task MarkAsReadAsync(Guid notificationId)
+        public async Task MarkAsReadAsync(string notificationId)
         {
             await _notificationRepository.MarkAsReadAsync(notificationId);
         }

@@ -11,7 +11,7 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId);
         Task AddNotificationAsync(Notification notification);
-        Task MarkAsReadAsync(Guid notificationId);
+        Task MarkAsReadAsync(string notificationId);
     }
 
 }
