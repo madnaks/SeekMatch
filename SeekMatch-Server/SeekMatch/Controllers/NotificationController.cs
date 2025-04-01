@@ -49,7 +49,7 @@ namespace SeekMatch.Controllers
         /// Mark a notification as read.
         /// </summary>
         [HttpPut("{notificationId}")]
-        public async Task<IActionResult> MarkAsRead([FromRoute] string notificationId)
+        public async Task<IActionResult> MarkAsRead(string notificationId)
         {
             await _notificationService.MarkAsReadAsync(notificationId);
             return NoContent();

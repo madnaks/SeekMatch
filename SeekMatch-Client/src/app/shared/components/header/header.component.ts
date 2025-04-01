@@ -138,4 +138,12 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
+  public markAsRead(notificationId?: string): void {
+    this.notificationService.markAsRead(notificationId).subscribe({
+      next: () => {
+        this.getUserNotification();
+      }
+    });
+  }
+
 }

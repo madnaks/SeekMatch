@@ -64,7 +64,7 @@
         <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center notification" display="dynamic">
           <i class="fa-solid fa-bell fa-lg me-1 icon" ngbDropdownToggle></i>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
-            <div *ngFor="let notification of notifications" ngbDropdownItem>
+            <div *ngFor="let notification of notifications" ngbDropdownItem (click)="markAsRead(notification.id)">
                 <span class="message">
                   {{ notification.message }}
                 </span>
