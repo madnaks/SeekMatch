@@ -26,11 +26,17 @@ nav {
 .notification {
     .icon {
         cursor: pointer;
+
+        &::after {
+            content: none;
+        }
     }
+
     .message {
-        cursor: pointer; 
+        cursor: pointer;
         user-select: none;
     }
+
     .isRead {
         color: $secondary-color;
     }

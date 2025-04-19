@@ -54,17 +54,15 @@
         </a>
       </li>
       } @else {
-        <!-- <li class="nav-item">
-          <a class="nav-link" (click)="open(loginContent)">
-            <i class="fa-solid fa-bell fa-lg me-1"></i>
-          </a>
-        </li> -->
 
         <!-- Notification dropdown -->
         <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center notification" display="dynamic">
+          <a class="nav-link">
           <i class="fa-solid fa-bell fa-lg me-1 icon" ngbDropdownToggle></i>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1" >
-            <div *ngFor="let notification of notifications" ngbDropdownItem (click)="markAsRead(notification.id)">
+          </a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            @if (notifications.length > 0) {
+              <div *ngFor="let notification of notifications" ngbDropdownItem (click)="markAsRead(notification.id)">
                 <span class="message">
                   {{ notification.message }}
                 </span>
@@ -73,6 +71,7 @@
                 </span>
             </div>
             <hr>
+            }
             <div class="message" ngbDropdownItem>
               {{ 'Navbar.Notification.SeeAllNotifications' | translate }}
             </div>
