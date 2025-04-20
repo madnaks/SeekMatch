@@ -14,6 +14,8 @@ namespace SeekMatch.Application.DTOs.Talent
         public int? Region { get; set; }
         public int? City { get; set; }
         public string? Email { get; set; }
+        public string? Website { get; set; }
+        public string? LinkedIn { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public List<EducationDto> Educations { get; set; } = new List<EducationDto>();
         public List<ExperienceDto> Experiences { get; set; } = new List<ExperienceDto>();

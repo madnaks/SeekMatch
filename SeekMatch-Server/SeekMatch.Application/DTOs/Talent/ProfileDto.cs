@@ -11,5 +11,7 @@
         public string? Country { get; set; }
         public int? Region { get; set; }
         public int? City { get; set; }
+        public string? Website { get; set; }
+        public string? LinkedIn { get; set; }
     }
 }

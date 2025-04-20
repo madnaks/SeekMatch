@@ -11,6 +11,8 @@
         public string? Country { get; set; }
         public int? Region { get; set; }
         public int? City { get; set; }
+        public string? Website { get; set; }
+        public string? LinkedIn { get; set; }
         public byte[]? ProfilePicture { get; set; }
         public required User User { get; set; }
         public List<Education> Educations { get; set; } = new List<Education>();
