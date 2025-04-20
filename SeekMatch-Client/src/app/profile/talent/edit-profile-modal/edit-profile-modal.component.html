@@ -15,7 +15,7 @@
             </div>
             } @else {
             <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-                <!-- Profile title -->
+                <!-- Line 1: Profile title -->
                 <div class="row mt-3">
                     <div class="col-md-12 profile-picture-section">
                         <p>
@@ -45,7 +45,7 @@
 
                     </div>
                 </div>
-                <!-- Full name  -->
+                <!-- Line 2: Full name -->
                 <div class="row mt-3">
                     <!-- First name -->
                     <div class="col-md-6">
@@ -72,8 +72,9 @@
                         }
                     </div>
                 </div>
-                <!-- Profile title -->
+                <!-- Line 3 -->
                 <div class="row mt-3">
+                    <!-- Profile title -->
                     <div class="col-md-12">
                         <label for="inputProfileTitle" class="form-label">
                             {{ 'Talent.EditProfile.ProfileTitle' | translate }}
@@ -81,8 +82,9 @@
                         <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                     </div>
                 </div>
-                <!-- Summary -->
+                <!-- Line 4 -->
                 <div class="row mt-3">
+                    <!-- Summary -->
                     <div class="col-md-12">
                         <label for="inputSummary" class="form-label">
                             {{ 'Talent.EditProfile.Summary' | translate }}
@@ -90,17 +92,33 @@
                         <textarea rows="5" class="form-control" id="inputSummary" formControlName="summary"></textarea>
                     </div>
                 </div>
-                <!-- Email -->
+                <!-- Line 5 : Email/Website/LinkedIn-->
                 <div class="row mt-3">
-                    <div class="col-md-12">
+                    <!-- Email -->
+                    <div class="col-md-4">
                         <label for="inputEmail" class="form-label">
                             {{ 'Talent.EditProfile.Email' | translate }}
                         </label>
                         <input type="email" class="form-control" id="inputEmail" formControlName="email">
                     </div>
+                    <!-- WebSite -->
+                    <div class="col-md-4">
+                        <label for="inputWebsite" class="form-label">
+                            {{ 'Talent.EditProfile.Website' | translate }}
+                        </label>
+                        <input type="text" class="form-control" id="inputWebsite" formControlName="website">
+                    </div>
+                    <!-- LinkedIn -->
+                    <div class="col-md-4">
+                        <label for="inputLinkedIn" class="form-label">
+                            {{ 'Talent.EditProfile.LinkedIn' | translate }}
+                        </label>
+                        <input type="text" class="form-control" id="inputLinkedIn" formControlName="linkedIn">
+                    </div>
                 </div>
-                <!-- Date of birth -->
+                <!-- Line 6 -->
                 <div class="row mt-3">
+                    <!-- Date of birth -->
                     <div class="col-md-6">
                         <label for="inputDateOfBirth" class="form-label">
                             {{ 'Talent.EditProfile.DateOfBirth' | translate }}
@@ -133,8 +151,9 @@
                         }
                     </div>
                 </div>
-                <!-- Address -->
+                <!-- Line 7: Address -->
                 <div class="row mt-3">
+                    <h4>Address</h4>
                      <!-- Country -->
                      <div class="col-md-4">
                         <label for="inputCountry" class="form-label">
@@ -178,8 +197,10 @@
                         </select>
                     </div>
                 </div>
-                <!-- Save button -->
+                
+                <!-- Line 8: Buttons -->
                 <div class="row mt-3">
+                    <!-- Save button -->
                     <div class="col-md-12 d-flex justify-content-center align-items-center">
                         <button type="submit" class="btn btn-primary w-25" [disabled]="isSaving">
                             <i class="me-2"

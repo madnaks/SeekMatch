@@ -13,6 +13,8 @@
             "ProfileTitle": "Titre du profil",
             "Summary": "Résumé",
             "Email": "Adresse e-mail",
+            "Website": "Site web",
+            "LinkedIn": "LinkedIn",
             "Password": "Mot de passe",
             "DateOfBirth": "Date de naissance",
             "Phone": "Téléphone",

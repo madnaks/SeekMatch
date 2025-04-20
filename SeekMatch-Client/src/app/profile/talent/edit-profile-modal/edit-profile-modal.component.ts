@@ -63,10 +63,12 @@ export class EditProfileModalComponent implements OnInit {
       summary: [''],
       dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
+      website: [''],
       phone: [''],
       country: [''],
       region: [null],
       city: [null],
+      linkedIn: [''],
     });
   }
 
@@ -84,7 +86,9 @@ export class EditProfileModalComponent implements OnInit {
         phone: talent.phone,
         country: talent.country,
         region: talent.region,
-        city: talent.city
+        city: talent.city,
+        website: talent.website,
+        linkedIn: talent.linkedIn
       });
 
       if (talent.country) {
