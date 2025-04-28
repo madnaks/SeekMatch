@@ -107,6 +107,11 @@
                             {{ 'Talent.EditProfile.Website' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputWebsite" formControlName="website">
+                        @if ((profileForm.get('website')?.invalid && profileForm.get('website')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
+                        </div>
+                        }
                     </div>
                     <!-- LinkedIn -->
                     <div class="col-md-4">
@@ -114,6 +119,11 @@
                             {{ 'Talent.EditProfile.LinkedIn' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputLinkedIn" formControlName="linkedIn">
+                        @if ((profileForm.get('linkedIn')?.invalid && profileForm.get('linkedIn')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
+                        </div>
+                        }
                     </div>
                 </div>
                 <!-- Line 6 -->
@@ -154,12 +164,13 @@
                 <!-- Line 7: Address -->
                 <div class="row mt-3">
                     <h4>Address</h4>
-                     <!-- Country -->
-                     <div class="col-md-4">
+                    <!-- Country -->
+                    <div class="col-md-4">
                         <label for="inputCountry" class="form-label">
                             {{ 'Talent.EditProfile.Country' | translate }}
                         </label>
-                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)" formControlName="country">
+                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)"
+                            formControlName="country">
                             <option *ngIf="!profileForm.get('country')?.value" value="" selected>
                                 {{ 'Talent.EditProfile.ChooseCountry' | translate }}
                             </option>
@@ -173,7 +184,8 @@
                         <label for="inputRegion" class="form-label">
                             {{ 'Talent.EditProfile.Region' | translate }}
                         </label>
-                        <select id="inputRegion" class="form-select" (change)="onRegionSelect($event)" formControlName="region">
+                        <select id="inputRegion" class="form-select" (change)="onRegionSelect($event)"
+                            formControlName="region">
                             <option [value]="null" selected>
                                 {{ 'Talent.EditProfile.ChooseRegion' | translate }}
                             </option>
@@ -197,7 +209,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <!-- Line 8: Buttons -->
                 <div class="row mt-3">
                     <!-- Save button -->

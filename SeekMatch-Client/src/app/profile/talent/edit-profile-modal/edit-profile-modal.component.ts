@@ -63,12 +63,12 @@ export class EditProfileModalComponent implements OnInit {
       summary: [''],
       dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
-      website: [''],
+      website: ['', [Validators.pattern(/^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-]*)*\/?$/i)]],
       phone: [''],
       country: [''],
       region: [null],
       city: [null],
-      linkedIn: [''],
+      linkedIn: ['',[Validators.pattern(/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/i)]],
     });
   }
 
