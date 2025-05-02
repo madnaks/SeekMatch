@@ -31,7 +31,9 @@
             "Validation": {
                 "FirstName": "First name is required.",
                 "LastName": "Last name is required.",
-                "PhoneNumber": "Invalid phone number format."
+                "PhoneNumber": "Invalid phone number format.",
+                "Website": "Please enter a valid website URL (e.g. https://yourwebsite.com).",
+                "LinkedIn": "Please enter a valid LinkedIn profile URL (e.g. https://www.linkedin.com/in/yourname)."
             }
         },
         "Education": {
