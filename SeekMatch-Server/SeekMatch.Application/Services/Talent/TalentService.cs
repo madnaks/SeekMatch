@@ -56,21 +56,23 @@ namespace SeekMatch.Application.Services
             return _mapper.Map<TalentDto>(await _talentRepository.GetAsync(userId));
         } 
         
-        public async Task<bool> SaveAboutYouAsync(ProfileDto profileDto, string userId)
+        public async Task<bool> SaveProfileAsync(TalentDto talentDto, string userId)
         {
             var talent = await _talentRepository.GetAsync(userId);
 
             if (talent != null)
             {
-                talent.FirstName = profileDto.FirstName;
-                talent.LastName = profileDto.LastName;
-                talent.ProfileTitle = profileDto.ProfileTitle;
-                talent.Summary = profileDto.Summary;
-                talent.DateOfBirth = profileDto.DateOfBirth;
-                talent.Phone = profileDto.Phone;
-                talent.Country = profileDto.Country;
-                talent.Region = profileDto.Region;
-                talent.City = profileDto.City;
+                talent.FirstName = talentDto.FirstName ?? "";
+                talent.LastName = talentDto.LastName ?? "";
+                talent.ProfileTitle = talentDto.ProfileTitle;
+                talent.Summary = talentDto.Summary;
+                talent.DateOfBirth = talentDto.DateOfBirth;
+                talent.Phone = talentDto.Phone;
+                talent.Country = talentDto.Country;
+                talent.Region = talentDto.Region;
+                talent.City = talentDto.City;
+                talent.LinkedIn = talentDto.LinkedIn;
+                talent.Website = talentDto.Website;
 
                 return await _talentRepository.SaveChangesAsync(talent);
             }

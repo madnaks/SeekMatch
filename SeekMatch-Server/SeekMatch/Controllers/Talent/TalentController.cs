@@ -74,7 +74,7 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPut("save-profile")]
-        public async Task<IActionResult> SaveProfile([FromBody] ProfileDto profileDto)
+        public async Task<IActionResult> SaveProfile([FromBody] TalentDto talentDto)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
@@ -83,12 +83,12 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            if (profileDto == null)
+            if (talentDto == null)
             {
                 return BadRequest("Talent data is null");
             }
 
-            var result = await _talentService.SaveAboutYouAsync(profileDto, userId);
+            var result = await _talentService.SaveProfileAsync(talentDto, userId);
 
             if (result)
             {
