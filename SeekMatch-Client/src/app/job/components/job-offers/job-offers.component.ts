@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 
 @Component({
@@ -6,12 +6,26 @@ import { JobOffer } from '../../../shared/models/job-offer';
   templateUrl: './job-offers.component.html',
   styleUrl: './job-offers.component.scss'
 })
-export class JobOffersComponent {
+export class JobOffersComponent implements OnInit {
 
-  selectedJobOffer: JobOffer | null = null;
+  public selectedJobOffer: JobOffer | null = null;
+  public isMobileView: boolean = false;
+  public showDetailsOnMobile: boolean = false;
 
-  onJobOfferSelected(jobOffer: any) {
+  ngOnInit(): void {
+    this.checkMobileView();
+    window.addEventListener('resize', this.checkMobileView.bind(this));
+  }
+
+  private checkMobileView(): void {
+    this.isMobileView = window.innerWidth < 768;
+  }
+
+  public onJobOfferSelected(jobOffer: any): void {
     this.selectedJobOffer = jobOffer;
+    if (this.isMobileView) {
+      this.showDetailsOnMobile = true;
+    }
   }
 
 }

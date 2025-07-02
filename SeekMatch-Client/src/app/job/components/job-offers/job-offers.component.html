@@ -24,10 +24,15 @@
     </div>
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
-        <div class="col-md-4 me-2 pe-0" id="job-list-container">
+        <div class="col-12 col-md-4 me-2 pe-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
             <app-job-list (jobOfferSelected)="onJobOfferSelected($event)"></app-job-list>
         </div>
-        <div class="col-md-7 job-details d-md-block d-none" id="job-details-container">
+        <div class="col-12 col-md-7" id="job-details-container" *ngIf="selectedJobOffer && (!isMobileView || showDetailsOnMobile)">
+            <button class="btn btn-secondary d-md-none mb-2" *ngIf="showDetailsOnMobile"
+                (click)="showDetailsOnMobile = false">
+                ← Back to list
+            </button>
+
             <app-job-details [jobOffer]="selectedJobOffer"></app-job-details>
         </div>
     </div>
