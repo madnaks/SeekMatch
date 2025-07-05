@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
-import { JobType, UserRole, WorkplaceType } from '../../../shared/enums/enums';
+import { JobType, WorkplaceType } from '../../../shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AuthService } from '../../../shared/services/auth.service';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
@@ -15,8 +15,10 @@ import { ToastService } from '../../../shared/services/toast.service';
 export class JobDetailsComponent implements OnInit {
 
   @Input() jobOffer: JobOffer | null = null;
-  canApply: boolean = false;
-  isSaving: boolean = false;
+  @Input() isMobileView: boolean = false;
+  
+  public canApply: boolean = false;
+  public isSaving: boolean = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -25,7 +27,7 @@ export class JobDetailsComponent implements OnInit {
     private toastService: ToastService) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.canApply = this.authService.canApply();
   }
 
