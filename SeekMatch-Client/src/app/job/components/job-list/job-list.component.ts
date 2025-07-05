@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,6 +11,7 @@ import { WorkplaceType } from '../../../shared/enums/enums';
 })
 export class JobListComponent {
 
+  @Input() isMobileView: boolean = false;
   @Output() jobOfferSelected = new EventEmitter<any>();
 
   jobOffers: JobOffer[] = [];
@@ -27,7 +28,7 @@ export class JobListComponent {
     this.isLoading = true;
     this.jobOfferService.getAll().subscribe((newJobs) => {
       this.jobOffers = [...this.jobOffers, ...newJobs];
-      if (this.jobOffers.length > 0) {
+      if (this.jobOffers.length > 0 && !this.isMobileView) {
         this.selectJobOffer(this.jobOffers[0]);
       }
       this.isLoading = false;
