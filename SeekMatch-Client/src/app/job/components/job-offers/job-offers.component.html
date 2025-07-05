@@ -25,15 +25,33 @@
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
         <div class="col-12 col-md-4 me-2 pe-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
-            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)"></app-job-list>
+            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView"></app-job-list>
         </div>
-        <div class="col-12 col-md-7" id="job-details-container" *ngIf="selectedJobOffer && (!isMobileView || showDetailsOnMobile)">
-            <button class="btn btn-secondary d-md-none mb-2" *ngIf="showDetailsOnMobile"
-                (click)="showDetailsOnMobile = false">
-                ← Back to list
-            </button>
-
-            <app-job-details [jobOffer]="selectedJobOffer"></app-job-details>
-        </div>
+        @if (isMobileView && showDetailsOnMobile) {
+            <div class="button-group mb-2">
+                <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
+                    <i class="fa-solid fa-circle-left me-2"></i> {{ 'JobOffers.BackToList' | translate }}
+                </button>
+                @if (this.canApply) {
+                    <div class="ms-auto d-flex gap-2">
+                        <button class="btn btn-primary">
+                            @if (isSaving) {
+                                <i class="fa fa-spin fa-spinner"></i>
+                            } @else { 
+                                {{ 'JobOffers.JobDetails.Apply' | translate }}
+                            }
+                        </button>
+                        <button class="btn btn-primary">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+        @if (selectedJobOffer && (!isMobileView || showDetailsOnMobile)) {
+            <div class="col-12 col-md-7" id="job-details-container">
+                <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView"></app-job-details>
+            </div>
+        }
     </div>
 </div>

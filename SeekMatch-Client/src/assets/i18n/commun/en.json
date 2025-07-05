@@ -27,6 +27,7 @@
     "JobOffers": {
         "SearchOffersInput": "Job title, keywords or company",
         "WhereInput": "Where ?",
+        "BackToList": "Back to list",
         "JobDetails": {
             "JobDetails": "Job details",
             "Apply": "Apply"

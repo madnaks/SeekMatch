@@ -27,6 +27,7 @@
     "JobOffers": {
         "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
         "WhereInput": "Où ?",
+        "BackToList": "Retour à la liste",
         "JobDetails": {
             "JobDetails": "Détails du poste",
             "Apply": "Postuler"
