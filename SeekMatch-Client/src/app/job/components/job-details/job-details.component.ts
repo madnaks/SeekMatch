@@ -15,7 +15,6 @@ import { ToastService } from '../../../shared/services/toast.service';
 export class JobDetailsComponent implements OnInit {
 
   @Input() jobOffer: JobOffer | null = null;
-  userRole: UserRole | null = null;
   canApply: boolean = false;
   isSaving: boolean = false;
 
@@ -27,9 +26,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userRole = this.authService.getUserRole();
-    // Only Talent can Apply
-    this.canApply = this.userRole == UserRole.Talent || this.userRole == null;
+    this.canApply = this.authService.canApply();
   }
 
   public getJobTypeName(type: JobType): string {

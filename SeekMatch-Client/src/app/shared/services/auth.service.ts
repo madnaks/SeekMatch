@@ -50,6 +50,12 @@ export class AuthService {
   
     return null; 
   }
+
+  /** Only Talent and vistor can apply */
+  canApply(): boolean {
+    const currentUserRole = this.getUserRole();
+    return currentUserRole == UserRole.Talent || currentUserRole == null;
+  }
   
 
   isAuthenticated(): boolean {
