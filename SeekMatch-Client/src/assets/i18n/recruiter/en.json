@@ -26,6 +26,7 @@
                         "CompanyName": "Company Name",
                         "CompanyNamePlaceholder": "e.g., Microsoft, Google, Acme Corp.",
                         "JobType": "Job type",
+                        "WorkplaceType": "Workplace type",
                         "Location": "Location",
                         "LocationPlaceholder": "e.g., New York, San Francisco, Remote",
                         "Salary": "Salary",

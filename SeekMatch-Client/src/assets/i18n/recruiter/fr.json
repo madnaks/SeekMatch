@@ -26,6 +26,7 @@
                         "CompanyName": "Nom de l'entreprise",
                         "CompanyNamePlaceholder": "par ex., Microsoft, Google, Acme Corp.",
                         "JobType": "Type de travail",
+                        "WorkplaceType": "Type de lieu de travail",
                         "Location": "Lieu",
                         "LocationPlaceholder": "par ex., New York, San Francisco, Télétravail",
                         "Salary": "Salaire",
