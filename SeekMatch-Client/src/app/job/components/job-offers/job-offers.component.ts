@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
@@ -13,12 +13,14 @@ import { jobTypes, workplaceTypeList } from '../../../shared/constants/constants
 })
 export class JobOffersComponent implements OnInit {
 
+  @Output() filtersChanged = new EventEmitter<any>();
+
   public selectedJobOffer: JobOffer | null = null;
   public isMobileView: boolean = false;
   public showDetailsOnMobile: boolean = false;
   public canApply: boolean = false;
   public isSaving: boolean = false;
-  public filterJobOfferForm: FormGroup;
+  public filterForm: FormGroup;
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
 
@@ -26,9 +28,7 @@ export class JobOffersComponent implements OnInit {
     private authService: AuthService,
     private fb: NonNullableFormBuilder
   ) {
-    this.filterJobOfferForm = this.initForm();
-    console.log(this.jobTypesList);
-    console.log(this.workplaceTypeList);
+    this.filterForm = this.initForm();
   }
 
   ngOnInit(): void {
@@ -58,6 +58,15 @@ export class JobOffersComponent implements OnInit {
     if (this.isMobileView) {
       this.showDetailsOnMobile = true;
     }
+  }
+
+  public applyFilters(): void {
+    this.filtersChanged.emit(this.filterForm.value);
+  }
+
+  public resetFilterForm(): void {
+    this.filterForm.reset();
+    this.filtersChanged.emit(this.filterForm.value);
   }
 
 }

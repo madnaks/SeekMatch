@@ -9,7 +9,7 @@
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
                         <ng-template>
-                            <form [formGroup]="filterJobOfferForm">
+                            <form [formGroup]="filterForm">
                                 <div class="row mb-4">
                                     <!-- Left Column for Fields -->
                                     <div class="col-md-6">
@@ -54,11 +54,11 @@
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <div class="ms-auto col-md-6">
-                                        <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
+                                    <div class="me-auto col-md-6">
+                                        <button class="btn btn-primary me-2" (click)="applyFilters()">
                                             Apply
                                         </button>
-                                        <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
+                                        <button class="btn btn-primary" (click)="resetFilterForm()">
                                             Reset filters
                                         </button>
                                     </div>
@@ -73,7 +73,7 @@
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
         <div class="col-12 col-md-4 p-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
-            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView"></app-job-list>
+            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView" [filters]="filterForm.value"></app-job-list>
         </div>
         @if (isMobileView && showDetailsOnMobile) {
             <div class="button-group mb-2">

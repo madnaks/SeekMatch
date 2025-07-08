@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import { WorkplaceType } from '../../../shared/enums/enums';
 
 @Component({
@@ -12,13 +11,20 @@ import { WorkplaceType } from '../../../shared/enums/enums';
 export class JobListComponent {
 
   @Input() isMobileView: boolean = false;
+  @Input()
+  set filters(value: any) {
+    this._filters = value;
+    this.loadJobOffers();
+  }
   @Output() jobOfferSelected = new EventEmitter<any>();
 
-  jobOffers: JobOffer[] = [];
-  isLoading: boolean = false;
-  selectedJobOffer: JobOffer | null = null;
+  public jobOffers: JobOffer[] = [];
+  public isLoading: boolean = false;
+  public selectedJobOffer: JobOffer | null = null;
+  
+  private _filters: any;
 
-  constructor(private jobOfferService: JobOfferService, private sanitizer: DomSanitizer) { }
+  constructor(private jobOfferService: JobOfferService) { }
 
   ngOnInit() {
     this.loadJobOffers();
@@ -26,7 +32,7 @@ export class JobListComponent {
 
   private loadJobOffers(): void {
     this.isLoading = true;
-    this.jobOfferService.getAll().subscribe((newJobs) => {
+    this.jobOfferService.getAll(this._filters).subscribe((newJobs) => {
       this.jobOffers = [...this.jobOffers, ...newJobs];
       if (this.jobOffers.length > 0 && !this.isMobileView) {
         this.selectJobOffer(this.jobOffers[0]);

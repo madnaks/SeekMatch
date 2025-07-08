@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JobOffer } from '../models/job-offer';
@@ -15,9 +15,26 @@ export class JobOfferService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any> {
-    return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`);
+  // getAll(): Observable<any> {
+  //   return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`);
+  // }
+
+  getAll(filters?: any): Observable<JobOffer[]> {
+  let params = new HttpParams();
+
+  debugger
+
+  if (filters) {
+    Object.keys(filters).forEach(key => {
+      if (filters[key]) {
+        params = params.set(key, filters[key]);
+      }
+    });
   }
+
+  return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`, { params });
+}
+
   
   getAllByRecruiter(): Observable<any> {
     return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-recruiter`);
