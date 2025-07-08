@@ -22,9 +22,9 @@ namespace SeekMatch.Controllers
         }
 
         [HttpGet("get-all")]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] JobOfferFilterDto filters)
         {
-            var jobOffersDto = await _jobOfferService.GetAllAsync();
+            var jobOffersDto = await _jobOfferService.GetAllAsync(filters);
 
             if (jobOffersDto == null)
             {

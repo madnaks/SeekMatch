@@ -12,11 +12,25 @@ namespace SeekMatch.Infrastructure.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IList<JobOffer>?> GetAllAsync()
+        public async Task<IList<JobOffer>?> GetAllAsync(JobOfferFilter filters)
         {
             try
             {
-                return await _dbContext.JobOffers
+                var query = _dbContext.JobOffers.AsQueryable();
+
+                if (!string.IsNullOrWhiteSpace(filters.Title))
+                    query = query.Where(j => j.Title.Contains(filters.Title));
+
+                if (!string.IsNullOrWhiteSpace(filters.CompanyName)) 
+                    query = query.Where(j => j.CompanyName != null && j.CompanyName.Contains(filters.CompanyName));
+
+                if (filters.Type != null)
+                    query = query.Where(j => j.Type == filters.Type);
+
+                if (filters.WorkplaceType != null)
+                    query = query.Where(j => j.WorkplaceType == filters.WorkplaceType);
+
+                return await query
                     .Where(j => j.IsActive)
                     .OrderBy(e => e.CreatedAt)
                     .ToListAsync();
