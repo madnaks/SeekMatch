@@ -7,6 +7,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,10 @@ import { CompanyListComponent } from './components/company-list/company-list.com
   imports: [
     CommonModule,
     JobRoutingModule,
-    TranslateModule
+    NgbAccordionModule,
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [CompaniesComponent, JobOffersComponent]
 })

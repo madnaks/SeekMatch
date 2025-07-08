@@ -1,30 +1,78 @@
 <div class="container mt-5">
     <!-- 1st row : Search Form  -->
-    <div class="row justify-content-center align-items-center mb-4">
-        <!-- 1st Input : Search with keyword -->
-        <div class="col-md-4 col-sm-10 mb-3 mb-md-0">
-            <div class="input-with-icon input-group">
-                <span class="input-group-text">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
-                <input type="text" class="form-control" [placeholder]="'JobOffers.SearchOffersInput' | translate"
-                    aria-label="search: Job title, keywords, or company">
-            </div>
-        </div>
-        <!-- 2nd Input: Search location -->
-        <div class="col-md-4 col-sm-10">
-            <div class="input-with-icon input-group">
-                <span class="input-group-text">
-                    <i class="fa-solid fa-location-dot"></i>
-                </span>
-                <input type="text" class="form-control" [placeholder]="'JobOffers.WhereInput' | translate"
-                    aria-label="search: Job title, keywords, or company">
+    <div class="row mb-4">
+        <div ngbAccordion class="p-0">
+            <div ngbAccordionItem>
+                <h2 ngbAccordionHeader>
+                    <button ngbAccordionButton> <i class="fa-solid fa-filter me-2"></i> Filtre</button>
+                </h2>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <form [formGroup]="filterJobOfferForm">
+                                <div class="row mb-4">
+                                    <!-- Left Column for Fields -->
+                                    <div class="col-md-6">
+                                        <!-- Title -->
+                                        <label for="inputTitle" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.Title' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="inputTitle" formControlName="title"
+                                            [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- CompanyName -->
+                                        <label for="inputCompanyName" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.CompanyName' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
+                                            [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <!-- Job Type -->
+                                        <label for="jobTypeSelect" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.JobType' | translate }}
+                                        </label>
+                                        <select id="jobTypeSelect" class="form-select" formControlName="type">
+                                            <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
+                                                {{ jobType.value | translate }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <!-- Workplace Type -->
+                                        <label for="workplaceTypeSelect" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.WorkplaceType' | translate }}
+                                        </label>
+                                        <select id="workplaceTypeSelect" class="form-select" formControlName="workplaceType">
+                                            <option *ngFor="let workplaceType of workplaceTypeList" [ngValue]="workplaceType.key">
+                                                {{ workplaceType.value | translate }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="ms-auto col-md-6">
+                                        <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
+                                            Apply
+                                        </button>
+                                        <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
+                                            Reset filters
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </ng-template>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
-        <div class="col-12 col-md-4 me-2 pe-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
+        <div class="col-12 col-md-4 p-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
             <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView"></app-job-list>
         </div>
         @if (isMobileView && showDetailsOnMobile) {
@@ -49,7 +97,7 @@
             </div>
         }
         @if (selectedJobOffer && (!isMobileView || showDetailsOnMobile)) {
-            <div class="col-12 col-md-7" id="job-details-container">
+            <div class="col-12 col-md-8" id="job-details-container">
                 <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView"></app-job-details>
             </div>
         }
