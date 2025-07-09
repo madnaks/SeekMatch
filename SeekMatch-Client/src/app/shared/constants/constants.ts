@@ -17,6 +17,7 @@ export const months = [
 ];
 
 export const jobTypes = [
+  { key: 0, value: 'Enum.JobType.Choose' },
   { key: JobType.FullTime, value: 'Enum.JobType.FullTime' },
   { key: JobType.PartTime, value: 'Enum.JobType.PartTime' },
   { key: JobType.Internship, value: 'Enum.JobType.Internship' },
@@ -25,6 +26,7 @@ export const jobTypes = [
 ];
 
 export const workplaceTypeList = [
+  { key: 0, value: 'Enum.WorkplaceType.Choose' },
   { key: WorkplaceType.OnSite, value: 'Enum.WorkplaceType.OnSite' },
   { key: WorkplaceType.Hybrid, value: 'Enum.WorkplaceType.Hybrid' },
   { key: WorkplaceType.Remote, value: 'Enum.WorkplaceType.Remote' }

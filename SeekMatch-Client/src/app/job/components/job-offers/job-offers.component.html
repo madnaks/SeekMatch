@@ -55,10 +55,10 @@
                                 </div>
                                 <div class="row mb-4">
                                     <div class="me-auto col-md-6">
-                                        <button class="btn btn-primary me-2" (click)="applyFilters()">
+                                        <button type="button" class="btn btn-primary me-2" (click)="applyFilters()">
                                             Apply
                                         </button>
-                                        <button class="btn btn-primary" (click)="resetFilterForm()">
+                                        <button type="button" class="btn btn-primary" (click)="resetFilterForm()">
                                             Reset filters
                                         </button>
                                     </div>
@@ -73,7 +73,7 @@
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
         <div class="col-12 col-md-4 p-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
-            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView" [filters]="filterForm.value"></app-job-list>
+            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView" [filters]="appliedFilters"></app-job-list>
         </div>
         @if (isMobileView && showDetailsOnMobile) {
             <div class="button-group mb-2">

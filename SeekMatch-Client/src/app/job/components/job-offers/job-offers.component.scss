@@ -36,6 +36,11 @@
     gap: 10px;
 }
 
-.accordion-button:focus {
-    box-shadow: unset ;
+.accordion-header .accordion-button {
+    
+    background-color: unset;
+    box-shadow: unset;
+    &:focus {
+        box-shadow: unset;
+    }
 }

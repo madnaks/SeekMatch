@@ -33,7 +33,7 @@ export class JobListComponent {
   private loadJobOffers(): void {
     this.isLoading = true;
     this.jobOfferService.getAll(this._filters).subscribe((newJobs) => {
-      this.jobOffers = [...this.jobOffers, ...newJobs];
+      this.jobOffers = [...newJobs];
       if (this.jobOffers.length > 0 && !this.isMobileView) {
         this.selectJobOffer(this.jobOffers[0]);
       }

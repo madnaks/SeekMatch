@@ -85,6 +85,7 @@
     },
     "Enum": {
         "JobType": {
+            "Choose": "Choose a job type",
             "FullTime": "Full Time",
             "PartTime": "Part Time",
             "Internship": "Internship",
@@ -92,6 +93,7 @@
             "Freelance": "Freelance"
         },
         "WorkplaceType": {
+            "Choose": "Choose a workplace type",
             "OnSite": "On-Site",
             "Hybrid": "Hybrid",
             "Remote": "Remote"

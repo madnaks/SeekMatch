@@ -23,6 +23,7 @@ export class JobOffersComponent implements OnInit {
   public filterForm: FormGroup;
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
+  public appliedFilters: any = {};
 
   constructor(
     private authService: AuthService,
@@ -41,8 +42,8 @@ export class JobOffersComponent implements OnInit {
     return this.fb.group({
       title: [''],
       companyName: [''],
-      type: [JobType.FullTime],
-      workplaceType: [WorkplaceType.OnSite]
+      type: [0],
+      workplaceType: [0]
     });
   }
 
@@ -61,12 +62,13 @@ export class JobOffersComponent implements OnInit {
   }
 
   public applyFilters(): void {
-    this.filtersChanged.emit(this.filterForm.value);
+    this.appliedFilters = this.filterForm.value;
   }
 
   public resetFilterForm(): void {
     this.filterForm.reset();
-    this.filtersChanged.emit(this.filterForm.value);
+    this.appliedFilters = this.filterForm.value;
+
   }
 
 }
