@@ -24,10 +24,10 @@ namespace SeekMatch.Infrastructure.Repositories
                 if (!string.IsNullOrWhiteSpace(filters.CompanyName)) 
                     query = query.Where(j => j.CompanyName != null && j.CompanyName.Contains(filters.CompanyName));
 
-                if (filters.Type != null)
+                if (filters.Type != null && filters.Type != 0)
                     query = query.Where(j => j.Type == filters.Type);
 
-                if (filters.WorkplaceType != null)
+                if (filters.WorkplaceType != null && filters.WorkplaceType != 0)
                     query = query.Where(j => j.WorkplaceType == filters.WorkplaceType);
 
                 return await query
