@@ -26,10 +26,6 @@ export class JobListComponent {
 
   constructor(private jobOfferService: JobOfferService) { }
 
-  ngOnInit() {
-    this.loadJobOffers();
-  }
-
   private loadJobOffers(): void {
     this.isLoading = true;
     this.jobOfferService.getAll(this._filters).subscribe((newJobs) => {
