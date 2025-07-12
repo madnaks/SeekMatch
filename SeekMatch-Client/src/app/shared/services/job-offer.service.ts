@@ -22,8 +22,6 @@ export class JobOfferService {
   getAll(filters?: any): Observable<JobOffer[]> {
   let params = new HttpParams();
 
-  debugger
-
   if (filters) {
     Object.keys(filters).forEach(key => {
       if (filters[key]) {

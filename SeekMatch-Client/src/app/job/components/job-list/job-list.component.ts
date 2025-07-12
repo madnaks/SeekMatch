@@ -32,6 +32,8 @@ export class JobListComponent {
       this.jobOffers = [...newJobs];
       if (this.jobOffers.length > 0 && !this.isMobileView) {
         this.selectJobOffer(this.jobOffers[0]);
+      } else if (this.jobOffers.length == 0) {
+        this.selectJobOffer(null);
       }
       this.isLoading = false;
     });
