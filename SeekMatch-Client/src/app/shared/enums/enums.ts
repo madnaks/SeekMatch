@@ -40,3 +40,10 @@ export enum JobApplicationStatus
     Rejected = 4,
     Withdrawn = 5
 }
+
+export enum JobOfferFilter {
+    Title = 0,
+    Company = 1,
+    Type = 2,
+    WorkplaceType = 3
+}

@@ -58,9 +58,17 @@
                                         <button type="button" class="btn btn-primary me-2" (click)="applyFilters()">
                                             Apply
                                         </button>
-                                        <button type="button" class="btn btn-primary" (click)="resetFilterForm()">
+                                        <button type="button" class="btn btn-light" (click)="resetFilterForm()">
                                             Reset filters
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <span *ngFor="let activeFilter of activeFilters" class="fs-6 badge bg-custom me-4" (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
+                                            <span class="me-2">{{ activeFilter.value }}</span>
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </span>
                                     </div>
                                 </div>
                             </form>
