@@ -39,6 +39,9 @@ export class JobOffersComponent implements OnInit {
     this.checkMobileView();
     window.addEventListener('resize', this.checkMobileView.bind(this));
     this.canApply = this.authService.canApply();
+    this.filterForm.valueChanges.subscribe(() => {
+      this.applyFilters();
+    });
   }
 
   private initForm(): FormGroup {

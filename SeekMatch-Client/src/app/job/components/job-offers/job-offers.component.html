@@ -53,22 +53,24 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
+                                <!-- <div class="row mb-4">
                                     <div class="me-auto col-md-6">
-                                        <button type="button" class="btn btn-primary me-2" (click)="applyFilters()">
-                                            Apply
-                                        </button>
                                         <button type="button" class="btn btn-light" (click)="resetFilterForm()">
                                             Reset filters
                                         </button>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row mb-4">
-                                    <div class="col-12">
-                                        <span *ngFor="let activeFilter of activeFilters" class="fs-6 badge bg-custom me-4" (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
+                                    <div class="col-9">
+                                        <span *ngFor="let activeFilter of activeFilters" class="fs-6 badge bg-custom me-4 mt-2" (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
                                             <span class="me-2">{{ activeFilter.value }}</span>
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </span>
+                                    </div>
+                                    <div class="col-3 me-auto">
+                                         <button type="button" class="btn btn-light" (click)="resetFilterForm()">
+                                            Reset filters
+                                        </button>
                                     </div>
                                 </div>
                             </form>
