@@ -1,0 +1,72 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-body {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.btn-recruiter-type-option {
+  border: unset;
+  background-color: unset;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: $accent-color;
+    transform: scale(1.05);
+    color: $background-color;
+  }
+
+  &.active {
+    background-color: $secondary-color;
+    transform: scale(1.05);
+    color: $background-color;
+  }
+}
+
+.stepper {
+  .step {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba($secondary-color, 0.3);
+
+    i {
+      color: white;
+    }
+
+    &.active {
+      background-color: $secondary-color;
+    }
+
+    &.completed {
+      background-color: $success-color;
+    }
+  }
+
+  .line {
+    background-color: rgba($secondary-color, 0.3);
+    width: 100px;
+    height: 2px;
+    &.active {
+      background-color: $secondary-color;
+    }
+
+    &.completed {
+      background-color: $success-color;
+    }
+  }
+}

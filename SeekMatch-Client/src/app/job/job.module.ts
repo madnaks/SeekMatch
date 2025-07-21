@@ -9,6 +9,7 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     JobOffersComponent, 
     JobListComponent, 
     JobDetailsComponent, 
-    CompanyListComponent
+    CompanyListComponent,
+    ExpressApplyModalComponent
   ],
   imports: [
     CommonModule,
