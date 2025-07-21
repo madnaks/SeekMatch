@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobType, WorkplaceType } from '../../../shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -6,6 +6,7 @@ import { AuthService } from '../../../shared/services/auth.service';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-job-details',
@@ -16,6 +17,9 @@ export class JobDetailsComponent implements OnInit {
 
   @Input() jobOffer: JobOffer | null = null;
   @Input() isMobileView: boolean = false;
+
+  @ViewChild('expressApplyContent') expressApplyContent!: TemplateRef<any>;
+  
   
   public canApply: boolean = false;
   public isSaving: boolean = false;
@@ -24,7 +28,8 @@ export class JobDetailsComponent implements OnInit {
     private sanitizer: DomSanitizer,
     private authService: AuthService,
     private jobApplicationService: JobApplicationService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private modalService: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -59,7 +64,8 @@ export class JobDetailsComponent implements OnInit {
           }
         });
     } else {
-      this.toastService.showErrorMessage('You must be authenticated!');
+      // this.toastService.showErrorMessage('You must be authenticated!');
+      this.modalService.open(this.expressApplyContent, { centered: true, backdrop: 'static' });
     }
   }
 }

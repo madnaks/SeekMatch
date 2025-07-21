@@ -1,5 +1,5 @@
 <div class="job-details" *ngIf="jobOffer">
-    <div class="job-header">
+    <div class="job-details-header">
         <!-- Job offer Title -->
         <h2>
             {{ jobOffer.title }}
@@ -8,6 +8,7 @@
         @if (!isMobileView) {
             <div class="button-group">
                 @if (this.canApply) {
+                    <!-- Apply button -->
                     <button class="btn btn-primary" (click)="apply()">
                         @if (isSaving) {
                             <i class="fa fa-spin fa-spinner"></i>
@@ -15,6 +16,7 @@
                             {{ 'JobOffers.JobDetails.Apply' | translate }}
                         }
                     </button>
+                    <!-- Bookmark button -->
                     <button class="btn btn-primary">
                         <i class="fa-regular fa-bookmark"></i>
                     </button>
@@ -54,3 +56,9 @@
 <div *ngIf="!jobOffer" class="text-center">
     <p>Select a job to see details</p>
 </div>
+
+<!-- express apply modal -->
+<ng-template #expressApplyContent let-c="close" let-d="dismiss">
+    <app-express-apply-modal [closeModal]="c" [dismissModal]="d">
+    </app-express-apply-modal>
+</ng-template>
