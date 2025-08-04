@@ -53,7 +53,7 @@
     <p class="description" [innerHTML]="sanitizedDescription(jobOffer.description)">
     </p>
 </div>
-<div *ngIf="!jobOffer" class="text-center">
+<div class="text-center" *ngIf="!jobOffer" >
     <p>Select a job to see details</p>
 </div>
 

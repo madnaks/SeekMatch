@@ -15,7 +15,6 @@ import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-mod
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { CountryNamePipe } from '../../shared/pipes/country-name.pipe';
 
 @NgModule({
   declarations: [
