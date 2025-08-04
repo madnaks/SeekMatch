@@ -9,13 +9,14 @@
     <div class="row">
         <div class="col-md-12">
             @if (isLoading) {
+            <!-- Spinner -->
             <div class="loading-spinner">
                 <div class="spinner-border">
                 </div>
             </div>
             } @else {
             <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-                <!-- Line 1: Profile title -->
+                <!-- Line 1: Profile picture -->
                 <div class="row mt-3">
                     <div class="col-md-12 profile-picture-section">
                         <p>
@@ -72,7 +73,7 @@
                         }
                     </div>
                 </div>
-                <!-- Line 3 -->
+                <!-- Line 3: Profile title -->
                 <div class="row mt-3">
                     <!-- Profile title -->
                     <div class="col-md-12">
@@ -82,7 +83,7 @@
                         <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
                     </div>
                 </div>
-                <!-- Line 4 -->
+                <!-- Line 4: Summary -->
                 <div class="row mt-3">
                     <!-- Summary -->
                     <div class="col-md-12">
@@ -92,7 +93,7 @@
                         <textarea rows="5" class="form-control" id="inputSummary" formControlName="summary"></textarea>
                     </div>
                 </div>
-                <!-- Line 5 : Email/Website/LinkedIn-->
+                <!-- Line 5: Email/Website/LinkedIn-->
                 <div class="row mt-3">
                     <!-- Email -->
                     <div class="col-md-4">
@@ -126,7 +127,7 @@
                         }
                     </div>
                 </div>
-                <!-- Line 6 -->
+                <!-- Line 6: Date of birth & Phone-->
                 <div class="row mt-3">
                     <!-- Date of birth -->
                     <div class="col-md-6">

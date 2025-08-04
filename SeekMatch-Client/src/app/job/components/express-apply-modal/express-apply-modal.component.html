@@ -1,65 +1,131 @@
+<!-- Page 1 : Option selection (Login/Sign Up Or Express Apply) -->
+@if(!expressApplyMode) {
 <!-- Modal Header -->
 <div class="modal-header">
-    <i class="me-2 fa-regular fa-user"></i>
-    Apply to this job
-
+    <div class="fs-3">
+        <i class="me-2 fa-regular fa-user"></i>
+        {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
+    </div>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 
 </div>
-
-<!-- Step 1 : Option selection (Company/Freelancer recruiter) -->
-@if(currentStep === 1) {
-    <!-- Modal Body -->
-    <div class="modal-body">
-        <p>Apply in seconds without creating a profile.</p>
-        <p>You can choose how you want to apply:</p>
-        <div class="row justify-content-center mb-2">
-            <button class="btn btn-primary col-9">
-                <i class="me-2 fa-solid fa-key"></i>
-                Login/Sign Up
-            </button>
+<!-- Modal Body -->
+<div class="modal-body">
+    <!-- First and second line -->
+    <div class="row">
+        <div class="col-12">
+            <p>{{ "Recruiter.ExpressApplyModal.FistPage.FirstLine" | translate }}</p>
+            <p>{{ "Recruiter.ExpressApplyModal.FistPage.SecondLine" | translate }}</p>
         </div>
-        <div class="row justify-content-center mb-2">
-            <button class="btn btn-light col-9">
-                <i class="me-2 fa-solid fa-rocket"></i>
-                Express Apply
-            </button>
+    </div>
+    <!-- Buttons -->
+    <div class="row justify-content-center mb-2">
+        <button class="btn btn-primary col-9">
+            <i class="me-2 fa-solid fa-key"></i>
+            {{ "Recruiter.ExpressApplyModal.FistPage.LoginSignup" | translate }}
+        </button>
+    </div>
+    <div class="row justify-content-center mb-2">
+        <button class="btn btn-light col-9" (click)="expressApplyMode=true">
+            <i class="me-2 fa-solid fa-rocket"></i>
+            {{ "Recruiter.ExpressApplyModal.FistPage.ExpressApply" | translate }}
+        </button>
+    </div>
+    <!-- Third line -->
+    <div class="row">
+        <div class="col-12">
+            <p> {{ "Recruiter.ExpressApplyModal.FistPage.ThirdLine" | translate }} </p>
         </div>
-        <p>
-            By applying, you agree to our Terms of Service
-        </p>
     </div>
+</div>
 }
-<!-- Step 2 : Verification Process -->
-@if (currentStep === 2) {
-    <!-- Modal Body -->
-    <div class="modal-body">
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line1' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line2' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line3' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line4' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line5' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line6' | translate"></p>
+<!-- Page 2 : Express Apply Mode -->
+@if (expressApplyMode) {
+<!-- Modal Header -->
+<div class="modal-header">
+    <div class="fs-3">
+        <i class="me-2 fa-solid fa-rocket"></i>
+        {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.HeaderTitle" | translate }}
     </div>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+<!-- Modal Body -->
+<div class="modal-body">
+    <!-- First line -->
+    <div class="row">
+        <div class="col-12">
+            {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.FirstLine" | translate }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <form [formGroup]="expressApplyForm">
+                <!-- Line 1: Full name -->
+                <div class="row mt-3">
+                    <!-- First name -->
+                    <div class="col-md-6">
+                        <label for="inputFirstName" class="form-label">
+                            {{ 'Talent.EditProfile.FirstName' | translate }}
+                        </label>
+                        <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+                        @if ((expressApplyForm.get('firstName')?.invalid && expressApplyForm.get('firstName')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
+                        </div>
+                        }
+                    </div>
+                    <!-- Last name -->
+                    <div class="col-md-6">
+                        <label for="inputLastName" class="form-label">
+                            {{ 'Talent.EditProfile.LastName' | translate }}
+                        </label>
+                        <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+                        @if ((expressApplyForm.get('lastName')?.invalid && expressApplyForm.get('lastName')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.LastName' | translate }}
+                        </div>
+                        }
+                    </div>
+                </div>
+                <!-- Line 2: Email -->
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label for="inputEmail" class="form-label">
+                            {{ 'Talent.EditProfile.Email' | translate }}
+                        </label>
+                        <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                    </div>
+                </div>
+                <!-- Line 3: Phone-->
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <label for="inputPhone" class="form-label">
+                            {{ 'Talent.EditProfile.Phone' | translate }}
+                        </label>
+                        <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false"
+                            [enablePlaceholder]="true" [searchCountryFlag]="true"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]"
+                            [selectFirstCountry]="false" [selectedCountryISO]="selectedCountryISO" [maxLength]="15"
+                            [phoneValidation]="true" name="phone" formControlName="phone" id="inputPhone"
+                            (countryChange)="onPhoneCountryChange()">
+                        </ngx-intl-tel-input>
+                        @if ((expressApplyForm.get('phone')?.invalid && expressApplyForm.get('phone')?.touched)) {
+                        <div class="text-danger">
+                            {{ 'Talent.EditProfile.Validation.PhoneNumber' | translate }}
+                        </div>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Bottom line -->
+    <div class="row">
+        <div class="col-12">
+            <i class="me-2 fa-solid fa-lightbulb"></i> {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine" |
+            translate }}
+        </div>
+    </div>
+</div>
 }
-
-
-<!-- Modal Footer -->
-<!-- <div class="modal-footer justify-content-around">
-    <button class="btn btn-primary" [ngClass]="{ 'w-25': !(selectedOption === 'company' && currentStep === maxSteps) }"
-        (click)="goToPreviousStep()" [disabled]="currentStep === 1">
-        <i class="me-2 fa-solid fa-circle-left"></i>
-        {{ 'SignUp.Recruiter.Modal.Footer.PreviousButton' | translate }}
-    </button>
-    <button class="btn btn-primary w-25" (click)="goToNextStep()" *ngIf="currentStep < maxSteps"
-        [disabled]="selectedOption == null">
-        {{ 'SignUp.Recruiter.Modal.Footer.NextButton' | translate }}
-        <i class="ms-2 fa-solid fa-circle-right"></i>
-    </button>
-    <button class="btn btn-primary"
-        [ngClass]="{ 'w-50': selectedOption !== 'company', 'w-25': selectedOption === 'company'}" (click)="onSubmit()"
-        *ngIf="currentStep === maxSteps" [disabled]="isLoading">
-        <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
-        {{ 'SignUp.Recruiter.Modal.Footer.SubmitButton' | translate }}
-    </button>
-</div> -->

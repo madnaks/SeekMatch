@@ -74,6 +74,20 @@
                 "Reason": "Raison",
                 "Reject": "Rejeter"
             }
+        },
+        "ExpressApplyModal": {
+            "Header": {
+                "Title": {
+                    "ApplyJob": "Postuler à cette offre"
+                }
+            },
+            "FistPage": {
+                "FirstLine": "Postulez en quelques secondes sans créer de profil.",
+                "SecondLine": "Vous pouvez choisir comment postuler :",
+                "ThirdLine": "En postulant, vous acceptez nos Conditions d'utilisation",
+                "LoginSignup": "Connexion / Inscription",
+                "ExpressApply": "Postuler Rapidement"
+            }
         }
     }
 }

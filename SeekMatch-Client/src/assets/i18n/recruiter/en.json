@@ -74,6 +74,21 @@
                 "Reason": "Reason",
                 "Reject": "Reject"
             }
+        },
+        "ExpressApplyModal": {
+            "FistPage": {
+                "HeaderTitle": "Apply to this job",
+                "FirstLine": "Apply in seconds without creating a profile.",
+                "SecondLine": "You can choose how you want to apply:",
+                "ThirdLine": "By applying, you agree to our Terms of Service",
+                "LoginSignup": "Login/Sign Up",
+                "ExpressApply": "Express Apply"
+            },
+            "ExpressApplyPage": {
+                "HeaderTitle": "Express Apply",
+                "FirstLine": "Just upload your resume and apply instantly.",
+                "SecondLine": "Tip: Create a full profile to follow your application and get updates faster."
+            }
         }
     }
 }
