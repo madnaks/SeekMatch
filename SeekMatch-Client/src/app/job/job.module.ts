@@ -10,7 +10,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
-import { PhoneInputComponent } from "../shared/components/phone-input/phone-input.component";
+import { PhoneInputComponent, FullNameInputComponent } from "@app/shared/form-controls";
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { PhoneInputComponent } from "../shared/components/phone-input/phone-inpu
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
-    PhoneInputComponent
+    PhoneInputComponent,
+    FullNameInputComponent
 ],
   exports: [CompaniesComponent, JobOffersComponent]
 })

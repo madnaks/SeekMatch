@@ -1,0 +1,26 @@
+<div [formGroup]="form" class="row mt-3">
+    <!-- First name -->
+    <div class="col-md-6">
+        <label for="inputFirstName" class="form-label">
+            {{ 'Talent.EditProfile.FirstName' | translate }}
+        </label>
+        <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+        @if ((form.get('firstName')?.invalid && form.get('firstName')?.touched)) {
+        <div class="text-danger">
+            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
+        </div>
+        }
+    </div>
+    <!-- Last name -->
+    <div class="col-md-6">
+        <label for="inputLastName" class="form-label">
+            {{ 'Talent.EditProfile.LastName' | translate }}
+        </label>
+        <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
+        @if ((form.get('lastName')?.invalid && form.get('lastName')?.touched)) {
+        <div class="text-danger">
+            {{ 'Talent.EditProfile.Validation.LastName' | translate }}
+        </div>
+        }
+    </div>
+</div>
