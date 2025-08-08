@@ -21,7 +21,7 @@ export class ExpressApplyModalComponent {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: [{ value: '', disabled: true }, [Validators.email]],
+      email: ['', [Validators.email]],
       phone: ['']
     });
   }

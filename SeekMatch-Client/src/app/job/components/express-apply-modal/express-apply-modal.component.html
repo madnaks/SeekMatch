@@ -61,32 +61,8 @@
         <div class="col-12">
             <form [formGroup]="expressApplyForm">
                 <!-- Line 1: Full name -->
-                <div class="row mt-3">
-                    <!-- First name -->
-                    <div class="col-md-6">
-                        <label for="inputFirstName" class="form-label">
-                            {{ 'Talent.EditProfile.FirstName' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
-                        @if ((expressApplyForm.get('firstName')?.invalid && expressApplyForm.get('firstName')?.touched)) {
-                        <div class="text-danger">
-                            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
-                        </div>
-                        }
-                    </div>
-                    <!-- Last name -->
-                    <div class="col-md-6">
-                        <label for="inputLastName" class="form-label">
-                            {{ 'Talent.EditProfile.LastName' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
-                        @if ((expressApplyForm.get('lastName')?.invalid && expressApplyForm.get('lastName')?.touched)) {
-                        <div class="text-danger">
-                            {{ 'Talent.EditProfile.Validation.LastName' | translate }}
-                        </div>
-                        }
-                    </div>
-                </div>
+                <app-full-name-input [form]="expressApplyForm">
+                </app-full-name-input>
                 <!-- Line 2: Email -->
                 <div class="row mt-3">
                     <div class="col-12">
@@ -99,23 +75,30 @@
                 <!-- Line 3: Phone-->
                 <div class="row mt-3">
                     <div class="col-md-6">
-                        <label for="inputPhone" class="form-label">
-                            {{ 'Talent.EditProfile.Phone' | translate }}
-                        </label>
                         <app-phone-input [form]="expressApplyForm" [name]="'phone'">
                         </app-phone-input>
-                        @if ((expressApplyForm.get('phone')?.invalid && expressApplyForm.get('phone')?.touched)) {
-                        <div class="text-danger">
-                            {{ 'Talent.EditProfile.Validation.PhoneNumber' | translate }}
-                        </div>
-                        }
+                    </div>
+                </div>
+                <!-- Line 4: Submit application / Return-->
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary wd-100">
+                            <i class="me-2 fa-solid fa-key"></i>
+                            Apply
+                        </button>
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-light" (click)="expressApplyMode=true">
+                            <i class="me-2 fa-solid fa-rocket"></i>
+                            Return
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
     <!-- Bottom line -->
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-12">
             <i class="me-2 fa-solid fa-lightbulb"></i> {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine" |
             translate }}
