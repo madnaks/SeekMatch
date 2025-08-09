@@ -1,0 +1,16 @@
+{
+    "SHARED": {
+        "FORM-CONTROLS": {
+            "LABEL": {
+                "LASTNAME": "Nom de famille",
+                "FIRSTNAME": "Prénom",
+                "Phone": "Téléphone"
+            },
+            "VALIDATION": {
+                "LASTNAME": "Le nom de famille est requis.",
+                "FIRSTNAME": "First name is required.",
+                "PHONE": "Format de numéro de téléphone invalide."
+            }
+        }
+    }
+}

@@ -31,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient): MultiTranslateHttpLoader {
     './assets/i18n/auth/',
     './assets/i18n/talent/',
     './assets/i18n/recruiter/',
-    './assets/i18n/representative/'
+    './assets/i18n/representative/',
+    './assets/i18n/shared/form-controls/'
   ]);
 }
