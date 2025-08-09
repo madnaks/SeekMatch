@@ -1,16 +1,16 @@
 <div [formGroup]="form">
     <label for="inputPhone" class="form-label">
-        {{ 'Talent.EditProfile.Phone' | translate }}
+        {{ 'SHARED.FORM-CONTROLS.LABEL.PHONE' | translate }}
     </label>
     <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false" [enablePlaceholder]="true"
         [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
         [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]" [selectFirstCountry]="false"
         [selectedCountryISO]="selectedCountryISO" [maxLength]="15" [phoneValidation]="true" name="phone"
-        [formControlName]="name" id="inputPhone" (countryChange)="onPhoneCountryChange()">
+        formControlName="phone" inputId="inputPhone" (countryChange)="onPhoneCountryChange()">
     </ngx-intl-tel-input>
     @if ((form.get('phone')?.invalid && form.get('phone')?.touched)) {
     <div class="text-danger">
-        {{ 'Talent.EditProfile.Validation.PhoneNumber' | translate }}
+        {{ 'SHARED.FORM-CONTROLS.VALIDATION.PHONE' | translate }}
     </div>
     }
 </div>

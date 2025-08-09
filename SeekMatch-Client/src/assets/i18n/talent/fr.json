@@ -15,7 +15,6 @@
             "LinkedIn": "LinkedIn",
             "Password": "Mot de passe",
             "DateOfBirth": "Date de naissance",
-            "Phone": "Téléphone",
             "Country": "Pays",
             "ChooseCountry": "Choisir un pays",
             "Region": "Région/Province",
@@ -27,7 +26,6 @@
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer",
             "Validation": {
-                "PhoneNumber": "Format de numéro de téléphone invalide.",
                 "Website": "Veuillez entrer une URL de site web valide (ex. : https://votresite.com).",
                 "LinkedIn": "Veuillez entrer une URL de profil LinkedIn valide (ex. : https://www.linkedin.com/in/votrenom)."
             }

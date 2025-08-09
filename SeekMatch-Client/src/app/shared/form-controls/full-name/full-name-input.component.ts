@@ -13,8 +13,4 @@ import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-
 export class FullNameInputComponent {
 
   @Input({ required: true }) form!: FormGroup;
-
-  public onPhoneCountryChange(): void {
-    // this.profileForm.patchValue({ phone: '' });
-  }
 }

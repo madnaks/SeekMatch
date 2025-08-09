@@ -4,7 +4,7 @@
             "LABEL": {
                 "LASTNAME": "Last name",
                 "FIRSTNAME": "First name",
-                "Phone": "Phone"
+                "PHONE": "Phone"
             },
             "VALIDATION": {
                 "LASTNAME": "Last name is required.",

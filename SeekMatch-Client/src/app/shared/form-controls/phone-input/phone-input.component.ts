@@ -13,13 +13,12 @@ import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-
 export class PhoneInputComponent {
 
   @Input({ required: true }) form!: FormGroup;
-  @Input({ required: true }) name: string = '';
 
   public CountryISO = CountryISO;
   public SearchCountryField = SearchCountryField;
   public selectedCountryISO = CountryISO.Tunisia;
 
   public onPhoneCountryChange(): void {
-    // this.profileForm.patchValue({ phone: '' });
+    this.form.patchValue({ phone: '' });
   }
 }
