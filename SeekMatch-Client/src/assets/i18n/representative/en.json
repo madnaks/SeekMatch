@@ -1,8 +1,6 @@
 {
     "Representative": {
         "AboutYou": {
-            "FirstName": "First name",
-            "LastName": "Last name",
             "Email": "Email address",
             "Password": "Password",
             "ProfilePicture": "Profile Picture",
@@ -19,12 +17,8 @@
                 "Body": {
                     "DeleteMessage": "Are you sure you want to delete this recruiter ?",
                     "Form": {
-                        "FirstName": "First name",
-                        "LastName": "Last name",
                         "Email": "Email address",
                         "Validation": {
-                            "FirstName": "First name is required.",
-                            "LastName": "Last name is required.",
                             "Email": "Email address is required."
                         }
                     }

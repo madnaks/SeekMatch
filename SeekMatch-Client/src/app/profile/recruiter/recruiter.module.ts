@@ -10,6 +10,7 @@ import { JobOfferComponent } from './job-offer/job-offer.component';
 import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
+import { FullNameInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { SharedModule } from '../../shared/shared.module';
     BsDatepickerModule,
     TranslateModule,
     QuillModule.forRoot(),
-    SharedModule
+    SharedModule,
+    FullNameInputComponent
   ]
 })
 export class RecruiterModule { }

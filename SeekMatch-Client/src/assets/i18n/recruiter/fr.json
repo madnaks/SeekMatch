@@ -1,8 +1,6 @@
 {
     "Recruiter": {
         "AboutYou": {
-            "FirstName": "Prénom",
-            "LastName": "Nom de famille",
             "Email": "Adresse e-mail",
             "Password": "Mot de passe",
             "ProfilePicture": "Photo de profil",

@@ -8,15 +8,11 @@
                 "Body": {
                     "FirstLine": "Ready to take the next step?",
                     "Form": {
-                        "FirstName": "First name",
-                        "LastName": "Last name",
                         "Email": "Email address",
                         "Password": "Password",
                         "ConfirmPassword": "Confirm password",
                         "SubmitButton": "Create Account",
                         "Validation": {
-                            "FirstName": "First name is required.",
-                            "LastName": "Last name is required.",
                             "Email": "A valid email is required.",
                             "Password": "Password is required and must be at least 6 characters.",
                             "ConfirmPassword": "Passwords must match."
@@ -76,8 +72,6 @@
                             "CompanyName": "Name",
                             "PhoneNumber": "Phone Number",
                             "Address": "Address",
-                            "FirstName": "First name",
-                            "LastName": "Last name",
                             "Email": "Email address",
                             "Position": "Position",
                             "Password": "Password",
@@ -86,8 +80,6 @@
                                 "CompanyName": "Company name is required.",
                                 "PhoneNumber": "Phone number is required.",
                                 "Address": "Company address is required.",
-                                "FirstName": "First name is required.",
-                                "LastName": "Last name is required.",
                                 "Position": "Position is required.",
                                 "Email": "A valid email is required.",
                                 "Password": "Password is required and must be at least 6 characters.",

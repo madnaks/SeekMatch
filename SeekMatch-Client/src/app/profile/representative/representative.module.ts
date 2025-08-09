@@ -9,6 +9,7 @@ import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
+import { FullNameInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CompanyInfoComponent } from './company-info/company-info.component';
     FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule,
-    TranslateModule
+    TranslateModule,
+    FullNameInputComponent
   ]
 })
 export class RepresentativeModule { }

@@ -7,36 +7,8 @@
 
 <div class="modal-body">
     <form [formGroup]="recruiterForm" (ngSubmit)="onSubmit()">
-        <!-- First Name -->
-        <div class="mb-4">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="inputFirstName" formControlName="firstName"
-                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.FirstName' | translate">
-                <label for="inputFirstName" class="form-label">
-                    {{ 'Representative.Recruiter.Modal.Body.Form.FirstName' | translate }}
-                </label>
-            </div>
-            @if ((recruiterForm.get('firstName')?.invalid && recruiterForm.get('firstName')?.touched)) {
-            <div class="text-danger">
-                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.FirstName' | translate }}
-            </div>
-            }
-        </div>
-        <!-- Last Name -->
-        <div class="mb-4">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="inputLastName" formControlName="lastName"
-                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.LastName' | translate">
-                <label for="inputLastName" class="form-label">
-                    {{ 'Representative.Recruiter.Modal.Body.Form.LastName' | translate }}
-                </label>
-            </div>
-            @if ((recruiterForm.get('lastName')?.invalid && recruiterForm.get('lastName')?.touched)) {
-            <div class="text-danger">
-                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.LastName' | translate }}
-            </div>
-            }
-        </div>
+        <app-full-name-input [form]="recruiterForm">
+        </app-full-name-input>
         <!-- Email -->
         <div class="mb-4">
             <div class="form-floating">
@@ -57,7 +29,7 @@
             <button type="submit" class="btn btn-primary w-50">
                 <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
-                    {{ 'Button.Create' | translate }}
+                {{ 'Button.Create' | translate }}
             </button>
         </div>
     </form>

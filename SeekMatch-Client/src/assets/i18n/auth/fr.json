@@ -8,15 +8,11 @@
                 "Body": {
                     "FirstLine": "Prêt à passer à l'étape suivante ?",
                     "Form": {
-                        "FirstName": "Prénom",
-                        "LastName": "Nom",
                         "Email": "Email address",
                         "Password": "Mot de passe",
                         "ConfirmPassword": "Confirmer le mot de passe",
                         "SubmitButton": "Créé Profile",
                         "Validation": {
-                            "FirstName": "Le prénom est requis.",
-                            "LastName": "Le nom de famille est requis.",
                             "Email": "Un email valide est requis.",
                             "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
                             "ConfirmPassword": "Les mots de passe doivent correspondre."
@@ -76,8 +72,6 @@
                             "CompanyName": "Nom",
                             "PhoneNumber": "Numéro de téléphone",
                             "Address": "Adresse",
-                            "FirstName": "Prénom",
-                            "LastName": "Nom",
                             "Position": "Poste",
                             "Email": "Email address",
                             "Password": "Mot de passe",
@@ -86,8 +80,6 @@
                                 "CompanyName": "Le nom de l'entreprise est requis.",
                                 "PhoneNumber": "Le numéro de téléphone est requis.",
                                 "Address": "L'adresse de l'entreprise est requise.",
-                                "FirstName": "Le prénom est requis.",
-                                "LastName": "Le nom de famille est requis.",
                                 "Position": "Le poste est requis.",
                                 "Email": "Un email valide est requis.",
                                 "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",

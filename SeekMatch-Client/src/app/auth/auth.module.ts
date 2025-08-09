@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterTalentModalComponent } from './modals/register-talent-modal/register-talent-modal.component';
 import { RegisterRecruiterModalComponent } from './modals/register-recruiter-modal/register-recruiter-modal.component';
+import { FullNameInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { RegisterRecruiterModalComponent } from './modals/register-recruiter-mod
     AuthRoutingModule,
     TranslateModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FullNameInputComponent
   ]
 })
 export class AuthModule { }

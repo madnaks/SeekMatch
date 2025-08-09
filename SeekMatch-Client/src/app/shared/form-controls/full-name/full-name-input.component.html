@@ -1,26 +1,58 @@
 <div [formGroup]="form" class="row mt-3">
-    <!-- First name -->
-    <div class="col-md-6">
-        <label for="inputFirstName" class="form-label">
-            {{ 'Talent.EditProfile.FirstName' | translate }}
-        </label>
-        <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
-        @if ((form.get('firstName')?.invalid && form.get('firstName')?.touched)) {
-        <div class="text-danger">
-            {{ 'Talent.EditProfile.Validation.FirstName' | translate }}
-        </div>
-        }
-    </div>
     <!-- Last name -->
     <div class="col-md-6">
         <label for="inputLastName" class="form-label">
-            {{ 'Talent.EditProfile.LastName' | translate }}
+            {{ 'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate }}
         </label>
         <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
         @if ((form.get('lastName')?.invalid && form.get('lastName')?.touched)) {
         <div class="text-danger">
-            {{ 'Talent.EditProfile.Validation.LastName' | translate }}
+            {{ 'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME' | translate }}
+        </div>
+        }
+    </div>
+    <!-- First name -->
+    <div class="col-md-6">
+        <label for="inputFirstName" class="form-label">
+            {{ 'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate }}
+        </label>
+        <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
+        @if ((form.get('firstName')?.invalid && form.get('firstName')?.touched)) {
+        <div class="text-danger">
+            {{ 'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME' | translate }}
         </div>
         }
     </div>
 </div>
+
+<!-- Code keeped to see if we take the floating style of label -->
+ <!-- First Name -->
+<!-- <div class="col-md-6">
+    <div class="form-floating">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="FirstName"
+            formControlName="firstName">
+        <label for="inputFirstName" class="form-label">
+            {{ 'SignUp.Talent.Modal.Body.Form.FirstName' | translate }}
+        </label>
+    </div>
+    @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
+    <div class="text-danger">
+        {{ 'SignUp.Talent.Modal.Body.Form.Validation.FirstName' | translate }}
+    </div>
+    }
+</div> -->
+<!-- Last Name -->
+<!-- <div class="col-md-6">
+    <div class="form-floating">
+        <input type="text" class="form-control" id="inputLastName" placeholder="LastName"
+            formControlName="lastName">
+        <label for="inputLastName" class="form-label">
+            {{ 'SignUp.Talent.Modal.Body.Form.LastName' | translate }}
+        </label>
+    </div>
+    @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
+    <div class="text-danger">
+        {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
+    </div>
+    }
+</div> -->

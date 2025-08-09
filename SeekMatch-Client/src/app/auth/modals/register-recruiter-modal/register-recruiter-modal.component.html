@@ -87,40 +87,8 @@
         <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
             <!-- Full Name -->
             <div class="row mb-4">
-                <!-- First Name -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="inputFirstName"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate"
-                            formControlName="firstName">
-                        <label for="inputFirstName" class="form-label">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate }}
-                        </label>
-                    </div>
-                    @if (registerFreelancerForm.get('firstName')?.invalid &&
-                    registerFreelancerForm.get('firstName')?.touched) {
-                    <div class="text-danger">
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.FirstName' | translate }}
-                    </div>
-                    }
-                </div>
-                <!-- Last Name -->
-                <div class="col-md-6">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="inputLastName"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate"
-                            formControlName="lastName">
-                        <label for="inputLastName" class="form-label">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate }}
-                        </label>
-                    </div>
-                    @if (registerFreelancerForm.get('lastName')?.invalid && registerFreelancerForm.get('lastName')?.touched)
-                    {
-                    <div class="text-danger">
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.LastName' | translate }}
-                    </div>
-                    }
-                </div>
+                <app-full-name-input [form]="registerFreelancerForm">
+                </app-full-name-input>
             </div>
             <!-- Email -->
             <div class="mb-4">
@@ -197,40 +165,7 @@
                     <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
                     <!-- Full Name -->
                     <div class="row mb-4">
-                        <!-- First Name -->
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input class="form-control" type="text" id="inputFirstName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate"
-                                    formControlName="firstName">
-                                <label for="inputFirstName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.FirstName' | translate }}
-                                </label>
-                            </div>
-                            @if (registerRepresentativeForm.get('firstName')?.invalid &&
-                            registerRepresentativeForm.get('firstName')?.touched) {
-                            <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.FirstName' | translate }}
-                            </div>
-                            }
-                        </div>
-                        <!-- Last Name -->
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="inputLastName"
-                                    [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate"
-                                    formControlName="lastName">
-                                <label for="inputLastName" class="form-label">
-                                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.LastName' | translate }}
-                                </label>
-                            </div>
-                            @if (registerRepresentativeForm.get('lastName')?.invalid &&
-                            registerRepresentativeForm.get('lastName')?.touched) {
-                            <div class="text-danger">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.LastName' | translate }}
-                            </div>
-                            }
-                        </div>
+                        <app-full-name-input [form]="registerRepresentativeForm"></app-full-name-input>
                     </div>
                     <!-- Position -->
                     <div class="mb-4">

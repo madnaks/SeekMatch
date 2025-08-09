@@ -15,6 +15,7 @@ import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-mod
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { FullNameInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     TalentRoutingModule,
     SharedModule,
     NgbNavModule,
-    NgxIntlTelInputModule
+    NgxIntlTelInputModule,
+    FullNameInputComponent
   ]
 })
 export class TalentModule { }

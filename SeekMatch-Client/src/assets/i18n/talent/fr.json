@@ -8,8 +8,6 @@
         },
         "EditProfile": {
             "Title": "Modifier le profil",
-            "FirstName": "Prénom",
-            "LastName": "Nom de famille",
             "ProfileTitle": "Titre du profil",
             "Summary": "Résumé",
             "Email": "Adresse e-mail",
@@ -29,8 +27,6 @@
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer",
             "Validation": {
-                "FirstName": "Le prénom est requis.",
-                "LastName": "Le nom de famille est requis.",
                 "PhoneNumber": "Format de numéro de téléphone invalide.",
                 "Website": "Veuillez entrer une URL de site web valide (ex. : https://votresite.com).",
                 "LinkedIn": "Veuillez entrer une URL de profil LinkedIn valide (ex. : https://www.linkedin.com/in/votrenom)."

@@ -1,8 +1,6 @@
 {
     "Representative": {
         "AboutYou": {
-            "FirstName": "Prénom",
-            "LastName": "Nom de famille",
             "Email": "Adresse e-mail",
             "Password": "Mot de passe",
             "ProfilePicture": "Photo de profil",
@@ -19,12 +17,8 @@
                 "Body": {
                     "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce recruteur ?",
                     "Form": {
-                        "FirstName": "Prénom",
-                        "LastName": "Nom de famille",
                         "Email": "Adresse e-mail",
                         "Validation": {
-                            "FirstName": "Le prénom est requis.",
-                            "LastName": "Le nom de famille est requis.",
                             "Email": "L'adresse e-mail est requise."
                         }
                     }

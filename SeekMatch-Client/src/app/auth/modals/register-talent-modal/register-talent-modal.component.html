@@ -14,36 +14,8 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
         <div class="row mb-4">
-            <!-- First Name -->
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="inputFirstName" placeholder="FirstName"
-                        formControlName="firstName">
-                    <label for="inputFirstName" class="form-label">
-                        {{ 'SignUp.Talent.Modal.Body.Form.FirstName' | translate }}
-                    </label>
-                </div>
-                @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Talent.Modal.Body.Form.Validation.FirstName' | translate }}
-                </div>
-                }
-            </div>
-            <!-- Last Name -->
-            <div class="col-md-6">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="inputLastName" placeholder="LastName"
-                        formControlName="lastName">
-                    <label for="inputLastName" class="form-label">
-                        {{ 'SignUp.Talent.Modal.Body.Form.LastName' | translate }}
-                    </label>
-                </div>
-                @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
-                </div>
-                }
-            </div>
+            <app-full-name-input [form]="registerForm">
+            </app-full-name-input>
         </div>
         <!-- Email -->
         <div class="mb-4">
