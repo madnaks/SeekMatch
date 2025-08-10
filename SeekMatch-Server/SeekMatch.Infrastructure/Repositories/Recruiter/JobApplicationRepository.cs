@@ -57,6 +57,12 @@ namespace SeekMatch.Infrastructure.Repositories
                 .FirstOrDefaultAsync(ja => ja.TalentId == talentId && ja.JobOfferId == jobOfferId);
         }
 
+        public async Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId)
+        {
+            return await _dbContext.JobApplications
+                .FirstOrDefaultAsync(ja => ja.TalentId == talentId && ja.JobOfferId == jobOfferId);
+        }
+
         public async Task<bool> ApplyAsync(JobApplication jobApplication)
         {
             try

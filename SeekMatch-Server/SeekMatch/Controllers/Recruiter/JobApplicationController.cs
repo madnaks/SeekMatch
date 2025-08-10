@@ -63,7 +63,7 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
-        [HttpPost("{jobOfferId}")]
+        [HttpPost("apply/{jobOfferId}")]
         public async Task<IActionResult> Apply([FromRoute] string jobOfferId)
         {
             try
@@ -93,7 +93,33 @@ namespace SeekMatch.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
-        
+
+        [Authorize]
+        [HttpPost("express-apply/{jobOfferId}")]
+        public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromBody] ExpressApplicationDto expressApplicationDto)
+        {
+            try
+            {
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job application data is null");
+                }
+
+                var result = await _jobApplicationService.ExpressApplyAsync(expressApplicationDto, jobOfferId);
+
+                if (result)
+                {
+                    return Ok(new { message = "Job application created successfully" });
+                }
+
+                return StatusCode(500, new { message = "An error occurred while creating the job application" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
         [Authorize]
         [HttpPut("{jobApplicationId}")]
         public async Task<IActionResult> Reject(string jobApplicationId, [FromBody] string rejectionReason)

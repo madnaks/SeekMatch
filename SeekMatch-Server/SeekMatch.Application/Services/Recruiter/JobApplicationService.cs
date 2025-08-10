@@ -49,6 +49,28 @@ namespace SeekMatch.Application.Services
             return await _jobApplicationRepository.ApplyAsync(jobApplication);
         }
 
+        public async Task<bool> ExpressApplyAsync(ExpressApplicationDto expressApplicationDto, string jobOfferId)
+        {
+            var expressApplication = _mapper.Map<ExpressApplication>(expressApplicationDto);
+
+            // Check if the anonymous talent has already applied for the job offer
+            var existingApplication = await _jobApplicationRepository
+                .FindByTalentAndJobOfferAsync(talentId, jobOfferId);
+
+            if (existingApplication != null)
+            {
+                throw new Exception("You have already applied for this job offer with this email.");
+            }
+
+            var jobApplication = new JobApplication() { 
+                Id = Guid.NewGuid().ToString(),
+                AppliedAt = DateTime.UtcNow,
+                JobOfferId = jobOfferId,
+                TalentId = talentId
+            };
+            return await _jobApplicationRepository.ApplyAsync(jobApplication);
+        }
+
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             var result = await _jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);

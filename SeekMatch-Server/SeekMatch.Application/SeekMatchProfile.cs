@@ -26,6 +26,7 @@ namespace SeekMatch.Application
                 .ForMember(dest => dest.TalentFullName, opt => opt.MapFrom(src => src.Talent != null ? $"{src.Talent.FirstName} {src.Talent.LastName}" : string.Empty))
                 .ForMember(dest => dest.JobOfferTitle, opt => opt.MapFrom(src => src.JobOffer != null ? src.JobOffer.Title : string.Empty))
                 .ReverseMap();
+            CreateMap<ExpressApplication, ExpressApplicationDto>().ReverseMap();
             #endregion 
 
             #region Representative
