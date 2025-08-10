@@ -12,7 +12,8 @@
                     <button class="btn btn-primary" (click)="apply()">
                         @if (isSaving) {
                             <i class="fa fa-spin fa-spinner"></i>
-                        } @else { 
+                        } @else {
+                            <i class="me-2 fa-solid fa-clipboard-check"></i>
                             {{ 'JobOffers.JobDetails.Apply' | translate }}
                         }
                     </button>

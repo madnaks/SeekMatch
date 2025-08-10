@@ -21,7 +21,11 @@ export class JobApplicationService {
   }
 
   apply(jobOfferId: string | undefined): Observable<any> {
-    return this.http.post(`${this.apiUrl}/${jobOfferId}`, null);
+    return this.http.post(`${this.apiUrl}/apply/${jobOfferId}`, null);
+  }
+
+  expressApply(jobOfferId: string | undefined): Observable<any> {
+    return this.http.post(`${this.apiUrl}/express-apply/${jobOfferId}`, null);
   }
 
   reject(jobApplicationId: string, rejectionReason: string): Observable<any> {

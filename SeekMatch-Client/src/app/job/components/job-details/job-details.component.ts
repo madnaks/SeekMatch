@@ -20,7 +20,6 @@ export class JobDetailsComponent implements OnInit {
 
   @ViewChild('expressApplyContent') expressApplyContent!: TemplateRef<any>;
   
-  
   public canApply: boolean = false;
   public isSaving: boolean = false;
 

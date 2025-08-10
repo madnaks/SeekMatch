@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-express-apply-modal',
@@ -12,6 +13,7 @@ export class ExpressApplyModalComponent {
 
   public expressApplyMode: boolean = false;
   public expressApplyForm: FormGroup;
+  public isSaving: boolean = false;
 
   constructor(private fb: NonNullableFormBuilder) {
     this.expressApplyForm = this.initForm();
@@ -30,5 +32,20 @@ export class ExpressApplyModalComponent {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }
+  }
+
+  public onSubmit(): void {
+    this.isSaving = true;
+    // this.jobApplicationService.apply(this.jobOffer?.id).pipe(
+    //   finalize(() => {
+    //     this.isSaving = false;
+    //   })).subscribe({
+    //     next: () => {
+    //       this.toastService.showSuccessMessage('Applied successfully!');
+    //     },
+    //     error: (error) => {
+    //       this.toastService.showErrorMessage('Error while applying!', error);
+    //     }
+    //   });
   }
 }

@@ -59,7 +59,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form [formGroup]="expressApplyForm">
+            <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
                 <!-- Line 1: Full name -->
                 <app-full-name-input [form]="expressApplyForm">
                 </app-full-name-input>
@@ -82,15 +82,19 @@
                 <!-- Line 4: Submit application / Return-->
                 <div class="row mt-3">
                     <div class="col-md-6">
-                        <button class="btn btn-primary wd-100">
-                            <i class="me-2 fa-solid fa-key"></i>
-                            Apply
+                        <button class="btn btn-light w-100" (click)="expressApplyMode=false">
+                            <i class="me-2 fa-solid fa-circle-left"></i>
+                            Return
                         </button>
                     </div>
                     <div class="col-md-6">
-                        <button class="btn btn-light" (click)="expressApplyMode=true">
-                            <i class="me-2 fa-solid fa-rocket"></i>
-                            Return
+                        <button type="submit" class="btn btn-primary w-100">
+                            @if (isSaving) {
+                                <i class="fa fa-spin fa-spinner"></i>
+                            } @else {
+                                <i class="me-2 fa-solid fa-clipboard-check"></i>
+                                Apply
+                            }
                         </button>
                     </div>
                 </div>
