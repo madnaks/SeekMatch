@@ -94,7 +94,6 @@ namespace SeekMatch.Controllers
             }
         }
 
-        [Authorize]
         [HttpPost("express-apply/{jobOfferId}")]
         public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromBody] ExpressApplicationDto expressApplicationDto)
         {
