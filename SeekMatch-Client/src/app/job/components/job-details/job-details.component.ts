@@ -63,7 +63,6 @@ export class JobDetailsComponent implements OnInit {
           }
         });
     } else {
-      // this.toastService.showErrorMessage('You must be authenticated!');
       this.modalService.open(this.expressApplyContent, { centered: true, backdrop: 'static' });
     }
   }

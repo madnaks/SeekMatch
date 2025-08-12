@@ -60,6 +60,6 @@
 
 <!-- express apply modal -->
 <ng-template #expressApplyContent let-c="close" let-d="dismiss">
-    <app-express-apply-modal [closeModal]="c" [dismissModal]="d">
+    <app-express-apply-modal [closeModal]="c" [dismissModal]="d" [jobOfferId]="jobOffer?.id">
     </app-express-apply-modal>
 </ng-template>

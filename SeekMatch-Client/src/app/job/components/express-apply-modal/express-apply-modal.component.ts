@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { JobApplicationService } from '@app/shared/services/job-application.service';
+import { ToastService } from '@app/shared/services/toast.service';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -8,14 +10,19 @@ import { finalize } from 'rxjs';
   styleUrl: './express-apply-modal.component.scss'
 })
 export class ExpressApplyModalComponent {
+
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
+  @Input() jobOfferId: string | undefined = '';
 
   public expressApplyMode: boolean = false;
   public expressApplyForm: FormGroup;
   public isSaving: boolean = false;
 
-  constructor(private fb: NonNullableFormBuilder) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private jobApplicationService: JobApplicationService,
+    private toastService: ToastService) {
     this.expressApplyForm = this.initForm();
   }
 
@@ -28,7 +35,7 @@ export class ExpressApplyModalComponent {
     });
   }
 
-  public dismiss(reason: string) {
+  public dismiss(reason: string = '') {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }
@@ -36,16 +43,24 @@ export class ExpressApplyModalComponent {
 
   public onSubmit(): void {
     this.isSaving = true;
-    // this.jobApplicationService.apply(this.jobOffer?.id).pipe(
-    //   finalize(() => {
-    //     this.isSaving = false;
-    //   })).subscribe({
-    //     next: () => {
-    //       this.toastService.showSuccessMessage('Applied successfully!');
-    //     },
-    //     error: (error) => {
-    //       this.toastService.showErrorMessage('Error while applying!', error);
-    //     }
-    //   });
+
+    const expressApplyData = this.expressApplyForm.value;
+    const phoneNumberObject = expressApplyData.phone;
+    const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
+    expressApplyData.phone = formattedPhoneNumber;
+
+    this.jobApplicationService.expressApply(this.jobOfferId, expressApplyData).pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          this.toastService.showSuccessMessage('Applied successfully!');
+          this.dismiss();
+        },
+        error: (error) => {
+          this.toastService.showErrorMessage('Error while applying!', error);
+          this.dismiss();
+        }
+      });
   }
 }

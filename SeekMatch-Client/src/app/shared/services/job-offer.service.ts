@@ -20,19 +20,19 @@ export class JobOfferService {
   // }
 
   getAll(filters?: any): Observable<JobOffer[]> {
-  let params = new HttpParams();
+    let params = new HttpParams();
 
-  if (filters) {
-    Object.keys(filters).forEach(key => {
-      if (filters[key]) {
-        params = params.set(key, filters[key]);
-      }
-    });
+    if (filters) {
+      Object.keys(filters).forEach(key => {
+        if (filters[key]) {
+          params = params.set(key, filters[key]);
+        }
+      });
+    }
+
+    return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`, { params });
   }
 
-  return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`, { params });
-}
-  
   getAllByRecruiter(): Observable<any> {
     return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-recruiter`);
   }
