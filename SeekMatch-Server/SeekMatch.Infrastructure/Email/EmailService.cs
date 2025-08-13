@@ -1,4 +1,5 @@
-﻿using SeekMatch.Application.Interfaces;
+﻿using SeekMatch.Core.Entities;
+using SeekMatch.Infrastructure.Interfaces;
 using System.Net;
 using System.Net.Mail;
 
@@ -30,5 +31,22 @@ namespace SeekMatch.Application.Services
                 await client.SendMailAsync(message);
             }
         }
+
+        public async Task SendExpressApplicationConfirmationAsync(ExpressApplication expressApplication, JobOffer jobOffer)
+        {
+            // TODO : Change YourCompanyName
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "ExpressApplicationConfirmation.html");
+            var html = await File.ReadAllTextAsync(templatePath);
+
+            html = html.Replace("{{FirstName}}", expressApplication.FirstName)
+                       .Replace("{{LastName}}", expressApplication.LastName)
+                       .Replace("{{JobTitle}}", jobOffer.Title)
+                       .Replace("{{DateSubmitted}}", DateTime.UtcNow.ToString("MMMM dd, yyyy"));
+
+
+            var subject = "Your job application has been received!";
+            await SendEmailAsync(expressApplication.Email, subject, html);
+        }
+
     }
 }
