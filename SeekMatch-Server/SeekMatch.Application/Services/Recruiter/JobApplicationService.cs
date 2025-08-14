@@ -96,9 +96,17 @@ namespace SeekMatch.Application.Services
         {
             var result = await _jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);
             
-            var jobApplication = await _jobApplicationRepository.GetByIdAsync(jobApplicationId);
-            if (jobApplication != null) {
-                await _notificationService.CreateNotificationAsync(jobApplication.TalentId, rejectionReason);
+            var existingJobOffer = await _jobApplicationRepository.GetByIdAsync(jobApplicationId);
+
+            if (existingJobOffer != null) {
+                if (existingJobOffer.IsExpress)
+                {
+                    await _emailService.SendExpressApplicationRejectionAsync(existingJobOffer, existingJobOffer);
+                }
+                else
+                {
+                    await _notificationService.CreateNotificationAsync(existingJobOffer.TalentId, rejectionReason);
+                }
             }
 
             return result;

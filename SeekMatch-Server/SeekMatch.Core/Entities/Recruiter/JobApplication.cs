@@ -11,7 +11,7 @@ namespace SeekMatch.Core.Entities
         public JobOffer? JobOffer { get; set; }
         public JobApplicationStatus Status { get; set; } = JobApplicationStatus.Pending;
         public string? RejectionReason { get; set; }
-        public bool? IsExpress { get; set; } = false;
+        public bool IsExpress { get; set; } = false;
         public string? Email { get; set; }
     }
 }
