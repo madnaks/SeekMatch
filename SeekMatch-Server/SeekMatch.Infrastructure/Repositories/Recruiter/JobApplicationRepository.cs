@@ -60,8 +60,7 @@ namespace SeekMatch.Infrastructure.Repositories
         public async Task<JobApplication?> FindByEmailAndExpressApplicationAsync(string email, string jobOfferId)
         {
             return await _dbContext.JobApplications
-                .FirstOrDefaultAsync(ja => ja.JobOfferId == jobOfferId);
-                //.FirstOrDefaultAsync(ja => ja.Email == email && ja.JobOfferId == jobOfferId);
+                .FirstOrDefaultAsync(ja => ja.JobOfferId == jobOfferId && ja.ExpressApplication.Email == email);
         }
 
         public async Task<bool> ApplyAsync(JobApplication jobApplication)
@@ -69,6 +68,20 @@ namespace SeekMatch.Infrastructure.Repositories
             try
             {
                 _dbContext.JobApplications.Add(jobApplication);
+                return await _dbContext.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while creating the job application", ex);
+            }
+        }
+
+        public async Task<bool> ExpressApplyAsync(JobApplication jobApplication, ExpressApplication expressApplication)
+        {
+            try
+            {
+                _dbContext.JobApplications.Add(jobApplication);
+                _dbContext.ExpressApplications.Add(expressApplication);
                 return await _dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception ex)

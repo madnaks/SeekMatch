@@ -77,9 +77,9 @@ namespace SeekMatch.Infrastructure
                 .HasForeignKey(j => j.JobOfferId);
 
             modelBuilder.Entity<JobApplication>()
-                .HasMany(j => j.ExpressApplications)
+                .HasOne(j => j.ExpressApplication)
                 .WithOne(e => e.JobApplication)
-                .HasForeignKey(e => e.JobApplicationId)
+                .HasForeignKey<ExpressApplication>(e => e.JobApplicationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Notification>()
