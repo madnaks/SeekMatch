@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
+import { ErrorMessageComponent } from "../error-message/error-message.component";
 
 @Component({
   selector: 'app-full-name-input',
   standalone: true,
-  imports: [NgxIntlTelInputModule, ReactiveFormsModule, TranslateModule],
+  imports: [ReactiveFormsModule, TranslateModule, ErrorMessageComponent],
   templateUrl: './full-name-input.component.html',
   styleUrl: './full-name-input.component.scss'
 })

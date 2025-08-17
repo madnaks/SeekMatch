@@ -10,6 +10,7 @@ import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.componen
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { FullNameInputComponent } from '@app/shared/form-controls';
+import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { FullNameInputComponent } from '@app/shared/form-controls';
     ReactiveFormsModule,
     BsDatepickerModule,
     TranslateModule,
-    FullNameInputComponent
-  ]
+    FullNameInputComponent,
+    ErrorMessageComponent
+]
 })
 export class RepresentativeModule { }

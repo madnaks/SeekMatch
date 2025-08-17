@@ -100,9 +100,7 @@
                     </label>
                 </div>
                 @if (registerFreelancerForm.get('email')?.invalid && registerFreelancerForm.get('email')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email' | translate }}
-                </div>
+                <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email'"></app-error-message>
                 }
             </div>
             <!-- Password -->
@@ -119,9 +117,7 @@
                     </span>
                 </div>
                 @if (registerFreelancerForm.get('password')?.invalid && registerFreelancerForm.get('password')?.touched) {
-                <div class="text-danger">
-                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password' | translate }}
-                </div>
+                <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password'"></app-error-message>
                 }
             </div>
             <!-- Confirm Password -->
@@ -139,9 +135,7 @@
                 </div>
                 @if (registerFreelancerForm.errors?.['mismatch'] && registerFreelancerForm.get('confirmPassword')?.touched)
                 {
-                <div class="text-danger">
-                    {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword' | translate }}
-                </div>
+                <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword'"></app-error-message>
                 }
             </div>
             <!-- Terms & Privacy Statement -->
@@ -179,9 +173,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('position')?.invalid &&
                         registerRepresentativeForm.get('position')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"></app-error-message>
                         }
                     </div>
                     <!-- Email -->
@@ -196,9 +188,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('email')?.invalid &&
                         registerRepresentativeForm.get('email')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email'"></app-error-message>
                         }
                     </div>
                     <!-- Password -->
@@ -216,9 +206,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('password')?.invalid &&
                         registerRepresentativeForm.get('password')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password'"></app-error-message>
                         }
                     </div>
                     <!-- Confirm Password -->
@@ -237,9 +225,7 @@
                         </div>
                         @if (registerRepresentativeForm.errors?.['mismatch'] &&
                         registerRepresentativeForm.get('confirmPassword')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.ConfirmPassword'"></app-error-message>
                         }
                     </div>
                 </div>
@@ -257,9 +243,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('name')?.invalid &&
                         registerRepresentativeForm.get('name')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"></app-error-message>
                         }
                     </div>
                     <!-- Phone Number -->
@@ -274,9 +258,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
                         registerRepresentativeForm.get('phoneNumber')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"></app-error-message>
                         }
                     </div>
                     <!-- Company Address -->
@@ -291,9 +273,7 @@
                         </div>
                         @if (registerRepresentativeForm.get('address')?.invalid &&
                         registerRepresentativeForm.get('address')?.touched) {
-                        <div class="text-danger">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address' | translate }}
-                        </div>
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'"></app-error-message>
                         }
                     </div>
                 </div>

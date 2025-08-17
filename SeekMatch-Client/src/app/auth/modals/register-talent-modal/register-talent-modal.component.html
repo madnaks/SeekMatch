@@ -26,9 +26,7 @@
                 </label>
             </div>
             @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-            <div class="text-danger">
-                {{ 'SignUp.Talent.Modal.Body.Form.Validation.Email' | translate }}
-            </div>
+            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.Email'"></app-error-message>
             }
         </div>
         <!-- Password -->
@@ -44,9 +42,7 @@
                 </span>
             </div>
             @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-            <div class="text-danger">
-                {{ 'SignUp.Talent.Modal.Body.Form.Validation.Password' | translate }}
-            </div>
+            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.Password'"></app-error-message>
             }
         </div>
         <!-- Confirm Password -->
@@ -62,9 +58,7 @@
                 </span>
             </div>
             @if (registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched) {
-            <div class="text-danger">
-                {{ 'SignUp.Talent.Modal.Body.Form.Validation.ConfirmPassword' | translate }}
-            </div>
+            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.ConfirmPassword'"></app-error-message>
             }
         </div>
         <!-- Terms & Privacy Statement -->

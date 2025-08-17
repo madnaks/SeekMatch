@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
+import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
 
 @NgModule({
   declarations: [
@@ -30,8 +31,9 @@ import { GeoNamePipe } from './pipes/geo-name.pipe';
     NgbToast,
     TranslateModule,
     RouterModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    ErrorMessageComponent
+],
   exports: [
     HeaderComponent,
     HeaderSimplifiedComponent,

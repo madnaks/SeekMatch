@@ -87,9 +87,7 @@
                         </label>
                         <input type="text" class="form-control" id="inputWebsite" formControlName="website">
                         @if ((profileForm.get('website')?.invalid && profileForm.get('website')?.touched)) {
-                        <div class="text-danger">
-                            {{ 'Talent.EditProfile.Validation.Website' | translate }}
-                        </div>
+                        <app-error-message [message]="'Talent.EditProfile.Validation.Website'"></app-error-message>
                         }
                     </div>
                     <!-- LinkedIn -->
@@ -99,9 +97,7 @@
                         </label>
                         <input type="text" class="form-control" id="inputLinkedIn" formControlName="linkedIn">
                         @if ((profileForm.get('linkedIn')?.invalid && profileForm.get('linkedIn')?.touched)) {
-                        <div class="text-danger">
-                            {{ 'Talent.EditProfile.Validation.LinkedIn' | translate }}
-                        </div>
+                            <app-error-message [message]="'Talent.EditProfile.Validation.LinkedIn'"></app-error-message>
                         }
                     </div>
                 </div>

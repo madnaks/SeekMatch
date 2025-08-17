@@ -12,13 +12,12 @@
                 <input type="email" class="form-control" id="inputEmail"
                     [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
                 <label for="inputEmail" class="form-label">
+                    <i class="fa-regular fa-envelope me-2"></i>
                     {{ 'Login.Modal.Body.Form.Email' | translate }}
                 </label>
             </div>
             @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-            <div class="text-danger">
-                {{ 'Login.Modal.Body.Form.Validation.Email' | translate }}
-            </div>
+            <app-error-message [message]="'Login.Modal.Body.Form.Validation.Email'"></app-error-message>
             }
         </div>
         <!-- Password -->
@@ -27,6 +26,7 @@
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
                     [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="password">
                 <label for="inputEmail" class="form-label">
+                    <i class="fa-solid fa-key"></i>
                     {{ 'Login.Modal.Body.Form.Password' | translate }}
                 </label>
                 <span class="input-group-text" (click)="togglePasswordVisibility()">
@@ -34,9 +34,7 @@
                 </span>
             </div>
             @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-            <div class="text-danger">
-                {{ 'Login.Modal.Body.Form.Validation.Password' | translate }}
-            </div>
+            <app-error-message [message]="'Login.Modal.Body.Form.Validation.Password'"></app-error-message>
             }
         </div>
         <!-- Login button -->

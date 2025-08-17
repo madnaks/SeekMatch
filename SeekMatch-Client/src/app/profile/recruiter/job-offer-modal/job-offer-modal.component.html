@@ -24,9 +24,7 @@
                     <input type="text" class="form-control" id="inputTitle" formControlName="title"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
                     @if ((jobOfferForm.get('title')?.invalid && jobOfferForm.get('title')?.touched)) {
-                    <div class="text-danger">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Title' | translate }}
-                    </div>
+                    <app-error-message [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Title'"></app-error-message>
                     }
                 </div>
                 <!-- CompanyName -->
@@ -67,9 +65,7 @@
                     <input type="text" class="form-control" id="inputLocation" formControlName="location"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.LocationPlaceholder' | translate">
                     @if ((jobOfferForm.get('location')?.invalid && jobOfferForm.get('location')?.touched)) {
-                    <div class="text-danger">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Location' | translate }}
-                    </div>
+                    <app-error-message [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Location'"></app-error-message>
                     }
                 </div>
                 <!-- Salary -->
@@ -127,9 +123,7 @@
                 <quill-editor formControlName="description" [modules]="editorModules">
                 </quill-editor>
                 @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
-                <div class="text-danger">
-                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Validation.Description' | translate }}
-                </div>
+                <app-error-message [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Description'"></app-error-message>
                 }
             </div>
         </div>

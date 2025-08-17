@@ -19,9 +19,7 @@
                 </label>
             </div>
             @if ((recruiterForm.get('email')?.invalid && recruiterForm.get('email')?.touched)) {
-            <div class="text-danger">
-                {{ 'Representative.Recruiter.Modal.Body.Form.Validation.Email' | translate }}
-            </div>
+                <app-error-message [message]="'Representative.Recruiter.Modal.Body.Form.Validation.Email'"></app-error-message>
             }
         </div>
         <!-- Create -->

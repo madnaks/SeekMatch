@@ -42,25 +42,31 @@ export class ExpressApplyModalComponent {
   }
 
   public onSubmit(): void {
-    this.isSaving = true;
+    if (this.expressApplyForm.valid) {
+      this.isSaving = true;
 
-    const expressApplyData = this.expressApplyForm.value;
-    const phoneNumberObject = expressApplyData.phone;
-    const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
-    expressApplyData.phone = formattedPhoneNumber;
+      const expressApplyData = this.expressApplyForm.value;
+      const phoneNumberObject = expressApplyData.phone;
+      const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
+      expressApplyData.phone = formattedPhoneNumber;
 
-    this.jobApplicationService.expressApply(this.jobOfferId, expressApplyData).pipe(
-      finalize(() => {
-        this.isSaving = false;
-      })).subscribe({
-        next: () => {
-          this.toastService.showSuccessMessage('Applied successfully!');
-          this.dismiss();
-        },
-        error: (error) => {
-          this.toastService.showErrorMessage('Error while applying!', error);
-          this.dismiss();
-        }
-      });
+      this.jobApplicationService.expressApply(this.jobOfferId, expressApplyData).pipe(
+        finalize(() => {
+          this.isSaving = false;
+        })).subscribe({
+          next: () => {
+            this.toastService.showSuccessMessage('Applied successfully!');
+            this.dismiss();
+          },
+          error: (error) => {
+            this.toastService.showErrorMessage('Error while applying!', error);
+            this.dismiss();
+          }
+        });
+
+    } else {
+      this.expressApplyForm.markAllAsTouched();
+    }
+
   }
 }

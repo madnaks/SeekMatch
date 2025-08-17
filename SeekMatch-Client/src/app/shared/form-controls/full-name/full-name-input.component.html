@@ -6,9 +6,7 @@
         </label>
         <input type="text" class="form-control" id="inputLastName" formControlName="lastName">
         @if ((form.get('lastName')?.invalid && form.get('lastName')?.touched)) {
-        <div class="text-danger">
-            {{ 'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME' | translate }}
-        </div>
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'"></app-error-message>
         }
     </div>
     <!-- First name -->
@@ -18,9 +16,7 @@
         </label>
         <input type="text" class="form-control" id="inputFirstName" formControlName="firstName">
         @if ((form.get('firstName')?.invalid && form.get('firstName')?.touched)) {
-        <div class="text-danger">
-            {{ 'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME' | translate }}
-        </div>
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'"></app-error-message>
         }
     </div>
 </div>
@@ -36,9 +32,8 @@
         </label>
     </div>
     @if (registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched) {
-    <div class="text-danger">
-        {{ 'SignUp.Talent.Modal.Body.Form.Validation.FirstName' | translate }}
-    </div>
+        <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.FirstName'"></app-error-message>
+
     }
 </div> -->
 <!-- Last Name -->
@@ -51,8 +46,7 @@
         </label>
     </div>
     @if (registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched) {
-    <div class="text-danger">
-        {{ 'SignUp.Talent.Modal.Body.Form.Validation.LastName' | translate }}
-    </div>
+        <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.LastName'"></app-error-message>
+
     }
 </div> -->

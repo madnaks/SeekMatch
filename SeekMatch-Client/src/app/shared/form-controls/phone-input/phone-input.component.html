@@ -9,8 +9,6 @@
         formControlName="phone" inputId="inputPhone" (countryChange)="onPhoneCountryChange()">
     </ngx-intl-tel-input>
     @if ((form.get('phone')?.invalid && form.get('phone')?.touched)) {
-    <div class="text-danger">
-        {{ 'SHARED.FORM-CONTROLS.VALIDATION.PHONE' | translate }}
-    </div>
+    <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE'"></app-error-message>
     }
 </div>

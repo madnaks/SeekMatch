@@ -57,7 +57,6 @@ export class AuthService {
     return currentUserRole == UserRole.Talent || currentUserRole == null;
   }
   
-
   isAuthenticated(): boolean {
     const token = this.getToken();
     return token ? !this.jwtHelper.isTokenExpired(token) : false;

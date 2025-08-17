@@ -25,7 +25,6 @@ export class JobApplicationService {
   }
 
   expressApply(jobOfferId: string | undefined, jobApplication: any): Observable<any> {
-    debugger
     return this.http.post(`${this.apiUrl}/express-apply/${jobOfferId}`, jobApplication);
   }
 

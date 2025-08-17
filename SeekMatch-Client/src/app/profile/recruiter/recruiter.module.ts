@@ -11,6 +11,7 @@ import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.compon
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
 import { FullNameInputComponent } from '@app/shared/form-controls';
+import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FullNameInputComponent } from '@app/shared/form-controls';
     TranslateModule,
     QuillModule.forRoot(),
     SharedModule,
-    FullNameInputComponent
-  ]
+    FullNameInputComponent,
+    ErrorMessageComponent
+]
 })
 export class RecruiterModule { }

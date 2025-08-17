@@ -19,9 +19,8 @@
             <input type="text" class="form-control" id="inputInstitution" formControlName="institution"
                 [placeholder]="'Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
             @if ((educationForm.get('institution')?.invalid && educationForm.get('institution')?.touched)) {
-            <div class="text-danger">
-                {{ 'Talent.Education.Modal.Body.Form.Validation.Institution' | translate }}
-            </div>
+            <app-error-message
+                [message]="'Talent.Education.Modal.Body.Form.Validation.Institution'"></app-error-message>
             }
         </div>
         <!-- Diploma -->
@@ -66,9 +65,7 @@
                 educationForm.get('startMonth')?.touched) ||
                 (educationForm.get('startYear')?.hasError('requiredSelection') &&
                 educationForm.get('startYear')?.touched)) {
-                <div class="text-danger">
-                    {{ 'Talent.Education.Modal.Body.Form.Validation.StartDate' | translate }}
-                </div>
+                <app-error-message [message]="'Talent.Education.Modal.Body.Form.Validation.StartDate'"></app-error-message>
                 }
             </div>
         </div>
@@ -95,14 +92,10 @@
             </div>
             <div class="col-md-12">
                 @if (educationForm.errors?.['invalidDateRange']) {
-                <div class="text-danger">
-                    {{ 'Talent.Education.Modal.Body.Form.Validation.InvalidDateRange' | translate }}
-                </div>
+                <app-error-message [message]="'Talent.Education.Modal.Body.Form.Validation.InvalidDateRange'"></app-error-message>
                 }
                 @if (educationForm.errors?.['invalidEndDateTwoFields']) {
-                <div class="text-danger">
-                    {{ 'Talent.Education.Modal.Body.Form.Validation.InvalidEndDateTwoFields' | translate }}
-                </div>
+                <app-error-message [message]="'Talent.Education.Modal.Body.Form.Validation.InvalidEndDateTwoFields'"></app-error-message>
                 }
             </div>
         </div>
@@ -118,13 +111,13 @@
         <div class="mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50">
                 @if (updateMode) {
-                    <i class="me-2"
+                <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-floppy-disk': !isSaving }"></i>
-                    {{ 'Button.Save' | translate }}
+                {{ 'Button.Save' | translate }}
                 } @else {
-                    <i class="me-2"
+                <i class="me-2"
                     [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-circle-plus': !isSaving }"></i>
-                    {{ 'Button.Create' | translate }}
+                {{ 'Button.Create' | translate }}
                 }
             </button>
         </div>

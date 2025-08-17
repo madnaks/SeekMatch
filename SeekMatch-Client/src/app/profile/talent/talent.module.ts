@@ -16,6 +16,7 @@ import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.co
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FullNameInputComponent, PhoneInputComponent } from '@app/shared/form-controls';
+import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { FullNameInputComponent, PhoneInputComponent } from '@app/shared/form-co
     NgbNavModule,
     NgxIntlTelInputModule,
     FullNameInputComponent,
-    PhoneInputComponent
-  ]
+    PhoneInputComponent,
+    ErrorMessageComponent
+]
 })
 export class TalentModule { }
