@@ -4,11 +4,14 @@
             "LABEL": {
                 "LASTNAME": "Last name",
                 "FIRSTNAME": "First name",
+                "EMAIL": "Email address",
                 "PHONE": "Phone"
             },
             "VALIDATION": {
                 "LASTNAME": "Last name is required.",
                 "FIRSTNAME": "First name is required.",
+                "EMAIL-REQUIRED": "Email required.",
+                "EMAIL-INVALID": "Email is invalid.",
                 "PHONE": "Format de numéro de téléphone invalide."
             }
         }

@@ -1,7 +1,6 @@
 {
     "Representative": {
         "AboutYou": {
-            "Email": "Email address",
             "Password": "Password",
             "ProfilePicture": "Profile Picture",
             "ChoosePicture": "Choose Picture",
@@ -15,13 +14,7 @@
                 "UpdateTitle": "Update recruiter",
                 "DeleteTitle": "Delete recruiter",
                 "Body": {
-                    "DeleteMessage": "Are you sure you want to delete this recruiter ?",
-                    "Form": {
-                        "Email": "Email address",
-                        "Validation": {
-                            "Email": "Email address is required."
-                        }
-                    }
+                    "DeleteMessage": "Are you sure you want to delete this recruiter ?"
                 }
             }
         }

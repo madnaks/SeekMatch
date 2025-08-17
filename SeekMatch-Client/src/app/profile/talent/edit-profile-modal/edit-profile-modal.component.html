@@ -75,10 +75,7 @@
                 <div class="row mt-3">
                     <!-- Email -->
                     <div class="col-md-4">
-                        <label for="inputEmail" class="form-label">
-                            {{ 'Talent.EditProfile.Email' | translate }}
-                        </label>
-                        <input type="email" class="form-control" id="inputEmail" formControlName="email">
+                        <app-email-input [form]="profileForm"></app-email-input>
                     </div>
                     <!-- WebSite -->
                     <div class="col-md-4">

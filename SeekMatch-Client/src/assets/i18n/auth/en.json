@@ -8,12 +8,10 @@
                 "Body": {
                     "FirstLine": "Ready to take the next step?",
                     "Form": {
-                        "Email": "Email address",
                         "Password": "Password",
                         "ConfirmPassword": "Confirm password",
                         "SubmitButton": "Create Account",
                         "Validation": {
-                            "Email": "A valid email is required.",
                             "Password": "Password is required and must be at least 6 characters.",
                             "ConfirmPassword": "Passwords must match."
                         }
@@ -72,7 +70,6 @@
                             "CompanyName": "Name",
                             "PhoneNumber": "Phone Number",
                             "Address": "Address",
-                            "Email": "Email address",
                             "Position": "Position",
                             "Password": "Password",
                             "ConfirmPassword": "Confirm password",
@@ -81,7 +78,6 @@
                                 "PhoneNumber": "Phone number is required.",
                                 "Address": "Company address is required.",
                                 "Position": "Position is required.",
-                                "Email": "A valid email is required.",
                                 "Password": "Password is required and must be at least 6 characters.",
                                 "ConfirmPassword": "Passwords must match."
                             }
@@ -119,11 +115,9 @@
             "Title": "Welcome back! 👋",
             "Body": {
                 "Form": {
-                    "Email": "Email address",
                     "Password": "Password",
                     "SubmitButton": "Login",
                     "Validation": {
-                        "Email": "Email required.",
                         "Password": "Password required."
                     }
                 }

@@ -7,26 +7,14 @@
 <div class="modal-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!-- Email -->
-        <div class="mb-3">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="inputEmail"
-                    [placeholder]="'Login.Modal.Body.Form.Email' | translate" formControlName="email">
-                <label for="inputEmail" class="form-label">
-                    <i class="fa-regular fa-envelope me-2"></i>
-                    {{ 'Login.Modal.Body.Form.Email' | translate }}
-                </label>
-            </div>
-            @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-            <app-error-message [message]="'Login.Modal.Body.Form.Validation.Email'"></app-error-message>
-            }
-        </div>
+        <app-email-input [form]="loginForm"></app-email-input>
         <!-- Password -->
         <div class="mb-3">
             <div class="form-floating password-input input-group">
                 <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
                     [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="password">
                 <label for="inputEmail" class="form-label">
-                    <i class="fa-solid fa-key"></i>
+                    <i class="fa-solid fa-key me-2"></i>
                     {{ 'Login.Modal.Body.Form.Password' | translate }}
                 </label>
                 <span class="input-group-text" (click)="togglePasswordVisibility()">

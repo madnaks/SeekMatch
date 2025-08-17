@@ -1,7 +1,6 @@
 {
     "Representative": {
         "AboutYou": {
-            "Email": "Adresse e-mail",
             "Password": "Mot de passe",
             "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
@@ -15,13 +14,7 @@
                 "UpdateTitle": "Mettre à jour le recruteur",
                 "DeleteTitle": "Supprimer le recruteur",
                 "Body": {
-                    "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce recruteur ?",
-                    "Form": {
-                        "Email": "Adresse e-mail",
-                        "Validation": {
-                            "Email": "L'adresse e-mail est requise."
-                        }
-                    }
+                    "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce recruteur ?"
                 }
             }
         }

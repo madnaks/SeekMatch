@@ -10,8 +10,7 @@ import { JobOfferComponent } from './job-offer/job-offer.component';
 import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
-import { FullNameInputComponent } from '@app/shared/form-controls';
-import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -30,7 +29,8 @@ import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/e
     QuillModule.forRoot(),
     SharedModule,
     FullNameInputComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    EmailInputComponent
 ]
 })
 export class RecruiterModule { }

@@ -11,16 +11,7 @@
         </app-full-name-input>
         <!-- Email -->
         <div class="mb-4">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="inputEmail" formControlName="email"
-                    [placeholder]="'Representative.Recruiter.Modal.Body.Form.LastName' | translate">
-                <label for="inputEmail" class="form-label">
-                    {{ 'Representative.Recruiter.Modal.Body.Form.Email' | translate }}
-                </label>
-            </div>
-            @if ((recruiterForm.get('email')?.invalid && recruiterForm.get('email')?.touched)) {
-                <app-error-message [message]="'Representative.Recruiter.Modal.Body.Form.Validation.Email'"></app-error-message>
-            }
+            <app-email-input [form]="recruiterForm"></app-email-input>
         </div>
         <!-- Create -->
         <div class="mb-4 d-flex justify-content-center">

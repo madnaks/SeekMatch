@@ -19,15 +19,7 @@
         </div>
         <!-- Email -->
         <div class="mb-4">
-            <div class="form-floating">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" formControlName="email">
-                <label for="inputEmail" class="form-label">
-                    {{ 'SignUp.Talent.Modal.Body.Form.Email' | translate }}
-                </label>
-            </div>
-            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.Email'"></app-error-message>
-            }
+            <app-email-input [form]="registerForm"></app-email-input>
         </div>
         <!-- Password -->
         <div class="mb-4">

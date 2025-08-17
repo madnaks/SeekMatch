@@ -7,8 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterTalentModalComponent } from './modals/register-talent-modal/register-talent-modal.component';
 import { RegisterRecruiterModalComponent } from './modals/register-recruiter-modal/register-recruiter-modal.component';
-import { FullNameInputComponent } from '@app/shared/form-controls';
-import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -23,7 +22,8 @@ import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/e
     SharedModule,
     ReactiveFormsModule,
     FullNameInputComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    EmailInputComponent
 ]
 })
 export class AuthModule { }

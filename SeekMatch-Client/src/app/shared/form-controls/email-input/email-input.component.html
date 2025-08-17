@@ -1,0 +1,20 @@
+<div [formGroup]="form" class="row mt-3 mb-3">
+    <div class="col-md-12">
+        <div class="form-floating">
+            <input type="email" class="form-control" id="inputEmail"
+                [placeholder]="'SHARED.FORM-CONTROLS.LABEL.EMAIL' | translate" formControlName="email">
+            <label for="inputEmail" class="form-label">
+                <i class="fa-regular fa-envelope me-2"></i>
+                {{ 'SHARED.FORM-CONTROLS.LABEL.EMAIL' | translate }}
+            </label>
+        </div>
+
+        @if (form.get('email')?.touched && form.get('email')?.errors?.['required']) {
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.EMAIL-REQUIRED'"></app-error-message>
+        }
+
+        @if (form.get('email')?.touched && form.get('email')?.errors?.['email']) {
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.EMAIL-INVALID'"></app-error-message>
+        }
+    </div>
+</div>

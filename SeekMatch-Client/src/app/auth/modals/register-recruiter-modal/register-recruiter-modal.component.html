@@ -92,16 +92,7 @@
             </div>
             <!-- Email -->
             <div class="mb-4">
-                <div class="form-floating">
-                    <input type="email" class="form-control" id="inputEmail"
-                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate" formControlName="email">
-                    <label for="inputEmail" class="form-label">
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate }}
-                    </label>
-                </div>
-                @if (registerFreelancerForm.get('email')?.invalid && registerFreelancerForm.get('email')?.touched) {
-                <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email'"></app-error-message>
-                }
+                <app-email-input [form]="registerFreelancerForm"></app-email-input>
             </div>
             <!-- Password -->
             <div class="mb-4">
@@ -178,18 +169,7 @@
                     </div>
                     <!-- Email -->
                     <div class="mb-4">
-                        <div class="form-floating">
-                            <input class="form-control" type="email" id="inputEmail"
-                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate"
-                                formControlName="email">
-                            <label for="inputEmail" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Email' | translate }}
-                            </label>
-                        </div>
-                        @if (registerRepresentativeForm.get('email')?.invalid &&
-                        registerRepresentativeForm.get('email')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Email'"></app-error-message>
-                        }
+                        <app-email-input [form]="registerRepresentativeForm"></app-email-input>
                     </div>
                     <!-- Password -->
                     <div class="mb-4">

@@ -1,2 +1,4 @@
-export * from './full-name/full-name-input.component';
+export * from './full-name-input/full-name-input.component';
+export * from './email-input/email-input.component';
 export * from './phone-input/phone-input.component';
+export * from './error-message/error-message.component';

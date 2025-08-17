@@ -8,12 +8,10 @@
                 "Body": {
                     "FirstLine": "Prêt à passer à l'étape suivante ?",
                     "Form": {
-                        "Email": "Email address",
                         "Password": "Mot de passe",
                         "ConfirmPassword": "Confirmer le mot de passe",
                         "SubmitButton": "Créé Profile",
                         "Validation": {
-                            "Email": "Un email valide est requis.",
                             "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
                             "ConfirmPassword": "Les mots de passe doivent correspondre."
                         }
@@ -73,7 +71,6 @@
                             "PhoneNumber": "Numéro de téléphone",
                             "Address": "Adresse",
                             "Position": "Poste",
-                            "Email": "Email address",
                             "Password": "Mot de passe",
                             "ConfirmPassword": "Confirmer le mot de passe",
                             "Validation": {
@@ -81,7 +78,6 @@
                                 "PhoneNumber": "Le numéro de téléphone est requis.",
                                 "Address": "L'adresse de l'entreprise est requise.",
                                 "Position": "Le poste est requis.",
-                                "Email": "Un email valide est requis.",
                                 "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
                                 "ConfirmPassword": "Les mots de passe doivent correspondre."
                             }
@@ -119,11 +115,9 @@
             "Title": "Bienvenue à nouveau ! 👋",
             "Body": {
                 "Form": {
-                    "Email": "Adresse e-mail",
                     "Password": "Mot de passe",
                     "SubmitButton": "Connexion",
                     "Validation": {
-                        "Email": "Email valide est requis.",
                         "Password": "Mot de passe est requis."
                     }
                 }

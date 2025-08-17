@@ -9,8 +9,7 @@ import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
-import { FullNameInputComponent } from '@app/shared/form-controls';
-import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/error-message.component";
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -28,7 +27,8 @@ import { ErrorMessageComponent } from "@app/shared/form-controls/error-message/e
     BsDatepickerModule,
     TranslateModule,
     FullNameInputComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    EmailInputComponent
 ]
 })
 export class RepresentativeModule { }
