@@ -47,21 +47,25 @@ namespace SeekMatch.Application.Services
             var subject = "Your job application has been received!";
             await SendEmailAsync(expressApplication.Email, subject, html);
         }
-        
-        public async Task SendExpressApplicationRejectionAsync(ExpressApplication expressApplication, JobOffer jobOffer)
+
+        public async Task SendExpressApplicationRejectionAsync(JobApplication jobApplication)
         {
             // TODO : Change YourCompanyName
             var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "ExpressApplicationRejection.html");
             var html = await File.ReadAllTextAsync(templatePath);
 
-            html = html.Replace("{{FirstName}}", expressApplication.FirstName)
-                       .Replace("{{LastName}}", expressApplication.LastName)
-                       .Replace("{{JobTitle}}", jobOffer.Title)
-                       .Replace("{{DateSubmitted}}", DateTime.UtcNow.ToString("MMMM dd, yyyy"));
+            if (jobApplication.ExpressApplication != null)
+            {
+                html = html.Replace("{{FirstName}}", jobApplication.ExpressApplication.FirstName)
+                           .Replace("{{LastName}}", jobApplication.ExpressApplication.LastName)
+                           .Replace("{{JobTitle}}", jobApplication.JobOffer?.Title)
+                           .Replace("{{DateSubmitted}}", DateTime.UtcNow.ToString("MMMM dd, yyyy"));
 
 
-            var subject = "Your job application has been rejected!";
-            await SendEmailAsync(expressApplication.Email, subject, html);
+                var subject = "Your job application has been rejected!";
+                await SendEmailAsync(jobApplication.ExpressApplication.Email, subject, html);
+            }
+
         }
 
     }

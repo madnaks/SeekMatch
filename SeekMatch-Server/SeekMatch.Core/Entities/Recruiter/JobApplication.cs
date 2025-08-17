@@ -12,8 +12,7 @@ namespace SeekMatch.Core.Entities
         public JobApplicationStatus Status { get; set; } = JobApplicationStatus.Pending;
         public string? RejectionReason { get; set; }
         public bool IsExpress { get; set; } = false;
-        public string? ExpressApplicationId { get; set; }
-        public List<ExpressApplication> ExpressApplications { get; set; } = new List<ExpressApplication>();
+        public ExpressApplication? ExpressApplication { get; set; }
 
     }
 }

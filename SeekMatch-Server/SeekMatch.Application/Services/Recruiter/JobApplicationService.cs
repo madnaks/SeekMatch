@@ -83,29 +83,30 @@ namespace SeekMatch.Application.Services
                 Id = Guid.NewGuid().ToString(),
                 AppliedAt = DateTime.UtcNow,
                 JobOfferId = jobOfferId,
-                Email = expressApplication.Email,
                 IsExpress = true
             };
 
+            expressApplication.JobApplicationId = jobApplication.Id;
+
             await _emailService.SendExpressApplicationConfirmationAsync(expressApplication, existingJobOffer);
 
-            return await _jobApplicationRepository.ApplyAsync(jobApplication);
+            return await _jobApplicationRepository.ExpressApplyAsync(jobApplication, expressApplication);
         }
 
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             var result = await _jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);
             
-            var existingJobOffer = await _jobApplicationRepository.GetByIdAsync(jobApplicationId);
+            var existingJobApplication = await _jobApplicationRepository.GetByIdAsync(jobApplicationId);
 
-            if (existingJobOffer != null) {
-                if (existingJobOffer.IsExpress)
+            if (existingJobApplication != null) {
+                if (existingJobApplication.IsExpress)
                 {
-                    await _emailService.SendExpressApplicationRejectionAsync(existingJobOffer, existingJobOffer);
+                    await _emailService.SendExpressApplicationRejectionAsync(existingJobApplication);
                 }
                 else
                 {
-                    await _notificationService.CreateNotificationAsync(existingJobOffer.TalentId, rejectionReason);
+                    await _notificationService.CreateNotificationAsync(existingJobApplication.TalentId, rejectionReason);
                 }
             }
 

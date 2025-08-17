@@ -16,7 +16,10 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.JobApplications.FindAsync(jobApplicationId);
+                return await _dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
+                    .Include(j => j.ExpressApplication)
+                    .Include(j => j.JobOffer)
+                    .FirstAsync();
             }
             catch (Exception ex)
             {

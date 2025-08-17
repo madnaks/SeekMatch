@@ -10,6 +10,7 @@ namespace SeekMatch.Infrastructure.Interfaces
         Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId);
         Task<JobApplication?> FindByEmailAndExpressApplicationAsync(string email, string jobOfferId);
         Task<bool> ApplyAsync(JobApplication jobApplication);
+        Task<bool> ExpressApplyAsync(JobApplication jobApplicatio, ExpressApplication expressApplication);
         Task<bool> RejectAsync(string jobApplicationId, string rejectionReason);
         Task<bool> DeleteAsync(string jobApplicationId);
     }
