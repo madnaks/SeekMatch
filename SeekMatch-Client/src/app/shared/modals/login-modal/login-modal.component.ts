@@ -15,7 +15,6 @@ export class LoginModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
-  passwordVisible: boolean = false;
   loginForm: FormGroup;
   isLoading: boolean = false;
 
@@ -60,10 +59,6 @@ export class LoginModalComponent {
         this.toastService.showErrorMessage('Login failed', error);
       }
     });
-  }
-
-  public togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;
   }
 
   public dismiss(reason: string): void {

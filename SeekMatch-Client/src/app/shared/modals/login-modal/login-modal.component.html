@@ -9,22 +9,7 @@
         <!-- Email -->
         <app-email-input [form]="loginForm"></app-email-input>
         <!-- Password -->
-        <div class="mb-3">
-            <div class="form-floating password-input input-group">
-                <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    [placeholder]="'Login.Modal.Body.Form.Password' | translate" formControlName="password">
-                <label for="inputEmail" class="form-label">
-                    <i class="fa-solid fa-key me-2"></i>
-                    {{ 'Login.Modal.Body.Form.Password' | translate }}
-                </label>
-                <span class="input-group-text" (click)="togglePasswordVisibility()">
-                    <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                </span>
-            </div>
-            @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
-            <app-error-message [message]="'Login.Modal.Body.Form.Validation.Password'"></app-error-message>
-            }
-        </div>
+        <app-password-input [form]="loginForm"></app-password-input>
         <!-- Login button -->
         <div class="mb-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">

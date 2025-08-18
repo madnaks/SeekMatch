@@ -12,7 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
-import { EmailInputComponent, ErrorMessageComponent } from "@app/shared/form-controls";
+import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { EmailInputComponent, ErrorMessageComponent } from "@app/shared/form-con
     RouterModule,
     ReactiveFormsModule,
     ErrorMessageComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    PasswordInputComponent
 ],
   exports: [
     HeaderComponent,

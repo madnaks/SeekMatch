@@ -96,20 +96,7 @@
             </div>
             <!-- Password -->
             <div class="mb-4">
-                <div class="form-floating password-input input-group">
-                    <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                        formControlName="password"
-                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate">
-                    <label for="inputPassword" class="form-label">
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate }}
-                    </label>
-                    <span class="input-group-text" (click)="togglePasswordVisibility()">
-                        <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                    </span>
-                </div>
-                @if (registerFreelancerForm.get('password')?.invalid && registerFreelancerForm.get('password')?.touched) {
-                <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password'"></app-error-message>
-                }
+                <app-password-input [form]="registerFreelancerForm"></app-password-input>
             </div>
             <!-- Confirm Password -->
             <div class="mb-4">
@@ -173,21 +160,7 @@
                     </div>
                     <!-- Password -->
                     <div class="mb-4">
-                        <div class="form-floating password-input input-group">
-                            <input class="form-control" [type]="passwordVisible ? 'text' : 'password'" id="inputPassword"
-                                formControlName="password"
-                                [placeholder]="'SignUp.Recruiter.Modal.Body.Form.Password' | translate">
-                            <label for="inputPassword" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Password' | translate }}
-                            </label>
-                            <span class="input-group-text" (click)="togglePasswordVisibility()">
-                                <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                            </span>
-                        </div>
-                        @if (registerRepresentativeForm.get('password')?.invalid &&
-                        registerRepresentativeForm.get('password')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Password'"></app-error-message>
-                        }
+                        <app-password-input [form]="registerRepresentativeForm"></app-password-input>
                     </div>
                     <!-- Confirm Password -->
                     <div class="mb-4">

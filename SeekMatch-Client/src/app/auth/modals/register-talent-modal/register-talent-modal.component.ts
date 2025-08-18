@@ -17,7 +17,6 @@ export class RegisterTalentModalComponent {
   @Input() dismissModal: (reason: string) => void = () => { };
 
   registerForm: FormGroup;
-  passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   isLoading: boolean = false;
   isSuccess: boolean = false;
@@ -78,10 +77,6 @@ export class RegisterTalentModalComponent {
           this.isError = true;
         }
       })
-  }
-
-  public togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;
   }
 
   public toggleConfirmPasswordVisibility(): void {

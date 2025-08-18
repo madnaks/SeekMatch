@@ -23,19 +23,7 @@
         </div>
         <!-- Password -->
         <div class="mb-4">
-            <div class="form-floating password-input input-group">
-                <input [type]="passwordVisible ? 'text' : 'password'" class="form-control" id="inputPassword"
-                    formControlName="password" placeholder="Password">
-                <label for="inputPassword" class="form-label">
-                    {{ 'SignUp.Talent.Modal.Body.Form.Password' | translate }}
-                </label>
-                <span class="input-group-text" (click)="togglePasswordVisibility()">
-                    <i class="fa-solid" [ngClass]="passwordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                </span>
-            </div>
-            @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
-            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.Password'"></app-error-message>
-            }
+            <app-password-input [form]="registerForm"></app-password-input>
         </div>
         <!-- Confirm Password -->
         <div class="mb-4">

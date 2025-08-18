@@ -27,7 +27,6 @@ export class RegisterRecruiterModalComponent {
   //#region Forms variables
   registerFreelancerForm: FormGroup;
   registerRepresentativeForm: FormGroup;
-  passwordVisible: boolean = false;
   confirmPasswordVisible: boolean = false;
   //#endregion
 
@@ -77,10 +76,6 @@ export class RegisterRecruiterModalComponent {
       const confirmPassword = formGroup.get('confirmPassword')?.value;
       return password === confirmPassword ? null : { mismatch: true };
     };
-  }
-
-  public togglePasswordVisibility(): void {
-    this.passwordVisible = !this.passwordVisible;
   }
 
   public toggleConfirmPasswordVisibility(): void {

@@ -14,6 +14,7 @@
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\man-wearing-a-tie.svg" alt="Description of the image" width="200">
                 <button class="btn btn-sign-up btn-important  job-seeker" (click)="open(registerTalentContent, UserRole.Talent)">
+                    <i class="fa-solid fa-user-plus me-2"></i>
                     {{ 'SignUp.Talent.Button' | translate }}
                 </button>
             </div>
@@ -23,6 +24,7 @@
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
                 <button class="btn btn-sign-up btn-important job-seeker mt-2" (click)="open(loginContent, UserRole.Talent)">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>
                     {{ 'SignUp.Login' | translate }}
                 </button>
             </div>
@@ -39,6 +41,7 @@
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <img src="assets\images\woman-with-magnifying-glass.svg" alt="Description of the image" width="200">
                 <button class="btn btn-sign-up btn-important recruiter" (click)="open(registerRecruiterContent, UserRole.Recruiter)">
+                    <i class="fa-solid fa-user-plus me-2"></i>
                     {{ 'SignUp.Recruiter.Button' | translate }}
                 </button>
             </div>
@@ -48,6 +51,7 @@
                     {{ 'SignUp.HaveAccount' | translate }}
                 </p>
                 <button class="btn btn-sign-up btn-important recruiter mt-2" (click)="open(loginContent, UserRole.Recruiter)">
+                    <i class="fa-solid fa-right-to-bracket me-2"></i>
                     {{ 'SignUp.Login' | translate }}
                 </button>
             </div>
