@@ -9,7 +9,11 @@
         <!-- Email -->
         <app-email-input [form]="loginForm"></app-email-input>
         <!-- Password -->
-        <app-password-input [form]="loginForm"></app-password-input>
+         <div class="row mb-3">
+            <div class="col-12">
+                <app-password-input [form]="loginForm"></app-password-input>
+            </div>
+         </div>
         <!-- Login button -->
         <div class="mb-3 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">

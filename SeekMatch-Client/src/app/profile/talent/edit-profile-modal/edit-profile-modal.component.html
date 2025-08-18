@@ -31,12 +31,14 @@
                             <!-- Custom button to trigger file input -->
                             <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3"
                                 (click)="fileInput.click()">
+                                <i class="fa-regular fa-image me-2"></i>
                                 {{ 'Talent.EditProfile.ChoosePicture' | translate }}
                             </button>
 
                             <!-- Button to remove current image -->
                             <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                                 *ngIf="profilePicture && !defaultProfilePicture">
+                                <i class="fa-regular fa-trash-can me-2"></i>
                                 {{ 'Talent.EditProfile.Remove' | translate }}
                             </button>
 
@@ -78,11 +80,15 @@
                         <app-email-input [form]="profileForm"></app-email-input>
                     </div>
                     <!-- WebSite -->
-                    <div class="col-md-4">
-                        <label for="inputWebsite" class="form-label">
-                            {{ 'Talent.EditProfile.Website' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputWebsite" formControlName="website">
+                    <div class="col-md-4 mt-3">
+                         <div class="form-floating">
+                            <input type="text" class="form-control" id="inputWebsite" placeholder="website"
+                                formControlName="website">
+                            <label for="inputWebsite" class="form-label">
+                                <i class="fa-solid fa-link me-2"></i>
+                                {{ 'Talent.EditProfile.Website' | translate }}
+                            </label>
+                        </div>
                         @if ((profileForm.get('website')?.invalid && profileForm.get('website')?.touched)) {
                         <app-error-message [message]="'Talent.EditProfile.Validation.Website'"></app-error-message>
                         }
