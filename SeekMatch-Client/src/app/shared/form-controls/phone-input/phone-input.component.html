@@ -1,13 +1,15 @@
 <div [formGroup]="form">
-    <label for="inputPhone" class="form-label">
-        {{ 'SHARED.FORM-CONTROLS.LABEL.PHONE' | translate }}
-    </label>
-    <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false" [enablePlaceholder]="true"
-        [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
-        [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]" [selectFirstCountry]="false"
-        [selectedCountryISO]="selectedCountryISO" [maxLength]="15" [phoneValidation]="true" name="phone"
-        formControlName="phone" inputId="inputPhone" (countryChange)="onPhoneCountryChange()">
-    </ngx-intl-tel-input>
+    <div class="form-floating">
+        <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false" [enablePlaceholder]="true"
+            [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+            [onlyCountries]="[CountryISO.Canada, CountryISO.France, CountryISO.Tunisia ]" [selectFirstCountry]="false"
+            [selectedCountryISO]="selectedCountryISO" [maxLength]="15" [phoneValidation]="true" name="phone"
+            formControlName="phone" inputId="inputPhone" (countryChange)="onPhoneCountryChange()">
+        </ngx-intl-tel-input>
+        <!-- <label for="inputPhone" class="form-label">
+            {{ 'SHARED.FORM-CONTROLS.LABEL.PHONE' | translate }}
+        </label> -->
+    </div>
     @if ((form.get('phone')?.invalid && form.get('phone')?.touched)) {
     <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE'"></app-error-message>
     }
