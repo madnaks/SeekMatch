@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { finalize } from 'rxjs';
@@ -30,7 +30,8 @@ export class ExpressApplyModalComponent {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      email: ['', [Validators.email]],
+      email: ['', [Validators.email, Validators.required]],
+      cv: [null, [Validators.required, this.pdfFileValidator]],
       phone: ['']
     });
   }
@@ -38,6 +39,14 @@ export class ExpressApplyModalComponent {
   public dismiss(reason: string = '') {
     if (this.dismissModal) {
       this.dismissModal(reason);
+    }
+  }
+
+  onFileSelected(event: Event) {debugger
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
+      this.expressApplyForm.patchValue({ cv: file });
+      this.expressApplyForm.get('cv')?.updateValueAndValidity();
     }
   }
 
@@ -69,4 +78,13 @@ export class ExpressApplyModalComponent {
     }
 
   }
+
+  private pdfFileValidator(control: AbstractControl): ValidationErrors | null {
+    const file = control.value;
+    if (file && file.type !== 'application/pdf') {
+      return { invalidFileType: true };
+    }
+    return null;
+  }
+
 }
