@@ -95,7 +95,7 @@ namespace SeekMatch.Controllers
         }
 
         [HttpPost("express-apply/{jobOfferId}")]
-        public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromBody] ExpressApplicationDto expressApplicationDto)
+        public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromBody] ExpressApplicationDto expressApplicationDto, IFormFile cv)
         {
             try
             {
@@ -104,7 +104,15 @@ namespace SeekMatch.Controllers
                     return BadRequest("Job application data is null");
                 }
 
-                var result = await _jobApplicationService.ExpressApplyAsync(expressApplicationDto, jobOfferId);
+                if (cv == null || cv.Length == 0)
+                {
+                    return BadRequest("CV file is required.");
+                }
+
+                using var stream = cv.OpenReadStream();
+
+                var result = await _jobApplicationService
+                    .ExpressApplyAsync(expressApplicationDto, jobOfferId, stream, cv.FileName);
 
                 if (result)
                 {

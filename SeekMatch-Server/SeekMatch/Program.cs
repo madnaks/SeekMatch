@@ -49,6 +49,11 @@ builder.Services.AddSwaggerGen(options =>
     options.CustomSchemaIds(type => type.FullName); // Use the full namespace and type name as the schema ID
 });
 
+var uploadsPath = Path.Combine(builder.Environment.WebRootPath, "uploads");
+
+builder.Services.AddSingleton<IFileStorageService>(
+    new FileStorageService(uploadsPath));
+
 // Add Identity services
 builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<SeekMatchDbContext>()
@@ -108,6 +113,7 @@ builder.Services.AddScoped<IRepresentativeRepository, RepresentativeRepository>(
 builder.Services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
 builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+//builder.Services.AddScoped<IFileStorageService, FileStorageService>();
 #endregion
 
 builder.Services.AddCors(options =>

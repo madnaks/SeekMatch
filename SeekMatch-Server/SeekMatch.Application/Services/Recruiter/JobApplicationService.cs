@@ -3,6 +3,8 @@ using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
+using SeekMatch.Infrastructure.Repositories;
+using System.IO;
 
 namespace SeekMatch.Application.Services
 {
@@ -11,6 +13,7 @@ namespace SeekMatch.Application.Services
         private readonly IJobApplicationRepository _jobApplicationRepository;
         private readonly IJobOfferRepository _jobOfferRepository;
         private readonly IEmailService _emailService;
+        private readonly IFileStorageService _fileStorageService;
         private readonly INotificationService _notificationService;
         private readonly IMapper _mapper;
 
@@ -18,12 +21,14 @@ namespace SeekMatch.Application.Services
             IJobApplicationRepository jobApplicationRepository,
             IJobOfferRepository jobOfferRepository,
             IEmailService emailService,
+            IFileStorageService fileStorageService, 
             INotificationService notificationService, 
             IMapper mapper)
         {
             _jobApplicationRepository = jobApplicationRepository;
             _jobOfferRepository = jobOfferRepository;
             _emailService = emailService;
+            _fileStorageService = fileStorageService;
             _notificationService = notificationService;
             _mapper = mapper;
         }
@@ -58,7 +63,7 @@ namespace SeekMatch.Application.Services
             return await _jobApplicationRepository.ApplyAsync(jobApplication);
         }
 
-        public async Task<bool> ExpressApplyAsync(ExpressApplicationDto expressApplicationDto, string jobOfferId)
+        public async Task<bool> ExpressApplyAsync(ExpressApplicationDto expressApplicationDto, string jobOfferId, Stream cvStream, string fileName)
         {
             var expressApplication = _mapper.Map<ExpressApplication>(expressApplicationDto);
 
@@ -86,7 +91,13 @@ namespace SeekMatch.Application.Services
                 IsExpress = true
             };
 
+            var newExpressApplicationGuid = Guid.NewGuid().ToString();
+
+            expressApplication.Id = newExpressApplicationGuid;
             expressApplication.JobApplicationId = jobApplication.Id;
+
+            var cvPath = await _fileStorageService.SaveFileAsync(cvStream, $"{newExpressApplicationGuid}_{fileName}");
+            expressApplication.CvPath = cvPath;
 
             await _emailService.SendExpressApplicationConfirmationAsync(expressApplication, existingJobOffer);
 
