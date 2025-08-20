@@ -13,6 +13,5 @@ namespace SeekMatch.Core.Entities
         public string? RejectionReason { get; set; }
         public bool IsExpress { get; set; } = false;
         public ExpressApplication? ExpressApplication { get; set; }
-
     }
 }
