@@ -12,7 +12,9 @@
                 "FIRSTNAME": "First name is required.",
                 "EMAIL-REQUIRED": "Email required.",
                 "EMAIL-INVALID": "Email is invalid.",
-                "PHONE": "Format de numéro de téléphone invalide."
+                "PHONE": "Format de numéro de téléphone invalide.",
+                "CV-REQUIRED": "CV is required.",
+                "CV-INVALID": "Only PDF files are allowed."
             }
         }
     }

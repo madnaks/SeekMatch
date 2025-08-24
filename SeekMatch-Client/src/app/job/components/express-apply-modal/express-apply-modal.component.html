@@ -74,8 +74,11 @@
                     <div class="col-md-12">
                         <input class="form-control" type="file" id="formFile"
                             accept="application/pdf" (change)="onFileSelected($event)">
-                        @if ((expressApplyForm.get('cv')?.invalid && expressApplyForm.get('cv')?.touched)) {
-                        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE'"></app-error-message>
+                        @if((expressApplyForm.get('cv')?.errors?.['required'] && expressApplyForm.get('cv')?.touched)) {
+                        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-REQUIRED'"></app-error-message>
+                        }
+                        @if((expressApplyForm.get('cv')?.errors?.['invalidFileType'] && expressApplyForm.get('cv')?.touched)) {
+                        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-INVALID'"></app-error-message>
                         }
                     </div>
                 </div>

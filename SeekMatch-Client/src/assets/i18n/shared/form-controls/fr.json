@@ -12,7 +12,9 @@
                 "FIRSTNAME": "Le Prénom est requis.",
                 "EMAIL-REQUIRED": "Adresse e-mail est requis.",
                 "EMAIL-INVALID": "Adresse e-mail valide est requis.",
-                "PHONE": "Format de numéro de téléphone invalide."
+                "PHONE": "Format de numéro de téléphone invalide.",
+                "CV-REQUIRED": "Le CV est requis.",
+                "CV-INVALID": "Seuls les fichiers PDF sont autorisés."
             }
         }
     }

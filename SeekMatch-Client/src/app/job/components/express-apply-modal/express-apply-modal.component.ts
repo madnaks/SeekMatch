@@ -42,7 +42,7 @@ export class ExpressApplyModalComponent {
     }
   }
 
-  onFileSelected(event: Event) {debugger
+  onFileSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (file) {
       this.expressApplyForm.patchValue({ cv: file });
@@ -57,9 +57,19 @@ export class ExpressApplyModalComponent {
       const expressApplyData = this.expressApplyForm.value;
       const phoneNumberObject = expressApplyData.phone;
       const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
-      expressApplyData.phone = formattedPhoneNumber;
 
-      this.jobApplicationService.expressApply(this.jobOfferId, expressApplyData).pipe(
+      // Build FormData for multipart/form-data
+      const formData = new FormData();
+      formData.append('firstName', expressApplyData.firstName);
+      formData.append('lastName', expressApplyData.lastName);
+      formData.append('email', expressApplyData.email);
+      formData.append('phone', formattedPhoneNumber);
+
+      if (expressApplyData.cv) {
+        formData.append('cv', expressApplyData.cv);
+      }
+
+      this.jobApplicationService.expressApply(this.jobOfferId, formData).pipe(
         finalize(() => {
           this.isSaving = false;
         })).subscribe({
@@ -81,8 +91,11 @@ export class ExpressApplyModalComponent {
 
   private pdfFileValidator(control: AbstractControl): ValidationErrors | null {
     const file = control.value;
-    if (file && file.type !== 'application/pdf') {
-      return { invalidFileType: true };
+    if (file && file instanceof File) {
+      debugger
+      if (file.type !== 'application/pdf') {
+        return { invalidFileType: true };
+      }
     }
     return null;
   }
