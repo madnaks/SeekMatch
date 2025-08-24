@@ -95,7 +95,7 @@ namespace SeekMatch.Controllers
         }
 
         [HttpPost("express-apply/{jobOfferId}")]
-        public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromBody] ExpressApplicationDto expressApplicationDto, IFormFile cv)
+        public async Task<IActionResult> ExpressApply([FromRoute] string jobOfferId, [FromForm] ExpressApplicationDto expressApplicationDto, [FromForm] IFormFile cv)
         {
             try
             {
