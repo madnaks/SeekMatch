@@ -1,10 +1,5 @@
-.container {
-    background-color: #003366;
-    height: 5%;
+@import '../../../../assets/styles/styles-variables.scss';
 
-    text-align: center;
-    padding: 10px;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+footer {
+    background-color: $background-color;
 }

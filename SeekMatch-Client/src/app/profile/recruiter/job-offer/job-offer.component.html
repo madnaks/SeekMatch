@@ -132,12 +132,17 @@
                                     </thead>
                                     <tbody>
                                         @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
+                                            {{ jobApplication | json }}
                                         <tr>
                                             <th scope="row">
                                                 {{ i + 1 }}
                                             </th>
                                             <td>
-                                                {{ jobApplication.talentFullName }}
+                                                @if (jobApplication.isExpress) {
+                                                    {{ jobApplication.expressApplication.lastName }} {{ jobApplication.expressApplication.firstName }}
+                                                } @else {
+                                                    {{ jobApplication.talentFullName }}
+                                                }
                                             </td>
                                             <td>
                                                 {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
