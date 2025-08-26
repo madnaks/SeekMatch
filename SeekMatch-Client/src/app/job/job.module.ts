@@ -10,7 +10,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
-import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent } from "@app/shared/form-controls";
+import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent, LoaderComponent } from "@app/shared/form-controls";
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, Error
     PhoneInputComponent,
     FullNameInputComponent,
     EmailInputComponent,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    LoaderComponent
 ],
   exports: [CompaniesComponent, JobOffersComponent]
 })
