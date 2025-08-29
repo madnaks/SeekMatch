@@ -8,22 +8,15 @@ namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TalentController : ControllerBase
+    public class TalentController(ITalentService talentService) : ControllerBase
     {
-        private readonly ITalentService _talentService;
-
-        public TalentController(ITalentService talentService)
-        {
-            _talentService = talentService;
-        }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterTalentDto registerTalentDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _talentService.RegisterAsync(registerTalentDto);
+            var result = await talentService.RegisterAsync(registerTalentDto);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
@@ -41,7 +34,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Talent Id cannot be empty.");
             }
 
-            var talentDto = await _talentService.GetAsync(talentId);
+            var talentDto = await talentService.GetAsync(talentId);
 
             if (talentDto == null)
             {
@@ -62,7 +55,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var talentDto = await _talentService.GetAsync(userId);
+            var talentDto = await talentService.GetAsync(userId);
 
             if (talentDto == null)
             {
@@ -88,7 +81,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Talent data is null");
             }
 
-            var result = await _talentService.SaveProfileAsync(talentDto, userId);
+            var result = await talentService.SaveProfileAsync(talentDto, userId);
 
             if (result)
             {
@@ -119,7 +112,7 @@ namespace SeekMatch.Controllers
                 await profilePicture.CopyToAsync(memoryStream);
                 var profilePictureData = memoryStream.ToArray();
 
-                var isSuccess = await _talentService.UpdateProfilePictureAsync(profilePictureData, userId);
+                var isSuccess = await talentService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
                 {
                     return NotFound("Talent not found.");
@@ -141,7 +134,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var result = await _talentService.DeleteProfilePictureAsync(userId);
+            var result = await talentService.DeleteProfilePictureAsync(userId);
 
             if (!result)
             {

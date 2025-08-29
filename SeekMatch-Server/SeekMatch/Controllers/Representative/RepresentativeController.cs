@@ -10,22 +10,8 @@ namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RepresentativeController : ControllerBase
+    public class RepresentativeController(IRepresentativeService representativeService, IRecruiterService recruiterService, ICompanyService companyService) : ControllerBase
     {
-        private readonly IRepresentativeService _representativeService;
-        private readonly IRecruiterService _recruiterService;
-        private readonly ICompanyService _companyService;
-
-        public RepresentativeController(
-            IRepresentativeService representativeService,
-            IRecruiterService recruiterService,
-            ICompanyService companyService)
-        {
-            _representativeService = representativeService;
-            _recruiterService = recruiterService;
-            _companyService = companyService;
-        }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRepresentativeDto registerRepresentativeDto)
         {
@@ -34,7 +20,7 @@ namespace SeekMatch.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var result = await _representativeService.RegisterAsync(registerRepresentativeDto);
+                var result = await representativeService.RegisterAsync(registerRepresentativeDto);
 
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
@@ -58,7 +44,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var representativeDto = await _representativeService.GetAsync(userId);
+            var representativeDto = await representativeService.GetAsync(userId);
 
             if (representativeDto == null)
             {
@@ -84,7 +70,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Representative data is null");
             }
 
-            var result = await _representativeService.SaveAboutYouAsync(aboutYouDto, userId);
+            var result = await representativeService.SaveAboutYouAsync(aboutYouDto, userId);
 
             if (result)
             {
@@ -116,7 +102,7 @@ namespace SeekMatch.Controllers
                 await profilePicture.CopyToAsync(memoryStream);
                 var profilePictureData = memoryStream.ToArray();
 
-                var isSuccess = await _representativeService.UpdateProfilePictureAsync(profilePictureData, userId);
+                var isSuccess = await representativeService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
                 {
                     return NotFound("Representative not found.");
@@ -138,7 +124,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var result = await _representativeService.DeleteProfilePictureAsync(userId);
+            var result = await representativeService.DeleteProfilePictureAsync(userId);
 
             if (!result)
             {
@@ -161,7 +147,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var representativeDto = await _representativeService.GetAsync(userId);
+            var representativeDto = await representativeService.GetAsync(userId);
 
             if (representativeDto == null)
             {
@@ -187,14 +173,14 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var representativeDto = await _representativeService.GetAsync(userId);
+            var representativeDto = await representativeService.GetAsync(userId);
 
             if (representativeDto == null)
             {
                 return NotFound();
             }
 
-            var result = await _companyService.UpdateAsync(companyDto, representativeDto.CompanyId);
+            var result = await companyService.UpdateAsync(companyDto, representativeDto.CompanyId);
 
             if (result)
             {
@@ -217,7 +203,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var recruitersDto = await _representativeService.GetAllRecruitersAsync(userId);
+            var recruitersDto = await representativeService.GetAllRecruitersAsync(userId);
 
             if (recruitersDto == null)
             {
@@ -241,13 +227,13 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var representativeDto = await _representativeService.GetAsync(userId);
+            var representativeDto = await representativeService.GetAsync(userId);
 
             if (representativeDto == null) { 
                 return NotFound(); 
             }
 
-            var result = await _recruiterService.CreateAsync(recruiterDto, representativeDto.CompanyId);
+            var result = await recruiterService.CreateAsync(recruiterDto, representativeDto.CompanyId);
 
             if (!result.Succeeded)
                 return BadRequest(result.Errors);

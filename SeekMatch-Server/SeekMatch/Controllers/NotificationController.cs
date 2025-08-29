@@ -10,15 +10,8 @@ namespace SeekMatch.Controllers
     [Route("api/notifications")]
     [ApiController]
     [Authorize]
-    public class NotificationController : ControllerBase
+    public class NotificationController(INotificationService notificationService) : ControllerBase
     {
-        private readonly INotificationService _notificationService;
-
-        public NotificationController(INotificationService notificationService)
-        {
-            _notificationService = notificationService;
-        }
-
         /// <summary>
         /// Get all notifications for the authenticated user.
         /// </summary>
@@ -31,7 +24,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var notifications = await _notificationService.GetUserNotificationsAsync(userId);
+            var notifications = await notificationService.GetUserNotificationsAsync(userId);
             return Ok(notifications);
         }
 
@@ -41,7 +34,7 @@ namespace SeekMatch.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateNotification([FromBody] NotificationDto notificationDto)
         {
-            await _notificationService.CreateNotificationAsync(notificationDto.UserId, notificationDto.Message);
+            await notificationService.CreateNotificationAsync(notificationDto.UserId, notificationDto.Message);
             return Ok(new { message = "Notification created successfully" });
         }
 
@@ -51,7 +44,7 @@ namespace SeekMatch.Controllers
         [HttpPut("{notificationId}")]
         public async Task<IActionResult> MarkAsRead(string notificationId)
         {
-            await _notificationService.MarkAsReadAsync(notificationId);
+            await notificationService.MarkAsReadAsync(notificationId);
             return NoContent();
         }
     }

@@ -1,30 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobOfferController : ControllerBase
+    public class JobOfferController(IJobOfferService jobOfferService) : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IJobOfferService _jobOfferService;
-
-        public JobOfferController(UserManager<User> userManager, IJobOfferService jobOfferService)
-        {
-            _userManager = userManager;
-            _jobOfferService = jobOfferService;
-        }
-
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll([FromQuery] JobOfferFilterDto filters)
         {
-            var jobOffersDto = await _jobOfferService.GetAllAsync(filters);
+            var jobOffersDto = await jobOfferService.GetAllAsync(filters);
 
             if (jobOffersDto == null)
             {
@@ -45,7 +34,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var jobOffersDto = await _jobOfferService.GetAllByRecruiterAsync(recruiterId);
+            var jobOffersDto = await jobOfferService.GetAllByRecruiterAsync(recruiterId);
 
             if (jobOffersDto == null)
             {
@@ -72,7 +61,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Job offer data is null");
             }
 
-            var result = await _jobOfferService.CreateAsync(jobOfferDto, recruiterId);
+            var result = await jobOfferService.CreateAsync(jobOfferDto, recruiterId);
 
             if (result)
             {
@@ -100,7 +89,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Job offer data is null");
             }
 
-            var result = await _jobOfferService.UpdateAsync(jobOfferDto);
+            var result = await jobOfferService.UpdateAsync(jobOfferDto);
 
             if (result)
             {
@@ -127,7 +116,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Job offer id is null");
             }
 
-            var result = await _jobOfferService.DeleteAsync(jobOfferId);
+            var result = await jobOfferService.DeleteAsync(jobOfferId);
 
             if (result)
             {

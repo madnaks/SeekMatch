@@ -1,26 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ExperienceController : ControllerBase
+    public class ExperienceController(IExperienceService experienceService) : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IExperienceService _experienceService;
-
-        public ExperienceController(UserManager<User> userManager, IExperienceService experienceService)
-        {
-            _userManager = userManager;
-            _experienceService = experienceService;
-        }
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -32,7 +21,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var experiencesDto = await _experienceService.GetAllAsync(talentId);
+            var experiencesDto = await experienceService.GetAllAsync(talentId);
 
             if (experiencesDto == null)
             {
@@ -59,7 +48,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Experience data is null");
             }
 
-            var result = await _experienceService.CreateAsync(experienceDto, talentId);
+            var result = await experienceService.CreateAsync(experienceDto, talentId);
 
             if (result)
             {
@@ -87,7 +76,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Experience data is null");
             }
 
-            var result = await _experienceService.UpdateAsync(experienceDto);
+            var result = await experienceService.UpdateAsync(experienceDto);
 
             if (result)
             {
@@ -114,7 +103,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Experience id is null");
             }
 
-            var result = await _experienceService.DeleteAsync(experienceId);
+            var result = await experienceService.DeleteAsync(experienceId);
 
             if (result)
             {

@@ -1,26 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RecruiterController : ControllerBase
+    public class RecruiterController(IRecruiterService recruiterService) : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IRecruiterService _recruiterService;
-
-        public RecruiterController(UserManager<User> userManager, IRecruiterService recruiterService)
-        {
-            _userManager = userManager;
-            _recruiterService = recruiterService;
-        }
-
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRecruiterDto registerRecruiterDto)
         {
@@ -29,7 +18,7 @@ namespace SeekMatch.Controllers
                 if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-                var result = await _recruiterService.RegisterAsync(registerRecruiterDto);
+                var result = await recruiterService.RegisterAsync(registerRecruiterDto);
 
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
@@ -53,7 +42,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var recruiterDto = await _recruiterService.GetAsync(userId);
+            var recruiterDto = await recruiterService.GetAsync(userId);
 
             if (recruiterDto == null)
             {
@@ -79,7 +68,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Recruiter data is null");
             }
 
-            var result = await _recruiterService.SaveAboutYouAsync(aboutYouDto, userId);
+            var result = await recruiterService.SaveAboutYouAsync(aboutYouDto, userId);
 
             if (result)
             {
@@ -110,7 +99,7 @@ namespace SeekMatch.Controllers
                 await profilePicture.CopyToAsync(memoryStream);
                 var profilePictureData = memoryStream.ToArray();
 
-                var isSuccess = await _recruiterService.UpdateProfilePictureAsync(profilePictureData, userId);
+                var isSuccess = await recruiterService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
                 {
                     return NotFound("Recruiter not found.");
@@ -132,7 +121,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var result = await _recruiterService.DeleteProfilePictureAsync(userId);
+            var result = await recruiterService.DeleteProfilePictureAsync(userId);
 
             if (!result)
             {

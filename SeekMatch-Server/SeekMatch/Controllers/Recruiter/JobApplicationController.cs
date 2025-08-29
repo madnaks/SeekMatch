@@ -1,26 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class JobApplicationController : ControllerBase
+    public class JobApplicationController(IJobApplicationService jobApplicationService) : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IJobApplicationService _jobApplicationService;
-
-        public JobApplicationController(UserManager<User> userManager, IJobApplicationService jobApplicationService)
-        {
-            _userManager = userManager;
-            _jobApplicationService = jobApplicationService;
-        }
-
         [HttpGet("get-all-by-talent")]
         public async Task<IActionResult> GetAllByTalent()
         {
@@ -31,7 +20,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var jobApplicationsDto = await _jobApplicationService.GetAllByTalentAsync(talentId);
+            var jobApplicationsDto = await jobApplicationService.GetAllByTalentAsync(talentId);
 
             if (jobApplicationsDto == null)
             {
@@ -52,7 +41,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var jobApplicationsDto = await _jobApplicationService.GetAllByRecruiterAsync();
+            var jobApplicationsDto = await jobApplicationService.GetAllByRecruiterAsync();
 
             if (jobApplicationsDto == null)
             {
@@ -80,7 +69,7 @@ namespace SeekMatch.Controllers
                     return Unauthorized();
                 }
 
-                var result = await _jobApplicationService.ApplyAsync(talentId, jobOfferId);
+                var result = await jobApplicationService.ApplyAsync(talentId, jobOfferId);
 
                 if (result)
                 {
@@ -111,7 +100,7 @@ namespace SeekMatch.Controllers
 
                 using var stream = cv.OpenReadStream();
 
-                var result = await _jobApplicationService
+                var result = await jobApplicationService
                     .ExpressApplyAsync(expressApplicationDto, jobOfferId, stream, cv.FileName);
 
                 if (result)
@@ -144,7 +133,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Job application id is null");
             }
 
-            var result = await _jobApplicationService.RejectAsync(jobApplicationId, rejectionReason);
+            var result = await jobApplicationService.RejectAsync(jobApplicationId, rejectionReason);
 
             if (result)
             {
@@ -171,7 +160,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Job application id is null");
             }
 
-            var result = await _jobApplicationService.DeleteAsync(jobApplicationId);
+            var result = await jobApplicationService.DeleteAsync(jobApplicationId);
 
             if (result)
             {

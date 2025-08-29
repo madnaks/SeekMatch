@@ -1,26 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
-using SeekMatch.Core.Entities;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EducationController : ControllerBase
+    public class EducationController(IEducationService educationService) : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
-        private readonly IEducationService _educationService;
-
-        public EducationController(UserManager<User> userManager, IEducationService educationService)
-        {
-            _userManager = userManager;
-            _educationService = educationService;
-        }
-
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAll()
@@ -32,7 +21,7 @@ namespace SeekMatch.Controllers
                 return Unauthorized();
             }
 
-            var eduationsDto = await _educationService.GetAllAsync(talentId);
+            var eduationsDto = await educationService.GetAllAsync(talentId);
 
             if (eduationsDto == null)
             {
@@ -59,7 +48,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Education data is null");
             }
 
-            var result = await _educationService.CreateAsync(educationDto, talentId);
+            var result = await educationService.CreateAsync(educationDto, talentId);
 
             if (result)
             {
@@ -87,7 +76,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Education data is null");
             }
 
-            var result = await _educationService.UpdateAsync(educationDto);
+            var result = await educationService.UpdateAsync(educationDto);
 
             if (result)
             {
@@ -114,7 +103,7 @@ namespace SeekMatch.Controllers
                 return BadRequest("Education id is null");
             }
 
-            var result = await _educationService.DeleteAsync(educationId);
+            var result = await educationService.DeleteAsync(educationId);
 
             if (result)
             {
