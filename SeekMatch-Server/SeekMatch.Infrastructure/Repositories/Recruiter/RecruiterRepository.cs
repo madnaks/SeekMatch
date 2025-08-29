@@ -4,24 +4,18 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class RecruiterRepository : IRecruiterRepository
+    public class RecruiterRepository(SeekMatchDbContext dbContext) : IRecruiterRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public RecruiterRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task CreateAsync(Recruiter recruiter)
         {
-            _dbContext.Recruiters.Add(recruiter);
-            await _dbContext.SaveChangesAsync();
+            dbContext.Recruiters.Add(recruiter);
+            await dbContext.SaveChangesAsync();
         }
         public async Task<Recruiter?> GetAsync(string userId)
         {
             try
             {
-                return await _dbContext.Recruiters.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == userId);
+                return await dbContext.Recruiters.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == userId);
             }
             catch (Exception ex)
             {
@@ -33,9 +27,9 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.Recruiters.Update(recruiter);
+                dbContext.Recruiters.Update(recruiter);
 
-                var result = await _dbContext.SaveChangesAsync(true);
+                var result = await dbContext.SaveChangesAsync(true);
 
                 return result > 0;
             }

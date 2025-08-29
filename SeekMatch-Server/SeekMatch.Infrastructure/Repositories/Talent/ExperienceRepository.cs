@@ -4,19 +4,13 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class ExperienceRepository : IExperienceRepository
+    public class ExperienceRepository(SeekMatchDbContext dbContext) : IExperienceRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public ExperienceRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<IList<Experience>?> GetAllAsync(string talentId)
         {
             try
             {
-                return await _dbContext.Experiences
+                return await dbContext.Experiences
                     .Where(e => e.TalentId == talentId)
                     .OrderByDescending(e => e.StartYear)
                     .ThenByDescending(e => e.StartMonth)
@@ -32,7 +26,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.Experiences.FindAsync(id);
+                return await dbContext.Experiences.FindAsync(id);
             }
             catch (Exception ex)
             {
@@ -44,8 +38,8 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.Experiences.Add(experience);
-                var result = await _dbContext.SaveChangesAsync();
+                dbContext.Experiences.Add(experience);
+                var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
@@ -59,11 +53,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.Experiences.Attach(experience);
+                dbContext.Experiences.Attach(experience);
 
-                _dbContext.Entry(experience).State = EntityState.Modified;
+                dbContext.Entry(experience).State = EntityState.Modified;
 
-                var result = await _dbContext.SaveChangesAsync();
+                var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
@@ -77,11 +71,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                var experience = await _dbContext.Experiences.FindAsync(experienceId);
+                var experience = await dbContext.Experiences.FindAsync(experienceId);
                 if (experience != null)
                 {
-                    _dbContext.Experiences.Remove(experience);
-                    var result = await _dbContext.SaveChangesAsync();
+                    dbContext.Experiences.Remove(experience);
+                    var result = await dbContext.SaveChangesAsync();
                     return result > 0;
                 }
                 return false;

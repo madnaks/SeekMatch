@@ -4,19 +4,13 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class JobOfferRepository : IJobOfferRepository
+    public class JobOfferRepository(SeekMatchDbContext dbContext) : IJobOfferRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public JobOfferRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<IList<JobOffer>?> GetAllAsync(JobOfferFilter filters)
         {
             try
             {
-                var query = _dbContext.JobOffers.AsQueryable();
+                var query = dbContext.JobOffers.AsQueryable();
 
                 if (!string.IsNullOrWhiteSpace(filters.Title))
                     query = query.Where(j => j.Title.Contains(filters.Title));
@@ -45,10 +39,12 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.JobOffers
+                return await dbContext.JobOffers
                     .Where(e => e.RecruiterId == recruiterId)
                     .Include(e => e.JobApplications)
-                    .ThenInclude(t => t.Talent)
+                        .ThenInclude(t => t.Talent)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(ex => ex.ExpressApplication)
                     .OrderBy(e => e.CreatedAt)
                     .ToListAsync();
             }
@@ -62,7 +58,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.JobOffers.FindAsync(id);
+                return await dbContext.JobOffers.FindAsync(id);
             }
             catch (Exception ex)
             {
@@ -74,8 +70,8 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.JobOffers.Add(jobOffer);
-                var result = await _dbContext.SaveChangesAsync();
+                dbContext.JobOffers.Add(jobOffer);
+                var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
@@ -89,11 +85,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.JobOffers.Attach(jobOffer);
+                dbContext.JobOffers.Attach(jobOffer);
 
-                _dbContext.Entry(jobOffer).State = EntityState.Modified;
+                dbContext.Entry(jobOffer).State = EntityState.Modified;
 
-                var result = await _dbContext.SaveChangesAsync();
+                var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;
             }
@@ -107,11 +103,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                var jobOffer = await _dbContext.JobOffers.FindAsync(jobOfferId);
+                var jobOffer = await dbContext.JobOffers.FindAsync(jobOfferId);
                 if (jobOffer != null)
                 {
-                    _dbContext.JobOffers.Remove(jobOffer);
-                    var result = await _dbContext.SaveChangesAsync();
+                    dbContext.JobOffers.Remove(jobOffer);
+                    var result = await dbContext.SaveChangesAsync();
                     return result > 0;
                 }
                 return false;

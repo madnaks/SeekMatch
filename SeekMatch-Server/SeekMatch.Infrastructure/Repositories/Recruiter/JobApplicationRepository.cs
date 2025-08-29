@@ -4,19 +4,13 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class JobApplicationRepository : IJobApplicationRepository
+    public class JobApplicationRepository(SeekMatchDbContext dbContext) : IJobApplicationRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public JobApplicationRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<JobApplication?> GetByIdAsync(string jobApplicationId)
         {
             try
             {
-                return await _dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
+                return await dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
                     .Include(j => j.ExpressApplication)
                     .Include(j => j.JobOffer)
                     .FirstAsync();
@@ -31,7 +25,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.JobApplications
+                return await dbContext.JobApplications
                     .Where(j => j.TalentId == talentId)
                     .Include(j => j.JobOffer)
                     .ToListAsync();
@@ -46,7 +40,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await _dbContext.JobApplications.ToListAsync();
+                return await dbContext.JobApplications.ToListAsync();
             }
             catch (Exception ex)
             {
@@ -56,13 +50,13 @@ namespace SeekMatch.Infrastructure.Repositories
 
         public async Task<JobApplication?> FindByTalentAndJobOfferAsync(string talentId, string jobOfferId)
         {
-            return await _dbContext.JobApplications
+            return await dbContext.JobApplications
                 .FirstOrDefaultAsync(ja => ja.TalentId == talentId && ja.JobOfferId == jobOfferId);
         }
 
         public async Task<JobApplication?> FindByEmailAndExpressApplicationAsync(string email, string jobOfferId)
         {
-            return await _dbContext.JobApplications
+            return await dbContext.JobApplications
                 .FirstOrDefaultAsync(ja => ja.JobOfferId == jobOfferId && ja.ExpressApplication.Email == email);
         }
 
@@ -70,8 +64,8 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.JobApplications.Add(jobApplication);
-                return await _dbContext.SaveChangesAsync() > 0;
+                dbContext.JobApplications.Add(jobApplication);
+                return await dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception ex)
             {
@@ -83,9 +77,9 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.JobApplications.Add(jobApplication);
-                _dbContext.ExpressApplications.Add(expressApplication);
-                return await _dbContext.SaveChangesAsync() > 0;
+                dbContext.JobApplications.Add(jobApplication);
+                dbContext.ExpressApplications.Add(expressApplication);
+                return await dbContext.SaveChangesAsync() > 0;
             }
             catch (Exception ex)
             {
@@ -97,13 +91,13 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                var jobApplication = await _dbContext.JobApplications.FindAsync(jobApplicationId);
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
                     jobApplication.Status = Core.Enums.JobApplicationStatus.Rejected;
                     jobApplication.RejectionReason = rejectionReason;
                     
-                    return await _dbContext.SaveChangesAsync() > 0;
+                    return await dbContext.SaveChangesAsync() > 0;
                 }
                 return false;
             }
@@ -117,11 +111,11 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                var jobApplication = await _dbContext.JobApplications.FindAsync(jobApplicationId);
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
-                    _dbContext.JobApplications.Remove(jobApplication);
-                    return await _dbContext.SaveChangesAsync() > 0;
+                    dbContext.JobApplications.Remove(jobApplication);
+                    return await dbContext.SaveChangesAsync() > 0;
                 }
                 return false;
             }

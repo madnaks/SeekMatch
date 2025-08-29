@@ -4,19 +4,13 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class CompanyRepository : ICompanyRepository
+    public class CompanyRepository(SeekMatchDbContext dbContext) : ICompanyRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public CompanyRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<Company?> GetAsync(string id)
         {
             try
             {
-                return await _dbContext.Companies
+                return await dbContext.Companies
                     .FirstOrDefaultAsync(t => t.Id == id);
             }
             catch (Exception ex)
@@ -27,17 +21,17 @@ namespace SeekMatch.Infrastructure.Repositories
 
         public async Task CreateAsync(Company company)
         {
-            _dbContext.Companies.Add(company);
-            await _dbContext.SaveChangesAsync();
+            dbContext.Companies.Add(company);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<bool> UpdateAsync(Company company)
         {
             try
             {
-                _dbContext.Companies.Update(company);
+                dbContext.Companies.Update(company);
 
-                var result = await _dbContext.SaveChangesAsync(true);
+                var result = await dbContext.SaveChangesAsync(true);
 
                 return result > 0;
             }

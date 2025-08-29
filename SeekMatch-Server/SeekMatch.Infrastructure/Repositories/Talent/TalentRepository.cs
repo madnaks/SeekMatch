@@ -4,25 +4,20 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class TalentRepository : ITalentRepository
+    public class TalentRepository(SeekMatchDbContext dbContext) : ITalentRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public TalentRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
+     
         public async Task CreateAsync(Talent talent)
         {
-            _dbContext.Talents.Add(talent);
-            await _dbContext.SaveChangesAsync();
+            dbContext.Talents.Add(talent);
+            await dbContext.SaveChangesAsync();
         }
 
         public async Task<Talent?> GetAsync(string userId)
         {
             try
             {
-                var talent = await _dbContext.Talents
+                var talent = await dbContext.Talents
                     .Include(t => t.User)
                     .Include(t => t.Educations)
                     .Include(t => t.Experiences)
@@ -53,9 +48,9 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-               _dbContext.Talents.Update(talent);
+               dbContext.Talents.Update(talent);
 
-                var result = await _dbContext.SaveChangesAsync(true);
+                var result = await dbContext.SaveChangesAsync(true);
 
                 return result > 0;
             }

@@ -4,24 +4,18 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
 {
-    public class RepresentativeRepository : IRepresentativeRepository
+    public class RepresentativeRepository(SeekMatchDbContext dbContext) : IRepresentativeRepository
     {
-        public readonly SeekMatchDbContext _dbContext;
-        public RepresentativeRepository(SeekMatchDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task RegisterAsync(Representative representative)
         {
-            _dbContext.Representatives.Add(representative);
-            await _dbContext.SaveChangesAsync();
+            dbContext.Representatives.Add(representative);
+            await dbContext.SaveChangesAsync();
         }
         public async Task<Representative?> GetAsync(string userId)
         {
             try
             {
-                return await _dbContext.Representatives
+                return await dbContext.Representatives
                     .Include(r => r.Company)
                     .ThenInclude(c => c.Recruiters)
                     .ThenInclude(recruiter => recruiter.User)
@@ -38,9 +32,9 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                _dbContext.Representatives.Update(representative);
+                dbContext.Representatives.Update(representative);
 
-                var result = await _dbContext.SaveChangesAsync(true);
+                var result = await dbContext.SaveChangesAsync(true);
 
                 return result > 0;
             }
