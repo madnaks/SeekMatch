@@ -4,18 +4,11 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
 {
-    public class NotificationService : INotificationService
+    public class NotificationService(INotificationRepository notificationRepository) : INotificationService
     {
-        private readonly INotificationRepository _notificationRepository;
-
-        public NotificationService(INotificationRepository notificationRepository)
-        {
-            _notificationRepository = notificationRepository;
-        }
-
         public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId)
         {
-            return await _notificationRepository.GetUserNotificationsAsync(userId);
+            return await notificationRepository.GetUserNotificationsAsync(userId);
         }
 
         public async Task CreateNotificationAsync(string userId, string message)
@@ -26,12 +19,12 @@ namespace SeekMatch.Application.Services
                 Message = message
             };
 
-            await _notificationRepository.AddNotificationAsync(notification);
+            await notificationRepository.AddNotificationAsync(notification);
         }
 
         public async Task MarkAsReadAsync(string notificationId)
         {
-            await _notificationRepository.MarkAsReadAsync(notificationId);
+            await notificationRepository.MarkAsReadAsync(notificationId);
         }
     }
 

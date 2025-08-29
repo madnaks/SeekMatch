@@ -8,23 +8,12 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
 {
-    public class RecruiterService : IRecruiterService
-    {
-        private readonly IRecruiterRepository _recruiterRepository;
-        private readonly IEmailService _emailService;
-        private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
-        public RecruiterService(
+    public class RecruiterService(
             IRecruiterRepository recruiterRepository,
-            IEmailService emailService, 
+            IEmailService emailService,
             IMapper mapper,
-            UserManager<User> userManager)
-        {
-            _recruiterRepository = recruiterRepository;
-            _emailService = emailService;
-            _mapper = mapper;
-            _userManager = userManager;
-        }
+            UserManager<User> userManager) : IRecruiterService
+    {
         public async Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto)
         {
             var user = new User
@@ -34,7 +23,7 @@ namespace SeekMatch.Application.Services
                 Role = UserRole.Recruiter
             };
 
-            var result = await _userManager.CreateAsync(user, registerRecruiterDto.Password);
+            var result = await userManager.CreateAsync(user, registerRecruiterDto.Password);
             
             if (!result.Succeeded)
                 return result;
@@ -47,24 +36,24 @@ namespace SeekMatch.Application.Services
                 User = user
             };
 
-            await _recruiterRepository.CreateAsync(recruiter);
+            await recruiterRepository.CreateAsync(recruiter);
 
             return IdentityResult.Success;
         }
         public async Task<RecruiterDto?> GetAsync(string userId)
         {
-            return _mapper.Map<RecruiterDto>(await _recruiterRepository.GetAsync(userId));
+            return mapper.Map<RecruiterDto>(await recruiterRepository.GetAsync(userId));
         }
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)
         {
-            var recruiter = await _recruiterRepository.GetAsync(userId);
+            var recruiter = await recruiterRepository.GetAsync(userId);
 
             if (recruiter != null)
             {
                 recruiter.FirstName = aboutYouDto.FirstName;
                 recruiter.LastName = aboutYouDto.LastName;
 
-                return await _recruiterRepository.SaveChangesAsync(recruiter);
+                return await recruiterRepository.SaveChangesAsync(recruiter);
             }
 
             return false;
@@ -73,7 +62,7 @@ namespace SeekMatch.Application.Services
         #region Profile picture management
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
-            var recruiter = await _recruiterRepository.GetAsync(userId);
+            var recruiter = await recruiterRepository.GetAsync(userId);
 
             if (recruiter == null)
             {
@@ -81,14 +70,14 @@ namespace SeekMatch.Application.Services
             }
 
             recruiter.ProfilePicture = profilePictureData;
-            await _recruiterRepository.SaveChangesAsync(recruiter);
+            await recruiterRepository.SaveChangesAsync(recruiter);
 
             return true;
         }
 
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
-            var recruiter = await _recruiterRepository.GetAsync(userId);
+            var recruiter = await recruiterRepository.GetAsync(userId);
 
             if (recruiter == null)
             {
@@ -96,7 +85,7 @@ namespace SeekMatch.Application.Services
             }
 
             recruiter.ProfilePicture = null;
-            await _recruiterRepository.SaveChangesAsync(recruiter);
+            await recruiterRepository.SaveChangesAsync(recruiter);
 
             return true;
         }
@@ -114,7 +103,7 @@ namespace SeekMatch.Application.Services
 
             var temporaryPassword = Utils.GenerateTemporaryPassword();
 
-            var result = await _userManager.CreateAsync(user, temporaryPassword);
+            var result = await userManager.CreateAsync(user, temporaryPassword);
 
             if (!result.Succeeded)
                 return result;
@@ -127,14 +116,14 @@ namespace SeekMatch.Application.Services
                 User = user
             };
 
-            await _recruiterRepository.CreateAsync(recruiter);
+            await recruiterRepository.CreateAsync(recruiter);
 
             var subject = "Your Temporary Password";
             var body = $"Hello { recruiter.FirstName } { recruiter.LastName },<br/>" +
                        $"Your account has been created. Here is your temporary password: <strong>{ temporaryPassword }</strong><br/>" +
                        "Please change it after logging in.";
 
-            await _emailService.SendEmailAsync(recruiterDto.Email, subject, body);
+            await emailService.SendEmailAsync(recruiterDto.Email, subject, body);
 
 
             return IdentityResult.Success;

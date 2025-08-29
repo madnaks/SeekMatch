@@ -10,25 +10,12 @@ using AboutYouDto = SeekMatch.Application.DTOs.Representative.AboutYouDto;
 
 namespace SeekMatch.Application.Services
 {
-    public class RepresentativeService : IRepresentativeService
-    {
-        private readonly IRepresentativeRepository _representativeRepository;
-        private readonly IMapper _mapper;
-        private readonly ICompanyService _companyService;
-        private readonly UserManager<User> _userManager;
-
-        public RepresentativeService(
-            IRepresentativeRepository representativeRepository, 
+    public class RepresentativeService(
+            IRepresentativeRepository representativeRepository,
             IMapper mapper,
             ICompanyService companyService,
-            UserManager<User> userManager)
-        {
-            _representativeRepository = representativeRepository;
-            _mapper = mapper;
-            _companyService = companyService;
-            _userManager = userManager;
-        }
-
+            UserManager<User> userManager) : IRepresentativeService
+    {
         public async Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto)
         {
             var user = new User
@@ -38,7 +25,7 @@ namespace SeekMatch.Application.Services
                 Role = UserRole.Representative
             };
 
-            var result = await _userManager.CreateAsync(user, registerRepresentativeDto.Password);
+            var result = await userManager.CreateAsync(user, registerRepresentativeDto.Password);
 
             if (!result.Succeeded)
                 return result;
@@ -50,7 +37,7 @@ namespace SeekMatch.Application.Services
                 PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
             };
 
-            await _companyService.CreateAsync(company);
+            await companyService.CreateAsync(company);
 
             var representative = new Representative()
             {
@@ -62,26 +49,26 @@ namespace SeekMatch.Application.Services
                 User = user
             };
 
-            await _representativeRepository.RegisterAsync(representative);
+            await representativeRepository.RegisterAsync(representative);
 
             return IdentityResult.Success;
         }
 
         public async Task<RepresentativeDto?> GetAsync(string userId)
         {
-            return _mapper.Map<RepresentativeDto>(await _representativeRepository.GetAsync(userId));
+            return mapper.Map<RepresentativeDto>(await representativeRepository.GetAsync(userId));
         }
 
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)
         {
-            var representative = await _representativeRepository.GetAsync(userId);
+            var representative = await representativeRepository.GetAsync(userId);
 
             if (representative != null)
             {
                 representative.FirstName = aboutYouDto.FirstName;
                 representative.LastName = aboutYouDto.LastName;
 
-                return await _representativeRepository.SaveChangesAsync(representative);
+                return await representativeRepository.SaveChangesAsync(representative);
             }
 
             return false;
@@ -90,7 +77,7 @@ namespace SeekMatch.Application.Services
         #region Profile picture management
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
-            var representative = await _representativeRepository.GetAsync(userId);
+            var representative = await representativeRepository.GetAsync(userId);
 
             if (representative == null)
             {
@@ -98,14 +85,14 @@ namespace SeekMatch.Application.Services
             }
 
             representative.ProfilePicture = profilePictureData;
-            await _representativeRepository.SaveChangesAsync(representative);
+            await representativeRepository.SaveChangesAsync(representative);
 
             return true;
         }
 
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
-            var representative = await _representativeRepository.GetAsync(userId);
+            var representative = await representativeRepository.GetAsync(userId);
 
             if (representative == null)
             {
@@ -113,7 +100,7 @@ namespace SeekMatch.Application.Services
             }
 
             representative.ProfilePicture = null;
-            await _representativeRepository.SaveChangesAsync(representative);
+            await representativeRepository.SaveChangesAsync(representative);
 
             return true;
         }
@@ -122,12 +109,12 @@ namespace SeekMatch.Application.Services
         #region Company Recruiter Management
         public async Task<List<RecruiterDto>> GetAllRecruitersAsync(string userId)
         {
-            var representative = await _representativeRepository.GetAsync(userId);
+            var representative = await representativeRepository.GetAsync(userId);
 
             if (representative != null)
             {
                 var recruiters = representative.Company.Recruiters;
-                return _mapper.Map<List<RecruiterDto>>(recruiters);
+                return mapper.Map<List<RecruiterDto>>(recruiters);
             }
 
             return new List<RecruiterDto>();

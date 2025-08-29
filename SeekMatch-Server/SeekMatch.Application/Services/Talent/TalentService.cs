@@ -8,21 +8,11 @@ using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Application.Services
 {
-    public class TalentService : ITalentService
-    {
-        private readonly ITalentRepository _talentRepository;
-        private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
-
-        public TalentService(
-            ITalentRepository talentRepository, 
+    public class TalentService(
+            ITalentRepository talentRepository,
             IMapper mapper,
-            UserManager<User> userManager)
-        {
-            _talentRepository = talentRepository;
-            _mapper = mapper;
-            _userManager = userManager;
-        }
+            UserManager<User> userManager) : ITalentService
+    {
         public async Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto)
         {
             var user = new User
@@ -32,12 +22,12 @@ namespace SeekMatch.Application.Services
                 Role = UserRole.Talent
             };
 
-            var result = await _userManager.CreateAsync(user, registerTalentDto.Password);
+            var result = await userManager.CreateAsync(user, registerTalentDto.Password);
 
             if (!result.Succeeded)
                 return result;
 
-            //await _userManager.AddToRoleAsync(user, model.Role.ToString());
+            //await userManager.AddToRoleAsync(user, model.Role.ToString());
 
             var talent = new Talent()
             {
@@ -46,19 +36,19 @@ namespace SeekMatch.Application.Services
                 User = user
             };
 
-            await _talentRepository.CreateAsync(talent);
+            await talentRepository.CreateAsync(talent);
 
             return IdentityResult.Success;
         } 
         
         public async Task<TalentDto?> GetAsync(string userId)
         {
-            return _mapper.Map<TalentDto>(await _talentRepository.GetAsync(userId));
+            return mapper.Map<TalentDto>(await talentRepository.GetAsync(userId));
         } 
         
         public async Task<bool> SaveProfileAsync(TalentDto talentDto, string userId)
         {
-            var talent = await _talentRepository.GetAsync(userId);
+            var talent = await talentRepository.GetAsync(userId);
 
             if (talent != null)
             {
@@ -74,7 +64,7 @@ namespace SeekMatch.Application.Services
                 talent.LinkedIn = talentDto.LinkedIn;
                 talent.Website = talentDto.Website;
 
-                return await _talentRepository.SaveChangesAsync(talent);
+                return await talentRepository.SaveChangesAsync(talent);
             }
 
             return false;
@@ -82,7 +72,7 @@ namespace SeekMatch.Application.Services
 
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
-            var talent = await _talentRepository.GetAsync(userId);
+            var talent = await talentRepository.GetAsync(userId);
 
             if (talent == null)
             {
@@ -90,7 +80,7 @@ namespace SeekMatch.Application.Services
             }
 
             talent.ProfilePicture = profilePictureData;
-            await _talentRepository.SaveChangesAsync(talent);
+            await talentRepository.SaveChangesAsync(talent);
 
             return true;
 
@@ -98,7 +88,7 @@ namespace SeekMatch.Application.Services
 
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
-            var talent = await _talentRepository.GetAsync(userId);
+            var talent = await talentRepository.GetAsync(userId);
 
             if (talent == null)
             {
@@ -106,7 +96,7 @@ namespace SeekMatch.Application.Services
             }
 
             talent.ProfilePicture = null;
-            await _talentRepository.SaveChangesAsync(talent);
+            await talentRepository.SaveChangesAsync(talent);
 
             return true;
         }

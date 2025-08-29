@@ -3,50 +3,31 @@ using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
-using SeekMatch.Infrastructure.Repositories;
-using System.IO;
-
+ 
 namespace SeekMatch.Application.Services
 {
-    public class JobApplicationService : IJobApplicationService
-    {
-        private readonly IJobApplicationRepository _jobApplicationRepository;
-        private readonly IJobOfferRepository _jobOfferRepository;
-        private readonly IEmailService _emailService;
-        private readonly IFileStorageService _fileStorageService;
-        private readonly INotificationService _notificationService;
-        private readonly IMapper _mapper;
-
-        public JobApplicationService(
+    public class JobApplicationService(
             IJobApplicationRepository jobApplicationRepository,
             IJobOfferRepository jobOfferRepository,
             IEmailService emailService,
-            IFileStorageService fileStorageService, 
-            INotificationService notificationService, 
-            IMapper mapper)
-        {
-            _jobApplicationRepository = jobApplicationRepository;
-            _jobOfferRepository = jobOfferRepository;
-            _emailService = emailService;
-            _fileStorageService = fileStorageService;
-            _notificationService = notificationService;
-            _mapper = mapper;
-        }
-
+            IFileStorageService fileStorageService,
+            INotificationService notificationService,
+            IMapper mapper) : IJobApplicationService
+    {
         public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync(string talentId)
         {
-            return _mapper.Map<IList<JobApplicationDto>>(await _jobApplicationRepository.GetAllByTalentAsync(talentId));
+            return mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByTalentAsync(talentId));
         }
 
         public async Task<IList<JobApplicationDto>?> GetAllByRecruiterAsync()
         {
-            return _mapper.Map<IList<JobApplicationDto>>(await _jobApplicationRepository.GetAllByRecruiterAsync());
+            return mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByRecruiterAsync());
         }
 
         public async Task<bool> ApplyAsync(string talentId, string jobOfferId)
         {
             // Check if the talent has already applied for the job offer
-            var existingApplication = await _jobApplicationRepository
+            var existingApplication = await jobApplicationRepository
                 .FindByTalentAndJobOfferAsync(talentId, jobOfferId);
 
             if (existingApplication != null)
@@ -60,15 +41,15 @@ namespace SeekMatch.Application.Services
                 JobOfferId = jobOfferId,
                 TalentId = talentId
             };
-            return await _jobApplicationRepository.ApplyAsync(jobApplication);
+            return await jobApplicationRepository.ApplyAsync(jobApplication);
         }
 
         public async Task<bool> ExpressApplyAsync(ExpressApplicationDto expressApplicationDto, string jobOfferId, Stream cvStream, string fileName)
         {
-            var expressApplication = _mapper.Map<ExpressApplication>(expressApplicationDto);
+            var expressApplication = mapper.Map<ExpressApplication>(expressApplicationDto);
 
             // Check if the anonymous talent has already applied for the job offer
-            var existingApplication = await _jobApplicationRepository
+            var existingApplication = await jobApplicationRepository
                 .FindByEmailAndExpressApplicationAsync(expressApplication.Email, jobOfferId);
 
             if (existingApplication != null)
@@ -76,7 +57,7 @@ namespace SeekMatch.Application.Services
                 throw new Exception("You have already applied for this job offer with this email.");
             }
 
-            var existingJobOffer = await _jobOfferRepository.GetByIdAsync(jobOfferId);
+            var existingJobOffer = await jobOfferRepository.GetByIdAsync(jobOfferId);
 
             if (existingJobOffer == null)
             {
@@ -96,28 +77,28 @@ namespace SeekMatch.Application.Services
             expressApplication.Id = newExpressApplicationGuid;
             expressApplication.JobApplicationId = jobApplication.Id;
 
-            var cvPath = await _fileStorageService.SaveFileAsync(cvStream, $"{newExpressApplicationGuid}_{fileName}");
+            var cvPath = await fileStorageService.SaveFileAsync(cvStream, $"{newExpressApplicationGuid}_{fileName}");
             expressApplication.CvPath = cvPath;
 
-            await _emailService.SendExpressApplicationConfirmationAsync(expressApplication, existingJobOffer);
+            await emailService.SendExpressApplicationConfirmationAsync(expressApplication, existingJobOffer);
 
-            return await _jobApplicationRepository.ExpressApplyAsync(jobApplication, expressApplication);
+            return await jobApplicationRepository.ExpressApplyAsync(jobApplication, expressApplication);
         }
 
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
-            var result = await _jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);
+            var result = await jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);
             
-            var existingJobApplication = await _jobApplicationRepository.GetByIdAsync(jobApplicationId);
+            var existingJobApplication = await jobApplicationRepository.GetByIdAsync(jobApplicationId);
 
             if (existingJobApplication != null) {
                 if (existingJobApplication.IsExpress)
                 {
-                    await _emailService.SendExpressApplicationRejectionAsync(existingJobApplication);
+                    await emailService.SendExpressApplicationRejectionAsync(existingJobApplication);
                 }
                 else
                 {
-                    await _notificationService.CreateNotificationAsync(existingJobApplication.TalentId, rejectionReason);
+                    await notificationService.CreateNotificationAsync(existingJobApplication.TalentId!, rejectionReason);
                 }
             }
 
@@ -126,7 +107,7 @@ namespace SeekMatch.Application.Services
 
         public async Task<bool> DeleteAsync(string jobApplicationId)
         {
-            return await _jobApplicationRepository.DeleteAsync(jobApplicationId);
+            return await jobApplicationRepository.DeleteAsync(jobApplicationId);
         }
     }
 }
