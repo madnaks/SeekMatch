@@ -8,19 +8,6 @@
     }
 }
 
-.loading-spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 25vh;
-
-    .spinner-border {
-        color: $secondary-color;
-        width: 3rem;
-        height: 3rem;
-    }
-}
-
 .card-btn {
     position: absolute;
     cursor: pointer;

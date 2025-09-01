@@ -17,7 +17,7 @@
                 </span>
             </div>
         </div>
-    } @else {
+    } @else if (!isLoading) {
         La recherche que vous avez effectuer ne donne aucun résultat
     }
     <div *ngIf="isLoading" class="text-center">

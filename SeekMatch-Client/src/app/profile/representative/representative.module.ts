@@ -9,7 +9,7 @@ import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
-import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } fr
     TranslateModule,
     FullNameInputComponent,
     ErrorMessageComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    LoaderComponent
 ]
 })
 export class RepresentativeModule { }

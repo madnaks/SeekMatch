@@ -1,11 +1,8 @@
 <div class="row">
     <div class="col-md-9">
 
-        @if (isLoading) {
-        <div class="loading-spinner">
-            <div class="spinner-border">
-            </div>
-        </div>
+        @if (!isLoading) {
+        <app-loader/>
         } @else {
         <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
             <!-- Profile title -->

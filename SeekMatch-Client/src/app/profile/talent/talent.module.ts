@@ -15,7 +15,8 @@ import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-mod
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
+import { JobModule } from "@app/job/job.module";
 
 @NgModule({
   declarations: [
@@ -41,7 +42,9 @@ import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, Ema
     FullNameInputComponent,
     PhoneInputComponent,
     ErrorMessageComponent,
-    EmailInputComponent
+    EmailInputComponent,
+    JobModule,
+    LoaderComponent
 ]
 })
 export class TalentModule { }

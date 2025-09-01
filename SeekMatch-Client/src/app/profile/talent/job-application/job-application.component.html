@@ -4,10 +4,7 @@
 
         <!-- Loading -->
         @if (isLoading) {
-        <div class="loading-spinner">
-            <div class="spinner-border">
-            </div>
-        </div>
+        <app-loader/>
         } @else {
             <!-- No data -->
             @if (jobApplications.length === 0) {
