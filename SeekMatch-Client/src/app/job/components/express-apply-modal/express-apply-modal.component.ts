@@ -16,8 +16,10 @@ export class ExpressApplyModalComponent {
   @Input() jobOfferId: string | undefined = '';
 
   public expressApplyMode: boolean = false;
+  public expressApplyLoginSignUpMode: boolean = false;
   public expressApplyForm: FormGroup;
   public isSaving: boolean = false;
+  public activeTab: number = 1;
 
   constructor(
     private fb: NonNullableFormBuilder,

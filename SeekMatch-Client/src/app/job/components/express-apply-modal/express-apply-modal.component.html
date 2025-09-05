@@ -1,122 +1,233 @@
 <!-- Page 1 : Option selection (Login/Sign Up Or Express Apply) -->
-@if(!expressApplyMode) {
+@if(!expressApplyMode && !expressApplyLoginSignUpMode) {
 <!-- Modal Header -->
 <div class="modal-header">
-    <div class="fs-3">
-        <i class="me-2 fa-regular fa-user"></i>
-        {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
-    </div>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+  <div class="fs-3">
+    <i class="me-2 fa-regular fa-user"></i>
+    {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
+  </div>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 
 </div>
 <!-- Modal Body -->
 <div class="modal-body">
-    <!-- First and second line -->
-    <div class="row">
-        <div class="col-12">
-            <p>{{ "Recruiter.ExpressApplyModal.FistPage.FirstLine" | translate }}</p>
-            <p>{{ "Recruiter.ExpressApplyModal.FistPage.SecondLine" | translate }}</p>
-        </div>
+  <!-- First and second line -->
+  <div class="row">
+    <div class="col-12">
+      <p>{{ "Recruiter.ExpressApplyModal.FistPage.FirstLine" | translate }}</p>
+      <p>{{ "Recruiter.ExpressApplyModal.FistPage.SecondLine" | translate }}</p>
     </div>
-    <!-- Buttons -->
-    <div class="row justify-content-center mb-2">
-        <button class="btn btn-primary col-9">
-            <i class="me-2 fa-solid fa-key"></i>
-            {{ "Recruiter.ExpressApplyModal.FistPage.LoginSignup" | translate }}
-        </button>
+  </div>
+  <!-- Buttons -->
+  <div class="row justify-content-center mb-2">
+    <button class="btn btn-primary col-9" (click)="expressApplyLoginSignUpMode=true">
+      <i class="me-2 fa-solid fa-key"></i>
+      {{ "Recruiter.ExpressApplyModal.FistPage.LoginSignup" | translate }}
+    </button>
+  </div>
+  <div class="row justify-content-center mb-2">
+    <button class="btn btn-light col-9" (click)="expressApplyMode=true">
+      <i class="me-2 fa-solid fa-rocket"></i>
+      {{ "Recruiter.ExpressApplyModal.FistPage.ExpressApply" | translate }}
+    </button>
+  </div>
+  <!-- Third line -->
+  <div class="row">
+    <div class="col-12">
+      <p> {{ "Recruiter.ExpressApplyModal.FistPage.ThirdLine" | translate }} </p>
     </div>
-    <div class="row justify-content-center mb-2">
-        <button class="btn btn-light col-9" (click)="expressApplyMode=true">
-            <i class="me-2 fa-solid fa-rocket"></i>
-            {{ "Recruiter.ExpressApplyModal.FistPage.ExpressApply" | translate }}
-        </button>
-    </div>
-    <!-- Third line -->
-    <div class="row">
-        <div class="col-12">
-            <p> {{ "Recruiter.ExpressApplyModal.FistPage.ThirdLine" | translate }} </p>
-        </div>
-    </div>
+  </div>
 </div>
 }
 <!-- Page 2 : Express Apply Mode -->
 @if (expressApplyMode) {
 <!-- Modal Header -->
 <div class="modal-header">
-    <div class="fs-3">
-        <i class="me-2 fa-solid fa-rocket"></i>
-        {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.HeaderTitle" | translate }}
-    </div>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+  <div class="fs-3">
+    <i class="me-2 fa-solid fa-rocket"></i>
+    {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.HeaderTitle" | translate }}
+  </div>
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 <!-- Modal Body -->
 <div class="modal-body">
-    <!-- First line -->
-    <div class="row">
-        <div class="col-12">
-            {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.FirstLine" | translate }}
-        </div>
+  <!-- First line -->
+  <div class="row">
+    <div class="col-12">
+      {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.FirstLine" | translate }}
     </div>
-    <div class="row">
-        <div class="col-12">
-            <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
-                <!-- Line 1: Full name -->
-                <app-full-name-input [form]="expressApplyForm">
-                </app-full-name-input>
-                <!-- Line 2: Email -->
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <app-email-input [form]="expressApplyForm"></app-email-input>
-                    </div>
-                </div>
-                <!-- Line 3: CV-->
-                <div class="row mt-3">
-                    <div class="col-md-12">
-                        <input class="form-control" type="file" id="formFile"
-                            accept="application/pdf" (change)="onFileSelected($event)">
-                        @if((expressApplyForm.get('cv')?.errors?.['required'] && expressApplyForm.get('cv')?.touched)) {
-                        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-REQUIRED'"></app-error-message>
-                        }
-                        @if((expressApplyForm.get('cv')?.errors?.['invalidFileType'] && expressApplyForm.get('cv')?.touched)) {
-                        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-INVALID'"></app-error-message>
-                        }
-                    </div>
-                </div>
-                <!-- Line 4: Phone-->
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <app-phone-input [form]="expressApplyForm">
-                        </app-phone-input>
-                    </div>
-                </div>
-                <!-- Line 5: Submit application / Return-->
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <button class="btn btn-light w-100" (click)="expressApplyMode=false">
-                            <i class="me-2 fa-solid fa-circle-left"></i>
-                            Return
-                        </button>
-                    </div>
-                    <div class="col-md-6">
-                        <button type="submit" class="btn btn-primary w-100">
-                            @if (isSaving) {
-                            <i class="fa fa-spin fa-spinner"></i>
-                            } @else {
-                            <i class="me-2 fa-solid fa-clipboard-check"></i>
-                            Apply
-                            }
-                        </button>
-                    </div>
-                </div>
-            </form>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
+        <!-- Line 1: Full name -->
+        <app-full-name-input [form]="expressApplyForm">
+        </app-full-name-input>
+        <!-- Line 2: Email -->
+        <div class="row mt-3">
+          <div class="col-12">
+            <app-email-input [form]="expressApplyForm"></app-email-input>
+          </div>
         </div>
-    </div>
-    <!-- Bottom line -->
-    <div class="row mt-3">
-        <div class="col-12">
-            <i class="me-2 fa-solid fa-lightbulb"></i> {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine" |
-            translate }}
+        <!-- Line 3: CV-->
+        <div class="row mt-3">
+          <div class="col-md-12">
+            <input class="form-control" type="file" id="formFile" accept="application/pdf"
+              (change)="onFileSelected($event)">
+            @if((expressApplyForm.get('cv')?.errors?.['required'] && expressApplyForm.get('cv')?.touched)) {
+            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-REQUIRED'"></app-error-message>
+            }
+            @if((expressApplyForm.get('cv')?.errors?.['invalidFileType'] && expressApplyForm.get('cv')?.touched)) {
+            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-INVALID'"></app-error-message>
+            }
+          </div>
         </div>
+        <!-- Line 4: Phone-->
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <app-phone-input [form]="expressApplyForm">
+            </app-phone-input>
+          </div>
+        </div>
+        <!-- Line 5: Submit application / Return-->
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <button class="btn btn-light w-100" (click)="expressApplyMode=false">
+              <i class="me-2 fa-solid fa-circle-left"></i>
+              Return
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary w-100">
+              @if (isSaving) {
+              <i class="fa fa-spin fa-spinner"></i>
+              } @else {
+              <i class="me-2 fa-solid fa-clipboard-check"></i>
+              Apply
+              }
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
+  </div>
+  <!-- Bottom line -->
+  <div class="row mt-3">
+    <div class="col-12">
+      <i class="me-2 fa-solid fa-lightbulb"></i> {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine" |
+      translate }}
+    </div>
+  </div>
 </div>
+}
+
+<!-- Page 3 : Express Apply Login / Sign Up  -->
+@if (expressApplyLoginSignUpMode) {
+<!-- Page 3 : Express Apply Login / Sign Up  -->
+@if (expressApplyLoginSignUpMode) {
+<div class="modal-header">
+  <div class="fs-3">
+    <i class="me-2 fa-regular fa-user"></i>
+    {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
+  </div>  
+  <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <div class="container py-4">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-pills justify-content-center mb-4">
+      <!-- Login Tab -->
+      <li [ngbNavItem]="1">
+        <button ngbNavLink>
+          <i class="fa-regular fa-user me-2"></i>Login
+        </button>
+        <ng-template ngbNavContent>
+          <form class="mx-auto" style="max-width: 400px;">
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="form-control" placeholder="Enter your email address">
+            </div>
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+              <label class="form-label mb-0">Password</label>
+              <a href="#" class="small text-decoration-none">Forgot password?</a>
+            </div>
+            <div class="mb-3 position-relative">
+              <input type="password" class="form-control" placeholder="Enter your password">
+              <span class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor:pointer;">
+                <i class="fa fa-eye"></i>
+              </span>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 mb-3">Log In</button>
+            <div class="text-center my-3 text-muted">
+              <span>OR</span>
+            </div>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fab fa-google me-2"></i>Continue with Google
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fab fa-apple me-2"></i>Continue with Apple
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fa-brands fa-btc me-2"></i>Continue with Binance
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fa fa-wallet me-2"></i>Continue with Wallet
+            </button>
+            <div class="text-center mt-3">
+              <span>Don't have an account yet? <a href="#" class="fw-bold" (click)="activeTab = 2">Sign up</a></span>
+            </div>
+          </form>
+        </ng-template>
+      </li>
+      <!-- Sign Up Tab -->
+      <li [ngbNavItem]="2">
+        <button ngbNavLink>
+          <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+        </button>
+        <ng-template ngbNavContent>
+          <form class="mx-auto" style="max-width: 400px;">
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fab fa-google me-2"></i>Continue with Google
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fab fa-apple me-2"></i>Continue with Apple
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fa-brands fa-btc me-2"></i>Continue with Binance
+            </button>
+            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
+              <i class="fa fa-wallet me-2"></i>Continue with Wallet
+            </button>
+            <div class="text-center my-3 text-muted">
+              <span>OR</span>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input type="email" class="form-control" placeholder="Enter your email address">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" placeholder="Enter your password">
+              <span class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor:pointer;">
+                <i class="fa fa-eye"></i>
+              </span>
+            </div>
+            <button type="submit" class="btn btn-dark w-100 mb-3">Create an account</button>
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" id="updatesCheck">
+              <label class="form-check-label small" for="updatesCheck">
+                Please keep me updated by email with the latest news, research findings, reward programs, event updates.
+              </label>
+            </div>
+            <div class="text-center mt-3">
+              <span>Already have an account? <a href="#" class="fw-bold" (click)="activeTab = 1">Login</a></span>
+            </div>
+          </form>
+        </ng-template>
+      </li>
+    </ul>
+  </div>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>
+}
 }

@@ -7,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { JobListComponent } from './components/job-list/job-list.component';
 import { JobDetailsComponent } from './components/job-details/job-details.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
 import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent, LoaderComponent } from "@app/shared/form-controls";
@@ -25,6 +25,7 @@ import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, Error
     CommonModule,
     JobRoutingModule,
     NgbAccordionModule,
+    NgbNavModule,
     TranslateModule,
     FormsModule,
     ReactiveFormsModule,
