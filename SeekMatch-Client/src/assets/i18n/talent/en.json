@@ -117,7 +117,9 @@
             "NoEducations": "This talent has not shared any education information.",
             "NoExperiences": "This talent has not shared any professional experience.",
             "In": "in",
-            "At": "at"
+            "At": "at",
+            "ShowResume": "Show Resume",
+            "HideResume": "Hide Resume"
         }
     }
 }

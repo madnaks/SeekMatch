@@ -6,6 +6,45 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
+        @if(isExpressApplication) {
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>
+                            {{ expressApplication?.lastName }}, {{ expressApplication?.firstName }}
+                        </h3>
+                        <h5>
+                            {{ expressApplication?.email }}, {{ expressApplication?.phone }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        @if(!showResume) {
+                        <button class="btn btn-primary btn-sm"
+                            (click)="onShowResume(expressApplication?.jobApplicationId)">
+                            <i class="fa-solid fa-eye me-2"></i>
+                            {{ 'Talent.PreviewModal.ShowResume' | translate }}
+                        </button>
+                        }@else {
+                        <button class="btn btn-primary btn-sm"
+                            (click)="showResume = false;">
+                            <i class="fa-solid fa-eye-slash me-2"></i>
+                            {{ 'Talent.PreviewModal.HideResume' | translate }}
+                        </button>
+                        }
+                    </div>
+                    @if (showResume) {
+                        <div class="col-md-12 mt-3" *ngIf="resumeUrl">
+                            <iframe [src]="resumeUrl" width="100%" height="800px">
+                            </iframe>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        } @else if (currentTalent) {
         <!-- Basic Information -->
         <div class="row mb-4">
             <div class="col-md-12">
@@ -17,38 +56,39 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h3>
-                                    {{ currentTalent?.firstName }}, {{ currentTalent?.lastName }}
+                                    {{ currentTalent.firstName }}, {{ currentTalent.lastName }}
                                 </h3>
                                 <h5>
-                                    {{ currentTalent?.profileTitle }}
+                                    {{ currentTalent.profileTitle }}
                                 </h5>
                                 <h6>
                                     <i class="fa-solid fa-location-dot me-1 opacity-75"></i>
-                                    @if(currentTalent?.city) {
-                                        {{ currentTalent?.city || null | geoName | async }},
+                                    @if(currentTalent.city) {
+                                    {{ currentTalent.city || null | geoName | async }},
                                     }
-                                    @if (currentTalent?.region) {
-                                        {{ currentTalent?.region || null | geoName | async }},
+                                    @if (currentTalent.region) {
+                                    {{ currentTalent.region || null | geoName | async }},
                                     }
-                                    {{ currentTalent?.country || '' | countryName }}
-                                    @if (!(currentTalent?.city && currentTalent?.region && currentTalent?.country)) {
-                                        {{ 'Talent.EditProfile.AddressNotSpecified' | translate }}
-                                    }                                
+                                    {{ currentTalent.country || '' | countryName }}
+                                    @if (!(currentTalent.city && currentTalent.region && currentTalent.country)) {
+                                    {{ 'Talent.EditProfile.AddressNotSpecified' | translate }}
+                                    }
                                 </h6>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
                                 <p *ngIf="currentTalent?.summary">
-                                    {{ isSummaryExpanded ? currentTalent?.summary : (currentTalent?.summary | slice:0:150) + '...' }}
-                                    <a *ngIf="hasLongSummary" class="link-primary" (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
+                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |
+                                    slice:0:150) + '...' }}
+                                    <a *ngIf="hasLongSummary" class="link-primary"
+                                        (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                                         {{ isSummaryExpanded ? 'Less' : 'More' }}
                                     </a>
                                 </p>
-                                
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -60,34 +100,35 @@
                 <h5 class="text-primary">
                     {{ 'Talent.PreviewModal.Headers.Education' | translate }}
                 </h5>
-                @if (currentTalent?.educations?.length != 0) {
-                    <div ngbAccordion #accordion="ngbAccordion" activeIds="edu0">
-                        <div *ngFor="let education of currentTalent?.educations; let i = index"
-                            ngbAccordionItem="edu{{ i }}">
-                            <h2 ngbAccordionHeader>
-                                <button ngbAccordionButton>
-                                    {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{ education.domain }}
-                                </button>
-                            </h2>
-                            <div ngbAccordionCollapse>
-                                <div ngbAccordionBody>
-                                    <p>
-                                        <strong>
-                                            {{ 'Talent.PreviewModal.Institution' | translate }}
-                                        </strong> 
-                                        {{ education.institution }}
-                                    </p>
-                                    <p>
-                                        <i class="fa-regular fa-clock me-2"></i>
-                                        {{ getEducationDuration(education) }}
-                                    </p>
-                                </div>
+                @if (currentTalent.educations.length != 0) {
+                <div ngbAccordion #accordion="ngbAccordion" activeIds="edu0">
+                    <div *ngFor="let education of currentTalent?.educations; let i = index"
+                        ngbAccordionItem="edu{{ i }}">
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{ education.domain
+                                }}
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <p>
+                                    <strong>
+                                        {{ 'Talent.PreviewModal.Institution' | translate }}
+                                    </strong>
+                                    {{ education.institution }}
+                                </p>
+                                <p>
+                                    <i class="fa-regular fa-clock me-2"></i>
+                                    {{ getEducationDuration(education) }}
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
                 }
                 @else {
-                    {{ 'Talent.PreviewModal.NoEducations' | translate }}
+                {{ 'Talent.PreviewModal.NoEducations' | translate }}
                 }
             </div>
         </div>
@@ -97,36 +138,38 @@
                 <h5 class="text-primary">
                     {{ 'Talent.PreviewModal.Headers.Experience' | translate }}
                 </h5>
-                @if (currentTalent?.educations?.length != 0) {
-                    <div ngbAccordion #accordion="ngbAccordion" activeIds="exp0">
-                        <div *ngFor="let experience of currentTalent?.experiences; let i = index"
-                            ngbAccordionItem="exp{{ i }}">
-                            <h2 ngbAccordionHeader>
-                                <button ngbAccordionButton>
-                                    {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{ experience.companyName }}
-                                </button>
-                            </h2>
-                            <div ngbAccordionCollapse>
-                                <div ngbAccordionBody>
-                                    <p>
-                                        <i class="fa-regular fa-clock me-2"></i>
-                                        {{ getExperienceDuration(experience) }}
-                                    </p>
-                                    <p [hidden]="!experience.description">
-                                        <strong>
-                                            {{ 'Talent.PreviewModal.Description' | translate }}
-                                        </strong> 
-                                        {{ experience.description }}
-                                    </p>
-                                </div>
+                @if (currentTalent.educations.length != 0) {
+                <div ngbAccordion #accordion="ngbAccordion" activeIds="exp0">
+                    <div *ngFor="let experience of currentTalent?.experiences; let i = index"
+                        ngbAccordionItem="exp{{ i }}">
+                        <h2 ngbAccordionHeader>
+                            <button ngbAccordionButton>
+                                {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{
+                                experience.companyName }}
+                            </button>
+                        </h2>
+                        <div ngbAccordionCollapse>
+                            <div ngbAccordionBody>
+                                <p>
+                                    <i class="fa-regular fa-clock me-2"></i>
+                                    {{ getExperienceDuration(experience) }}
+                                </p>
+                                <p [hidden]="!experience.description">
+                                    <strong>
+                                        {{ 'Talent.PreviewModal.Description' | translate }}
+                                    </strong>
+                                    {{ experience.description }}
+                                </p>
                             </div>
                         </div>
                     </div>
+                </div>
                 }
                 @else {
-                    {{ 'Talent.PreviewModal.NoExperiences' | translate }}
+                {{ 'Talent.PreviewModal.NoExperiences' | translate }}
                 }
             </div>
         </div>
+        }
     </div>
 </div>

@@ -8,6 +8,7 @@ import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { JobApplication } from '../../../shared/models/job-application';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
+import { ExpressApplication } from '@app/shared/models/express-application';
 
 @Component({
   selector: 'app-job-offer',
@@ -25,12 +26,13 @@ export class JobOfferComponent implements OnInit {
   public selectedJobOffer: JobOffer = new JobOffer;
   public selectedJobApplication: JobApplication = new JobApplication;
   public selectedTalentId: string = '';
-  
+  public selectedExpressApplication : ExpressApplication | null = null;
+
   private deleteModal: NgbModalRef | undefined;
   private rejectModal: NgbModalRef | undefined;
-  
+
   constructor(
-    private modalService: NgbModal, 
+    private modalService: NgbModal,
     private jobOfferService: JobOfferService,
     private jobApplicationService: JobApplicationService,
     private toastService: ToastService) {
@@ -48,10 +50,21 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public openTalentPreviewModal(content: any, talentId?: string): void {
+  public openTalentPreviewModal(content: any, jobApplication?: JobApplication): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
-    if (talentId != undefined) {
-      this.selectedTalentId = talentId;
+    if (jobApplication != undefined) {
+      if (jobApplication.isExpress && jobApplication.expressApplication != undefined) {
+          this.selectedExpressApplication = jobApplication.expressApplication;
+      } else if (!jobApplication.isExpress && jobApplication.talentId != undefined) {
+        this.selectedTalentId = jobApplication.talentId;
+      }
+    }
+  }
+
+  public talentPreviewModalCloased(action: ModalActionType): void {
+    if (action == ModalActionType.Close) {
+      this.selectedTalentId = '';
+      this.selectedExpressApplication = null;
     }
   }
 
@@ -117,7 +130,7 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public rejectJobApplication(rejectionReason:string): void {
+  public rejectJobApplication(rejectionReason: string): void {
     this.isSaving = true;
     if (this.selectedJobApplication.id) {
       this.jobApplicationService.reject(this.selectedJobApplication.id, rejectionReason).pipe(

@@ -28,7 +28,9 @@ export enum ToastType {
 
 export enum ModalActionType {
     Create = 1,
-    Update = 2
+    Update = 2,
+    Delete = 3,
+    Close = 4
 }
 
 export enum JobApplicationStatus

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JobApplication } from '../models/job-application';
@@ -15,7 +15,7 @@ export class JobApplicationService {
   getAllByTalent(): Observable<any> {
     return this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-talent`);
   }
-  
+
   getAllByRecruiter(): Observable<any> {
     return this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-recruiter`);
   }
@@ -32,6 +32,13 @@ export class JobApplicationService {
     return this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
       headers: { 'Content-Type': 'application/json' }
     });
+  }
+
+  downloadCv(jobApplicationId: string): Observable<HttpResponse<Blob>> {
+    return this.http.get(
+      `${this.apiUrl}/job-applications/${jobApplicationId}/cv`,
+      { observe: 'response', responseType: 'blob' }
+    );
   }
 
   delete(jobApplicationId: string): Observable<any> {

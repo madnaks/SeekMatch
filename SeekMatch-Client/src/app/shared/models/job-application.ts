@@ -1,4 +1,5 @@
 import { JobApplicationStatus } from "../enums/enums";
+import { ExpressApplication } from "./express-application";
 
 export class JobApplication {
 
@@ -10,7 +11,9 @@ export class JobApplication {
   public jobOfferTitle: string = '';
   public status: JobApplicationStatus = JobApplicationStatus.Pending;
   public rejectionReason: string = '';
-  
+  public isExpress: boolean= false;
+  public expressApplication?: ExpressApplication = new ExpressApplication();
+
   constructor(init?:Partial<JobApplication>) {
     Object.assign(this, init);
   }

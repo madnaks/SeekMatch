@@ -117,7 +117,9 @@
             "NoEducations": "Ce talent n'a partagé aucune information sur son éducation.",
             "NoExperiences": "Ce talent n'a partagé aucune information sur son expérience professionnelle.",
             "In": "en",
-            "At": "chez"
+            "At": "chez",
+            "ShowResume": "Voir le CV",
+            "HideResume": "Masquer le CV"
         }
     }
 }
