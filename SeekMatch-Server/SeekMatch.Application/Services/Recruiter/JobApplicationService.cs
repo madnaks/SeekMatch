@@ -105,9 +105,36 @@ namespace SeekMatch.Application.Services
             return result;
         }
 
+        public async Task<FileDownloadResult> DownloadCv(string jobApplicationId)
+        {
+            var jobApplication = await jobApplicationRepository.GetByIdAsync(jobApplicationId);
+
+            if (jobApplication == null)
+            {
+                throw new Exception("Job application not found");
+            }
+
+            if (jobApplication.IsExpress) {
+                if (jobApplication.ExpressApplication == null || jobApplication.ExpressApplication.CvPath == null)
+                {
+                    throw new Exception("CV not found for this express application");
+                }
+
+                var stream = await fileStorageService.OpenReadAsync(jobApplication.ExpressApplication.CvPath);
+                var fileName = Path.GetFileName(jobApplication.ExpressApplication.CvPath);
+
+                return new FileDownloadResult(stream, fileName, "application/pdf");
+
+            }
+
+            // TODO: handle non-express job applications if needed
+            throw new Exception("CV download not supported for non-express applications yet");
+        }
+
         public async Task<bool> DeleteAsync(string jobApplicationId)
         {
             return await jobApplicationRepository.DeleteAsync(jobApplicationId);
         }
+
     }
 }

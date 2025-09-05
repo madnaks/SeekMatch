@@ -27,5 +27,33 @@ namespace SeekMatch.Infrastructure.Repositories
             // Return relative path for DB
             return $"/uploads/{fileName}";
         }
+
+        public Task<bool> ExistsAsync(string relativePath)
+        {
+            var fullPath = GetFullPath(relativePath);
+            var exists = File.Exists(fullPath);
+            return Task.FromResult(exists);
+        }
+
+        public Task<Stream> OpenReadAsync(string relativePath)
+        {
+            var fullPath = GetFullPath(relativePath);
+
+            if (!File.Exists(fullPath))
+                throw new FileNotFoundException("File not found.", fullPath);
+
+            // Open with read/share read so MVC can stream it safely
+            Stream stream = new FileStream(fullPath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            return Task.FromResult(stream);
+        }
+
+        private string GetFullPath(string relativePath)
+        {
+            // Normalize input like "/uploads/xyz.pdf" → "xyz.pdf"
+            var fileNameOnly = Path.GetFileName(relativePath);
+
+            // Prevent traversal by ensuring we only ever combine the file name
+            return Path.Combine(_uploadsFolder, fileNameOnly);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using System.Security.Claims;
@@ -141,8 +142,17 @@ namespace SeekMatch.Controllers
             }
 
             return StatusCode(500, new { message = "An error occurred while rejecting the job application" });
-        } 
-        
+        }
+
+        [Authorize]
+        [HttpGet("job-applications/{jobApplicationId}/cv")]
+        public async Task<IActionResult> DownloadCv(string jobApplicationId)
+        {
+            var fileResult = await jobApplicationService.DownloadCv(jobApplicationId);
+
+            return File(fileResult.FileStream, fileResult.ContentType, fileResult.FileName);
+        }
+
         [Authorize]
         [HttpDelete("{jobApplicationId}")]
         public async Task<IActionResult> Delete([FromRoute] string jobApplicationId)
