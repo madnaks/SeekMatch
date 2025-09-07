@@ -7,6 +7,6 @@
         public required string Email { get; set; }
         public string? Phone { get; set; }
         public string? CvPath { get; set; }
-        public required string JobApplicationId { get; set; }
+        public string? JobApplicationId { get; set; }
     }
 }
