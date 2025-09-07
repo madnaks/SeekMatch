@@ -141,36 +141,22 @@
           <i class="fa-regular fa-user me-2"></i>Login
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto" style="max-width: 400px;">
+          <form class="mx-auto" style="max-width: 400px;" [formGroup]="loginForm">
             <div class="mb-3">
-              <label class="form-label">Email address</label>
-              <input type="email" class="form-control" placeholder="Enter your email address">
+              <app-email-input [form]="loginForm"></app-email-input>
             </div>
             <div class="mb-3 d-flex justify-content-between align-items-center">
-              <label class="form-label mb-0">Password</label>
               <a href="#" class="small text-decoration-none">Forgot password?</a>
             </div>
-            <div class="mb-3 position-relative">
-              <input type="password" class="form-control" placeholder="Enter your password">
-              <span class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor:pointer;">
-                <i class="fa fa-eye"></i>
-              </span>
+            <div class="mb-3">
+                <app-password-input [form]="loginForm"></app-password-input>
             </div>
-            <button type="submit" class="btn btn-dark w-100 mb-3">Log In</button>
+            <button type="submit" class="btn btn-primary w-100 mb-1">Log In</button>
             <div class="text-center my-3 text-muted">
               <span>OR</span>
             </div>
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
               <i class="fab fa-google me-2"></i>Continue with Google
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-apple me-2"></i>Continue with Apple
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fa-brands fa-btc me-2"></i>Continue with Binance
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fa fa-wallet me-2"></i>Continue with Wallet
             </button>
             <div class="text-center mt-3">
               <span>Don't have an account yet? <a href="#" class="fw-bold" (click)="activeTab = 2">Sign up</a></span>
@@ -184,34 +170,20 @@
           <i class="fa-solid fa-user-plus me-2"></i>Sign Up
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto" style="max-width: 400px;">
+          <form class="mx-auto" style="max-width: 400px;" [formGroup]="signupForm">
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
               <i class="fab fa-google me-2"></i>Continue with Google
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-apple me-2"></i>Continue with Apple
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fa-brands fa-btc me-2"></i>Continue with Binance
-            </button>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fa fa-wallet me-2"></i>Continue with Wallet
             </button>
             <div class="text-center my-3 text-muted">
               <span>OR</span>
             </div>
             <div class="mb-3">
-              <label class="form-label">Email address</label>
-              <input type="email" class="form-control" placeholder="Enter your email address">
+                <app-email-input [form]="loginForm"></app-email-input>
             </div>
             <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" placeholder="Enter your password">
-              <span class="position-absolute top-50 end-0 translate-middle-y me-3 text-muted" style="cursor:pointer;">
-                <i class="fa fa-eye"></i>
-              </span>
+                <app-password-input [form]="loginForm"></app-password-input>
             </div>
-            <button type="submit" class="btn btn-dark w-100 mb-3">Create an account</button>
+            <button type="submit" class="btn btn-primary w-100 mb-3">Create an account</button>
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="updatesCheck">
               <label class="form-check-label small" for="updatesCheck">

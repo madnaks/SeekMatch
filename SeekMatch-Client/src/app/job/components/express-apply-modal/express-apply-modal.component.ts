@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, Validators } from '@angular/forms';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
@@ -7,8 +7,10 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'app-express-apply-modal',
   templateUrl: './express-apply-modal.component.html',
-  styleUrl: './express-apply-modal.component.scss'
+  styleUrl: './express-apply-modal.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
+
 export class ExpressApplyModalComponent {
 
   @Input() closeModal: () => void = () => { };
@@ -20,12 +22,16 @@ export class ExpressApplyModalComponent {
   public expressApplyForm: FormGroup;
   public isSaving: boolean = false;
   public activeTab: number = 1;
+  public loginForm: FormGroup;
+  public signupForm: FormGroup;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private jobApplicationService: JobApplicationService,
     private toastService: ToastService) {
     this.expressApplyForm = this.initForm();
+    this.loginForm = this.initLoginForm();
+    this.signupForm = this.initSignupForm();
   }
 
   private initForm(): FormGroup {
@@ -35,6 +41,20 @@ export class ExpressApplyModalComponent {
       email: ['', [Validators.email, Validators.required]],
       cv: [null, [Validators.required, this.pdfFileValidator]],
       phone: ['']
+    });
+  }
+
+  private initLoginForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  private initSignupForm(): FormGroup {
+    return this.fb.group({
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
