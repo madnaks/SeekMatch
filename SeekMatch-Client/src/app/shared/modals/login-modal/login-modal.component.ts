@@ -15,8 +15,8 @@ export class LoginModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
-  loginForm: FormGroup;
-  isLoading: boolean = false;
+  public loginForm: FormGroup;
+  public isLoading: boolean = false;
 
   constructor(
     private fb: NonNullableFormBuilder, 

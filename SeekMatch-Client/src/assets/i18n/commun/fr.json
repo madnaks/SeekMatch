@@ -1,4 +1,22 @@
 {
+    "BUTTON": {
+        "CREATE": "Créer",
+        "SAVE": "Enregistrer",
+        "DELETE": "Supprimer",
+        "BACK": "Retour",
+        "NEXT": "Suivant",
+        "PREVIOUS": "Précédent",
+        "LOGIN": "Connexion",
+        "SIGN-UP": "S'inscrire",
+        "CREATE-ACCOUNT": "Créer un compte",
+        "CONTINUE-WITH-GOOGLE": "Continuer avec Google"
+    },
+    "LABEL": {
+        "OR": "OU"
+    },
+    "LINK": {
+        "FORGOT-PASSWORD": "Mot de passe oublié ?"
+    },
     "Navbar": {
         "Menu": {
             "JobOffers": "Offres d'emplois",
@@ -76,12 +94,6 @@
         "November": "Novembre",
         "December": "Décembre",
         "Today": "Aujourd'hui"
-    },
-    "Button": {
-        "Create": "Créer",
-        "Save": "Enregistrer",
-        "Delete": "Supprimer",
-        "Back": "Retour"
     },
     "Enum": {
         "JobType": {

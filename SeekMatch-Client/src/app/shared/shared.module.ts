@@ -13,6 +13,7 @@ import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talen
 import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
 import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
+import { LoginButtonComponent } from "@app/shared/buttons";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } fr
     ReactiveFormsModule,
     ErrorMessageComponent,
     EmailInputComponent,
-    PasswordInputComponent
+    PasswordInputComponent,
+    LoginButtonComponent
 ],
   exports: [
     HeaderComponent,

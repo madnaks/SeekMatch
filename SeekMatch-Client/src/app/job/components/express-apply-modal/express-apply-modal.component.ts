@@ -1,5 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '@app/shared/services/auth.service';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { finalize } from 'rxjs';
@@ -24,11 +26,14 @@ export class ExpressApplyModalComponent {
   public activeTab: number = 1;
   public loginForm: FormGroup;
   public signupForm: FormGroup;
+  public isLoading: boolean = false;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private jobApplicationService: JobApplicationService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private authService: AuthService,
+    private router: Router) {
     this.expressApplyForm = this.initForm();
     this.loginForm = this.initLoginForm();
     this.signupForm = this.initSignupForm();
@@ -120,6 +125,34 @@ export class ExpressApplyModalComponent {
       }
     }
     return null;
+  }
+
+  public onLogin(): void {
+    if (this.loginForm.valid) {
+      this.isLoading = true;
+      this.login();
+    } else {
+      this.loginForm.markAllAsTouched();
+    }
+  }
+
+  private login(): void {
+    const formValues = this.loginForm.value;
+
+    this.authService.login(formValues.email, formValues.password).pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    ).subscribe({
+      next: () => {
+        this.dismissModal('Login succed');
+        this.toastService.showSuccessMessage('Login succed');
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        this.toastService.showErrorMessage('Login failed', error);
+      }
+    });
   }
 
 }

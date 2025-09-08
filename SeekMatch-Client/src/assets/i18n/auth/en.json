@@ -85,8 +85,6 @@
                     }
                 },
                 "Footer": {
-                    "PreviousButton": "Previous",
-                    "NextButton": "Next",
                     "SubmitButton": "Create Recruiter Account"
                 },
                 "Success": {
@@ -116,7 +114,7 @@
             "Body": {
                 "Form": {
                     "Password": "Password",
-                    "SubmitButton": "Login",
+                    "Login": "Login",
                     "Validation": {
                         "Password": "Password required."
                     }

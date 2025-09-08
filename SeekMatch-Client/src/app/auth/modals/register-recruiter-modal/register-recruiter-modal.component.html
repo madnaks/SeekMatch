@@ -253,11 +253,11 @@
     <button class="btn btn-primary" [ngClass]="{ 'w-25': !(selectedOption === 'company' && currentStep === maxSteps) }"
         (click)="goToPreviousStep()" [disabled]="currentStep === 1">
         <i class="me-2 fa-solid fa-circle-left"></i>
-        {{ 'SignUp.Recruiter.Modal.Footer.PreviousButton' | translate }}
+        {{ 'BUTTON.PREVIOUS' | translate }}
     </button>
     <button class="btn btn-primary w-25" (click)="goToNextStep()" *ngIf="currentStep < maxSteps"
         [disabled]="selectedOption == null">
-        {{ 'SignUp.Recruiter.Modal.Footer.NextButton' | translate }}
+        {{ 'BUTTON.NEXT' | translate }}
         <i class="ms-2 fa-solid fa-circle-right"></i>
     </button>
     <button class="btn btn-primary"

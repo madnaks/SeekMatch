@@ -85,8 +85,6 @@
                     }
                 },
                 "Footer": {
-                    "PreviousButton": "Précédent",
-                    "NextButton": "Suivant",
                     "SubmitButton": "Créé Recruiteur Profile"
                 },
                 "Success": {
@@ -116,7 +114,7 @@
             "Body": {
                 "Form": {
                     "Password": "Mot de passe",
-                    "SubmitButton": "Connexion",
+                    "Login": "Connexion",
                     "Validation": {
                         "Password": "Mot de passe est requis."
                     }

@@ -39,6 +39,7 @@
   </div>
 </div>
 }
+
 <!-- Page 2 : Express Apply Mode -->
 @if (expressApplyMode) {
 <!-- Modal Header -->
@@ -123,8 +124,6 @@
 
 <!-- Page 3 : Express Apply Login / Sign Up  -->
 @if (expressApplyLoginSignUpMode) {
-<!-- Page 3 : Express Apply Login / Sign Up  -->
-@if (expressApplyLoginSignUpMode) {
 <div class="modal-header">
   <div class="fs-3">
     <i class="me-2 fa-regular fa-user"></i>
@@ -135,28 +134,30 @@
 <div class="modal-body">
   <div class="container py-4">
     <ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-pills justify-content-center mb-4">
-      <!-- Login Tab -->
+      <!-- Tab 1: Login -->
       <li [ngbNavItem]="1">
         <button ngbNavLink>
-          <i class="fa-regular fa-user me-2"></i>Login
+          <i class="fa-regular fa-user me-2"></i>{{ "BUTTON.LOGIN" | translate }}
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto" style="max-width: 400px;" [formGroup]="loginForm">
+          <form class="mx-auto" style="max-width: 400px;" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <div class="mb-3">
               <app-email-input [form]="loginForm"></app-email-input>
             </div>
-            <div class="mb-3 d-flex justify-content-between align-items-center">
-              <a href="#" class="small text-decoration-none">Forgot password?</a>
+            <div class="mb-3 d-flex justify-content-end">
+              <a href="#" class="small text-decoration-none">{{"LINK.FORGOT-PASSWORD" | translate }}</a>
             </div>
             <div class="mb-3">
                 <app-password-input [form]="loginForm"></app-password-input>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-1">Log In</button>
+            <div class="mb-3">
+              <app-login-button [isLoading]="isLoading"></app-login-button>
+            </div>
             <div class="text-center my-3 text-muted">
-              <span>OR</span>
+              <span>{{"LABEL.OR" | translate}}</span>
             </div>
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-google me-2"></i>Continue with Google
+              <i class="fab fa-google me-2"></i>{{ "BUTTON.CONTINUE-WITH-GOOGLE" | translate }}
             </button>
             <div class="text-center mt-3">
               <span>Don't have an account yet? <a href="#" class="fw-bold" (click)="activeTab = 2">Sign up</a></span>
@@ -164,18 +165,18 @@
           </form>
         </ng-template>
       </li>
-      <!-- Sign Up Tab -->
+      <!-- Tab 2: Sign Up -->
       <li [ngbNavItem]="2">
         <button ngbNavLink>
-          <i class="fa-solid fa-user-plus me-2"></i>Sign Up
+          <i class="fa-solid fa-user-plus me-2"></i>{{ "BUTTON.SIGN-UP" | translate }}
         </button>
         <ng-template ngbNavContent>
           <form class="mx-auto" style="max-width: 400px;" [formGroup]="signupForm">
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-google me-2"></i>Continue with Google
+              <i class="fab fa-google me-2"></i>{{ "BUTTON.CONTINUE-WITH-GOOGLE" | translate }}
             </button>
             <div class="text-center my-3 text-muted">
-              <span>OR</span>
+              <span>{{"LABEL.OR" | translate}}</span>
             </div>
             <div class="mb-3">
                 <app-email-input [form]="loginForm"></app-email-input>
@@ -183,7 +184,7 @@
             <div class="mb-3">
                 <app-password-input [form]="loginForm"></app-password-input>
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-3">Create an account</button>
+            <button type="submit" class="btn btn-primary w-100 mb-3">{{ 'BUTTON.CREATE-ACCOUNT' | translate }}</button>
             <div class="form-check mb-3">
               <input class="form-check-input" type="checkbox" id="updatesCheck">
               <label class="form-check-label small" for="updatesCheck">
@@ -201,5 +202,4 @@
 
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </div>
-}
 }
