@@ -1,0 +1,4 @@
+<button type="submit" class="btn btn-primary w-100" [disabled]="isLoading">
+    <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-right-to-bracket': !isLoading }"></i>
+    {{ 'Login.Modal.Body.Form.Login' | translate }}
+</button>
