@@ -8,13 +8,7 @@
                 "Body": {
                     "FirstLine": "Ready to take the next step?",
                     "Form": {
-                        "Password": "Password",
-                        "ConfirmPassword": "Confirm password",
-                        "SubmitButton": "Create Account",
-                        "Validation": {
-                            "Password": "Password is required and must be at least 6 characters.",
-                            "ConfirmPassword": "Passwords must match."
-                        }
+                        "SubmitButton": "Create Account"
                     }
                 },
                 "Success": {
@@ -72,14 +66,11 @@
                             "Address": "Address",
                             "Position": "Position",
                             "Password": "Password",
-                            "ConfirmPassword": "Confirm password",
                             "Validation": {
                                 "CompanyName": "Company name is required.",
                                 "PhoneNumber": "Phone number is required.",
                                 "Address": "Company address is required.",
-                                "Position": "Position is required.",
-                                "Password": "Password is required and must be at least 6 characters.",
-                                "ConfirmPassword": "Passwords must match."
+                                "Position": "Position is required."
                             }
                         }
                     }

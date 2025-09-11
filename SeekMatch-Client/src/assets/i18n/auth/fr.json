@@ -8,13 +8,7 @@
                 "Body": {
                     "FirstLine": "Prêt à passer à l'étape suivante ?",
                     "Form": {
-                        "Password": "Mot de passe",
-                        "ConfirmPassword": "Confirmer le mot de passe",
-                        "SubmitButton": "Créé Profile",
-                        "Validation": {
-                            "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
-                            "ConfirmPassword": "Les mots de passe doivent correspondre."
-                        }
+                        "SubmitButton": "Créé Profile"
                     }
                 },
                 "Success": {
@@ -71,15 +65,11 @@
                             "PhoneNumber": "Numéro de téléphone",
                             "Address": "Adresse",
                             "Position": "Poste",
-                            "Password": "Mot de passe",
-                            "ConfirmPassword": "Confirmer le mot de passe",
                             "Validation": {
                                 "CompanyName": "Le nom de l'entreprise est requis.",
                                 "PhoneNumber": "Le numéro de téléphone est requis.",
                                 "Address": "L'adresse de l'entreprise est requise.",
-                                "Position": "Le poste est requis.",
-                                "Password": "Le mot de passe est requis et doit contenir au moins 6 caractères.",
-                                "ConfirmPassword": "Les mots de passe doivent correspondre."
+                                "Position": "Le poste est requis."
                             }
                         }
                     }

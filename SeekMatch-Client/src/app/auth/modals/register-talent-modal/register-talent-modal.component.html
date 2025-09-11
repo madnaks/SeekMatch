@@ -28,20 +28,10 @@
             </div>
         </div>
         <!-- Confirm Password -->
-        <div class="mb-4">
-            <div class="form-floating password-input input-group">
-                <input [type]="confirmPasswordVisible ? 'text' : 'password'" class="form-control"
-                    id="inputConfirmPassword" formControlName="confirmPassword" placeholder="ConfirmPassword">
-                <label for="inputConfirmPassword" class="form-label">
-                    {{ 'SignUp.Talent.Modal.Body.Form.ConfirmPassword' | translate }}
-                </label>
-                <span class="input-group-text" (click)="toggleConfirmPasswordVisibility()">
-                    <i class="fa-solid" [ngClass]="confirmPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"></i>
-                </span>
+        <div class="row mb-4">
+            <div class="col-12">
+                <app-confirm-password-input [form]="registerForm"></app-confirm-password-input>
             </div>
-            @if (registerForm.errors?.['mismatch'] && registerForm.get('confirmPassword')?.touched) {
-            <app-error-message [message]="'SignUp.Talent.Modal.Body.Form.Validation.ConfirmPassword'"></app-error-message>
-            }
         </div>
         <!-- Terms & Privacy Statement -->
         <div class="mt-4 mb-4">

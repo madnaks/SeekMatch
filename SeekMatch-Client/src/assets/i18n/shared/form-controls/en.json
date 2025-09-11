@@ -5,7 +5,9 @@
                 "LASTNAME": "Last name",
                 "FIRSTNAME": "First name",
                 "EMAIL": "Email address",
-                "PHONE": "Phone"
+                "PHONE": "Phone",
+                "PASSWORD": "Password",
+                "CONFIRM-PASSWORD": "Confirm Password"
             },
             "VALIDATION": {
                 "LASTNAME": "Last name is required.",
@@ -14,7 +16,9 @@
                 "EMAIL-INVALID": "Email is invalid.",
                 "PHONE": "Format de numéro de téléphone invalide.",
                 "CV-REQUIRED": "CV is required.",
-                "CV-INVALID": "Only PDF files are allowed."
+                "CV-INVALID": "Only PDF files are allowed.",
+                "PASSWORD-REQUIRED": "Password is required.",
+                "PASSWORD-MISMATCH": "Passwords do not match."
             }
         }
     }
