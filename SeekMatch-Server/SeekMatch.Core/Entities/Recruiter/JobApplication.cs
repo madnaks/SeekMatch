@@ -9,7 +9,7 @@ namespace SeekMatch.Core.Entities
         public Talent? Talent { get; set; }
         public required string JobOfferId { get; set; }
         public JobOffer? JobOffer { get; set; }
-        public JobApplicationStatus Status { get; set; } = JobApplicationStatus.Pending;
+        public JobApplicationStatus Status { get; set; } = JobApplicationStatus.Submitted;
         public string? RejectionReason { get; set; }
         public bool IsExpress { get; set; } = false;
         public ExpressApplication? ExpressApplication { get; set; }

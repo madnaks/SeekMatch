@@ -35,7 +35,7 @@ export enum ModalActionType {
 
 export enum JobApplicationStatus
 {
-    Pending = 0,
+    Submitted = 0,
     Shortlisted = 1,
     InterviewScheduled = 2,
     Offered = 3,

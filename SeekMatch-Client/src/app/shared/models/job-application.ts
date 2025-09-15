@@ -9,7 +9,7 @@ export class JobApplication {
   public talentFullName: string = '';
   public jobOfferId: string = '';
   public jobOfferTitle: string = '';
-  public status: JobApplicationStatus = JobApplicationStatus.Pending;
+  public status: JobApplicationStatus = JobApplicationStatus.Submitted;
   public rejectionReason: string = '';
   public isExpress: boolean= false;
   public expressApplication?: ExpressApplication = new ExpressApplication();
