@@ -7,9 +7,9 @@ import { months } from '../../constants/constants';
 import { Education } from '../../models/education';
 import { Experience } from '../../models/experience';
 import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
-import { ExpressApplication } from '@app/shared/models/express-application';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { HttpResponse } from '@angular/common/http';
+import { JobApplication } from '@app/shared/models/job-application';
 
 @Component({
   selector: 'app-talent-preview-modal',
@@ -22,7 +22,7 @@ export class TalentPreviewModalComponent implements OnInit {
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedTalent: Talent | null = null;
   @Input() selectedTalentId: string = "";
-  @Input() expressApplication: ExpressApplication | null = null;
+  @Input() jobApplication: JobApplication | null = null;
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
@@ -35,10 +35,11 @@ export class TalentPreviewModalComponent implements OnInit {
   public showResume: boolean = false;
 
   jobApplicationSteps = [
-    'Basic Details',
-    'Employee Details',
-    'Subscription plan',
-    'Subscription plan'
+    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED'),
+    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED'),
+    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED'),
+    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED'),
+    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED')
   ];
   currentStatus: JobApplicationStatus = JobApplicationStatus.InterviewScheduled;
 
@@ -50,18 +51,28 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.expressApplication && this.selectedTalent == null) {
-      this.isExpressApplication = true;
-    } else {
-      if (this.selectedTalentId !== "") {
-        this.talentService.getById(this.selectedTalentId).subscribe(talent => {
-          this.currentTalent = new Talent(talent);
-        });
-      } else if (this.selectedTalent !== null) {
-        this.currentTalent = this.selectedTalent;
+    // If came from job offer applications list
+    if (this.jobApplication) {
+      this.currentStatus = this.jobApplication.status;
+      if (this.jobApplication.expressApplication && this.selectedTalent == null) {
+        this.isExpressApplication = true;
+      } else {
+        if (this.selectedTalentId !== "") {
+          this.talentService.getById(this.selectedTalentId).subscribe(talent => {
+            this.currentTalent = new Talent(talent);
+            this.loadProfilePicture();
+          });
+        }
       }
     }
+    // If came from talent profile 
+    else if (this.selectedTalent !== null) {
+      this.currentTalent = this.selectedTalent;
+      this.loadProfilePicture();
+    }
+  }
 
+  private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
       this.profilePicture = `data:image/jpeg;base64,${this.currentTalent.profilePicture}`;
     } else {
@@ -84,6 +95,7 @@ export class TalentPreviewModalComponent implements OnInit {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
   }
+
 
   public getEducationDuration(education: Education): string {
     if (education.currentlyStudying) {
@@ -124,6 +136,23 @@ export class TalentPreviewModalComponent implements OnInit {
     });
 
     this.showResume = true;
+  }
+
+  public applicateStepClicked(stepIndex: number): void {
+    // if (stepIndex === JobApplicationStatus.Shortlisted) {
+    //   this.jobApplicationService.shortlist(this.jobApplication?.id || '').subscribe({
+    //     next: () => {
+    //       this.currentStatus = JobApplicationStatus.Shortlisted;  
+    //       if (this.jobApplication) {
+    //         this.jobApplication.status = JobApplicationStatus.Shortlisted;
+    //       } 
+    //       this.modalActionComplete.emit(ModalActionType.StatusChanged);
+    //     },
+    //     error: (err) => {
+    //       console.error('Error shortlisting application', err);
+    //     }   
+    //   });
+    // }
   }
 
 

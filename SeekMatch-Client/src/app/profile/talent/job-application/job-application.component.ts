@@ -36,7 +36,7 @@ export class JobApplicationComponent implements OnInit {
 
   public getStatusClass(status: JobApplicationStatus): string {
     switch (status) {
-      case JobApplicationStatus.Pending:
+      case JobApplicationStatus.Submitted:
         return 'bg-warning';
       case JobApplicationStatus.Shortlisted:
         return 'bg-primary';

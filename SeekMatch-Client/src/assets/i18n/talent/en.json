@@ -120,6 +120,15 @@
             "At": "at",
             "ShowResume": "Show Resume",
             "HideResume": "Hide Resume"
+            ,"JOB-APPLICATION-STEPS": {
+                "SUBMITTED": "Submitted",
+                "SHORTLISTED": "Shortlisted",
+                "INTERVIEW-SCHEDULED": "Interview Scheduled",
+                "HIRED": "Hired",
+                "REJECTED": "Rejected",
+                "WITHDRAWN": "Withdrawn",
+                "STEP": "STEP"
+            }
         }
     }
 }

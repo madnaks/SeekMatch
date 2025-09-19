@@ -111,7 +111,7 @@
             "Remote": "Télétravail"
         },
         "JobApplicationStatus": {
-            "Pending": "En attente",
+            "Submitted": "Soumis",
             "Shortlisted": "Présélectionné",
             "InterviewScheduled": "Entretien planifié",
             "Offered": "Offre envoyée",

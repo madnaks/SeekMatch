@@ -111,7 +111,7 @@
             "Remote": "Remote"
         },
         "JobApplicationStatus": {
-            "Pending": "Pending",
+            "Submitted": "Submitted",
             "Shortlisted": "Shortlisted",
             "InterviewScheduled": "Interview Scheduled",
             "Offered": "Offered",

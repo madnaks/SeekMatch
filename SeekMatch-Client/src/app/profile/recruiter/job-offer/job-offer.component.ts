@@ -24,9 +24,8 @@ export class JobOfferComponent implements OnInit {
   public isSaving: boolean = false;
   public isViewingApplication = false;
   public selectedJobOffer: JobOffer = new JobOffer;
-  public selectedJobApplication: JobApplication = new JobApplication;
+  public selectedJobApplication: JobApplication | null = new JobApplication;
   public selectedTalentId: string = '';
-  public selectedExpressApplication : ExpressApplication | null = null;
 
   private deleteModal: NgbModalRef | undefined;
   private rejectModal: NgbModalRef | undefined;
@@ -53,9 +52,8 @@ export class JobOfferComponent implements OnInit {
   public openTalentPreviewModal(content: any, jobApplication?: JobApplication): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobApplication != undefined) {
-      if (jobApplication.isExpress && jobApplication.expressApplication != undefined) {
-          this.selectedExpressApplication = jobApplication.expressApplication;
-      } else if (!jobApplication.isExpress && jobApplication.talentId != undefined) {
+      this.selectedJobApplication = jobApplication;
+     if (!jobApplication.isExpress && jobApplication.talentId != undefined) {
         this.selectedTalentId = jobApplication.talentId;
       }
     }
@@ -64,7 +62,7 @@ export class JobOfferComponent implements OnInit {
   public talentPreviewModalCloased(action: ModalActionType): void {
     if (action == ModalActionType.Close) {
       this.selectedTalentId = '';
-      this.selectedExpressApplication = null;
+      this.selectedJobApplication = null;
     }
   }
 
@@ -132,7 +130,7 @@ export class JobOfferComponent implements OnInit {
 
   public rejectJobApplication(rejectionReason: string): void {
     this.isSaving = true;
-    if (this.selectedJobApplication.id) {
+    if (this.selectedJobApplication  && this.selectedJobApplication.id) {
       this.jobApplicationService.reject(this.selectedJobApplication.id, rejectionReason).pipe(
         finalize(() => {
           this.isSaving = false;
@@ -165,7 +163,7 @@ export class JobOfferComponent implements OnInit {
 
   public getStatusClass(jobApplicationStatus: JobApplicationStatus): string {
     switch (jobApplicationStatus) {
-      case JobApplicationStatus.Pending:
+      case JobApplicationStatus.Submitted:
         return 'bg-warning';
       case JobApplicationStatus.Shortlisted:
         return 'bg-primary';

@@ -223,6 +223,6 @@
 
 <!-- Talent Preview Modal -->
 <ng-template #previewTalentContent let-c="close" let-d="dismiss">
-    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId" [expressApplication]="selectedExpressApplication" (modalActionComplete)="talentPreviewModalCloased($event)">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId" [jobApplication]="selectedJobApplication" (modalActionComplete)="talentPreviewModalCloased($event)">
     </app-talent-preview-modal>
 </ng-template>

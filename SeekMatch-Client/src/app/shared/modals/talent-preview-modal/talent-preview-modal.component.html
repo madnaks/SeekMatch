@@ -12,10 +12,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>
-                            {{ expressApplication?.lastName }}, {{ expressApplication?.firstName }}
+                            {{ jobApplication?.expressApplication?.lastName }}, {{ jobApplication?.expressApplication?.firstName }}
                         </h3>
                         <h5>
-                            {{ expressApplication?.email }}, {{ expressApplication?.phone }}
+                            {{ jobApplication?.expressApplication?.email }}, {{ jobApplication?.expressApplication?.phone }}
                         </h5>
                     </div>
                 </div>
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         @if(!showResume) {
                         <button class="btn btn-primary btn-sm"
-                            (click)="onShowResume(expressApplication?.jobApplicationId)">
+                            (click)="onShowResume(jobApplication?.id)">
                             <i class="fa-solid fa-eye me-2"></i>
                             {{ 'Talent.PreviewModal.ShowResume' | translate }}
                         </button>
@@ -106,8 +106,8 @@
 
                     </div>
                 </div>
-
-                  <div class="row">
+                <!-- Educations & Experiences Tabs -->
+                <div class="row">
                     <nav ngbNav #nav="ngbNav" class="nav-tabs">
                         <ng-container ngbNavItem>
                             <a ngbNavLink>
@@ -169,36 +169,42 @@
                     <div [ngbNavOutlet]="nav" class="mt-2"></div>
                 </div>
             </div>
+            @if (jobApplication) {
             <div class="col-3">
                 <!-- Vertical Steps for Job Application Status -->
                 <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
-                    <ng-container *ngFor="let step of jobApplicationSteps; let i = index">
+                    <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
                         <div class="d-flex align-items-start mb-0 position-relative"
                             [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1}">
                             <div class="me-3">
-                                <span *ngIf="i <= currentStatus; else upcoming" class="step-icon bg-success text-white">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                                <ng-template #upcoming>
-                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary">
-                                        <i class="fas fa-dollar-sign"></i>
+                                @if (i <= currentStatus) {
+                                    <span class="step-icon bg-success text-white">
+                                        <i class="fas fa-check"></i>
                                     </span>
-                                </ng-template>
+                                }
+                                @else {
+                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary" (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                    </span>
+                                }
                             </div>
                             <div>
-                                <div class="text-uppercase small text-secondary fw-bold">STEP {{i+1}}</div>
+                                <div class="text-uppercase small text-secondary fw-bold">
+                                    {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.STEP' | translate }} {{ i + 1 }}
+                                </div>
                                 <div
-                                    [ngClass]="{'fw-bold text-dark': i <= currentStatus, 'text-secondary': i > currentStatus}">
-                                    {{ step }}
+                                    [ngClass]="{'fw-bold text-dark': i <= currentStatus , 'text-secondary': i > currentStatus}">
+                                    {{ jobApplicationStep }}
                                 </div>
                             </div>
                         </div>
                         <!-- Vertical line -->
-                        <div *ngIf="i < jobApplicationSteps.length - 1"
-                            style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;"></div>
+                         @if (i < jobApplicationSteps.length - 1) {
+                            <div style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;"></div>
+                         }
                     </ng-container>
                 </div>
             </div>
+            }
         </div>
         }
     </div>
