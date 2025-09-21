@@ -8,7 +8,7 @@ import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { JobApplication } from '../../../shared/models/job-application';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
-import { ExpressApplication } from '@app/shared/models/express-application';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-job-offer',
@@ -26,6 +26,7 @@ export class JobOfferComponent implements OnInit {
   public selectedJobOffer: JobOffer = new JobOffer;
   public selectedJobApplication: JobApplication | null = new JobApplication;
   public selectedTalentId: string = '';
+  public rejectionForm: FormGroup;
 
   private deleteModal: NgbModalRef | undefined;
   private rejectModal: NgbModalRef | undefined;
@@ -34,11 +35,19 @@ export class JobOfferComponent implements OnInit {
     private modalService: NgbModal,
     private jobOfferService: JobOfferService,
     private jobApplicationService: JobApplicationService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private fb: NonNullableFormBuilder) {
+    this.rejectionForm = this.initRejectionForm();
   }
 
   ngOnInit(): void {
     this.getJobOffers();
+  }
+
+  private initRejectionForm(): FormGroup {
+    return this.fb.group({
+      reason: ['', Validators.required],
+    });
   }
 
   //#region : Modal functions
@@ -53,7 +62,7 @@ export class JobOfferComponent implements OnInit {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobApplication != undefined) {
       this.selectedJobApplication = jobApplication;
-     if (!jobApplication.isExpress && jobApplication.talentId != undefined) {
+      if (!jobApplication.isExpress && jobApplication.talentId != undefined) {
         this.selectedTalentId = jobApplication.talentId;
       }
     }
@@ -128,10 +137,10 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public rejectJobApplication(rejectionReason: string): void {
+  public rejectJobApplication(): void {
     this.isSaving = true;
-    if (this.selectedJobApplication  && this.selectedJobApplication.id) {
-      this.jobApplicationService.reject(this.selectedJobApplication.id, rejectionReason).pipe(
+    if (this.selectedJobApplication && this.selectedJobApplication.id) {
+      this.jobApplicationService.reject(this.selectedJobApplication.id, this.rejectionForm.value.reason).pipe(
         finalize(() => {
           this.isSaving = false;
         })).subscribe({

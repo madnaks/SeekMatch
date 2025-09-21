@@ -12,18 +12,19 @@
                 <div class="row">
                     <div class="col-md-6">
                         <h3>
-                            {{ jobApplication?.expressApplication?.lastName }}, {{ jobApplication?.expressApplication?.firstName }}
+                            {{ jobApplication?.expressApplication?.lastName }}, {{
+                            jobApplication?.expressApplication?.firstName }}
                         </h3>
                         <h5>
-                            {{ jobApplication?.expressApplication?.email }}, {{ jobApplication?.expressApplication?.phone }}
+                            {{ jobApplication?.expressApplication?.email }}, {{
+                            jobApplication?.expressApplication?.phone }}
                         </h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         @if(!showResume) {
-                        <button class="btn btn-primary btn-sm"
-                            (click)="onShowResume(jobApplication?.id)">
+                        <button class="btn btn-primary btn-sm" (click)="onShowResume(jobApplication?.id)">
                             <i class="fa-solid fa-eye me-2"></i>
                             {{ 'Talent.PreviewModal.ShowResume' | translate }}
                         </button>
@@ -67,14 +68,14 @@
                                     <i class="fa-solid fa-envelope me-2"></i>
                                     {{ currentTalent.email }}
                                 </h6>
-                                }   
+                                }
                                 <!-- Phone -->
                                 @if(currentTalent.phone) {
                                 <h6>
                                     <i class="fa-solid fa-phone me-2"></i>
                                     {{ currentTalent.phone }}
                                 </h6>
-                                }   
+                                }
                                 <h6>
                                     <i class="fa-solid fa-location-dot me-2 opacity-75"></i>
                                     @if(currentTalent.city) {
@@ -114,23 +115,24 @@
                                 <i class="fa-solid fa-graduation-cap me-2"></i>
                                 {{ 'Talent.Profile.Experiences' | translate }}
                             </a>
-                                <ng-template ngbNavContent>
+                            <ng-template ngbNavContent>
                                 @if (currentTalent.educations.length != 0) {
-                                    <div *ngFor="let experience of currentTalent?.experiences; let isLast = last">
-                                        <h5> 
-                                            {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{ experience.companyName }}
-                                        </h5>
-                                        <div class="mb-2">
-                                            <i class="fa-regular fa-clock me-2"></i>
-                                            {{ getExperienceDuration(experience) }}
-                                        </div>
-                                        @if(!isLast) {
-                                        <hr>
-                                        }
+                                <div *ngFor="let experience of currentTalent?.experiences; let isLast = last">
+                                    <h5>
+                                        {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{
+                                        experience.companyName }}
+                                    </h5>
+                                    <div class="mb-2">
+                                        <i class="fa-regular fa-clock me-2"></i>
+                                        {{ getExperienceDuration(experience) }}
                                     </div>
+                                    @if(!isLast) {
+                                    <hr>
+                                    }
+                                </div>
                                 }
                                 @else {
-                                    {{ 'Talent.PreviewModal.NoExperiences' | translate }}
+                                {{ 'Talent.PreviewModal.NoExperiences' | translate }}
                                 }
                             </ng-template>
                         </ng-container>
@@ -142,8 +144,9 @@
                             <ng-template ngbNavContent>
                                 @if (currentTalent.educations.length != 0) {
                                 <div *ngFor="let education of currentTalent?.educations; let isLast = last">
-                                    <h5> 
-                                        {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{ education.domain }}
+                                    <h5>
+                                        {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{
+                                        education.domain }}
                                     </h5>
                                     <div class="mb-2">
                                         <strong>
@@ -156,12 +159,12 @@
                                         {{ getEducationDuration(education) }}
                                     </div>
                                     @if(!isLast) {
-                                    <hr>   
+                                    <hr>
                                     }
                                 </div>
                                 }
                                 @else {
-                                    {{ 'Talent.PreviewModal.NoEducations' | translate }}
+                                {{ 'Talent.PreviewModal.NoEducations' | translate }}
                                 }
                             </ng-template>
                         </ng-container>
@@ -170,42 +173,101 @@
                 </div>
             </div>
             @if (jobApplication) {
-            <div class="col-3">
-                <!-- Vertical Steps for Job Application Status -->
-                <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
-                    <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
-                        <div class="d-flex align-items-start mb-0 position-relative"
-                            [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1}">
-                            <div class="me-3">
-                                @if (i <= currentStatus) {
-                                    <span class="step-icon bg-success text-white">
-                                        <i class="fas fa-check"></i>
-                                    </span>
-                                }
-                                @else {
-                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary" (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                    </span>
-                                }
-                            </div>
-                            <div>
-                                <div class="text-uppercase small text-secondary fw-bold">
-                                    {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.STEP' | translate }} {{ i + 1 }}
+                <div class="col-3">
+                    <!-- Vertical Steps for Job Application Status -->
+                    <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
+                        <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
+                            <div class="d-flex align-items-start mb-0 position-relative"
+                                [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1}">
+                                <div class="me-3">
+                                    @if (i <= jobApplication.status) { 
+                                        <span class="step-icon text-white" [ngClass]="{'bg-danger':jobApplication.status === JobApplicationStatus.Rejected, 'bg-success': jobApplication.status !== JobApplicationStatus.Rejected }"
+                                            (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                        </span>
+                                    }
+                                    @else if(i === jobApplication.status + 1) { 
+                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary"
+                                            (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                        </span>
+                                    } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !== JobApplicationStatus.Rejected) {
+                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary" 
+                                        (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                        </span>
+                                    }
+                                     @else {
+                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary" >
+                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                        </span>
+                                    }
                                 </div>
-                                <div
-                                    [ngClass]="{'fw-bold text-dark': i <= currentStatus , 'text-secondary': i > currentStatus}">
-                                    {{ jobApplicationStep }}
+                                <div>
+                                    <div class="text-uppercase small text-secondary fw-bold">
+                                        {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.STEP' | translate }} {{ i + 1 }}
+                                    </div>
+                                    <div
+                                        [ngClass]="{'fw-bold text-dark': i <= jobApplication.status , 'text-secondary': i > jobApplication.status}">
+                                        {{ jobApplicationStep.text | translate }}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Vertical line -->
-                         @if (i < jobApplicationSteps.length - 1) {
-                            <div style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;"></div>
-                         }
-                    </ng-container>
+                            <!-- Vertical line -->
+                            @if (i < jobApplicationSteps.length - 1) { 
+                                <div style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;">
+                                </div>
+                            }
+                        </ng-container>
+                    </div>
                 </div>
-            </div>
             }
-        </div>
-        }
+    </div>
+    }
     </div>
 </div>
+
+<!-- Job application Shortlisted Modal -->
+<ng-template #shortListedConfirmationModal let-modal [closeModal]="c" [dismissModal]="d">
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.BODY' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onShortlistConfirmed(modal)">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Job application Rejection Modal -->
+<ng-template #rejectJobApplicationModal let-modal>
+    <form [formGroup]="rejectionForm">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
+            </h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <label for="inputRejectionReason" class="form-label">
+                {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
+            </label>
+            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason formControlName="reason"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="onRejectJobApplication(modal)">
+                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+                {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
+            </button>
+        </div>
+    </form>
+</ng-template>

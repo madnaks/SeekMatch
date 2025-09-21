@@ -9,7 +9,9 @@
         "LOGIN": "Login",
         "SIGN-UP": "Sign Up",
         "CREATE-ACCOUNT": "Create Account",
-        "CONTINUE-WITH-GOOGLE": "Continue with Google"
+        "CONTINUE-WITH-GOOGLE": "Continue with Google",
+        "YES": "Yes",
+        "NO": "No"
     },
     "LABEL": {
         "OR": "OR"

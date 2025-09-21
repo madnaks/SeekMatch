@@ -119,15 +119,19 @@
             "In": "in",
             "At": "at",
             "ShowResume": "Show Resume",
-            "HideResume": "Hide Resume"
-            ,"JOB-APPLICATION-STEPS": {
+            "HideResume": "Hide Resume",
+            "JOB-APPLICATION-STEPS": {
                 "SUBMITTED": "Submitted",
                 "SHORTLISTED": "Shortlisted",
                 "INTERVIEW-SCHEDULED": "Interview Scheduled",
                 "HIRED": "Hired",
                 "REJECTED": "Rejected",
                 "WITHDRAWN": "Withdrawn",
-                "STEP": "STEP"
+                "STEP": "STEP",
+                "SHORTLISTED-MODAL": {
+                    "TITLE": "Shortlist this candidate ?",
+                    "BODY": "Are you sure you want to shortlist this candidate?"
+                }
             }
         }
     }

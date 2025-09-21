@@ -28,6 +28,10 @@ export class JobApplicationService {
     return this.http.post(`${this.apiUrl}/express-apply/${jobOfferId}`, formData);
   }
 
+  shortList(jobApplicationId: string): Observable<any> {
+    return this.http.put(`${this.apiUrl}/short-list/${jobApplicationId}`, null);
+  }
+
   reject(jobApplicationId: string, rejectionReason: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
       headers: { 'Content-Type': 'application/json' }

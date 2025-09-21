@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { TalentService } from '../../services/talent.service';
 import { Talent } from '../../models/talent';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
@@ -10,6 +10,10 @@ import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { HttpResponse } from '@angular/common/http';
 import { JobApplication } from '@app/shared/models/job-application';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { finalize } from 'rxjs';
+import { ToastService } from '@app/shared/services/toast.service';
 
 @Component({
   selector: 'app-talent-preview-modal',
@@ -26,6 +30,9 @@ export class TalentPreviewModalComponent implements OnInit {
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
+  @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
+  @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
+
   public currentTalent: Talent | null = null;
   public profilePicture: SafeUrl | string | null = null;
   public isSummaryExpanded = false;
@@ -33,27 +40,33 @@ export class TalentPreviewModalComponent implements OnInit {
   public monthOptions = months;
   public resumeUrl: SafeResourceUrl | null = null;
   public showResume: boolean = false;
+  public JobApplicationStatus = JobApplicationStatus;
+  public rejectionForm: FormGroup;
+  public isSaving: boolean = false;
+
 
   jobApplicationSteps = [
-    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED'),
-    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED'),
-    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED'),
-    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED'),
-    this.translate.instant('Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED')
+    { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED' },
+    { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED' },
+    { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED' },
+    { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED' },
+    { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
   ];
-  currentStatus: JobApplicationStatus = JobApplicationStatus.InterviewScheduled;
 
   constructor(
     private talentService: TalentService,
     private jobApplicationService: JobApplicationService,
     private sanitizer: DomSanitizer,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private modalService: NgbModal,
+    private fb: NonNullableFormBuilder,
+    private toastService: ToastService) {
+    this.rejectionForm = this.initRejectionForm();
   }
 
   ngOnInit(): void {
     // If came from job offer applications list
     if (this.jobApplication) {
-      this.currentStatus = this.jobApplication.status;
       if (this.jobApplication.expressApplication && this.selectedTalent == null) {
         this.isExpressApplication = true;
       } else {
@@ -71,6 +84,13 @@ export class TalentPreviewModalComponent implements OnInit {
       this.loadProfilePicture();
     }
   }
+
+  private initRejectionForm(): FormGroup {
+    return this.fb.group({
+      reason: ['', Validators.required],
+    });
+  }
+
 
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
@@ -139,21 +159,59 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   public applicateStepClicked(stepIndex: number): void {
-    // if (stepIndex === JobApplicationStatus.Shortlisted) {
-    //   this.jobApplicationService.shortlist(this.jobApplication?.id || '').subscribe({
-    //     next: () => {
-    //       this.currentStatus = JobApplicationStatus.Shortlisted;  
-    //       if (this.jobApplication) {
-    //         this.jobApplication.status = JobApplicationStatus.Shortlisted;
-    //       } 
-    //       this.modalActionComplete.emit(ModalActionType.StatusChanged);
-    //     },
-    //     error: (err) => {
-    //       console.error('Error shortlisting application', err);
-    //     }   
-    //   });
-    // }
+    switch (stepIndex) {
+      case JobApplicationStatus.Shortlisted:
+        this.modalService.open(this.shortListedConfirmationModal, { centered: true, backdrop: 'static' });
+        break;
+      case JobApplicationStatus.Rejected:
+        this.modalService.open(this.rejectJobApplicationModal, { centered: true, backdrop: 'static' });
+        break;
+      default:
+        break;
+    }
   }
 
+  public onShortlistConfirmed(modal: any): void {
+    this.isSaving = true;
+    this.jobApplicationService.shortList(this.jobApplication?.id || '').pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          if (this.jobApplication) {
+            this.jobApplication.status = JobApplicationStatus.Shortlisted;
+            this.toastService.showSuccessMessage('Job application shortlisted successfully');
+            modal.close('Yes');
+          }
+        },
+        error: (err) => {
+          console.error('Error shortlisting application', err);
+        }
+      });
+  }
+
+  public onRejectJobApplication(modal: any): void {
+    this.isSaving = true;
+    if (this.jobApplication && this.jobApplication.id) {
+      this.jobApplicationService.reject(this.jobApplication.id, this.rejectionForm.value.reason).pipe(
+        finalize(() => {
+          this.isSaving = false;
+          this.modalService.dismissAll();
+        })).subscribe({
+          next: () => {
+            if (this.jobApplication) {
+              this.jobApplication.status = JobApplicationStatus.Rejected;
+            }
+            this.toastService.showSuccessMessage('Job application rejected successfully');
+            modal.close('Yes');
+          },
+          error: (error) => {
+            this.toastService.showErrorMessage('Rejecting Job application failed', error);
+          }
+        });
+    } else {
+      this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
+    }
+  }
 
 }
