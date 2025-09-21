@@ -118,6 +118,26 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
+        [HttpPut("short-list/{jobApplicationId}")]
+        public async Task<IActionResult> ShortList(string jobApplicationId)
+        {
+
+            if (jobApplicationId == null)
+            {
+                return BadRequest("Job application id is null");
+            }
+
+            var result = await jobApplicationService.ShortList(jobApplicationId);
+
+            if (result)
+            {
+                return Ok(new { message = "Job application is now in short list" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while short listed the job application" });
+        }
+        
+        [Authorize]
         [HttpPut("{jobApplicationId}")]
         public async Task<IActionResult> Reject(string jobApplicationId, [FromBody] string rejectionReason)
         {

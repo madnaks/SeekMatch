@@ -85,6 +85,13 @@ namespace SeekMatch.Application.Services
             return await jobApplicationRepository.ExpressApplyAsync(jobApplication, expressApplication);
         }
 
+        public async Task<bool> ShortList(string jobApplicationId)
+        {
+            var result = await jobApplicationRepository.ShortList(jobApplicationId);
+            
+            return result;
+        }
+        
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             var result = await jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);

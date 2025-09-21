@@ -87,6 +87,25 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
+        public async Task<bool> ShortList(string jobApplicationId)
+        {
+            try
+            {
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
+                if (jobApplication != null)
+                {
+                    jobApplication.Status = Core.Enums.JobApplicationStatus.Shortlisted;
+                    
+                    return await dbContext.SaveChangesAsync() > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while short listed the job application", ex);
+            }
+        }
+        
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             try
