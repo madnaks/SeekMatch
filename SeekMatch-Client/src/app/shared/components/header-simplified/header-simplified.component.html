@@ -2,7 +2,9 @@
 
     <!-- Logo -->
     <a class="navbar-brand ps-3" routerLink="/home">
-        Busyness
+        <span>
+            <img src="../../../../assets/images/website-logo.png">
+        </span>
     </a>
 
     <!-- Navbar menu items for larger screens -->
@@ -11,8 +13,8 @@
         </ul>
 
         <!-- Language Buttons -->
-        <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'fr'"
-            src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
+        <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'fr'" src="assets\images\flags\uk.svg"
+            width="20" (click)="changeLanguage()">
         <img class="language-button ms-3 me-3" *ngIf="translate.currentLang == 'en'"
             src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
     </div>
