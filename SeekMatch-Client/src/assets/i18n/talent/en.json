@@ -127,7 +127,6 @@
                 "HIRED": "Hired",
                 "REJECTED": "Rejected",
                 "WITHDRAWN": "Withdrawn",
-                "STEP": "STEP",
                 "SHORTLISTED-MODAL": {
                     "TITLE": "Shortlist this candidate ?",
                     "BODY": "Are you sure you want to shortlist this candidate?"

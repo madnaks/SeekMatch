@@ -95,8 +95,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <p *ngIf="currentTalent?.summary">
-                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |
-                                    slice:0:150) + '...' }}
+                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150) + '...' }}
                                     <a *ngIf="hasLongSummary" class="link-primary"
                                         (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                                         {{ isSummaryExpanded ? 'Less' : 'More' }}
@@ -173,48 +172,50 @@
                 </div>
             </div>
             @if (jobApplication) {
-                <div class="col-3">
+                <div class="col-3 px-3">
                     <!-- Vertical Steps for Job Application Status -->
                     <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
                         <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
                             <div class="d-flex align-items-start mb-0 position-relative"
-                                [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1}">
+                                [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1, 'mb-5': i === jobApplicationSteps.length - 2 }">
                                 <div class="me-3">
                                     @if (i <= jobApplication.status) { 
-                                        <span class="step-icon text-white" [ngClass]="{'bg-danger':jobApplication.status === JobApplicationStatus.Rejected, 'bg-success': jobApplication.status !== JobApplicationStatus.Rejected }"
-                                            (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                        <span class="step-icon text-white" [ngClass]="{
+                                            'bg-danger': i === JobApplicationStatus.Rejected, 
+                                            'bg-secondary': jobApplication.status === JobApplicationStatus.Rejected, 
+                                            'bg-success': jobApplication.status !== JobApplicationStatus.Rejected 
+                                            }" (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                            <i class="{{ jobApplicationStep.icon }}"></i>
                                         </span>
                                     }
                                     @else if(i === jobApplication.status + 1) { 
                                         <span class="step-icon bg-light text-secondary border border-2 border-secondary"
                                             (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                            <i class="{{ jobApplicationStep.icon }}"></i>
                                         </span>
                                     } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !== JobApplicationStatus.Rejected) {
                                         <span class="step-icon bg-light text-secondary border border-2 border-secondary" 
                                         (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                            <i class="{{ jobApplicationStep.icon }}"></i>
                                         </span>
                                     }
                                      @else {
                                         <span class="step-icon bg-light text-secondary border border-2 border-secondary" >
-                                            <i class="{{ jobApplicationStep.icon}}"></i>
+                                            <i class="{{ jobApplicationStep.icon }}"></i>
                                         </span>
                                     }
                                 </div>
                                 <div>
-                                    <div class="text-uppercase small text-secondary fw-bold">
-                                        {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.STEP' | translate }} {{ i + 1 }}
-                                    </div>
-                                    <div
-                                        [ngClass]="{'fw-bold text-dark': i <= jobApplication.status , 'text-secondary': i > jobApplication.status}">
+                                    <div [ngClass]="{
+                                        'fw-bold text-dark': i <= jobApplication.status,
+                                        'text-secondary': i > jobApplication.status
+                                        }">
                                         {{ jobApplicationStep.text | translate }}
                                     </div>
                                 </div>
                             </div>
                             <!-- Vertical line -->
-                            @if (i < jobApplicationSteps.length - 1) { 
+                            @if (i < jobApplicationSteps.length - 2) { 
                                 <div style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;">
                                 </div>
                             }

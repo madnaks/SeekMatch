@@ -2,12 +2,14 @@
 
   <!-- Logo -->
   <a class="navbar-brand ps-3" routerLink="/home">
-    Busyness
+    <span>
+      <img src="../../../../assets/images/website-logo.png">
+    </span>
   </a>
 
   <!-- Navbar menu items for larger screens -->
   <div class="collapse navbar-collapse">
-    <ul class="navbar-nav ms-auto">
+    <ul class="navbar-nav">
       <!-- JobOffers -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">
@@ -40,6 +42,8 @@
         </a>
       </li>
       }
+    </ul>
+    <ul class="navbar-nav ms-auto d-flex align-items-center">
       @if (!isAuthenticated) {
       <!-- Signup -->
       <li class="nav-item">
@@ -55,45 +59,46 @@
       </li>
       } @else {
 
-        <!-- Notification dropdown -->
-        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center notification" display="dynamic">
-          <a class="nav-link">
-            <i class="fa-solid fa-bell fa-lg me-1 icon" ngbDropdownToggle></i>
-          </a>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            @if (notifications.length > 0) {
-              <div *ngFor="let notification of notifications" ngbDropdownItem (click)="markAsRead(notification.id)">
-                <span class="message">
-                  {{ notification.message }}
-                </span>
-                <span *ngIf="!notification.isRead">
-                  <i class="fa-solid fa-circle fa-xs ms-2 isRead"></i>
-                </span>
-            </div>
-            <hr>
-            }
-            <div class="message" ngbDropdownItem>
-              {{ 'Navbar.Notification.SeeAllNotifications' | translate }}
-            </div>
+      <!-- Notification dropdown -->
+      <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center notification"
+        display="dynamic">
+        <a class="nav-link">
+          <i class="fa-solid fa-bell fa-lg me-1 icon" ngbDropdownToggle></i>
+        </a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          @if (notifications.length > 0) {
+          <div *ngFor="let notification of notifications" ngbDropdownItem (click)="markAsRead(notification.id)">
+            <span class="message">
+              {{ notification.message }}
+            </span>
+            <span *ngIf="!notification.isRead">
+              <i class="fa-solid fa-circle fa-xs ms-2 isRead"></i>
+            </span>
+          </div>
+          <hr>
+          }
+          <div class="message" ngbDropdownItem>
+            {{ 'Navbar.Notification.SeeAllNotifications' | translate }}
           </div>
         </div>
+      </div>
 
-        <!-- Profile dropdown -->
-        <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
-          display="dynamic">
-          <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem [routerLink]="getProfileLink()">
-              <i class="fa-solid fa-user me-2"></i>
-              {{ 'Navbar.Account.Profile' | translate }}
-            </button>
-            <hr>
-            <button ngbDropdownItem (click)="logout()">
-              <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
-              {{ 'Navbar.Account.Logout' | translate }}
-            </button>
-          </div>
+      <!-- Profile dropdown -->
+      <div ngbDropdown class="d-inline-block d-flex justify-content-center align-items-center profile-picture"
+        display="dynamic">
+        <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem [routerLink]="getProfileLink()">
+            <i class="fa-solid fa-user me-2"></i>
+            {{ 'Navbar.Account.Profile' | translate }}
+          </button>
+          <hr>
+          <button ngbDropdownItem (click)="logout()">
+            <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
+            {{ 'Navbar.Account.Logout' | translate }}
+          </button>
         </div>
+      </div>
       }
     </ul>
 

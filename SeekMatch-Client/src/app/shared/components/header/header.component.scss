@@ -11,6 +11,30 @@ nav {
     color: #ffffff;
 }
 
+.nav-link {
+    font-size: 18px;
+}
+
+.navbar-brand {
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    img {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+    }
+}
+
 .profile-picture {
     cursor: pointer;
 
