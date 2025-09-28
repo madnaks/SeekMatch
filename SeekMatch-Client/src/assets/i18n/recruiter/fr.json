@@ -69,7 +69,10 @@
             "RejectModal": {
                 "Title": "Rejeter cette candidature ?",
                 "Reason": "Raison",
-                "Reject": "Rejeter"
+                "Reject": "Rejeter",
+                "Validation": {
+                    "Reason": "La raison est obligatoire."
+                }
             }
         },
         "ExpressApplyModal": {

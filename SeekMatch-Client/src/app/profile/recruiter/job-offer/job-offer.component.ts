@@ -138,6 +138,11 @@ export class JobOfferComponent implements OnInit {
   }
 
   public rejectJobApplication(): void {
+    if (this.rejectionForm.invalid) {
+      this.rejectionForm.markAllAsTouched();
+      return;
+    } 
+
     this.isSaving = true;
     if (this.selectedJobApplication && this.selectedJobApplication.id) {
       this.jobApplicationService.reject(this.selectedJobApplication.id, this.rejectionForm.value.reason).pipe(

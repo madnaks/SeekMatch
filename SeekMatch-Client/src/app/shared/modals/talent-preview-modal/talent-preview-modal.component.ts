@@ -191,6 +191,10 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   public onRejectJobApplication(modal: any): void {
+    if (this.rejectionForm.invalid) {
+      this.rejectionForm.markAllAsTouched();
+      return;
+    }
     this.isSaving = true;
     if (this.jobApplication && this.jobApplication.id) {
       this.jobApplicationService.reject(this.jobApplication.id, this.rejectionForm.value.reason).pipe(

@@ -69,7 +69,10 @@
             "RejectModal": {
                 "Title": "Reject this job application ?",
                 "Reason": "Reason",
-                "Reject": "Reject"
+                "Reject": "Reject",
+                "Validation": {
+                    "Reason": "Reason is required."
+                }
             }
         },
         "ExpressApplyModal": {

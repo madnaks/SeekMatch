@@ -81,42 +81,40 @@ export class ExpressApplyModalComponent {
   }
 
   public onSubmit(): void {
-    if (this.expressApplyForm.valid) {
-      this.isSaving = true;
-
-      const expressApplyData = this.expressApplyForm.value;
-      const phoneNumberObject = expressApplyData.phone;
-      const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
-
-      // Build FormData for multipart/form-data
-      const formData = new FormData();
-      formData.append('firstName', expressApplyData.firstName);
-      formData.append('lastName', expressApplyData.lastName);
-      formData.append('email', expressApplyData.email);
-      formData.append('phone', formattedPhoneNumber);
-
-      if (expressApplyData.cv) {
-        formData.append('cv', expressApplyData.cv);
-      }
-
-      this.jobApplicationService.expressApply(this.jobOfferId, formData).pipe(
-        finalize(() => {
-          this.isSaving = false;
-        })).subscribe({
-          next: () => {
-            this.toastService.showSuccessMessage('Applied successfully!');
-            this.dismiss();
-          },
-          error: (error) => {
-            this.toastService.showErrorMessage('Error while applying!', error);
-            this.dismiss();
-          }
-        });
-
-    } else {
+    if (this.expressApplyForm.invalid) {
       this.expressApplyForm.markAllAsTouched();
+      return;
+    }
+    this.isSaving = true;
+
+    const expressApplyData = this.expressApplyForm.value;
+    const phoneNumberObject = expressApplyData.phone;
+    const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
+
+    // Build FormData for multipart/form-data
+    const formData = new FormData();
+    formData.append('firstName', expressApplyData.firstName);
+    formData.append('lastName', expressApplyData.lastName);
+    formData.append('email', expressApplyData.email);
+    formData.append('phone', formattedPhoneNumber);
+
+    if (expressApplyData.cv) {
+      formData.append('cv', expressApplyData.cv);
     }
 
+    this.jobApplicationService.expressApply(this.jobOfferId, formData).pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          this.toastService.showSuccessMessage('Applied successfully!');
+          this.dismiss();
+        },
+        error: (error) => {
+          this.toastService.showErrorMessage('Error while applying!', error);
+          this.dismiss();
+        }
+      });
   }
 
   private pdfFileValidator(control: AbstractControl): ValidationErrors | null {

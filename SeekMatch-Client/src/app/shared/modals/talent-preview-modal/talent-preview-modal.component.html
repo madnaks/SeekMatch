@@ -95,7 +95,8 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <p *ngIf="currentTalent?.summary">
-                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150) + '...' }}
+                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150)
+                                    + '...' }}
                                     <a *ngIf="hasLongSummary" class="link-primary"
                                         (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                                         {{ isSummaryExpanded ? 'Less' : 'More' }}
@@ -172,60 +173,60 @@
                 </div>
             </div>
             @if (jobApplication) {
-                <div class="col-3 px-3">
-                    <!-- Vertical Steps for Job Application Status -->
-                    <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
-                        <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
-                            <div class="d-flex align-items-start mb-0 position-relative"
-                                [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1, 'mb-5': i === jobApplicationSteps.length - 2 }">
-                                <div class="me-3">
-                                    @if (i <= jobApplication.status) { 
-                                        <span class="step-icon text-white" [ngClass]="{
+            <div class="col-3 px-3">
+                <!-- Vertical Steps for Job Application Status -->
+                <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
+                    <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
+                        <div class="d-flex align-items-start mb-0 position-relative"
+                            [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1, 'mb-5': i === jobApplicationSteps.length - 2 }">
+                            <div class="me-3">
+                                @if (i <= jobApplication.status) { <span class="step-icon text-white" [ngClass]="{
                                             'bg-danger': i === JobApplicationStatus.Rejected, 
                                             'bg-secondary': jobApplication.status === JobApplicationStatus.Rejected, 
                                             'bg-success': jobApplication.status !== JobApplicationStatus.Rejected 
                                             }" (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon }}"></i>
-                                        </span>
+                                    <i class="{{ jobApplicationStep.icon }}"></i>
+                                    </span>
                                     }
-                                    @else if(i === jobApplication.status + 1) { 
-                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary"
-                                            (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon }}"></i>
-                                        </span>
-                                    } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !== JobApplicationStatus.Rejected) {
-                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary" 
+                                    @else if(i === jobApplication.status + 1) {
+                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary"
                                         (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                            <i class="{{ jobApplicationStep.icon }}"></i>
-                                        </span>
+                                        <i class="{{ jobApplicationStep.icon }}"></i>
+                                    </span>
+                                    } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !==
+                                    JobApplicationStatus.Rejected) {
+                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary"
+                                        (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                        <i class="{{ jobApplicationStep.icon }}"></i>
+                                    </span>
                                     }
-                                     @else {
-                                        <span class="step-icon bg-light text-secondary border border-2 border-secondary" >
-                                            <i class="{{ jobApplicationStep.icon }}"></i>
-                                        </span>
+                                    @else {
+                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary">
+                                        <i class="{{ jobApplicationStep.icon }}"></i>
+                                    </span>
                                     }
-                                </div>
-                                <div>
-                                    <div [ngClass]="{
+                            </div>
+                            <div>
+                                <div [ngClass]="{
                                         'fw-bold text-dark': i <= jobApplication.status,
                                         'text-secondary': i > jobApplication.status
                                         }">
-                                        {{ jobApplicationStep.text | translate }}
-                                    </div>
+                                    {{ jobApplicationStep.text | translate }}
                                 </div>
                             </div>
-                            <!-- Vertical line -->
-                            @if (i < jobApplicationSteps.length - 2) { 
-                                <div style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;">
-                                </div>
-                            }
-                        </ng-container>
-                    </div>
+                        </div>
+                        <!-- Vertical line -->
+                        @if (i < jobApplicationSteps.length - 2) { <div
+                            style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;">
                 </div>
-            }
+                }
+                </ng-container>
+            </div>
+        </div>
+        }
     </div>
     }
-    </div>
+</div>
 </div>
 
 <!-- Job application Shortlisted Modal -->
@@ -251,7 +252,7 @@
 
 <!-- Job application Rejection Modal -->
 <ng-template #rejectJobApplicationModal let-modal>
-    <form [formGroup]="rejectionForm">
+    <form [formGroup]="rejectionForm" (ngSubmit)="onRejectJobApplication(modal)">
         <div class="modal-header">
             <h4 class="modal-title">
                 {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
@@ -262,10 +263,16 @@
             <label for="inputRejectionReason" class="form-label">
                 {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
             </label>
-            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason formControlName="reason"></textarea>
+            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
+                formControlName="reason"></textarea>
+            @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
+            <div class="text-danger mt-1" >
+                {{ 'Recruiter.JobApplication.RejectModal.Validation.Reason' | translate }}
+            </div>
+            }
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="onRejectJobApplication(modal)">
+            <button type="submit" class="btn btn-danger">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
                 {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
             </button>

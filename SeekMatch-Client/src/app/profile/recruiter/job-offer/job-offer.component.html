@@ -4,163 +4,177 @@
 
         <!-- Loading -->
         @if (isLoading) {
-        <app-loader/>
+        <app-loader />
         } @else {
-            <!-- No data -->
-            @if (jobOffers.length === 0) {
-                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                    <div class="col-6">
-                        <p style="text-align: center;">
-                            {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
-                        </p>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
-                            <i class="fa-solid fa-plus"></i>
-                            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
-                        </button>
-                    </div>
+        <!-- No data -->
+        @if (jobOffers.length === 0) {
+        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+            <div class="col-6">
+                <p style="text-align: center;">
+                    {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
+                </p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
+                    <i class="fa-solid fa-plus"></i>
+                    {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
+                </button>
+            </div>
+        </div>
+        } @else {
+        @if (!isViewingApplication) {
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
+                    <i class="fa-solid fa-circle-plus me-2"></i>
+                    {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.CompanyName' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.JobType' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.WorkplaceType' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.Salary' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobOffer.Table.IsActive' | translate }}</th>
+                            <th scope="col">{{ 'Table.Actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
+                        <tr>
+                            <th scope="row">
+                                {{ i + 1 }}
+                            </th>
+                            <td>
+                                {{ jobOffer.title }}
+                            </td>
+                            <td>
+                                {{ jobOffer.companyName }}
+                            </td>
+                            <td>
+                                {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }}
+                            </td>
+                            <td>
+                                {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
+                            </td>
+                            <td>
+                                {{ jobOffer.salary }}
+                            </td>
+                            <td>
+                                <input class="form-check-input me-2" type="checkbox" [(ngModel)]="jobOffer.isActive"
+                                    disabled>
+                            </td>
+                            <td>
+                                <i class="action-button fa-solid fa-pen me-4"
+                                    (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
+                                <i class="action-button fa-solid fa-trash me-4"
+                                    (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
+                                <i class="action-button fa-solid fa-user-group"
+                                    (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        } @else {
+        <div class="row mb-3">
+            <div class="col-md-6 d-flex justify-content-start">
+                <button class="btn btn-primary" (click)="isViewingApplication = false">
+                    <i class="fa-solid fa-arrow-left me-2"></i>
+                    {{ 'BUTTON.BACK' | translate }}
+                </button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                {{ 'Recruiter.JobApplication.NumberOfApplications' | translate }} {{
+                selectedJobOffer.jobApplications.length || 0 }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
+                    <p class="card-text">
+                        <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong> {{
+                        selectedJobOffer.companyName }}<br>
+                        <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong> {{
+                        selectedJobOffer.location }}<br>
+                        <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong> {{ selectedJobOffer.salary
+                        }}<br>
+                    </p>
                 </div>
-            } @else {
-                @if (!isViewingApplication) {
-                    <div class="row mb-3">
-                        <div class="col-md-12 d-flex justify-content-end">
-                            <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
-                                <i class="fa-solid fa-circle-plus me-2"></i>
-                                {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
-                            </button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.CompanyName' | translate }}</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.JobType' | translate }}</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.WorkplaceType' | translate }}</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.Salary' | translate }}</th>
-                                        <th scope="col">{{ 'Recruiter.JobOffer.Table.IsActive' | translate }}</th>
-                                        <th scope="col">{{ 'Table.Actions' | translate }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
-                                    <tr>
-                                        <th scope="row">
-                                            {{ i + 1 }}
-                                        </th>
-                                        <td>
-                                            {{ jobOffer.title }}
-                                        </td>
-                                        <td>
-                                            {{ jobOffer.companyName }}
-                                        </td>
-                                        <td>            
-                                            {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }}
-                                        </td>
-                                        <td>            
-                                            {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
-                                        </td>
-                                        <td>            
-                                            {{ jobOffer.salary }}
-                                        </td>
-                                        <td>            
-                                            <input class="form-check-input me-2" type="checkbox"  [(ngModel)]="jobOffer.isActive" disabled>
-                                        </td>
-                                        <td>
-                                            <i class="action-button fa-solid fa-pen me-4" (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
-                                            <i class="action-button fa-solid fa-trash me-4" (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
-                                            <i class="action-button fa-solid fa-user-group" (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
-                                        </td>
-                                    </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                } @else {
-                    <div class="row mb-3">
-                        <div class="col-md-6 d-flex justify-content-start">
-                            <button class="btn btn-primary" (click)="isViewingApplication = false">
-                                <i class="fa-solid fa-arrow-left me-2"></i>
-                                {{ 'BUTTON.BACK' | translate }}
-                            </button>
-                        </div>
-                        <div class="col-md-6 d-flex justify-content-end">
-                            {{ 'Recruiter.JobApplication.NumberOfApplications' | translate }} {{ selectedJobOffer.jobApplications.length || 0 }}
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
-                                <p class="card-text">
-                                <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong> {{ selectedJobOffer.companyName }}<br>
-                                <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong> {{ selectedJobOffer.location }}<br>
-                                <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong> {{ selectedJobOffer.salary }}<br>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    @if (selectedJobOffer.jobApplications.length === 0) {
-                        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                        <div class="col-6">
-                            <h5 style="text-align: center;">
-                                {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
-                            </h5>
-                        </div>
-                    </div>
-                    }
-                    @else {
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
-                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
-                                            <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
-                                            <th scope="col">{{ 'Table.Actions' | translate }}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
-                                        <tr>
-                                            <th scope="row">
-                                                {{ i + 1 }}
-                                            </th>
-                                            <td>
-                                                @if (jobApplication.isExpress) {
-                                                    {{ jobApplication.expressApplication?.lastName }} {{ jobApplication.expressApplication?.firstName }}
-                                                } @else {
-                                                    {{ jobApplication.talentFullName }}
-                                                }
-                                            </td>
-                                            <td>
-                                                {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
-                                            </td>
-                                            <td>
-                                                <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">
-                                                    {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) | translate }}
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <i class="action-button fa-solid fa-id-card me-4" (click)="openTalentPreviewModal(previewTalentContent, jobApplication)"></i>
-                                                <i class="action-button fa-solid fa-circle-xmark" *ngIf="jobApplication.status != JobApplicationStatus.Rejected" (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
-                                            </td>
-                                        </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    }
-                }
-            }
+            </div>
+        </div>
+        @if (selectedJobOffer.jobApplications.length === 0) {
+        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+            <div class="col-6">
+                <h5 style="text-align: center;">
+                    {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
+                </h5>
+            </div>
+        </div>
+        }
+        @else {
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
+                            <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
+                            <th scope="col">{{ 'Table.Actions' | translate }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i =
+                        $index) {
+                        <tr>
+                            <th scope="row">
+                                {{ i + 1 }}
+                            </th>
+                            <td>
+                                @if (jobApplication.isExpress) {
+                                {{ jobApplication.expressApplication?.lastName }} {{
+                                jobApplication.expressApplication?.firstName }}
+                                } @else {
+                                {{ jobApplication.talentFullName }}
+                                }
+                            </td>
+                            <td>
+                                {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                            </td>
+                            <td>
+                                <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">
+                                    {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) |
+                                    translate }}
+                                </span>
+                            </td>
+                            <td>
+                                <i class="action-button fa-solid fa-id-card me-4"
+                                    (click)="openTalentPreviewModal(previewTalentContent, jobApplication)"></i>
+                                <i class="action-button fa-solid fa-circle-xmark"
+                                    *ngIf="jobApplication.status != JobApplicationStatus.Rejected"
+                                    (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        }
+        }
+        }
         }
     </div>
 </div>
@@ -201,7 +215,7 @@
 
 <!-- Job offer reject Modal -->
 <ng-template #rejectJobApplicationModal let-modal>
-    <form [formGroup]="rejectionForm">
+    <form [formGroup]="rejectionForm" (ngSubmit)="rejectJobApplication()">
         <div class="modal-header">
             <h4 class="modal-title">
                 {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
@@ -212,10 +226,16 @@
             <label for="inputRejectionReason" class="form-label">
                 {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
             </label>
-            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason formControlName="reason"></textarea>
+            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
+                formControlName="reason"></textarea>
+            @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
+            <div class="text-danger mt-1">
+                {{ 'Recruiter.JobApplication.RejectModal.Validation.Reason' | translate }}
+            </div>
+            }
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="rejectJobApplication()">
+            <button type="submit" class="btn btn-danger">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
                 {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
             </button>
@@ -225,6 +245,7 @@
 
 <!-- Talent Preview Modal -->
 <ng-template #previewTalentContent let-c="close" let-d="dismiss">
-    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId" [jobApplication]="selectedJobApplication" (modalActionComplete)="talentPreviewModalCloased($event)">
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId"
+        [jobApplication]="selectedJobApplication" (modalActionComplete)="talentPreviewModalCloased($event)">
     </app-talent-preview-modal>
 </ng-template>
