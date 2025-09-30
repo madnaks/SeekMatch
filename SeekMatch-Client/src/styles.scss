@@ -2,13 +2,59 @@
 @import '../node_modules/quill/dist/quill.snow.css';
 
 body {
-    background-color: $background-color;
+    background-color: $primary-color;
     color: $text-color;
 }
 
+.container-card {
+    background-color: $secondary-color !important;
+    color: $text-color !important;
+}
+
+// Style modal
+.modal-content {
+    background-color: $third-color;
+
+    .modal-header {
+        border-bottom: none;
+    }
+}
+
+.form-control {
+    background-color: $third-color;
+    color: $text-color;
+
+    &:focus {
+        background-color: $third-color;
+        color: $text-color;
+        box-shadow: unset;
+        border: 1px solid #dee2e6;
+    }
+
+    // Autofill override
+    &:-webkit-autofill,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:hover {
+        -webkit-box-shadow: 0 0 0 1000px $third-color inset !important;
+        box-shadow: 0 0 0 1000px $third-color inset !important;
+        -webkit-text-fill-color: $text-color !important;
+        caret-color: $text-color !important;
+    }
+}
+
+.form-floating {
+    .form-label {
+        color: $text-color !important;
+
+        &::after {
+            background-color: $third-color !important;
+        }
+    }
+}
+
+
 .btn.btn-primary {
     background-color: $secondary-color;
-    color: #ffffff;
     transition: all 0.3s ease;
     border: unset;
 
@@ -19,7 +65,8 @@ body {
         border-color: transparent !important;
     }
 
-    &:disabled, .btn.disabled {
+    &:disabled,
+    .btn.disabled {
         opacity: 0.5;
         background-color: $secondary-color;
         color: #ffffff;
@@ -35,6 +82,7 @@ body {
 
 .btn-important {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+
     &:hover,
     &:active {
         background-color: $accent-color !important;
@@ -74,7 +122,7 @@ a {
         }
 
         .input-group-text {
-            background-color: white;
+            background-color: $primary-color;
         }
 
         input {
@@ -93,6 +141,7 @@ a {
     }
 }
 
+// Style input that is used for password type
 .password-input {
 
     &.input-group {
@@ -121,7 +170,8 @@ a {
         }
 
         .input-group-text {
-            background-color: white;
+            background-color: $third-color;
+            color: $text-color;
             cursor: pointer;
         }
 
@@ -179,4 +229,10 @@ a {
         transform: scale(0.9);
         box-shadow: none;
     }
+}
+
+// card style
+.card-body {
+    background-color: $secondary-color;
+    color: $text-color;
 }
