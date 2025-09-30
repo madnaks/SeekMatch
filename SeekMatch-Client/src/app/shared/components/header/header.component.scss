@@ -18,6 +18,7 @@ nav {
   position: relative;
   padding-bottom: 0px;
   transition: color .35s ease;
+  color: $text-color;
   &:before {
     content: '';
     display:block;

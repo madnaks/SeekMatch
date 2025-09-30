@@ -18,6 +18,7 @@ import { Notification } from '../../models/notification';
 })
 export class HeaderComponent implements OnInit {
 
+  public isLightMode = false;
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
   isAuthenticated: boolean = false;
@@ -54,6 +55,13 @@ export class HeaderComponent implements OnInit {
         }
       }
     });
+
+    // Load theme from localStorage if available
+    const savedTheme = localStorage.getItem('mode');
+    if (savedTheme === 'ligth') {
+      document.body.classList.add('light-mode');
+      this.isLightMode = true;
+    }
   }
 
   private getUserNotification() {
@@ -145,5 +153,18 @@ export class HeaderComponent implements OnInit {
       }
     });
   }
+
+  public toggleTheme(event: Event): void {
+    this.isLightMode = (event.target as HTMLInputElement).checked;
+
+    if (this.isLightMode) {
+      document.body.classList.add('light-mode');
+      localStorage.setItem('mode', 'dark');
+    } else {
+      document.body.classList.remove('light-mode');
+      localStorage.setItem('mode', 'light');
+    }
+  }
+
 
 }
