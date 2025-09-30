@@ -4,15 +4,51 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1;
-}
-
-.navbar {
     background-color: $primary-color;
     color: #ffffff;
 }
 
+
 .nav-link {
     font-size: 18px;
+}
+
+.nav-text {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0px;
+  transition: color .35s ease;
+  &:before {
+    content: '';
+    display:block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    transition: width 0s ease, background .35s ease;
+  }
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: $text-color;
+    transition: width .35s ease;
+  }
+  &:hover:before {
+    width: 100%;
+    background: $text-color;
+    transition: width .35s ease;
+  }
+  &:hover:after {
+    width: 100%;
+    background: transparent;
+    transition: all 0s ease;
+  }
 }
 
 .navbar-brand {
