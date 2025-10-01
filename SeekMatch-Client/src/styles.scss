@@ -1,6 +1,12 @@
 @import '../src/assets/styles/styles-variables.scss';
 @import '../node_modules/quill/dist/quill.snow.css';
 
+* {
+    box-sizing: border-box;
+    font-family: "Alan Sans", sans-serif;
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: $primary-color;
     color: $text-color;
@@ -11,7 +17,7 @@ body {
     color: $text-color !important;
 }
 
-// Style modal
+// Modal style
 .modal-content {
     background-color: $third-color;
 
@@ -20,6 +26,7 @@ body {
     }
 }
 
+// Form control style
 .form-control {
     background-color: $third-color;
     color: $text-color;
@@ -40,8 +47,14 @@ body {
         -webkit-text-fill-color: $text-color !important;
         caret-color: $text-color !important;
     }
+
+    &::placeholder {
+        color: $text-color;
+        opacity: 0.5
+    }
 }
 
+// Form floating label style
 .form-floating {
     .form-label {
         color: $text-color !important;
@@ -52,7 +65,14 @@ body {
     }
 }
 
+.form-select {
+    background-color: $third-color;
+    color: $text-color;
+    // Make the arrow white
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+}
 
+// Button style
 .btn.btn-primary {
     background-color: $secondary-color;
     transition: all 0.3s ease;
@@ -80,6 +100,7 @@ body {
     }
 }
 
+// Important button style
 .btn-important {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 
@@ -91,13 +112,15 @@ body {
     }
 }
 
+// Close button style
 .btn-close:focus {
     box-shadow: unset;
 }
 
+// Badge style
 .badge.bg-custom {
-    background-color: $secondary-color;
-    color: #ffffff;
+    background-color: $fourth-color;
+    color: $text-color;
     user-select: none;
 }
 
@@ -141,7 +164,7 @@ a {
     }
 }
 
-// Style input that is used for password type
+// Password input style
 .password-input {
 
     &.input-group {
@@ -183,6 +206,7 @@ a {
     }
 }
 
+// Datepicker input style
 .datepicker-input {
 
     &.input-group {
@@ -217,6 +241,7 @@ a {
     }
 }
 
+// Language button style
 .language-button {
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -235,4 +260,22 @@ a {
 .card-body {
     background-color: $secondary-color;
     color: $text-color;
+}
+
+// Accordion style
+.accordion {
+    .accordion-item {
+        background-color: $secondary-color;
+        color: $text-color;
+
+        .accordion-button {
+            background-color: $secondary-color;
+            color: $text-color;
+
+            // Remove the default icon
+            &::after {
+                display: none !important;
+            }
+        }
+    }
 }
