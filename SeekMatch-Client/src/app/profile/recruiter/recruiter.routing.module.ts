@@ -4,6 +4,7 @@ import { RecruiterProfileComponent } from './recruiter-profile/recruiter-profile
 import { AboutYouComponent } from './about-you/about-you.component';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
+import { SecurityComponent } from '../commun/security/security.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: 'about-you', component: AboutYouComponent },
       { path: 'job-offer', component: JobOfferComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }
     ]
   }

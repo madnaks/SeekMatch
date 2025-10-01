@@ -5,6 +5,7 @@ import { RepresentativeProfileComponent } from './representative-profile/represe
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
+import { SecurityComponent } from '../commun/security/security.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'company-info', component: CompanyInfoComponent },
       { path: 'recruiter-team', component: RecruiterTeamComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }
     ]
   }
