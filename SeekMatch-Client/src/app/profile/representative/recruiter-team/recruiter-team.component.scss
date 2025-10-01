@@ -8,17 +8,6 @@
     }
 }
 
-.card-btn {
-    position: absolute;
-    cursor: pointer;
-    &.delete-btn {
-        top: 15px;
-        right: 20px;
-    }
-    &:hover {
-        color: $secondary-color;
-    }
-}
 
 .action-button {
     &:hover {

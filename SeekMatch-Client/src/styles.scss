@@ -12,6 +12,15 @@ body {
     color: $text-color;
 }
 
+// Containers
+.dashboard-container {
+    background-color: white;
+    height: 87vh;
+    border-radius: 5px;
+    background-color: $secondary-color !important;
+    color: $text-color !important;
+}
+
 .container-card {
     background-color: $secondary-color !important;
     color: $text-color !important;
@@ -19,20 +28,37 @@ body {
 
 // Modal style
 .modal-content {
-    background-color: $third-color;
+    background-color: $secondary-color;
 
     .modal-header {
         border-bottom: none;
+
+        .btn-close {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='%23ffffff' d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e") !important;
+            width: 2rem;
+            height: 2rem;
+            background-size: 1.5rem;
+            background-repeat: no-repeat;
+            background-position: center;
+            color: transparent;
+            opacity: 1;
+        }
+
+        .btn-close:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+            transition: transform 0.2s ease;
+        }
     }
 }
 
 // Form control style
 .form-control {
-    background-color: $third-color;
+    background-color: $secondary-color;
     color: $text-color;
 
     &:focus {
-        background-color: $third-color;
+        background-color: $secondary-color;
         color: $text-color;
         box-shadow: unset;
         border: 1px solid #dee2e6;
@@ -42,8 +68,8 @@ body {
     &:-webkit-autofill,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:hover {
-        -webkit-box-shadow: 0 0 0 1000px $third-color inset !important;
-        box-shadow: 0 0 0 1000px $third-color inset !important;
+        -webkit-box-shadow: 0 0 0 1000px $secondary-color inset !important;
+        box-shadow: 0 0 0 1000px $secondary-color inset !important;
         -webkit-text-fill-color: $text-color !important;
         caret-color: $text-color !important;
     }
@@ -51,6 +77,12 @@ body {
     &::placeholder {
         color: $text-color;
         opacity: 0.5
+    }
+
+    &:disabled {
+        background-color: $fourth-color;
+        opacity: 0.5;
+        color: $text-color;
     }
 }
 
@@ -60,13 +92,13 @@ body {
         color: $text-color !important;
 
         &::after {
-            background-color: $third-color !important;
+            background-color: $secondary-color !important;
         }
     }
 }
 
 .form-select {
-    background-color: $third-color;
+    background-color: $secondary-color;
     color: $text-color;
     // Make the arrow white
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
@@ -74,7 +106,7 @@ body {
 
 // Button style
 .btn.btn-primary {
-    background-color: $secondary-color;
+    background-color: $third-color;
     transition: all 0.3s ease;
     border: unset;
 
@@ -88,13 +120,13 @@ body {
     &:disabled,
     .btn.disabled {
         opacity: 0.5;
-        background-color: $secondary-color;
+        background-color: $third-color;
         color: #ffffff;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     }
 
     &:focus-visible {
-        background-color: $secondary-color;
+        background-color: $third-color;
         color: #ffffff;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
     }
@@ -124,10 +156,6 @@ body {
     user-select: none;
 }
 
-// We don't use href proprety on a element, so we don't have the cursor
-a {
-    cursor: pointer;
-}
 
 // Style input that has icon on their left
 .input-with-icon {
@@ -193,7 +221,7 @@ a {
         }
 
         .input-group-text {
-            background-color: $third-color;
+            background-color: $secondary-color;
             color: $text-color;
             cursor: pointer;
         }
@@ -257,9 +285,31 @@ a {
 }
 
 // card style
-.card-body {
-    background-color: $secondary-color;
-    color: $text-color;
+.card {
+    .card-body {
+        background-color: $secondary-color;
+        color: $text-color;
+        border-radius: 6px;
+
+        .card-btn {
+            position: absolute;
+            cursor: pointer;
+
+            &.update-btn {
+                top: 15px;
+                right: 60px;
+            }
+
+            &.delete-btn {
+                top: 15px;
+                right: 20px;
+            }
+
+            &:hover {
+                color: $accent-color;
+            }
+        }
+    }
 }
 
 // Accordion style
@@ -277,5 +327,80 @@ a {
                 display: none !important;
             }
         }
+    }
+}
+
+// Dashboard navigation style
+.dashboard-nav {
+
+    .nav-link {
+        font-weight: bold;
+        color: $text-color;
+
+        &.active {
+            background-color: rgba(0, 153, 204, 0.2);
+            border-radius: 5px;
+            color: $text-color;
+        }
+    }
+}
+
+// table style
+.table.table-striped {
+
+    th,
+    td {
+        background-color: $secondary-color;
+        color: $text-color;
+    }
+}
+
+// Nav tab style
+.nav-tabs {
+    .nav-link.nav-item {
+        color: $text-color;
+    }
+
+    .nav-link.nav-item.active {
+        background-color: $secondary-color;
+        color: $accent-color;
+        border-color: $accent-color;
+    }
+}
+
+// Links
+a {
+    // We don't use href proprety on a element, so we don't have the cursor
+    cursor: pointer;
+
+    &.static-link {
+        color: $accent-color !important;
+        text-decoration-color: $accent-color !important;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+}
+
+// Website logo style
+.logo {
+    span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+    }
+
+    img {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
     }
 }

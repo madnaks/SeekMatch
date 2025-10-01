@@ -57,18 +57,19 @@ export class HeaderComponent implements OnInit {
     });
 
     // Load theme from localStorage if available
-    const savedTheme = localStorage.getItem('mode');
-    if (savedTheme === 'ligth') {
-      document.body.classList.add('light-mode');
-      this.isLightMode = true;
+    const savedMode = localStorage.getItem('mode');
+    this.isLightMode = savedMode === 'light';
+    if (this.isLightMode) {
+      document.body.classList.add('light');
     }
+
   }
 
   private getUserNotification() {
     this.notificationService.getUserNotifications().subscribe(notifications => {
       if (notifications) {
         this.notifications = notifications;
-      } 
+      }
     });
   }
 
@@ -165,6 +166,5 @@ export class HeaderComponent implements OnInit {
       localStorage.setItem('mode', 'light');
     }
   }
-
 
 }

@@ -34,7 +34,7 @@
                     <i class="fa-solid fa-user-pen me-2"></i>
                     {{ 'Talent.Profile.EditProfile' | translate }}
                 </button>
-                <button type="button" class="btn btn-outline-secondary btn-md mt-2"
+                <button type="button" class="btn btn-light btn-md mt-2"
                     (click)="openTalentPreviewModal(previewTalentContent)">
                     <i class="fa-solid fa-magnifying-glass me-2"></i>
                     {{ 'Talent.Profile.ViewProfile' | translate }}
@@ -46,7 +46,7 @@
                 <p *ngIf="currentTalent?.summary">
                     {{ isSummaryExpanded ? currentTalent?.summary : (currentTalent?.summary | slice:0:150) + '...'
                     }}
-                    <a *ngIf="hasLongSummary" class="link-primary"
+                    <a *ngIf="hasLongSummary" class="static-link"
                         (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                         {{ isSummaryExpanded ? 'Less' : 'More' }}
                     </a>

@@ -5,7 +5,7 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-    <div class="container-fluid container-card">
+    <div class="container-fluid">
         @if(isExpressApplication) {
         <div class="row mb-4">
             <div class="col-md-12">
@@ -97,7 +97,7 @@
                                 <p *ngIf="currentTalent?.summary">
                                     {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150)
                                     + '...' }}
-                                    <a *ngIf="hasLongSummary" class="link-primary"
+                                    <a *ngIf="hasLongSummary" class="static-link"
                                         (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
                                         {{ isSummaryExpanded ? 'Less' : 'More' }}
                                     </a>

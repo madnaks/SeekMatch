@@ -28,9 +28,13 @@
   }
 
   &.active {
-    background-color: $secondary-color;
+    background-color: $accent-color;
     transform: scale(1.05);
     color: $background-color;
+  }
+
+  .form-check-label {
+    color: $text-color;
   }
 }
 

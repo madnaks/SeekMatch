@@ -1,18 +1,19 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
-.card-body {
-    cursor: pointer;
-    transition: all 0.3s ease;
-    border-radius: 6px;
+.card {
+    &.selected-job-offer {
+        border: 1px solid $accent-color;
+    }
 
-    &:hover {
-        .card-title {
-            text-decoration: underline;
+    .card-body {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+
+        &:hover {
+            .card-title {
+                text-decoration: underline;
+            }
         }
     }
-}
-
-.selected-job-offer {
-    border: 1px solid $accent-color;
-    border-radius: 6px;
 }
