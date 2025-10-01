@@ -5,6 +5,7 @@ import { ExperienceComponent } from './experience/experience.component';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
+import { SettingsComponent } from '../commun/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'education', component: EducationComponent },
       { path: 'experience', component: ExperienceComponent },
       { path: 'job-application', component: JobApplicationComponent },
+      { path: 'settings', component: SettingsComponent },
       { path: '', redirectTo: 'talent-profile', pathMatch: 'full' }
     ]
   }

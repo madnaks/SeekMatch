@@ -4,6 +4,7 @@ import { AboutYouComponent } from './about-you/about-you.component';
 import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
+import { SettingsComponent } from '../commun/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,7 @@ const routes: Routes = [
       { path: 'about-you', component: AboutYouComponent },
       { path: 'company-info', component: CompanyInfoComponent },
       { path: 'recruiter-team', component: RecruiterTeamComponent },
+      { path: 'settings', component: SettingsComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }
     ]
   }
