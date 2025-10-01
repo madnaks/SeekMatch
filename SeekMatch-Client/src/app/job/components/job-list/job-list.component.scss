@@ -3,6 +3,7 @@
 .card-body {
     cursor: pointer;
     transition: all 0.3s ease;
+    border-radius: 6px;
 
     &:hover {
         .card-title {
@@ -12,5 +13,6 @@
 }
 
 .selected-job-offer {
-    border: 1px solid rgba(0, 0, 0, 0.661);
+    border: 1px solid $accent-color;
+    border-radius: 6px;
 }

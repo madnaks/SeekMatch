@@ -6,27 +6,28 @@
         </h2>
         <!-- Buttons displayed at full screen mode -->
         @if (!isMobileView) {
-            <div class="button-group">
-                @if (this.canApply) {
-                    <!-- Apply button -->
-                    <button class="btn btn-primary" (click)="apply()">
-                        @if (isSaving) {
-                            <i class="fa fa-spin fa-spinner"></i>
-                        } @else {
-                            <i class="me-2 fa-solid fa-clipboard-check"></i>
-                            {{ 'JobOffers.JobDetails.Apply' | translate }}
-                        }
-                    </button>
-                    <!-- Bookmark button -->
-                    <button class="btn btn-primary">
-                        <i class="fa-regular fa-bookmark"></i>
-                    </button>
+        <div class="button-group">
+            @if (this.canApply) {
+            <!-- Apply button -->
+            <button class="btn btn-primary" (click)="apply()">
+                @if (isSaving) {
+                <i class="fa fa-spin fa-spinner"></i>
+                } @else {
+                <i class="me-2 fa-solid fa-clipboard-check"></i>
+                {{ 'JobOffers.JobDetails.Apply' | translate }}
                 }
-            </div>
+            </button>
+            <!-- Bookmark button -->
+            <button class="btn btn-primary">
+                <i class="fa-regular fa-bookmark"></i>
+            </button>
+            }
+        </div>
         }
     </div>
     <!-- Company name -->
     <h6>
+        <i class="fa-solid fa-building me-2"></i>
         {{ jobOffer.companyName }}
     </h6>
     <!-- Location -->
@@ -37,15 +38,16 @@
     <!-- Job offer type -->
     <div>
         <i class="fa-solid fa-briefcase me-2"></i>
-        {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }} • {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
+        {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }} • {{ 'Enum.WorkplaceType.' +
+        getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
     </div>
     <!-- Job offer salary -->
-     @if (jobOffer.salary) {
-         <div>
-             <i class="fa-solid fa-money-bills me-2"></i>
-             {{ jobOffer.salary}}
-         </div>
-     }
+    @if (jobOffer.salary) {
+    <div>
+        <i class="fa-solid fa-money-bills me-2"></i>
+        {{ jobOffer.salary}}
+    </div>
+    }
     <hr>
     <h5>
         {{ 'JobOffers.JobDetails.JobDetails' | translate }}
@@ -54,7 +56,7 @@
     <p class="description" [innerHTML]="sanitizedDescription(jobOffer.description)">
     </p>
 </div>
-<div class="text-center" *ngIf="!jobOffer" >
+<div class="text-center" *ngIf="!jobOffer">
     <p>Select a job to see details</p>
 </div>
 

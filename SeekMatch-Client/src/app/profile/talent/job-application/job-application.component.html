@@ -1,57 +1,52 @@
-<div class="row">
-
-    <div class="col-md-9">
-
-        <!-- Loading -->
-        @if (isLoading) {
-        <app-loader/>
-        } @else {
-            <!-- No data -->
-            @if (jobApplications.length === 0) {
-                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                    <div class="col-6">
-                        <p style="text-align: center;">
-                            {{ 'Talent.JobApplication.NoJobApplicationMessage' | translate }}
-                        </p>
-                    </div>
-                </div>
-            } @else {
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">{{ 'Talent.JobApplication.Table.Title' | translate }}</th>
-                                    <th scope="col">{{ 'Talent.JobApplication.Table.AppliedAt' | translate }}</th>
-                                    <th scope="col">{{ 'Talent.JobApplication.Table.Status' | translate }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (jobApplication of jobApplications; track jobApplication.id; let i = $index) {
-                                <tr>
-                                    <th scope="row">
-                                        {{ i + 1 }}
-                                    </th>
-                                    <td>
-                                        {{ jobApplication.jobOfferTitle }}
-                                    </td>
-                                    <td>
-                                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">
-                                            {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) | translate }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            }
-        }
+<!-- Loading -->
+@if (isLoading) {
+<app-loader />
+} @else {
+<!-- No data -->
+@if (jobApplications.length === 0) {
+<div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+    <div class="col-6">
+        <p style="text-align: center;">
+            {{ 'Talent.JobApplication.NoJobApplicationMessage' | translate }}
+        </p>
     </div>
 </div>
+} @else {
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">{{ 'Talent.JobApplication.Table.Title' | translate }}</th>
+                    <th scope="col">{{ 'Talent.JobApplication.Table.AppliedAt' | translate }}</th>
+                    <th scope="col">{{ 'Talent.JobApplication.Table.Status' | translate }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (jobApplication of jobApplications; track jobApplication.id; let i = $index) {
+                <tr>
+                    <th scope="row">
+                        {{ i + 1 }}
+                    </th>
+                    <td>
+                        {{ jobApplication.jobOfferTitle }}
+                    </td>
+                    <td>
+                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                    </td>
+                    <td>
+                        <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">
+                            {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) | translate
+                            }}
+                        </span>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+}
+}
