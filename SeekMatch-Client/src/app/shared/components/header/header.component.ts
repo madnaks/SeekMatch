@@ -158,7 +158,7 @@ export class HeaderComponent implements OnInit {
   public toggleTheme(event: Event): void {
     this.isLightMode = (event.target as HTMLInputElement).checked;
 
-    if (this.isLightMode) {
+    if (!this.isLightMode) {
       document.body.classList.add('light-mode');
       localStorage.setItem('mode', 'dark');
     } else {

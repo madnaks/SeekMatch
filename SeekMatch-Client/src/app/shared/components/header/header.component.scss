@@ -1,16 +1,16 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 nav {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    background-color: $primary-color;
-    color: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $primary-color;
+  color: #ffffff;
 }
 
 
 .nav-link {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .nav-text {
@@ -19,9 +19,10 @@ nav {
   padding-bottom: 0px;
   transition: color .35s ease;
   color: $text-color;
+
   &:before {
     content: '';
-    display:block;
+    display: block;
     position: absolute;
     left: 0;
     bottom: 0;
@@ -29,6 +30,7 @@ nav {
     width: 0;
     transition: width 0s ease, background .35s ease;
   }
+
   &:after {
     content: '';
     display: block;
@@ -40,11 +42,13 @@ nav {
     background: $text-color;
     transition: width .35s ease;
   }
+
   &:hover:before {
     width: 100%;
     background: $text-color;
     transition: width .35s ease;
   }
+
   &:hover:after {
     width: 100%;
     background: transparent;
@@ -53,102 +57,114 @@ nav {
 }
 
 .profile-picture {
-    cursor: pointer;
+  cursor: pointer;
 
-    img {
-        border-radius: 50%;
-        background-color: white;
-        padding: 2px;
-        object-fit: cover;
-        width: 40px;
-    }
+  img {
+    border-radius: 50%;
+    background-color: white;
+    padding: 2px;
+    object-fit: cover;
+    width: 40px;
+  }
 }
 
 .notification {
-    .icon {
-        cursor: pointer;
+  .icon {
+    cursor: pointer;
 
-        &::after {
-            content: none;
-        }
+    &::after {
+      content: none;
     }
+  }
 
-    .message {
-        cursor: pointer;
-        user-select: none;
-    }
+  .message {
+    cursor: pointer;
+    user-select: none;
+  }
 
-    .isRead {
-        color: $secondary-color;
-    }
-}
-
-:root {
-  --toggleHeight: 16em;
-  --toggleWidth: 30em;
-  --toggleBtnRadius: 10em;
-
-  --bgColor--night: #423966;
-  --mooncolor: #D9FBFF;
-}
-
-/* toggle container */
-.tdnn {
-  margin: 0 auto;
-  font-size: 30%;
-  margin-top: 2em;
-  position: relative;
-  height: var(--toggleHeight);
-  width: var(--toggleWidth);
-  border-radius: var(--toggleHeight);
-  transition: all 500ms ease-in-out;
-  background: var(--bgColor--night);
-  cursor: pointer;
-
-  &.day {
-    background: #FFBF71;
+  .isRead {
+    color: $secondary-color;
   }
 }
 
-/* moon state */
-.moon {
+.toggle-checkbox {
   position: absolute;
-  display: block;
-  border-radius: 50%;
-  transition: all 400ms ease-in-out;
-  top: 3em;
-  left: 3em;
-  transform: rotate(-75deg);
-  width: var(--toggleBtnRadius);
-  height: var(--toggleBtnRadius);
-  background: var(--bgColor--night);
-  box-shadow:
-    3em 2.5em 0 0em var(--mooncolor) inset,
-    rgba(255, 255, 255, 0.1) 0em -7em 0 -4.5em,
-    rgba(255, 255, 255, 0.1) 3em 7em 0 -4.5em,
-    rgba(255, 255, 255, 0.1) 2em 13em 0 -4em,
-    rgba(255, 255, 255, 0.1) 6em 2em 0 -4.1em,
-    rgba(255, 255, 255, 0.1) 8em 8em 0 -4.5em,
-    rgba(255, 255, 255, 0.1) 6em 13em 0 -4.5em,
-    rgba(255, 255, 255, 0.1) -4em 7em 0 -4.5em,
-    rgba(255, 255, 255, 0.1) -1em 10em 0 -4.5em;
+  opacity: 0;
+  cursor: pointer;
+}
 
-  &.sun {
-    top: 4.5em;
-    left: 18em;
-    transform: rotate(0deg);
-    width: 7em;
-    height: 7em;
-    background: #fff;
-    box-shadow:
-      3em 3em 0 5em #fff inset,
-      0 -5em 0 -2.7em #fff,
-      3.5em -3.5em 0 -3em #fff,
-      5em 0 0 -2.7em #fff,
-      3.5em 3.5em 0 -3em #fff,
-      0 5em 0 -2.7em #fff,
-      -3.5em 3.5em 0 -3em #fff,
-      -5em 0 0 -2.7em #fff,
-      -3.5em -3.5em 0 -3em #fff;
-  }
+.toggle-slot {
+  position: relative;
+  height: 2em; 
+  width: 4em;        
+  border: 2px solid #e4e7ec;
+  border-radius: 4em;
+  background-color: white;
+  box-shadow: 0px 3px 6px #e4e7ec;
+  transition: background-color 250ms;
+}
+
+.toggle-checkbox:checked~.toggle-slot {
+  background-color: #374151;
+}
+
+.toggle-button {
+  transform: translate(2.3em, 0.35em);
+  position: absolute;
+  height: 1.3em;
+  width: 1.3em;
+  border-radius: 50%;
+  background-color: #ffeccf;
+  box-shadow: inset 0px 0px 0px 0.25em #ffbb52;
+  transition: background-color 250ms, transform 400ms cubic-bezier(.26,2,.46,.71);
+}
+
+.toggle-checkbox:checked~.toggle-slot .toggle-button {
+  background-color: #485367;
+  transform: translate(0.2em, 0.2em);
+  box-shadow: inset 0px 0px 0px 0.2em white;
+}
+
+/* Sun & Moon */
+.sun-icon,
+.moon-icon {
+  height: 1.1em;
+  width: 1.1em;
+}
+
+.sun-icon {
+  color: #ffbb52;
+}
+
+.moon-icon {
+  color: white;
+}
+
+.sun-icon-wrapper,
+.moon-icon-wrapper {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: opacity 200ms, transform 400ms cubic-bezier(.26, 2, .46, .71);
+}
+
+/* Sun position */
+.sun-icon-wrapper {
+  left: 0.4em;
+  opacity: 1;
+}
+
+.toggle-checkbox:checked~.toggle-slot .sun-icon-wrapper {
+  opacity: 0;
+  transform: translateY(-50%) scale(0.8);
+}
+
+/* Moon position */
+.moon-icon-wrapper {
+  right: 0.4em;
+  opacity: 0;
+}
+
+.toggle-checkbox:checked~.toggle-slot .moon-icon-wrapper {
+  opacity: 1;
 }
