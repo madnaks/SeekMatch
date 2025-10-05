@@ -266,9 +266,7 @@
             <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
                 formControlName="reason"></textarea>
             @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
-            <div class="text-danger mt-1" >
-                {{ 'Recruiter.JobApplication.RejectModal.Validation.Reason' | translate }}
-            </div>
+            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'"/>
             }
         </div>
         <div class="modal-footer">
