@@ -31,6 +31,7 @@ export class TalentPreviewModalComponent implements OnInit {
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
+  @ViewChild('interviewScheduledModal') interviewScheduledModal!: TemplateRef<any>;
   @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
 
   public currentTalent: Talent | null = null;
@@ -43,14 +44,19 @@ export class TalentPreviewModalComponent implements OnInit {
   public JobApplicationStatus = JobApplicationStatus;
   public rejectionForm: FormGroup;
   public isSaving: boolean = false;
-
-
-  jobApplicationSteps = [
+  public jobApplicationSteps = [
     { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED' },
     { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED' },
     { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED' },
     { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED' },
     { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
+  ];
+  public platforms = [
+    { name: 'Tearms', icon: 'fa-brands fa-microsoft' },
+    { name: 'Google Meet', icon: 'fa-brands fa-google' },
+    { name: 'Zoom', icon: 'fa-brands fa-zoom' },
+    { name: 'Skype', icon: 'fa-brands fa-skype' },
+    { name: 'Other', icon: 'fa-solid fa-link' }
   ];
 
   constructor(
@@ -162,6 +168,9 @@ export class TalentPreviewModalComponent implements OnInit {
     switch (stepIndex) {
       case JobApplicationStatus.Shortlisted:
         this.modalService.open(this.shortListedConfirmationModal, { centered: true, backdrop: 'static' });
+        break;
+      case JobApplicationStatus.InterviewScheduled:
+        this.modalService.open(this.interviewScheduledModal, { centered: true, backdrop: 'static' });
         break;
       case JobApplicationStatus.Rejected:
         this.modalService.open(this.rejectJobApplicationModal, { centered: true, backdrop: 'static' });

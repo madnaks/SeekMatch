@@ -17,17 +17,20 @@
                 <!-- Company name -->
                 <div class="mb-4">
                     <label for="inputCompanyName" class="form-label">
+                        <i class="fa-solid fa-building me-2"></i>
                         {{ 'Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
                         [placeholder]="'Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
                     @if ((experienceForm.get('companyName')?.invalid && experienceForm.get('companyName')?.touched)) {
-                        <app-error-message [message]="'Talent.Experience.Modal.Body.Form.Validation.CompanyName'"></app-error-message>
+                    <app-error-message
+                        [message]="'Talent.Experience.Modal.Body.Form.Validation.CompanyName'"></app-error-message>
                     }
                 </div>
                 <!-- Job Title -->
                 <div class="mb-4">
                     <label for="inputJobTitle" class="form-label">
+                        <i class="fa-solid fa-user-tie me-2"></i>
                         {{ 'Talent.Experience.Modal.Body.Form.JobTitle' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputJobTitle" formControlName="jobTitle"
@@ -36,6 +39,7 @@
                 <!-- Job Type -->
                 <div class="mb-4">
                     <label for="jobTypeSelect" class="form-label">
+                        <i class="fa-solid fa-layer-group me-2"></i>
                         {{ 'Talent.Experience.Modal.Body.Form.JobType' | translate }}
                     </label>
                     <select id="jobTypeSelect" class="form-select" formControlName="type">
@@ -71,7 +75,8 @@
                         experienceForm.get('startMonth')?.touched) ||
                         (experienceForm.get('startYear')?.hasError('requiredSelection') &&
                         experienceForm.get('startYear')?.touched)) {
-                        <app-error-message [message]="'Talent.Experience.Modal.Body.Form.Validation.StartDate'"></app-error-message>
+                        <app-error-message
+                            [message]="'Talent.Experience.Modal.Body.Form.Validation.StartDate'"></app-error-message>
                         }
                     </div>
                 </div>
@@ -99,10 +104,12 @@
                     </div>
                     <div class="col-md-12">
                         @if (experienceForm.errors?.['invalidDateRange']) {
-                            <app-error-message [message]="'Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange'"></app-error-message>
+                        <app-error-message
+                            [message]="'Talent.Experience.Modal.Body.Form.Validation.InvalidDateRange'"></app-error-message>
                         }
                         @if (experienceForm.errors?.['invalidEndDateTwoFields']) {
-                        <app-error-message [message]="'Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields'"></app-error-message>
+                        <app-error-message
+                            [message]="'Talent.Experience.Modal.Body.Form.Validation.InvalidEndDateTwoFields'"></app-error-message>
                         }
                     </div>
                 </div>
@@ -119,6 +126,7 @@
             <div class="col-md-6 d-flex flex-column">
                 <!-- Description -->
                 <div class="mb-4 flex-grow-1">
+                    <i class="fa-solid fa-file-lines me-2"></i>
                     <label for="inputDescription" class="form-label">
                         {{ 'Talent.Experience.Modal.Body.Form.Description' | translate }}
                     </label>

@@ -189,8 +189,8 @@
                                     </span>
                                     }
                                     @else if(i === jobApplication.status + 1) {
-                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary"
-                                        (click)="applicateStepClicked(i)" style="cursor: pointer;">
+                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary active"
+                                        (click)="applicateStepClicked(i)">
                                         <i class="{{ jobApplicationStep.icon }}"></i>
                                     </span>
                                     } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !==
@@ -208,7 +208,7 @@
                             </div>
                             <div>
                                 <div [ngClass]="{
-                                        'fw-bold text-dark': i <= jobApplication.status,
+                                        'fw-bold': i <= jobApplication.status,
                                         'text-secondary': i > jobApplication.status
                                         }">
                                     {{ jobApplicationStep.text | translate }}
@@ -230,7 +230,7 @@
 </div>
 
 <!-- Job application Shortlisted Modal -->
-<ng-template #shortListedConfirmationModal let-modal [closeModal]="c" [dismissModal]="d">
+<ng-template #shortListedConfirmationModal let-modal>
     <div class="modal-header">
         <h5 class="modal-title">
             {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
@@ -250,14 +250,47 @@
     </div>
 </ng-template>
 
+<!-- Job application Interview Scheduled Modal -->
+<ng-template #interviewScheduledModal let-modal2>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal2.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col">
+                {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.BODY' | translate }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <select class="form-select" id="selectInterviewPlatform">
+                    <option *ngFor="let platform of platforms" [value]="platform.name">
+                        <i class="{{ platform.icon }} me-2"></i> {{ platform.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="col-6"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onShortlistConfirmed(modal2)">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
 <!-- Job application Rejection Modal -->
-<ng-template #rejectJobApplicationModal let-modal>
-    <form [formGroup]="rejectionForm" (ngSubmit)="onRejectJobApplication(modal)">
+<ng-template #rejectJobApplicationModal let-modal3>
+    <form [formGroup]="rejectionForm" (ngSubmit)="onRejectJobApplication(modal3)">
         <div class="modal-header">
             <h4 class="modal-title">
                 {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
             </h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal3.dismiss('Cross click')"></button>
         </div>
         <div class="modal-body">
             <label for="inputRejectionReason" class="form-label">
@@ -266,7 +299,7 @@
             <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
                 formControlName="reason"></textarea>
             @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
-            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'"/>
+            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'" />
             }
         </div>
         <div class="modal-footer">
