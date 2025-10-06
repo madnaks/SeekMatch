@@ -404,3 +404,12 @@ a {
         object-fit: contain;
     }
 }
+
+// Action icon style
+.action-icon {
+    transition: color 0.3s ease;
+    &:hover {
+        cursor: pointer;
+        color: $accent-color;
+    }
+}
