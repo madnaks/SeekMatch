@@ -19,12 +19,14 @@ import { Notification } from '../../models/notification';
 export class HeaderComponent implements OnInit {
 
   public isLightMode = false;
+  public isDarkMode = true;
   isMenuItemVisible: boolean = false;
   showHeader: boolean = true;
   isAuthenticated: boolean = false;
   userRole: UserRole | null = null;
   notifications: Notification[] = [];
   profilePicture: string | null = null;
+
 
   constructor(
     private offcanvasService: NgbOffcanvas,
@@ -55,14 +57,6 @@ export class HeaderComponent implements OnInit {
         }
       }
     });
-
-    // Load theme from localStorage if available
-    const savedMode = localStorage.getItem('mode');
-    this.isLightMode = savedMode === 'light';
-    if (this.isLightMode) {
-      document.body.classList.add('light');
-    }
-
   }
 
   private getUserNotification() {
@@ -155,16 +149,17 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  public toggleTheme(event: Event): void {
-    this.isLightMode = (event.target as HTMLInputElement).checked;
+  public toggleTheme(): void {
+    this.isDarkMode = !this.isDarkMode;
 
-    if (!this.isLightMode) {
-      document.body.classList.add('light-mode');
+    if (this.isDarkMode) {
+      document.body.classList.remove('light-mode');
       localStorage.setItem('mode', 'dark');
     } else {
-      document.body.classList.remove('light-mode');
+      document.body.classList.add('light-mode');
       localStorage.setItem('mode', 'light');
     }
+
   }
 
 }

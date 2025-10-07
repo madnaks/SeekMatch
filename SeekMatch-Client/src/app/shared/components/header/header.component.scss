@@ -87,84 +87,45 @@ nav {
   }
 }
 
-.toggle-checkbox {
-  position: absolute;
-  opacity: 0;
+.theme-toggle {
+  width: 40px;
+  height: 40px;
   cursor: pointer;
-}
+  transition: transform 0.5s ease;
 
-.toggle-slot {
-  position: relative;
-  height: 2em; 
-  width: 4em;        
-  border: 2px solid #e4e7ec;
-  border-radius: 4em;
-  background-color: white;
-  box-shadow: 0px 3px 6px #e4e7ec;
-  transition: background-color 250ms;
-}
+  i {
+    position: absolute;
+    font-size: 1.3rem;
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+  }
 
-.toggle-checkbox:checked~.toggle-slot {
-  background-color: #374151;
-}
+  .sun {
+    color: white; // default black
+    opacity: 1;
+    transform: scale(1);
 
-.toggle-button {
-  transform: translate(2.3em, 0.35em);
-  position: absolute;
-  height: 1.3em;
-  width: 1.3em;
-  border-radius: 50%;
-  background-color: #ffeccf;
-  box-shadow: inset 0px 0px 0px 0.25em #ffbb52;
-  transition: background-color 250ms, transform 400ms cubic-bezier(.26,2,.46,.71);
-}
+    &.dark {
+      color: black; // white when dark mode active
+    }
+  }
 
-.toggle-checkbox:checked~.toggle-slot .toggle-button {
-  background-color: #485367;
-  transform: translate(0.2em, 0.2em);
-  box-shadow: inset 0px 0px 0px 0.2em white;
-}
+  .moon {
+    color: black;
+    opacity: 0;
+    transform: scale(0.8);
+  }
 
-/* Sun & Moon */
-.sun-icon,
-.moon-icon {
-  height: 1.1em;
-  width: 1.1em;
-}
+  &.rotate {
+    transform: rotate(180deg);
 
-.sun-icon {
-  color: #ffbb52;
-}
+    .sun {
+      opacity: 0;
+      transform: scale(0.8);
+    }
 
-.moon-icon {
-  color: white;
-}
-
-.sun-icon-wrapper,
-.moon-icon-wrapper {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: opacity 200ms, transform 400ms cubic-bezier(.26, 2, .46, .71);
-}
-
-/* Sun position */
-.sun-icon-wrapper {
-  left: 0.4em;
-  opacity: 1;
-}
-
-.toggle-checkbox:checked~.toggle-slot .sun-icon-wrapper {
-  opacity: 0;
-  transform: translateY(-50%) scale(0.8);
-}
-
-/* Moon position */
-.moon-icon-wrapper {
-  right: 0.4em;
-  opacity: 0;
-}
-
-.toggle-checkbox:checked~.toggle-slot .moon-icon-wrapper {
-  opacity: 1;
+    .moon {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 }

@@ -97,27 +97,11 @@
         <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
 
-          <!-- Dark / Light mode -->
-          <div class="d-flex justify-content-center">
-            <label>
-              <input class='toggle-checkbox' type='checkbox' (change)="toggleTheme($event)" [checked]="isLightMode">
-              <div class='toggle-slot'>
-                <div class='moon-icon-wrapper'>
-                  <div class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></div>
-                </div>
-                <div class='toggle-button'></div>
-                <div class='sun-icon-wrapper'>
-                  <div class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></div>
-                </div>
-              </div>
-            </label>
-          </div>
-          <hr>
           <button ngbDropdownItem [routerLink]="getProfileLink()">
             <i class="fa-solid fa-user me-2"></i>
             {{ 'Navbar.Account.Profile' | translate }}
           </button>
-          <!-- <hr> -->
+          <hr>
           <button ngbDropdownItem (click)="logout()">
             <i class="fa-solid fa-right-from-bracket me-2" style="transform: rotateY(180deg);"></i>
             {{ 'Navbar.Account.Logout' | translate }}
@@ -128,11 +112,16 @@
     </ul>
 
     <!-- Language Buttons -->
-    @if (translate.currentLang == 'fr') {
+    <!-- @if (translate.currentLang == 'fr') {
     <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
     } @else if (translate.currentLang == 'en') {
     <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
-    }
+    } -->
+
+    <div class="theme-toggle d-flex justify-content-center align-items-center ms-1 me-3" [class.rotate]="!isDarkMode" (click)="toggleTheme()">
+      <i class="fa-solid fa-sun sun"></i>
+      <i class="fa-solid fa-moon moon"></i>
+    </div>
 
   </div>
 
