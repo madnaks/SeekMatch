@@ -62,12 +62,11 @@
     <div class="col-12">
       <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
         <!-- Line 1: Full name -->
-        <app-full-name-input [form]="expressApplyForm">
-        </app-full-name-input>
+        <app-full-name-input [form]="expressApplyForm"/>
         <!-- Line 2: Email -->
         <div class="row mt-3">
           <div class="col-12">
-            <app-email-input [form]="expressApplyForm"></app-email-input>
+            <app-email-input [form]="expressApplyForm"/>
           </div>
         </div>
         <!-- Line 3: CV-->
@@ -175,21 +174,20 @@
         <ng-template ngbNavContent>
           <form class="mx-auto" style="max-width: 400px;" [formGroup]="signupForm">
             <!-- Full Name -->
-            <div class="row mb-4">
-              <app-full-name-input [form]="signupForm">
-              </app-full-name-input>
+            <div class="mb-4">
+              <app-full-name-input [form]="signupForm"/>
             </div>
             <!-- Email -->
             <div class="mb-3">
-              <app-email-input [form]="signupForm"></app-email-input>
+              <app-email-input [form]="signupForm"/>
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <app-password-input [form]="signupForm"></app-password-input>
+              <app-password-input [form]="signupForm"/>
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <app-confirm-password-input [form]="signupForm"></app-confirm-password-input>
+              <app-confirm-password-input [form]="signupForm"/>
             </div>
             <button type="submit" class="btn btn-primary w-100 mb-3">
               <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>

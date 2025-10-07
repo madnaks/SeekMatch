@@ -88,24 +88,23 @@
     </div>
     <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
-        <div class="row mb-4">
-            <app-full-name-input [form]="registerFreelancerForm">
-            </app-full-name-input>
+        <div class="mb-4">
+            <app-full-name-input [form]="registerFreelancerForm"/>
         </div>
         <!-- Email -->
         <div class="mb-4">
-            <app-email-input [form]="registerFreelancerForm"></app-email-input>
+            <app-email-input [form]="registerFreelancerForm"/>
         </div>
         <!-- Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <app-password-input [form]="registerFreelancerForm"></app-password-input>
+                <app-password-input [form]="registerFreelancerForm"/>
             </div>
         </div>
         <!-- Confirm Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <app-confirm-password-input [form]="registerFreelancerForm"></app-confirm-password-input>
+                <app-confirm-password-input [form]="registerFreelancerForm"/>
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
@@ -128,8 +127,8 @@
             <div class="col-md-6">
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
                 <!-- Full Name -->
-                <div class="row mb-4">
-                    <app-full-name-input [form]="registerRepresentativeForm"></app-full-name-input>
+                <div class="mb-4">
+                    <app-full-name-input [form]="registerRepresentativeForm"/>
                 </div>
                 <!-- Position -->
                 <div class="mb-4">
@@ -143,31 +142,30 @@
                     </div>
                     @if (registerRepresentativeForm.get('position')?.invalid &&
                     registerRepresentativeForm.get('position')?.touched) {
-                    <app-error-message
-                        [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"></app-error-message>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"/>
                     }
                 </div>
                 <!-- Email -->
                 <div class="mb-4">
-                    <app-email-input [form]="registerRepresentativeForm"></app-email-input>
+                    <app-email-input [form]="registerRepresentativeForm"/>
                 </div>
                 <!-- Password -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <app-password-input [form]="registerRepresentativeForm"></app-password-input>
+                        <app-password-input [form]="registerRepresentativeForm"/>
                     </div>
                 </div>
                 <!-- Confirm Password -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <app-confirm-password-input [form]="registerFreelancerForm"></app-confirm-password-input>
+                        <app-confirm-password-input [form]="registerFreelancerForm"/>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
                 <!-- Company Name -->
-                <div class="mb-4">
+                <div class="mt-3 mb-4">
                     <div class="form-floating">
                         <input class="form-control" type="text" id="inputCompanyName"
                             [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Name' | translate"
@@ -179,8 +177,7 @@
                     </div>
                     @if (registerRepresentativeForm.get('name')?.invalid &&
                     registerRepresentativeForm.get('name')?.touched) {
-                    <app-error-message
-                        [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"></app-error-message>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"/>
                     }
                 </div>
                 <!-- Phone Number -->
@@ -196,8 +193,7 @@
                     </div>
                     @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
                     registerRepresentativeForm.get('phoneNumber')?.touched) {
-                    <app-error-message
-                        [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"></app-error-message>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"/>
                     }
                 </div>
                 <!-- Company Address -->

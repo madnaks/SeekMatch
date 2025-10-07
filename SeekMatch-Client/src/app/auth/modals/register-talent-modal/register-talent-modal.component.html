@@ -13,24 +13,23 @@
     <!-- Form -->
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
-        <div class="row mb-4">
-            <app-full-name-input [form]="registerForm">
-            </app-full-name-input>
+        <div class="mb-4">
+            <app-full-name-input [form]="registerForm"/>
         </div>
         <!-- Email -->
         <div class="mb-4">
-            <app-email-input [form]="registerForm"></app-email-input>
+            <app-email-input [form]="registerForm"/>
         </div>
         <!-- Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <app-password-input [form]="registerForm"></app-password-input>
+                <app-password-input [form]="registerForm"/>
             </div>
         </div>
         <!-- Confirm Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <app-confirm-password-input [form]="registerForm"></app-confirm-password-input>
+                <app-confirm-password-input [form]="registerForm"/>
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
