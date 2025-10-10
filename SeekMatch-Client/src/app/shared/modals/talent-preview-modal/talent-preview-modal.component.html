@@ -189,7 +189,8 @@
                                     </span>
                                     }
                                     @else if(i === jobApplication.status + 1) {
-                                    <span class="step-icon bg-light text-secondary border border-2 border-secondary active"
+                                    <span
+                                        class="step-icon bg-light text-secondary border border-2 border-secondary active"
                                         (click)="applicateStepClicked(i)">
                                         <i class="{{ jobApplicationStep.icon }}"></i>
                                     </span>
@@ -265,18 +266,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
-                <select class="form-select" id="selectInterviewPlatform">
-                    <option *ngFor="let platform of platforms" [value]="platform.name">
-                        <i class="{{ platform.icon }} me-2"></i> {{ platform.name }}
-                    </option>
-                </select>
-            </div>
-            <div class="col-6"></div>
+            <form [formGroup]="interviewForm">
+                <div class="col-6">
+                    <select class="form-select" id="selectInterviewPlatform">
+                        <option *ngFor="let platform of platforms" [value]="platform.name">
+                            {{ platform.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <app-date-picker-input [form]="interviewForm" [controlName]="'date'" [label]="''"
+                        [id]="'inputInterviewDate'"/>
+                </div>
+            </form>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onShortlistConfirmed(modal2)">
+        <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)" [disabled]="interviewForm.invalid || isSaving">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
             {{ 'BUTTON.YES' | translate }}
         </button>

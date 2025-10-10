@@ -42,6 +42,7 @@ export class TalentPreviewModalComponent implements OnInit {
   public resumeUrl: SafeResourceUrl | null = null;
   public showResume: boolean = false;
   public JobApplicationStatus = JobApplicationStatus;
+  public interviewForm: FormGroup;
   public rejectionForm: FormGroup;
   public isSaving: boolean = false;
   public jobApplicationSteps = [
@@ -52,11 +53,10 @@ export class TalentPreviewModalComponent implements OnInit {
     { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
   ];
   public platforms = [
-    { name: 'Tearms', icon: 'fa-brands fa-microsoft' },
-    { name: 'Google Meet', icon: 'fa-brands fa-google' },
-    { name: 'Zoom', icon: 'fa-brands fa-zoom' },
-    { name: 'Skype', icon: 'fa-brands fa-skype' },
-    { name: 'Other', icon: 'fa-solid fa-link' }
+    { name: 'Teams' },
+    { name: 'Google Meet'},
+    { name: 'Zoom' },
+    { name: 'Other' }
   ];
 
   constructor(
@@ -67,6 +67,7 @@ export class TalentPreviewModalComponent implements OnInit {
     private modalService: NgbModal,
     private fb: NonNullableFormBuilder,
     private toastService: ToastService) {
+    this.interviewForm = this.initInterviewForm();
     this.rejectionForm = this.initRejectionForm();
   }
 
@@ -89,6 +90,13 @@ export class TalentPreviewModalComponent implements OnInit {
       this.currentTalent = this.selectedTalent;
       this.loadProfilePicture();
     }
+  }
+
+  private initInterviewForm(): FormGroup {
+    return this.fb.group({
+      platform: ['', Validators.required],
+      date: [null, Validators.required]    
+    });
   }
 
   private initRejectionForm(): FormGroup {
@@ -181,6 +189,25 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   public onShortlistConfirmed(modal: any): void {
+    this.isSaving = true;
+    this.jobApplicationService.shortList(this.jobApplication?.id || '').pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          if (this.jobApplication) {
+            this.jobApplication.status = JobApplicationStatus.Shortlisted;
+            this.toastService.showSuccessMessage('Job application shortlisted successfully');
+            modal.close('Yes');
+          }
+        },
+        error: (err) => {
+          console.error('Error shortlisting application', err);
+        }
+      });
+  }
+
+  public onInterviewScheduledConfirmed(modal: any): void {
     this.isSaving = true;
     this.jobApplicationService.shortList(this.jobApplication?.id || '').pipe(
       finalize(() => {

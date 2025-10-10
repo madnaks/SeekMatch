@@ -26,7 +26,6 @@ export class JobOfferModalComponent implements OnInit {
   jobOfferForm: FormGroup;
   jobTypesList = jobTypes;
   workplaceTypeList = workplaceTypeList;
-  bsConfig?: Partial<BsDatepickerConfig>;
 
   editorModules = EDITOR_MODULES;
 
@@ -40,7 +39,6 @@ export class JobOfferModalComponent implements OnInit {
     private jobOfferService: JobOfferService,
     private toastService: ToastService) {
     this.jobOfferForm = this.initJobOfferFormForm();
-    this.configureDatePicker();
   }
 
   ngOnInit() {
@@ -48,15 +46,6 @@ export class JobOfferModalComponent implements OnInit {
       this.updateMode = true;
       this.populateForm(this.selectedJobOffer);
     }
-  }
-
-  private configureDatePicker(): void {
-    this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'YYYY-MM-DD',
-      isAnimated: true,
-      showWeekNumbers: false,
-    });
   }
 
   private initJobOfferFormForm(): FormGroup {

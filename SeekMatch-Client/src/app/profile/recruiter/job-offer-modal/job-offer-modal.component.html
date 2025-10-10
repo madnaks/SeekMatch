@@ -78,33 +78,11 @@
                 </div>
                 <!-- PostedAt -->
                 <div class="mb-4">
-                    <label for="inputPostedAt" class="form-label">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.PostedAt' | translate }}
-                    </label>
-                    <div class="input-group">
-                        <div class="datepicker-input input-group">
-                            <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputPostedAt"
-                                placeholder="yyyy-mm-dd" formControlName="postedAt" placement="top" />
-                            <span class="input-group-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </span>
-                        </div>
-                    </div>
+                    <app-date-picker-input [form]="jobOfferForm" [controlName]="'postedAt'" [label]="'Recruiter.JobOffer.Modal.Body.Form.PostedAt'" [id]="'inputPostedAt'"/>
                 </div>
                 <!-- ExpiresAt -->
                 <div class="mb-4">
-                    <label for="inputExpiresAt" class="form-label">
-                        {{ 'Recruiter.JobOffer.Modal.Body.Form.ExpiresAt' | translate }}
-                    </label>
-                    <div class="input-group">
-                        <div class="datepicker-input input-group">
-                            <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputExpiresAt"
-                                placeholder="yyyy-mm-dd" formControlName="expiresAt" placement="top" />
-                            <span class="input-group-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </span>
-                        </div>
-                    </div>
+                    <app-date-picker-input [form]="jobOfferForm" [controlName]="'postedAt'" [label]="'Recruiter.JobOffer.Modal.Body.Form.PostedAt'" [id]="'inputPostedAt'"/>
                 </div>
                 <!-- IsActive -->
                 <div class="mb-4">

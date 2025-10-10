@@ -107,17 +107,8 @@
                 <div class="row mt-3">
                     <!-- Date of birth -->
                     <div class="col-md-6">
-                        <label for="inputDateOfBirth" class="form-label">
-                            <i class="fa-regular fa-calendar me-2"></i>
-                            {{ 'Talent.EditProfile.DateOfBirth' | translate }}
-                        </label>
-                        <div class="datepicker-input input-group">
-                            <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
-                                placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
-                            <span class="input-group-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </span>
-                        </div>
+                        <app-date-picker-input [form]="profileForm" [label]="'Talent.EditProfile.DateOfBirth'"
+                            [controlName]="'dateOfBirth'"  id="inputDateOfBirth"/>
                     </div>
                     <!-- Phone -->
                     <div class="col-md-4">
