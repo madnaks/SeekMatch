@@ -283,7 +283,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)" [disabled]="interviewForm.invalid || isSaving">
-            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-clock': !isSaving }"></i>
             {{ 'BUTTON.YES' | translate }}
         </button>
     </div>

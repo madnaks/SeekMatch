@@ -263,7 +263,11 @@ body {
         }
 
         .input-group-text {
-            background-color: white;
+            background-color: $secondary-color;
+
+            i::before {
+                color: $text-color;
+            }
         }
 
     }

@@ -36,7 +36,7 @@ export class DatePickerInputComponent {
 
   private configureDatePicker(): void {
     this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
+      containerClass: 'theme-dark-blue',
       dateInputFormat: 'YYYY-MM-DD',
       isAnimated: true,
       showWeekNumbers: false,
