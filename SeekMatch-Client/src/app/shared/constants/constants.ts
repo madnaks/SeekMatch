@@ -37,6 +37,7 @@ export const EDITOR_MODULES = {
     ['bold', 'italic', 'underline'],
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['clean'],
+    
   ],
 };
 

@@ -7,6 +7,10 @@ export class JobOffer {
   public id: string | undefined = undefined;
   public title: string = '';
   public description: string = '';
+  public positionDetails: string = '';
+  public qualifications: string = '';
+  public additionalRequirements: string = '';
+  public companyInfo: string = '';
   public companyName: string = '';
   public location: string = '';
   public salary: string = '';

@@ -95,14 +95,47 @@
         </div>
         }
         @if(currentStep === 2) {
-        <div class="row" style="height: 50vh;">
+        <div class="row" style="height: 20vh;">
+            <!-- Description -->
             <div class="col-md-12">
-                <!-- Description -->
-                <quill-editor formControlName="description" [modules]="editorModules">
+                <label class="form-check-label" for="inputDescription">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
+                </label>
+                <quill-editor formControlName="description" [modules]="editorModules" id="inputDescription">
                 </quill-editor>
                 @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
                 <app-error-message [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Description'"></app-error-message>
                 }
+            </div>
+        </div>
+        <div class="row" style="height: 20vh;">
+            <!-- Position Details -->
+            <div class="col-md-12">
+                <label class="form-check-label" for="inputPositionDetails">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.PositionDetails' | translate }}
+                </label>
+                <quill-editor formControlName="positionDetails" [modules]="editorModules" id="inputPositionDetails">
+                </quill-editor>
+            </div>
+        </div>
+        <div class="row" style="height: 20vh;">
+            <!-- Qualifications -->
+            <div class="col-md-12">
+                <label class="form-check-label" for="inputQualifications">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Qualifications' | translate }}
+                </label>
+                <quill-editor formControlName="qualifications" [modules]="editorModules" id="inputQualifications">
+                </quill-editor>
+            </div>
+        </div>
+        <div class="row" style="height: 20vh;">
+            <!-- AdditionalRequirements -->
+            <div class="col-md-12">
+                <label class="form-check-label" for="inputAdditionalRequirements">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.AdditionalRequirements' | translate }}
+                </label>
+                <quill-editor formControlName="additionalRequirements" [modules]="editorModules" id="inputAdditionalRequirements">
+                </quill-editor>
             </div>
         </div>
         }

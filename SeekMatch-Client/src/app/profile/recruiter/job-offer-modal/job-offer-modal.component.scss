@@ -1,4 +1,16 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
+
 quill-editor {
     width: 95%;
-    height: 90%;
+    height: 65%;
+}
+
+.ql-editor.ql-blank::before {
+  color: $text-color;
+  opacity: 0.4;
+}
+
+.ql-toolbar {
+  background-color: $text-color;
 }

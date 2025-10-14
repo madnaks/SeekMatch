@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { EDITOR_MODULES, jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
@@ -6,12 +6,12 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-job-offer-modal',
   templateUrl: './job-offer-modal.component.html',
-  styleUrl: './job-offer-modal.component.scss'
+  styleUrl: './job-offer-modal.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class JobOfferModalComponent implements OnInit {
 
@@ -53,6 +53,10 @@ export class JobOfferModalComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
       companyName: [''],
+      companyInfo: [''],
+      positionDetails: [''],
+      qualifications: [''],
+      additionalRequirements: [''],
       location: ['', Validators.required],
       salary: [''],
       postedAt: [null],
@@ -68,6 +72,10 @@ export class JobOfferModalComponent implements OnInit {
       title: jobOffer.title,
       description: jobOffer.description,
       companyName: jobOffer.companyName,
+      companyInfo: jobOffer.companyInfo,
+      positionDetails: jobOffer.positionDetails,
+      qualifications: jobOffer.qualifications,
+      additionalRequirements: jobOffer.additionalRequirements,
       location: jobOffer.location,
       salary: jobOffer.salary,
       postedAt: jobOffer.postedAt,
