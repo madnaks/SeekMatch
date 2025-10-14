@@ -24,6 +24,7 @@
                         "AdditionalRequirements": "Additional Requirements",
                         "CompanyName": "Nom de l'entreprise",
                         "CompanyNamePlaceholder": "par ex., Microsoft, Google, Acme Corp.",
+                        "CompanyInfo": "Informations sur l'entreprise",
                         "JobType": "Type de travail",
                         "WorkplaceType": "Type de lieu de travail",
                         "Location": "Lieu",

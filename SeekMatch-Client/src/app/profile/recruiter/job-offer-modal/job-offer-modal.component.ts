@@ -150,12 +150,12 @@ export class JobOfferModalComponent implements OnInit {
   //#region Stepping functions
   public goToNextStep(): void {
     this.currentStep++;
-    this.updateModalSize();
+    // this.updateModalSize();
   }
 
   public goToPreviousStep(): void {
     this.currentStep--;
-    this.updateModalSize();
+    // this.updateModalSize();
   }
 
   private updateModalSize(): void {
