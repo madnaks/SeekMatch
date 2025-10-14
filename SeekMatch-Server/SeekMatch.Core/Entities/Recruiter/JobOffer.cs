@@ -6,6 +6,10 @@ namespace SeekMatch.Core.Entities
     {
         public required string Title { get; set; }
         public required string Description { get; set; }
+        public string? PositionDetails { get; set; }
+        public string? Qualifications { get; set; }
+        public string? AdditionalRequirements { get; set; }
+        public string? CompanyInfo { get; set; }
         public string? CompanyName { get; set; }
         public required string Location { get; set; }
         public string? Salary { get; set; }
