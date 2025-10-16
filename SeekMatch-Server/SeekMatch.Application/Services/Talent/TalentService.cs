@@ -10,6 +10,7 @@ namespace SeekMatch.Application.Services
 {
     public class TalentService(
             ITalentRepository talentRepository,
+            ISettingRepository settingRepository,
             IMapper mapper,
             UserManager<User> userManager) : ITalentService
     {
@@ -35,6 +36,14 @@ namespace SeekMatch.Application.Services
                 LastName = registerTalentDto.LastName,
                 User = user
             };
+
+            var setting = new Setting()
+            {
+                User = user,
+                Language = "fr"
+            };
+
+            await settingRepository.CreateAsync(setting);
 
             await talentRepository.CreateAsync(talent);
 

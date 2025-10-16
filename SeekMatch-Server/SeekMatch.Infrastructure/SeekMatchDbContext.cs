@@ -16,6 +16,7 @@ namespace SeekMatch.Infrastructure
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<ExpressApplication> ExpressApplications { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -47,7 +48,7 @@ namespace SeekMatch.Infrastructure
                 .HasOne(e => e.Talent)
                 .WithMany(t => t.Experiences)
                 .HasForeignKey(e => e.TalentId);
-            
+
             modelBuilder.Entity<Representative>()
                 .HasOne(r => r.Company)
                 .WithMany(c => c.Representatives)
@@ -87,6 +88,17 @@ namespace SeekMatch.Infrastructure
                 .WithMany()
                 .HasForeignKey(n => n.userId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Setting>(entity =>
+            {
+                entity.HasKey(s => s.UserId);
+
+                entity.HasOne(s => s.User)
+                      .WithOne()
+                      .HasForeignKey<Setting>(s => s.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
         }
     }
 }
