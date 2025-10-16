@@ -1,3 +1,4 @@
+import { Setting } from "./setting";
 import { User } from "./user";
 
 export class Representative extends User {
@@ -6,8 +7,9 @@ export class Representative extends User {
   public lastName: string = '';
   public password: string = '';
   public position: string = '';
+  public setting: Setting = new Setting();
 
-  constructor(init?:Partial<Representative>) {
+  constructor(init?: Partial<Representative>) {
     super();
     Object.assign(this, init);
   }

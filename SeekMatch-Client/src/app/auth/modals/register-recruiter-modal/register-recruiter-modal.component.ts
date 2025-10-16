@@ -8,6 +8,7 @@ import { RecruiterService } from '../../../shared/services/recruiter.service';
 import { Representative } from '../../../shared/models/representative';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 import { Company } from '../../../shared/models/company';
+import { LanguageService } from '@app/shared/services/language.service';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -39,7 +40,8 @@ export class RegisterRecruiterModalComponent {
     private recruiterService: RecruiterService,
     private representativeService: RepresentativeService,
     private router: Router,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private languageService: LanguageService) {
     this.registerFreelancerForm = this.initRegisterFreelancerForm();
     this.registerRepresentativeForm = this.initRegisterRepresentativeForm();
   }
@@ -145,6 +147,8 @@ export class RegisterRecruiterModalComponent {
 
       let recruiter = new Recruiter(formFreelancerValues);
 
+      recruiter.setting.language = this.languageService.getBrowserLanguageCode();
+
       this.recruiterService.register(recruiter).pipe(
         finalize(() => {
           this.isLoading = false;
@@ -165,6 +169,8 @@ export class RegisterRecruiterModalComponent {
 
       let representative = new Representative(formRepresentativeValues);
       let company = new Company(formRepresentativeValues);
+
+      representative.setting.language = this.languageService.getBrowserLanguageCode();
 
       this.representativeService.register(representative, company).pipe(
         finalize(() => {

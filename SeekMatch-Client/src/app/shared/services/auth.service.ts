@@ -6,6 +6,7 @@ import { Observable, tap } from 'rxjs';
 import { UserRole } from '../enums/enums';
 import { Talent } from '../models/talent';
 import { Recruiter } from '../models/recruiter';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
@@ -16,13 +17,14 @@ export class AuthService {
 
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private translate: TranslateService) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((response: any) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
+        this.translate.use(response.language || 'fr');
       })
     );
   }

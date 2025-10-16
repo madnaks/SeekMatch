@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { TalentService } from '../../../shared/services/talent.service';
+import { LanguageService } from '@app/shared/services/language.service';
 
 @Component({
   selector: 'app-register-talent-modal',
@@ -26,7 +27,8 @@ export class RegisterTalentModalComponent {
     private fb: NonNullableFormBuilder,
     private talentService: TalentService,
     private router: Router,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private languageService: LanguageService) {
     this.registerForm = this.initregisterForm();
   }
 
@@ -62,6 +64,8 @@ export class RegisterTalentModalComponent {
     const formValues = this.registerForm.value;
 
     let talent = new Talent(formValues);
+
+    talent.setting.language = this.languageService.getBrowserLanguageCode();
     
     this.talentService.register(talent).pipe(
       finalize(() => {
