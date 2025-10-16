@@ -4,6 +4,6 @@
     {
         public string UserId { get; set; } = null!;
         public required User User { get; set; }
-        public string? Language { get; set; }
+        public string? Language { get; set; } = "fr";
     }
 }

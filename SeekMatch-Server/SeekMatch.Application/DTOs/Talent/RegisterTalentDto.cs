@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SeekMatch.Core.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace SeekMatch.Application.DTOs.Talent
 {
@@ -17,5 +18,7 @@ namespace SeekMatch.Application.DTOs.Talent
 
         [Required]
         public required string LastName { get; set; }
+
+        public SettingDto? Setting { get; set; }
     }
 }

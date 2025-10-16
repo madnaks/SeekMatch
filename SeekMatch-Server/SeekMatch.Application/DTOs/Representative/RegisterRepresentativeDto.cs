@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SeekMatch.Core.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace SeekMatch.Application.DTOs.Representative
 {
@@ -28,5 +29,7 @@ namespace SeekMatch.Application.DTOs.Representative
         
         [Required]
         public required string CompanyPhoneNumber { get; set; }
+
+        public SettingDto? Setting { get; set; }
     }
 }

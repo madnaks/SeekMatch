@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.DTOs.Representative;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Enums;
@@ -53,7 +54,7 @@ namespace SeekMatch.Application.Services
             var setting = new Setting()
             {
                 User = user,
-                Language = "fr"
+                Language = registerRepresentativeDto.Setting?.Language
             };
 
             await settingRepository.CreateAsync(setting);

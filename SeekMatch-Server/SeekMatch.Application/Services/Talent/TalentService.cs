@@ -40,7 +40,7 @@ namespace SeekMatch.Application.Services
             var setting = new Setting()
             {
                 User = user,
-                Language = "fr"
+                Language = registerTalentDto.Setting?.Language
             };
 
             await settingRepository.CreateAsync(setting);
