@@ -31,7 +31,7 @@ export class JobOfferModalComponent implements OnInit {
 
   //#region  Stepping variables
   currentStep: number = 1;
-  maxSteps: number = 2;
+  maxSteps: number = 3;
   //#endregion
 
   constructor(

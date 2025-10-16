@@ -112,58 +112,46 @@
         @if(currentStep === 2) {
         <div class="row">
             <div class="col-6">
-                <div class="row mb-4" style="height: 20vh;">
-                    <!-- Description -->
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputDescription">
-                            {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
-                        </label>
-                        <quill-editor formControlName="description" [modules]="editorModules" id="inputDescription">
-                        </quill-editor>
-                        @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
-                        <app-error-message
-                            [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Description'"></app-error-message>
-                        }
-                    </div>
-                </div>
-                <div class="row" style="height: 20vh;">
-                    <!-- Position Details -->
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputPositionDetails">
-                            {{ 'Recruiter.JobOffer.Modal.Body.Form.PositionDetails' | translate }}
-                        </label>
-                        <quill-editor formControlName="positionDetails" [modules]="editorModules"
-                            id="inputPositionDetails">
-                        </quill-editor>
-                    </div>
-                </div>
+                <!-- Description -->
+                <label class="form-label" for="inputDescription">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
+                </label>
+                <quill-editor formControlName="description" [modules]="editorModules" id="inputDescription">
+                </quill-editor>
+                @if ((jobOfferForm.get('description')?.invalid && jobOfferForm.get('description')?.touched)) {
+                <app-error-message
+                    [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.Description'"></app-error-message>
+                }
             </div>
-
+            <div class="col-6 mb-4">
+                <!-- Position Details -->
+                <label class="form-label" for="inputPositionDetails">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.PositionDetails' | translate }}
+                </label>
+                <quill-editor formControlName="positionDetails" [modules]="editorModules" id="inputPositionDetails">
+                </quill-editor>
+            </div>
+        </div>
+        }
+        @if(currentStep === 3) {
+        <div class="row">
+            <div class="col-6 mb-4">
+                <!-- Qualifications -->
+                <label class="form-label" for="inputQualifications">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.Qualifications' | translate }}
+                </label>
+                <quill-editor formControlName="qualifications" [modules]="editorModules" id="inputQualifications">
+                </quill-editor>
+            </div>
             <div class="col-6">
-                <div class="row mb-4" style="height: 20vh;">
-                    <!-- Qualifications -->
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputQualifications">
-                            {{ 'Recruiter.JobOffer.Modal.Body.Form.Qualifications' | translate }}
-                        </label>
-                        <quill-editor formControlName="qualifications" [modules]="editorModules"
-                            id="inputQualifications">
-                        </quill-editor>
-                    </div>
-                </div>
-                <div class="row" style="height: 20vh;">
-                    <!-- AdditionalRequirements -->
-                    <div class="col-md-12">
-                        <label class="form-label" for="inputAdditionalRequirements">
-                            {{ 'Recruiter.JobOffer.Modal.Body.Form.AdditionalRequirements' | translate }}
-                        </label>
-                        <quill-editor formControlName="additionalRequirements" [modules]="editorModules"
-                            id="inputAdditionalRequirements">
-                        </quill-editor>
-                    </div>
-                </div>
+                <!-- AdditionalRequirements -->
+                <label class="form-label" for="inputAdditionalRequirements">
+                    {{ 'Recruiter.JobOffer.Modal.Body.Form.AdditionalRequirements' | translate }}
+                </label>
+                <quill-editor formControlName="additionalRequirements" [modules]="editorModules"
+                    id="inputAdditionalRequirements">
+                </quill-editor>
             </div>
-
         </div>
         }
     </form>

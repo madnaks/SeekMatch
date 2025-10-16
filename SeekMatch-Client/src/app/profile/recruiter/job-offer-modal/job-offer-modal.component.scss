@@ -2,14 +2,19 @@
 
 
 quill-editor {
-    width: 100%;
-    height: 65%;
+  width: 100%;
+  height: 65%;
 
-    .ql-container {
-      border-radius: 0 0 6px 6px;
-    }
+  .ql-container {
+    border-radius: 0 0 6px 6px;
+  }
+
+  .ql-container {
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }
-
 .ql-editor.ql-blank::before {
   color: $text-color;
   opacity: 0.4;
