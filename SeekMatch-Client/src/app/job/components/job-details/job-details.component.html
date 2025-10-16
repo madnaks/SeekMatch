@@ -49,12 +49,36 @@
     </div>
     }
     <hr>
+    <!-- JobDescription -->
     <h5>
-        {{ 'JobOffers.JobDetails.JobDetails' | translate }}
+        {{ 'JobOffers.JobDetails.Description' | translate }}
     </h5>
-    <!-- Description -->
-    <p class="description" [innerHTML]="sanitizedDescription(jobOffer.description)">
+    <p class="text-area" [innerHTML]="sanitizedDescription(jobOffer.description)">
     </p>
+    <!-- PositionDetails -->
+    @if(jobOffer.positionDetails) {
+    <h5>
+        {{ 'JobOffers.JobDetails.PositionDetails' | translate }}
+    </h5>
+    <p class="text-area" [innerHTML]="sanitizedDescription(jobOffer.positionDetails)">
+    </p>
+    }
+    <!-- Qualifications -->
+    @if(jobOffer.qualifications) {
+    <h5>
+        {{ 'JobOffers.JobDetails.Qualifications' | translate }}
+    </h5>
+    <p class="text-area" [innerHTML]="sanitizedDescription(jobOffer.qualifications)">
+    </p>
+    }
+    <!-- AdditionalRequirements -->
+    @if (jobOffer.additionalRequirements) {
+    <h5>
+        {{ 'JobOffers.JobDetails.AdditionalRequirements' | translate }}
+    </h5>
+    <p class="text-area" [innerHTML]="sanitizedDescription(jobOffer.additionalRequirements)">
+    </p>
+    }
 </div>
 <div class="text-center" *ngIf="!jobOffer">
     <p>Select a job to see details</p>

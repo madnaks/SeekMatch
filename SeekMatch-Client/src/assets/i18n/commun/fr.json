@@ -49,7 +49,10 @@
         "WhereInput": "Où ?",
         "BackToList": "Retour à la liste",
         "JobDetails": {
-            "JobDetails": "Détails du poste",
+            "Description": "Description",
+            "PositionDetails": "Détails du poste",
+            "Qualifications": "Qualifications",
+            "AdditionalRequirements": "Exigences supplémentaires",
             "Apply": "Postuler"
         }
     },
