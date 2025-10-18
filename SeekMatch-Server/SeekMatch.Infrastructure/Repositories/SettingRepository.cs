@@ -34,5 +34,19 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while creating the setting", ex);
             }
         }
+
+        public async Task<bool> UpdateAsync(Setting setting)
+        {
+            try
+            {
+                dbContext.Settings.Update(setting);
+                var result = await dbContext.SaveChangesAsync();
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating the setting", ex);
+            }
+        }
     }
 }

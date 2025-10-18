@@ -6,5 +6,6 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task<Setting?> GetAsync(string userId);
         Task CreateAsync(Setting setting);
+        Task<bool> UpdateAsync(Setting setting);
     }
 }
