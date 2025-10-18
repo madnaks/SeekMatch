@@ -15,4 +15,8 @@ export class SettingService {
   loadSetting(): Observable<any> {
     return this.http.get<Setting[]>(`${this.apiUrl}`);
   }
+
+  updateSetting(setting: Setting): Observable<any> {
+    return this.http.post(`${this.apiUrl}`, setting);
+  }
 }

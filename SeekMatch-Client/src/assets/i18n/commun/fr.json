@@ -126,5 +126,12 @@
     },
     "Table": {
         "Actions": "Actions"
+    },
+    "Settings" : {
+        "Language":  {
+            "Label": "Language",
+            "French": "French", 
+            "English": "English"
+        }
     }
 }
