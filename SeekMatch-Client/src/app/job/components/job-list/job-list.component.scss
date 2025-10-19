@@ -1,6 +1,13 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 .card {
+
+    margin-left: 0 !important;
+
+    &:first-child {
+        margin-top: 0 !important;
+    }
+
     &.selected-job-offer {
         border: 1px solid $accent-color;
     }

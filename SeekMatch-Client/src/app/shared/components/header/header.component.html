@@ -111,13 +111,6 @@
       }
     </ul>
 
-    <!-- Language Buttons -->
-    <!-- @if (translate.currentLang == 'fr') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
-    } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
-    } -->
-
     <div class="theme-toggle d-flex justify-content-center align-items-center ms-1 me-3" [class.rotate]="!isDarkMode" (click)="toggleTheme()">
       <i class="fa-solid fa-sun sun"></i>
       <i class="fa-solid fa-moon moon"></i>
@@ -179,13 +172,6 @@
         </a>
       </li>
     </ul>
-
-    <!-- Language Buttons -->
-    @if (translate.currentLang == 'fr') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
-    } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
-    }
   </div>
 
 </ng-template>

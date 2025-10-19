@@ -110,14 +110,6 @@ export class HeaderComponent implements OnInit {
     this.offcanvasService.dismiss();
   }
 
-  public changeLanguage() {
-    if (this.translate.currentLang == 'en') {
-      this.translate.use('fr');
-    } else {
-      this.translate.use('en');
-    }
-  }
-
   public open(content: any) {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
   }
