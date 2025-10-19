@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, FormsModule, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Setting } from '@app/shared/models/setting';
+import { LanguageService } from '@app/shared/services/language.service';
 import { SettingService } from '@app/shared/services/setting.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -25,10 +26,11 @@ export class SettingsComponent {
   isSaving: boolean = false;
 
   constructor(
-    private settingService: SettingService, 
+    private settingService: SettingService,
     private fb: NonNullableFormBuilder,
     private translate: TranslateService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private languageService: LanguageService) {
     this.settingForm = this.initSettingForm();
   }
 
@@ -49,7 +51,7 @@ export class SettingsComponent {
     this.settingService.loadSetting().subscribe(setting => {
 
       this.settingForm.patchValue({
-        language: setting.language
+        language: setting.language || this.languageService.getBrowserLanguageCode()
       });
 
       this.isLoading = false;

@@ -32,7 +32,6 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.CompanyName' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.JobType' | translate }}</th>
@@ -45,9 +44,6 @@
             <tbody>
                 @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
                 <tr>
-                    <th scope="row">
-                        {{ i + 1 }}
-                    </th>
                     <td>
                         {{ jobOffer.title }}
                     </td>
