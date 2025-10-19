@@ -17,23 +17,34 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">{{ 'Talent.JobApplication.Table.Title' | translate }}</th>
-                    <th scope="col">{{ 'Talent.JobApplication.Table.AppliedAt' | translate }}</th>
-                    <th scope="col">{{ 'Talent.JobApplication.Table.Status' | translate }}</th>
+                    <th scope="col" (click)="sortData('jobOfferTitle')" class="sortable">
+                        {{'Talent.JobApplication.Table.Title' | translate }}
+                         <i *ngIf="sortColumn === 'jobOfferTitle'"
+                            class="bi"
+                            [ngClass]="{'bi-caret-up-fill': sortDirection === 'asc', 'bi-caret-down-fill': sortDirection === 'desc'}"></i>
+                    </th>
+                    <th scope="col" (click)="sortData('appliedAt')" class="sortable">
+                        {{ 'Talent.JobApplication.Table.AppliedAt' | translate }}
+                        <i *ngIf="sortColumn === 'appliedAt'"
+                            class="bi"
+                            [ngClass]="{'bi-caret-up-fill': sortDirection === 'asc', 'bi-caret-down-fill': sortDirection === 'desc'}"></i>
+                    </th>
+                    <th scope="col" (click)="sortData('status')" class="sortable">
+                        {{ 'Talent.JobApplication.Table.Status' | translate }}
+                        <i *ngIf="sortColumn === 'status'"
+                            class="bi"
+                            [ngClass]="{'bi-caret-up-fill': sortDirection === 'asc', 'bi-caret-down-fill': sortDirection === 'desc'}"></i>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                @for (jobApplication of jobApplications; track jobApplication.id; let i = $index) {
+                @for (jobApplication of sortedJobApplications; track jobApplication.id; let i = $index;) {
                 <tr>
-                    <th scope="row">
-                        {{ i + 1 }}
-                    </th>
                     <td>
                         {{ jobApplication.jobOfferTitle }}
                     </td>
                     <td>
-                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm' }}
                     </td>
                     <td>
                         <span class="badge rounded-pill" [ngClass]="getStatusClass(jobApplication.status)">

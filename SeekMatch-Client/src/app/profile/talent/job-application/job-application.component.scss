@@ -7,3 +7,8 @@
         text-align: center;
     }
 }
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}

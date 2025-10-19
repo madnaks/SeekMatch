@@ -14,6 +14,9 @@ export class JobApplicationComponent implements OnInit {
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedJobApplication: JobApplication = new JobApplication;
+  sortedJobApplications = [...this.jobApplications];
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(
     private jobApplicationService: JobApplicationService) {
@@ -26,6 +29,7 @@ export class JobApplicationComponent implements OnInit {
   private getJobApplications(): void {
     this.jobApplicationService.getAllByTalent().subscribe((jobApplications) => {
       this.jobApplications = jobApplications;
+      this.sortedJobApplications = [...this.jobApplications];
       this.isLoading = false;
     });
   }
@@ -51,6 +55,39 @@ export class JobApplicationComponent implements OnInit {
       default:
         return 'bg-light';
     }
+  }
+
+  sortData(column: keyof JobApplication) {
+    if (this.sortColumn === column) {
+      // Toggle direction if sorting same column again
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // New column to sort
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+
+    this.sortedJobApplications = [...this.jobApplications].sort((a, b) => {
+      const valueA = a[column];
+      const valueB = b[column];
+      if (valueA == null || valueB == null) return 0;
+
+      let comparison = 0;
+
+      // Compare based on type
+      if (typeof valueA === 'string' && typeof valueB === 'string') {
+        comparison = valueA.localeCompare(valueB);
+      } else if (typeof valueA === 'boolean' && typeof valueB === 'boolean') {
+        comparison = valueA === valueB ? 0 : valueA ? 1 : -1;
+      } else if (typeof valueA === 'number' && typeof valueB === 'number') {
+        comparison = valueA - valueB;
+      } else {
+        // For enums, dates, or other values
+        comparison = String(valueA).localeCompare(String(valueB));
+      }
+
+      return this.sortDirection === 'asc' ? comparison : -comparison;
+    });
   }
 
 
