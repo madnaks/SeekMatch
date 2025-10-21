@@ -79,10 +79,6 @@ export class RegisterRecruiterModalComponent {
       return password === confirmPassword ? null : { mismatch: true };
     };
   }
-
-  public toggleConfirmPasswordVisibility(): void {
-    this.confirmPasswordVisible = !this.confirmPasswordVisible;
-  }
   //#endregion
 
   //#region Stepping functions

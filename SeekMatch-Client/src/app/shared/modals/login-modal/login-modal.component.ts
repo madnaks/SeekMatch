@@ -1,9 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
+import { createLoginForm } from './login-modal.config';
 
 @Component({
   selector: 'app-login-modal',
@@ -23,14 +24,7 @@ export class LoginModalComponent {
     private authService: AuthService,
     private toastService: ToastService,
     private router: Router) {
-    this.loginForm = this.initLoginForm();
-  }
-
-  private initLoginForm(): FormGroup {
-    return this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+    this.loginForm = createLoginForm(this.fb);
   }
 
   public onSubmit(): void {

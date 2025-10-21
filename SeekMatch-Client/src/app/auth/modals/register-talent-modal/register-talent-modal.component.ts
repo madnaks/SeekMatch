@@ -83,10 +83,6 @@ export class RegisterTalentModalComponent {
       })
   }
 
-  public toggleConfirmPasswordVisibility(): void {
-    this.confirmPasswordVisible = !this.confirmPasswordVisible;
-  }
-
   public dismiss(reason: string) {
     if (this.dismissModal) {
       this.dismissModal(reason);
