@@ -18,6 +18,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
 import { JobModule } from "@app/job/job.module";
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
+import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-
     EmailInputComponent,
     JobModule,
     LoaderComponent,
-    DatePickerInputComponent
+    DatePickerInputComponent,
+    DataTableComponent
 ]
 })
 export class TalentModule { }

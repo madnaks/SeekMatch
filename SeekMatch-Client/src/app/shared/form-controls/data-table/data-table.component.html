@@ -1,0 +1,40 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let col of columns" scope="col" [class.sortable]="col.sortable"
+                (click)="col.sortable && sortData(col.field)">
+                {{ col.header | translate }}
+                <i *ngIf="col.sortable && sortColumn === col.field" class="bi" [ngClass]="{
+             'bi-caret-up-fill': sortDirection === 'asc',
+             'bi-caret-down-fill': sortDirection === 'desc'
+           }"></i>
+            </th>
+            <th scope="col" *ngIf="delete.observers.length > 0">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (row of sortedData; track row['id']; let i = $index) {
+        <tr>
+
+            <td *ngFor="let col of columns">
+
+                @if (col.type === "date") {
+                    {{ row[col.field] | date: col.formatter?.(row[col.field], row) ?? 'medium' }}
+                } @else if (col.type === "enum") {
+                    <span class="badge rounded-pill" [ngClass]="col.badgeClass?.(row[col.field], row)">
+                        {{ (col.formatter?.(row[col.field], row) ?? '') | translate }}
+                    </span>
+                }
+                @else {
+                    {{ row[col.field] }}
+                }
+            </td>
+
+            <td *ngIf="delete.observers.length > 0">
+                <i class="action-icon fa-solid fa-trash" (click)="onDelete(row)"></i>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
