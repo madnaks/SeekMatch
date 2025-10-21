@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
 import { finalize } from 'rxjs';
@@ -9,6 +9,7 @@ import { Representative } from '../../../shared/models/representative';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 import { Company } from '../../../shared/models/company';
 import { LanguageService } from '@app/shared/services/language.service';
+import { createRegisterFreelancerForm, createRegisterRepresentativeForm } from './register-recruiter-modal.config';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -42,44 +43,9 @@ export class RegisterRecruiterModalComponent {
     private router: Router,
     private toastService: ToastService,
     private languageService: LanguageService) {
-    this.registerFreelancerForm = this.initRegisterFreelancerForm();
-    this.registerRepresentativeForm = this.initRegisterRepresentativeForm();
+    this.registerFreelancerForm = createRegisterFreelancerForm(this.fb);
+    this.registerRepresentativeForm = createRegisterRepresentativeForm(this.fb);
   }
-
-  //#region Forms functions
-  private initRegisterFreelancerForm(): FormGroup {
-    return this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator() });
-  }
-
-  private initRegisterRepresentativeForm(): FormGroup {
-    return this.fb.group({
-      name: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      address: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      position: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator() });
-  }
-
-  private passwordsMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const formGroup = control as FormGroup;
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-      return password === confirmPassword ? null : { mismatch: true };
-    };
-  }
-  //#endregion
 
   //#region Stepping functions
   public goToNextStep(): void {
