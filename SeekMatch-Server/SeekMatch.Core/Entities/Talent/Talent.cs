@@ -17,6 +17,7 @@
         public required User User { get; set; }
         public List<Education> Educations { get; set; } = new List<Education>();
         public List<Experience> Experiences { get; set; } = new List<Experience>();
+        public List<Resume> Resumes { get; set; } = new List<Resume>();
         public List<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
     }
 }

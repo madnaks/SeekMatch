@@ -78,7 +78,7 @@ namespace SeekMatch.Application.Services
             expressApplication.JobApplicationId = jobApplication.Id;
 
             var cvPath = await fileStorageService.SaveFileAsync(cvStream, $"{newExpressApplicationGuid}_{fileName}");
-            expressApplication.CvPath = cvPath;
+            expressApplication.FilePath = cvPath;
 
             await emailService.SendExpressApplicationConfirmationAsync(expressApplication, existingJobOffer);
 
@@ -122,13 +122,13 @@ namespace SeekMatch.Application.Services
             }
 
             if (jobApplication.IsExpress) {
-                if (jobApplication.ExpressApplication == null || jobApplication.ExpressApplication.CvPath == null)
+                if (jobApplication.ExpressApplication == null || jobApplication.ExpressApplication.FilePath == null)
                 {
                     throw new Exception("CV not found for this express application");
                 }
 
-                var stream = await fileStorageService.OpenReadAsync(jobApplication.ExpressApplication.CvPath);
-                var fileName = Path.GetFileName(jobApplication.ExpressApplication.CvPath);
+                var stream = await fileStorageService.OpenReadAsync(jobApplication.ExpressApplication.FilePath);
+                var fileName = Path.GetFileName(jobApplication.ExpressApplication.FilePath);
 
                 return new FileDownloadResult(stream, fileName, "application/pdf");
 

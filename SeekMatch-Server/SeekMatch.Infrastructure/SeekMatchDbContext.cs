@@ -17,6 +17,7 @@ namespace SeekMatch.Infrastructure
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<ExpressApplication> ExpressApplications { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Resume> Resumes { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -88,6 +89,11 @@ namespace SeekMatch.Infrastructure
                 .WithMany()
                 .HasForeignKey(n => n.userId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Resume>()
+               .HasOne(e => e.Talent)
+               .WithMany(t => t.Resumes)
+               .HasForeignKey(e => e.TalentId);
 
             modelBuilder.Entity<Setting>(entity =>
             {
