@@ -19,6 +19,8 @@ import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, Ema
 import { JobModule } from "@app/job/job.module";
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
+import { ResumeComponent } from './resume/resume.component';
+import { ResumeModalComponent } from './resume-modal/resume-modal.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { DataTableComponent } from "@app/shared/form-controls/data-table/data-ta
     ExperienceComponent,
     ExperienceModalComponent,
     JobApplicationComponent,
-    EditProfileModalComponent
+    EditProfileModalComponent,
+    ResumeComponent,
+    ResumeModalComponent
   ],
   imports: [
     CommonModule,

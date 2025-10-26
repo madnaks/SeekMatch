@@ -60,6 +60,33 @@
                 }
             }
         },
+        "Resume": {
+            "AddResume": "Ajouter un CV",
+            "NoResumeMessage": "Commencez à construire votre profil en ajoutant votre CV",
+            "Table": {
+                "Title": "Titre",
+                "IsPrimary": "Principal"
+            },
+            "Modal": {
+                "CreationTitle": "Nouveau CV",
+                "UpdateTitle": "Mettre à jour le CV",
+                "DeleteTitle": "Supprimer le CV",
+                "Body": {
+                    "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce CV ?",
+                    "Form": {
+                        "Title": "Titre",
+                        "TitlePlaceHolder": "ex., Mon CV professionnel",
+                        "IsPrimary": "Définir comme CV principal",
+                        "File": "Fichier",
+                        "FilePlaceHolder": "Choisir un fichier...",
+                        "Validation": {
+                            "Title": "Le titre est requis.",
+                            "File": "Le fichier est requis."
+                        }
+                    }
+                }
+            }
+        },
         "Experience": {
             "AddExperience": "Ajouter une expérience",
             "NoExperienceMessage": "Commencez à créer votre profil en ajoutant votre historique d'expérience",

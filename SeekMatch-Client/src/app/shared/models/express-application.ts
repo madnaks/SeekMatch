@@ -3,7 +3,7 @@ export class ExpressApplication {
   firstName: string = '';
   email: string = '';
   phone?: string;
-  cvPath?: string;
+  filePath?: string;
   jobApplicationId: string = '';
 
   constructor(init?: Partial<ExpressApplication>) {

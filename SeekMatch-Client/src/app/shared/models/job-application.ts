@@ -12,6 +12,7 @@ export class JobApplication {
   public status: JobApplicationStatus = JobApplicationStatus.Submitted;
   public rejectionReason: string = '';
   public isExpress: boolean= false;
+  public filePath?: string;
   public expressApplication?: ExpressApplication = new ExpressApplication();
 
   constructor(init?:Partial<JobApplication>) {

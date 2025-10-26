@@ -2,10 +2,10 @@
 <be-loader />
 } @else {
 <div class="row">
-    <div class="col-md-2 profile-picture-section">
+    <div class="col-md-1 profile-picture-section">
         <img [src]="profilePicture" class="img-thumbnail mb-2">
     </div>
-    <div class="col-md-10">
+    <div class="col-md-11">
         <div class="row">
             <div class="col-md-6">
                 <h3>
@@ -74,6 +74,15 @@
             </a>
             <ng-template ngbNavContent>
                 <app-education></app-education>
+            </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem>
+            <a ngbNavLink>
+                <i class="fa-solid fa-file me-2"></i>
+                Resumes
+            </a>
+            <ng-template ngbNavContent>
+                <app-resume></app-resume>
             </ng-template>
         </ng-container>
     </nav>
