@@ -4,6 +4,7 @@ using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
 using SeekMatch.Infrastructure.Repositories;
+using System.IO;
 
 namespace SeekMatch.Application.Services
 {
@@ -34,11 +35,18 @@ namespace SeekMatch.Application.Services
             return new FileDownloadResult(stream, fileName, "application/pdf");
         }
 
-        public async Task<bool> CreateAsync(ResumeDto resumeDto, string talentId)
+        public async Task<bool> CreateAsync(ResumeDto resumeDto, string talentId, Stream resumeStream, string fileName)
         {
             var resume = mapper.Map<Resume>(resumeDto);
-            resume.Id = Guid.NewGuid().ToString();
+
+            var newResumeGuid = Guid.NewGuid().ToString();
+
+            resume.Id = newResumeGuid;
             resume.TalentId = talentId;
+
+            var resumePath = await fileStorageService.SaveFileAsync(resumeStream, $"{newResumeGuid}_{fileName}");
+            resume.FilePath = resumePath;
+
             return await resumeRepository.CreateAsync(resume);
         }
 
