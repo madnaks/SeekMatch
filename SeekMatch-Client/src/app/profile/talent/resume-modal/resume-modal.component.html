@@ -11,40 +11,50 @@
 
 <div class="modal-body">
     <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
-        <!-- Title -->
-        <div class="mb-4">
-            <label for="inputTitle" class="form-label">
-                {{ 'Talent.Resume.Modal.Body.Form.Title' | translate }}
-            </label>
-            <input type="text" class="form-control" id="inputTitle" formControlName="title"
-                [placeholder]="'Talent.Resume.Modal.Body.Form.TitlePlaceHolder' | translate">
-            @if ((resumeForm.get('title')?.invalid && resumeForm.get('title')?.touched)) {
-            <app-error-message
-                [message]="'Talent.Resume.Modal.Body.Form.Validation.Title'"></app-error-message>
-            }
-        </div>
-        <!-- IsPrimary -->
-        <div class="mb-4">
-            <input class="form-check-input me-2" type="checkbox" id="inputIsPrimary" formControlName="isPrimary">
-            <label class="form-check-label" for="inputIsPrimary">
-                {{ 'Talent.Resume.Modal.Body.Form.IsPrimary' | translate }}
-            </label>
-        </div>
-        <!-- File -->
-        <div class="mb-4">
-            <label for="formFile" class="form-label">
-                {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
-            </label>
-            <input class="form-control" type="file" id="formFile" accept="application/pdf"
-                (change)="onFileSelected($event)">
-            @if ((resumeForm.get('resume')?.errors?.['required'] && resumeForm.get('resume')?.touched)) {
-            <app-error-message
-                [message]="'Talent.Resume.Modal.Body.Form.Validation.FileRequired'"></app-error-message>
-            }
-            @if ((resumeForm.get('resume')?.errors?.['invalidFileType'] && resumeForm.get('resume')?.touched)) {
-            <app-error-message
-                [message]="'Talent.Resume.Modal.Body.Form.Validation.FileType'"></app-error-message>
-            }
+        <div class="row">
+            <div class="col-3">
+                <!-- Title -->
+                <div class="mb-4">
+                    <label for="inputTitle" class="form-label">
+                        {{ 'Talent.Resume.Modal.Body.Form.Title' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputTitle" formControlName="title"
+                        [placeholder]="'Talent.Resume.Modal.Body.Form.TitlePlaceHolder' | translate">
+                    @if ((resumeForm.get('title')?.invalid && resumeForm.get('title')?.touched)) {
+                    <app-error-message [message]="'Talent.Resume.Modal.Body.Form.Validation.Title'"></app-error-message>
+                    }
+                </div>
+                <!-- IsPrimary -->
+                <div class="mb-4">
+                    <input class="form-check-input me-2" type="checkbox" id="inputIsPrimary"
+                        formControlName="isPrimary">
+                    <label class="form-check-label" for="inputIsPrimary">
+                        {{ 'Talent.Resume.Modal.Body.Form.IsPrimary' | translate }}
+                    </label>
+                </div>
+                <!-- File -->
+                <div class="mb-4">
+                    <label for="formFile" class="form-label">
+                        {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
+                    </label>
+                    <input class="form-control" type="file" id="formFile" accept="application/pdf"
+                        (change)="onFileSelected($event)">
+                    @if ((resumeForm.get('resume')?.errors?.['required'] && resumeForm.get('resume')?.touched)) {
+                    <app-error-message
+                        [message]="'Talent.Resume.Modal.Body.Form.Validation.FileRequired'"></app-error-message>
+                    }
+                    @if ((resumeForm.get('resume')?.errors?.['invalidFileType'] && resumeForm.get('resume')?.touched)) {
+                    <app-error-message
+                        [message]="'Talent.Resume.Modal.Body.Form.Validation.FileType'"></app-error-message>
+                    }
+                </div>
+            </div>
+            <div class="col-9">
+                @if(resumeUrl) {
+                <iframe [src]="resumeUrl" width="100%" height="800px">
+                </iframe>
+                }
+            </div>
         </div>
         <!-- Save -->
         <div class="mb-4 d-flex justify-content-center">

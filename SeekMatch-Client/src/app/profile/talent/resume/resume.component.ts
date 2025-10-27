@@ -34,7 +34,7 @@ export class ResumeComponent implements OnInit {
 
   //#region : Modal functions
   public open(content: any, resume?: Resume): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (resume != undefined) {
       this.selectedResume = resume;
     }

@@ -5,6 +5,8 @@ import { Resume } from '../../../shared/models/resume';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { ModalActionType } from '../../../shared/enums/enums';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-resume-modal',
@@ -19,21 +21,35 @@ export class ResumeModalComponent implements OnInit {
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
-  isSaving: boolean = false;
-  updateMode: boolean = false;
-  resumeForm: FormGroup;
+  public resumeUrl: SafeResourceUrl | null = null;
+  public isSaving: boolean = false;
+  public updateMode: boolean = false;
+  public resumeForm: FormGroup;
 
   constructor(
     private fb: NonNullableFormBuilder,
     private resumeService: ResumeService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private sanitizer: DomSanitizer) {
     this.resumeForm = this.initResumeForm();
   }
 
   ngOnInit() {
+    debugger
     if (this.selectedResume != undefined) {
       this.updateMode = true;
       this.populateForm(this.selectedResume);
+
+      this.resumeService.downloadResume(this.selectedResume.id!).subscribe({
+        next: (res: HttpResponse<Blob>) => {
+          const blob = new Blob([res.body!], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+          this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        },
+        error: (err) => {
+          console.error('Error loading Resume', err);
+        }
+      });
     }
   }
 
