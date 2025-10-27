@@ -47,6 +47,26 @@ namespace SeekMatch.Infrastructure.Repositories
             return Task.FromResult(stream);
         }
 
+        public async Task<bool> DeleteFileAsync(string relativePath)
+        {
+            try
+            {
+                var fullPath = GetFullPath(relativePath);
+
+                if (File.Exists(fullPath))
+                {
+                    await Task.Run(() => File.Delete(fullPath));
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error deleting file: {relativePath}", ex);
+            }
+        }
+
         private string GetFullPath(string relativePath)
         {
             // Normalize input like "/uploads/xyz.pdf" → "xyz.pdf"

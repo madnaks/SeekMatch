@@ -70,7 +70,26 @@ namespace SeekMatch.Application.Services
 
         public async Task<bool> DeleteAsync(string resumeId)
         {
-            return await resumeRepository.DeleteAsync(resumeId);
+            var resume = await resumeRepository.GetByIdAsync(resumeId);
+            
+            if (resume == null) 
+                return false;
+
+            var deleted = await resumeRepository.DeleteAsync(resumeId);
+
+            if (deleted && !string.IsNullOrEmpty(resume.FilePath))
+            {
+                try
+                {
+                    await fileStorageService.DeleteFileAsync(resume.FilePath);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Warning: could not delete file {resume.FilePath}. {ex.Message}");
+                }
+            }
+
+            return deleted;
         }
 
     }
