@@ -12,7 +12,7 @@
 <div class="modal-body">
     <form [formGroup]="resumeForm" (ngSubmit)="onSubmit()">
         <div class="row">
-            <div class="col-3">
+            <div class="col-3" [ngClass]="{'col-3': selectedResume != null, 'col-12': selectedResume == null}">
                 <!-- Title -->
                 <div class="mb-4">
                     <label for="inputTitle" class="form-label">
@@ -27,11 +27,13 @@
                 <!-- IsPrimary -->
                 <div class="mb-4">
                     <input class="form-check-input me-2" type="checkbox" id="inputIsPrimary"
-                        formControlName="isPrimary">
+                        formControlName="isPrimary" [checked]="onlyResume">
                     <label class="form-check-label" for="inputIsPrimary">
                         {{ 'Talent.Resume.Modal.Body.Form.IsPrimary' | translate }}
                     </label>
+                    <be-info [message]="'Talent.Resume.Modal.Body.Form.IsPrimaryInfo'"></be-info>
                 </div>
+                @if(!updateMode) {
                 <!-- File -->
                 <div class="mb-4">
                     <label for="formFile" class="form-label">
@@ -48,8 +50,9 @@
                         [message]="'Talent.Resume.Modal.Body.Form.Validation.FileType'"></app-error-message>
                     }
                 </div>
+                }
             </div>
-            <div class="col-9">
+            <div class="col-9" *ngIf="selectedResume != null">
                 @if(resumeUrl) {
                 <iframe [src]="resumeUrl" width="100%" height="800px">
                 </iframe>

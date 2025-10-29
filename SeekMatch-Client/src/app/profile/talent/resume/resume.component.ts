@@ -18,12 +18,12 @@ export class ResumeComponent implements OnInit {
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedResume: Resume = new Resume;
-  
+
   private deleteModal: NgbModalRef | undefined;
-  
+
   constructor(
-    private modalService: NgbModal, 
-    private resumeService: ResumeService, 
+    private modalService: NgbModal,
+    private resumeService: ResumeService,
     private translate: TranslateService,
     private toastService: ToastService) {
   }
@@ -34,9 +34,11 @@ export class ResumeComponent implements OnInit {
 
   //#region : Modal functions
   public open(content: any, resume?: Resume): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (resume != undefined) {
       this.selectedResume = resume;
+      this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
+    } else {
+      this.modalService.open(content, { centered: true, backdrop: 'static' });
     }
   }
 

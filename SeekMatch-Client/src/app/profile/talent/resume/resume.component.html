@@ -34,6 +34,9 @@
                     <div class="card-body">
                         <!-- Title -->
                         <h5 class="card-title">
+                            @if(resume.isPrimary) {
+                                <i class="fa-solid fa-star me-2"></i>
+                            }
                             {{ resume.title }}
                         </h5>
                         <!-- Update education button -->
@@ -55,14 +58,14 @@
 
 <!-- Resume creation modal -->
 <ng-template #addResumeContent let-c="close" let-d="dismiss">
-    <app-resume-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
+    <app-resume-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" [onlyResume]="resumes.length === 0">
     </app-resume-modal>
 </ng-template>
 
 <!-- Resume edit modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
     <app-resume-modal [closeModal]="c" [dismissModal]="d" [selectedResume]="selectedResume"
-        (modalActionComplete)="modalActionComplete($event)">
+        (modalActionComplete)="modalActionComplete($event)" [onlyResume]="resumes.length === 1">
     </app-resume-modal>
 </ng-template>
 

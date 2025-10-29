@@ -77,6 +77,7 @@
                         "Title": "Titre",
                         "TitlePlaceHolder": "ex., Mon CV professionnel",
                         "IsPrimary": "Définir comme CV principal",
+                        "IsPrimaryInfo": "Définir ce CV comme principal signifie qu'il sera celui que les employeurs verront par défaut lorsqu'ils consulteront votre profil.",
                         "File": "Fichier",
                         "FilePlaceHolder": "Choisir un fichier...",
                         "Validation": {

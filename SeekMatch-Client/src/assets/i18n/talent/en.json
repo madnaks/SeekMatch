@@ -110,6 +110,7 @@
                         "Title": "Title",
                         "TitlePlaceHolder": "e.g., Software Engineer Resume, Marketing Manager CV",
                         "IsPrimary": "Set as primary resume",
+                        "IsPrimaryInfo": "Making this your primary resume means it will be the default one employers see when they view your profile.",
                         "File": "Select Resume File",
                         "FilePlaceHolder": "Choose a file...",
                         "Validation": {

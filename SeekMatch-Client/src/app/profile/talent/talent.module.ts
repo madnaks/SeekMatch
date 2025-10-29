@@ -21,6 +21,7 @@ import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 import { ResumeComponent } from './resume/resume.component';
 import { ResumeModalComponent } from './resume-modal/resume-modal.component';
+import { InfoComponent } from "@app/shared/form-controls/info/info.component";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { ResumeModalComponent } from './resume-modal/resume-modal.component';
     JobModule,
     LoaderComponent,
     DatePickerInputComponent,
-    DataTableComponent
+    DataTableComponent,
+    InfoComponent
 ]
 })
 export class TalentModule { }

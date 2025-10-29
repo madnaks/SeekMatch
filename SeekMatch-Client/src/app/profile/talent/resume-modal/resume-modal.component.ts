@@ -18,46 +18,36 @@ export class ResumeModalComponent implements OnInit {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedResume: Resume | undefined = undefined;
+  @Input() onlyResume: boolean = false;
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   public resumeUrl: SafeResourceUrl | null = null;
   public isSaving: boolean = false;
   public updateMode: boolean = false;
-  public resumeForm: FormGroup;
+  public resumeForm: FormGroup = new FormGroup({});
 
   constructor(
     private fb: NonNullableFormBuilder,
     private resumeService: ResumeService,
     private toastService: ToastService,
     private sanitizer: DomSanitizer) {
+    }
+    
+    ngOnInit() {
+    this.updateMode = this.selectedResume != undefined;
     this.resumeForm = this.initResumeForm();
-  }
-
-  ngOnInit() {
-    debugger
-    if (this.selectedResume != undefined) {
-      this.updateMode = true;
-      this.populateForm(this.selectedResume);
-
-      this.resumeService.downloadResume(this.selectedResume.id!).subscribe({
-        next: (res: HttpResponse<Blob>) => {
-          const blob = new Blob([res.body!], { type: 'application/pdf' });
-          const url = URL.createObjectURL(blob);
-          this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
-        },
-        error: (err) => {
-          console.error('Error loading Resume', err);
-        }
-      });
+    if (this.updateMode) {
+      this.populateForm(this.selectedResume!);
+      this.downloadResume(this.selectedResume!.id!);
     }
   }
 
   private initResumeForm(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
-      isPrimary: [false],
-      resume: [null, [Validators.required]]
+      isPrimary: [{ value: false, disabled: this.onlyResume }],
+      resume: [null, this.updateMode ? [] : [Validators.required]]
     });
   }
 
@@ -65,6 +55,19 @@ export class ResumeModalComponent implements OnInit {
     this.resumeForm.patchValue({
       title: resume.title,
       isPrimary: resume.isPrimary
+    });
+  }
+
+  private downloadResume(resumeId: string): void {
+    this.resumeService.downloadResume(resumeId).subscribe({
+      next: (res: HttpResponse<Blob>) => {
+        const blob = new Blob([res.body!], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+      },
+      error: (err) => {
+        console.error('Error loading Resume', err);
+      }
     });
   }
 
