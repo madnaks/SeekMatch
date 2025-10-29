@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         @if (isLoading) {
-        <be-loader/>
+        <be-loader />
         } @else {
         @if (resumes.length === 0) {
         <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
@@ -35,18 +35,20 @@
                         <!-- Title -->
                         <h5 class="card-title">
                             @if(resume.isPrimary) {
-                                <i class="fa-solid fa-star me-2"></i>
+                            <i class="fa-solid fa-star me-2"></i>
                             }
                             {{ resume.title }}
                         </h5>
-                        <!-- Update education button -->
-                        <div class="card-btn update-btn" (click)="open(updateEducationContent, resume)">
+                        <!-- Update resume button -->
+                        <div class="card-btn update-btn" (click)="open(updateresumeContent, resume)">
                             <i class="fa-solid fa-pen"></i>
                         </div>
-                        <!-- Delete education button -->
-                        <div class="card-btn delete-btn" (click)="openDeleteModal(deleteEducationContent, resume)">
+                        @if(!(resume.isPrimary && resumes.length > 1)) {
+                        <!-- Delete resume button -->
+                        <div class="card-btn delete-btn" (click)="openDeleteModal(deleteresumeContent, resume)">
                             <i class="fa-solid fa-trash"></i>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -58,19 +60,20 @@
 
 <!-- Resume creation modal -->
 <ng-template #addResumeContent let-c="close" let-d="dismiss">
-    <app-resume-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" [onlyResume]="resumes.length === 0">
+    <app-resume-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)"
+        [onlyResume]="resumes.length === 0">
     </app-resume-modal>
 </ng-template>
 
 <!-- Resume edit modal -->
-<ng-template #updateEducationContent let-c="close" let-d="dismiss">
+<ng-template #updateresumeContent let-c="close" let-d="dismiss">
     <app-resume-modal [closeModal]="c" [dismissModal]="d" [selectedResume]="selectedResume"
         (modalActionComplete)="modalActionComplete($event)" [onlyResume]="resumes.length === 1">
     </app-resume-modal>
 </ng-template>
 
 <!-- delete modal -->
-<ng-template #deleteEducationContent let-modal>
+<ng-template #deleteresumeContent let-modal>
     <div class="modal-header">
         <h4 class="modal-title">
             {{ 'Talent.Resume.Modal.DeleteTitle' | translate }}

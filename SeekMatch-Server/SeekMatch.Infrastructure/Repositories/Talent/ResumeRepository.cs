@@ -36,7 +36,9 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
+                UpdatePrimaryResume(resume);
                 dbContext.Resumes.Add(resume);
+
                 var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;
@@ -51,6 +53,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
+                UpdatePrimaryResume(resume);
                 dbContext.Resumes.Attach(resume);
 
                 dbContext.Entry(resume).State = EntityState.Modified;
@@ -81,6 +84,21 @@ namespace SeekMatch.Infrastructure.Repositories
             catch (Exception ex)
             {
                 throw new Exception("An error occurred while deleting the resume", ex);
+            }
+        }
+
+        private void UpdatePrimaryResume(Resume currentResume)
+        {
+            if (currentResume.IsPrimary)
+            {
+                foreach (var resume in dbContext.Resumes)
+                {
+                    if (resume.Id != currentResume.Id && resume.IsPrimary)
+                    {
+                        resume.IsPrimary = false;
+                        dbContext.Entry(resume).State = EntityState.Modified;
+                    }
+                }
             }
         }
     }
