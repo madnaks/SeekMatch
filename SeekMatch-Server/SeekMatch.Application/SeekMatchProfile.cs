@@ -16,6 +16,7 @@ namespace SeekMatch.Application
             CreateMap<Education, EducationDto>().ReverseMap();
             CreateMap<Experience, ExperienceDto>().ReverseMap();
             CreateMap<Resume, ResumeDto>().ReverseMap();
+            CreateMap<ResumeDto, Resume>().ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
             #endregion
 
             #region Recruiter

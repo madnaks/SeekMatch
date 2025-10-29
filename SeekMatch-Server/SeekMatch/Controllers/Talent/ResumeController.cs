@@ -42,7 +42,7 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> Create([FromForm] ResumeDto resumeDto, [FromForm] IFormFile file)
+        public async Task<IActionResult> Create([FromForm] ResumeDto resumeDto, [FromForm] IFormFile resume)
         {
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -57,14 +57,14 @@ namespace SeekMatch.Controllers
                 return BadRequest("Resume data is null");
             }
 
-            if (file == null || file.Length == 0)
+            if (resume == null || resume.Length == 0)
             {
                 return BadRequest("Resume file is required.");
             }
 
-            using var stream = file.OpenReadStream();
+            using var stream = resume.OpenReadStream();
 
-            var result = await resumeService.CreateAsync(resumeDto, talentId, stream, file.FileName);
+            var result = await resumeService.CreateAsync(resumeDto, talentId, stream, resume.FileName);
 
             if (result)
             {
