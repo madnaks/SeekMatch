@@ -19,5 +19,6 @@
         public List<Experience> Experiences { get; set; } = new List<Experience>();
         public List<Resume> Resumes { get; set; } = new List<Resume>();
         public List<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
+        public List<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
     }
 }

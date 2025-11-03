@@ -3,6 +3,7 @@ using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
+using SeekMatch.Infrastructure.Repositories;
 
 namespace SeekMatch.Application.Services
 {
@@ -48,6 +49,16 @@ namespace SeekMatch.Application.Services
         public async Task<bool> DeleteAsync(string jobOfferId)
         {
             return await jobOfferRepository.DeleteAsync(jobOfferId);
+        }
+
+        public async Task<bool> BookmarkAsync(string talentId, string jobOfferId)
+        {
+            var bookmark = new Bookmark()
+            {
+                TalentId = talentId,
+                JobOfferId = jobOfferId
+            };
+            return await jobOfferRepository.BookmarkAsync(talentId, jobOfferId);
         }
 
     }

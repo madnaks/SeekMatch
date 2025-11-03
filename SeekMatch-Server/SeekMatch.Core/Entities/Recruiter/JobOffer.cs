@@ -21,5 +21,6 @@ namespace SeekMatch.Core.Entities
         public required Recruiter Recruiter { get; set; }
         public required string RecruiterId { get; set; }
         public List<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
+        public List<Bookmark> Bookmarks { get; set; } = new List<Bookmark>();
     }
 }

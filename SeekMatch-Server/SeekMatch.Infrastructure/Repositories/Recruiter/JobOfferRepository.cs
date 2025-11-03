@@ -117,5 +117,18 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while deleting the job offer", ex);
             }
         }
+
+        public async Task<bool> BookmarkAsync(Bookmark bookmark)
+        {
+            try
+            {
+                dbContext.Bookmarks.Add(bookmark);
+                return await dbContext.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the bookmark", ex);
+            }
+        }
     }
 }

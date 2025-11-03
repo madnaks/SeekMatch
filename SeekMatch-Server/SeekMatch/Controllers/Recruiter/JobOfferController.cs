@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
+using SeekMatch.Application.Services;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -124,6 +125,39 @@ namespace SeekMatch.Controllers
             }
 
             return StatusCode(500, new { message = "An error occurred while deleting the job offer" });
+        }
+
+        [Authorize]
+        [HttpPost("bookmark/{jobOfferId}")]
+        public async Task<IActionResult> Bookmark([FromRoute] string jobOfferId)
+        {
+            try
+            {
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job offer data is null");
+                }
+
+                var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (talentId == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await jobOfferService.BookmarkAsync(jobOfferId, talentId);
+
+                if (result)
+                {
+                    return Ok(new { message = "Job offer bookmarked successfully" });
+                }
+
+                return StatusCode(500, new { message = "An error occurred while bookmarking the job offer" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }
