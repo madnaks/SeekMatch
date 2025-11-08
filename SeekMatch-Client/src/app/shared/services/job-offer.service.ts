@@ -15,10 +15,6 @@ export class JobOfferService {
 
   constructor(private http: HttpClient) { }
 
-  // getAll(): Observable<any> {
-  //   return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`);
-  // }
-
   getAll(filters?: any): Observable<JobOffer[]> {
     let params = new HttpParams();
 
@@ -51,6 +47,18 @@ export class JobOfferService {
 
   setSelectedJobOffer(jobOffer: JobOffer) {
     this.selectedJobOffer.next(jobOffer);
+  }
+
+  isBookmarked(jobOfferId: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.apiUrl}/is-bookmarked/${jobOfferId}`);
+  }
+
+  bookmark(jobOfferId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/bookmark/${jobOfferId}`, null);
+  }
+
+  unbookmark(jobOfferId: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/unbookmark/${jobOfferId}`, null);
   }
 
 }

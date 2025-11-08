@@ -18,8 +18,12 @@
                 }
             </button>
             <!-- Bookmark button -->
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" (click)="isBookmarked ? unbookmark() : bookmark()">
+                @if (isBookmarked) {
+                <i class="fa-solid fa-bookmark"></i>
+                } @else {
                 <i class="fa-regular fa-bookmark"></i>
+                }
             </button>
             }
         </div>
@@ -88,4 +92,9 @@
 <ng-template #expressApplyContent let-c="close" let-d="dismiss">
     <app-express-apply-modal [closeModal]="c" [dismissModal]="d" [jobOfferId]="jobOffer?.id">
     </app-express-apply-modal>
+</ng-template>
+
+<!-- login modal -->
+<ng-template #loginModalContent let-c="close" let-d="dismiss">
+    <app-login-modal [closeModal]="c" [dismissModal]="d" />
 </ng-template>
