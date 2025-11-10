@@ -12,6 +12,7 @@ import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
+import { JobOfferPreviewModalComponent } from "./job-offer-preview-modal/job-offer-preview-modal.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-
     ErrorMessageComponent,
     EmailInputComponent,
     LoaderComponent,
-    DatePickerInputComponent
+    DatePickerInputComponent,
+    JobOfferPreviewModalComponent
 ]
 })
 export class RecruiterModule { }

@@ -10,6 +10,7 @@
             "AddJobOffer": "Ajouter une offre d'emploi",
             "NoJobOfferMessage": "Commencez par ajouter des offres d'emploi",
             "Modal": {
+                "PreviewTitle": "Aperçu de l'offre d'emploi",
                 "CreationTitle": "Nouvelle offre d'emploi",
                 "UpdateTitle": "Modifier l'offre d'emploi",
                 "DeleteTitle": "Supprimer l'offre d'emploi",

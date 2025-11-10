@@ -10,6 +10,7 @@
             "AddJobOffer": "Add job offer",
             "NoJobOfferMessage": "Start adding job offers",
             "Modal": {
+                "PreviewTitle": "Job offer preview",
                 "CreationTitle": "New job offer",
                 "UpdateTitle": "Update job offer",
                 "DeleteTitle": "Delete job offer",
