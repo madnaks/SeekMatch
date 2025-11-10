@@ -63,6 +63,8 @@
                         <input class="form-check-input me-2" type="checkbox" [(ngModel)]="jobOffer.isActive" disabled>
                     </td>
                     <td>
+                        <i class="action-icon fa-solid fa-eye me-4"
+                            (click)="openJobOfferPreviewModal(previewJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-pen me-4"
                             (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-trash me-4"
@@ -167,6 +169,11 @@
 }
 }
 }
+
+<!-- Job offer preview modal -->
+<ng-template #previewJobOfferContent let-c="close" let-d="dismiss">
+    <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="selectedJobOffer"></app-job-offer-preview-modal>
+</ng-template>
 
 <!-- Job offer creation modal -->
 <ng-template #addJobOfferContent let-c="close" let-d="dismiss">

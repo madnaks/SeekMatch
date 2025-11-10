@@ -6,7 +6,7 @@ import { JobApplicationComponent } from './job-application/job-application.compo
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
-import { SavedJobsComponent } from './saved-jobs/saved-jobs.component';
+import { BookmarkComponent } from './bookmark/bookmark.component';
 import { SecurityComponent } from '../commun/security/security.component';
 
 const routes: Routes = [
@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'education', component: EducationComponent },
       { path: 'experience', component: ExperienceComponent },
       { path: 'job-application', component: JobApplicationComponent },
-      { path: 'saved-jobs', component: SavedJobsComponent },
+      { path: 'bookmark', component: BookmarkComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'talent-profile', pathMatch: 'full' }

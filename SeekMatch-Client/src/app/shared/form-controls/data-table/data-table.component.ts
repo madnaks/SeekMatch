@@ -11,6 +11,12 @@ export interface TableColumn<T> {
     badgeClass?: (value: any, row?: T) => string;
 }
 
+export interface TableAction<T> {
+    icon: string;
+    tooltip: string;
+    onClick: (row: T) => void;
+}
+
 @Component({
     selector: 'be-data-table',
     templateUrl: './data-table.component.html',
@@ -24,7 +30,7 @@ export interface TableColumn<T> {
 export class DataTableComponent<T extends { [key: string]: any }> {
     @Input() data: T[] = [];
     @Input() columns: TableColumn<T>[] = [];
-    @Output() delete = new EventEmitter<T>();
+    @Input() actions: TableAction<T>[] = [];
 
     sortedData: T[] = [];
     sortColumn: keyof T | null = null;
@@ -61,7 +67,4 @@ export class DataTableComponent<T extends { [key: string]: any }> {
         });
     }
 
-    onDelete(row: T) {
-        this.delete.emit(row);
-    }
 }

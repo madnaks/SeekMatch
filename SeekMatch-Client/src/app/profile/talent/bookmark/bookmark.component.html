@@ -1,3 +1,9 @@
 <be-data-table [data]="bookmarks" [columns]="bookmarksColumns" [actions]="bookmarkActions" />
 
 
+<!-- Job offer preview modal -->
+<ng-template #previewJobOfferContent let-c="close" let-d="dismiss">
+    <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="selectedJobOffer"></app-job-offer-preview-modal>
+</ng-template>
+
+
