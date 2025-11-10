@@ -21,6 +21,7 @@ namespace SeekMatch.Infrastructure.Repositories
                     .Include(t => t.User)
                     .Include(t => t.Educations)
                     .Include(t => t.Experiences)
+                    .Include(t => t.Bookmarks)
                     .FirstOrDefaultAsync(t => t.Id == userId);
 
                 if (talent != null)

@@ -144,5 +144,26 @@ namespace SeekMatch.Controllers
             return NoContent();
         }
 
+        [Authorize]
+        [HttpGet("get-all-bookmarks")]
+        public async Task<IActionResult> GetAllBookmarks()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var bookmarks = await talentService.GetAllBookmarksAsync(userId);
+
+            if (bookmarks == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bookmarks);
+        }
+
     }
 }
