@@ -112,15 +112,9 @@ namespace SeekMatch.Application.Services
 
         public async Task<IList<BookmarkDto>?> GetAllBookmarksAsync(string userId)
         {
-            var talent = await talentRepository.GetAsync(userId);
+            var bookmarks = await talentRepository.GetBookmarks(userId);
 
-            if (talent == null)
-            {
-                return null;
-            }
-
-            return talent.Bookmarks != null ?
-                mapper.Map<IList<BookmarkDto>>(talent.Bookmarks) : null;
+            return bookmarks != null ? mapper.Map<IList<BookmarkDto>>(bookmarks) : null;
         }
 
     }

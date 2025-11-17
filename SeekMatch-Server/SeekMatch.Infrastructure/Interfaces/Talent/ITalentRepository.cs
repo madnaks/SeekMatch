@@ -7,5 +7,6 @@ namespace SeekMatch.Infrastructure.Interfaces
         Task CreateAsync(Talent talent);
         Task<Talent?> GetAsync(string userId);
         Task<bool> SaveChangesAsync(Talent talent);
+        Task<IList<Bookmark>?> GetBookmarks(string userId);
     }
 }
