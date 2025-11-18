@@ -18,16 +18,16 @@
         <tr>
 
             <td *ngFor="let col of columns">
-
                 @if (col.type === "date") {
-                {{ row[col.field] | date: col.formatter?.(row[col.field], row) ?? 'medium' }}
+                    {{ row[col.field] | date: col.formatter?.(row[col.field], row) ?? 'medium' }}
                 } @else if (col.type === "enum") {
-                <span class="badge rounded-pill" [ngClass]="col.badgeClass?.(row[col.field], row)">
-                    {{ (col.formatter?.(row[col.field], row) ?? '') | translate }}
-                </span>
+                    <span class="badge rounded-pill" [ngClass]="col.badgeClass?.(row[col.field], row)">
+                        {{ (col.formatter?.(row[col.field], row) ?? '') | translate }}
+                    </span>
                 }
                 @else {
-                {{ row[col.field] }}
+                    {{ row[col.field] }}
+                    {{getValue(row, col.field)}}
                 }
             </td>
 

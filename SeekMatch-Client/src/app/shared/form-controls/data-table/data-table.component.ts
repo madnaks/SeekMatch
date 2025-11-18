@@ -67,4 +67,8 @@ export class DataTableComponent<T extends { [key: string]: any }> {
         });
     }
 
+    public getValue(row: any, field: string) {
+        return field.split('.').reduce((acc, part) => acc && acc[part], row);
+    }
+
 }
