@@ -11,8 +11,10 @@ export class JobApplication {
   public jobOfferTitle: string = '';
   public status: JobApplicationStatus = JobApplicationStatus.Submitted;
   public rejectionReason: string = '';
-  public isExpress: boolean= false;
+  public isExpress: boolean = false;
   public filePath?: string;
+  public interviewPlatform?: string;
+  public interviewDate?: string;
   public expressApplication?: ExpressApplication = new ExpressApplication();
 
   constructor(init?:Partial<JobApplication>) {

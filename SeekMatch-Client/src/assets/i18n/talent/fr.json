@@ -158,6 +158,14 @@
                 "SHORTLISTED-MODAL": {
                     "TITLE": "Présélectionner ce candidat ?",
                     "BODY": "Êtes-vous sûr de vouloir présélectionner ce candidat ?"
+                },
+                "INTERVIEW-SCHEDULED-MODAL": {
+                    "TITLE": "Planifier un entretien pour ce candidat ?",
+                    "BODY": "Lorsque vous planifiez un entretien, le candidat en sera informé par courriel."
+                },
+                "HIRED-MODAL": {
+                    "TITLE": "Embaucher ce candidat ?",
+                    "BODY": "Êtes-vous sûr de vouloir embaucher ce candidat ?"
                 }
             }
         }

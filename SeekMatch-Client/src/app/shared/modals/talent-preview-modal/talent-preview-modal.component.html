@@ -268,7 +268,7 @@
         <div class="row">
             <form [formGroup]="interviewForm">
                 <div class="col-6">
-                    <select class="form-select" id="selectInterviewPlatform">
+                    <select class="form-select" id="selectInterviewPlatform" formControlName="platform">
                         <option *ngFor="let platform of platforms" [value]="platform.name">
                             {{ platform.name }}
                         </option>
@@ -276,14 +276,36 @@
                 </div>
                 <div class="col-6">
                     <app-date-picker-input [form]="interviewForm" [controlName]="'date'" [label]="''"
-                        [id]="'inputInterviewDate'"/>
+                        [id]="'inputInterviewDate'" />
                 </div>
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)" [disabled]="interviewForm.invalid || isSaving">
+        <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)"
+            [disabled]="interviewForm.invalid || isSaving">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-clock': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Job application Hire Modal -->
+<ng-template #hireConfirmationModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.BODY' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onHireConfirmed(modal)">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
             {{ 'BUTTON.YES' | translate }}
         </button>
     </div>

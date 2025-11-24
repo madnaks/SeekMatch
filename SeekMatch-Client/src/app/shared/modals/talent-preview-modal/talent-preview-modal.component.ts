@@ -32,6 +32,7 @@ export class TalentPreviewModalComponent implements OnInit {
 
   @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
   @ViewChild('interviewScheduledModal') interviewScheduledModal!: TemplateRef<any>;
+  @ViewChild('hireConfirmationModal') hireConfirmationModal!: TemplateRef<any>;
   @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
 
   public currentTalent: Talent | null = null;
@@ -54,7 +55,7 @@ export class TalentPreviewModalComponent implements OnInit {
   ];
   public platforms = [
     { name: 'Teams' },
-    { name: 'Google Meet'},
+    { name: 'Google Meet' },
     { name: 'Zoom' },
     { name: 'Other' }
   ];
@@ -95,7 +96,7 @@ export class TalentPreviewModalComponent implements OnInit {
   private initInterviewForm(): FormGroup {
     return this.fb.group({
       platform: ['', Validators.required],
-      date: [null, Validators.required]    
+      date: [null, Validators.required]
     });
   }
 
@@ -104,7 +105,6 @@ export class TalentPreviewModalComponent implements OnInit {
       reason: ['', Validators.required],
     });
   }
-
 
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
@@ -129,7 +129,6 @@ export class TalentPreviewModalComponent implements OnInit {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
   }
-
 
   public getEducationDuration(education: Education): string {
     if (education.currentlyStudying) {
@@ -180,6 +179,9 @@ export class TalentPreviewModalComponent implements OnInit {
       case JobApplicationStatus.InterviewScheduled:
         this.modalService.open(this.interviewScheduledModal, { centered: true, backdrop: 'static' });
         break;
+      case JobApplicationStatus.Hired:
+        this.modalService.open(this.hireConfirmationModal, { centered: true, backdrop: 'static' });
+        break;
       case JobApplicationStatus.Rejected:
         this.modalService.open(this.rejectJobApplicationModal, { centered: true, backdrop: 'static' });
         break;
@@ -208,20 +210,43 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   public onInterviewScheduledConfirmed(modal: any): void {
+    if (this.interviewForm.invalid) {
+      this.interviewForm.markAllAsTouched();
+      return;
+    }
     this.isSaving = true;
-    this.jobApplicationService.shortList(this.jobApplication?.id || '').pipe(
+    this.jobApplicationService.interviewScheduled(this.jobApplication?.id, this.interviewForm.value).pipe(
       finalize(() => {
         this.isSaving = false;
       })).subscribe({
         next: () => {
           if (this.jobApplication) {
-            this.jobApplication.status = JobApplicationStatus.Shortlisted;
-            this.toastService.showSuccessMessage('Job application shortlisted successfully');
+            this.jobApplication.status = JobApplicationStatus.InterviewScheduled;
+            this.toastService.showSuccessMessage('Interview scheduled successfully');
             modal.close('Yes');
           }
         },
         error: (err) => {
-          console.error('Error shortlisting application', err);
+          console.error('Error scheduling application', err);
+        }
+      });
+  }
+
+  public onHireConfirmed(modal: any): void {
+    this.isSaving = true;
+    this.jobApplicationService.hire(this.jobApplication?.id || '').pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          if (this.jobApplication) {
+            this.jobApplication.status = JobApplicationStatus.Hired;
+            this.toastService.showSuccessMessage('Talent hired successfully');
+            modal.close('Yes');
+          }
+        },
+        error: (err) => {
+          console.error('Error while hiring the talent', err);
         }
       });
   }
@@ -253,5 +278,4 @@ export class TalentPreviewModalComponent implements OnInit {
       this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
     }
   }
-
 }

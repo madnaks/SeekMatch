@@ -188,7 +188,7 @@ export class JobOfferComponent implements OnInit {
         return 'bg-primary';
       case JobApplicationStatus.InterviewScheduled:
         return 'bg-info';
-      case JobApplicationStatus.Offered:
+      case JobApplicationStatus.Hired:
         return 'bg-success';
       case JobApplicationStatus.Rejected:
         return 'bg-danger';

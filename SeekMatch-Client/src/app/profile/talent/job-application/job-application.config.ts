@@ -27,7 +27,7 @@ export const JobApplicationsColumns: TableColumn<JobApplication>[] = [
                 case JobApplicationStatus.Submitted: return 'bg-warning';
                 case JobApplicationStatus.Shortlisted: return 'bg-primary';
                 case JobApplicationStatus.InterviewScheduled: return 'bg-info';
-                case JobApplicationStatus.Offered: return 'bg-success';
+                case JobApplicationStatus.Hired: return 'bg-success';
                 case JobApplicationStatus.Rejected: return 'bg-danger';
                 case JobApplicationStatus.Withdrawn: return 'bg-secondary';
                 default: return 'bg-light';

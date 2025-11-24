@@ -32,6 +32,14 @@ export class JobApplicationService {
     return this.http.put(`${this.apiUrl}/short-list/${jobApplicationId}`, null);
   }
 
+  interviewScheduled(jobApplicationId: string | undefined, interviewData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/interview-scheduled/${jobApplicationId}`, interviewData);
+  }
+
+  hire(jobApplicationId: string | undefined): Observable<any> {
+    return this.http.put(`${this.apiUrl}/hire/${jobApplicationId}`, null);
+  }
+
   reject(jobApplicationId: string, rejectionReason: string): Observable<any> {
     return this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
       headers: { 'Content-Type': 'application/json' }
