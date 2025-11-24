@@ -12,6 +12,8 @@ namespace SeekMatch.Infrastructure.Interfaces
         Task<bool> ApplyAsync(JobApplication jobApplication);
         Task<bool> ExpressApplyAsync(JobApplication jobApplicatio, ExpressApplication expressApplication);
         Task<bool> ShortList(string jobApplicationId);
+        Task<bool> InterviewScheduled(string jobApplicationId, string interviewPlatform, DateTime interviewDate);
+        Task<bool> Hire(string jobApplicationId);
         Task<bool> RejectAsync(string jobApplicationId, string rejectionReason);
         Task<bool> DeleteAsync(string jobApplicationId);
     }

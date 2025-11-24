@@ -91,7 +91,21 @@ namespace SeekMatch.Application.Services
             
             return result;
         }
+
+        public async Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto)
+        {
+            var result = await jobApplicationRepository.InterviewScheduled(jobApplicationId, interviewScheduleDto.Platform, interviewScheduleDto.Date);
+
+            return result;
+        }
         
+        public async Task<bool> Hire(string jobApplicationId)
+        {
+            var result = await jobApplicationRepository.Hire(jobApplicationId);
+
+            return result;
+        }
+
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             var result = await jobApplicationRepository.RejectAsync(jobApplicationId, rejectionReason);

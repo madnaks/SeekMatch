@@ -105,7 +105,47 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while short listed the job application", ex);
             }
         }
-        
+
+        public async Task<bool> InterviewScheduled(string jobApplicationId, string interviewPlatform, DateTime interviewDate)
+        {
+            try
+            {
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
+                if (jobApplication != null)
+                {
+                    jobApplication.Status = Core.Enums.JobApplicationStatus.InterviewScheduled;
+                    jobApplication.InterviewPlatform = interviewPlatform;
+                    jobApplication.InterviewDate = interviewDate;
+
+                    return await dbContext.SaveChangesAsync() > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while short listed the job application", ex);
+            }
+        }
+
+        public async Task<bool> Hire(string jobApplicationId)
+        {
+            try
+            {
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
+                if (jobApplication != null)
+                {
+                    jobApplication.Status = Core.Enums.JobApplicationStatus.Hired;
+
+                    return await dbContext.SaveChangesAsync() > 0;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while hiring the talent", ex);
+            }
+        }
+
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
             try

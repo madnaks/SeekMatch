@@ -9,6 +9,8 @@ namespace SeekMatch.Application.Interfaces
         Task<bool> ApplyAsync(string talentId, string jobOfferId);
         Task<bool> ExpressApplyAsync(ExpressApplicationDto expressApplicationDto,string jobOfferId, Stream cvStream, string fileName);
         Task<bool> ShortList(string jobApplicationId);
+        Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto);
+        Task<bool> Hire(string jobApplicationId);
         Task<bool> RejectAsync(string jobApplicationId, string rejectionReason);
         Task<FileDownloadResult> DownloadCv(string jobApplicationId);
         Task<bool> DeleteAsync(string jobApplicationId);

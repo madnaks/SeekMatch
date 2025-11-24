@@ -13,6 +13,8 @@ namespace SeekMatch.Core.Entities
         public string? RejectionReason { get; set; }
         public bool IsExpress { get; set; } = false;
         public string? FilePath { get; set; }
+        public string? InterviewPlatform { get; set; }
+        public DateTime? InterviewDate { get; set; }
         public ExpressApplication? ExpressApplication { get; set; }
     }
 }
