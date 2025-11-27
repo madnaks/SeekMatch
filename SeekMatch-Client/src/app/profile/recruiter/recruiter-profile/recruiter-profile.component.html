@@ -10,12 +10,6 @@
     <div class="row">
         <div class="col-md-3">
             <ul class="nav dashboard-nav flex-column">
-                <!-- Profile -->
-                <!-- <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.Profile' | translate }}
-                    </h6>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="about-you" routerLinkActive="active">
                         <i class="fa-solid fa-circle-info me-2"></i>
@@ -23,42 +17,12 @@
                         <!-- Personal information -->
                     </a>
                 </li>
-                <!-- To consider : Sub Menu -->
-                <!-- <li class="nav-item">
-                    <a 
-                        class="nav-link" 
-                        (click)="toggleJobMenu()">
-                        <i class="fa-solid fa-briefcase me-2"></i>
-                        {{ 'Profile.Sections.JobManagement' | translate }}
-                        <i [class]="jobMenuOpen ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'" class="float-end"></i>
-                    </a>
-                    <ul *ngIf="jobMenuOpen" class="nav flex-column ps-3">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
-                                <i class="fa-solid fa-bullhorn me-2"></i>
-                                {{ 'Profile.Sections.JobOffers' | translate }}
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
-                <!-- Job Management -->
-                <!-- <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.JobManagement' | translate }}
-                    </h6>
-                </li> -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
                         <i class="fa-solid fa-bullhorn me-2"></i>
                         {{ 'Profile.Sections.JobOffers' | translate }}
                     </a>
-                </li>
-                <!-- Account & Security -->
-                <!-- <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.AccountSecurity' | translate }}
-                    </h6>
-                </li> -->
+                </li>x
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
                         <i class="fa-solid fa-gear me-2"></i>
