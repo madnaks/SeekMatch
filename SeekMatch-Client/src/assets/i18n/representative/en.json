@@ -1,6 +1,7 @@
 {
     "Representative": {
         "AboutYou": {
+            "Position": "Position",
             "Password": "Password",
             "ProfilePicture": "Profile Picture",
             "ChoosePicture": "Choose Picture",
