@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { finalize } from 'rxjs';
 import { SafeUrl } from '@angular/platform-browser';
 import { ToastService } from '../../../shared/services/toast.service';
@@ -14,7 +13,6 @@ import { RecruiterService } from '../../../shared/services/recruiter.service';
 export class AboutYouComponent {
 
   aboutYouForm: FormGroup;
-  bsConfig?: Partial<BsDatepickerConfig>;
   isLoading: boolean = true;
   isSaving: boolean = false;
 
@@ -26,7 +24,6 @@ export class AboutYouComponent {
     private recruiterService: RecruiterService, 
     private toastService: ToastService) {
     this.aboutYouForm = this.initAboutYouForm();
-    this.configureDatePicker();
   }
 
   ngOnInit(): void {
@@ -37,16 +34,6 @@ export class AboutYouComponent {
     if (this.aboutYouForm.valid) {
       this.isSaving = true;
       const aboutYouData = this.aboutYouForm.value;
-      // Check if dateOfBirth has a value and is not null
-      if (aboutYouData.dateOfBirth) {
-
-        // Extract 'yyyy-MM-dd'
-        const formattedDateOfBirth = aboutYouData.dateOfBirth instanceof Date
-          ? aboutYouData.dateOfBirth.toISOString().split('T')[0]
-          : aboutYouData.dateOfBirth;
-
-        aboutYouData.dateOfBirth = formattedDateOfBirth;
-      }
 
       this.recruiterService.saveAboutYouData(aboutYouData).pipe(
         finalize(() => {
@@ -65,21 +52,11 @@ export class AboutYouComponent {
     }
   }
 
-  private configureDatePicker(): void {
-    this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'YYYY-MM-DD',
-      isAnimated: true,
-      showWeekNumbers: false
-    });
-  }
-
   private initAboutYouForm(): FormGroup {
     return this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       profileTitle: [''],
-      dateOfBirth: [null],
       email: [{ value: '', disabled: true }, [Validators.email]],
       address: [''],
       phone: [''],
@@ -90,13 +67,11 @@ export class AboutYouComponent {
 
   private initAboutYouFormValues() {
     this.recruiterService.getProfile().subscribe(recruiter => {
-      const dateOfBirth = recruiter.dateOfBirth === '0001-01-01' ? null : recruiter.dateOfBirth;
 
       this.aboutYouForm.patchValue({
         firstName: recruiter.firstName,
         lastName: recruiter.lastName,
         profileTitle: recruiter.profileTitle,
-        dateOfBirth: dateOfBirth,
         address: recruiter.address,
         email: recruiter.email,
         phone: recruiter.phone
