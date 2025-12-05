@@ -1,8 +1,8 @@
-<div class="container-fluid col-lg-8 col-md-10 col-12 mt-5 p-3">
+<div class="container-fluid dashboard-container col-lg-10 col-12 mt-5 p-3">
 
     <div class="row mt-3">
         <div class="col-md-3">
-            <ul class="nav flex-column">
+            <ul class="nav dashboard-nav flex-column">
                 <!-- Profile -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="talent-profile" routerLinkActive="active">
@@ -17,11 +17,11 @@
                         {{ 'Profile.Sections.JobApplications' | translate }}
                     </a>
                 </li>
-                <!-- Saved jobs -->
+                <!-- Bookmarks -->
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="saved-jobs" routerLinkActive="active">
+                    <a class="nav-link" routerLink="bookmark" routerLinkActive="active">
                         <i class="fa-solid fa-bookmark me-2"></i>
-                        {{ 'Profile.Sections.SavedJobs' | translate }}
+                        {{ 'Profile.Sections.Bookmarks' | translate }}
                     </a>
                 </li>
                 <!-- Settings -->
@@ -31,11 +31,11 @@
                         {{ 'Profile.Sections.Settings' | translate }}
                     </a>
                 </li>
-                <!-- Secruity -->
+                <!-- Security -->
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="study" routerLinkActive="active">
+                    <a class="nav-link" routerLink="security" routerLinkActive="active">
                         <i class="fa-solid fa-shield-halved me-2"></i>
-                        {{ 'Profile.Sections.Secruity' | translate }}
+                        {{ 'Profile.Sections.Security' | translate }}
                     </a>
                 </li>
             </ul>

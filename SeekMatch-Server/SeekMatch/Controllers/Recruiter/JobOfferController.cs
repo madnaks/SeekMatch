@@ -125,5 +125,100 @@ namespace SeekMatch.Controllers
 
             return StatusCode(500, new { message = "An error occurred while deleting the job offer" });
         }
+
+        [Authorize]
+        [HttpGet("is-bookmarked/{jobOfferId}")]
+        public async Task<IActionResult> IsBookmarked([FromRoute] string jobOfferId)
+        {
+            try
+            {
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job offer data is null");
+                }
+
+                var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (talentId == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await jobOfferService.IsBookmarkedAsync(jobOfferId, talentId);
+
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [HttpPost("bookmark/{jobOfferId}")]
+        public async Task<IActionResult> Bookmark([FromRoute] string jobOfferId)
+        {
+            try
+            {
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job offer data is null");
+                }
+
+                var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (talentId == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await jobOfferService.BookmarkAsync(jobOfferId, talentId);
+
+                if (result)
+                {
+                    return Ok(new { message = "Job offer bookmarked successfully" });
+                }
+
+                return StatusCode(500, new { message = "An error occurred while bookmarking the job offer" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
+
+        [Authorize]
+        [HttpPost("unbookmark/{jobOfferId}")]
+        public async Task<IActionResult> UnBookmark([FromRoute] string jobOfferId)
+        {
+            try
+            {
+                if (jobOfferId == null)
+                {
+                    return BadRequest("Job offer data is null");
+                }
+
+                var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                if (talentId == null)
+                {
+                    return Unauthorized();
+                }
+
+                var result = await jobOfferService.UnBookmarkAsync(jobOfferId, talentId);
+
+                if (result)
+                {
+                    return Ok(new { message = "Job offer unbookmarked successfully" });
+                }
+
+                return StatusCode(500, new { message = "An error occurred while unbookmarking the job offer" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
+        }
     }
 }

@@ -1,73 +1,67 @@
-<div class="row">
-
-    <div class="col-md-9">
-
-        <!-- Loading -->
-        @if (isLoading) {
-       <app-loader/>
-        } @else {
-            <!-- No data -->
-            @if (recruiters.length === 0) {
-                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                    <div class="col-6">
-                        <p style="text-align: center;">
-                            {{ 'Representative.Recruiter.NoRecruiterMessage' | translate }}
-                        </p>
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
-                            <i class="fa-solid fa-circle-plus me-2"></i>
-                            {{ 'Representative.Recruiter.AddRecruiter' | translate }}
-                        </button>
-                    </div>
-                </div>
-            } @else {
-                <div class="row mb-3">
-                    <div class="col-md-12 d-flex justify-content-end">
-                        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
-                            <i class="fa-solid fa-circle-plus me-2"></i>
-                            {{ 'Representative.Recruiter.AddRecruiter' | translate }}
-                        </button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Full name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @for (recruiter of recruiters; track recruiter.email; let i = $index) {
-                                <tr>
-                                    <th scope="row">
-                                        {{ i + 1 }}
-                                    </th>
-                                    <td>
-                                        {{ recruiter.firstName }} {{ recruiter.lastName }}
-                                    </td>
-                                    <td>
-                                        {{ recruiter.email }}
-                                    </td>
-                                    <td>
-                                        <i class="action-button fa-solid fa-trash" (click)="openDeleteModal(deleteRecruiterContent, recruiter)"></i>
-                                    </td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
-            }
-        }
+<!-- Loading -->
+@if (isLoading) {
+<be-loader />
+} @else {
+<!-- No data -->
+@if (recruiters.length === 0) {
+<div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+    <div class="col-6">
+        <p style="text-align: center;">
+            {{ 'Representative.Recruiter.NoRecruiterMessage' | translate }}
+        </p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
+            <i class="fa-solid fa-circle-plus me-2"></i>
+            {{ 'Representative.Recruiter.AddRecruiter' | translate }}
+        </button>
     </div>
 </div>
+} @else {
+<div class="row mb-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
+            <i class="fa-solid fa-circle-plus me-2"></i>
+            {{ 'Representative.Recruiter.AddRecruiter' | translate }}
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Full name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (recruiter of recruiters; track recruiter.email; let i = $index) {
+                <tr>
+                    <th scope="row">
+                        {{ i + 1 }}
+                    </th>
+                    <td>
+                        {{ recruiter.firstName }} {{ recruiter.lastName }}
+                    </td>
+                    <td>
+                        {{ recruiter.email }}
+                    </td>
+                    <td>
+                        <i class="action-icon fa-solid fa-trash"
+                            (click)="openDeleteModal(deleteRecruiterContent, recruiter)"></i>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
 
+    </div>
+</div>
+}
+}
 
 <!-- Recruiter creation modal -->
 <ng-template #addRecruiterContent let-c="close" let-d="dismiss">

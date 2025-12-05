@@ -1,5 +1,4 @@
-﻿using SeekMatch.Core.Entities;
-using SeekMatch.Core.Enums;
+﻿using SeekMatch.Core.Enums;
 
 namespace SeekMatch.Application.DTOs.Recruiter
 {

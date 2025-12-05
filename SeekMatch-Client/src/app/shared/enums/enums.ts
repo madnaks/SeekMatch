@@ -38,7 +38,7 @@ export enum JobApplicationStatus
     Submitted = 0,
     Shortlisted = 1,
     InterviewScheduled = 2,
-    Offered = 3,
+    Hired = 3,
     Rejected = 4,
     Withdrawn = 5
 }

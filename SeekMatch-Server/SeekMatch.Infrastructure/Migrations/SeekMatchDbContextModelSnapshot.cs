@@ -154,6 +154,35 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("SeekMatch.Core.Entities.Bookmark", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("JobOfferId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TalentId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("JobOfferId");
+
+                    b.HasIndex("TalentId", "JobOfferId")
+                        .IsUnique();
+
+                    b.ToTable("Bookmarks");
+                });
+
             modelBuilder.Entity("SeekMatch.Core.Entities.Company", b =>
                 {
                     b.Property<string>("Id")
@@ -287,11 +316,11 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("CvPath")
-                        .HasColumnType("text");
-
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FilePath")
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
@@ -331,6 +360,15 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("FilePath")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("InterviewDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("InterviewPlatform")
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsExpress")
                         .HasColumnType("boolean");
 
@@ -364,6 +402,12 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
+                    b.Property<string>("AdditionalRequirements")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CompanyInfo")
+                        .HasColumnType("text");
+
                     b.Property<string>("CompanyName")
                         .HasColumnType("text");
 
@@ -384,8 +428,14 @@ namespace SeekMatch.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("PositionDetails")
+                        .HasColumnType("text");
+
                     b.Property<DateOnly?>("PostedAt")
                         .HasColumnType("date");
+
+                    b.Property<string>("Qualifications")
+                        .HasColumnType("text");
 
                     b.Property<string>("RecruiterId")
                         .IsRequired()
@@ -512,6 +562,52 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Representatives");
+                });
+
+            modelBuilder.Entity("SeekMatch.Core.Entities.Resume", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsPrimary")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("TalentId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TalentId");
+
+                    b.ToTable("Resumes");
+                });
+
+            modelBuilder.Entity("SeekMatch.Core.Entities.Setting", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Language")
+                        .HasColumnType("text");
+
+                    b.HasKey("UserId");
+
+                    b.ToTable("Settings");
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Talent", b =>
@@ -692,6 +788,25 @@ namespace SeekMatch.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SeekMatch.Core.Entities.Bookmark", b =>
+                {
+                    b.HasOne("SeekMatch.Core.Entities.JobOffer", "JobOffer")
+                        .WithMany("Bookmarks")
+                        .HasForeignKey("JobOfferId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SeekMatch.Core.Entities.Talent", "Talent")
+                        .WithMany("Bookmarks")
+                        .HasForeignKey("TalentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("JobOffer");
+
+                    b.Navigation("Talent");
+                });
+
             modelBuilder.Entity("SeekMatch.Core.Entities.Education", b =>
                 {
                     b.HasOne("SeekMatch.Core.Entities.Talent", "Talent")
@@ -801,6 +916,28 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("SeekMatch.Core.Entities.Resume", b =>
+                {
+                    b.HasOne("SeekMatch.Core.Entities.Talent", "Talent")
+                        .WithMany("Resumes")
+                        .HasForeignKey("TalentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Talent");
+                });
+
+            modelBuilder.Entity("SeekMatch.Core.Entities.Setting", b =>
+                {
+                    b.HasOne("SeekMatch.Core.Entities.User", "User")
+                        .WithOne()
+                        .HasForeignKey("SeekMatch.Core.Entities.Setting", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SeekMatch.Core.Entities.Talent", b =>
                 {
                     b.HasOne("SeekMatch.Core.Entities.User", "User")
@@ -826,6 +963,8 @@ namespace SeekMatch.Infrastructure.Migrations
 
             modelBuilder.Entity("SeekMatch.Core.Entities.JobOffer", b =>
                 {
+                    b.Navigation("Bookmarks");
+
                     b.Navigation("JobApplications");
                 });
 
@@ -836,11 +975,15 @@ namespace SeekMatch.Infrastructure.Migrations
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Talent", b =>
                 {
+                    b.Navigation("Bookmarks");
+
                     b.Navigation("Educations");
 
                     b.Navigation("Experiences");
 
                     b.Navigation("JobApplications");
+
+                    b.Navigation("Resumes");
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.User", b =>

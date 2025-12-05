@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-dark" *ngIf="showHeader">
 
   <!-- Logo -->
-  <a class="navbar-brand ps-3" routerLink="/home">
+  <a class="navbar-brand logo ps-3" routerLink="/home">
     <span>
-      <img src="../../../../assets/images/website-logo.png">
+      <img src="../../../../assets/images/logo/website-logo.png">
     </span>
   </a>
 
@@ -13,13 +13,17 @@
       <!-- JobOffers -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/job-offers" routerLinkActive="active">
-          {{ 'Navbar.Menu.JobOffers' | translate }}
+          <span class="nav-text">
+            {{ 'Navbar.Menu.JobOffers' | translate }}
+          </span>
         </a>
       </li>
       <!-- Companies -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/job/companies" routerLinkActive="active">
-          {{ 'Navbar.Menu.Companies' | translate }}
+          <span class="nav-text">
+            {{ 'Navbar.Menu.Companies' | translate }}
+          </span>
         </a>
       </li>
       @if (isMenuItemVisible) {
@@ -48,13 +52,17 @@
       <!-- Signup -->
       <li class="nav-item">
         <a class="nav-link" routerLink="/auth/sign-up" routerLinkActive="active">
-          {{ 'Navbar.Menu.SignUp' | translate }}
+          <span class="nav-text">
+            {{ 'Navbar.Menu.SignUp' | translate }}
+          </span>
         </a>
       </li>
       <!-- Login -->
       <li class="nav-item">
         <a class="nav-link" (click)="open(loginContent)">
-          {{ 'Navbar.Menu.LogIn' | translate }}
+          <span class="nav-text">
+            {{ 'Navbar.Menu.LogIn' | translate }}
+          </span>
         </a>
       </li>
       } @else {
@@ -88,6 +96,7 @@
         display="dynamic">
         <img [src]="profilePicture" class="ms-2 me-2" ngbDropdownToggle>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+
           <button ngbDropdownItem [routerLink]="getProfileLink()">
             <i class="fa-solid fa-user me-2"></i>
             {{ 'Navbar.Account.Profile' | translate }}
@@ -102,12 +111,10 @@
       }
     </ul>
 
-    <!-- Language Buttons -->
-    @if (translate.currentLang == 'fr') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
-    } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
-    }
+    <div class="theme-toggle d-flex justify-content-center align-items-center ms-1 me-3" [class.rotate]="!isDarkMode" (click)="toggleTheme()">
+      <i class="fa-solid fa-sun sun"></i>
+      <i class="fa-solid fa-moon moon"></i>
+    </div>
 
   </div>
 
@@ -165,13 +172,6 @@
         </a>
       </li>
     </ul>
-
-    <!-- Language Buttons -->
-    @if (translate.currentLang == 'fr') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\uk.svg" width="20" (click)="changeLanguage()">
-    } @else if (translate.currentLang == 'en') {
-    <img class="language-button ms-3 me-3" src="assets\images\flags\france.svg" width="20" (click)="changeLanguage()">
-    }
   </div>
 
 </ng-template>

@@ -10,6 +10,7 @@ namespace SeekMatch.Application.Services
 {
     public class TalentService(
             ITalentRepository talentRepository,
+            ISettingRepository settingRepository,
             IMapper mapper,
             UserManager<User> userManager) : ITalentService
     {
@@ -35,6 +36,14 @@ namespace SeekMatch.Application.Services
                 LastName = registerTalentDto.LastName,
                 User = user
             };
+
+            var setting = new Setting()
+            {
+                User = user,
+                Language = registerTalentDto.Setting?.Language
+            };
+
+            await settingRepository.CreateAsync(setting);
 
             await talentRepository.CreateAsync(talent);
 
@@ -100,5 +109,13 @@ namespace SeekMatch.Application.Services
 
             return true;
         }
+
+        public async Task<IList<BookmarkDto>?> GetAllBookmarksAsync(string userId)
+        {
+            var bookmarks = await talentRepository.GetBookmarks(userId);
+
+            return bookmarks != null ? mapper.Map<IList<BookmarkDto>>(bookmarks) : null;
+        }
+
     }
 }

@@ -13,7 +13,9 @@
         }
     </h4>
 
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')">
+        <i class="fa-solid fa-xmark fa-lg"></i>
+    </button>
 
 </div>
 
@@ -39,188 +41,191 @@
 
 <!-- Step 1 : Option selection (Company/Freelancer recruiter) -->
 @if(currentStep === 1) {
-    <!-- Modal Body -->
-    <div class="modal-body">
-        <div class="row d-flex flex-row align-items-center justify-content-evenly my-4">
-            <div class="col-md-6 d-flex flex-column align-items-center">
-                <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'company'}"
-                    (click)="selectOption('company')">
-                    <img src="assets\images\company.svg" width="100" />
-                    <label class="form-check-label">
-                        {{ 'SignUp.Recruiter.Modal.Step1.Body.RepresentCompany' | translate }}
-                    </label>
-                </button>
-            </div>
-            <div class="col-md-6 d-flex flex-column align-items-center">
-                <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'freelancer'}"
-                    (click)="selectOption('freelancer')">
-                    <img src="assets\images\business-persons.svg" width="100" />
-                    <label class="form-check-label">
-                        {{ 'SignUp.Recruiter.Modal.Step1.Body.FreelanceRecruiter' | translate }}
-                    </label>
-                </button>
-            </div>
+<!-- Modal Body -->
+<div class="modal-body">
+    <div class="row d-flex flex-row align-items-center justify-content-evenly my-4">
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'company'}"
+                (click)="selectOption('company')">
+                <img src="assets\images\company.svg" width="100" />
+                <label class="form-check-label">
+                    {{ 'SignUp.Recruiter.Modal.Step1.Body.RepresentCompany' | translate }}
+                </label>
+            </button>
+        </div>
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <button class="btn-recruiter-type-option" [ngClass]="{'active': selectedOption === 'freelancer'}"
+                (click)="selectOption('freelancer')">
+                <img src="assets\images\business-persons.svg" width="100" />
+                <label class="form-check-label">
+                    {{ 'SignUp.Recruiter.Modal.Step1.Body.FreelanceRecruiter' | translate }}
+                </label>
+            </button>
         </div>
     </div>
+</div>
 }
 <!-- Step 2 : Verification Process -->
 @if (currentStep === 2) {
-    <!-- Modal Body -->
-    <div class="modal-body">
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line1' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line2' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line3' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line4' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line5' | translate"></p>
-        <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line6' | translate"></p>
-    </div>
+<!-- Modal Body -->
+<div class="modal-body">
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line1' | translate"></p>
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line2' | translate"></p>
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line3' | translate"></p>
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line4' | translate"></p>
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line5' | translate"></p>
+    <p [innerHTML]="'SignUp.Recruiter.Modal.Step2.Body.Line6' | translate"></p>
+</div>
 }
 <!-- Step 3 : Getting informations -->
 @if (currentStep === maxSteps) {
-    <!-- Freelancer Form -->
-    @if (selectedOption === 'freelancer') {
-    <div class="modal-body">
-        <div class="row mb-3">
-            <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.FirstLine' | translate }} </p>
-            <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.SecondLine' | translate }} </p>
+<!-- Freelancer Form -->
+@if (selectedOption === 'freelancer') {
+<div class="modal-body">
+    <div class="row mb-3">
+        <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.FirstLine' | translate }} </p>
+        <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.SecondLine' | translate }} </p>
+    </div>
+    <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
+        <!-- Full Name -->
+        <div class="mb-4">
+            <app-full-name-input [form]="registerFreelancerForm"/>
         </div>
-        <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
-            <!-- Full Name -->
-            <div class="row mb-4">
-                <app-full-name-input [form]="registerFreelancerForm">
-                </app-full-name-input>
+        <!-- Email -->
+        <div class="mb-4">
+            <app-email-input [form]="registerFreelancerForm"/>
+        </div>
+        <!-- Password -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <app-password-input [form]="registerFreelancerForm"/>
             </div>
-            <!-- Email -->
-            <div class="mb-4">
-                <app-email-input [form]="registerFreelancerForm"></app-email-input>
+        </div>
+        <!-- Confirm Password -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <app-confirm-password-input [form]="registerFreelancerForm"/>
             </div>
-            <!-- Password -->
-            <div class="row mb-4">
-                <div class="col-12">
-                    <app-password-input [form]="registerFreelancerForm"></app-password-input>
-                </div>
-            </div>
-            <!-- Confirm Password -->
-             <div class="row mb-4">
-                <div class="col-12">
-                    <app-confirm-password-input [form]="registerFreelancerForm"></app-confirm-password-input>
-                </div>
-            </div>
-            <!-- Terms & Privacy Statement -->
-            <div class="mt-4 mb-4">
-                <p class="fs-6 fw-light">
-                    By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
-                        href="">Global Privacy Statement.</a>
-                </p>
-            </div>
-        </form>
-    </div>
-    }
+        </div>
+        <!-- Terms & Privacy Statement -->
+        <div class="mt-4 mb-4">
+            <p class="fs-6 fw-light">
+                By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
+                    href="">Global Privacy Statement.</a>
+            </p>
+        </div>
+    </form>
+</div>
+}
 
-    <!-- Company Form -->
-    @if (selectedOption === 'company') {
-    <div class="modal-body">
-        <form [formGroup]="registerRepresentativeForm" (ngSubmit)="onSubmit()">
+<!-- Company Form -->
+@if (selectedOption === 'company') {
+<div class="modal-body">
+    <form [formGroup]="registerRepresentativeForm" (ngSubmit)="onSubmit()">
 
-            <div class="row">
-                <div class="col-md-6">
-                    <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
-                    <!-- Full Name -->
-                    <div class="row mb-4">
-                        <app-full-name-input [form]="registerRepresentativeForm"></app-full-name-input>
+        <div class="row">
+            <div class="col-md-6">
+                <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
+                <!-- Full Name -->
+                <div class="mb-4">
+                    <app-full-name-input [form]="registerRepresentativeForm"/>
+                </div>
+                <!-- Position -->
+                <div class="mb-4">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="inputPosition"
+                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate"
+                            formControlName="position">
+                        <label for="inputPosition" class="form-label">
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate }}
+                        </label>
                     </div>
-                    <!-- Position -->
-                    <div class="mb-4">
-                        <div class="form-floating">
-                            <input class="form-control" type="text" id="inputPosition"
-                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate"
-                                formControlName="position">
-                            <label for="inputPosition" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate }}
-                            </label>
-                        </div>
-                        @if (registerRepresentativeForm.get('position')?.invalid &&
-                        registerRepresentativeForm.get('position')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"></app-error-message>
-                        }
-                    </div>
-                    <!-- Email -->
-                    <div class="mb-4">
-                        <app-email-input [form]="registerRepresentativeForm"></app-email-input>
-                    </div>
-                    <!-- Password -->
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <app-password-input [form]="registerRepresentativeForm"></app-password-input>
-                        </div>
-                    </div>
-                    <!-- Confirm Password -->
-                    <div class="row mb-4">
-                        <div class="col-12">
-                            <app-confirm-password-input [form]="registerFreelancerForm"></app-confirm-password-input>
-                        </div>
+                    @if (registerRepresentativeForm.get('position')?.invalid &&
+                    registerRepresentativeForm.get('position')?.touched) {
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"/>
+                    }
+                </div>
+                <!-- Email -->
+                <div class="mb-4">
+                    <app-email-input [form]="registerRepresentativeForm"/>
+                </div>
+                <!-- Password -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <app-password-input [form]="registerRepresentativeForm"/>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
-                    <!-- Company Name -->
-                    <div class="mb-4">
-                        <div class="form-floating">
-                            <input class="form-control" type="text" id="inputCompanyName"
-                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Name' | translate"
-                                formControlName="name">
-                            <label for="inputCompanyName" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
-                            </label>
-                        </div>
-                        @if (registerRepresentativeForm.get('name')?.invalid &&
-                        registerRepresentativeForm.get('name')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"></app-error-message>
-                        }
-                    </div>
-                    <!-- Phone Number -->
-                    <div class="mb-4">
-                        <div class="form-floating">
-                            <input class="form-control" type="text" id="inputCompanyPhoneNumber"
-                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate"
-                                formControlName="phoneNumber">
-                            <label for="inputCompanyPhoneNumber" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
-                            </label>
-                        </div>
-                        @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
-                        registerRepresentativeForm.get('phoneNumber')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"></app-error-message>
-                        }
-                    </div>
-                    <!-- Company Address -->
-                    <div class="mb-4">
-                        <div class="form-floating">
-                            <input class="form-control" type="text" id="inputCompanyAddress"
-                                [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"
-                                formControlName="address">
-                            <label for="inputCompanyAddress" class="form-label">
-                                {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
-                            </label>
-                        </div>
-                        @if (registerRepresentativeForm.get('address')?.invalid &&
-                        registerRepresentativeForm.get('address')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'"></app-error-message>
-                        }
+                <!-- Confirm Password -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <app-confirm-password-input [form]="registerFreelancerForm"/>
                     </div>
                 </div>
             </div>
-
-            <!-- Terms & Privacy Statement -->
-            <div class="row mt-4 mb-4">
-                <p class="fs-6 fw-light">
-                    By creating an accout, you agree to our <a href="">Terms</a> and have read and acknowledge the <a
-                        href="">Global Privacy Statement.</a>
-                </p>
+            <div class="col-md-6">
+                <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
+                <!-- Company Name -->
+                <div class="mt-3 mb-4">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="inputCompanyName"
+                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Name' | translate"
+                            formControlName="name">
+                        <label for="inputCompanyName" class="form-label">
+                            <i class="fa-solid fa-building me-2"></i>
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
+                        </label>
+                    </div>
+                    @if (registerRepresentativeForm.get('name')?.invalid &&
+                    registerRepresentativeForm.get('name')?.touched) {
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"/>
+                    }
+                </div>
+                <!-- Phone Number -->
+                <div class="mb-4">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="inputCompanyPhoneNumber"
+                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate"
+                            formControlName="phoneNumber">
+                        <label for="inputCompanyPhoneNumber" class="form-label">
+                            <i class="fa-solid fa-phone me-2"></i>
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
+                        </label>
+                    </div>
+                    @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
+                    registerRepresentativeForm.get('phoneNumber')?.touched) {
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"/>
+                    }
+                </div>
+                <!-- Company Address -->
+                <div class="mb-4">
+                    <div class="form-floating">
+                        <input class="form-control" type="text" id="inputCompanyAddress"
+                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"
+                            formControlName="address">
+                        <label for="inputCompanyAddress" class="form-label">
+                            <i class="fa-solid fa-location-dot me-2"></i>
+                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
+                        </label>
+                    </div>
+                    @if (registerRepresentativeForm.get('address')?.invalid &&
+                    registerRepresentativeForm.get('address')?.touched) {
+                    <app-error-message
+                        [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'"></app-error-message>
+                    }
+                </div>
             </div>
-        </form>
-    </div>
-    }
+        </div>
+
+        <!-- Terms & Privacy Statement -->
+        <div class="row mt-4 mb-4">
+            <p class="fs-6 fw-light">
+                By creating an accout, you agree to our <a href="" class="static-link">Terms</a> and have read and acknowledge the <a
+                    href="" class="static-link">Global Privacy Statement.</a>
+            </p>
+        </div>
+    </form>
+</div>
+}
 }
 
 <!-- Modal Footer -->
@@ -246,46 +251,46 @@
 
 <!-- Success / Error Display -->
 @if (isSuccess) {
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-            {{ 'SignUp.Recruiter.Modal.Success.Title' | translate }}
-        </h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
-    </div>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'SignUp.Recruiter.Modal.Success.Title' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
 
-    <div class="modal-body main-success">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="assets\images\man-happy.svg" width="200">
-            <h5> {{ 'SignUp.Recruiter.Modal.Success.Body.Title' | translate }}</h5>
-            <p>{{ 'SignUp.Recruiter.Modal.Success.Body.Message' | translate }}</p>
-            <button type="button" class="btn btn-primary w-50" (click)="isError = false">
-                <i class="fa-solid fa-paper-plane me-2"></i>
-                {{ 'SignUp.Recruiter.Modal.Success.Body.ResendEmailButton' | translate }}
-            </button>
-        </div>
+<div class="modal-body main-success">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="assets\images\man-happy.svg" width="200">
+        <h5> {{ 'SignUp.Recruiter.Modal.Success.Body.Title' | translate }}</h5>
+        <p>{{ 'SignUp.Recruiter.Modal.Success.Body.Message' | translate }}</p>
+        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
+            <i class="fa-solid fa-paper-plane me-2"></i>
+            {{ 'SignUp.Recruiter.Modal.Success.Body.ResendEmailButton' | translate }}
+        </button>
     </div>
+</div>
 } @else if (isError) {
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-            {{ 'SignUp.Recruiter.Modal.Error.Title' | translate }}
-        </h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'SignUp.Recruiter.Modal.Error.Title' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body main-error">
+    <div class="mb-3">
+        <p>{{ 'SignUp.Recruiter.Modal.Error.Body.Message1' | translate }}</p>
+        <p>{{ 'SignUp.Recruiter.Modal.Error.Body.Message2' | translate }}</p>
     </div>
 
-    <div class="modal-body main-error">
-        <div class="mb-3">
-            <p>{{ 'SignUp.Recruiter.Modal.Error.Body.Message1' | translate }}</p>
-            <p>{{ 'SignUp.Recruiter.Modal.Error.Body.Message2' | translate }}</p>
-        </div>
-
-        <div class="mb-3 d-flex justify-content-center align-items-center">
-            <img src="assets\images\female-something-went-wrong.svg" width="200">
-        </div>
-        <div class="mb-3 d-flex justify-content-center">
-            <button type="button" class="btn btn-primary w-50" (click)="isError = false">
-                <i class="fa-solid fa-circle-arrow-left me-2"></i>
-                {{ 'SignUp.Recruiter.Modal.Error.Body.ReturnButton' | translate }}
-            </button>
-        </div>
+    <div class="mb-3 d-flex justify-content-center align-items-center">
+        <img src="assets\images\female-something-went-wrong.svg" width="200">
     </div>
+    <div class="mb-3 d-flex justify-content-center">
+        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
+            <i class="fa-solid fa-circle-arrow-left me-2"></i>
+            {{ 'SignUp.Recruiter.Modal.Error.Body.ReturnButton' | translate }}
+        </button>
+    </div>
+</div>
 }

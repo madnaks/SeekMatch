@@ -1,0 +1,58 @@
+<div [formGroup]="form">
+    @if(isCompany) {
+        <!-- Line 1 : Address only for company -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <label for="inputAddress" class="form-label">
+                    {{ 'SHARED.FORM-CONTROLS.LABEL.ADDRESS' | translate }}
+                </label>
+                <input type="text" class="form-control" id="inputAddress" formControlName="address">
+            </div>
+        </div>
+    }
+    <!-- Line 2 : Country, Region, City -->
+    <div class="row mt-3">
+        <!-- Country -->
+        <div class="col-md-4">
+            <label for="inputCountry" class="form-label">
+                {{ 'SHARED.FORM-CONTROLS.LABEL.COUNTRY' | translate }}
+            </label>
+            <select id="inputCountry" class="form-select" formControlName="country">
+                <option *ngIf="!form.get('country')?.value" value="" selected>
+                    {{ 'SHARED.FORM-CONTROLS.LABEL.CHOOSE-COUNTRY' | translate }}
+                </option>
+                <option *ngFor="let country of countries" [value]="country.code">
+                    {{ country.name }}
+                </option>
+            </select>
+        </div>
+        <!-- Region -->
+        <div class="col-md-4">
+            <label for="inputRegion" class="form-label">
+                {{ 'SHARED.FORM-CONTROLS.LABEL.REGION' | translate }}
+            </label>
+            <select id="inputRegion" class="form-select" formControlName="region">
+                <option [value]="null" selected>
+                    {{ 'SHARED.FORM-CONTROLS.LABEL.CHOOSE-REGION' | translate }}
+                </option>
+                <option *ngFor="let region of regions" [value]="region.geonameId">
+                    {{ region.toponymName }}
+                </option>
+            </select>
+        </div>
+        <!-- City -->
+        <div class="col-md-4">
+            <label for="inputCity" class="form-label">
+                {{ 'SHARED.FORM-CONTROLS.LABEL.CITY' | translate }}
+            </label>
+            <select id="inputCity" class="form-select" formControlName="city">
+                <option [value]="null" selected>
+                    {{ 'SHARED.FORM-CONTROLS.LABEL.CHOOSE-CITY' | translate }}
+                </option>
+                <option *ngFor="let city of cities" [value]="city.geonameId">
+                    {{ city.name }}
+                </option>
+            </select>
+        </div>
+    </div>
+</div>

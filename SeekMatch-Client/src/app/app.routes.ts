@@ -11,14 +11,6 @@ export const routes: Routes = [
         loadChildren: () => import('./job/job.module').then(m => m.JobModule)
     },
     {
-        path: 'career-development',
-        loadChildren: () => import('./career-development/career-development.module').then(m => m.CareerDevelopmentModule)
-    },
-    {
-        path: 'cv',
-        loadChildren: () => import('./cv/cv.module').then(m => m.CvModule)
-    },
-    {
         path: 'profile',
         loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule),
         canActivate: [authGuard]

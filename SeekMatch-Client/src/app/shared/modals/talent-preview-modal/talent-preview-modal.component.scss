@@ -1,3 +1,5 @@
+@import "../../../../assets/styles/styles-variables.scss";
+
 .modal-body {
     padding: 20px;
 }
@@ -52,4 +54,11 @@ iframe {
   height: 32px;
   border-radius: 50%;
   font-size: 1.2rem;
+  &.active {
+    transition: color 0.3s ease;
+    :hover {
+        color: $accent-color;
+        cursor: pointer;
+    }
+  }
 }

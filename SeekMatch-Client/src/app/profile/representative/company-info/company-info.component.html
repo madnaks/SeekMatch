@@ -2,30 +2,30 @@
     <div class="col-md-9">
 
         @if (isLoading) {
-        <app-loader/>
+        <be-loader />
         } @else {
         <form [formGroup]="companyForm" (ngSubmit)="updateCompany()">
             <!-- Name -->
             <div class="row mt-3">
-                <label for="inputName" class="form-label">
-                    {{ 'Representative.AboutYou.FirstName' | translate }}
-                </label>
-                <input type="text" class="form-control" id="inputName" formControlName="name">
+                <div class="col-12">
+                    <label for="inputName" class="form-label">
+                        {{ 'Representative.Company.Name' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputName" formControlName="name">
+                </div>
             </div>
             <!-- Phone Number -->
             <div class="row mt-3">
-                <label for="inputPhoneNumber" class="form-label">
-                    {{ 'Representative.AboutYou.FirstName' | translate }}
-                </label>
-                <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber">
+                <div class="col-12">
+                    <label for="inputPhoneNumber" class="form-label">
+                        {{ 'Representative.Company.PhoneNumber' | translate }}
+                    </label>
+                    <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber">
+                </div>
             </div>
-            <!-- Address -->
-            <div class="row mt-3">
-                <label for="inputAddress" class="form-label">
-                    {{ 'Representative.AboutYou.FirstName' | translate }}
-                </label>
-                <input type="text" class="form-control" id="inputAddress" formControlName="address">
-            </div>
+
+            <be-address-group [form]="companyForm" [isCompany]="true" />
+
             <!-- Save button -->
             <div class="row mt-3">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">

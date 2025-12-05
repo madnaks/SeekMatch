@@ -1,3 +1,4 @@
+import { Setting } from "./setting";
 import { User } from "./user";
 
 export class Recruiter extends User {
@@ -6,8 +7,9 @@ export class Recruiter extends User {
   public lastName: string = '';
   public password: string = '';
   public isFreelancer: boolean = false;
+  public setting: Setting = new Setting();
 
-  constructor(init?:Partial<Recruiter>) {
+  constructor(init?: Partial<Recruiter>) {
     super();
     Object.assign(this, init);
   }

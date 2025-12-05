@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Talent } from '../models/talent';
+import { Bookmark } from '../models/bookmark';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +38,9 @@ export class TalentService {
 
   deleteProfilePicture(): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/delete-profile-picture`);
+  }
+
+  getAllBookmarks(): Observable<any> {
+    return this.http.get<Bookmark[]>(`${this.apiUrl}/get-all-bookmarks`);
   }
 }

@@ -49,7 +49,10 @@
         "WhereInput": "Where ?",
         "BackToList": "Back to list",
         "JobDetails": {
-            "JobDetails": "Job details",
+            "Description": "Description",
+            "PositionDetails": "Position details",
+            "Qualifications": "Qualifications",
+            "AdditionalRequirements": "Additional requirements",
             "Apply": "Apply"
         }
     },
@@ -72,11 +75,11 @@
             "Education": "Education",
             "Experience": "Experience",
             "JobApplications": "Job applications",
-            "SavedJobs": "Saved jobs",
+            "Bookmarks": "Bookmarks",
             "CompanyInfo": "Company info",
             "RecruiterTeam": "Recruiter team",
             "Settings": "Settings",
-            "Secruity": "Secruity"
+            "Security": "Security"
         },
         "MyProfile": "My profile"
     },
@@ -116,12 +119,19 @@
             "Submitted": "Submitted",
             "Shortlisted": "Shortlisted",
             "InterviewScheduled": "Interview Scheduled",
-            "Offered": "Offered",
+            "Hired": "Hired",
             "Rejected": "Rejected",
             "Withdrawn": "Withdrawn"
         }
     },
     "Table": {
         "Actions": "Actions"
+    },
+    "Settings" : {
+        "Language":  {
+            "Label": "Language",
+            "French": "French", 
+            "English": "English"
+        }
     }
 }

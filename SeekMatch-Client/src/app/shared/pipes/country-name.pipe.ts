@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { countries } from '../constants/constants';
+import { environment } from 'environments/environment.development';
 
 @Pipe({
   name: 'countryName'
@@ -7,7 +7,7 @@ import { countries } from '../constants/constants';
 
 export class CountryNamePipe implements PipeTransform {
   transform(countryCode: string): string {
-    const country = countries.find(c => c.code === countryCode);
+    const country = environment.address.countries.find(c => c.code === countryCode);
     return country ? country.name : countryCode;
   }
 }

@@ -1,16 +1,26 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
-.card-body {
-    cursor: pointer;
-    transition: all 0.3s ease;
+.card {
 
-    &:hover {
-        .card-title {
-            text-decoration: underline;
+    margin-left: 0 !important;
+
+    &:first-child {
+        margin-top: 0 !important;
+    }
+
+    &.selected-job-offer {
+        border: 1px solid $accent-color;
+    }
+
+    .card-body {
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 6px;
+
+        &:hover {
+            .card-title {
+                text-decoration: underline;
+            }
         }
     }
-}
-
-.selected-job-offer {
-    border: 1px solid rgba(0, 0, 0, 0.661);
 }

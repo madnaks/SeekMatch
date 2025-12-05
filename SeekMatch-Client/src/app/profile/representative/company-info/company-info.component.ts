@@ -34,7 +34,10 @@ export class CompanyInfoComponent {
     return this.fb.group({
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      address: ['',Validators.required]
+      address: ['',Validators.required],
+      country: [''],
+      region: [null],
+      city: [null],
     });
   }
 
@@ -45,14 +48,8 @@ export class CompanyInfoComponent {
         name: company.name,
         phoneNumber: company.phoneNumber,
         address: company.address
+        
       });
-
-      // if (representative.profilePicture) {
-      //   this.profilePicture = `data:image/jpeg;base64,${representative.profilePicture}`;
-      //   this.defaultProfilePicture = false;
-      // } else {
-      //   this.profilePicture = "../../../assets/images/male-default-profile-picture.svg";
-      // }
 
       this.isLoading = false;
     });

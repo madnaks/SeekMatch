@@ -10,6 +10,7 @@ namespace SeekMatch.Application.Services
 {
     public class RecruiterService(
             IRecruiterRepository recruiterRepository,
+            ISettingRepository settingRepository,
             IEmailService emailService,
             IMapper mapper,
             UserManager<User> userManager) : IRecruiterService
@@ -35,6 +36,14 @@ namespace SeekMatch.Application.Services
                 IsFreelancer = true,
                 User = user
             };
+
+            var setting = new Setting()
+            {
+                User = user,
+                Language = registerRecruiterDto.Setting?.Language
+            };
+
+            await settingRepository.CreateAsync(setting);
 
             await recruiterRepository.CreateAsync(recruiter);
 

@@ -1,17 +1,45 @@
-// 1st theme: Professional and Trustworthy
-// Primary Color: #003366 (Dark Blue) - Represents professionalism and reliability.
-// Secondary Color: #0099CC (Sky Blue) - For highlights and call-to-action elements.
-// Accent Color: #F4A460 (Sandy Brown) - To add warmth and draw attention to important elements.
-// Background Color: #F4F4F4 (Light Grey) - Neutral background that keeps the content clean and readable.
-// Text Color: #333333 (Dark Grey) - For easy readability and a professional look.
+:root {
+    --primary-color: #001A33;
+    --secondary-color: #003366;
+    --third-color: #194775;
+    --fourth-color: #325b84;
 
-$primary-color: #003366;
-$secondary-color: #0099CC;
-$accent-color: #F4A460;
-$background-color: #F4F4F4;
-$text-color: #333333;
+    --accent-color: #F4A460;
+    --background-color: #F4F4F4;
+    --text-color: #F4F4F4;
 
-$success-color: #2BDE3F;
-$error-color: #F44336;
-$warning-color: #FFC007;
-$info-color: #1D72F3;
+    --success-color: #2BDE3F;
+    --error-color: #F44336;
+    --warning-color: #FFC007;
+    --info-color: #1D72F3;
+}
+
+.light-mode {
+    --primary-color: #f0f4ff;
+    --secondary-color: #99bbff;
+    --third-color: #5577aa;
+    --fourth-color: #334466;
+
+    --accent-color: #FFB347;
+    --background-color: #1A1A1A;
+    --text-color: #000000;
+
+    --success-color: #00E676;
+    --error-color: #FF5252;
+    --warning-color: #FFC107;
+    --info-color: #64B5F6;
+}
+
+$primary-color: var(--primary-color);
+$secondary-color: var(--secondary-color);
+$third-color: var(--third-color);
+$fourth-color: var(--fourth-color);
+
+$accent-color: var(--accent-color);
+$background-color: var(--background-color);
+$text-color: var(--text-color);
+
+$success-color: var(--success-color);
+$error-color: var(--error-color);
+$warning-color: var(--warning-color);
+$info-color: var(--info-color);

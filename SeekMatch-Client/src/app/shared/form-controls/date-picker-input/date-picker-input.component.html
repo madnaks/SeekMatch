@@ -1,0 +1,20 @@
+<div [formGroup]="form">
+    <label [for]="id" class="form-label">
+        {{ label | translate }}
+    </label>
+    <div class="input-group">
+        <div class="datepicker-input input-group">
+            <input 
+                class="form-control" 
+                bsDatepicker 
+                [bsConfig]="bsConfig" 
+                [id]="id" 
+                placeholder="yyyy-mm-dd"
+                [formControlName]="controlName"
+                placement="top" />
+            <span class="input-group-text">
+                <i class="fa-regular fa-calendar-days"></i>
+            </span>
+        </div>
+    </div>
+</div>

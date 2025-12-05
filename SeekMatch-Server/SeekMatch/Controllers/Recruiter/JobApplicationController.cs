@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using System.Security.Claims;
@@ -136,7 +135,47 @@ namespace SeekMatch.Controllers
 
             return StatusCode(500, new { message = "An error occurred while short listed the job application" });
         }
-        
+
+        [Authorize]
+        [HttpPut("interview-scheduled/{jobApplicationId}")]
+        public async Task<IActionResult> interviewScheduled(string jobApplicationId, [FromBody] InterviewScheduleDto interviewScheduleDto)
+        {
+
+            if (jobApplicationId == null)
+            {
+                return BadRequest("Job application id is null");
+            }
+
+            var result = await jobApplicationService.InterviewScheduled(jobApplicationId, interviewScheduleDto);
+
+            if (result)
+            {
+                return Ok(new { message = "Job application is now in short list" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while short listed the job application" });
+        }
+
+        [Authorize]
+        [HttpPut("hire/{jobApplicationId}")]
+        public async Task<IActionResult> Hire(string jobApplicationId)
+        {
+
+            if (jobApplicationId == null)
+            {
+                return BadRequest("Job application id is null");
+            }
+
+            var result = await jobApplicationService.Hire(jobApplicationId);
+
+            if (result)
+            {
+                return Ok(new { message = "Talent is now hired" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while hiring the talent" });
+        }
+
         [Authorize]
         [HttpPut("{jobApplicationId}")]
         public async Task<IActionResult> Reject(string jobApplicationId, [FromBody] string rejectionReason)

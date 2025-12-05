@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { Talent } from '../../../shared/models/talent';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { TalentService } from '../../../shared/services/talent.service';
+import { LanguageService } from '@app/shared/services/language.service';
+import { createRegisterForm } from './register-talent-modal.config';
 
 @Component({
   selector: 'app-register-talent-modal',
@@ -26,27 +28,9 @@ export class RegisterTalentModalComponent {
     private fb: NonNullableFormBuilder,
     private talentService: TalentService,
     private router: Router,
-    private toastService: ToastService) {
-    this.registerForm = this.initregisterForm();
-  }
-
-  private initregisterForm(): FormGroup {
-    return this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator() });
-  }
-
-  private passwordsMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const formGroup = control as FormGroup;
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-      return password === confirmPassword ? null : { mismatch: true };
-    };
+    private toastService: ToastService,
+    private languageService: LanguageService) {
+    this.registerForm = createRegisterForm(this.fb);
   }
 
   public onSubmit(): void {
@@ -62,6 +46,8 @@ export class RegisterTalentModalComponent {
     const formValues = this.registerForm.value;
 
     let talent = new Talent(formValues);
+
+    talent.setting.language = this.languageService.getBrowserLanguageCode();
     
     this.talentService.register(talent).pipe(
       finalize(() => {
@@ -77,10 +63,6 @@ export class RegisterTalentModalComponent {
           this.isError = true;
         }
       })
-  }
-
-  public toggleConfirmPasswordVisibility(): void {
-    this.confirmPasswordVisible = !this.confirmPasswordVisible;
   }
 
   public dismiss(reason: string) {

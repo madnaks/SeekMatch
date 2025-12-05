@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobType, WorkplaceType } from '../../../shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -7,32 +7,45 @@ import { JobApplicationService } from '../../../shared/services/job-application.
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JobOfferService } from '@app/shared/services/job-offer.service';
 
 @Component({
   selector: 'app-job-details',
   templateUrl: './job-details.component.html',
   styleUrl: './job-details.component.scss'
 })
-export class JobDetailsComponent implements OnInit {
+export class JobDetailsComponent implements OnInit, OnChanges {
 
   @Input() jobOffer: JobOffer | null = null;
   @Input() isMobileView: boolean = false;
 
   @ViewChild('expressApplyContent') expressApplyContent!: TemplateRef<any>;
-  
+  @ViewChild('loginModalContent') loginModalContent!: TemplateRef<any>;
+
   public canApply: boolean = false;
   public isSaving: boolean = false;
+  public isBookmarked: boolean = false;
 
   constructor(
     private sanitizer: DomSanitizer,
     private authService: AuthService,
     private jobApplicationService: JobApplicationService,
     private toastService: ToastService,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private jobOfferService: JobOfferService) {
   }
 
   ngOnInit(): void {
     this.canApply = this.authService.canApply();
+   
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['jobOffer']) {
+      this.jobOfferService.isBookmarked(this.jobOffer?.id || '').subscribe((isBookmarked) => {
+        this.isBookmarked = isBookmarked;
+      });
+    }
   }
 
   public getJobTypeName(type: JobType): string {
@@ -65,5 +78,35 @@ export class JobDetailsComponent implements OnInit {
     } else {
       this.modalService.open(this.expressApplyContent, { centered: true, backdrop: 'static' });
     }
+  }
+
+  public bookmark(): void {
+    if (this.authService.isAuthenticated()) {
+      this.jobOfferService.bookmark(this.jobOffer?.id || '').subscribe({
+        next: () => {
+          this.isBookmarked = true;
+          this.toastService.showSuccessMessage('Bookmarked successfully!');
+        },
+        error: (error) => {
+          this.toastService.showErrorMessage('Error while bookmarking!', error);  
+          this.isBookmarked = false;
+        }
+      });
+    } else {
+      this.modalService.open(this.loginModalContent, { centered: true, backdrop: 'static' });
+    }
+  }
+
+  public unbookmark(): void {
+    this.jobOfferService.unbookmark(this.jobOffer?.id || '').subscribe({
+      next: () => {
+        this.isBookmarked = false;
+        this.toastService.showSuccessMessage('Unbookmarked successfully!');
+      },
+      error: (error) => {
+        this.toastService.showErrorMessage('Error while unbookmarking!', error);
+        this.isBookmarked = true;
+      }
+    });
   }
 }

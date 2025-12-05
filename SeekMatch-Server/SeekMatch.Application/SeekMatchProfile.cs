@@ -15,6 +15,9 @@ namespace SeekMatch.Application
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
             CreateMap<Education, EducationDto>().ReverseMap();
             CreateMap<Experience, ExperienceDto>().ReverseMap();
+            CreateMap<Resume, ResumeDto>().ReverseMap();
+            CreateMap<ResumeDto, Resume>().ForAllMembers(opt => opt.Condition((src, dest, srcMember) => srcMember != null));
+            CreateMap<BookmarkDto, Bookmark>().ReverseMap();
             #endregion
 
             #region Recruiter
@@ -34,7 +37,12 @@ namespace SeekMatch.Application
                     .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email))
                     .ForMember(dest => dest.CompanyDto, opt => opt.MapFrom(src => src.Company));
             CreateMap<Company, CompanyDto>().ReverseMap();
-            #endregion 
+            #endregion
+
+            #region Commun
+            CreateMap<Setting, SettingDto>().ReverseMap();
+            #endregion
+
 
         }
     }

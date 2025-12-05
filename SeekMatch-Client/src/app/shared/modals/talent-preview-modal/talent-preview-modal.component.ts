@@ -31,6 +31,8 @@ export class TalentPreviewModalComponent implements OnInit {
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
+  @ViewChild('interviewScheduledModal') interviewScheduledModal!: TemplateRef<any>;
+  @ViewChild('hireConfirmationModal') hireConfirmationModal!: TemplateRef<any>;
   @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
 
   public currentTalent: Talent | null = null;
@@ -41,16 +43,21 @@ export class TalentPreviewModalComponent implements OnInit {
   public resumeUrl: SafeResourceUrl | null = null;
   public showResume: boolean = false;
   public JobApplicationStatus = JobApplicationStatus;
+  public interviewForm: FormGroup;
   public rejectionForm: FormGroup;
   public isSaving: boolean = false;
-
-
-  jobApplicationSteps = [
+  public jobApplicationSteps = [
     { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED' },
     { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED' },
     { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED' },
     { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED' },
     { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
+  ];
+  public platforms = [
+    { name: 'Teams' },
+    { name: 'Google Meet' },
+    { name: 'Zoom' },
+    { name: 'Other' }
   ];
 
   constructor(
@@ -61,6 +68,7 @@ export class TalentPreviewModalComponent implements OnInit {
     private modalService: NgbModal,
     private fb: NonNullableFormBuilder,
     private toastService: ToastService) {
+    this.interviewForm = this.initInterviewForm();
     this.rejectionForm = this.initRejectionForm();
   }
 
@@ -85,12 +93,18 @@ export class TalentPreviewModalComponent implements OnInit {
     }
   }
 
+  private initInterviewForm(): FormGroup {
+    return this.fb.group({
+      platform: ['', Validators.required],
+      date: [null, Validators.required]
+    });
+  }
+
   private initRejectionForm(): FormGroup {
     return this.fb.group({
       reason: ['', Validators.required],
     });
   }
-
 
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
@@ -115,7 +129,6 @@ export class TalentPreviewModalComponent implements OnInit {
     const month = this.monthOptions.find(m => m.id === monthId);
     return month ? this.translate.instant(month.value) : '';
   }
-
 
   public getEducationDuration(education: Education): string {
     if (education.currentlyStudying) {
@@ -163,6 +176,12 @@ export class TalentPreviewModalComponent implements OnInit {
       case JobApplicationStatus.Shortlisted:
         this.modalService.open(this.shortListedConfirmationModal, { centered: true, backdrop: 'static' });
         break;
+      case JobApplicationStatus.InterviewScheduled:
+        this.modalService.open(this.interviewScheduledModal, { centered: true, backdrop: 'static' });
+        break;
+      case JobApplicationStatus.Hired:
+        this.modalService.open(this.hireConfirmationModal, { centered: true, backdrop: 'static' });
+        break;
       case JobApplicationStatus.Rejected:
         this.modalService.open(this.rejectJobApplicationModal, { centered: true, backdrop: 'static' });
         break;
@@ -186,6 +205,48 @@ export class TalentPreviewModalComponent implements OnInit {
         },
         error: (err) => {
           console.error('Error shortlisting application', err);
+        }
+      });
+  }
+
+  public onInterviewScheduledConfirmed(modal: any): void {
+    if (this.interviewForm.invalid) {
+      this.interviewForm.markAllAsTouched();
+      return;
+    }
+    this.isSaving = true;
+    this.jobApplicationService.interviewScheduled(this.jobApplication?.id, this.interviewForm.value).pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          if (this.jobApplication) {
+            this.jobApplication.status = JobApplicationStatus.InterviewScheduled;
+            this.toastService.showSuccessMessage('Interview scheduled successfully');
+            modal.close('Yes');
+          }
+        },
+        error: (err) => {
+          console.error('Error scheduling application', err);
+        }
+      });
+  }
+
+  public onHireConfirmed(modal: any): void {
+    this.isSaving = true;
+    this.jobApplicationService.hire(this.jobApplication?.id || '').pipe(
+      finalize(() => {
+        this.isSaving = false;
+      })).subscribe({
+        next: () => {
+          if (this.jobApplication) {
+            this.jobApplication.status = JobApplicationStatus.Hired;
+            this.toastService.showSuccessMessage('Talent hired successfully');
+            modal.close('Yes');
+          }
+        },
+        error: (err) => {
+          console.error('Error while hiring the talent', err);
         }
       });
   }
@@ -217,5 +278,4 @@ export class TalentPreviewModalComponent implements OnInit {
       this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
     }
   }
-
 }

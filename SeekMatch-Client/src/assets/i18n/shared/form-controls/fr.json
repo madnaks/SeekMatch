@@ -7,7 +7,14 @@
                 "EMAIL": "Adresse e-mail",
                 "PHONE": "Téléphone",
                 "PASSWORD": "Mot de passe",
-                "CONFIRM-PASSWORD": "Confirmer le mot de passe"
+                "CONFIRM-PASSWORD": "Confirmer le mot de passe",
+                "ADDRESS": "Adresse",
+                "COUNTRY": "Pays",
+                "CHOOSE-COUNTRY": "Choisir un pays",
+                "REGION": "Région/État",
+                "CHOOSE-REGION": "Choisir une région/état",
+                "CITY": "Ville",
+                "CHOOSE-CITY": "Choisir une ville"
             },
             "VALIDATION": {
                 "LASTNAME": "Le nom de famille est requis.",

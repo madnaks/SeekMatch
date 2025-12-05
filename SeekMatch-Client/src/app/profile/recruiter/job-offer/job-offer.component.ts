@@ -51,8 +51,13 @@ export class JobOfferComponent implements OnInit {
   }
 
   //#region : Modal functions
+  public openJobOfferPreviewModal(content: any, jobOffer: JobOffer): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
+    this.selectedJobOffer = jobOffer;
+  }
+
   public openJobOfferModal(content: any, jobOffer?: JobOffer): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static' });
+    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobOffer != undefined) {
       this.selectedJobOffer = jobOffer;
     }
@@ -183,7 +188,7 @@ export class JobOfferComponent implements OnInit {
         return 'bg-primary';
       case JobApplicationStatus.InterviewScheduled:
         return 'bg-info';
-      case JobApplicationStatus.Offered:
+      case JobApplicationStatus.Hired:
         return 'bg-success';
       case JobApplicationStatus.Rejected:
         return 'bg-danger';

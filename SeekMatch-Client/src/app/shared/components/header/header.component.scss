@@ -1,67 +1,131 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 nav {
-    position: sticky;
-    top: 0;
-    z-index: 1;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: $primary-color;
+  color: #ffffff;
 }
 
-.navbar {
-    background-color: $primary-color;
-    color: #ffffff;
-}
 
 .nav-link {
-    font-size: 18px;
+  font-size: 18px;
 }
 
-.navbar-brand {
-    span {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: #fff;
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        overflow: hidden;
-    }
+.nav-text {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0px;
+  transition: color .35s ease;
+  color: $text-color;
 
-    img {
-        width: 45px;
-        height: 45px;
-        object-fit: contain;
-    }
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    transition: width 0s ease, background .35s ease;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: $text-color;
+    transition: width .35s ease;
+  }
+
+  &:hover:before {
+    width: 100%;
+    background: $text-color;
+    transition: width .35s ease;
+  }
+
+  &:hover:after {
+    width: 100%;
+    background: transparent;
+    transition: all 0s ease;
+  }
 }
 
 .profile-picture {
-    cursor: pointer;
+  cursor: pointer;
 
-    img {
-        border-radius: 50%;
-        background-color: white;
-        padding: 2px;
-        object-fit: cover;
-        width: 40px;
-    }
+  img {
+    border-radius: 50%;
+    background-color: white;
+    padding: 2px;
+    object-fit: cover;
+    width: 40px;
+  }
 }
 
 .notification {
-    .icon {
-        cursor: pointer;
+  .icon {
+    cursor: pointer;
 
-        &::after {
-            content: none;
-        }
+    &::after {
+      content: none;
+    }
+  }
+
+  .message {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .isRead {
+    color: $secondary-color;
+  }
+}
+
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: transform 0.5s ease;
+
+  i {
+    position: absolute;
+    font-size: 1.3rem;
+    transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
+  }
+
+  .sun {
+    color: white; // default black
+    opacity: 1;
+    transform: scale(1);
+
+    &.dark {
+      color: black; // white when dark mode active
+    }
+  }
+
+  .moon {
+    color: black;
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  &.rotate {
+    transform: rotate(180deg);
+
+    .sun {
+      opacity: 0;
+      transform: scale(0.8);
     }
 
-    .message {
-        cursor: pointer;
-        user-select: none;
+    .moon {
+      opacity: 1;
+      transform: scale(1);
     }
-
-    .isRead {
-        color: $secondary-color;
-    }
+  }
 }

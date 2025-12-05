@@ -14,6 +14,7 @@ import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
 import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
 import { LoginButtonComponent } from "@app/shared/buttons";
+import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LoginButtonComponent } from "@app/shared/buttons";
     ErrorMessageComponent,
     EmailInputComponent,
     PasswordInputComponent,
-    LoginButtonComponent
+    LoginButtonComponent,
+    DatePickerInputComponent
 ],
   exports: [
     HeaderComponent,

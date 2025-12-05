@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { EDITOR_MODULES, jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
@@ -6,12 +6,12 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-job-offer-modal',
   templateUrl: './job-offer-modal.component.html',
-  styleUrl: './job-offer-modal.component.scss'
+  styleUrl: './job-offer-modal.component.scss',
+  encapsulation: ViewEncapsulation.None
 })
 export class JobOfferModalComponent implements OnInit {
 
@@ -26,13 +26,12 @@ export class JobOfferModalComponent implements OnInit {
   jobOfferForm: FormGroup;
   jobTypesList = jobTypes;
   workplaceTypeList = workplaceTypeList;
-  bsConfig?: Partial<BsDatepickerConfig>;
 
   editorModules = EDITOR_MODULES;
 
   //#region  Stepping variables
   currentStep: number = 1;
-  maxSteps: number = 2;
+  maxSteps: number = 3;
   //#endregion
 
   constructor(
@@ -40,7 +39,6 @@ export class JobOfferModalComponent implements OnInit {
     private jobOfferService: JobOfferService,
     private toastService: ToastService) {
     this.jobOfferForm = this.initJobOfferFormForm();
-    this.configureDatePicker();
   }
 
   ngOnInit() {
@@ -50,20 +48,15 @@ export class JobOfferModalComponent implements OnInit {
     }
   }
 
-  private configureDatePicker(): void {
-    this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'YYYY-MM-DD',
-      isAnimated: true,
-      showWeekNumbers: false,
-    });
-  }
-
   private initJobOfferFormForm(): FormGroup {
     return this.fb.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       companyName: [''],
+      companyInfo: [''],
+      positionDetails: [''],
+      qualifications: [''],
+      additionalRequirements: [''],
       location: ['', Validators.required],
       salary: [''],
       postedAt: [null],
@@ -79,6 +72,10 @@ export class JobOfferModalComponent implements OnInit {
       title: jobOffer.title,
       description: jobOffer.description,
       companyName: jobOffer.companyName,
+      companyInfo: jobOffer.companyInfo,
+      positionDetails: jobOffer.positionDetails,
+      qualifications: jobOffer.qualifications,
+      additionalRequirements: jobOffer.additionalRequirements,
       location: jobOffer.location,
       salary: jobOffer.salary,
       postedAt: jobOffer.postedAt,
@@ -153,12 +150,12 @@ export class JobOfferModalComponent implements OnInit {
   //#region Stepping functions
   public goToNextStep(): void {
     this.currentStep++;
-    this.updateModalSize();
+    // this.updateModalSize();
   }
 
   public goToPreviousStep(): void {
     this.currentStep--;
-    this.updateModalSize();
+    // this.updateModalSize();
   }
 
   private updateModalSize(): void {

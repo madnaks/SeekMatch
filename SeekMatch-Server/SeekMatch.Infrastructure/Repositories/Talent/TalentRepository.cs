@@ -48,7 +48,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-               dbContext.Talents.Update(talent);
+                dbContext.Talents.Update(talent);
 
                 var result = await dbContext.SaveChangesAsync(true);
 
@@ -59,5 +59,14 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while saving changes of the talent", ex);
             }
         }
+
+        public async Task<IList<Bookmark>?> GetBookmarks(string userId)
+        {
+            return await dbContext.Bookmarks
+                .Include(t => t.JobOffer)
+                .Where(t => t.TalentId == userId)
+                .ToListAsync();
+        }
+
     }
 }

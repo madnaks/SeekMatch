@@ -9,7 +9,7 @@
     // ::-webkit-scrollbar-thumb: Styles the thumb (the part that you drag to scroll).
     &::-webkit-scrollbar {
         width: 5px;
-        background-color: #F5F5F5;
+        background-color: $text-color;
     }
 
     &::-webkit-scrollbar-thumb {
@@ -18,7 +18,7 @@
     }
 
     &::-webkit-scrollbar-track {
-        background-color: transparent;
+        background-color: $primary-color;
     }
 }
 
@@ -27,7 +27,7 @@
     border-radius: 6px;
     height: 84vh;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: $secondary-color;
     border: 0.606061px solid rgba(0, 0, 0, 0.176);
 }
 

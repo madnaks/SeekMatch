@@ -49,7 +49,10 @@
         "WhereInput": "Où ?",
         "BackToList": "Retour à la liste",
         "JobDetails": {
-            "JobDetails": "Détails du poste",
+            "Description": "Description",
+            "PositionDetails": "Détails du poste",
+            "Qualifications": "Qualifications",
+            "AdditionalRequirements": "Exigences supplémentaires",
             "Apply": "Postuler"
         }
     },
@@ -72,11 +75,11 @@
             "Education": "Éducation",
             "Experience": "Expérience",
             "JobApplications": "Candidatures",
-            "SavedJobs": "Offres enregistrées",
+            "Bookmarks": "Offres enregistrées",
             "CompanyInfo": "Infos entreprise",
             "RecruiterTeam": "Équipe de recruteurs",
             "Settings": "Paramètres",
-            "Secruity": "Sécurité"
+            "Security": "Sécurité"
         },
         "MyProfile": "Mon profil"
     },
@@ -116,12 +119,19 @@
             "Submitted": "Soumis",
             "Shortlisted": "Présélectionné",
             "InterviewScheduled": "Entretien planifié",
-            "Offered": "Offre envoyée",
+            "Hired": "Embauché",
             "Rejected": "Rejeté",
             "Withdrawn": "Retiré"
         }
     },
     "Table": {
         "Actions": "Actions"
+    },
+    "Settings" : {
+        "Language":  {
+            "Label": "Language",
+            "French": "French", 
+            "English": "English"
+        }
     }
 }

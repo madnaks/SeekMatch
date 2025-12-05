@@ -1,21 +1,8 @@
-<div class="container-fluid col-lg-8 col-md-10 col-12 mt-5 p-3">
-    <div class="row mt-3 mb-3">
-        <div class="col-md-3">
-        </div>
-        <div class="col-md-9">
-            <h2>{{ 'Profile.MyProfile' | translate }}</h2>
-        </div>
-    </div>
+<div class="container-fluid dashboard-container col-lg-10 col-12 mt-5 p-3">
 
     <div class="row">
         <div class="col-md-3">
-            <ul class="nav flex-column">
-                <!-- Profile -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.Profile' | translate }}
-                    </h6>
-                </li>
+            <ul class="nav dashboard-nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="about-you" routerLinkActive="active">
                         <i class="fa-solid fa-circle-info me-2"></i>
@@ -23,41 +10,11 @@
                         <!-- Personal information -->
                     </a>
                 </li>
-                <!-- To consider : Sub Menu -->
-                <!-- <li class="nav-item">
-                    <a 
-                        class="nav-link" 
-                        (click)="toggleJobMenu()">
-                        <i class="fa-solid fa-briefcase me-2"></i>
-                        {{ 'Profile.Sections.JobManagement' | translate }}
-                        <i [class]="jobMenuOpen ? 'fa-solid fa-chevron-up' : 'fa-solid fa-chevron-down'" class="float-end"></i>
-                    </a>
-                    <ul *ngIf="jobMenuOpen" class="nav flex-column ps-3">
-                        <li class="nav-item">
-                            <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
-                                <i class="fa-solid fa-bullhorn me-2"></i>
-                                {{ 'Profile.Sections.JobOffers' | translate }}
-                            </a>
-                        </li>
-                    </ul>
-                </li> -->
-                <!-- Job Management -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.JobManagement' | translate }}
-                    </h6>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="job-offer" routerLinkActive="active">
                         <i class="fa-solid fa-bullhorn me-2"></i>
                         {{ 'Profile.Sections.JobOffers' | translate }}
                     </a>
-                </li>
-                <!-- Account & Security -->
-                <li class="nav-item">
-                    <h6 class="nav-header">
-                        {{ 'Profile.Headers.AccountSecurity' | translate }}
-                    </h6>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
@@ -66,9 +23,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="study" routerLinkActive="active">
+                    <a class="nav-link" routerLink="security" routerLinkActive="active">
                         <i class="fa-solid fa-shield-halved me-2"></i>
-                        {{ 'Profile.Sections.Secruity' | translate }}
+                        {{ 'Profile.Sections.Security' | translate }}
                     </a>
                 </li>
             </ul>

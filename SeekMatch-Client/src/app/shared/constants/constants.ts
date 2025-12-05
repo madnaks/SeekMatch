@@ -34,15 +34,9 @@ export const workplaceTypeList = [
 
 export const EDITOR_MODULES = {
   toolbar: [
+    [{ size: ['small', false, 'large', 'huge'] }],
     ['bold', 'italic', 'underline'],
     [{ list: 'ordered' }, { list: 'bullet' }],
     ['clean'],
   ],
 };
-
-export const countries = [
-  { name: 'Canada', code: 'CA' },
-  { name: 'United States', code: 'US' },
-  { name: 'France', code: 'FR' },
-  { name: 'Tunisia', code: 'TN' }
-];  

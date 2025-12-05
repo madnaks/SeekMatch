@@ -28,9 +28,13 @@
   }
 
   &.active {
-    background-color: $secondary-color;
+    background-color: $accent-color;
     transform: scale(1.05);
     color: $background-color;
+  }
+
+  .form-check-label {
+    color: $text-color;
   }
 }
 
@@ -42,14 +46,14 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: rgba($secondary-color, 0.3);
+    background-color: $third-color;
 
     i {
-      color: white;
+      color: $text-color;
     }
 
     &.active {
-      background-color: $secondary-color;
+      background-color: $third-color;
     }
 
     &.completed {
@@ -58,11 +62,11 @@
   }
 
   .line {
-    background-color: rgba($secondary-color, 0.3);
+      background-color: $third-color;
     width: 100px;
     height: 2px;
     &.active {
-      background-color: $secondary-color;
+      background-color: $third-color;
     }
 
     &.completed {

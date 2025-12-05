@@ -1,0 +1,94 @@
+<div class="row">
+
+    <div class="col-md-12">
+
+        @if (isLoading) {
+        <be-loader />
+        } @else {
+        @if (resumes.length === 0) {
+        <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+            <div class="col-6">
+                <p style="text-align: center;">
+                    {{ 'Talent.Resume.NoResumeMessage' | translate }}
+                </p>
+            </div>
+            <div class="col-md-6 d-flex justify-content-center">
+                <button class="btn btn-primary" (click)="open(addResumeContent)">
+                    <i class="fa-solid fa-circle-plus me-2"></i>
+                    {{ 'Talent.Resume.AddResume' | translate }}
+                </button>
+            </div>
+        </div>
+        } @else {
+        <div class="row mb-3">
+            <div class="col-md-12 d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="open(addResumeContent)">
+                    <i class="fa-solid fa-circle-plus me-2"></i>
+                    {{ 'Talent.Resume.AddResume' | translate }}
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card mb-3" *ngFor="let resume of resumes">
+                    <div class="card-body">
+                        <!-- Title -->
+                        <h5 class="card-title">
+                            @if(resume.isPrimary) {
+                            <i class="fa-solid fa-star me-2"></i>
+                            }
+                            {{ resume.title }}
+                        </h5>
+                        <!-- Update resume button -->
+                        <div class="card-btn update-btn" (click)="open(updateresumeContent, resume)">
+                            <i class="fa-solid fa-pen"></i>
+                        </div>
+                        @if(!(resume.isPrimary && resumes.length > 1)) {
+                        <!-- Delete resume button -->
+                        <div class="card-btn delete-btn" (click)="openDeleteModal(deleteresumeContent, resume)">
+                            <i class="fa-solid fa-trash"></i>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</div>
+
+<!-- Resume creation modal -->
+<ng-template #addResumeContent let-c="close" let-d="dismiss">
+    <app-resume-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)"
+        [onlyResume]="resumes.length === 0">
+    </app-resume-modal>
+</ng-template>
+
+<!-- Resume edit modal -->
+<ng-template #updateresumeContent let-c="close" let-d="dismiss">
+    <app-resume-modal [closeModal]="c" [dismissModal]="d" [selectedResume]="selectedResume"
+        (modalActionComplete)="modalActionComplete($event)" [onlyResume]="resumes.length === 1">
+    </app-resume-modal>
+</ng-template>
+
+<!-- delete modal -->
+<ng-template #deleteresumeContent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">
+            {{ 'Talent.Resume.Modal.DeleteTitle' | translate }}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ 'Talent.Resume.Modal.Body.DeleteMessage' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteResume()">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            {{ 'BUTTON.DELETE' | translate }}
+        </button>
+    </div>
+</ng-template>

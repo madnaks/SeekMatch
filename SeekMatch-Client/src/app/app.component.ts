@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
@@ -10,20 +10,27 @@ import { HomeModule } from './home/home.module';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     HomeModule,
+    RouterOutlet,
     SharedModule,
     TranslateModule
-],
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'SeekMatch';
 
-  constructor(private translate: TranslateService) {
+  public isHomePage: boolean = true;
+
+  constructor(private translate: TranslateService, private router: Router) {
     translate.setDefaultLang('en');
     translate.use('en');
+
+    this.router.events.subscribe(() => {
+      const currentRoute = this.router.routerState.snapshot.root.firstChild?.routeConfig?.path;
+      this.isHomePage = currentRoute === '' || currentRoute === 'home';
+    });
+
   }
 
 }

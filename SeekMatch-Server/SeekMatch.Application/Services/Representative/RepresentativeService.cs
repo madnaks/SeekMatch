@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.DTOs.Representative;
+using SeekMatch.Application.DTOs.Talent;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Enums;
@@ -12,6 +13,7 @@ namespace SeekMatch.Application.Services
 {
     public class RepresentativeService(
             IRepresentativeRepository representativeRepository,
+            ISettingRepository settingRepository,
             IMapper mapper,
             ICompanyService companyService,
             UserManager<User> userManager) : IRepresentativeService
@@ -48,6 +50,14 @@ namespace SeekMatch.Application.Services
                 CompanyId = company.Id,
                 User = user
             };
+
+            var setting = new Setting()
+            {
+                User = user,
+                Language = registerRepresentativeDto.Setting?.Language
+            };
+
+            await settingRepository.CreateAsync(setting);
 
             await representativeRepository.RegisterAsync(representative);
 

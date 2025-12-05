@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
 import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent, LoaderComponent, PasswordInputComponent, ConfirmPasswordInputComponent } from "@app/shared/form-controls";
 import { LoginButtonComponent } from "@app/shared/buttons";
+import { SharedModule } from "@app/shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { LoginButtonComponent } from "@app/shared/buttons";
     LoaderComponent,
     PasswordInputComponent,
     LoginButtonComponent,
-    ConfirmPasswordInputComponent
+    ConfirmPasswordInputComponent,
+    SharedModule
 ],
   exports: [CompaniesComponent, JobOffersComponent]
 })

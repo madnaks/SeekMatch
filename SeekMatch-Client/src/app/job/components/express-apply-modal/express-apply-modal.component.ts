@@ -120,7 +120,7 @@ export class ExpressApplyModalComponent {
   private pdfFileValidator(control: AbstractControl): ValidationErrors | null {
     const file = control.value;
     if (file && file instanceof File) {
-      debugger
+      
       if (file.type !== 'application/pdf') {
         return { invalidFileType: true };
       }

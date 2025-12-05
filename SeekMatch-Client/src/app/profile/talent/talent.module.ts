@@ -17,6 +17,14 @@ import { TalentProfileComponent } from './talent-profile/talent-profile.componen
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
 import { JobModule } from "@app/job/job.module";
+import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
+import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
+import { ResumeComponent } from './resume/resume.component';
+import { ResumeModalComponent } from './resume-modal/resume-modal.component';
+import { InfoComponent } from "@app/shared/form-controls/info/info.component";
+import { BookmarkComponent } from './bookmark/bookmark.component';
+import { JobOfferPreviewModalComponent } from "@app/profile/recruiter/job-offer-preview-modal/job-offer-preview-modal.component";
+import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
 
 @NgModule({
   declarations: [
@@ -27,7 +35,10 @@ import { JobModule } from "@app/job/job.module";
     ExperienceComponent,
     ExperienceModalComponent,
     JobApplicationComponent,
-    EditProfileModalComponent
+    EditProfileModalComponent,
+    ResumeComponent,
+    ResumeModalComponent,
+    BookmarkComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +55,12 @@ import { JobModule } from "@app/job/job.module";
     ErrorMessageComponent,
     EmailInputComponent,
     JobModule,
-    LoaderComponent
+    LoaderComponent,
+    DatePickerInputComponent,
+    DataTableComponent,
+    InfoComponent,
+    JobOfferPreviewModalComponent,
+    AddressGroupComponent
 ]
 })
 export class TalentModule { }

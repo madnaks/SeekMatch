@@ -10,18 +10,12 @@
         <div class="col-md-12">
             @if (isLoading) {
             <!-- Spinner -->
-            <app-loader/>
+            <be-loader/>
             } @else {
             <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
                 <!-- Line 1: Profile picture -->
                 <div class="row mt-3">
                     <div class="col-md-12 profile-picture-section">
-                        <p>
-                            <b>
-                                {{ 'Talent.EditProfile.ProfilePicture' | translate }}
-                            </b>
-                        </p>
-
                         <div>
                             <img [src]="profilePicture" class="img-thumbnail mb-2">
 
@@ -47,14 +41,14 @@
                 </div>
                 <!-- Line 2: Full name -->
                 <div class="row mt-3">
-                    <app-full-name-input [form]="profileForm">
-                    </app-full-name-input>
+                    <app-full-name-input [form]="profileForm" />
                 </div>
                 <!-- Line 3: Profile title -->
                 <div class="row mt-3">
                     <!-- Profile title -->
                     <div class="col-md-12">
                         <label for="inputProfileTitle" class="form-label">
+                            <i class="fa-regular fa-address-card me-2"></i>
                             {{ 'Talent.EditProfile.ProfileTitle' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
@@ -65,6 +59,7 @@
                     <!-- Summary -->
                     <div class="col-md-12">
                         <label for="inputSummary" class="form-label">
+                            <i class="fa-regular fa-clipboard me-2"></i>
                             {{ 'Talent.EditProfile.Summary' | translate }}
                         </label>
                         <textarea rows="5" class="form-control" id="inputSummary" formControlName="summary"></textarea>
@@ -93,6 +88,7 @@
                     <!-- LinkedIn -->
                     <div class="col-md-4">
                         <label for="inputLinkedIn" class="form-label">
+                            <i class="fa-brands fa-linkedin me-2"></i>
                             {{ 'Talent.EditProfile.LinkedIn' | translate }}
                         </label>
                         <input type="text" class="form-control" id="inputLinkedIn" formControlName="linkedIn">
@@ -105,16 +101,8 @@
                 <div class="row mt-3">
                     <!-- Date of birth -->
                     <div class="col-md-6">
-                        <label for="inputDateOfBirth" class="form-label">
-                            {{ 'Talent.EditProfile.DateOfBirth' | translate }}
-                        </label>
-                        <div class="datepicker-input input-group">
-                            <input class="form-control" bsDatepicker [bsConfig]="bsConfig" id="inputDateOfBirth"
-                                placeholder="yyyy-mm-dd" formControlName="dateOfBirth" />
-                            <span class="input-group-text">
-                                <i class="fa-regular fa-calendar-days"></i>
-                            </span>
-                        </div>
+                        <app-date-picker-input [form]="profileForm" [label]="'Talent.EditProfile.DateOfBirth'"
+                            [controlName]="'dateOfBirth'" id="inputDateOfBirth"/>
                     </div>
                     <!-- Phone -->
                     <div class="col-md-4">
@@ -123,53 +111,7 @@
                     </div>
                 </div>
                 <!-- Line 7: Address -->
-                <div class="row mt-3">
-                    <h4>Address</h4>
-                    <!-- Country -->
-                    <div class="col-md-4">
-                        <label for="inputCountry" class="form-label">
-                            {{ 'Talent.EditProfile.Country' | translate }}
-                        </label>
-                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)"
-                            formControlName="country">
-                            <option *ngIf="!profileForm.get('country')?.value" value="" selected>
-                                {{ 'Talent.EditProfile.ChooseCountry' | translate }}
-                            </option>
-                            <option *ngFor="let country of countries" [value]="country.code">
-                                {{ country.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <!-- Region -->
-                    <div class="col-md-4">
-                        <label for="inputRegion" class="form-label">
-                            {{ 'Talent.EditProfile.Region' | translate }}
-                        </label>
-                        <select id="inputRegion" class="form-select" (change)="onRegionSelect($event)"
-                            formControlName="region">
-                            <option [value]="null" selected>
-                                {{ 'Talent.EditProfile.ChooseRegion' | translate }}
-                            </option>
-                            <option *ngFor="let region of regions" [value]="region.geonameId">
-                                {{ region.toponymName }}
-                            </option>
-                        </select>
-                    </div>
-                    <!-- City -->
-                    <div class="col-md-4">
-                        <label for="inputCity" class="form-label">
-                            {{ 'Talent.EditProfile.City' | translate }}
-                        </label>
-                        <select id="inputCity" class="form-select" formControlName="city">
-                            <option [value]="null" selected>
-                                {{ 'Talent.EditProfile.ChooseCity' | translate }}
-                            </option>
-                            <option *ngFor="let city of cities" [value]="city.geonameId">
-                                {{ city.name }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
+                <be-address-group *ngIf="!isLoading" [form]="profileForm" [isCompany]="false" />
 
                 <!-- Line 8: Buttons -->
                 <div class="row mt-3">

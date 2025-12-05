@@ -60,6 +60,34 @@
                 }
             }
         },
+        "Resume": {
+            "AddResume": "Ajouter un CV",
+            "NoResumeMessage": "Commencez à construire votre profil en ajoutant votre CV",
+            "Table": {
+                "Title": "Titre",
+                "IsPrimary": "Principal"
+            },
+            "Modal": {
+                "CreationTitle": "Nouveau CV",
+                "UpdateTitle": "Mettre à jour le CV",
+                "DeleteTitle": "Supprimer le CV",
+                "Body": {
+                    "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce CV ?",
+                    "Form": {
+                        "Title": "Titre",
+                        "TitlePlaceHolder": "ex., Mon CV professionnel",
+                        "IsPrimary": "Définir comme CV principal",
+                        "IsPrimaryInfo": "Définir ce CV comme principal signifie qu'il sera celui que les employeurs verront par défaut lorsqu'ils consulteront votre profil.",
+                        "File": "Fichier",
+                        "FilePlaceHolder": "Choisir un fichier...",
+                        "Validation": {
+                            "Title": "Le titre est requis.",
+                            "File": "Le fichier est requis."
+                        }
+                    }
+                }
+            }
+        },
         "Experience": {
             "AddExperience": "Ajouter une expérience",
             "NoExperienceMessage": "Commencez à créer votre profil en ajoutant votre historique d'expérience",
@@ -130,6 +158,14 @@
                 "SHORTLISTED-MODAL": {
                     "TITLE": "Présélectionner ce candidat ?",
                     "BODY": "Êtes-vous sûr de vouloir présélectionner ce candidat ?"
+                },
+                "INTERVIEW-SCHEDULED-MODAL": {
+                    "TITLE": "Planifier un entretien pour ce candidat ?",
+                    "BODY": "Lorsque vous planifiez un entretien, le candidat en sera informé par courriel."
+                },
+                "HIRED-MODAL": {
+                    "TITLE": "Embaucher ce candidat ?",
+                    "BODY": "Êtes-vous sûr de vouloir embaucher ce candidat ?"
                 }
             }
         }

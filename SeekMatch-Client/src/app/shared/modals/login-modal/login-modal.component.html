@@ -2,7 +2,9 @@
     <h4 class="modal-title" id="modal-basic-title">
         {{ 'Login.Modal.Title' | translate }}
     </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')">
+        <!-- <i class="fa-solid fa-xmark fa-lg"></i> -->
+    </button>
 </div>
 <div class="modal-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

@@ -1,26 +1,26 @@
 <div class="job-list">
     @if (jobOffers.length > 0) {
-    <div *ngFor="let jobOffer of jobOffers" class="card mb-3"
-            [ngClass]="{'selected-job-offer': jobOffer === selectedJobOffer}" (click)="selectJobOffer(jobOffer)">
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{ jobOffer.title }}
-                </h5>
-                <h6 class="card-text">
-                    <span class="text-muted">
-                        {{ jobOffer.companyName }}
-                    </span>
-                </h6>
-                <span class="card-text font-weight-light">
-                    {{ jobOffer.location }} 
-                    ({{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }})
-                </span>
-            </div>
+    <div *ngFor="let jobOffer of jobOffers" class="card m-3"
+        [ngClass]="{'selected-job-offer': jobOffer === selectedJobOffer}" (click)="selectJobOffer(jobOffer)">
+        <div class="card-body">
+            <h5 class="card-title">
+                {{ jobOffer.title }}
+            </h5>
+            <h6 class="card-text">
+                <i class="fa-solid fa-building me-2"></i>
+                {{ jobOffer.companyName }}
+            </h6>
+            <span class="card-text font-weight-light">
+                <i class="fa-solid fa-location-dot me-2"></i>
+                {{ jobOffer.location }}
+                ({{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }})
+            </span>
         </div>
+    </div>
     } @else if (!isLoading) {
-        La recherche que vous avez effectuer ne donne aucun résultat
+    La recherche que vous avez effectuer ne donne aucun résultat
     }
     <div *ngIf="isLoading" class="text-center">
-        <app-loader/>
+        <be-loader />
     </div>
 </div>

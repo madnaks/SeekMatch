@@ -9,5 +9,8 @@ namespace SeekMatch.Application.Interfaces
         Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId);
         Task<bool> UpdateAsync(JobOfferDto jobOfferDto);
         Task<bool> DeleteAsync(string jobOfferId);
+        Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId);
+        Task<bool> BookmarkAsync(string jobOfferId, string talentId);
+        Task<bool> UnBookmarkAsync(string jobOfferId, string talentId);
     }
 }

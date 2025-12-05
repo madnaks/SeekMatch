@@ -2,9 +2,12 @@
     <!-- 1st row : Search Form  -->
     <div class="row mb-4">
         <div ngbAccordion class="p-0">
-            <div ngbAccordionItem>
+            <div ngbAccordionItem #item="ngbAccordionItem">
                 <h2 ngbAccordionHeader>
-                    <button ngbAccordionButton> <i class="fa-solid fa-filter me-2"></i> Filtre</button>
+                    <button ngbAccordionButton> 
+                        <i class="fa-solid fa-filter me-2"></i> Filtre
+                        <i class="fa-solid ms-auto" [ngClass]="item.collapsed ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </button>
                 </h2>
                 <div ngbAccordionCollapse>
                     <div ngbAccordionBody>
@@ -25,7 +28,8 @@
                                         <label for="inputCompanyName" class="form-label">
                                             {{ 'Recruiter.JobOffer.Modal.Body.Form.CompanyName' | translate }}
                                         </label>
-                                        <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
+                                        <input type="text" class="form-control" id="inputCompanyName"
+                                            formControlName="companyName"
                                             [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
                                     </div>
                                 </div>
@@ -46,31 +50,32 @@
                                         <label for="workplaceTypeSelect" class="form-label">
                                             {{ 'Recruiter.JobOffer.Modal.Body.Form.WorkplaceType' | translate }}
                                         </label>
-                                        <select id="workplaceTypeSelect" class="form-select" formControlName="workplaceType">
-                                            <option *ngFor="let workplaceType of workplaceTypeList" [ngValue]="workplaceType.key">
+                                        <select id="workplaceTypeSelect" class="form-select"
+                                            formControlName="workplaceType">
+                                            <option *ngFor="let workplaceType of workplaceTypeList"
+                                                [ngValue]="workplaceType.key">
                                                 {{ workplaceType.value | translate }}
                                             </option>
                                         </select>
                                     </div>
                                 </div>
-                                <!-- <div class="row mb-4">
-                                    <div class="me-auto col-md-6">
-                                        <button type="button" class="btn btn-light" (click)="resetFilterForm()">
-                                            Reset filters
-                                        </button>
-                                    </div>
-                                </div> -->
                                 <div class="row mb-4">
                                     <div class="col-9">
-                                        <span *ngFor="let activeFilter of activeFilters" class="fs-6 badge bg-custom me-4 mt-2" (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
+                                        <span *ngFor="let activeFilter of activeFilters"
+                                            class="fs-6 badge bg-custom me-4 mt-2"
+                                            (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
                                             <span class="me-2">{{ activeFilter.value }}</span>
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </span>
                                     </div>
-                                    <div class="col-3 me-auto">
-                                         <button type="button" class="btn btn-light" (click)="resetFilterForm()">
-                                            Reset filters
-                                        </button>
+                                    <div class="col-3">
+                                        <span class="float-end">
+                                            <button type="button" class="btn btn-light" (click)="resetFilterForm()">
+                                                <i class="fa-solid fa-arrow-rotate-left me-2"></i>
+                                                Reset filters
+                                            </button>
+                                        </span>
+                                            
                                     </div>
                                 </div>
                             </form>
@@ -83,33 +88,34 @@
     <!-- 2nd Row : list & details of job offers -->
     <div class="row">
         <div class="col-12 col-md-4 p-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
-            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView" [filters]="appliedFilters"></app-job-list>
+            <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView"
+                [filters]="appliedFilters"></app-job-list>
         </div>
         @if (isMobileView && showDetailsOnMobile) {
-            <div class="button-group mb-2">
-                <button class="btn btn-primary"(click)="showDetailsOnMobile = false">
-                    <i class="fa-solid fa-circle-left me-2"></i> {{ 'JobOffers.BackToList' | translate }}
+        <div class="button-group mb-2">
+            <button class="btn btn-primary" (click)="showDetailsOnMobile = false">
+                <i class="fa-solid fa-circle-left me-2"></i> {{ 'JobOffers.BackToList' | translate }}
+            </button>
+            @if (this.canApply) {
+            <div class="ms-auto d-flex gap-2">
+                <button class="btn btn-primary">
+                    @if (isSaving) {
+                    <i class="fa fa-spin fa-spinner"></i>
+                    } @else {
+                    {{ 'JobOffers.JobDetails.Apply' | translate }}
+                    }
                 </button>
-                @if (this.canApply) {
-                    <div class="ms-auto d-flex gap-2">
-                        <button class="btn btn-primary">
-                            @if (isSaving) {
-                                <i class="fa fa-spin fa-spinner"></i>
-                            } @else { 
-                                {{ 'JobOffers.JobDetails.Apply' | translate }}
-                            }
-                        </button>
-                        <button class="btn btn-primary">
-                            <i class="fa-regular fa-bookmark"></i>
-                        </button>
-                    </div>
-                }
+                <button class="btn btn-primary">
+                    <i class="fa-regular fa-bookmark"></i>
+                </button>
             </div>
+            }
+        </div>
         }
         @if (selectedJobOffer && (!isMobileView || showDetailsOnMobile)) {
-            <div class="col-12 col-md-8" id="job-details-container">
-                <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView"></app-job-details>
-            </div>
+        <div class="col-12 col-md-8" id="job-details-container">
+            <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView"></app-job-details>
+        </div>
         }
     </div>
 </div>

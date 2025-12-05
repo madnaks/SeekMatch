@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using SeekMatch.Application.DTOs;
+using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,7 +12,7 @@ namespace SeekMatch.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController(UserManager<User> userManager, IConfiguration configuration) : ControllerBase
+    public class AuthController(UserManager<User> userManager, IConfiguration configuration, ISettingService settingService) : ControllerBase
     {
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
@@ -28,9 +29,12 @@ namespace SeekMatch.Controllers
 
             var jwtToken = GenerateJwtToken(user);
 
+            var setting = await settingService.GetUserSettingAsync(user.Id);
+
             return Ok(new { 
                 token = jwtToken,
-                role = user.Role
+                role = user.Role,
+                language = setting?.Language
             });
         }
 

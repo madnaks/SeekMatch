@@ -1,76 +1,71 @@
-<div class="row">
-
-    <div class="col-md-12">
-        
-        <!-- Loading -->
-        @if (isLoading) {
-        <app-loader/>
-        } @else {
-            <!-- No data -->
-            @if (experiences.length === 0) {
-            <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                <div class="col-6">
-                    <p style="text-align: center;">
-                        {{ 'Talent.Experience.NoExperienceMessage' | translate }}
-                    </p>
-                </div>
-                <div class="col-md-6 d-flex justify-content-center">
-                    <button class="btn btn-primary" (click)="open(addExperienceContent)">
-                        <i class="fa-solid fa-circle-plus me-2"></i>
-                        {{ 'Talent.Experience.AddExperience' | translate }}
-                    </button>
-                </div>
-            </div>
-            } @else {
-            <div class="row mb-3">
-                <div class="col-md-12 d-flex justify-content-end">
-                    <button class="btn btn-primary" (click)="open(addExperienceContent)">
-                        <i class="fa-solid fa-circle-plus"></i>
-                        {{ 'Talent.Experience.AddExperience' | translate }}
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mb-3" *ngFor="let experience of experiences">
-                        <div class="card-body">
-                            <!-- CompanyName -->
-                            <h5 class="card-title">
-                                {{ experience.companyName }}
-                            </h5>
-                            <!-- Update experience button -->
-                            <div class="card-btn update-btn" (click)="open(updateExperienceContent, experience)">
-                                <i class="fa-solid fa-pen"></i>
-                            </div>
-                            <!-- Delete experience button -->
-                            <div class="card-btn delete-btn" (click)="openDeleteModal(deleteExperienceContent, experience)">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                            <!-- JobTitle - JobType-->
-                            <p class="card-text">
-                                {{ experience.jobTitle }} - {{ 'Enum.JobType.' + getJobTypeName(experience.type) | translate }}
-                            </p>
-                            <!-- Duration of the experience -->
-                            <p class="card-text">
-                                <i class="fa-regular fa-clock me-2"></i>
-                                @if (experience.currentlyWorking) {
-                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} - 
-                                    {{ 'Date.Today' | translate }}
-                                } @else if (experience.endMonth > 0 && experience.endYear > 0) {
-                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} - 
-                                    {{ getMonthName(experience.endMonth) }} {{ experience.endYear }}
-                                } @else {
-                                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }}
-                                }
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            }
-        }
+<!-- Loading -->
+@if (isLoading) {
+<be-loader />
+} @else {
+<!-- No data -->
+@if (experiences.length === 0) {
+<div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+    <div class="col-6">
+        <p style="text-align: center;">
+            {{ 'Talent.Experience.NoExperienceMessage' | translate }}
+        </p>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+        <button class="btn btn-primary" (click)="open(addExperienceContent)">
+            <i class="fa-solid fa-circle-plus me-2"></i>
+            {{ 'Talent.Experience.AddExperience' | translate }}
+        </button>
     </div>
 </div>
+} @else {
+<div class="row mb-3">
+    <div class="col-md-12 d-flex justify-content-end">
+        <button class="btn btn-primary" (click)="open(addExperienceContent)">
+            <i class="fa-solid fa-circle-plus"></i>
+            {{ 'Talent.Experience.AddExperience' | translate }}
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mb-3" *ngFor="let experience of experiences">
+            <div class="card-body">
+                <!-- CompanyName -->
+                <h5 class="card-title">
+                    <i class="fa-solid fa-building me-2"></i>
+                    {{ experience.companyName }}
+                </h5>
+                <!-- Update experience button -->
+                <div class="card-btn update-btn" (click)="open(updateExperienceContent, experience)">
+                    <i class="fa-solid fa-pen"></i>
+                </div>
+                <!-- Delete experience button -->
+                <div class="card-btn delete-btn" (click)="openDeleteModal(deleteExperienceContent, experience)">
+                    <i class="fa-solid fa-trash"></i>
+                </div>
+                <!-- JobTitle - JobType-->
+                <p class="card-text">
+                    {{ experience.jobTitle }} - {{ 'Enum.JobType.' + getJobTypeName(experience.type) | translate }}
+                </p>
+                <!-- Duration of the experience -->
+                <p class="card-text">
+                    <i class="fa-regular fa-clock me-2"></i>
+                    @if (experience.currentlyWorking) {
+                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} -
+                    {{ 'Date.Today' | translate }}
+                    } @else if (experience.endMonth > 0 && experience.endYear > 0) {
+                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} -
+                    {{ getMonthName(experience.endMonth) }} {{ experience.endYear }}
+                    } @else {
+                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }}
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+}
+}
 
 
 <!-- experience creation modal -->
@@ -81,7 +76,8 @@
 
 <!-- experience edit modal -->
 <ng-template #updateExperienceContent let-c="close" let-d="dismiss">
-    <app-experience-modal [closeModal]="c" [dismissModal]="d" [selectedExperience]="selectedExperience" (modalActionComplete)="modalActionComplete($event)">
+    <app-experience-modal [closeModal]="c" [dismissModal]="d" [selectedExperience]="selectedExperience"
+        (modalActionComplete)="modalActionComplete($event)">
     </app-experience-modal>
 </ng-template>
 
@@ -94,14 +90,13 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-        <p>            
+        <p>
             {{ 'Talent.Experience.Modal.Body.DeleteMessage' | translate }}
         </p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteExperience()">
-            <i class="me-2"
-            [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
             {{ 'Button.Delete' | translate }}
         </button>
     </div>

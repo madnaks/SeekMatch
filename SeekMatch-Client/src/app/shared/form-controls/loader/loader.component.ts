@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-loader',
+  selector: 'be-loader',
   standalone: true,
   imports: [],
   templateUrl: './loader.component.html',

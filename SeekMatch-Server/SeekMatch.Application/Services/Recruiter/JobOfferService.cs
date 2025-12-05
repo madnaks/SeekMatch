@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
+using SeekMatch.Infrastructure.Repositories;
 
 namespace SeekMatch.Application.Services
 {
@@ -48,6 +50,31 @@ namespace SeekMatch.Application.Services
         public async Task<bool> DeleteAsync(string jobOfferId)
         {
             return await jobOfferRepository.DeleteAsync(jobOfferId);
+        }
+
+        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId)
+        {
+            return await jobOfferRepository.IsBookmarkedAsync(jobOfferId, talentId);
+        }
+
+        public async Task<bool> BookmarkAsync(string jobOfferId, string talentId)
+        {
+            var bookmark = new Bookmark()
+            {
+                TalentId = talentId,
+                JobOfferId = jobOfferId
+            };
+            return await jobOfferRepository.BookmarkAsync(bookmark);
+        }
+        
+        public async Task<bool> UnBookmarkAsync(string jobOfferId, string talentId)
+        {
+            var bookmark = new Bookmark()
+            {
+                TalentId = talentId,
+                JobOfferId = jobOfferId
+            };
+            return await jobOfferRepository.UnBookmarkAsync(bookmark);
         }
 
     }

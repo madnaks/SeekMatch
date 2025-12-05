@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
 import { finalize } from 'rxjs';
@@ -8,6 +8,8 @@ import { RecruiterService } from '../../../shared/services/recruiter.service';
 import { Representative } from '../../../shared/models/representative';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 import { Company } from '../../../shared/models/company';
+import { LanguageService } from '@app/shared/services/language.service';
+import { createRegisterFreelancerForm, createRegisterRepresentativeForm } from './register-recruiter-modal.config';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -39,49 +41,11 @@ export class RegisterRecruiterModalComponent {
     private recruiterService: RecruiterService,
     private representativeService: RepresentativeService,
     private router: Router,
-    private toastService: ToastService) {
-    this.registerFreelancerForm = this.initRegisterFreelancerForm();
-    this.registerRepresentativeForm = this.initRegisterRepresentativeForm();
+    private toastService: ToastService,
+    private languageService: LanguageService) {
+    this.registerFreelancerForm = createRegisterFreelancerForm(this.fb);
+    this.registerRepresentativeForm = createRegisterRepresentativeForm(this.fb);
   }
-
-  //#region Forms functions
-  private initRegisterFreelancerForm(): FormGroup {
-    return this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator() });
-  }
-
-  private initRegisterRepresentativeForm(): FormGroup {
-    return this.fb.group({
-      name: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-      address: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      position: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator() });
-  }
-
-  private passwordsMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-      const formGroup = control as FormGroup;
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-      return password === confirmPassword ? null : { mismatch: true };
-    };
-  }
-
-  public toggleConfirmPasswordVisibility(): void {
-    this.confirmPasswordVisible = !this.confirmPasswordVisible;
-  }
-  //#endregion
 
   //#region Stepping functions
   public goToNextStep(): void {
@@ -145,6 +109,8 @@ export class RegisterRecruiterModalComponent {
 
       let recruiter = new Recruiter(formFreelancerValues);
 
+      recruiter.setting.language = this.languageService.getBrowserLanguageCode();
+
       this.recruiterService.register(recruiter).pipe(
         finalize(() => {
           this.isLoading = false;
@@ -165,6 +131,8 @@ export class RegisterRecruiterModalComponent {
 
       let representative = new Representative(formRepresentativeValues);
       let company = new Company(formRepresentativeValues);
+
+      representative.setting.language = this.languageService.getBrowserLanguageCode();
 
       this.representativeService.register(representative, company).pipe(
         finalize(() => {

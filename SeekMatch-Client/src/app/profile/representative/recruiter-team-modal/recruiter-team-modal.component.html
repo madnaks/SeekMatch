@@ -7,8 +7,7 @@
 
 <div class="modal-body">
     <form [formGroup]="recruiterForm" (ngSubmit)="onSubmit()">
-        <app-full-name-input [form]="recruiterForm">
-        </app-full-name-input>
+        <app-full-name-input [form]="recruiterForm"/>
         <!-- Email -->
         <div class="mb-4">
             <app-email-input [form]="recruiterForm"></app-email-input>

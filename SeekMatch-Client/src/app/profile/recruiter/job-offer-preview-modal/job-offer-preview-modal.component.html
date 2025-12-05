@@ -1,0 +1,72 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'Recruiter.JobOffer.Modal.PreviewTitle' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+
+<div class="modal-body">
+    <div class="job-details" *ngIf="selectedJobOffer">
+        <div class="job-details-header">
+            <!-- Job offer Title -->
+            <h2>
+                {{ selectedJobOffer.title }}
+            </h2>
+            <!-- Buttons displayed at full screen mode -->
+        </div>
+        <!-- Company name -->
+        <h6>
+            <i class="fa-solid fa-building me-2"></i>
+            {{ selectedJobOffer.companyName }}
+        </h6>
+        <!-- Location -->
+        <div>
+            <i class="fa-solid fa-location-dot me-2"></i>
+            {{ selectedJobOffer.location }}
+        </div>
+        <!-- Job offer type -->
+        <div>
+            <i class="fa-solid fa-briefcase me-2"></i>
+            {{ 'Enum.JobType.' + getJobTypeName(selectedJobOffer.type) | translate }} • {{ 'Enum.WorkplaceType.' +
+            getWorkplaceTypeName(selectedJobOffer.workplaceType) | translate }}
+        </div>
+        <!-- Job offer salary -->
+        @if (selectedJobOffer.salary) {
+        <div>
+            <i class="fa-solid fa-money-bills me-2"></i>
+            {{ selectedJobOffer.salary}}
+        </div>
+        }
+        <hr>
+        <!-- JobDescription -->
+        <h5>
+            {{ 'JobOffers.JobDetails.Description' | translate }}
+        </h5>
+        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.description)">
+        </p>
+        <!-- PositionDetails -->
+        @if(selectedJobOffer.positionDetails) {
+        <h5>
+            {{ 'JobOffers.JobDetails.PositionDetails' | translate }}
+        </h5>
+        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.positionDetails)">
+        </p>
+        }
+        <!-- Qualifications -->
+        @if(selectedJobOffer.qualifications) {
+        <h5>
+            {{ 'JobOffers.JobDetails.Qualifications' | translate }}
+        </h5>
+        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.qualifications)">
+        </p>
+        }
+        <!-- AdditionalRequirements -->
+        @if (selectedJobOffer.additionalRequirements) {
+        <h5>
+            {{ 'JobOffers.JobDetails.AdditionalRequirements' | translate }}
+        </h5>
+        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.additionalRequirements)">
+        </p>
+        }
+    </div>
+</div>

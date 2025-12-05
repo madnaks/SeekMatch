@@ -92,6 +92,36 @@
                 }
             }
         },
+        "Resume": {
+            "Title": "Resumes",
+            "AddResume": "Add Resume",
+            "NoResumeMessage": "You have not added any resumes yet. Start by uploading your resume to showcase your skills and experience to potential employers.",
+            "Table": {
+                "Title": "Title",
+                "IsPrimary": "Is Primary"
+            },
+            "Modal": {
+                "CreationTitle": "Upload Resume",
+                "UpdateTitle": "Update Resume",
+                "DeleteTitle": "Delete Resume",
+                "Body": {
+                    "DeleteMessage": "Are you sure you want to delete this resume?",
+                    "Form": {
+                        "Title": "Title",
+                        "TitlePlaceHolder": "e.g., Software Engineer Resume, Marketing Manager CV",
+                        "IsPrimary": "Set as primary resume",
+                        "IsPrimaryInfo": "Making this your primary resume means it will be the default one employers see when they view your profile.",
+                        "File": "Select Resume File",
+                        "FilePlaceHolder": "Choose a file...",
+                        "Validation": {
+                            "Title": "Title is required.",
+                            "FileRequired": "Please select a resume file to upload.",
+                            "FileType": "Invalid file type. Please upload a PDF or Word document."
+                        }
+                    }
+                }
+            }
+        },
         "JobApplication": {
             "NoJobApplicationMessage": "There are currently no job applications",
             "NumberOfApplications": "Number of Job Applications:",
@@ -129,7 +159,15 @@
                 "WITHDRAWN": "Withdrawn",
                 "SHORTLISTED-MODAL": {
                     "TITLE": "Shortlist this candidate ?",
-                    "BODY": "Are you sure you want to shortlist this candidate?"
+                    "BODY": "Are you sure you want to shortlist this candidate ?"
+                },
+                "INTERVIEW-SCHEDULED-MODAL": {
+                    "TITLE": "Schedule an interview for this candidate ?",
+                    "BODY": "When you schedule an interview, the candidate will be notified via email."
+                },
+                "HIRED-MODAL": {
+                    "TITLE": "Hire this candidate ?",
+                    "BODY": "Are you sure you want to hire this candidate ?"
                 }
             }
         }

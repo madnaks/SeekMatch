@@ -117,5 +117,54 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while deleting the job offer", ex);
             }
         }
+
+        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId)
+        {
+            var result = await dbContext.Bookmarks
+                    .Where(e => e.JobOfferId == jobOfferId && e.TalentId == talentId)
+                    .ToListAsync();
+            return result.Count() > 0;
+        }
+
+        public async Task<bool> BookmarkAsync(Bookmark bookmark)
+        {
+            try
+            {
+                var jobOfferExists = await dbContext.JobOffers.AnyAsync(j => j.Id == bookmark.JobOfferId);
+                var talentExists = await dbContext.Talents.AnyAsync(t => t.Id == bookmark.TalentId);
+
+                if (!jobOfferExists || !talentExists)
+                {
+                    throw new InvalidOperationException("Either the job offer or talent does not exist.");
+                }
+
+                dbContext.Bookmarks.Add(bookmark);
+                return await dbContext.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the bookmark", ex);
+            }
+        } 
+        
+        public async Task<bool> UnBookmarkAsync(Bookmark bookmark)
+        {
+            try
+            {
+                var existingBookmark = await dbContext.Bookmarks.FirstOrDefaultAsync(b => b.TalentId == bookmark.TalentId && b.JobOfferId == bookmark.JobOfferId);
+
+                if (existingBookmark == null)
+                {
+                    return false;
+                }
+
+                dbContext.Bookmarks.Remove(existingBookmark);
+                return await dbContext.SaveChangesAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while saving the bookmark", ex);
+            }
+        }
     }
 }

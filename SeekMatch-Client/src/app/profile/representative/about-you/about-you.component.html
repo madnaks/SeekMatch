@@ -2,18 +2,12 @@
     <div class="col-md-9">
 
         @if (isLoading) {
-        <app-loader/>
+        <be-loader />
         } @else {
         <form [formGroup]="aboutYouForm" (ngSubmit)="saveProfile()">
             <!-- Profile title -->
             <div class="row mt-3">
                 <div class="col-md-12 profile-picture-section">
-                    <p>
-                        <b>
-                            {{ 'Representative.AboutYou.ProfilePicture' | translate }}
-                        </b>
-                    </p>
-
                     <div>
                         <img [src]="profilePicture" class="img-thumbnail mb-2">
 
@@ -36,13 +30,16 @@
             </div>
             <!-- Full name  -->
             <div class="row mt-3">
-                <app-full-name-input [form]="aboutYouForm">
-                </app-full-name-input>
+                <app-full-name-input [form]="aboutYouForm" />
             </div>
             <!-- Email -->
             <div class="row mt-3">
-                <div class="col-md-12">
-                    <app-email-input [form]="aboutYouForm"></app-email-input>
+                <div class="col-md-6">
+                    <app-email-input [form]="aboutYouForm" />
+                </div>
+                <div class="col-md-6">
+                    <be-text-float-input [form]="aboutYouForm" [controlName]="'position'" [id]="'inputPosition'"
+                        [label]="'Representative.AboutYou.Position'" [hasIcon]="true" [iconClass]="'fa-regular fa-address-card'" />
                 </div>
             </div>
             <!-- Save button -->
