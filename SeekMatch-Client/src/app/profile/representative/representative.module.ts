@@ -11,6 +11,7 @@ import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-te
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
 import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
+import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-input/text-float-input.component";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AddressGroupComponent } from "@app/shared/form-controls/address-group/a
     ErrorMessageComponent,
     EmailInputComponent,
     LoaderComponent,
-    AddressGroupComponent
+    AddressGroupComponent,
+    TextFloatInputComponent
 ]
 })
 export class RepresentativeModule { }
