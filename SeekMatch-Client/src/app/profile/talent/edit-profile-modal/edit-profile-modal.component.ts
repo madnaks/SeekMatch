@@ -7,10 +7,7 @@ import { SafeUrl } from '@angular/platform-browser';
 import { formatDateToISO } from '../../../shared/utils';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
-import { GeonamesService } from '../../../shared/services/geonames.service';
-import { countries } from '../../../shared/constants/constants';
 
 @Component({
   selector: 'app-edit-profile-modal',
@@ -31,24 +28,16 @@ export class EditProfileModalComponent implements OnInit {
   // Profile picture propreties 
   profilePicture: SafeUrl | string | null = null;
   defaultProfilePicture: boolean = true;
-  // Date Input propreties
-  bsConfig?: Partial<BsDatepickerConfig>;
   // Phone Input propreties
   SearchCountryField = SearchCountryField;
   CountryISO = CountryISO;
   selectedCountryISO = CountryISO.Tunisia;
-  // Address
-  countries = countries;
-  regions: { geonameId: number, toponymName: string } [] = [];
-  cities: { geonameId: number, name: string } [] = [];
 
   constructor(
     private fb: NonNullableFormBuilder,
     private talentService: TalentService,
-    private toastService: ToastService,
-    private geonamesService: GeonamesService) {
+    private toastService: ToastService) {
     this.profileForm = this.initAboutYouForm();
-    this.configureDatePicker();
   }
 
   ngOnInit() {
@@ -68,7 +57,7 @@ export class EditProfileModalComponent implements OnInit {
       country: [''],
       region: [null],
       city: [null],
-      linkedIn: ['',[Validators.pattern(/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/i)]],
+      linkedIn: ['', [Validators.pattern(/^(https?:\/\/)?(www\.)?linkedin\.com\/.*$/i)]],
     });
   }
 
@@ -90,14 +79,6 @@ export class EditProfileModalComponent implements OnInit {
         website: talent.website,
         linkedIn: talent.linkedIn
       });
-
-      if (talent.country) {
-        this.getRegions(talent.country);
-      }
-
-      if (talent.region) {
-        this.getCities(talent.region);
-      }
 
       if (talent.phone) {
         this.selectedCountryISO = this.getCountryISO(talent.phone);
@@ -141,15 +122,6 @@ export class EditProfileModalComponent implements OnInit {
     } else {
       this.toastService.showErrorMessage('Form is not valid');
     }
-  }
-
-  private configureDatePicker(): void {
-    this.bsConfig = Object.assign({}, {
-      containerClass: 'theme-blue',
-      dateInputFormat: 'YYYY-MM-DD',
-      isAnimated: true,
-      showWeekNumbers: false
-    });
   }
 
   onFileSelected(event: Event): void {
@@ -205,57 +177,6 @@ export class EditProfileModalComponent implements OnInit {
     }
     return CountryISO.Tunisia; // Default fallback
   }
-  //#endregion
-
-  //#region Address events
-  public onCountrySelect(event: any): void {
-    this.regions = [];
-    this.cities = [];
-
-    this.profileForm.patchValue({ region: null });
-    this.profileForm.patchValue({ city: null });
-    
-    const countryCode = event.target.value;
-    this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
-      if (geonameId) {
-        this.geonamesService.getRegions(geonameId).subscribe(regions => {
-          this.regions = regions;
-        });
-      }
-    });
-  }
-
-  public onRegionSelect(event: any): void {
-    const regionGeoId = event.target.value;
-    this.geonamesService.getCities(regionGeoId).subscribe(cities => {
-      this.cities = cities;
-    });
-  }
-
-  private getRegions(countryCode: string): void {
-    if (!countryCode) {
-      this.regions = [];
-      this.cities = [];
-    } else {
-      this.geonamesService.getCountryGeoId(countryCode).subscribe(geonameId => {
-        if (geonameId) {
-          this.geonamesService.getRegions(geonameId).subscribe(regions => {
-            this.regions = regions;
-          });
-        }
-      });
-    }
-  }
-
-  private getCities(regionGeoId: number): void {
-    if (!regionGeoId) {
-      this.cities = [];
-    } else {
-      this.geonamesService.getCities(regionGeoId).subscribe(cities => {
-        this.cities = cities;
-      });
-    }
-  }
-  //#endregion
+  //#endregion 
 
 }

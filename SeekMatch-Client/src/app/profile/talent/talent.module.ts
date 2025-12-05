@@ -24,6 +24,7 @@ import { ResumeModalComponent } from './resume-modal/resume-modal.component';
 import { InfoComponent } from "@app/shared/form-controls/info/info.component";
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { JobOfferPreviewModalComponent } from "@app/profile/recruiter/job-offer-preview-modal/job-offer-preview-modal.component";
+import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { JobOfferPreviewModalComponent } from "@app/profile/recruiter/job-offer-
     DatePickerInputComponent,
     DataTableComponent,
     InfoComponent,
-    JobOfferPreviewModalComponent
+    JobOfferPreviewModalComponent,
+    AddressGroupComponent
 ]
 })
 export class TalentModule { }

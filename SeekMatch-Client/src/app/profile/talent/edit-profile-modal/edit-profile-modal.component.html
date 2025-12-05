@@ -16,12 +16,6 @@
                 <!-- Line 1: Profile picture -->
                 <div class="row mt-3">
                     <div class="col-md-12 profile-picture-section">
-                        <p>
-                            <b>
-                                {{ 'Talent.EditProfile.ProfilePicture' | translate }}
-                            </b>
-                        </p>
-
                         <div>
                             <img [src]="profilePicture" class="img-thumbnail mb-2">
 
@@ -108,7 +102,7 @@
                     <!-- Date of birth -->
                     <div class="col-md-6">
                         <app-date-picker-input [form]="profileForm" [label]="'Talent.EditProfile.DateOfBirth'"
-                            [controlName]="'dateOfBirth'"  id="inputDateOfBirth"/>
+                            [controlName]="'dateOfBirth'" id="inputDateOfBirth"/>
                     </div>
                     <!-- Phone -->
                     <div class="col-md-4">
@@ -117,53 +111,7 @@
                     </div>
                 </div>
                 <!-- Line 7: Address -->
-                <div class="row mt-3">
-                    <h4>Address</h4>
-                    <!-- Country -->
-                    <div class="col-md-4">
-                        <label for="inputCountry" class="form-label">
-                            {{ 'Talent.EditProfile.Country' | translate }}
-                        </label>
-                        <select id="inputCountry" class="form-select" (change)="onCountrySelect($event)"
-                            formControlName="country">
-                            <option *ngIf="!profileForm.get('country')?.value" value="" selected>
-                                {{ 'Talent.EditProfile.ChooseCountry' | translate }}
-                            </option>
-                            <option *ngFor="let country of countries" [value]="country.code">
-                                {{ country.name }}
-                            </option>
-                        </select>
-                    </div>
-                    <!-- Region -->
-                    <div class="col-md-4">
-                        <label for="inputRegion" class="form-label">
-                            {{ 'Talent.EditProfile.Region' | translate }}
-                        </label>
-                        <select id="inputRegion" class="form-select" (change)="onRegionSelect($event)"
-                            formControlName="region">
-                            <option [value]="null" selected>
-                                {{ 'Talent.EditProfile.ChooseRegion' | translate }}
-                            </option>
-                            <option *ngFor="let region of regions" [value]="region.geonameId">
-                                {{ region.toponymName }}
-                            </option>
-                        </select>
-                    </div>
-                    <!-- City -->
-                    <div class="col-md-4">
-                        <label for="inputCity" class="form-label">
-                            {{ 'Talent.EditProfile.City' | translate }}
-                        </label>
-                        <select id="inputCity" class="form-select" formControlName="city">
-                            <option [value]="null" selected>
-                                {{ 'Talent.EditProfile.ChooseCity' | translate }}
-                            </option>
-                            <option *ngFor="let city of cities" [value]="city.geonameId">
-                                {{ city.name }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
+                <be-address-group *ngIf="!isLoading" [form]="profileForm" [isCompany]="false" />
 
                 <!-- Line 8: Buttons -->
                 <div class="row mt-3">

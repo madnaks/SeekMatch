@@ -17,6 +17,11 @@
                     "DeleteMessage": "Are you sure you want to delete this recruiter ?"
                 }
             }
+        },
+        "Company": {
+            "Name": "Name",
+            "PhoneNumber": "Phone number",
+            "Address": "Address"
         }
     }
 }

@@ -10,6 +10,7 @@ import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.componen
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
+import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, Loa
     FullNameInputComponent,
     ErrorMessageComponent,
     EmailInputComponent,
-    LoaderComponent
+    LoaderComponent,
+    AddressGroupComponent
 ]
 })
 export class RepresentativeModule { }

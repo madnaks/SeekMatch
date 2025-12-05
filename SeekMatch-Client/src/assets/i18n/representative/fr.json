@@ -17,6 +17,11 @@
                     "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce recruteur ?"
                 }
             }
+        },
+        "Company": {
+            "Name": "Nom",
+            "PhoneNumber": "Numéro de téléphone",
+            "Address": "Adresse"
         }
     }
 }
