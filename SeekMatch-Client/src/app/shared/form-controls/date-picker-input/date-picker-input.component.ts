@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
-  selector: 'app-date-picker-input',
+  selector: 'be-date-picker-input',
   standalone: true,
   imports: [
     ReactiveFormsModule,

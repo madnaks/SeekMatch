@@ -4,12 +4,16 @@
         <div class="form-floating">
             <input type="text" class="form-control" [id]="id" [placeholder]="placeholder"
                 [formControlName]="controlName">
-            <label class="form-label" [for]="id" >
+            <label class="form-label" [for]="id">
                 @if(hasIcon) {
-                    <i [class]="getIconClass()"></i>
+                <i [class]="getIconClass()"></i>
                 }
                 {{ label | translate }}
             </label>
         </div>
+
+        @if ((form.get(controlName)?.invalid && form.get(controlName)?.touched)) {
+            <app-error-message [message]="errorMessageKey" />
+        }
     </div>
 </div>

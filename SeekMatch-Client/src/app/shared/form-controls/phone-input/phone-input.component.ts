@@ -5,7 +5,7 @@ import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 
 @Component({
-  selector: 'app-phone-input',
+  selector: 'be-phone-input',
   standalone: true,
   imports: [NgxIntlTelInputModule, ReactiveFormsModule, TranslateModule, ErrorMessageComponent],
   templateUrl: './phone-input.component.html',

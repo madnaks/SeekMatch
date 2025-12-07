@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
+import { ErrorMessageComponent } from "../error-message/error-message.component";
 
 @Component({
   selector: 'be-text-float-input',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslateModule],
+  imports: [ReactiveFormsModule, TranslateModule, ErrorMessageComponent],
   templateUrl: './text-float-input.component.html',
   styleUrl: './text-float-input.component.scss'
 })
@@ -18,6 +19,7 @@ export class TextFloatInputComponent {
   @Input() hasIcon: boolean = false;
   @Input() iconClass: string = '';
   @Input() placeholder!: string;
+  @Input() errorMessageKey: string = '';
 
   public getIconClass(): string {
     return this.iconClass + ' me-2';

@@ -10,7 +10,7 @@
         <div class="col-md-12">
             @if (isLoading) {
             <!-- Spinner -->
-            <be-loader/>
+            <be-loader />
             } @else {
             <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
                 <!-- Line 1: Profile picture -->
@@ -47,11 +47,9 @@
                 <div class="row mt-3">
                     <!-- Profile title -->
                     <div class="col-md-12">
-                        <label for="inputProfileTitle" class="form-label">
-                            <i class="fa-regular fa-address-card me-2"></i>
-                            {{ 'Talent.EditProfile.ProfileTitle' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputProfileTitle" formControlName="profileTitle">
+                        <be-text-float-input [form]="profileForm" [controlName]="'profileTitle'"
+                            [id]="'inputProfileTitle'" [label]="'Talent.EditProfile.ProfileTitle'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-address-card'" />
                     </div>
                 </div>
                 <!-- Line 4: Summary -->
@@ -69,45 +67,32 @@
                 <div class="row mt-3">
                     <!-- Email -->
                     <div class="col-md-4">
-                        <app-email-input [form]="profileForm"></app-email-input>
+                        <be-email-input [form]="profileForm" />
                     </div>
                     <!-- WebSite -->
-                    <div class="col-md-4 mt-3">
-                         <div class="form-floating">
-                            <input type="text" class="form-control" id="inputWebsite" placeholder="website"
-                                formControlName="website">
-                            <label for="inputWebsite" class="form-label">
-                                <i class="fa-solid fa-link me-2"></i>
-                                {{ 'Talent.EditProfile.Website' | translate }}
-                            </label>
-                        </div>
-                        @if ((profileForm.get('website')?.invalid && profileForm.get('website')?.touched)) {
-                        <app-error-message [message]="'Talent.EditProfile.Validation.Website'"></app-error-message>
-                        }
+                    <div class="col-md-4">
+                        <be-text-float-input [form]="profileForm" [controlName]="'website'" [id]="'inputWebsite'"
+                            [label]="'Talent.EditProfile.Website'" [hasIcon]="true" [iconClass]="'fa-solid fa-link'"
+                            [errorMessageKey]="'Talent.EditProfile.Validation.Website'" />
                     </div>
                     <!-- LinkedIn -->
                     <div class="col-md-4">
-                        <label for="inputLinkedIn" class="form-label">
-                            <i class="fa-brands fa-linkedin me-2"></i>
-                            {{ 'Talent.EditProfile.LinkedIn' | translate }}
-                        </label>
-                        <input type="text" class="form-control" id="inputLinkedIn" formControlName="linkedIn">
-                        @if ((profileForm.get('linkedIn')?.invalid && profileForm.get('linkedIn')?.touched)) {
-                            <app-error-message [message]="'Talent.EditProfile.Validation.LinkedIn'"></app-error-message>
-                        }
+                        <be-text-float-input [form]="profileForm" [controlName]="'linkedIn'" [id]="'inputLinkedIn'"
+                            [label]="'Talent.EditProfile.LinkedIn'" [hasIcon]="true"
+                            [iconClass]="'fa-brands fa-linkedin'"
+                            [errorMessageKey]="'Talent.EditProfile.Validation.LinkedIn'" />
                     </div>
                 </div>
                 <!-- Line 6: Date of birth & Phone-->
                 <div class="row mt-3">
                     <!-- Date of birth -->
                     <div class="col-md-6">
-                        <app-date-picker-input [form]="profileForm" [label]="'Talent.EditProfile.DateOfBirth'"
-                            [controlName]="'dateOfBirth'" id="inputDateOfBirth"/>
+                        <be-date-picker-input [form]="profileForm" [label]="'Talent.EditProfile.DateOfBirth'"
+                            [controlName]="'dateOfBirth'" id="inputDateOfBirth" />
                     </div>
                     <!-- Phone -->
                     <div class="col-md-4">
-                          <app-phone-input [form]="profileForm">
-                        </app-phone-input>
+                        <be-phone-input [form]="profileForm" />
                     </div>
                 </div>
                 <!-- Line 7: Address -->
