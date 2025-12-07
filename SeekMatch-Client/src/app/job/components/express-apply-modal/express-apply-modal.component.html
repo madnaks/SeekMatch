@@ -66,7 +66,7 @@
         <!-- Line 2: Email -->
         <div class="row mt-3">
           <div class="col-12">
-            <app-email-input [form]="expressApplyForm"/>
+            <be-email-input [form]="expressApplyForm"/>
           </div>
         </div>
         <!-- Line 3: CV-->
@@ -85,8 +85,7 @@
         <!-- Line 4: Phone-->
         <div class="row mt-3">
           <div class="col-md-6">
-            <app-phone-input [form]="expressApplyForm">
-            </app-phone-input>
+            <be-phone-input [form]="expressApplyForm" />
           </div>
         </div>
         <!-- Line 5: Submit application / Return-->
@@ -142,7 +141,7 @@
           <form class="mx-auto" style="max-width: 400px;" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <!-- Email -->
             <div class="mb-3">
-              <app-email-input [form]="loginForm"></app-email-input>
+              <be-email-input [form]="loginForm" />
             </div>
             <div class="mb-3 d-flex justify-content-end">
               <a href="#" class="small text-decoration-none">{{"LINK.FORGOT-PASSWORD" | translate }}</a>
@@ -179,7 +178,7 @@
             </div>
             <!-- Email -->
             <div class="mb-3">
-              <app-email-input [form]="signupForm"/>
+              <be-email-input [form]="signupForm"/>
             </div>
             <!-- Password -->
             <div class="mb-3">

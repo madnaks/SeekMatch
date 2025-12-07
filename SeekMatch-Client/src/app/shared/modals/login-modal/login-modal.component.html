@@ -9,17 +9,17 @@
 <div class="modal-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!-- Email -->
-        <app-email-input [form]="loginForm"></app-email-input>
+        <be-email-input [form]="loginForm" />
         <!-- Password -->
          <div class="row mb-3">
             <div class="col-12">
-                <app-password-input [form]="loginForm"></app-password-input>
+                <app-password-input [form]="loginForm" />
             </div>
          </div>
         <!-- Login button -->
          <div class="row d-flex justify-content-center mb-3">
             <div class="col-6">
-                <app-login-button [isLoading]="isLoading"></app-login-button>
+                <app-login-button [isLoading]="isLoading" />
             </div>
          </div>
     </form>

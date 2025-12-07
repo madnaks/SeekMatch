@@ -4,7 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
 
 @Component({
-  selector: 'app-email-input',
+  selector: 'be-email-input',
   standalone: true,
   imports: [ReactiveFormsModule, TranslateModule, ErrorMessageComponent],
   templateUrl: './email-input.component.html',
