@@ -94,7 +94,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-8">
-                                <p *ngIf="currentTalent?.summary">
+                                <p *ngIf="currentTalent.summary">
                                     {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150)
                                     + '...' }}
                                     <a *ngIf="hasLongSummary" class="static-link"
@@ -117,7 +117,7 @@
                             </a>
                             <ng-template ngbNavContent>
                                 @if (currentTalent.educations.length != 0) {
-                                <div *ngFor="let experience of currentTalent?.experiences; let isLast = last">
+                                <div *ngFor="let experience of currentTalent.experiences; let isLast = last">
                                     <h5>
                                         {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{
                                         experience.companyName }}
@@ -143,7 +143,7 @@
                             </a>
                             <ng-template ngbNavContent>
                                 @if (currentTalent.educations.length != 0) {
-                                <div *ngFor="let education of currentTalent?.educations; let isLast = last">
+                                <div *ngFor="let education of currentTalent.educations; let isLast = last">
                                     <h5>
                                         {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{
                                         education.domain }}

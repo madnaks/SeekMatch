@@ -1,6 +1,6 @@
 <div [formGroup]="form">
+    <!-- Line 1 : Address only for company -->
     @if(isCompany) {
-        <!-- Line 1 : Address only for company -->
         <div class="row mt-3">
             <div class="col-12">
                 <label for="inputAddress" class="form-label">
@@ -19,7 +19,7 @@
                 <i class="fa-solid fa-earth-africa me-2"></i>
                 {{ 'SHARED.FORM-CONTROLS.LABEL.COUNTRY' | translate }}
             </label>
-            <select id="inputCountry" class="form-select" formControlName="country">
+            <select id="inputCountry" class="form-select" formControlName="country" (change)="onCountrySelect($event)"d >
                 <option *ngIf="!form.get('country')?.value" value="" selected>
                     {{ 'SHARED.FORM-CONTROLS.LABEL.CHOOSE-COUNTRY' | translate }}
                 </option>
@@ -34,7 +34,7 @@
                 <i class="fa-solid fa-map me-2"></i>
                 {{ 'SHARED.FORM-CONTROLS.LABEL.REGION' | translate }}
             </label>
-            <select id="inputRegion" class="form-select" formControlName="region">
+            <select id="inputRegion" class="form-select" formControlName="region" (change)="onRegionSelect($event)">
                 <option [value]="null" selected>
                     {{ 'SHARED.FORM-CONTROLS.LABEL.CHOOSE-REGION' | translate }}
                 </option>

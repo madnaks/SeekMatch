@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '@app/shared/services/auth.service';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
+import { getPhoneNumberValue } from '@app/shared/utils';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -88,15 +89,13 @@ export class ExpressApplyModalComponent {
     this.isSaving = true;
 
     const expressApplyData = this.expressApplyForm.value;
-    const phoneNumberObject = expressApplyData.phone;
-    const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
 
     // Build FormData for multipart/form-data
     const formData = new FormData();
     formData.append('firstName', expressApplyData.firstName);
     formData.append('lastName', expressApplyData.lastName);
     formData.append('email', expressApplyData.email);
-    formData.append('phone', formattedPhoneNumber);
+    formData.append('phone', getPhoneNumberValue(expressApplyData.phone) || '');
 
     if (expressApplyData.cv) {
       formData.append('cv', expressApplyData.cv);

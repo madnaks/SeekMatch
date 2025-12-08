@@ -9,9 +9,10 @@ import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
-import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent, PhoneInputComponent } from '@app/shared/form-controls';
 import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
 import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-input/text-float-input.component";
+import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area-float-input/text-area-float-input.component";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,9 @@ import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-in
     EmailInputComponent,
     LoaderComponent,
     AddressGroupComponent,
-    TextFloatInputComponent
+    TextFloatInputComponent,
+    TextAreaFloatInputComponent,
+    PhoneInputComponent
 ]
 })
 export class RepresentativeModule { }

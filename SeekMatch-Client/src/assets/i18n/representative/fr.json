@@ -22,7 +22,9 @@
         "Company": {
             "Name": "Nom",
             "PhoneNumber": "Numéro de téléphone",
-            "Address": "Adresse"
+            "Address": "Adresse",
+            "Description": "Description",
+            "Website": "Site web"
         }
     }
 }

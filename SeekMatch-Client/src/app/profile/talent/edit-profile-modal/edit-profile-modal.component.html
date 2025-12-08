@@ -56,11 +56,9 @@
                 <div class="row mt-3">
                     <!-- Summary -->
                     <div class="col-md-12">
-                        <label for="inputSummary" class="form-label">
-                            <i class="fa-regular fa-clipboard me-2"></i>
-                            {{ 'Talent.EditProfile.Summary' | translate }}
-                        </label>
-                        <textarea rows="5" class="form-control" id="inputSummary" formControlName="summary"></textarea>
+                        <be-text-area-float-input [form]="profileForm" [controlName]="'summary'"
+                            [id]="'inputSummaryFloat'" [label]="'Talent.EditProfile.Summary'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-clipboard'" [height]="'150px'" />
                     </div>
                 </div>
                 <!-- Line 5: Email/Website/LinkedIn-->

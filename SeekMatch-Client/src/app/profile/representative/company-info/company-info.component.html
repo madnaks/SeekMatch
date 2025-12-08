@@ -13,25 +13,21 @@
             <!-- Phone Number -->
             <div class="row mt-3">
                 <div class="col-6">
-                    <label for="inputPhoneNumber" class="form-label">
-                        {{ 'Representative.Company.PhoneNumber' | translate }}
-                    </label>
-                    <input type="text" class="form-control" id="inputPhoneNumber" formControlName="phoneNumber">
-                </div>
-                <div class="col-6">
                     <be-text-float-input [form]="companyForm" [controlName]="'website'" [id]="'inputWebsite'"
-                        [label]="'Representative.Company.Website'" [hasIcon]="false" />
+                    [label]="'Representative.Company.Website'" [hasIcon]="true" [iconClass]="'fa-solid fa-link'" />
+                </div>
+                <div class="col-3">
+                    <be-phone-input [form]="companyForm" />
                 </div>
             </div>
             <!-- Address group -->
-            <be-address-group [form]="companyForm" [isCompany]="true" />
+            <be-address-group *ngIf="!isLoading" [form]="companyForm" [isCompany]="true" />
             <!-- Company description -->
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <label for="inputDescription" class="form-label">
-                        {{ 'Representative.Company.Description' | translate }}
-                    </label>
-                    <textarea class="form-control" id="inputDescription" formControlName="description" rows="4"></textarea>
+                    <be-text-area-float-input [form]="companyForm" [controlName]="'description'"
+                        [id]="'inputDescriptionFloat'" [label]="'Representative.Company.Description'" [hasIcon]="false"
+                        [height]="'150px'" />
                 </div>
             </div> 
             <!-- Save button -->
