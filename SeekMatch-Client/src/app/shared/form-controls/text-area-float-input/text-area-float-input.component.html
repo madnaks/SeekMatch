@@ -1,0 +1,23 @@
+<div [formGroup]="form" class="row mt-3">
+    
+    <div class="col-md-12">
+
+        <div class="form-floating">
+
+            <textarea [ngStyle]="{'height': height }" class="form-control" [placeholder]="placeholder" [id]="id" [formControlName]="controlName" ></textarea>
+
+            <label class="form-label" [for]="id">
+                 @if(hasIcon) {
+                <i [class]="getIconClass()"></i>
+                }
+                {{ label | translate }}
+            </label>
+
+        </div>
+
+        @if ((form.get(controlName)?.invalid && form.get(controlName)?.touched)) {
+            <app-error-message [message]="errorMessageKey" />
+        }
+    </div>
+    
+</div>

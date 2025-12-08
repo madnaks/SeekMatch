@@ -1,0 +1,11 @@
+@import '../../../../assets/styles/styles-variables.scss';
+
+.form-floating {
+    .form-label {
+        color: $text-color !important;
+
+        &::after {
+            background-color: $secondary-color !important;
+        }
+    }
+}
