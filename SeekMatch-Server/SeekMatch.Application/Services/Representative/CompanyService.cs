@@ -24,10 +24,7 @@ namespace SeekMatch.Application.Services
 
             if (company != null)
             {
-                company.Name = companyDto.Name;
-                company.PhoneNumber = companyDto.PhoneNumber;
-                company.Address = companyDto.Address;
-
+                company = mapper.Map(companyDto, company);
                 return await companyRepository.UpdateAsync(company);
             }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SeekMatch.Infrastructure;
@@ -11,9 +12,11 @@ using SeekMatch.Infrastructure;
 namespace SeekMatch.Infrastructure.Migrations
 {
     [DbContext(typeof(SeekMatchDbContext))]
-    partial class SeekMatchDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251208142126_AddCompanyNewColumns")]
+    partial class AddCompanyNewColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,9 +220,6 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

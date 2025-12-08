@@ -36,7 +36,7 @@ namespace SeekMatch.Application.Services
             {
                 Name = registerRepresentativeDto.CompanyName,
                 Address = registerRepresentativeDto.CompanyAddress,
-                PhoneNumber = registerRepresentativeDto.CompanyPhoneNumber
+                Phone = registerRepresentativeDto.CompanyPhoneNumber
             };
 
             await companyService.CreateAsync(company);
