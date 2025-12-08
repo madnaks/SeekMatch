@@ -9,7 +9,13 @@
         [selectedCountryISO]="selectedCountryISO" [maxLength]="15" [phoneValidation]="true" name="phone"
         formControlName="phone" inputId="inputPhone" (countryChange)="onPhoneCountryChange()">
     </ngx-intl-tel-input>
-    @if ((form.get('phone')?.invalid && form.get('phone')?.touched)) {
-    <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE'"></app-error-message>
+
+    @if (form.get('phone')?.errors?.['required'] && form.get('phone')?.touched) {
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-REQUIRED'"></app-error-message>
     }
+
+    @if (form.get('phone')?.errors?.['validatePhoneNumber'] && form.get('phone')?.touched) {
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-INVALID'"></app-error-message>
+    }
+
 </div>

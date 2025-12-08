@@ -16,3 +16,7 @@ export function formatDateToISO(date: string | Date | null): string | null {
         return new Date(date).toISOString().split('T')[0];
     }
 }
+
+export function getPhoneNumberValue(phoneNumber: any): string {
+    return phoneNumber?.internationalNumber || '';
+}

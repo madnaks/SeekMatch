@@ -4,7 +4,7 @@ import { Education } from '../../../shared/models/education';
 import { ModalActionType } from '../../../shared/enums/enums';
 import { TalentService } from '../../../shared/services/talent.service';
 import { SafeUrl } from '@angular/platform-browser';
-import { formatDateToISO } from '../../../shared/utils';
+import { formatDateToISO, getPhoneNumberValue } from '../../../shared/utils';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
@@ -99,11 +99,9 @@ export class EditProfileModalComponent implements OnInit {
     if (this.profileForm.valid) {
       this.isSaving = true;
       const profileData = this.profileForm.value;
-      const phoneNumberObject = profileData.phone;
 
-      const formattedPhoneNumber = phoneNumberObject?.internationalNumber || '';
       profileData.dateOfBirth = formatDateToISO(profileData.dateOfBirth);
-      profileData.phone = formattedPhoneNumber;
+      profileData.phone = getPhoneNumberValue(profileData.phone);
 
       this.talentService.saveProfile(profileData).pipe(
         finalize(() => {
