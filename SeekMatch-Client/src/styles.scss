@@ -359,13 +359,24 @@ body {
     }
 }
 
-// table style
-.table.table-striped {
+// boostrap table style
+.table {
 
-    th,
-    td {
+    th, td {
         background-color: $secondary-color;
         color: $text-color;
+    }
+  
+    // Hover effect style
+    &.table-hover tbody tr:hover>* {
+        background-color: $third-color !important;
+        // color: $text-color !important;
+        cursor: pointer;
+    }
+
+    // If you want to customize the active row color
+    .table-active {
+        --bs-table-bg-state: #{$third-color};
     }
 }
 

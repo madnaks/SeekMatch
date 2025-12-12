@@ -29,7 +29,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-striped">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
@@ -41,9 +41,9 @@
                     <th scope="col">{{ 'Table.Actions' | translate }}</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="table-group-divider">
                 @for (jobOffer of jobOffers; track jobOffer.title; let i = $index) {
-                <tr>
+                <tr (click)="openJobOfferPreviewModal(previewJobOfferContent, jobOffer)">
                     <td>
                         {{ jobOffer.title }}
                     </td>
@@ -63,8 +63,6 @@
                         <input class="form-check-input me-2" type="checkbox" [(ngModel)]="jobOffer.isActive" disabled>
                     </td>
                     <td>
-                        <i class="action-icon fa-solid fa-eye me-4"
-                            (click)="openJobOfferPreviewModal(previewJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-pen me-4"
                             (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-trash me-4"
@@ -207,20 +205,18 @@
 @else {
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-striped">
+        <table class="table table-hover">
             <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
-                    <th scope="col">{{ 'Table.Actions' | translate }}</th>
                 </tr>
             </thead>
-            <tbody>
-                @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i =
-                $index) {
-                <tr>
+            <tbody class="table-group-divider">
+                @for (jobApplication of selectedJobOffer.jobApplications; track jobApplication.id; let i = $index) {
+                <tr (click)="openTalentPreviewModal(previewTalentContent, jobApplication)">
                     <th scope="row">
                         {{ i + 1 }}
                     </th>
@@ -240,13 +236,6 @@
                             {{ 'Enum.JobApplicationStatus.' + getJobApplicationStatus(jobApplication.status) |
                             translate }}
                         </span>
-                    </td>
-                    <td>
-                        <i class="action-icon fa-solid fa-id-card me-4"
-                            (click)="openTalentPreviewModal(previewTalentContent, jobApplication)"></i>
-                        <i class="action-icon fa-solid fa-circle-xmark"
-                            *ngIf="jobApplication.status != JobApplicationStatus.Rejected"
-                            (click)="openRejectJobApplicationModal(rejectJobApplicationModal, jobApplication)"></i>
                     </td>
                 </tr>
                 }
