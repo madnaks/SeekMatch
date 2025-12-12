@@ -30,7 +30,7 @@ import { LoaderComponent } from '@app/shared/ui';
     ReactiveFormsModule,
     BsDatepickerModule,
     TranslateModule,
-    QuillModule.forRoot(),
+    QuillModule.forRoot(), 
     SharedModule,
     FullNameInputComponent,
     ErrorMessageComponent,
