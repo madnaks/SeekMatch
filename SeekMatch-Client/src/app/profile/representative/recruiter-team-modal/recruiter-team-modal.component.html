@@ -1,11 +1,19 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
+        <i class="fa-solid fa-user-tie me-2"></i>
         {{ 'Representative.Recruiter.Modal.CreationTitle' | translate }}
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
 <div class="modal-body">
+    @if(!messageClosed) {
+        <ngb-alert [type]="'info'" (closed)="messageClosed = true">
+            <i class="fa-solid fa-circle-info me-2"></i>
+            {{ 'Upon account creation, the recruiter will receive an email with a temporary password and must reset it during their first login..' }}
+        </ngb-alert>
+    }
+
     <form [formGroup]="recruiterForm" (ngSubmit)="onSubmit()">
         <app-full-name-input [form]="recruiterForm"/>
         <!-- Email -->

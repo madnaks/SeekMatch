@@ -65,8 +65,7 @@
 
 <!-- Recruiter creation modal -->
 <ng-template #addRecruiterContent let-c="close" let-d="dismiss">
-    <app-recruiter-team-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
-    </app-recruiter-team-modal>
+    <app-recruiter-team-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
 <!-- Delete modal -->
@@ -78,6 +77,12 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
+        
+        @if(!messageClosed) {
+        <ngb-alert [type]="'warning'" (closed)="messageClosed = true">
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+            {{ 'Before disabling this recruiter account, you must transfer all associated job applications to another active employee.' }}</ngb-alert>
+        }
         <p>
             {{ 'Representative.Recruiter.Modal.Body.DeleteMessage' | translate }}
         </p>
@@ -85,7 +90,7 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-danger" (click)="deleteRecruiter()">
             <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-            {{ 'Button.Delete' | translate }}
+            {{ 'BUTTON.DELETE' | translate }}
         </button>
     </div>
 </ng-template>

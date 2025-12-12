@@ -21,10 +21,11 @@ export class RecruiterTeamModalComponent implements OnInit {
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
-  isSaving: boolean = false;
-  recruiterForm: FormGroup;
-  jobTypesList = jobTypes;
-  bsConfig?: Partial<BsDatepickerConfig>;
+  public messageClosed: boolean = false;
+  public isSaving: boolean = false;
+  public recruiterForm: FormGroup;
+  public jobTypesList = jobTypes;
+  public bsConfig?: Partial<BsDatepickerConfig>;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -94,4 +95,5 @@ export class RecruiterTeamModalComponent implements OnInit {
       this.dismissModal(reason);
     }
   }
+
 }

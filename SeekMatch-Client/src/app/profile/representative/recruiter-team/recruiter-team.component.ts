@@ -18,6 +18,7 @@ export class RecruiterTeamComponent implements OnInit {
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedRecruiter: Recruiter = new Recruiter;
+  public messageClosed: boolean = false;
   
   private deleteModal: NgbModalRef | undefined;
   
