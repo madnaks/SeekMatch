@@ -92,17 +92,106 @@
     </div>
 </div>
 <div class="row">
-    <div class="card mb-4">
-        <div class="card-body">
-            <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
-            <p class="card-text">
-                <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong> {{
-                selectedJobOffer.companyName }}<br>
-                <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong> {{
-                selectedJobOffer.location }}<br>
-                <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong> {{ selectedJobOffer.salary
-                }}<br>
-            </p>
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ selectedJobOffer.title }}</h5>
+                <p class="card-text">
+                    <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong> 
+                    {{ selectedJobOffer.companyName }}<br>
+                    <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong> 
+                    {{ selectedJobOffer.location }}<br>
+                    <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong> 
+                    {{ selectedJobOffer.salary }}<br>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-4">
+    <div class="col-12">
+        <div ngbAccordion class="p-0">
+            <div ngbAccordionItem #item="ngbAccordionItem">
+                <h2 ngbAccordionHeader>
+                    <button ngbAccordionButton>
+                        <i class="fa-solid fa-filter me-2"></i> Filtre
+                        <i class="fa-solid ms-auto" [ngClass]="item.collapsed ? 'fa-angle-down' : 'fa-angle-up'"></i>
+                    </button>
+                </h2>
+                <div ngbAccordionCollapse>
+                    <div ngbAccordionBody>
+                        <ng-template>
+                            <form [formGroup]="filterForm">
+                                <div class="row mb-4">
+                                    <!-- Left Column for Fields -->
+                                    <div class="col-md-6">
+                                        <!-- Title -->
+                                        <label for="inputTitle" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.Title' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="inputTitle" formControlName="title"
+                                            [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- CompanyName -->
+                                        <label for="inputCompanyName" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.CompanyName' | translate }}
+                                        </label>
+                                        <input type="text" class="form-control" id="inputCompanyName"
+                                            formControlName="companyName"
+                                            [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.CompanyNamePlaceholder' | translate">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <!-- Job Type -->
+                                        <label for="jobTypeSelect" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.JobType' | translate }}
+                                        </label>
+                                        <select id="jobTypeSelect" class="form-select" formControlName="type">
+                                            <option *ngFor="let jobType of jobTypesList" [ngValue]="jobType.key">
+                                                {{ jobType.value | translate }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-4">
+                                        <!-- Workplace Type -->
+                                        <label for="workplaceTypeSelect" class="form-label">
+                                            {{ 'Recruiter.JobOffer.Modal.Body.Form.WorkplaceType' | translate }}
+                                        </label>
+                                        <select id="workplaceTypeSelect" class="form-select"
+                                            formControlName="workplaceType">
+                                            <option *ngFor="let workplaceType of workplaceTypeList"
+                                                [ngValue]="workplaceType.key">
+                                                {{ workplaceType.value | translate }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-9">
+                                        <span *ngFor="let activeFilter of activeFilters"
+                                            class="fs-6 badge bg-custom me-4 mt-2" (click)="deleteFilter(activeFilter.key)"
+                                            style="cursor: pointer;">
+                                            <span class="me-2">{{ activeFilter.value }}</span>
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-3">
+                                        <span class="float-end">
+                                            <button type="button" class="btn btn-light" (click)="resetFilterForm()">
+                                                <i class="fa-solid fa-arrow-rotate-left me-2"></i>
+                                                Reset filters
+                                            </button>
+                                        </span>
+        
+                                    </div>
+                                </div>
+                            </form>
+                        </ng-template>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -172,7 +261,8 @@
 
 <!-- Job offer preview modal -->
 <ng-template #previewJobOfferContent let-c="close" let-d="dismiss">
-    <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="selectedJobOffer"></app-job-offer-preview-modal>
+    <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d"
+        [selectedJobOffer]="selectedJobOffer"></app-job-offer-preview-modal>
 </ng-template>
 
 <!-- Job offer creation modal -->
@@ -223,7 +313,7 @@
             <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
                 formControlName="reason"></textarea>
             @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
-            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'"/>
+            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'" />
             }
         </div>
         <div class="modal-footer">

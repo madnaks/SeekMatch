@@ -10,10 +10,11 @@ import { JobOfferComponent } from './job-offer/job-offer.component';
 import { JobOfferModalComponent } from './job-offer-modal/job-offer-modal.component';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
-import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { JobOfferPreviewModalComponent } from "./job-offer-preview-modal/job-offer-preview-modal.component";
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoaderComponent } from '@app/shared/ui';
 
 @NgModule({
   declarations: [

@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { months } from '../../../shared/constants/constants';
+import { jobTypes, months, workplaceTypeList } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
-import { JobApplicationStatus, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
+import { JobApplicationStatus, JobOfferFilter, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { JobApplication } from '../../../shared/models/job-application';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-job-offer',
@@ -27,6 +28,11 @@ export class JobOfferComponent implements OnInit {
   public selectedJobApplication: JobApplication | null = new JobApplication;
   public selectedTalentId: string = '';
   public rejectionForm: FormGroup;
+  public filterForm: FormGroup;
+  public appliedFilters: any = {};
+  public activeFilters: { key: JobOfferFilter, value: string }[] = [];
+  public jobTypesList = jobTypes;
+  public workplaceTypeList = workplaceTypeList;
 
   private deleteModal: NgbModalRef | undefined;
   private rejectModal: NgbModalRef | undefined;
@@ -36,12 +42,26 @@ export class JobOfferComponent implements OnInit {
     private jobOfferService: JobOfferService,
     private jobApplicationService: JobApplicationService,
     private toastService: ToastService,
-    private fb: NonNullableFormBuilder) {
+    private fb: NonNullableFormBuilder,
+    private translate: TranslateService) {
     this.rejectionForm = this.initRejectionForm();
+    this.filterForm = this.initFilterForm();
   }
 
   ngOnInit(): void {
     this.getJobOffers();
+    this.filterForm.valueChanges.subscribe(() => {
+      this.applyFilters();
+    });
+  }
+
+  private initFilterForm(): FormGroup {
+    return this.fb.group({
+      title: [''],
+      companyName: [''],
+      type: [0],
+      workplaceType: [0]
+    });
   }
 
   private initRejectionForm(): FormGroup {
@@ -146,7 +166,7 @@ export class JobOfferComponent implements OnInit {
     if (this.rejectionForm.invalid) {
       this.rejectionForm.markAllAsTouched();
       return;
-    } 
+    }
 
     this.isSaving = true;
     if (this.selectedJobApplication && this.selectedJobApplication.id) {
@@ -197,6 +217,60 @@ export class JobOfferComponent implements OnInit {
       default:
         return 'bg-light';
     }
+  }
+
+  public resetFilterForm(): void {
+    this.filterForm.reset();
+    this.appliedFilters = this.filterForm.value;
+  }
+
+  private computeActiveFilters(): void {
+    this.activeFilters = [];
+
+    const values = this.filterForm.value;
+
+    if (values.title?.trim()) {
+      this.activeFilters.push({ key: JobOfferFilter.Title, value: `Title: ${values.title}` });
+    }
+
+    if (values.companyName?.trim()) {
+      this.activeFilters.push({ key: JobOfferFilter.Company, value: `Company: ${values.companyName}` });
+    }
+
+    if (values.type && values.type !== 0) {
+      const jobType = this.jobTypesList.find(j => j.key === values.type);
+      if (jobType) this.activeFilters.push({ key: JobOfferFilter.Type, value: `Type: ${this.translate.instant(jobType.value)}` });
+    }
+
+    if (values.workplaceType && values.workplaceType !== 0) {
+      const workplace = this.workplaceTypeList.find(w => w.key === values.workplaceType);
+      if (workplace) this.activeFilters.push({ key: JobOfferFilter.WorkplaceType, value: `Workplace: ${this.translate.instant(workplace.value)}` });
+    }
+
+  }
+
+  public deleteFilter(filterKey: JobOfferFilter): void {
+    switch (filterKey) {
+      case JobOfferFilter.Title:
+        this.filterForm.get('title')?.setValue('');
+        break;
+      case JobOfferFilter.Company:
+        this.filterForm.get('companyName')?.setValue('');
+        break;
+      case JobOfferFilter.Type:
+        this.filterForm.get('type')?.setValue(0);
+        break;
+      case JobOfferFilter.WorkplaceType:
+        this.filterForm.get('workplaceType')?.setValue(0);
+        break;
+    }
+
+    this.applyFilters();
+  }
+
+  public applyFilters(): void {
+    this.appliedFilters = this.filterForm.value;
+    this.computeActiveFilters();
   }
 
 }

@@ -4,4 +4,3 @@ export * from './password-input/password-input.component';
 export * from './confirm-password-input/confirm-password-input.component';
 export * from './phone-input/phone-input.component';
 export * from './error-message/error-message.component';
-export * from './loader/loader.component';

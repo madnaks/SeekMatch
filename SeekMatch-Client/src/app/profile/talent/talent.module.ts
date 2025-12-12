@@ -15,7 +15,7 @@ import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-mod
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, LoaderComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 import { JobModule } from "@app/job/job.module";
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
@@ -27,6 +27,7 @@ import { JobOfferPreviewModalComponent } from "@app/profile/recruiter/job-offer-
 import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
 import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-input/text-float-input.component";
 import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area-float-input/text-area-float-input.component";
+import { LoaderComponent } from '@app/shared/ui';
 
 @NgModule({
   declarations: [
