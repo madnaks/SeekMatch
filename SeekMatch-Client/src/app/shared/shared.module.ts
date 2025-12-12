@@ -38,7 +38,6 @@ import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButto
 ],
   exports: [
     HeaderComponent,
-    HeaderSimplifiedComponent,
     FooterComponent,
     LoginModalComponent,
     TalentPreviewModalComponent,

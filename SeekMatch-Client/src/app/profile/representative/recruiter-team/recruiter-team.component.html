@@ -77,12 +77,9 @@
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
+
+        <be-alert [type]="'warning'" [messageKey]="'Representative.Recruiter.Modal.Alert.DeleteWarning'"/>
         
-        @if(!messageClosed) {
-        <ngb-alert [type]="'warning'" (closed)="messageClosed = true">
-            <i class="fa-solid fa-triangle-exclamation me-2"></i>
-            {{ 'Before disabling this recruiter account, you must transfer all associated job applications to another active employee.' }}</ngb-alert>
-        }
         <p>
             {{ 'Representative.Recruiter.Modal.Body.DeleteMessage' | translate }}
         </p>

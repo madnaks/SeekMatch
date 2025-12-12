@@ -1,0 +1,18 @@
+@if(!messageClosed) {
+<ngb-alert [type]="type" (closed)="messageClosed = true">
+    @switch (type) {
+        @case ('success') {
+            <i class="fa-solid fa-circle-check me-2"></i>
+        }
+        @case ('info') {
+            <i class="fa-solid fa-circle-info me-2"></i>
+        }
+        @case ('warning') {
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        }
+        @case ('danger') {
+            <i class="fa-solid fa-triangle-exclamation me-2"></i>
+        }
+    }
+    {{ messageKey | translate }}</ngb-alert>
+}

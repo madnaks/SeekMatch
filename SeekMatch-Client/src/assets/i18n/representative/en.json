@@ -16,6 +16,10 @@
                 "DeleteTitle": "Delete recruiter",
                 "Body": {
                     "DeleteMessage": "Are you sure you want to delete this recruiter ?"
+                },
+                "Alert": {
+                    "DeleteWarning": "Before disabling this recruiter account, you must transfer all associated job applications to another active employee.",
+                    "CreateInformation" : "An email will be sent to the new recruiter with instructions to set up their account."
                 }
             }
         },

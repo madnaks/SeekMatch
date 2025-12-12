@@ -16,6 +16,10 @@
                 "DeleteTitle": "Supprimer le recruteur",
                 "Body": {
                     "DeleteMessage": "Êtes-vous sûr de vouloir supprimer ce recruteur ?"
+                },
+                "Alert": {
+                    "DeleteWarning": "Avant de désactiver ce compte recruteur, vous devez transférer toutes les candidatures associées à un autre employé actif.",
+                    "CreateInformation" : "Un e-mail sera envoyé au nouveau recruteur avec des instructions pour configurer son compte."
                 }
             }
         },
