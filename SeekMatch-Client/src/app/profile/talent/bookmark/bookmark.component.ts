@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { Bookmark } from '@app/shared/models/bookmark';
 import { TalentService } from '@app/shared/services/talent.service';
-import { TableAction, TableColumn } from "@app/shared/form-controls/data-table/data-table.component";
+import { TableColumn } from "@app/shared/form-controls/data-table/data-table.component";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -15,7 +15,6 @@ export class BookmarkComponent {
   public isLoading: boolean = true;
   public selectedBookmark: Bookmark | null = null;
   public bookmarksColumns: TableColumn<Bookmark>[] = [];
-  public bookmarkActions: TableAction<Bookmark>[] = [];
 
   @ViewChild('previewJobOfferContent') previewJobOfferContent!: TemplateRef<any>;
 
@@ -23,7 +22,6 @@ export class BookmarkComponent {
     private talentService: TalentService,
     private modalService: NgbModal) {
     this.bookmarksColumns = this.getBookmarksColumns();
-    this.bookmarkActions = this.getBookmarksActions();
     this.getBookmarks();
   }
 
@@ -39,6 +37,10 @@ export class BookmarkComponent {
     this.modalService.open(this.previewJobOfferContent, { centered: true, backdrop: 'static', size: 'xl' });
   }
 
+  public rowClicked(bookmark: Bookmark): void {
+    this.viewJobOffer(bookmark);
+  }
+
   private getBookmarksColumns(): TableColumn<Bookmark>[] {
     return [
       {
@@ -50,18 +52,6 @@ export class BookmarkComponent {
         field: 'createdAt',
         header: 'Created At',
         type: 'date'
-      }
-    ];
-  }
-
-  private getBookmarksActions(): TableAction<Bookmark>[] {
-    return [
-      {
-        icon: 'fa-eye',
-        tooltip: 'View Job Offer',
-        onClick: (row: Bookmark) => {
-          this.viewJobOffer(row);
-        }
       }
     ];
   }

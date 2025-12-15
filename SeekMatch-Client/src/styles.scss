@@ -370,7 +370,6 @@ body {
     // Hover effect style
     &.table-hover tbody tr:hover>* {
         background-color: $third-color !important;
-        // color: $text-color !important;
         cursor: pointer;
     }
 

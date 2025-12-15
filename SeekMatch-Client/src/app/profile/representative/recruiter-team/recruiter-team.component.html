@@ -28,36 +28,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <table class="table table-hover table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Full name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @for (recruiter of recruiters; track recruiter.email; let i = $index) {
-                <tr>
-                    <th scope="row">
-                        {{ i + 1 }}
-                    </th>
-                    <td>
-                        {{ recruiter.firstName }} {{ recruiter.lastName }}
-                    </td>
-                    <td>
-                        {{ recruiter.email }}
-                    </td>
-                    <td>
-                        <i class="action-icon fa-solid fa-trash"
-                            (click)="openDeleteModal(deleteRecruiterContent, recruiter)"></i>
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-
+        <be-data-table [data]="recruiters" [columns]="recruitersColumns" [actions]="recruitersActions"/>
     </div>
 </div>
 }

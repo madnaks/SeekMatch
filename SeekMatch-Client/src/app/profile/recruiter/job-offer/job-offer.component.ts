@@ -76,11 +76,13 @@ export class JobOfferComponent implements OnInit {
     this.selectedJobOffer = jobOffer;
   }
 
-  public openJobOfferModal(content: any, jobOffer?: JobOffer): void {
+  public openJobOfferModal(event: MouseEvent, content: any, jobOffer?: JobOffer): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobOffer != undefined) {
       this.selectedJobOffer = jobOffer;
     }
+
+    event.stopPropagation();
   }
 
   public openTalentPreviewModal(content: any, jobApplication?: JobApplication): void {
@@ -100,9 +102,11 @@ export class JobOfferComponent implements OnInit {
     }
   }
 
-  public openDeleteModal(content: any, experience: JobOffer): void {
+  public openDeleteModal(event: MouseEvent, content: any, experience: JobOffer): void {
     this.deleteModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
     this.selectedJobOffer = experience;
+
+    event.stopPropagation();
   }
 
   public openRejectJobApplicationModal(content: any, jobApplication: JobApplication): void {

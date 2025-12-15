@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="col-md-6 d-flex justify-content-center">
-        <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
+        <button class="btn btn-primary" (click)="openJobOfferModal($event, addJobOfferContent)">
             <i class="fa-solid fa-plus"></i>
             {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
         </button>
@@ -21,7 +21,7 @@
 @if (!isViewingApplication) {
 <div class="row mb-3">
     <div class="col-md-12 d-flex justify-content-end">
-        <button class="btn btn-primary" (click)="openJobOfferModal(addJobOfferContent)">
+        <button class="btn btn-primary" (click)="openJobOfferModal($event, addJobOfferContent)">
             <i class="fa-solid fa-circle-plus me-2"></i>
             {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
         </button>
@@ -64,9 +64,9 @@
                     </td>
                     <td>
                         <i class="action-icon fa-solid fa-pen me-4"
-                            (click)="openJobOfferModal(updateJobOfferContent, jobOffer)"></i>
+                            (click)="openJobOfferModal($event, updateJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-trash me-4"
-                            (click)="openDeleteModal(deleteJobOfferContent, jobOffer)"></i>
+                            (click)="openDeleteModal($event, deleteJobOfferContent, jobOffer)"></i>
                         <i class="action-icon fa-solid fa-user-group"
                             (click)="isViewingApplication = true; this.selectedJobOffer = jobOffer"></i>
                     </td>

@@ -32,6 +32,8 @@ export class DataTableComponent<T extends { [key: string]: any }> {
     @Input() columns: TableColumn<T>[] = [];
     @Input() actions: TableAction<T>[] = [];
 
+    @Output() rowClicked: EventEmitter<T> = new EventEmitter<T>();
+
     sortedData: T[] = [];
     sortColumn: keyof T | null = null;
     sortDirection: 'asc' | 'desc' = 'asc';
@@ -40,7 +42,7 @@ export class DataTableComponent<T extends { [key: string]: any }> {
         this.sortedData = [...this.data];
     }
 
-    sortData(column: keyof T) {
+    public sortData(column: keyof T) {
         if (this.sortColumn === column) {
             this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
         } else {
@@ -69,6 +71,10 @@ export class DataTableComponent<T extends { [key: string]: any }> {
 
     public getValue(row: any, field: string) {
         return field.split('.').reduce((acc, part) => acc && acc[part], row);
+    }
+
+    public onRowClicked(row: T): void {
+        this.rowClicked.emit(row);
     }
 
 }

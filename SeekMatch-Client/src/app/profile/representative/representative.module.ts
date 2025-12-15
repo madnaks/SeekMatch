@@ -14,6 +14,7 @@ import { AddressGroupComponent } from "@app/shared/form-controls/address-group/a
 import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-input/text-float-input.component";
 import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area-float-input/text-area-float-input.component";
 import { AlertComponent, LoaderComponent } from '@app/shared/ui';
+import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AlertComponent, LoaderComponent } from '@app/shared/ui';
     TextFloatInputComponent,
     TextAreaFloatInputComponent,
     PhoneInputComponent,
-    AlertComponent
+    AlertComponent,
+    DataTableComponent
 ]
 })
 export class RepresentativeModule { }

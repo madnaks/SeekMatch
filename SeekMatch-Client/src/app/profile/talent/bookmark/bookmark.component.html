@@ -1,5 +1,5 @@
 @if (bookmarks.length > 0) {
-    <be-data-table [data]="bookmarks" [columns]="bookmarksColumns" [actions]="bookmarkActions" />
+    <be-data-table [data]="bookmarks" [columns]="bookmarksColumns" (rowClicked)="rowClicked($event)" />
 
     <!-- Job offer preview modal -->
     <ng-template #previewJobOfferContent let-c="close" let-d="dismiss">

@@ -1,4 +1,4 @@
-<table class="table table-striped">
+<table class="table table-hover">
     <thead>
         <tr>
             <th *ngFor="let col of columns" scope="col" [class.sortable]="col.sortable"
@@ -13,10 +13,9 @@
         </tr>
     </thead>
 
-    <tbody>
+    <tbody class="table-group-divider">
         @for (row of sortedData; track row['id']; let i = $index) {
-        <tr>
-
+        <tr (click)="onRowClicked(row)">
             <td *ngFor="let col of columns">
                 @if (col.type === "date") {
                     {{ row[col.field] | date: col.formatter?.(row[col.field], row) ?? 'medium' }}
@@ -25,9 +24,10 @@
                         {{ (col.formatter?.(row[col.field], row) ?? '') | translate }}
                     </span>
                 }
-                @else {
-                    {{ row[col.field] }}
+                @else if (!row[col.field]){
                     {{getValue(row, col.field)}}
+                } @else  {
+                    {{ row[col.field] }}
                 }
             </td>
 
