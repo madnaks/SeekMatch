@@ -8,13 +8,32 @@
 
 <div class="modal-body">
 
-    <be-alert [type]="'info'" [messageKey]="'Representative.Recruiter.Modal.Alert.CreateInformation'"/>
+    <be-alert [type]="'info'" [messageKey]="'Representative.Recruiter.Modal.Alert.CreateInformation'" />
 
     <form [formGroup]="recruiterForm" (ngSubmit)="onSubmit()">
-        <app-full-name-input [form]="recruiterForm"/>
+        <app-full-name-input [form]="recruiterForm" />
         <!-- Email -->
         <div class="mb-4">
             <be-email-input [form]="recruiterForm" />
+        </div>
+        <div class="row mb-4">
+            <div class="col-12">
+                <label class="fw-semibold">
+                    Permissions
+                </label>
+
+                <div class="ms-4 mt-2">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="canDeleteJobOffers" formControlName="canDeleteJobOffer">
+                        <label class="form-check-label" for="createOrder">
+                            Can delete job offers
+                        </label>
+                    </div>
+                    
+                </div>
+
+            </div>
+
         </div>
         <!-- Create -->
         <div class="mb-4 d-flex justify-content-center">

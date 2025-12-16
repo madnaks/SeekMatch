@@ -44,7 +44,8 @@ export class RecruiterTeamModalComponent implements OnInit {
     return this.fb.group({
       firstName: [''],
       lastName: [''],
-      email: ['']
+      email: [''],
+      canDeleteJobOffer: [false]
     });
   }
 
@@ -52,7 +53,8 @@ export class RecruiterTeamModalComponent implements OnInit {
     this.recruiterForm.patchValue({
       firstName: recruiter.firstName,
       lastName: recruiter.lastName,
-      email: recruiter.email
+      email: recruiter.email,
+      canDeleteJobOffer: recruiter.canDeleteJobOffer || false
     });
   }
 

@@ -90,7 +90,7 @@ export class RecruiterTeamComponent implements OnInit {
   private getRecrutersActions(): TableAction<Recruiter>[] {
     return [
       {
-        icon: 'fa-trash',
+        icon: 'fa-user-slash',
         tooltip: 'Delete Recruiter',
         onClick: (row: Recruiter) => {
           debugger

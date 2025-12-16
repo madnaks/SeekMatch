@@ -16,6 +16,9 @@
     <tbody class="table-group-divider">
         @for (row of sortedData; track row['id']; let i = $index) {
         <tr (click)="onRowClicked(row)">
+            @if(hasColumnCounter) {
+                <td>{{ i + 1 }}</td>
+            }
             <td *ngFor="let col of columns">
                 @if (col.type === "date") {
                     {{ row[col.field] | date: col.formatter?.(row[col.field], row) ?? 'medium' }}

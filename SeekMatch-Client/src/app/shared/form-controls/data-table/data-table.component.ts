@@ -31,6 +31,7 @@ export class DataTableComponent<T extends { [key: string]: any }> {
     @Input() data: T[] = [];
     @Input() columns: TableColumn<T>[] = [];
     @Input() actions: TableAction<T>[] = [];
+    @Input() hasColumnCounter: boolean = false;
 
     @Output() rowClicked: EventEmitter<T> = new EventEmitter<T>();
 
