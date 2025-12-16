@@ -9,6 +9,8 @@
         public required User User { get; set; }
         public Company? Company { get; set; }
         public string? CompanyId { get; set; }
+        public bool IsActive { get; set; } = true;
+        public bool CanDeleteJobOffers { get; set; } = true;
         public ICollection<JobOffer> JobOffers { get; set; } = new List<JobOffer>();
     }
 }
