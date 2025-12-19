@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { Education } from '../../../shared/models/education';
-import { ModalActionType } from '../../../shared/enums/enums';
-import { TalentService } from '../../../shared/services/talent.service';
+import { Education } from '../../../../shared/models/education';
+import { ModalActionType } from '../../../../shared/enums/enums';
+import { TalentService } from '../../../../shared/services/talent.service';
 import { SafeUrl } from '@angular/platform-browser';
-import { formatDateToISO, getPhoneNumberValue } from '../../../shared/utils';
+import { formatDateToISO, getPhoneNumberValue } from '../../../../shared/utils';
 import { finalize } from 'rxjs';
-import { ToastService } from '../../../shared/services/toast.service';
+import { ToastService } from '../../../../shared/services/toast.service';
 import { SearchCountryField, CountryISO } from 'ngx-intl-tel-input';
 
 @Component({

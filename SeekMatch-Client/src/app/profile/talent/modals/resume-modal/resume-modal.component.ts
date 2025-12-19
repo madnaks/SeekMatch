@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { ResumeService } from '../../../shared/services/resume.service';
-import { Resume } from '../../../shared/models/resume';
+import { ResumeService } from '../../../../shared/services/resume.service';
+import { Resume } from '../../../../shared/models/resume';
 import { finalize } from 'rxjs';
-import { ToastService } from '../../../shared/services/toast.service';
-import { ModalActionType } from '../../../shared/enums/enums';
+import { ToastService } from '../../../../shared/services/toast.service';
+import { ModalActionType } from '../../../../shared/enums/enums';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { HttpResponse } from '@angular/common/http';
 

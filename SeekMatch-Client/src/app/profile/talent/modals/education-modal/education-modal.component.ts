@@ -1,81 +1,78 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { ExperienceService } from '../../../shared/services/experience.service';
-import { Experience } from '../../../shared/models/experience';
+import { EducationService } from '../../../../shared/services/education.service';
+import { Education } from '../../../../shared/models/education';
 import { finalize } from 'rxjs';
-import { jobTypes, months } from '../../../shared/constants/constants';
-import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType } from '../../../shared/enums/enums';
+import { months } from '../../../../shared/constants/constants';
+import { ToastService } from '../../../../shared/services/toast.service';
+import { ModalActionType } from '../../../../shared/enums/enums';
 
 @Component({
-  selector: 'app-experience-modal',
-  templateUrl: './experience-modal.component.html',
-  styleUrl: './experience-modal.component.scss'
+  selector: 'app-education-modal',
+  templateUrl: './education-modal.component.html',
+  styleUrl: './education-modal.component.scss'
 })
-export class ExperienceModalComponent implements OnInit {
+export class EducationModalComponent implements OnInit {
 
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
-  @Input() selectedExperience: Experience | undefined = undefined;
+  @Input() selectedEducation: Education | undefined = undefined;
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   isSaving: boolean = false;
   updateMode: boolean = false;
-  experienceForm: FormGroup;
+  educationForm: FormGroup;
   years: number[] = [];
   monthsList = months;
-  jobTypesList = jobTypes;
 
   constructor(
-    private fb: NonNullableFormBuilder,
-    private experienceService: ExperienceService,
+    private fb: NonNullableFormBuilder, 
+    private educationService: EducationService,
     private toastService: ToastService) {
-    this.experienceForm = this.initExperienceForm();
+    this.educationForm = this.initEducationForm();
   }
 
   ngOnInit() {
     this.generateYears();
-    this.oncurrentlyWorkingChange();
-    if (this.selectedExperience != undefined) {
+    this.onCurrentlyStudyingChange();
+    if (this.selectedEducation != undefined) {
       this.updateMode = true;
-      this.populateForm(this.selectedExperience);
+      this.populateForm(this.selectedEducation);
     }
   }
 
-  private initExperienceForm(): FormGroup {
+  private initEducationForm(): FormGroup {
     return this.fb.group({
-      companyName: ['', Validators.required],
-      jobTitle: [''],
-      type: [JobType.FullTime],
+      institution: ['', Validators.required],
+      diploma: [''],
+      domain: [''],
       startMonth: [0, this.nonZeroValidator],
       startYear: [0, this.nonZeroValidator],
       endMonth: [0],
       endYear: [0],
-      currentlyWorking: [false],
-      description: ['']
+      currentlyStudying: [false]
     }, {
       validators: [this.dateRangeValidator, this.endDateTwoFieldsValidator]
     });
   }
 
-  private populateForm(experience: Experience): void {
-    this.experienceForm.patchValue({
-      companyName: experience.companyName,
-      jobTitle: experience.jobTitle,
-      type: experience.type,
-      startMonth: experience.startMonth,
-      startYear: experience.startYear,
-      endMonth: experience.endMonth,
-      endYear: experience.endYear,
-      currentlyWorking: experience.currentlyWorking,
-      description: experience.description,
+  private populateForm(education: Education): void {
+    this.educationForm.patchValue({
+      institution: education.institution,
+      diploma: education.diploma,
+      domain: education.domain,
+      startMonth: education.startMonth,
+      startYear: education.startYear,
+      endMonth: education.endMonth,
+      endYear: education.endYear,
+      currentlyStudying: education.currentlyStudying
     });
   }
 
   //#region : Form controls events 
   public onSubmit(): void {
-    if (this.experienceForm.valid) {
+    if (this.educationForm.valid) {
       this.isSaving = true;
       if (this.updateMode) {
         this.update();
@@ -83,20 +80,20 @@ export class ExperienceModalComponent implements OnInit {
         this.create();
       }
     } else {
-      this.experienceForm.markAllAsTouched();
+      this.educationForm.markAllAsTouched();
     }
   }
 
-  private oncurrentlyWorkingChange(): void {
-    this.experienceForm.get('currentlyWorking')?.valueChanges.subscribe(currentlyWorking => {
-      if (currentlyWorking) {
-        this.experienceForm.get('endMonth')?.disable();
-        this.experienceForm.get('endMonth')?.setValue(0);
-        this.experienceForm.get('endYear')?.disable();
-        this.experienceForm.get('endYear')?.setValue(0);
+  private onCurrentlyStudyingChange(): void {
+    this.educationForm.get('currentlyStudying')?.valueChanges.subscribe(currentlyStudying => {
+      if (currentlyStudying) {
+        this.educationForm.get('endMonth')?.disable();
+        this.educationForm.get('endMonth')?.setValue(0);
+        this.educationForm.get('endYear')?.disable();
+        this.educationForm.get('endYear')?.setValue(0);
       } else {
-        this.experienceForm.get('endMonth')?.enable();
-        this.experienceForm.get('endYear')?.enable();
+        this.educationForm.get('endMonth')?.enable();
+        this.educationForm.get('endYear')?.enable();
       }
     });
   }
@@ -104,11 +101,11 @@ export class ExperienceModalComponent implements OnInit {
 
 
   private create(): void {
-    const formValues = this.experienceForm.value;
+    const formValues = this.educationForm.value;
 
-    let experience = new Experience(formValues);
+    let education = new Education(formValues);
 
-    this.experienceService.create(experience).pipe(
+    this.educationService.create(education).pipe(
       finalize(() => {
         this.isSaving = false;
       })).subscribe({
@@ -117,18 +114,18 @@ export class ExperienceModalComponent implements OnInit {
           this.dismiss();
         },
         error: (error) => {
-          this.toastService.showErrorMessage('Creation of experience failed', error);
+          this.toastService.showErrorMessage('Creation of education failed', error);
         }
       });
   }
 
   private update(): void {
-    const formValues = this.experienceForm.value;
+    const formValues = this.educationForm.value;
 
-    let experience = new Experience(formValues);
-    experience.id = this.selectedExperience?.id;
+    let education = new Education(formValues);
+    education.id = this.selectedEducation?.id;
 
-    this.experienceService.update(experience).pipe(
+    this.educationService.update(education).pipe(
       finalize(() => {
         this.isSaving = false;
       })).subscribe({
@@ -137,7 +134,7 @@ export class ExperienceModalComponent implements OnInit {
           this.dismiss();
         },
         error: (error) => {
-          this.toastService.showErrorMessage('Update of experience failed', error);
+          this.toastService.showErrorMessage('Update of education failed', error);
         }
       });
   }
@@ -161,9 +158,9 @@ export class ExperienceModalComponent implements OnInit {
 
     const formGroup = control as FormGroup;
 
-    const currentlyWorking = formGroup.get('currentlyWorking')?.value;
+    const currentlyStudying = formGroup.get('currentlyStudying')?.value;
 
-    if (currentlyWorking) return null;
+    if (currentlyStudying) return null;
 
     const startYear = Number(formGroup.get('startYear')?.value);
     const startMonth = Number(formGroup.get('startMonth')?.value);
