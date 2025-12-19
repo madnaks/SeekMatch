@@ -4,7 +4,6 @@ import { AboutYouComponent } from './about-you/about-you.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { AddRecruiterTeamModalComponent } from './modals/recruiter-team-modal/recruiter-team-modal.component';
@@ -18,10 +17,11 @@ import { DataTableComponent } from "@app/shared/form-controls/data-table/data-ta
 import { NgbCarouselModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
 import { RecruiterDetailComponent } from './recruiter-detail/recruiter-detail.component';
 import { SharedModule } from "@app/shared/shared.module";
+import { RepresentativeDashboardComponent } from './representative-dashboard/representative-dashboard.component';
 
 @NgModule({
   declarations: [
-    RepresentativeProfileComponent,
+    RepresentativeDashboardComponent,
     AboutYouComponent,
     RecruiterTeamComponent,
     RecruiterDetailComponent,

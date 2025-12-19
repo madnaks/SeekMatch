@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutYouComponent } from './about-you/about-you.component';
-import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
+import { RepresentativeDashboardComponent } from './representative-dashboard/representative-dashboard.component';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
@@ -10,8 +10,8 @@ import { RecruiterDetailComponent } from './recruiter-detail/recruiter-detail.co
 
 const routes: Routes = [
   {
-    path: '', component: RepresentativeProfileComponent,
-    data: { breadcrumb: 'Profile' },
+    path: '', component: RepresentativeDashboardComponent,
+    data: { breadcrumb: 'Dashboard' },
     children: [
       {
         path: 'about-you',
