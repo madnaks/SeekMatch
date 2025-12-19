@@ -10,7 +10,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobApplicationComponent } from './job-application/job-application.component';
 import { SharedModule } from '../../shared/shared.module';
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditProfileModalComponent } from './edit-profile-modal/edit-profile-modal.component';
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
@@ -65,7 +65,12 @@ import { LoaderComponent } from '@app/shared/ui';
     JobOfferPreviewModalComponent,
     AddressGroupComponent,
     TextFloatInputComponent,
-    TextAreaFloatInputComponent
-]
+    TextAreaFloatInputComponent,
+    NgbDropdown,
+    NgbDropdownToggle,
+    NgbDropdownMenu,
+    NgbDropdownItem,
+    NgbDropdownButtonItem
+  ]
 })
 export class TalentModule { }

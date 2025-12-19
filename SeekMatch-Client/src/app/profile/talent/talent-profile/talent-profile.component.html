@@ -2,12 +2,12 @@
 <be-loader />
 } @else {
 <div class="row">
-    <div class="col-md-1 profile-picture-section">
+    <div class="col-md-2 profile-picture-section">
         <img [src]="profilePicture" class="img-thumbnail mb-2">
     </div>
-    <div class="col-md-11">
+    <div class="col-md-9">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <h3>
                     {{ currentTalent?.firstName }}, {{ currentTalent?.lastName }}
                 </h3>
@@ -28,21 +28,9 @@
                     }
                 </h6>
             </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3"
-                    (click)="openEditProfileModal(addEditProfileContent)">
-                    <i class="fa-solid fa-user-pen me-2"></i>
-                    {{ 'Talent.Profile.EditProfile' | translate }}
-                </button>
-                <button type="button" class="btn btn-light btn-md mt-2"
-                    (click)="openTalentPreviewModal(previewTalentContent)">
-                    <i class="fa-solid fa-magnifying-glass me-2"></i>
-                    {{ 'Talent.Profile.ViewProfile' | translate }}
-                </button>
-            </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <p *ngIf="currentTalent?.summary">
                     {{ isSummaryExpanded ? currentTalent?.summary : (currentTalent?.summary | slice:0:150) + '...'
                     }}
@@ -54,39 +42,62 @@
             </div>
         </div>
     </div>
+    <div class="col-md-1 d-flex justify-content-end align-items-start">
+
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" id="dropdownBasic" ngbDropdownToggle>
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                <button type="button" class="btn btn-link" ngbDropdownItem
+                    (click)="openEditProfileModal(addEditProfileContent)">
+                    <i class="fa-solid fa-user-pen me-2"></i>
+                    {{ 'Talent.Profile.EditProfile' | translate }}
+                </button>
+                <button type="button" class="btn btn-link" ngbDropdownItem
+                    (click)="openTalentPreviewModal(previewTalentContent)">
+                    <i class="fa-solid fa-magnifying-glass me-2"></i>
+                    {{ 'Talent.Profile.ViewProfile' | translate }}
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Educations & Experiences & Resumes Tabs -->
 <div class="row">
-    <nav ngbNav #nav="ngbNav" class="nav-tabs">
-        <ng-container ngbNavItem>
-            <a ngbNavLink>
-                <i class="fa-solid fa-star me-2"></i>
-                {{ 'Talent.Profile.Experiences' | translate }}
-            </a>
-            <ng-template ngbNavContent>
-                <app-experience></app-experience>
-            </ng-template>
-        </ng-container>
-        <ng-container ngbNavItem>
-            <a ngbNavLink>
-                <i class="fa-solid fa-graduation-cap me-2"></i>
-                {{ 'Talent.Profile.Educations' | translate }}
-            </a>
-            <ng-template ngbNavContent>
-                <app-education></app-education>
-            </ng-template>
-        </ng-container>
-        <ng-container ngbNavItem>
-            <a ngbNavLink>
-                <i class="fa-solid fa-file me-2"></i>
-                Resumes
-            </a>
-            <ng-template ngbNavContent>
-                <app-resume></app-resume>
-            </ng-template>
-        </ng-container>
-    </nav>
-    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    <div class="col-12">
+
+        <nav ngbNav #nav="ngbNav" class="nav-tabs">
+            <ng-container ngbNavItem>
+                <a ngbNavLink>
+                    <i class="fa-solid fa-star me-2"></i>
+                    {{ 'Talent.Profile.Experiences' | translate }}
+                </a>
+                <ng-template ngbNavContent>
+                    <app-experience></app-experience>
+                </ng-template>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink>
+                    <i class="fa-solid fa-graduation-cap me-2"></i>
+                    {{ 'Talent.Profile.Educations' | translate }}
+                </a>
+                <ng-template ngbNavContent>
+                    <app-education></app-education>
+                </ng-template>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink>
+                    <i class="fa-solid fa-file me-2"></i>
+                    Resumes
+                </a>
+                <ng-template ngbNavContent>
+                    <app-resume></app-resume>
+                </ng-template>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
 </div>
 }
 
