@@ -22,7 +22,7 @@ namespace SeekMatch.Application
 
             #region Recruiter
             CreateMap<Recruiter, RecruiterDto>()
-                    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email));
+                    .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email)).ReverseMap();
             CreateMap<JobOffer, JobOfferDto>().ReverseMap();
             CreateMap<JobOfferFilter, JobOfferFilterDto>().ReverseMap();
             CreateMap<JobApplication, JobApplicationDto>()

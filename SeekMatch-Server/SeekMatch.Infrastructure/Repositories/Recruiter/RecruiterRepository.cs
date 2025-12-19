@@ -6,11 +6,6 @@ namespace SeekMatch.Infrastructure.Repositories
 {
     public class RecruiterRepository(SeekMatchDbContext dbContext) : IRecruiterRepository
     {
-        public async Task CreateAsync(Recruiter recruiter)
-        {
-            dbContext.Recruiters.Add(recruiter);
-            await dbContext.SaveChangesAsync();
-        }
         public async Task<Recruiter?> GetAsync(string userId)
         {
             try
@@ -23,6 +18,38 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
+        public async Task CreateAsync(Recruiter recruiter)
+        {
+            try
+            {
+                dbContext.Recruiters.Add(recruiter);
+                await dbContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while creating the recruiter", ex);
+            }
+        }
+
+        public async Task<bool> UpdateAsync(Recruiter recruiter)
+        {
+            try
+            {
+                dbContext.Recruiters.Attach(recruiter);
+
+                dbContext.Entry(recruiter).State = EntityState.Modified;
+
+                var result = await dbContext.SaveChangesAsync();
+
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while updating the recruiter", ex);
+            }
+        }
+
+        //TODO: Change the call of this method to UpdateAsync
         public async Task<bool> SaveChangesAsync(Recruiter recruiter)
         {
             try

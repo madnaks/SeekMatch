@@ -16,6 +16,7 @@ namespace SeekMatch.Application.Interfaces
 
         #region Company Recruiter Management
         Task<IdentityResult> CreateAsync(RecruiterDto recruiterDto, string companyId);
+        Task<bool> UpdateAsync(RecruiterDto recruiterDto, string companyId);
         #endregion
     }
 }

@@ -137,6 +137,26 @@ namespace SeekMatch.Application.Services
 
             return IdentityResult.Success;
         }
+
+        public async Task<bool> UpdateAsync(RecruiterDto recruiterDto, string companyId)
+        {
+
+            if (recruiterDto != null && !string.IsNullOrEmpty(recruiterDto.Id))
+            {
+                var existingRecruiter = await recruiterRepository.GetAsync(recruiterDto.Id);
+                if (existingRecruiter == null)
+                {
+                    throw new Exception("Recruiter not found");
+                }
+
+                mapper.Map(recruiterDto, existingRecruiter);
+
+                return await recruiterRepository.UpdateAsync(existingRecruiter);
+            }
+
+            return false;
+
+        }
         #endregion
 
     }

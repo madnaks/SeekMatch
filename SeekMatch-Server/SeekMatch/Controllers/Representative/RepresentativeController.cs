@@ -241,6 +241,37 @@ namespace SeekMatch.Controllers
             return Ok(result);
         }
 
+        [Authorize]
+        [HttpPost("update-recruiter")]
+        public async Task<IActionResult> UpdateRecruiter([FromBody] RecruiterDto recruiterDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (userId == null)
+            {
+                return Unauthorized();
+            }
+
+            var representativeDto = await representativeService.GetAsync(userId);
+
+            if (representativeDto == null)
+            {
+                return NotFound();
+            }
+
+            var result = await recruiterService.UpdateAsync(recruiterDto, representativeDto.CompanyId);
+
+            if (result)
+            {
+                return Ok(new { message = "Recruiter update successfully" });
+            }
+
+            return StatusCode(500, new { message = "An error occurred while updating the recruiter" });
+        }
+
         //[Authorize]
         //[HttpPost("delete-recruiter")]
         //public async Task<IActionResult> DeleteRecruiter([FromBody] RecruiterDto recruiterDto)
