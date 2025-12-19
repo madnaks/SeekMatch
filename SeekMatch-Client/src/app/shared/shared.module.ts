@@ -11,6 +11,7 @@ import { GeoNamePipe } from './pipes/geo-name.pipe';
 import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButtonComponent, ToastComponent } from './ui';
+import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButto
     TalentPreviewModalComponent,
     ToastComponent,
     CountryNamePipe,
-    GeoNamePipe
+    GeoNamePipe,
+    BreadCrumbComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,8 @@ import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButto
     TalentPreviewModalComponent,
     ToastComponent,
     CountryNamePipe,
-    GeoNamePipe
+    GeoNamePipe,
+    BreadCrumbComponent
   ]
 })
 export class SharedModule { }
