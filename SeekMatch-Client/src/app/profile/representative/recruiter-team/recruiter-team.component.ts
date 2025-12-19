@@ -5,7 +5,7 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { ModalActionType } from '../../../shared/enums/enums';
 import { Recruiter } from '../../../shared/models/recruiter';
 import { RepresentativeService } from '../../../shared/services/representative.service';
-import { TableAction, TableColumn } from '@app/shared/form-controls/data-table/data-table.component';
+import { TableColumn } from '@app/shared/form-controls/data-table/data-table.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -24,7 +24,6 @@ export class RecruiterTeamComponent implements OnInit {
   public selectedRecruiter: Recruiter = new Recruiter;
   public messageClosed: boolean = false;
   public recruitersColumns: TableColumn<Recruiter>[] = [];
-  public recruitersActions: TableAction<Recruiter>[] = [];
 
   private deleteModal: NgbModalRef | undefined;
 
@@ -34,7 +33,6 @@ export class RecruiterTeamComponent implements OnInit {
     private toastService: ToastService,
     private router: Router) {
     this.recruitersColumns = this.getRecruitersColumns();
-    this.recruitersActions = this.getRecrutersActions();
   }
 
   ngOnInit(): void {
@@ -85,18 +83,6 @@ export class RecruiterTeamComponent implements OnInit {
         field: 'email',
         header: 'Email',
         type: 'text'
-      }
-    ];
-  }
-
-  private getRecrutersActions(): TableAction<Recruiter>[] {
-    return [
-      {
-        icon: 'fa-user-slash',
-        tooltip: 'Delete Recruiter',
-        onClick: (row: Recruiter) => {
-          this.openDeleteModal(this.deleteRecruiterContent, row);
-        }
       }
     ];
   }

@@ -5,23 +5,17 @@
         <be-loader />
         } @else {
         <form [formGroup]="companyForm" (ngSubmit)="updateCompany()">
-            <!-- Name -->
-            <div class="row mt-3">
-                <be-text-float-input [form]="companyForm" [controlName]="'name'" [id]="'inputName'"
-                    [label]="'Representative.Company.Name'" [hasIcon]="false" />
-            </div>
-            <!-- Phone Number -->
+            <!-- Company name and website -->
             <div class="row mt-3">
                 <div class="col-6">
-                    <be-text-float-input [form]="companyForm" [controlName]="'website'" [id]="'inputWebsite'"
-                    [label]="'Representative.Company.Website'" [hasIcon]="true" [iconClass]="'fa-solid fa-link'" />
+                    <be-text-float-input [form]="companyForm" [controlName]="'name'" [id]="'inputName'"
+                        [label]="'Representative.Company.Name'" [hasIcon]="false" />
                 </div>
-                <div class="col-3">
-                    <be-phone-input [form]="companyForm" />
+                <div class="col-6">
+                    <be-text-float-input [form]="companyForm" [controlName]="'website'" [id]="'inputWebsite'"
+                        [label]="'Representative.Company.Website'" [hasIcon]="true" [iconClass]="'fa-solid fa-link'" />
                 </div>
             </div>
-            <!-- Address group -->
-            <be-address-group *ngIf="!isLoading" [form]="companyForm" [isCompany]="true" />
             <!-- Company description -->
             <div class="row mt-3">
                 <div class="col-md-12">
@@ -29,7 +23,15 @@
                         [id]="'inputDescriptionFloat'" [label]="'Representative.Company.Description'" [hasIcon]="false"
                         [height]="'150px'" />
                 </div>
-            </div> 
+            </div>
+            <!-- Address group -->
+            <be-address-group *ngIf="!isLoading" [form]="companyForm" [isCompany]="true" />
+            <!-- Phone number -->
+            <div class="row mt-3">
+                <div class="col-4">
+                    <be-phone-input [form]="companyForm" />
+                </div>
+            </div>
             <!-- Save button -->
             <div class="row mt-3">
                 <div class="col-md-12 d-flex justify-content-center align-items-center">
