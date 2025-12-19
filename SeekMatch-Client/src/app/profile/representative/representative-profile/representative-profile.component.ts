@@ -6,11 +6,11 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 
 @Component({
-  selector: 'app-about-you',
-  templateUrl: './about-you.component.html',
-  styleUrl: './about-you.component.scss'
+  selector: 'app-representative-profile',
+  templateUrl: './representative-profile.component.html',
+  styleUrl: './representative-profile.component.scss'
 })
-export class AboutYouComponent {
+export class RepresentativeProfileComponent {
 
   aboutYouForm: FormGroup;
   isLoading: boolean = true;

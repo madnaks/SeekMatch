@@ -13,13 +13,14 @@
 
                         <!-- Custom button to trigger file input -->
                         <button type="button" class="btn btn-primary btn-md mt-2 ms-3 me-3" (click)="fileInput.click()">
-                            {{ 'Representative.AboutYou.ChoosePicture' | translate }}
+                            <i class="fa-solid fa-image me-2"></i>
+                            {{ 'Representative.Profile.ChoosePicture' | translate }}
                         </button>
 
                         <!-- Button to remove current image -->
                         <button type="button" class="btn btn-danger btn-md mt-2" (click)="removeImage()"
                             *ngIf="profilePicture && !defaultProfilePicture">
-                            {{ 'Representative.AboutYou.Remove' | translate }}
+                            {{ 'Representative.Profile.Remove' | translate }}
                         </button>
 
                         <!-- Hidden file input element -->
@@ -39,7 +40,8 @@
                 </div>
                 <div class="col-md-6">
                     <be-text-float-input [form]="aboutYouForm" [controlName]="'position'" [id]="'inputPosition'"
-                        [label]="'Representative.AboutYou.Position'" [hasIcon]="true" [iconClass]="'fa-regular fa-address-card'" />
+                        [label]="'Representative.Profile.Position'" [hasIcon]="true"
+                        [iconClass]="'fa-regular fa-address-card'" />
                 </div>
             </div>
             <!-- Save button -->

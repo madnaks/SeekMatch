@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AboutYouComponent } from './about-you/about-you.component';
+import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,7 @@ import { RepresentativeDashboardComponent } from './representative-dashboard/rep
 @NgModule({
   declarations: [
     RepresentativeDashboardComponent,
-    AboutYouComponent,
+    RepresentativeProfileComponent,
     RecruiterTeamComponent,
     RecruiterDetailComponent,
     AddRecruiterTeamModalComponent,

@@ -1,11 +1,18 @@
 {
     "Representative": {
-        "AboutYou": {
+        "Profile": {
             "Position": "Position",
             "Password": "Password",
             "ProfilePicture": "Profile Picture",
             "ChoosePicture": "Choose Picture",
             "Remove": "Remove"
+        },
+        "Company": {
+            "Name": "Name",
+            "PhoneNumber": "Phone number",
+            "Address": "Address",
+            "Description": "Description",
+            "Website": "Website"
         },
         "Recruiter": {
             "AddRecruiter": "Add recruiter",
@@ -22,13 +29,6 @@
                     "CreateInformation" : "An email will be sent to the new recruiter with instructions to set up their account."
                 }
             }
-        },
-        "Company": {
-            "Name": "Name",
-            "PhoneNumber": "Phone number",
-            "Address": "Address",
-            "Description": "Description",
-            "Website": "Website"
         }
     }
 }

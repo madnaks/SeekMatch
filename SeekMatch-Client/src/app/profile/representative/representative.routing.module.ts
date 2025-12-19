@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutYouComponent } from './about-you/about-you.component';
+import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RepresentativeDashboardComponent } from './representative-dashboard/representative-dashboard.component';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
@@ -14,9 +14,9 @@ const routes: Routes = [
     data: { breadcrumb: 'Dashboard' },
     children: [
       {
-        path: 'about-you',
-        component: AboutYouComponent,
-        data: { breadcrumb: 'About you' }
+        path: 'representative-profile',
+        component: RepresentativeProfileComponent,
+        data: { breadcrumb: 'Profile' }
       },
       {
         path: 'company-info',
@@ -44,7 +44,7 @@ const routes: Routes = [
         component: SecurityComponent,
         data: { breadcrumb: 'Security' }
       },
-      { path: '', redirectTo: 'about-you', pathMatch: 'full' }
+      { path: '', redirectTo: 'representative-profile', pathMatch: 'full' }
     ]
   }
 ];

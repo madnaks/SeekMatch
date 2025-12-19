@@ -1,11 +1,18 @@
 {
     "Representative": {
-        "AboutYou": {
+        "Profile": {
             "Position": "Poste",
             "Password": "Mot de passe",
             "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer"
+        },
+        "Company": {
+            "Name": "Nom",
+            "PhoneNumber": "Numéro de téléphone",
+            "Address": "Adresse",
+            "Description": "Description",
+            "Website": "Site web"
         },
         "Recruiter": {
             "AddRecruiter": "Ajouter un recruteur",
@@ -22,13 +29,6 @@
                     "CreateInformation" : "Un e-mail sera envoyé au nouveau recruteur avec des instructions pour configurer son compte."
                 }
             }
-        },
-        "Company": {
-            "Name": "Nom",
-            "PhoneNumber": "Numéro de téléphone",
-            "Address": "Adresse",
-            "Description": "Description",
-            "Website": "Site web"
         }
     }
 }
