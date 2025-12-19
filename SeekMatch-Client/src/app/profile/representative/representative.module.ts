@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RepresentativeProfileComponent } from './representative-profile/representative-profile.component';
 import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
-import { RecruiterTeamModalComponent } from './recruiter-team-modal/recruiter-team-modal.component';
+import { AddRecruiterTeamModalComponent } from './modals/recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, PhoneInputComponent } from '@app/shared/form-controls';
 import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
@@ -15,13 +15,17 @@ import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-in
 import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area-float-input/text-area-float-input.component";
 import { AlertComponent, LoaderComponent } from '@app/shared/ui';
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
+import { NgbCarouselModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
+import { RecruiterDetailComponent } from './recruiter-detail/recruiter-detail.component';
+import { SharedModule } from "@app/shared/shared.module";
 
 @NgModule({
   declarations: [
     RepresentativeProfileComponent,
     AboutYouComponent,
     RecruiterTeamComponent,
-    RecruiterTeamModalComponent,
+    RecruiterDetailComponent,
+    AddRecruiterTeamModalComponent,
     CompanyInfoComponent
   ],
   imports: [
@@ -40,7 +44,15 @@ import { DataTableComponent } from "@app/shared/form-controls/data-table/data-ta
     TextAreaFloatInputComponent,
     PhoneInputComponent,
     AlertComponent,
-    DataTableComponent
-]
+    DataTableComponent,
+    NgbCarouselModule,
+    SharedModule,
+    NgbNavModule,
+    NgbDropdown,
+    NgbDropdownToggle,
+    NgbDropdownMenu,
+    NgbDropdownItem,
+    NgbDropdownButtonItem
+  ]
 })
 export class RepresentativeModule { }

@@ -70,15 +70,13 @@
 
 <!-- experience creation modal -->
 <ng-template #addExperienceContent let-c="close" let-d="dismiss">
-    <app-experience-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
-    </app-experience-modal>
+    <app-experience-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" /> 
 </ng-template>
 
 <!-- experience edit modal -->
 <ng-template #updateExperienceContent let-c="close" let-d="dismiss">
     <app-experience-modal [closeModal]="c" [dismissModal]="d" [selectedExperience]="selectedExperience"
-        (modalActionComplete)="modalActionComplete($event)">
-    </app-experience-modal>
+        (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
 <!-- delete modal -->

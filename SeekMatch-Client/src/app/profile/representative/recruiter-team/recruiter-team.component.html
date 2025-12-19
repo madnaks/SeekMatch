@@ -11,7 +11,7 @@
         </p>
     </div>
     <div class="col-md-6 d-flex justify-content-center">
-        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
+        <button class="btn btn-primary" (click)="open(recruiterTeamContent)">
             <i class="fa-solid fa-circle-plus me-2"></i>
             {{ 'Representative.Recruiter.AddRecruiter' | translate }}
         </button>
@@ -20,7 +20,7 @@
 } @else {
 <div class="row mb-3">
     <div class="col-md-12 d-flex justify-content-end">
-        <button class="btn btn-primary" (click)="open(addRecruiterContent)">
+        <button class="btn btn-primary" (click)="open(recruiterTeamContent)">
             <i class="fa-solid fa-user-plus me-2"></i>
             {{ 'Representative.Recruiter.AddRecruiter' | translate }}
         </button>
@@ -28,18 +28,18 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <be-data-table [data]="recruiters" [columns]="recruitersColumns" [actions]="recruitersActions"/>
+        <be-data-table [data]="recruiters" [columns]="recruitersColumns" [actions]="recruitersActions" (rowClicked)="onRowClicked($event)"/>
     </div>
 </div>
 }
 }
 
 <!-- Recruiter creation modal -->
-<ng-template #addRecruiterContent let-c="close" let-d="dismiss">
+<ng-template #recruiterTeamContent let-c="close" let-d="dismiss">
     <app-recruiter-team-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
-<!-- Delete modal -->
+<!-- ecruiter delete modal -->
 <ng-template #deleteRecruiterContent let-modal>
     <div class="modal-header">
         <h4 class="modal-title">

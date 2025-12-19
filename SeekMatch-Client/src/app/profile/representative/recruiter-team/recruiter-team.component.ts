@@ -6,6 +6,7 @@ import { ModalActionType } from '../../../shared/enums/enums';
 import { Recruiter } from '../../../shared/models/recruiter';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 import { TableAction, TableColumn } from '@app/shared/form-controls/data-table/data-table.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recruiter-team',
@@ -30,7 +31,8 @@ export class RecruiterTeamComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private representativeService: RepresentativeService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private router: Router) {
     this.recruitersColumns = this.getRecruitersColumns();
     this.recruitersActions = this.getRecrutersActions();
   }
@@ -93,11 +95,15 @@ export class RecruiterTeamComponent implements OnInit {
         icon: 'fa-user-slash',
         tooltip: 'Delete Recruiter',
         onClick: (row: Recruiter) => {
-          debugger
           this.openDeleteModal(this.deleteRecruiterContent, row);
         }
       }
     ];
+  }
+
+  public onRowClicked(recruiter: Recruiter): void {
+    this.selectedRecruiter = recruiter;
+    this.router.navigate(['profile/representative/recruiter-team/details', this.selectedRecruiter.id], { state: { recruiter: recruiter } });
   }
 
   //#region : Modal functions

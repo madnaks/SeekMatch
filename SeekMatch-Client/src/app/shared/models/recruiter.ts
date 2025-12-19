@@ -7,7 +7,7 @@ export class Recruiter extends User {
   public lastName: string = '';
   public password: string = '';
   public isFreelancer: boolean = false;
-  public canDeleteJobOffer?: boolean;
+  public canDeleteJobOffers?: boolean;
   public setting: Setting = new Setting();
 
   constructor(init?: Partial<Recruiter>) {
