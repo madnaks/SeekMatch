@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h4 class="modal-title">
+        {{ 'Recruiter.JobOffer.Modal.DeleteTitle' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <p>
+        {{ 'Recruiter.JobOffer.Modal.Body.DeleteMessage' | translate }}
+    </p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="deleteJobOffer()">
+        <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+        {{ 'BUTTON.DELETE' | translate }}
+    </button>
+</div>

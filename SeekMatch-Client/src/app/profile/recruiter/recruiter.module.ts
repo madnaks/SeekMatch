@@ -13,15 +13,19 @@ import { SharedModule } from '../../shared/shared.module';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { JobOfferPreviewModalComponent } from "./job-offer-preview-modal/job-offer-preview-modal.component";
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from '@app/shared/ui';
+import { JobOfferDetailComponent } from './job-offer-detail/job-offer-detail.component';
+import { DeleteJobOfferModalComponent } from './modals/delete-job-offer-modal/delete-job-offer-modal.component';
 
 @NgModule({
   declarations: [
     RecruiterProfileComponent,
     AboutYouComponent,
     JobOfferComponent,
-    JobOfferModalComponent
+    JobOfferDetailComponent,
+    JobOfferModalComponent,
+    DeleteJobOfferModalComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,7 @@ import { LoaderComponent } from '@app/shared/ui';
     ReactiveFormsModule,
     BsDatepickerModule,
     TranslateModule,
-    QuillModule.forRoot(), 
+    QuillModule.forRoot(),
     SharedModule,
     FullNameInputComponent,
     ErrorMessageComponent,
@@ -38,7 +42,12 @@ import { LoaderComponent } from '@app/shared/ui';
     LoaderComponent,
     DatePickerInputComponent,
     JobOfferPreviewModalComponent,
-    NgbAccordionModule
-]
+    NgbAccordionModule,
+    NgbDropdown,
+    NgbDropdownToggle,
+    NgbDropdownMenu,
+    NgbDropdownItem,
+    NgbDropdownButtonItem
+  ]
 })
 export class RecruiterModule { }
