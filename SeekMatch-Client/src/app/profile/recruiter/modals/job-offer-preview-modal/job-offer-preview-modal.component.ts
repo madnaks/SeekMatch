@@ -1,5 +1,5 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { JobOffer } from '../../../shared/models/job-offer';
+import { JobOffer } from '../../../../shared/models/job-offer';
 import { TranslateModule } from '@ngx-translate/core';
 import { JobType, WorkplaceType } from '@app/shared/enums/enums';
 import { DomSanitizer } from '@angular/platform-browser';

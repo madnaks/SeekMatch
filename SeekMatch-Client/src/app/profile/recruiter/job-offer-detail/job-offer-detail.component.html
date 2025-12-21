@@ -199,11 +199,6 @@
     <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="jobOffer" />
 </ng-template>
 
-<!-- Job offer creation modal -->
-<ng-template #addJobOfferContent let-c="close" let-d="dismiss">
-    <app-job-offer-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
-</ng-template>
-
 <!-- Job offer edit modal -->
 <ng-template #updateJobOfferContent let-c="close" let-d="dismiss">
     <app-job-offer-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="jobOffer"

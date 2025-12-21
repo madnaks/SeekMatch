@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
-import { EDITOR_MODULES, jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
-import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
-import { JobOffer } from '../../../shared/models/job-offer';
-import { JobOfferService } from '../../../shared/services/job-offer.service';
+import { EDITOR_MODULES, jobTypes, workplaceTypeList } from '../../../../shared/constants/constants';
+import { ToastService } from '../../../../shared/services/toast.service';
+import { JobType, ModalActionType, WorkplaceType } from '../../../../shared/enums/enums';
+import { JobOffer } from '../../../../shared/models/job-offer';
+import { JobOfferService } from '../../../../shared/services/job-offer.service';
 
 @Component({
   selector: 'app-job-offer-modal',
