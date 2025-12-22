@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EducationComponent } from './education/education.component';
 import { ExperienceComponent } from './experience/experience.component';
-import { JobApplicationComponent } from './job-application/job-application.component';
+import { JobApplicationsComponent } from './job-application/job-applications.component';
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
       { path: 'talent-profile', component: TalentProfileComponent },
       { path: 'education', component: EducationComponent },
       { path: 'experience', component: ExperienceComponent },
-      { path: 'job-application', component: JobApplicationComponent },
+      { path: 'job-applications', component: JobApplicationsComponent },
       { path: 'bookmark', component: BookmarkComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'security', component: SecurityComponent },

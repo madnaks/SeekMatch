@@ -7,7 +7,7 @@ import { EducationComponent } from './education/education.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { JobApplicationComponent } from './job-application/job-application.component';
+import { JobApplicationsComponent } from './job-application/job-applications.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
@@ -38,7 +38,7 @@ import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talen
     EducationModalComponent,
     ExperienceComponent,
     ExperienceModalComponent,
-    JobApplicationComponent,
+    JobApplicationsComponent,
     EditProfileModalComponent,
     ResumeComponent,
     ResumeModalComponent,

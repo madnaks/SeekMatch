@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { jobTypes, months, workplaceTypeList } from '../../../shared/constants/constants';
-import { finalize } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
 import { JobApplicationStatus, JobOfferFilter, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobApplication } from '../../../shared/models/job-application';
 import { JobApplicationService } from '../../../shared/services/job-application.service';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -18,7 +17,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class JobOfferDetailsComponent implements OnInit {
 
-  public monthOptions = months;
   public JobApplicationStatus = JobApplicationStatus;
   public isLoading: boolean = true;
   public isSaving: boolean = false;
@@ -33,7 +31,6 @@ export class JobOfferDetailsComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private jobApplicationService: JobApplicationService,
     private toastService: ToastService,
     private fb: NonNullableFormBuilder,
     private translate: TranslateService,
