@@ -15,7 +15,7 @@ import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area
 import { AlertComponent, LoaderComponent } from '@app/shared/ui';
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 import { NgbCarouselModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
-import { RecruiterDetailComponent } from './recruiter-details/recruiter-details.component';
+import { RecruiterDetailsComponent } from './recruiter-details/recruiter-details.component';
 import { SharedModule } from "@app/shared/shared.module";
 import { RepresentativeDashboardComponent } from './representative-dashboard/representative-dashboard.component';
 
@@ -24,7 +24,7 @@ import { RepresentativeDashboardComponent } from './representative-dashboard/rep
     RepresentativeDashboardComponent,
     RepresentativeProfileComponent,
     RecruiterTeamComponent,
-    RecruiterDetailComponent,
+    RecruiterDetailsComponent,
     AddRecruiterTeamModalComponent,
     CompanyInfoComponent
   ],

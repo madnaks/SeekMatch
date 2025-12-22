@@ -164,7 +164,7 @@
             </thead>
             <tbody class="table-group-divider">
                 @for (jobApplication of jobOffer.jobApplications; track jobApplication.id; let i = $index) {
-                <tr (click)="openTalentPreviewModal(previewTalentContent, jobApplication)">
+                <tr (click)="openJobApplicationDetailsModal(jobApplicationDetailsContent, jobApplication)">
                     <th scope="row">
                         {{ i + 1 }}
                     </th>
@@ -211,8 +211,8 @@
         [dismissModal]="modal.dismiss" (modalActionComplete)="modalActionComplete($event)"/>
 </ng-template>
 
-<!-- Talent Preview Modal -->
-<ng-template #previewTalentContent let-c="close" let-d="dismiss">
-    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId"
-        [jobApplication]="selectedJobApplication" (modalActionComplete)="talentPreviewModalCloased($event)" />
+<!-- Job application details  Modal -->
+<ng-template #jobApplicationDetailsContent let-c="close" let-d="dismiss">
+    <app-job-application-details-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId"
+        [jobApplication]="selectedJobApplication" (modalActionComplete)="jobApplicationDetailsModalCloased($event)" />
 </ng-template>

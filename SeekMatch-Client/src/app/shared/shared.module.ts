@@ -5,7 +5,6 @@ import { NgbModule, NgbToast } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
-import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
 import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
@@ -19,7 +18,6 @@ import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
     HeaderSimplifiedComponent,
     FooterComponent,
     LoginModalComponent,
-    TalentPreviewModalComponent,
     ToastComponent,
     CountryNamePipe,
     GeoNamePipe,
@@ -42,7 +40,6 @@ import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
     HeaderComponent,
     FooterComponent,
     LoginModalComponent,
-    TalentPreviewModalComponent,
     ToastComponent,
     CountryNamePipe,
     GeoNamePipe,

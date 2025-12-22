@@ -1,0 +1,140 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">
+        {{ 'Talent.PreviewModal.Headers.TalentCard' | translate }}
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <div class="container-fluid">
+       @if (currentTalent) {
+        <div class="row">
+            <div class="col-12">
+                <!-- Basic Information -->
+                <div class="row mb-4">
+                    <div class="col-md-2 profile-picture-section">
+                        <img [src]="profilePicture" class="img-thumbnail mb-2">
+                    </div>
+                    <div class="col-md-10">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>
+                                    {{ currentTalent.firstName }}, {{ currentTalent.lastName }}
+                                </h3>
+                                <h5>
+                                    <i class="fa-solid fa-user-tie me-2"></i>
+                                    {{ currentTalent.profileTitle }}
+                                </h5>
+                                <!-- Email -->
+                                @if(currentTalent.email) {
+                                <h6>
+                                    <i class="fa-solid fa-envelope me-2"></i>
+                                    {{ currentTalent.email }}
+                                </h6>
+                                }
+                                <!-- Phone -->
+                                @if(currentTalent.phone) {
+                                <h6>
+                                    <i class="fa-solid fa-phone me-2"></i>
+                                    {{ currentTalent.phone }}
+                                </h6>
+                                }
+                                <h6>
+                                    <i class="fa-solid fa-location-dot me-2 opacity-75"></i>
+                                    @if(currentTalent.city) {
+                                    {{ currentTalent.city || null | geoName | async }},
+                                    }
+                                    @if (currentTalent.region) {
+                                    {{ currentTalent.region || null | geoName | async }},
+                                    }
+                                    {{ currentTalent.country || '' | countryName }}
+                                    @if (!(currentTalent.city && currentTalent.region && currentTalent.country))
+                                    {
+                                    {{ 'Talent.EditProfile.AddressNotSpecified' | translate }}
+                                    }
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <p *ngIf="currentTalent.summary">
+                                    {{ isSummaryExpanded ? currentTalent.summary : (currentTalent.summary |slice:0:150)
+                                    + '...' }}
+                                    <a *ngIf="hasLongSummary" class="static-link"
+                                        (click)="this.isSummaryExpanded = !this.isSummaryExpanded">
+                                        {{ isSummaryExpanded ? 'Less' : 'More' }}
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Educations & Experiences Tabs -->
+                <div class="row">
+                    <nav ngbNav #nav="ngbNav" class="nav-tabs">
+                        <ng-container ngbNavItem>
+                            <a ngbNavLink>
+                                <i class="fa-solid fa-graduation-cap me-2"></i>
+                                {{ 'Talent.Profile.Experiences' | translate }}
+                            </a>
+                            <ng-template ngbNavContent>
+                                @if (currentTalent.educations.length != 0) {
+                                <div *ngFor="let experience of currentTalent.experiences; let isLast = last">
+                                    <h5>
+                                        {{ experience.jobTitle }} {{ 'Talent.PreviewModal.At' | translate }} {{
+                                        experience.companyName }}
+                                    </h5>
+                                    <div class="mb-2">
+                                        <i class="fa-regular fa-clock me-2"></i>
+                                        {{ getExperienceDuration(experience) }}
+                                    </div>
+                                    @if(!isLast) {
+                                    <hr>
+                                    }
+                                </div>
+                                }
+                                @else {
+                                {{ 'Talent.PreviewModal.NoExperiences' | translate }}
+                                }
+                            </ng-template>
+                        </ng-container>
+                        <ng-container ngbNavItem>
+                            <a ngbNavLink>
+                                <i class="fa-solid fa-star me-2"></i>
+                                {{ 'Talent.Profile.Educations' | translate }}
+                            </a>
+                            <ng-template ngbNavContent>
+                                @if (currentTalent.educations.length != 0) {
+                                <div *ngFor="let education of currentTalent.educations; let isLast = last">
+                                    <h5>
+                                        {{ education.diploma }} {{ 'Talent.PreviewModal.In' | translate }} {{
+                                        education.domain }}
+                                    </h5>
+                                    <div class="mb-2">
+                                        <strong>
+                                            {{ 'Talent.PreviewModal.Institution' | translate }}
+                                        </strong>
+                                        {{ education.institution }}
+                                    </div>
+                                    <div class="mb-2">
+                                        <i class="fa-regular fa-clock me-2"></i>
+                                        {{ getEducationDuration(education) }}
+                                    </div>
+                                    @if(!isLast) {
+                                    <hr>
+                                    }
+                                </div>
+                                }
+                                @else {
+                                {{ 'Talent.PreviewModal.NoEducations' | translate }}
+                                }
+                            </ng-template>
+                        </ng-container>
+                    </nav>
+                    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>

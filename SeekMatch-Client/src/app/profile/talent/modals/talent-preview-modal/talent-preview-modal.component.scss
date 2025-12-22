@@ -1,0 +1,64 @@
+@import "../../../../../assets/styles/styles-variables.scss";
+
+.modal-body {
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    color: #007bff;
+}
+
+.text-primary {
+    color: #007bff !important;
+}
+
+ngb-accordion .accordion-button {
+    font-weight: bold;
+    background-color: #f8f9fa;
+    color: #007bff;
+}
+
+ngb-accordion .accordion-button:focus {
+    box-shadow: none;
+}
+
+ngb-accordion .accordion-body {
+    font-size: 14px;
+    background-color: #ffffff;
+}
+
+.profile-picture-section {
+    img {
+        max-width: 100px;
+        height: auto;
+        border-radius: 50%;
+    }
+}
+
+iframe {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  &.active {
+    transition: color 0.3s ease;
+    :hover {
+        color: $accent-color;
+        cursor: pointer;
+    }
+  }
+}

@@ -31,7 +31,6 @@ export class JobOfferDetailsComponent implements OnInit {
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
 
-
   constructor(
     private modalService: NgbModal,
     private jobApplicationService: JobApplicationService,
@@ -81,7 +80,7 @@ export class JobOfferDetailsComponent implements OnInit {
      this.modalService.open(content, { centered: true, backdrop: 'static' });
    }
 
-  public openTalentPreviewModal(content: any, jobApplication?: JobApplication): void {
+  public openJobApplicationDetailsModal(content: any, jobApplication?: JobApplication): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
     if (jobApplication != undefined) {
       this.selectedJobApplication = jobApplication;
@@ -91,7 +90,7 @@ export class JobOfferDetailsComponent implements OnInit {
     }
   }
 
-  public talentPreviewModalCloased(action: ModalActionType): void {
+  public jobApplicationDetailsModalCloased(action: ModalActionType): void {
     if (action == ModalActionType.Close) {
       this.selectedTalentId = '';
       this.selectedJobApplication = null;

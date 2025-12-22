@@ -1,11 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { TalentService } from '../../services/talent.service';
-import { Talent } from '../../models/talent';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { months } from '../../constants/constants';
-import { Education } from '../../models/education';
-import { Experience } from '../../models/experience';
 import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { HttpResponse } from '@angular/common/http';
@@ -14,13 +9,18 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { ToastService } from '@app/shared/services/toast.service';
+import { Talent } from '@app/shared/models/talent';
+import { months } from '@app/shared/constants/constants';
+import { TalentService } from '@app/shared/services/talent.service';
+import { Education } from '@app/shared/models/education';
+import { Experience } from '@app/shared/models/experience';
 
 @Component({
-  selector: 'app-talent-preview-modal',
-  templateUrl: './talent-preview-modal.component.html',
-  styleUrl: './talent-preview-modal.component.scss'
+  selector: 'app-job-application-details-modal',
+  templateUrl: './job-application-details-modal.component.html',
+  styleUrl: './job-application-details-modal.component.scss'
 })
-export class TalentPreviewModalComponent implements OnInit {
+export class JobApplicationDetailsModalComponent implements OnInit {
 
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };

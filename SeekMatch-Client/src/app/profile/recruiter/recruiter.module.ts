@@ -11,13 +11,14 @@ import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
 import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
-import { NgbAccordionModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from '@app/shared/ui';
 import { JobOfferDetailsComponent } from './job-offer-details/job-offer-details.component';
 import { DeleteJobOfferModalComponent } from './modals/delete-job-offer-modal/delete-job-offer-modal.component';
 import { JobOfferPreviewModalComponent } from './modals/job-offer-preview-modal/job-offer-preview-modal.component';
 import { JobOfferModalComponent } from './modals/job-offer-modal/job-offer-modal.component';
 import { RejectJobApplicationModalComponent } from './modals/reject-job-application-modal/reject-job-application-modal.component';
+import { JobApplicationDetailsModalComponent } from './modals/job-application-details-modal/job-application-details-modal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RejectJobApplicationModalComponent } from './modals/reject-job-applicat
     JobOfferDetailsComponent,
     JobOfferModalComponent,
     DeleteJobOfferModalComponent,
-    RejectJobApplicationModalComponent
+    RejectJobApplicationModalComponent,
+    JobApplicationDetailsModalComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { RejectJobApplicationModalComponent } from './modals/reject-job-applicat
     NgbDropdownToggle,
     NgbDropdownMenu,
     NgbDropdownItem,
-    NgbDropdownButtonItem
+    NgbDropdownButtonItem,
+    NgbModule
   ]
 })
 export class RecruiterModule { }
