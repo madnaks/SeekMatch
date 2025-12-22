@@ -12,11 +12,11 @@ import { TranslateService } from '@ngx-translate/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-job-offer-detail',
-  templateUrl: './job-offer-detail.component.html',
-  styleUrl: './job-offer-detail.component.scss'
+  selector: 'app-job-offer-details',
+  templateUrl: './job-offer-details.component.html',
+  styleUrl: './job-offer-details.component.scss'
 })
-export class JobOfferDetailComponent implements OnInit {
+export class JobOfferDetailsComponent implements OnInit {
 
   public monthOptions = months;
   public JobApplicationStatus = JobApplicationStatus;
@@ -25,14 +25,12 @@ export class JobOfferDetailComponent implements OnInit {
   public jobOffer: JobOffer = new JobOffer;
   public selectedJobApplication: JobApplication | null = new JobApplication;
   public selectedTalentId: string = '';
-  public rejectionForm: FormGroup;
   public filterForm: FormGroup;
   public appliedFilters: any = {};
   public activeFilters: { key: JobOfferFilter, value: string }[] = [];
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
 
-  private rejectModal: NgbModalRef | undefined;
 
   constructor(
     private modalService: NgbModal,
@@ -42,7 +40,6 @@ export class JobOfferDetailComponent implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private route: ActivatedRoute) {
-    this.rejectionForm = this.initRejectionForm();
     this.filterForm = this.initFilterForm();
 
     const nav = this.router.getCurrentNavigation();
@@ -71,12 +68,6 @@ export class JobOfferDetailComponent implements OnInit {
     });
   }
 
-  private initRejectionForm(): FormGroup {
-    return this.fb.group({
-      reason: ['', Validators.required],
-    });
-  }
-
   //#region : Modal functions
   public openJobOfferPreviewModal(content: any): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
@@ -100,11 +91,6 @@ export class JobOfferDetailComponent implements OnInit {
     }
   }
 
-  public openRejectJobApplicationModal(content: any, jobApplication: JobApplication): void {
-    this.rejectModal = this.modalService.open(content, { centered: true, backdrop: 'static' });
-    this.selectedJobApplication = jobApplication;
-  }
-
   public talentPreviewModalCloased(action: ModalActionType): void {
     if (action == ModalActionType.Close) {
       this.selectedTalentId = '';
@@ -121,39 +107,7 @@ export class JobOfferDetailComponent implements OnInit {
       this.goBack();
     }
   }
-
-  private closeRejectModal(): void {
-    if (this.rejectModal) {
-      this.rejectModal.close();
-      this.rejectModal = undefined;
-    }
-  }
   //#endregion
-
-  public rejectJobApplication(): void {
-    if (this.rejectionForm.invalid) {
-      this.rejectionForm.markAllAsTouched();
-      return;
-    }
-
-    this.isSaving = true;
-    if (this.selectedJobApplication && this.selectedJobApplication.id) {
-      this.jobApplicationService.reject(this.selectedJobApplication.id, this.rejectionForm.value.reason).pipe(
-        finalize(() => {
-          this.isSaving = false;
-        })).subscribe({
-          next: () => {
-            this.closeRejectModal();
-            this.toastService.showSuccessMessage('Job application rejected successfully');
-          },
-          error: (error) => {
-            this.toastService.showErrorMessage('Rejecting Job application failed', error);
-          }
-        });
-    } else {
-      this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
-    }
-  }
 
   public getJobTypeName(jobType: JobType): string {
     return JobType[jobType];

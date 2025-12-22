@@ -5,7 +5,7 @@ import { AboutYouComponent } from './about-you/about-you.component';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
 import { SecurityComponent } from '../commun/security/security.component';
-import { JobOfferDetailComponent } from './job-offer-detail/job-offer-detail.component';
+import { JobOfferDetailsComponent } from './job-offer-details/job-offer-details.component';
 
 const routes: Routes = [
   {
@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'about-you', component: AboutYouComponent },
       { path: 'job-offer', component: JobOfferComponent },
-      { path: 'job-offer/details/:id', component: JobOfferDetailComponent },
+      { path: 'job-offer/details/:id', component: JobOfferDetailsComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }

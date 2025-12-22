@@ -1,0 +1,24 @@
+<form [formGroup]="rejectionForm" (ngSubmit)="rejectJobApplication()">
+    <div class="modal-header">
+        <h4 class="modal-title">
+            {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
+        </h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <label for="inputRejectionReason" class="form-label">
+            {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
+        </label>
+        <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
+            formControlName="reason"></textarea>
+        @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
+        <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'" />
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-danger">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+            {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
+        </button>
+    </div>
+</form>

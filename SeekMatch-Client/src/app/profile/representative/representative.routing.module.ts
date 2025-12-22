@@ -6,7 +6,7 @@ import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.componen
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
 import { SecurityComponent } from '../commun/security/security.component';
-import { RecruiterDetailComponent } from './recruiter-detail/recruiter-detail.component';
+import { RecruiterDetailsComponent } from './recruiter-details/recruiter-details.component';
 
 const routes: Routes = [
   {
@@ -30,8 +30,8 @@ const routes: Routes = [
       },
       {
         path: 'recruiter-team/details/:id',
-        component: RecruiterDetailComponent,
-        data: { breadcrumb: 'Detail' },
+        component: RecruiterDetailsComponent,
+        data: { breadcrumb: 'Details' },
 
       },
       {

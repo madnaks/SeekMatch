@@ -13,19 +13,21 @@ import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } fr
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { NgbAccordionModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from '@app/shared/ui';
-import { JobOfferDetailComponent } from './job-offer-detail/job-offer-detail.component';
+import { JobOfferDetailsComponent } from './job-offer-details/job-offer-details.component';
 import { DeleteJobOfferModalComponent } from './modals/delete-job-offer-modal/delete-job-offer-modal.component';
 import { JobOfferPreviewModalComponent } from './modals/job-offer-preview-modal/job-offer-preview-modal.component';
 import { JobOfferModalComponent } from './modals/job-offer-modal/job-offer-modal.component';
+import { RejectJobApplicationModalComponent } from './modals/reject-job-application-modal/reject-job-application-modal.component';
 
 @NgModule({
   declarations: [
     RecruiterProfileComponent,
     AboutYouComponent,
     JobOfferComponent,
-    JobOfferDetailComponent,
+    JobOfferDetailsComponent,
     JobOfferModalComponent,
-    DeleteJobOfferModalComponent
+    DeleteJobOfferModalComponent,
+    RejectJobApplicationModalComponent
   ],
   imports: [
     CommonModule,

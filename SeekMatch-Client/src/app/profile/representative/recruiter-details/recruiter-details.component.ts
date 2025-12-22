@@ -9,11 +9,11 @@ import { TableAction, TableColumn } from '@app/shared/form-controls/data-table/d
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-recruiter-detail',
-  templateUrl: './recruiter-detail.component.html',
-  styleUrl: './recruiter-detail.component.scss'
+  selector: 'app-recruiter-details',
+  templateUrl: './recruiter-details.component.html',
+  styleUrl: './recruiter-details.component.scss'
 })
-export class RecruiterDetailComponent {
+export class RecruiterDetailsComponent {
 
   @ViewChild('viewRecruiterContent') viewRecruiterContent: any;
   @ViewChild('deleteRecruiterContent') deleteRecruiterContent: any;
