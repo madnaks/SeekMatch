@@ -11,6 +11,7 @@ import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } fr
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButtonComponent, ToastComponent } from './ui';
 import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
+import { SanitizedHtmlPipe } from './pipes/sanitizedHtml.pipe';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
     ToastComponent,
     CountryNamePipe,
     GeoNamePipe,
+    SanitizedHtmlPipe,
     BreadCrumbComponent
   ],
   imports: [
@@ -43,6 +45,7 @@ import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
     ToastComponent,
     CountryNamePipe,
     GeoNamePipe,
+    SanitizedHtmlPipe,
     BreadCrumbComponent
   ]
 })

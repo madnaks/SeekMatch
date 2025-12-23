@@ -27,7 +27,6 @@ import { LoaderComponent } from '@app/shared/ui';
 import { ExperienceModalComponent } from './modals/experience-modal/experience-modal.component';
 import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
 import { ResumeModalComponent } from './modals/resume-modal/resume-modal.component';
-import { JobOfferPreviewModalComponent } from '../recruiter/modals/job-offer-preview-modal/job-offer-preview-modal.component';
 import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 
 @NgModule({
@@ -64,7 +63,6 @@ import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talen
     DatePickerInputComponent,
     DataTableComponent,
     InfoComponent,
-    JobOfferPreviewModalComponent,
     AddressGroupComponent,
     TextFloatInputComponent,
     TextAreaFloatInputComponent,

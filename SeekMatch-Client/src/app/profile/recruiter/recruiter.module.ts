@@ -29,7 +29,8 @@ import { JobApplicationDetailsModalComponent } from './modals/job-application-de
     JobOfferModalComponent,
     DeleteJobOfferModalComponent,
     RejectJobApplicationModalComponent,
-    JobApplicationDetailsModalComponent
+    JobApplicationDetailsModalComponent,
+    JobOfferPreviewModalComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +46,6 @@ import { JobApplicationDetailsModalComponent } from './modals/job-application-de
     EmailInputComponent,
     LoaderComponent,
     DatePickerInputComponent,
-    JobOfferPreviewModalComponent,
     NgbAccordionModule,
     NgbDropdown,
     NgbDropdownToggle,

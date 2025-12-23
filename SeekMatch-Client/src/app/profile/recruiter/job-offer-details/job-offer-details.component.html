@@ -54,10 +54,33 @@
         <ng-container ngbNavItem>
             <a ngbNavLink>
                 <i class="fa-solid fa-clipboard me-2"></i>
-                Descriptions    
+                Descriptions
             </a>
             <ng-template ngbNavContent>
-
+                <div class="row">
+                    <div class="col-12">
+                        {{ 'JobOffers.JobDetails.Description' | translate }}
+                        <p class="text-area" [innerHTML]="jobOffer.description | sanitizedHtml"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {{ 'JobOffers.JobDetails.PositionDetails' | translate }}
+                        <p class="text-area" [innerHTML]="jobOffer.positionDetails | sanitizedHtml"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {{ 'JobOffers.JobDetails.Qualifications' | translate }}
+                        <p class="text-area" [innerHTML]="jobOffer.qualifications | sanitizedHtml"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        {{ 'JobOffers.JobDetails.AdditionalRequirements' | translate }}
+                        <p class="text-area" [innerHTML]="jobOffer.additionalRequirements | sanitizedHtml"></p>
+                    </div>
+                </div>
             </ng-template>
         </ng-container>
         <ng-container ngbNavItem>

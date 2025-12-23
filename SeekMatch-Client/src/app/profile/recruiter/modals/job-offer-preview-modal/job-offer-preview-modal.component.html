@@ -42,14 +42,14 @@
         <h5>
             {{ 'JobOffers.JobDetails.Description' | translate }}
         </h5>
-        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.description)">
+        <p class="text-area" [innerHTML]="selectedJobOffer.description | sanitizedHtml">
         </p>
         <!-- PositionDetails -->
         @if(selectedJobOffer.positionDetails) {
         <h5>
             {{ 'JobOffers.JobDetails.PositionDetails' | translate }}
         </h5>
-        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.positionDetails)">
+        <p class="text-area" [innerHTML]="selectedJobOffer.positionDetails | sanitizedHtml">
         </p>
         }
         <!-- Qualifications -->
@@ -57,7 +57,7 @@
         <h5>
             {{ 'JobOffers.JobDetails.Qualifications' | translate }}
         </h5>
-        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.qualifications)">
+        <p class="text-area" [innerHTML]="selectedJobOffer.qualifications | sanitizedHtml">
         </p>
         }
         <!-- AdditionalRequirements -->
@@ -65,7 +65,7 @@
         <h5>
             {{ 'JobOffers.JobDetails.AdditionalRequirements' | translate }}
         </h5>
-        <p class="text-area" [innerHTML]="sanitizedDescription(selectedJobOffer.additionalRequirements)">
+        <p class="text-area" [innerHTML]="selectedJobOffer.additionalRequirements | sanitizedHtml">
         </p>
         }
     </div>
