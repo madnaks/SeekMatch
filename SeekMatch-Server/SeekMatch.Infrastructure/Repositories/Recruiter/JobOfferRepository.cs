@@ -58,7 +58,12 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                return await dbContext.JobOffers.Include(j => j.JobApplications).FirstOrDefaultAsync(j => j.Id == id);
+                return await dbContext.JobOffers
+                    .Include(j => j.JobApplications)
+                        .ThenInclude(ja => ja.Talent)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(ex => ex.ExpressApplication)
+                    .FirstOrDefaultAsync(j => j.Id == id);
             }
             catch (Exception ex)
             {
