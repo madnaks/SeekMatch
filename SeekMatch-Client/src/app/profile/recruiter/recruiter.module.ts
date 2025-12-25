@@ -30,7 +30,6 @@ import { JobApplicationDetailsModalComponent } from './modals/job-application-de
     DeleteJobOfferModalComponent,
     RejectJobApplicationModalComponent,
     JobApplicationDetailsModalComponent,
-    JobOfferPreviewModalComponent
   ],
   imports: [
     CommonModule,
@@ -52,7 +51,8 @@ import { JobApplicationDetailsModalComponent } from './modals/job-application-de
     NgbDropdownMenu,
     NgbDropdownItem,
     NgbDropdownButtonItem,
-    NgbModule
+    NgbModule,
+    JobOfferPreviewModalComponent
   ]
 })
 export class RecruiterModule { }

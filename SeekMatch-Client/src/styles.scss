@@ -368,6 +368,11 @@ body {
         color: $text-color;
     }
 
+    td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
     // Hover effect style
     &.table-hover tbody tr:hover>* {
         background-color: $third-color !important;

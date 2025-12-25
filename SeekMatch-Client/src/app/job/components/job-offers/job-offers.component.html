@@ -89,7 +89,7 @@
     <div class="row">
         <div class="col-12 col-md-4 p-0" id="job-list-container" *ngIf="!isMobileView || !showDetailsOnMobile">
             <app-job-list (jobOfferSelected)="onJobOfferSelected($event)" [isMobileView]="isMobileView"
-                [filters]="appliedFilters"></app-job-list>
+                [filters]="appliedFilters" />
         </div>
         @if (isMobileView && showDetailsOnMobile) {
         <div class="button-group mb-2">
@@ -114,7 +114,7 @@
         }
         @if (selectedJobOffer && (!isMobileView || showDetailsOnMobile)) {
         <div class="col-12 col-md-8" id="job-details-container">
-            <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView"></app-job-details>
+            <app-job-details [jobOffer]="selectedJobOffer" [isMobileView]="isMobileView" />
         </div>
         }
     </div>

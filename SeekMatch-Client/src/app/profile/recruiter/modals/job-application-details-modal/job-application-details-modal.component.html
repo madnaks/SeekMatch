@@ -175,7 +175,7 @@
             @if (jobApplication) {
             <div class="col-3 px-3">
                 <!-- Vertical Steps for Job Application Status -->
-                <div class="d-flex flex-column align-items-start position-relative" style="min-width:220px;">
+                <div class="d-flex flex-column align-items-start position-relative">
                     <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
                         <div class="d-flex align-items-start mb-0 position-relative"
                             [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1, 'mb-5': i === jobApplicationSteps.length - 2 }">

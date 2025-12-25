@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
 import { ToastService } from '../../../shared/services/toast.service';
-import { JobApplicationStatus, JobOfferFilter, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
+import { JobApplicationStatus, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobApplication } from '../../../shared/models/job-application';
-import { JobApplicationService } from '../../../shared/services/job-application.service';
-import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
+import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -23,20 +21,18 @@ export class JobOfferDetailsComponent implements OnInit {
   public jobOffer: JobOffer = new JobOffer;
   public selectedJobApplication: JobApplication | null = new JobApplication;
   public selectedTalentId: string = '';
-  public filterForm: FormGroup;
-  public appliedFilters: any = {};
-  public activeFilters: { key: JobOfferFilter, value: string }[] = [];
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
+  public filterForm!: FormGroup;
+  public statuses = ['Hired', 'Rejected', 'Submitted', 'Interview', 'Shortlisted'];
+  public filteredJobApplications: JobApplication[] = [];
 
   constructor(
     private modalService: NgbModal,
     private toastService: ToastService,
-    private fb: NonNullableFormBuilder,
-    private translate: TranslateService,
+    private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute) {
-    this.filterForm = this.initFilterForm();
 
     const nav = this.router.getCurrentNavigation();
     this.jobOffer = nav?.extras?.state?.['jobOffer'];
@@ -45,22 +41,23 @@ export class JobOfferDetailsComponent implements OnInit {
       const id = this.route.snapshot.paramMap.get('id');
       // call API only if needed
     }
+    
+    this.filteredJobApplications = this.jobOffer.jobApplications;
 
     this.isLoading = false;
   }
 
   ngOnInit(): void {
-    this.filterForm.valueChanges.subscribe(() => {
-      this.applyFilters();
-    });
-  }
+    const controls: any = {};
 
-  private initFilterForm(): FormGroup {
-    return this.fb.group({
-      title: [''],
-      companyName: [''],
-      type: [0],
-      workplaceType: [0]
+    this.statuses.forEach(status => {
+      controls[status] = false;
+    });
+
+    this.filterForm = this.fb.group(controls);
+
+    this.filterForm.valueChanges.subscribe(value => {
+      this.onFilterChanged(value);
     });
   }
 
@@ -136,62 +133,21 @@ export class JobOfferDetailsComponent implements OnInit {
     }
   }
 
-  public resetFilterForm(): void {
-    this.filterForm.reset();
-    this.appliedFilters = this.filterForm.value;
-  }
-
-  private computeActiveFilters(): void {
-    this.activeFilters = [];
-
-    const values = this.filterForm.value;
-
-    if (values.title?.trim()) {
-      this.activeFilters.push({ key: JobOfferFilter.Title, value: `Title: ${values.title}` });
-    }
-
-    if (values.companyName?.trim()) {
-      this.activeFilters.push({ key: JobOfferFilter.Company, value: `Company: ${values.companyName}` });
-    }
-
-    if (values.type && values.type !== 0) {
-      const jobType = this.jobTypesList.find(j => j.key === values.type);
-      if (jobType) this.activeFilters.push({ key: JobOfferFilter.Type, value: `Type: ${this.translate.instant(jobType.value)}` });
-    }
-
-    if (values.workplaceType && values.workplaceType !== 0) {
-      const workplace = this.workplaceTypeList.find(w => w.key === values.workplaceType);
-      if (workplace) this.activeFilters.push({ key: JobOfferFilter.WorkplaceType, value: `Workplace: ${this.translate.instant(workplace.value)}` });
-    }
-
-  }
-
-  public deleteFilter(filterKey: JobOfferFilter): void {
-    switch (filterKey) {
-      case JobOfferFilter.Title:
-        this.filterForm.get('title')?.setValue('');
-        break;
-      case JobOfferFilter.Company:
-        this.filterForm.get('companyName')?.setValue('');
-        break;
-      case JobOfferFilter.Type:
-        this.filterForm.get('type')?.setValue(0);
-        break;
-      case JobOfferFilter.WorkplaceType:
-        this.filterForm.get('workplaceType')?.setValue(0);
-        break;
-    }
-
-    this.applyFilters();
-  }
-
-  public applyFilters(): void {
-    this.appliedFilters = this.filterForm.value;
-    this.computeActiveFilters();
-  }
-
   public goBack(): void {
     this.router.navigate(['/profile/recruiter/job-offer']);
   }
+
+  onFilterChanged(value: any) {
+    const selectedStatuses = this.statuses.filter(
+      status => value[status]
+    );
+    if (selectedStatuses.length === 0) {
+      this.filteredJobApplications = this.jobOffer.jobApplications;
+    } else {
+      this.filteredJobApplications = this.jobOffer.jobApplications.filter(ja => selectedStatuses.includes(JobApplicationStatus[ja.status]));
+
+    }
+  }
+
 
 }

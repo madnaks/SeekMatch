@@ -1,12 +1,17 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { JobOffer } from '../../../../shared/models/job-offer';
 import { JobType, WorkplaceType } from '@app/shared/enums/enums';
+import { TranslateModule } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { SharedModule } from '@app/shared/shared.module';
 
 @Component({
   selector: 'app-job-offer-preview-modal',
   templateUrl: './job-offer-preview-modal.component.html',
   styleUrl: './job-offer-preview-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CommonModule, TranslateModule, SharedModule]
 })
 export class JobOfferPreviewModalComponent {
 
