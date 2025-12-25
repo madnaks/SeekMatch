@@ -7,6 +7,7 @@ import { JobOffer } from '../../../shared/models/job-offer';
 import { JobApplication } from '../../../shared/models/job-application';
 import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JobOfferService } from '@app/shared/services/job-offer.service';
 
 @Component({
   selector: 'app-job-offer-details',
@@ -32,7 +33,8 @@ export class JobOfferDetailsComponent implements OnInit {
     private toastService: ToastService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private jobOfferService: JobOfferService) {
 
     const nav = this.router.getCurrentNavigation();
     this.jobOffer = nav?.extras?.state?.['jobOffer'];
@@ -40,11 +42,19 @@ export class JobOfferDetailsComponent implements OnInit {
     if (!this.jobOffer) {
       const id = this.route.snapshot.paramMap.get('id');
       // call API only if needed
-    }
-    
-    this.filteredJobApplications = this.jobOffer.jobApplications;
+      if (id) {
+        this.jobOfferService.getById(id).subscribe((jobOffer: JobOffer) => {
+          this.jobOffer = jobOffer;
+          this.filteredJobApplications = this.jobOffer.jobApplications;
+          this.isLoading = false;
+        });
+      }
+    } else {
 
-    this.isLoading = false;
+      this.filteredJobApplications = this.jobOffer.jobApplications;
+
+      this.isLoading = false;
+    }
   }
 
   ngOnInit(): void {
@@ -69,10 +79,10 @@ export class JobOfferDetailsComponent implements OnInit {
   public openJobOfferModal(content: any): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
   }
-  
-   public openDeleteModal(content: any): void {
-     this.modalService.open(content, { centered: true, backdrop: 'static' });
-   }
+
+  public openDeleteModal(content: any): void {
+    this.modalService.open(content, { centered: true, backdrop: 'static' });
+  }
 
   public openJobApplicationDetailsModal(content: any, jobApplication?: JobApplication): void {
     this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });

@@ -100,8 +100,10 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic">
                                 <form [formGroup]="filterForm" class="d-flex flex-column gap-2">
                                     <!-- STATUSES -->
-                                    <label class="form-check" *ngFor="let status of statuses" style="margin-left: 15px;">
-                                        <input type="checkbox" class="form-check-input" [formControlName]="status" style="cursor: pointer;" />
+                                    <label class="form-check" *ngFor="let status of statuses"
+                                        style="margin-left: 15px;">
+                                        <input type="checkbox" class="form-check-input" [formControlName]="status"
+                                            style="cursor: pointer;" />
                                         <span class="form-check-label">{{ status }}</span>
                                     </label>
 

@@ -29,6 +29,10 @@ export class JobOfferService {
     return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`, { params });
   }
 
+  getById(id: string): Observable<JobOffer> {
+    return this.http.get<JobOffer>(`${this.apiUrl}/get-by-id/${id}`);
+  }
+
   getAllByRecruiter(): Observable<any> {
     return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-recruiter`);
   }
