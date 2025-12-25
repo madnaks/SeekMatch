@@ -104,7 +104,9 @@
                                         style="margin-left: 15px;">
                                         <input type="checkbox" class="form-check-input" [formControlName]="status"
                                             style="cursor: pointer;" />
-                                        <span class="form-check-label">{{ status }}</span>
+                                        <span class="form-check-label">
+                                            {{ ('Enum.JobApplicationStatus.' + status) | translate }}
+                                        </span>
                                     </label>
 
                                 </form>

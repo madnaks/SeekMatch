@@ -25,7 +25,8 @@ export class JobOfferDetailsComponent implements OnInit {
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
   public filterForm!: FormGroup;
-  public statuses = ['Hired', 'Rejected', 'Submitted', 'Interview', 'Shortlisted'];
+  // public statuses = ['Hired', 'Rejected', 'Submitted', 'Interview', 'Shortlisted'];
+  public statuses: string[] = [];
   public filteredJobApplications: JobApplication[] = [];
 
   constructor(
@@ -35,6 +36,8 @@ export class JobOfferDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private jobOfferService: JobOfferService) {
+
+    this.statuses = Object.keys(JobApplicationStatus).filter(k => isNaN(Number(k)));
 
     const nav = this.router.getCurrentNavigation();
     this.jobOffer = nav?.extras?.state?.['jobOffer'];
