@@ -22,7 +22,20 @@ namespace SeekMatch.Controllers
 
             return Ok(jobOffersDto);
         }
-        
+
+        [HttpGet("get-by-id/{jobOfferId}")]
+        public async Task<IActionResult> GetById([FromRoute] string jobOfferId)
+        {
+            var jobOfferDto = await jobOfferService.GetByIdAsync(jobOfferId);
+
+            if (jobOfferDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(jobOfferDto);
+        }
+
         [Authorize]
         [HttpGet("get-all-by-recruiter")]
         public async Task<IActionResult> GetAllByRecruiter()

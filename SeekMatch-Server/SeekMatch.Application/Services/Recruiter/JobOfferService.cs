@@ -16,6 +16,11 @@ namespace SeekMatch.Application.Services
             return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllAsync(jobOfferFilters));
         }
 
+        public async Task<JobOfferDto?> GetByIdAsync(string jobOfferId)
+        {
+            return mapper.Map<JobOfferDto>(await jobOfferRepository.GetByIdAsync(jobOfferId));
+        }
+
         public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId)
         {
             return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
