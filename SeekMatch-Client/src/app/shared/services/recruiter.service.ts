@@ -20,6 +20,10 @@ export class RecruiterService {
     return this.http.get(`${this.apiUrl}/profile`);
   }
 
+  getRecruiterById(id: string): Observable<Recruiter> {
+    return this.http.get<Recruiter>(`${this.apiUrl}/get-by-id/${id}`);
+  }
+
   saveAboutYouData(aboutYouData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/about-you`, aboutYouData);
   }

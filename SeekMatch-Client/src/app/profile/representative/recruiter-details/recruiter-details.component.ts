@@ -7,6 +7,7 @@ import { Recruiter } from '../../../shared/models/recruiter';
 import { RepresentativeService } from '../../../shared/services/representative.service';
 import { TableAction, TableColumn } from '@app/shared/form-controls/data-table/data-table.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { RecruiterService } from '@app/shared/services/recruiter.service';
 
 @Component({
   selector: 'app-recruiter-details',
@@ -31,7 +32,7 @@ export class RecruiterDetailsComponent {
 
   constructor(
     private modalService: NgbModal,
-    private representativeService: RepresentativeService,
+    private recruiterService: RecruiterService,
     private toastService: ToastService,
     private router: Router,
     private route: ActivatedRoute) {
@@ -41,6 +42,13 @@ export class RecruiterDetailsComponent {
     if (!this.recruiter) {
       const id = this.route.snapshot.paramMap.get('id');
       // call API only if needed
+      if (id) {
+        this.recruiterService.getRecruiterById(id).subscribe((recruiter: Recruiter) => {
+          this.recruiter = recruiter;
+          // this.filteredJkobApplications = this.jobOffer.jobApplications;
+          this.isLoading = false;
+        });
+      }
     }
 
     this.isLoading = false;
