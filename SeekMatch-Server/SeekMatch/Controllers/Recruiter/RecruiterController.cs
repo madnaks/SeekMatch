@@ -53,6 +53,25 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-by-id/{recruiterId}")]
+        public async Task<IActionResult> GetById(string recruiterId)
+        {
+            if (string.IsNullOrWhiteSpace(recruiterId))
+            {
+                return BadRequest("Recruiter Id cannot be empty.");
+            }
+
+            var recruiterDto = await recruiterService.GetAsync(recruiterId);
+
+            if (recruiterDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(recruiterDto);
+        }
+
+        [Authorize]
         [HttpPut("about-you")]
         public async Task<IActionResult> SaveProfile([FromBody] AboutYouDto aboutYouDto)
         {

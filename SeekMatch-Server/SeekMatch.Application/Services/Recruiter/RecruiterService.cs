@@ -49,10 +49,12 @@ namespace SeekMatch.Application.Services
 
             return IdentityResult.Success;
         }
+
         public async Task<RecruiterDto?> GetAsync(string userId)
         {
             return mapper.Map<RecruiterDto>(await recruiterRepository.GetAsync(userId));
         }
+
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)
         {
             var recruiter = await recruiterRepository.GetAsync(userId);
