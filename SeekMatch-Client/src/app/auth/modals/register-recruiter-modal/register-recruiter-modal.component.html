@@ -24,18 +24,7 @@
 <div class="row mt-3">
 
     <!-- Stepper -->
-    <div class="stepper d-flex justify-content-around align-items-center">
-        <div class="step" [ngClass]="{'active': currentStep === 1, 'completed': currentStep > 1}">
-            <i *ngIf="currentStep > 1" class="fa-solid fa-check"></i>
-        </div>
-        <div class="line" [ngClass]="{'completed': currentStep > 1}"></div>
-        <div class="step" [ngClass]="{'active': currentStep === 2, 'completed': currentStep > 2}">
-            <i *ngIf="currentStep > 2" class="fa-solid fa-check"></i>
-        </div>
-        <div class="line" [ngClass]="{'completed': currentStep > 2}"></div>
-        <div class="step" [ngClass]="{'active': currentStep === 3, 'completed': currentStep > 3}">
-        </div>
-    </div>
+    <be-stepper [steps]="['Options', 'Informations', 'UserInformations']" [currentStep]="currentStep"  />
 
 </div>
 

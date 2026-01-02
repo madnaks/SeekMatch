@@ -12,6 +12,7 @@ import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-
 import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButtonComponent, ToastComponent } from './ui';
 import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
 import { SanitizedHtmlPipe } from './pipes/sanitizedHtml.pipe';
+import { StepperComponent } from './ui/stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SanitizedHtmlPipe } from './pipes/sanitizedHtml.pipe';
     CountryNamePipe,
     GeoNamePipe,
     SanitizedHtmlPipe,
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    StepperComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { SanitizedHtmlPipe } from './pipes/sanitizedHtml.pipe';
     CountryNamePipe,
     GeoNamePipe,
     SanitizedHtmlPipe,
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    StepperComponent
   ]
 })
 export class SharedModule { }
