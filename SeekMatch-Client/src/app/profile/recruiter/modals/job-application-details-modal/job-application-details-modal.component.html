@@ -28,7 +28,8 @@
                             <i class="fa-solid fa-eye me-2"></i>
                             {{ 'Talent.PreviewModal.ShowResume' | translate }}
                         </button>
-                        }@else {
+                        }
+                        @else {
                         <button class="btn btn-primary btn-sm" (click)="showResume = false;">
                             <i class="fa-solid fa-eye-slash me-2"></i>
                             {{ 'Talent.PreviewModal.HideResume' | translate }}
@@ -104,7 +105,6 @@
                                 </p>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <!-- Educations & Experiences Tabs -->
@@ -217,8 +217,7 @@
                             </div>
                         </div>
                         <!-- Vertical line -->
-                        @if (i < jobApplicationSteps.length - 2) { <div
-                            style="border-left:2px solid #e0e0e0; height:32px; margin-left: 6%;">
+                        @if (i < jobApplicationSteps.length - 2) { <div class="vertical-line">
                 </div>
                 }
                 </ng-container>
