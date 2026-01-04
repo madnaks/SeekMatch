@@ -22,7 +22,6 @@
     "Navbar": {
         "Menu": {
             "JobOffers": "Offres d'emplois",
-            "Companies": "Entreprises",
             "Tests": "Tests",
             "Training": "Formations",
             "CVCreation": "Créations d'un CV",
@@ -54,12 +53,6 @@
             "Qualifications": "Qualifications",
             "AdditionalRequirements": "Exigences supplémentaires",
             "Apply": "Postuler"
-        }
-    },
-    "Companies": {
-        "CompanyList": {
-            "Employees": "Employées",
-            "JobOffers": "Offers d'emplois"
         }
     },
     "Profile": {

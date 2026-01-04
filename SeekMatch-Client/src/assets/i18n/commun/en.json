@@ -22,7 +22,6 @@
     "Navbar": {
         "Menu": {
             "JobOffers": "Job offers",
-            "Companies": "Companies",
             "Tests": "Tests",
             "Training": "Training",
             "CVCreation": "CV creation",
@@ -54,12 +53,6 @@
             "Qualifications": "Qualifications",
             "AdditionalRequirements": "Additional requirements",
             "Apply": "Apply"
-        }
-    },
-    "Companies": {
-        "CompanyList": {
-            "Employees": "Employees",
-            "JobOffers": "Job offers"
         }
     },
     "Profile": {

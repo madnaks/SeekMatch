@@ -1,7 +1,7 @@
 <div class="stepper d-flex justify-content-around align-items-center">
 
     @for(step of steps; track step; let i = $index) {
-        <div class="step" [ngClass]="{'active': currentStep === i + 1, 'completed': currentStep > i + 1}">
+        <div class="step" [ngClass]="{'active': currentStep === i + 1, 'completed bg-success': currentStep > i + 1}">
             @if(currentStep > i + 1) {
                 <i class="fa-solid fa-check"></i>
             }
