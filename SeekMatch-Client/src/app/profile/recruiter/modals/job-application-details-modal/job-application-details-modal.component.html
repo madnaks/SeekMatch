@@ -11,15 +11,19 @@
                 @if(isExpressApplication) {
                     <div class="row mb-4">
                         <div class="col-md-12">
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <h3>
                                         {{ jobApplication?.expressApplication?.lastName }}, {{
                                         jobApplication?.expressApplication?.firstName }}
                                     </h3>
                                     <h5>
-                                        {{ jobApplication?.expressApplication?.email }}, {{
-                                        jobApplication?.expressApplication?.phone }}
+                                        <i class="fa-solid fa-envelope me-2"></i>
+                                        {{ jobApplication?.expressApplication?.email }}
+                                    </h5>
+                                    <h5>
+                                        <i class="fa-solid fa-phone me-2"></i>
+                                        {{ jobApplication?.expressApplication?.phone }}
                                     </h5>
                                 </div>
                             </div>
@@ -59,10 +63,14 @@
                                     <h3>
                                         {{ currentTalent.firstName }}, {{ currentTalent.lastName }}
                                     </h3>
-                                    <h5>
-                                        <i class="fa-solid fa-user-tie me-2"></i>
-                                        {{ currentTalent.profileTitle }}
-                                    </h5>
+
+                                    @if (currentTalent.profileTitle) {
+                                        <h5>
+                                            <i class="fa-solid fa-user-tie me-2"></i>
+                                            {{ currentTalent.profileTitle }}
+                                        </h5>
+                                    }
+
                                     <!-- Email -->
                                     @if(currentTalent.email) {
                                     <h6>

@@ -6,11 +6,20 @@
         {{ 'Recruiter.JobOffer.Modal.CreationTitle' | translate }}
         }
     </h4>
+    
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
 
 <div class="modal-body">
+
+    <!-- Stepper -->
+    <div class="row">
+        <div class="col-12 mb-3">
+            <be-stepper [steps]="['Options', 'Informations', 'UserInformations']" [currentStep]="currentStep"  />
+        </div>
+    </div>
+
     <form [formGroup]="jobOfferForm">
         @if(currentStep === 1) {
         <div class="row">
