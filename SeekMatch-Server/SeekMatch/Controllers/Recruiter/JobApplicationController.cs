@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
+using System.Net;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -204,12 +205,17 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
-        [HttpGet("job-applications/{jobApplicationId}/cv")]
-        public async Task<IActionResult> DownloadCv(string jobApplicationId)
+        [HttpGet("job-applications/{jobApplicationId}/resume")]
+        public async Task<IActionResult> DownloadResume(string jobApplicationId)
         {
-            var fileResult = await jobApplicationService.DownloadCv(jobApplicationId);
+            var result = await jobApplicationService.DownloadResume(jobApplicationId);
 
-            return File(fileResult.FileStream, fileResult.ContentType, fileResult.FileName);
+            if (!result.Success)
+            {
+                return StatusCode((int) result.StatusCode, result.Message);
+            }
+
+            return File(result.Value!.FileStream, result.Value.ContentType, result.Value.FileName);
         }
 
         [Authorize]

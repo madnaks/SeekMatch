@@ -1,4 +1,5 @@
 ﻿using SeekMatch.Application.DTOs.Recruiter;
+using SeekMatch.Application.Services;
 
 namespace SeekMatch.Application.Interfaces
 {
@@ -12,7 +13,7 @@ namespace SeekMatch.Application.Interfaces
         Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto);
         Task<bool> Hire(string jobApplicationId);
         Task<bool> RejectAsync(string jobApplicationId, string rejectionReason);
-        Task<FileDownloadResult> DownloadCv(string jobApplicationId);
+        Task<ServiceResult<FileDownloadResult>> DownloadResume(string jobApplicationId);
         Task<bool> DeleteAsync(string jobApplicationId);
     }
 }

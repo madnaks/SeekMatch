@@ -3,7 +3,8 @@ using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure.Interfaces;
- 
+using System.Net;
+
 namespace SeekMatch.Application.Services
 {
     public class JobApplicationService(
@@ -126,30 +127,47 @@ namespace SeekMatch.Application.Services
             return result;
         }
 
-        public async Task<FileDownloadResult> DownloadCv(string jobApplicationId)
+        public async Task<ServiceResult<FileDownloadResult>> DownloadResume(string jobApplicationId)
         {
-            var jobApplication = await jobApplicationRepository.GetByIdAsync(jobApplicationId);
+            var jobApplication = await jobApplicationRepository.GetByIdWithTalentDetailsAsync(jobApplicationId);
 
-            if (jobApplication == null)
+            if (jobApplication == null) {
+                return ServiceResult<FileDownloadResult>.Fail(HttpStatusCode.NotFound, "Job application not found");
+            }
+
+            string? filePath = null;
+
+            if (jobApplication.IsExpress && jobApplication.ExpressApplication != null)
             {
-                throw new Exception("Job application not found");
+                filePath = jobApplication.ExpressApplication.FilePath;
+            }
+            else
+            {
+                filePath = jobApplication.Talent?.Resumes?.FirstOrDefault(r => r.IsPrimary)?.FilePath;
             }
 
-            if (jobApplication.IsExpress) {
-                if (jobApplication.ExpressApplication == null || jobApplication.ExpressApplication.FilePath == null)
-                {
-                    throw new Exception("CV not found for this express application");
-                }
-
-                var stream = await fileStorageService.OpenReadAsync(jobApplication.ExpressApplication.FilePath);
-                var fileName = Path.GetFileName(jobApplication.ExpressApplication.FilePath);
-
-                return new FileDownloadResult(stream, fileName, "application/pdf");
-
+            if (string.IsNullOrEmpty(filePath))
+            {
+                return ServiceResult<FileDownloadResult>.Fail(
+                    HttpStatusCode.NotFound,
+                    "This talent has no resume uploaded"
+                );
             }
 
-            // TODO: handle non-express job applications if needed
-            throw new Exception("CV download not supported for non-express applications yet");
+            try
+            {
+                var stream = await fileStorageService.OpenReadAsync(filePath);
+                var fileName = Path.GetFileName(filePath);
+
+                return ServiceResult<FileDownloadResult>.Ok(
+                    new FileDownloadResult(stream, fileName, "application/pdf")
+                );
+            }
+            catch (Exception ex)
+            {
+                return ServiceResult<FileDownloadResult>.Fail(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
         }
 
         public async Task<bool> DeleteAsync(string jobApplicationId)

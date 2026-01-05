@@ -20,7 +20,23 @@ namespace SeekMatch.Infrastructure.Repositories
                 throw new Exception("An error occurred while fetching the job application", ex);
             }
         }
-        
+
+        public async Task<JobApplication?> GetByIdWithTalentDetailsAsync(string jobApplicationId)
+        {
+            try
+            {
+                return await dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
+                    .Include(j => j.ExpressApplication)
+                    .Include(j => j.Talent)
+                        .ThenInclude(t => t.Resumes)
+                    .FirstAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the job application", ex);
+            }
+        }
+
         public async Task<IList<JobApplication>?> GetAllByTalentAsync(string talentId)
         {
             try
