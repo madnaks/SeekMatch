@@ -25,6 +25,7 @@ export class JobDetailsComponent implements OnInit, OnChanges {
   public canApply: boolean = false;
   public isSaving: boolean = false;
   public isBookmarked: boolean = false;
+  public isAunthenticated: boolean = false;
 
   constructor(
     private sanitizer: DomSanitizer,
@@ -33,15 +34,15 @@ export class JobDetailsComponent implements OnInit, OnChanges {
     private toastService: ToastService,
     private modalService: NgbModal,
     private jobOfferService: JobOfferService) {
+      this.isAunthenticated = this.authService.isAuthenticated();
   }
 
   ngOnInit(): void {
     this.canApply = this.authService.canApply();
-   
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['jobOffer']) {
+    if (changes['jobOffer'] && this.isAunthenticated) {
       this.jobOfferService.isBookmarked(this.jobOffer?.id || '').subscribe((isBookmarked) => {
         this.isBookmarked = isBookmarked;
       });
