@@ -4,7 +4,8 @@
             "EditProfile": "Edit profile",
             "ViewProfile": "View profile",
             "Educations": "Educations",
-            "Experiences": "Experiences"
+            "Experiences": "Experiences",
+            "Resumes": "Resumes"
         },
         "EditProfile": {
             "Title": "Edit profile",
@@ -150,6 +151,7 @@
             "At": "at",
             "ShowResume": "Show Resume",
             "HideResume": "Hide Resume",
+            "NoResumeAvailable": "No resume available to display.",
             "JOB-APPLICATION-STEPS": {
                 "SUBMITTED": "Submitted",
                 "SHORTLISTED": "Shortlisted",

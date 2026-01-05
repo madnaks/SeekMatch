@@ -115,10 +115,10 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Educations & Experiences Tabs -->
+                    <!-- Educations & Experiences & Resumes Tabs -->
                     <div class="row">
-                        <nav ngbNav #nav="ngbNav" class="nav-tabs">
-                            <ng-container ngbNavItem>
+                        <nav ngbNav #nav="ngbNav" class="nav-tabs" (activeIdChange)="onTabChange($event)">
+                            <ng-container ngbNavItem="experiences">
                                 <a ngbNavLink>
                                     <i class="fa-solid fa-graduation-cap me-2"></i>
                                     {{ 'Talent.Profile.Experiences' | translate }}
@@ -144,7 +144,7 @@
                                     }
                                 </ng-template>
                             </ng-container>
-                            <ng-container ngbNavItem>
+                            <ng-container ngbNavItem="educations">
                                 <a ngbNavLink>
                                     <i class="fa-solid fa-star me-2"></i>
                                     {{ 'Talent.Profile.Educations' | translate }}
@@ -173,6 +173,22 @@
                                     }
                                     @else {
                                     {{ 'Talent.PreviewModal.NoEducations' | translate }}
+                                    }
+                                </ng-template>
+                            </ng-container>
+                            <ng-container ngbNavItem="resumes">
+                                <a ngbNavLink>
+                                    <i class="fa-solid fa-file me-2"></i>
+                                    {{ 'Talent.Profile.Resumes' | translate }}
+                                </a>
+                                <ng-template ngbNavContent>
+                                    @if(resumeUrl) {
+                                        <iframe [src]="resumeUrl" width="100%" height="800px">
+                                        </iframe>
+                                    } @else {
+                                        <p>
+                                            {{ 'Talent.PreviewModal.NoResumeAvailable' | translate }}
+                                        </p>
                                     }
                                 </ng-template>
                             </ng-container>

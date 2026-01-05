@@ -4,7 +4,8 @@
             "EditProfile": "Modifier le profil",
             "ViewProfile": "Voir le profil",
             "Educations": "Formations",
-            "Experiences": "Expériences"
+            "Experiences": "Expériences",
+            "Resumes": "CVs"
         },
         "EditProfile": {
             "Title": "Modifier le profil",
@@ -148,6 +149,7 @@
             "At": "chez",
             "ShowResume": "Voir le CV",
             "HideResume": "Masquer le CV",
+            "NoResumeAvailable": "Aucun CV disponible à afficher.",
             "JOB-APPLICATION-STEPS": {
                 "Submitted": "Soumis",
                 "Shortlisted": "Présélectionné",

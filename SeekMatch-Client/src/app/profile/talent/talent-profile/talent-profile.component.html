@@ -66,30 +66,32 @@
 <!-- Educations & Experiences & Resumes Tabs -->
 <div class="row">
     <div class="col-12">
-
         <nav ngbNav #nav="ngbNav" class="nav-tabs">
+            <!-- Experiences -->
             <ng-container ngbNavItem>
                 <a ngbNavLink>
                     <i class="fa-solid fa-star me-2"></i>
                     {{ 'Talent.Profile.Experiences' | translate }}
                 </a>
                 <ng-template ngbNavContent>
-                    <app-experience></app-experience>
+                    <app-experience />
                 </ng-template>
             </ng-container>
+            <!-- Educations -->
             <ng-container ngbNavItem>
                 <a ngbNavLink>
                     <i class="fa-solid fa-graduation-cap me-2"></i>
                     {{ 'Talent.Profile.Educations' | translate }}
                 </a>
                 <ng-template ngbNavContent>
-                    <app-education></app-education>
+                    <app-education />
                 </ng-template>
             </ng-container>
+            <!-- Resumes -->
             <ng-container ngbNavItem>
                 <a ngbNavLink>
                     <i class="fa-solid fa-file me-2"></i>
-                    Resumes
+                    {{ 'Talent.Profile.Resumes' | translate }}
                 </a>
                 <ng-template ngbNavContent>
                     <app-resume/>
@@ -103,12 +105,10 @@
 
 <!-- Edit Profile Modal -->
 <ng-template #addEditProfileContent let-c="close" let-d="dismiss">
-    <app-edit-profile-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
-    </app-edit-profile-modal>
+    <app-edit-profile-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
 <!-- Talent Preview Modal -->
 <ng-template #previewTalentContent let-c="close" let-d="dismiss">
-    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalent]="currentTalent">
-    </app-talent-preview-modal>
+    <app-talent-preview-modal [closeModal]="c" [dismissModal]="d" [selectedTalent]="currentTalent" />
 </ng-template>

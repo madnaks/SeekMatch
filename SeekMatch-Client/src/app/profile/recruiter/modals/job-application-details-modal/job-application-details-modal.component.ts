@@ -157,14 +157,17 @@ export class JobApplicationDetailsModalComponent implements OnInit {
   public onShowResume(jobApplicationId: string | undefined): void {
     if (!jobApplicationId) return;
 
-    this.jobApplicationService.downloadCv(jobApplicationId).subscribe({
+    this.jobApplicationService.downloadResume(jobApplicationId).subscribe({
       next: (res: HttpResponse<Blob>) => {
         const blob = new Blob([res.body!], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
         this.resumeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
       },
-      error: (err) => {
-        console.error('Error loading CV', err);
+      error: (error) => {
+        this.toastService.showErrorMessage(
+          'Error loading Resume', 
+          error
+        );
       }
     });
 
@@ -276,6 +279,12 @@ export class JobApplicationDetailsModalComponent implements OnInit {
         });
     } else {
       this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
+    }
+  }
+
+  public onTabChange(activeId: string | number): void {
+    if (activeId === 'resumes') {
+      this.onShowResume(this.jobApplication?.id);
     }
   }
 }

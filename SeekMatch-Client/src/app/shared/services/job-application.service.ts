@@ -46,9 +46,9 @@ export class JobApplicationService {
     });
   }
 
-  downloadCv(jobApplicationId: string): Observable<HttpResponse<Blob>> {
+  downloadResume(jobApplicationId: string): Observable<HttpResponse<Blob>> {
     return this.http.get(
-      `${this.apiUrl}/job-applications/${jobApplicationId}/cv`,
+      `${this.apiUrl}/job-applications/${jobApplicationId}/resume`,
       { observe: 'response', responseType: 'blob' }
     );
   }

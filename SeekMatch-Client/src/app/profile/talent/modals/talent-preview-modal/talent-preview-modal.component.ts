@@ -110,7 +110,7 @@ export class TalentPreviewModalComponent implements OnInit {
   public onShowResume(jobApplicationId: string | undefined): void {
     if (!jobApplicationId) return;
 
-    this.jobApplicationService.downloadCv(jobApplicationId).subscribe({
+    this.jobApplicationService.downloadResume(jobApplicationId).subscribe({
       next: (res: HttpResponse<Blob>) => {
         const blob = new Blob([res.body!], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
