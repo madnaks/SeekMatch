@@ -54,13 +54,7 @@
                         <p class="card-text">
                             <i class="fa-regular fa-clock me-2"></i>
                             @if (education.currentlyStudying) {
-                            {{ getMonthName(education.startMonth) }} {{ education.startYear }} -
-                            {{ 'Date.Today' | translate }}
-                            } @else if (education.endMonth > 0 && education.endYear > 0) {
-                            {{ getMonthName(education.startMonth) }} {{ education.startYear }} -
-                            {{ getMonthName(education.endMonth) }} {{ education.endYear }}
-                            } @else {
-                            {{ getMonthName(education.startMonth) }} {{ education.startYear }}
+                                {{ getEducationDuration(education) }}
                             }
                         </p>
                     </div>

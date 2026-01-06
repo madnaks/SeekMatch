@@ -50,15 +50,7 @@
                 <!-- Duration of the experience -->
                 <p class="card-text">
                     <i class="fa-regular fa-clock me-2"></i>
-                    @if (experience.currentlyWorking) {
-                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} -
-                    {{ 'Date.Today' | translate }}
-                    } @else if (experience.endMonth > 0 && experience.endYear > 0) {
-                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }} -
-                    {{ getMonthName(experience.endMonth) }} {{ experience.endYear }}
-                    } @else {
-                    {{ getMonthName(experience.startMonth) }} {{ experience.startYear }}
-                    }
+                    {{ getExperienceDuration(experience) }}
                 </p>
             </div>
         </div>

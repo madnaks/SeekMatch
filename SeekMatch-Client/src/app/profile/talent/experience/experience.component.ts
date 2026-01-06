@@ -92,9 +92,8 @@ export class ExperienceComponent implements OnInit {
     }
   }
 
-  public getMonthName(monthId: number): string {
-    const month = this.monthOptions.find(m => m.id === monthId);
-    return month ? this.translate.instant(month.value) : '';
+  public getExperienceDuration(experience: Experience): string {
+    return this.experienceService.getExperienceDuration(experience);
   }
 
   public getJobTypeName(type: JobType): string {

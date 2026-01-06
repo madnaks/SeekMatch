@@ -3,7 +3,6 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EducationService } from '../../../shared/services/education.service';
 import { Education } from '../../../shared/models/education';
 import { TranslateService } from '@ngx-translate/core';
-import { months } from '../../../shared/constants/constants';
 import { finalize } from 'rxjs';
 import { ToastService } from '../../../shared/services/toast.service';
 import { ModalActionType } from '../../../shared/enums/enums';
@@ -15,17 +14,16 @@ import { ModalActionType } from '../../../shared/enums/enums';
 })
 export class EducationComponent implements OnInit {
 
-  public monthOptions = months;
   public educations: Education[] = [];
   public isLoading: boolean = true;
   public isSaving: boolean = false;
   public selectedEducation: Education = new Education;
-  
+
   private deleteModal: NgbModalRef | undefined;
-  
+
   constructor(
-    private modalService: NgbModal, 
-    private educationService: EducationService, 
+    private modalService: NgbModal,
+    private educationService: EducationService,
     private translate: TranslateService,
     private toastService: ToastService) {
   }
@@ -92,8 +90,8 @@ export class EducationComponent implements OnInit {
     }
   }
 
-  public getMonthName(monthId: number): string {
-    const month = this.monthOptions.find(m => m.id === monthId);
-    return month ? this.translate.instant(month.value) : '';
+  public getEducationDuration(education: Education): string {
+    return this.educationService.getDurationString(education);
   }
+
 }
