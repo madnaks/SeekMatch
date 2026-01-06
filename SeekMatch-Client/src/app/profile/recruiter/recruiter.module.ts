@@ -19,6 +19,7 @@ import { JobOfferPreviewModalComponent } from './modals/job-offer-preview-modal/
 import { JobOfferModalComponent } from './modals/job-offer-modal/job-offer-modal.component';
 import { RejectJobApplicationModalComponent } from './modals/reject-job-application-modal/reject-job-application-modal.component';
 import { JobApplicationDetailsModalComponent } from './modals/job-application-details-modal/job-application-details-modal.component';
+import { JobApplicationStepsComponent } from './job-application-steps/job-application-steps.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { JobApplicationDetailsModalComponent } from './modals/job-application-de
     DeleteJobOfferModalComponent,
     RejectJobApplicationModalComponent,
     JobApplicationDetailsModalComponent,
+    JobApplicationStepsComponent
   ],
   imports: [
     CommonModule,

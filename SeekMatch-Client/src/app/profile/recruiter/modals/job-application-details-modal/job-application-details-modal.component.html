@@ -6,8 +6,13 @@
 </div>
 <div class="modal-body">
     <div class="container-fluid">
+        <div class="row mb-5">
+            <div class="col-12">
+                <app-job-application-steps [jobApplication]="jobApplication" />
+            </div>
+        </div>
         <div class="row">
-            <div class="col-10">
+            <div class="col-12">
                 @if(isExpressApplication) {
                     <div class="row mb-4">
                         <div class="col-md-12">
@@ -197,166 +202,7 @@
                     </div>
                 }
             </div>
-            <div class="col-2">
-                @if (jobApplication) {
-                    <!-- Vertical Steps for Job Application Status -->
-                    <div class="d-flex flex-column align-items-start position-relative">
-                        <ng-container *ngFor="let jobApplicationStep of jobApplicationSteps; let i = index">
-                            <div class="d-flex align-items-start mb-0 position-relative"
-                                [ngClass]="{'mb-2': i < jobApplicationSteps.length - 1, 'mb-5': i === jobApplicationSteps.length - 2 }">
-                                <div class="me-3">
-                                    @if (i <= jobApplication.status) { <span class="step-icon text-white" [ngClass]="{
-                                                'bg-danger': i === JobApplicationStatus.Rejected, 
-                                                'bg-secondary': jobApplication.status === JobApplicationStatus.Rejected, 
-                                                'bg-success': jobApplication.status !== JobApplicationStatus.Rejected 
-                                                }" (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                        <i class="{{ jobApplicationStep.icon }}"></i>
-                                        </span>
-                                        }
-                                        @else if(i === jobApplication.status + 1) {
-                                            <span
-                                                class="step-icon bg-light text-secondary border border-2 border-secondary active"
-                                                (click)="applicateStepClicked(i)">
-                                                <i class="{{ jobApplicationStep.icon }}"></i>
-                                            </span>
-                                        } @else if(i === JobApplicationStatus.Rejected && jobApplication.status !== JobApplicationStatus.Rejected) {
-                                            <span class="step-icon bg-light text-secondary border border-2 border-secondary"
-                                                (click)="applicateStepClicked(i)" style="cursor: pointer;">
-                                                <i class="{{ jobApplicationStep.icon }}"></i>
-                                            </span>
-                                        }
-                                        @else {
-                                            <span class="step-icon bg-light text-secondary border border-2 border-secondary">
-                                                <i class="{{ jobApplicationStep.icon }}"></i>
-                                            </span>
-                                        }
-                                </div>
-                                <div>
-                                    <div [ngClass]="{
-                                            'fw-bold': i <= jobApplication.status,
-                                            'text-secondary': i > jobApplication.status
-                                            }">
-                                        {{ jobApplicationStep.text | translate }}
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Vertical line -->
-                            @if (i < jobApplicationSteps.length - 2) { 
-                                <div class="vertical-line"></div> 
-                            }
-                        </ng-container>
-                    </div>
-                }
-            </div>
         </div>
     </div>
 </div>
 
-<!-- Job application Shortlisted Modal -->
-<ng-template #shortListedConfirmationModal let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
-        </h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <p>
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.BODY' | translate }}
-        </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onShortlistConfirmed(modal)">
-            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
-            {{ 'BUTTON.YES' | translate }}
-        </button>
-    </div>
-</ng-template>
-
-<!-- Job application Interview Scheduled Modal -->
-<ng-template #interviewScheduledModal let-modal2>
-    <div class="modal-header">
-        <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.TITLE' | translate }}
-        </h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal2.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <div class="row mb-3">
-            <div class="col">
-                {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.BODY' | translate }}
-            </div>
-        </div>
-        <div class="row">
-            <form [formGroup]="interviewForm">
-                <div class="col-6">
-                    <select class="form-select" id="selectInterviewPlatform" formControlName="platform">
-                        <option *ngFor="let platform of platforms" [value]="platform.name">
-                            {{ platform.name }}
-                        </option>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <be-date-picker-input [form]="interviewForm" [controlName]="'date'" [label]="''"
-                        [id]="'inputInterviewDate'" />
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)"
-            [disabled]="interviewForm.invalid || isSaving">
-            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-clock': !isSaving }"></i>
-            {{ 'BUTTON.YES' | translate }}
-        </button>
-    </div>
-</ng-template>
-
-<!-- Job application Hire Modal -->
-<ng-template #hireConfirmationModal let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.TITLE' | translate }}
-        </h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <p>
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.BODY' | translate }}
-        </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onHireConfirmed(modal)">
-            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
-            {{ 'BUTTON.YES' | translate }}
-        </button>
-    </div>
-</ng-template>
-
-<!-- Job application Rejection Modal -->
-<ng-template #rejectJobApplicationModal let-modal3>
-    <form [formGroup]="rejectionForm" (ngSubmit)="onRejectJobApplication(modal3)">
-        <div class="modal-header">
-            <h4 class="modal-title">
-                {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
-            </h4>
-            <button type="button" class="btn-close" aria-label="Close" (click)="modal3.dismiss('Cross click')"></button>
-        </div>
-        <div class="modal-body">
-            <label for="inputRejectionReason" class="form-label">
-                {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
-            </label>
-            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
-                formControlName="reason"></textarea>
-            @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
-            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'" />
-            }
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-danger">
-                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
-                {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
-            </button>
-        </div>
-    </form>
-</ng-template>

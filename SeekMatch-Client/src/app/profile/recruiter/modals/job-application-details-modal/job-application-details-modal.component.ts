@@ -1,19 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
 import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
-import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { HttpResponse } from '@angular/common/http';
-import { JobApplication } from '@app/shared/models/job-application';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { finalize } from 'rxjs';
 import { ToastService } from '@app/shared/services/toast.service';
-import { Talent } from '@app/shared/models/talent';
-import { months } from '@app/shared/constants/constants';
-import { TalentService } from '@app/shared/services/talent.service';
-import { Education } from '@app/shared/models/education';
-import { Experience } from '@app/shared/models/experience';
+import { Education, Experience, JobApplication, Talent } from '@app/shared/models';
+import { EducationService, ExperienceService, JobApplicationService, TalentService } from '@app/shared/services';
 
 @Component({
   selector: 'app-job-application-details-modal',
@@ -30,46 +22,23 @@ export class JobApplicationDetailsModalComponent implements OnInit {
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
-  @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
-  @ViewChild('interviewScheduledModal') interviewScheduledModal!: TemplateRef<any>;
-  @ViewChild('hireConfirmationModal') hireConfirmationModal!: TemplateRef<any>;
-  @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
-
   public currentTalent: Talent | null = null;
   public profilePicture: SafeUrl | string | null = null;
   public isSummaryExpanded = false;
   public isExpressApplication: boolean = false;
-  public monthOptions = months;
   public resumeUrl: SafeResourceUrl | null = null;
   public showResume: boolean = false;
   public JobApplicationStatus = JobApplicationStatus;
-  public interviewForm: FormGroup;
-  public rejectionForm: FormGroup;
   public isSaving: boolean = false;
-  public jobApplicationSteps = [
-    { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED' },
-    { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED' },
-    { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED' },
-    { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED' },
-    { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
-  ];
-  public platforms = [
-    { name: 'Teams' },
-    { name: 'Google Meet' },
-    { name: 'Zoom' },
-    { name: 'Other' }
-  ];
 
   constructor(
     private talentService: TalentService,
     private jobApplicationService: JobApplicationService,
+    private educationService: EducationService,
+    private experienceService: ExperienceService,
     private sanitizer: DomSanitizer,
     private translate: TranslateService,
-    private modalService: NgbModal,
-    private fb: NonNullableFormBuilder,
     private toastService: ToastService) {
-    this.interviewForm = this.initInterviewForm();
-    this.rejectionForm = this.initRejectionForm();
   }
 
   ngOnInit(): void {
@@ -93,19 +62,6 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     }
   }
 
-  private initInterviewForm(): FormGroup {
-    return this.fb.group({
-      platform: ['', Validators.required],
-      date: [null, Validators.required]
-    });
-  }
-
-  private initRejectionForm(): FormGroup {
-    return this.fb.group({
-      reason: ['', Validators.required],
-    });
-  }
-
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
       this.profilePicture = `data:image/jpeg;base64,${this.currentTalent.profilePicture}`;
@@ -125,33 +81,12 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     return !!this.currentTalent?.summary && this.currentTalent.summary.length > 150;
   }
 
-  public getMonthName(monthId: number): string {
-    const month = this.monthOptions.find(m => m.id === monthId);
-    return month ? this.translate.instant(month.value) : '';
-  }
-
   public getEducationDuration(education: Education): string {
-    if (education.currentlyStudying) {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear + ' - '
-        + this.translate.instant('Date.Today');
-    } else if (education.endMonth > 0 && education.endYear > 0) {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear + ' - '
-        + this.getMonthName(education.endMonth) + ' ' + education.endYear
-    } else {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear
-    }
+    return this.educationService.getDurationString(education);
   }
 
   public getExperienceDuration(experience: Experience): string {
-    if (experience.currentlyWorking) {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear + ' - '
-        + this.translate.instant('Date.Today');
-    } else if (experience.endMonth > 0 && experience.endYear > 0) {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear + ' - '
-        + this.getMonthName(experience.endMonth) + ' ' + experience.endYear
-    } else {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear
-    }
+    return this.experienceService.getExperienceDuration(experience);
   }
 
   public onShowResume(jobApplicationId: string | undefined): void {
@@ -165,121 +100,13 @@ export class JobApplicationDetailsModalComponent implements OnInit {
       },
       error: (error) => {
         this.toastService.showErrorMessage(
-          'Error loading Resume', 
+          'Error loading Resume',
           error
         );
       }
     });
 
     this.showResume = true;
-  }
-
-  public applicateStepClicked(stepIndex: number): void {
-    switch (stepIndex) {
-      case JobApplicationStatus.Shortlisted:
-        this.modalService.open(this.shortListedConfirmationModal, { centered: true, backdrop: 'static' });
-        break;
-      case JobApplicationStatus.InterviewScheduled:
-        this.modalService.open(this.interviewScheduledModal, { centered: true, backdrop: 'static' });
-        break;
-      case JobApplicationStatus.Hired:
-        this.modalService.open(this.hireConfirmationModal, { centered: true, backdrop: 'static' });
-        break;
-      case JobApplicationStatus.Rejected:
-        this.modalService.open(this.rejectJobApplicationModal, { centered: true, backdrop: 'static' });
-        break;
-      default:
-        break;
-    }
-  }
-
-  public onShortlistConfirmed(modal: any): void {
-    this.isSaving = true;
-    this.jobApplicationService.shortList(this.jobApplication?.id || '').pipe(
-      finalize(() => {
-        this.isSaving = false;
-      })).subscribe({
-        next: () => {
-          if (this.jobApplication) {
-            this.jobApplication.status = JobApplicationStatus.Shortlisted;
-            this.toastService.showSuccessMessage('Job application shortlisted successfully');
-            modal.close('Yes');
-          }
-        },
-        error: (err) => {
-          console.error('Error shortlisting application', err);
-        }
-      });
-  }
-
-  public onInterviewScheduledConfirmed(modal: any): void {
-    if (this.interviewForm.invalid) {
-      this.interviewForm.markAllAsTouched();
-      return;
-    }
-    this.isSaving = true;
-    this.jobApplicationService.interviewScheduled(this.jobApplication?.id, this.interviewForm.value).pipe(
-      finalize(() => {
-        this.isSaving = false;
-      })).subscribe({
-        next: () => {
-          if (this.jobApplication) {
-            this.jobApplication.status = JobApplicationStatus.InterviewScheduled;
-            this.toastService.showSuccessMessage('Interview scheduled successfully');
-            modal.close('Yes');
-          }
-        },
-        error: (err) => {
-          console.error('Error scheduling application', err);
-        }
-      });
-  }
-
-  public onHireConfirmed(modal: any): void {
-    this.isSaving = true;
-    this.jobApplicationService.hire(this.jobApplication?.id || '').pipe(
-      finalize(() => {
-        this.isSaving = false;
-      })).subscribe({
-        next: () => {
-          if (this.jobApplication) {
-            this.jobApplication.status = JobApplicationStatus.Hired;
-            this.toastService.showSuccessMessage('Talent hired successfully');
-            modal.close('Yes');
-          }
-        },
-        error: (err) => {
-          console.error('Error while hiring the talent', err);
-        }
-      });
-  }
-
-  public onRejectJobApplication(modal: any): void {
-    if (this.rejectionForm.invalid) {
-      this.rejectionForm.markAllAsTouched();
-      return;
-    }
-    this.isSaving = true;
-    if (this.jobApplication && this.jobApplication.id) {
-      this.jobApplicationService.reject(this.jobApplication.id, this.rejectionForm.value.reason).pipe(
-        finalize(() => {
-          this.isSaving = false;
-          this.modalService.dismissAll();
-        })).subscribe({
-          next: () => {
-            if (this.jobApplication) {
-              this.jobApplication.status = JobApplicationStatus.Rejected;
-            }
-            this.toastService.showSuccessMessage('Job application rejected successfully');
-            modal.close('Yes');
-          },
-          error: (error) => {
-            this.toastService.showErrorMessage('Rejecting Job application failed', error);
-          }
-        });
-    } else {
-      this.toastService.showErrorMessage('Job application ID is undefined, cannot reject');
-    }
   }
 
   public onTabChange(activeId: string | number): void {

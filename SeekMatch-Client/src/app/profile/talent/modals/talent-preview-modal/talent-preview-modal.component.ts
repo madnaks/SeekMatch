@@ -1,13 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Talent } from '../../../../shared/models/talent';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { TranslateService } from '@ngx-translate/core';
-import { months } from '../../../../shared/constants/constants';
-import { Education } from '../../../../shared/models/education';
-import { Experience } from '../../../../shared/models/experience';
 import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
-import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { HttpResponse } from '@angular/common/http';
+import { EducationService, ExperienceService, JobApplicationService } from '@app/shared/services';
+import { Education, Experience, Talent } from '@app/shared/models';
 
 @Component({
   selector: 'app-talent-preview-modal',
@@ -27,29 +24,17 @@ export class TalentPreviewModalComponent implements OnInit {
   public profilePicture: SafeUrl | string | null = null;
   public isSummaryExpanded = false;
   public isExpressApplication: boolean = false;
-  public monthOptions = months;
   public resumeUrl: SafeResourceUrl | null = null;
   public showResume: boolean = false;
   public JobApplicationStatus = JobApplicationStatus;
   public isSaving: boolean = false;
-  public jobApplicationSteps = [
-    { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED' },
-    { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED' },
-    { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED' },
-    { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED' },
-    { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED' }
-  ];
-  public platforms = [
-    { name: 'Teams' },
-    { name: 'Google Meet' },
-    { name: 'Zoom' },
-    { name: 'Other' }
-  ];
 
   constructor(
     private jobApplicationService: JobApplicationService,
     private sanitizer: DomSanitizer,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private educationService: EducationService,
+    private experienceService: ExperienceService) {
   }
 
   ngOnInit(): void {
@@ -78,33 +63,12 @@ export class TalentPreviewModalComponent implements OnInit {
     return !!this.currentTalent?.summary && this.currentTalent.summary.length > 150;
   }
 
-  public getMonthName(monthId: number): string {
-    const month = this.monthOptions.find(m => m.id === monthId);
-    return month ? this.translate.instant(month.value) : '';
-  }
-
   public getEducationDuration(education: Education): string {
-    if (education.currentlyStudying) {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear + ' - '
-        + this.translate.instant('Date.Today');
-    } else if (education.endMonth > 0 && education.endYear > 0) {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear + ' - '
-        + this.getMonthName(education.endMonth) + ' ' + education.endYear
-    } else {
-      return this.getMonthName(education.startMonth) + ' ' + education.startYear
-    }
+    return this.educationService.getDurationString(education);
   }
 
   public getExperienceDuration(experience: Experience): string {
-    if (experience.currentlyWorking) {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear + ' - '
-        + this.translate.instant('Date.Today');
-    } else if (experience.endMonth > 0 && experience.endYear > 0) {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear + ' - '
-        + this.getMonthName(experience.endMonth) + ' ' + experience.endYear
-    } else {
-      return this.getMonthName(experience.startMonth) + ' ' + experience.startYear
-    }
+    return this.experienceService.getExperienceDuration(experience);
   }
 
   public onShowResume(jobApplicationId: string | undefined): void {

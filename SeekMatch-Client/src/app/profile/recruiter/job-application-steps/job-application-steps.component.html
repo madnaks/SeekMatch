@@ -1,0 +1,142 @@
+@if (jobApplication) {
+    <div class="d-flex flex-row justify-content-between align-items-center">
+
+        @for (step of jobApplicationSteps; track step; let i = $index) {
+
+            <div class="d-flex align-items-center">
+                <div class="me-3">
+                    <span class="step-icon" [ngClass]="getStepIconClasses(step.value, i)"
+                        (click)="canClick(step.value) && applicateStepClicked(step.value, i)">
+                        <i class="{{ step.icon }}"></i>
+                    </span>
+                </div>
+
+                <div>
+                    <div [ngClass]="getStepTextClasses(step.value)">
+                        {{ step.text | translate }}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arrow / separator -->
+            @if (step.value < jobApplicationSteps.length - 2) { 
+                <i class="fa-solid fa-angle-right"></i>
+            }
+
+            @if (step.value === jobApplicationSteps.length - 2) {
+                <i class="fa-solid fa-grip-lines-vertical"></i>
+            }
+
+        }
+
+    </div>
+}
+
+<!-- Job application Shortlisted Modal -->
+<ng-template #shortListedConfirmationModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.BODY' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onShortlistConfirmed(modal)">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Job application Interview Scheduled Modal -->
+<ng-template #interviewScheduledModal let-modal2>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal2.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <div class="row mb-3">
+            <div class="col">
+                {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.BODY' | translate }}
+            </div>
+        </div>
+        <div class="row">
+            <form [formGroup]="interviewForm">
+                <div class="col-6">
+                    <select class="form-select" id="selectInterviewPlatform" formControlName="platform">
+                        <option *ngFor="let platform of platforms" [value]="platform.name">
+                            {{ platform.name }}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <be-date-picker-input [form]="interviewForm" [controlName]="'date'" [label]="''"
+                        [id]="'inputInterviewDate'" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onInterviewScheduledConfirmed(modal2)"
+            [disabled]="interviewForm.invalid || isSaving">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-clock': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Job application Hire Modal -->
+<ng-template #hireConfirmationModal let-modal>
+    <div class="modal-header">
+        <h5 class="modal-title">
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.TITLE' | translate }}
+        </h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>
+            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.BODY' | translate }}
+        </p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="onHireConfirmed(modal)">
+            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+            {{ 'BUTTON.YES' | translate }}
+        </button>
+    </div>
+</ng-template>
+
+<!-- Job application Rejection Modal -->
+<ng-template #rejectJobApplicationModal let-modal3>
+    <form [formGroup]="rejectionForm" (ngSubmit)="onRejectJobApplication(modal3)">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                {{ 'Recruiter.JobApplication.RejectModal.Title' | translate }}
+            </h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal3.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <label for="inputRejectionReason" class="form-label">
+                {{ 'Recruiter.JobApplication.RejectModal.Reason' | translate }}
+            </label>
+            <textarea rows="5" class="form-control" id="inputRejectionReason" #inputRejectionReason
+                formControlName="reason"></textarea>
+            @if(rejectionForm.controls['reason'].touched && rejectionForm.controls['reason'].invalid) {
+            <app-error-message [message]="'Recruiter.JobApplication.RejectModal.Validation.Reason'" />
+            }
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-danger">
+                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-trash': !isSaving }"></i>
+                {{ 'Recruiter.JobApplication.RejectModal.Reject' | translate }}
+            </button>
+        </div>
+    </form>
+</ng-template> 
