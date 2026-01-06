@@ -30,7 +30,7 @@ export class ExperienceService {
     return this.http.delete(`${this.apiUrl}/${experienceId}`);
   }
 
-  public getExperienceDuration(experience: Experience): string {
+  public getDurationString(experience: Experience): string {
     if (experience.currentlyWorking) {
       return this.getMonthName(experience.startMonth) + ' ' + experience.startYear + ' - '
         + this.translate.instant('Date.Today');

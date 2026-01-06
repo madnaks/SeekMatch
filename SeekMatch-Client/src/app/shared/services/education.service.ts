@@ -30,7 +30,7 @@ export class EducationService {
     return this.http.delete(`${this.apiUrl}/${educationId}`);
   }
 
-  getDurationString(education: Education): string {
+  public getDurationString(education: Education): string {
     if (education.currentlyStudying) {
       return this.getMonthName(education.startMonth) + ' ' + education.startYear + ' - '
         + this.translate.instant('Date.Today');

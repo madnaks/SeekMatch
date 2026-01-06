@@ -93,7 +93,7 @@ export class ExperienceComponent implements OnInit {
   }
 
   public getExperienceDuration(experience: Experience): string {
-    return this.experienceService.getExperienceDuration(experience);
+    return this.experienceService.getDurationString(experience);
   }
 
   public getJobTypeName(type: JobType): string {

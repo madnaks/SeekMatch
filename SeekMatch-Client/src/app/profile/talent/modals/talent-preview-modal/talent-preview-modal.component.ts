@@ -68,7 +68,7 @@ export class TalentPreviewModalComponent implements OnInit {
   }
 
   public getExperienceDuration(experience: Experience): string {
-    return this.experienceService.getExperienceDuration(experience);
+    return this.experienceService.getDurationString(experience);
   }
 
   public onShowResume(jobApplicationId: string | undefined): void {

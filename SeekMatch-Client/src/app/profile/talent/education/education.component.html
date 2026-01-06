@@ -3,7 +3,7 @@
     <div class="col-md-12">
 
         @if (isLoading) {
-        <be-loader/>
+        <be-loader />
         } @else {
         @if (educations.length === 0) {
         <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
@@ -53,9 +53,7 @@
                         <!-- Duration of the education -->
                         <p class="card-text">
                             <i class="fa-regular fa-clock me-2"></i>
-                            @if (education.currentlyStudying) {
-                                {{ getEducationDuration(education) }}
-                            }
+                            {{ getEducationDuration(education) }}
                         </p>
                     </div>
                 </div>
@@ -68,15 +66,13 @@
 
 <!-- education creation modal -->
 <ng-template #addEducationContent let-c="close" let-d="dismiss">
-    <app-education-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)">
-    </app-education-modal>
+    <app-education-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
 <!-- education edit modal -->
 <ng-template #updateEducationContent let-c="close" let-d="dismiss">
     <app-education-modal [closeModal]="c" [dismissModal]="d" [selectedEducation]="selectedEducation"
-        (modalActionComplete)="modalActionComplete($event)">
-    </app-education-modal>
+        (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
 <!-- delete modal -->
