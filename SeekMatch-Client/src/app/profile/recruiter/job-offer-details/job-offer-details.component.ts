@@ -44,7 +44,6 @@ export class JobOfferDetailsComponent implements OnInit {
 
     if (!this.jobOffer) {
       const id = this.route.snapshot.paramMap.get('id');
-      // call API only if needed
       if (id) {
         this.jobOfferService.getById(id).subscribe((jobOffer: JobOffer) => {
           this.jobOffer = jobOffer;

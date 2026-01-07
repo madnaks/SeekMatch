@@ -1,25 +1,36 @@
-
 @import '../../../../assets/styles/styles-variables.scss';
 
-.step-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    font-size: 1.2rem;
+.step {
 
-    &.active {
-        transition: color 0.3s ease;
+    user-select: none;
 
-        &:hover {
-            cursor: pointer;
+    // Hover effect for active and danger steps
+    &:has(.active):hover, &:has(.bg-danger):hover {
+        cursor: pointer;
 
+        .step-icon {
             i {
                 color: $accent-color;
             }
         }
+
+        .step-text {
+            color: $accent-color !important;
+        }
     }
 
+    .step-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 1.2rem;
+
+        &.active, .step-text, .step-icon  {
+            transition: all 0.3s ease;
+        }
+
+    }
 }

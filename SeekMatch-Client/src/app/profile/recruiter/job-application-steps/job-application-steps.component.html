@@ -3,18 +3,15 @@
 
         @for (step of jobApplicationSteps; track step; let i = $index) {
 
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center step" (click)="canClick(step.value) && applicateStepClicked(step.value, i)">
                 <div class="me-3">
-                    <span class="step-icon" [ngClass]="getStepIconClasses(step.value, i)"
-                        (click)="canClick(step.value) && applicateStepClicked(step.value, i)">
+                    <span class="step-icon" [ngClass]="getStepIconClasses(step.value, i)">
                         <i class="{{ step.icon }}"></i>
                     </span>
                 </div>
 
-                <div>
-                    <div [ngClass]="getStepTextClasses(step.value)">
-                        {{ step.text | translate }}
-                    </div>
+                <div class="step-text" [ngClass]="getStepTextClasses(step.value)">
+                    {{ step.text | translate }}
                 </div>
             </div>
 

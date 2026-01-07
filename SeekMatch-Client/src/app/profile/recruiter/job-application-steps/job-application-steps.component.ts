@@ -114,7 +114,6 @@ export class JobApplicationStepsComponent {
             'bg-secondary text-white': this.isRejected() && !this.isRejectedStep(index),
             'bg-light text-secondary border border-2 border-secondary': !this.isCompleted(stepValue),
             'active': this.isNext(stepValue),
-            'cursor-pointer': this.canClick(stepValue)
         };
     }
 
