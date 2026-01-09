@@ -28,8 +28,6 @@ namespace SeekMatch.Application.Services
             if (!result.Succeeded)
                 return result;
 
-            //await userManager.AddToRoleAsync(user, model.Role.ToString());
-
             var talent = new Talent()
             {
                 FirstName = registerTalentDto.FirstName,

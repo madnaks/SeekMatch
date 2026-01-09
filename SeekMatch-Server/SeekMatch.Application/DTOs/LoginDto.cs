@@ -2,14 +2,14 @@
 
 namespace SeekMatch.Application.DTOs
 {
-    public class LoginDto
+    public class ResetPasswordDto
     {
         [Required]
-        [EmailAddress]
-        public required string Email { get; set; }
+        [MinLength(6)]
+        public required string CurrentPassword { get; set; }
 
         [Required]
         [MinLength(6)]
-        public required string Password { get; set; }
+        public required string NewPassword { get; set; }
     }
 }

@@ -55,9 +55,22 @@ builder.Services.AddSingleton<IFileStorageService>(
     new FileStorageService(uploadsPath));
 
 // Add Identity services
-builder.Services.AddIdentityCore<User>()
-    .AddEntityFrameworkStores<SeekMatchDbContext>()
-    .AddApiEndpoints();
+builder.Services.AddIdentityCore<User>(options => {
+    // Password policy
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 8;
+
+    // User
+    options.User.RequireUniqueEmail = true;
+
+    // TODO: Sign-in
+    options.SignIn.RequireConfirmedEmail = false;
+})
+.AddEntityFrameworkStores<SeekMatchDbContext>()
+.AddApiEndpoints();
 
 // Configure the database context with Npgsql
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<SeekMatchDbContext>(opt =>

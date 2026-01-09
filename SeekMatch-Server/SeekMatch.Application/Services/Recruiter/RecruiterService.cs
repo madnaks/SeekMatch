@@ -109,7 +109,8 @@ namespace SeekMatch.Application.Services
             {
                 UserName = recruiterDto.Email,
                 Email = recruiterDto.Email,
-                Role = UserRole.Recruiter
+                Role = UserRole.Recruiter,
+                IsTemporaryPassword = true
             };
 
             var temporaryPassword = Utils.GenerateTemporaryPassword();
