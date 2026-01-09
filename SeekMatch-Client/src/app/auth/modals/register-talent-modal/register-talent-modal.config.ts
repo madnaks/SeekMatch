@@ -1,6 +1,6 @@
-import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
 
-export function createRegisterForm(fb: NonNullableFormBuilder): FormGroup {
+export function createRegisterForm(fb: FormBuilder): FormGroup {
     return fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],

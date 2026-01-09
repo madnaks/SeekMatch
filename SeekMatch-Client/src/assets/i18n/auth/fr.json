@@ -111,5 +111,23 @@
                 }
             }
         }
+    },
+    "ResetPassword": {
+        "Modal": {
+            "Title": "Réinitialiser le mot de passe",
+            "Description": "Veuillez entrer votre mot de passe actuel et le nouveau mot de passe que vous souhaitez définir.",
+            "Form": {
+                "CurrentPassword": "Mot de passe actuel",
+                "NewPassword": "Nouveau mot de passe",
+                "ConfirmNewPassword": "Confirmer le nouveau mot de passe",
+                "SubmitButton": "Réinitialiser le mot de passe",
+                "Validation": {
+                    "CurrentPassword": "Le mot de passe actuel est requis.",
+                    "NewPassword": "Le nouveau mot de passe est requis.",
+                    "ConfirmNewPassword": "La confirmation du nouveau mot de passe est requise.",
+                    "PasswordMismatch": "Le nouveau mot de passe et la confirmation ne correspondent pas."
+                }
+            }
+        }
     }
 }

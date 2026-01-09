@@ -148,10 +148,10 @@
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <app-password-input [form]="loginForm"></app-password-input>
+              <be-password-input [form]="loginForm" />
             </div>
             <div class="mb-3">
-              <app-login-button [isLoading]="isLoading"></app-login-button>
+              <app-login-button [isLoading]="isLoading" />
             </div>
             <div class="text-center my-3 text-muted">
               <span>{{"LABEL.OR" | translate}}</span>
@@ -182,11 +182,11 @@
             </div>
             <!-- Password -->
             <div class="mb-3">
-              <app-password-input [form]="signupForm"/>
+              <be-password-input [form]="signupForm" />
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <app-confirm-password-input [form]="signupForm"/>
+              <be-confirm-password-input [form]="signupForm" />
             </div>
             <button type="submit" class="btn btn-primary w-100 mb-3">
               <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>

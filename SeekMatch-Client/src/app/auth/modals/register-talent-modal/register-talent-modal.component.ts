@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Talent } from '../../../shared/models/talent';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
@@ -25,7 +25,7 @@ export class RegisterTalentModalComponent {
   isError: boolean = false;
 
   constructor(
-    private fb: NonNullableFormBuilder,
+    private fb: FormBuilder,
     private talentService: TalentService,
     private router: Router,
     private toastService: ToastService,
