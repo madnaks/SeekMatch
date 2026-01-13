@@ -26,7 +26,12 @@
                 "CV-REQUIRED": "CV is required.",
                 "CV-INVALID": "Only PDF files are allowed.",
                 "PASSWORD-REQUIRED": "Password is required.",
-                "PASSWORD-MISMATCH": "Passwords do not match."
+                "PASSWORD-MISMATCH": "Passwords do not match.",
+                "PASSWORD-MINLENGTH": "Password must be at least 8 characters long.",
+                "PASSWORD-UPPERCASE": "Password must contain at least one uppercase letter.",
+                "PASSWORD-LOWERCASE": "Password must contain at least one lowercase letter.",
+                "PASSWORD-NUMBER": "Password must contain at least one number.",
+                "PASSWORD-SPECIAL": "Password must contain at least one special character."
             }
         }
     }

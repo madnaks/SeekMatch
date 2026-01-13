@@ -26,7 +26,12 @@
                 "CV-REQUIRED": "Le CV est requis.",
                 "CV-INVALID": "Seuls les fichiers PDF sont autorisés.",
                 "PASSWORD-REQUIRED": "Le mot de passe est requis.",
-                "PASSWORD-MISMATCH": "Les mots de passe ne correspondent pas."
+                "PASSWORD-MISMATCH": "Les mots de passe ne correspondent pas.",
+                "PASSWORD-MINLENGTH": "Le mot de passe doit contenir au moins 8 caractères.",
+                "PASSWORD-UPPERCASE": "Le mot de passe doit contenir au moins une lettre majuscule.",
+                "PASSWORD-LOWERCASE": "Le mot de passe doit contenir au moins une lettre minuscule.",
+                "PASSWORD-NUMBER": "Le mot de passe doit contenir au moins un chiffre.",
+                "PASSWORD-SPECIAL": "Le mot de passe doit contenir au moins un caractère spécial."
             }
         }
     }

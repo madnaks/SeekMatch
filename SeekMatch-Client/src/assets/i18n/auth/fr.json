@@ -8,7 +8,8 @@
                 "Body": {
                     "FirstLine": "Prêt à passer à l'étape suivante ?",
                     "Form": {
-                        "SubmitButton": "Créé Profile"
+                        "SubmitButton": "Créé Profile",
+                        "TermsNote": "En créant un compte, vous acceptez nos <a href='' class='static-link'>Conditions d'utilisation</a> et avez lu et pris connaissance de la <a href='' class='static-link'>Déclaration de confidentialité mondiale.</a>"
                     }
                 },
                 "Success": {

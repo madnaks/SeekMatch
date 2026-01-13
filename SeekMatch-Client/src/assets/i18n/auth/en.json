@@ -8,7 +8,8 @@
                 "Body": {
                     "FirstLine": "Ready to take the next step?",
                     "Form": {
-                        "SubmitButton": "Create Account"
+                        "SubmitButton": "Create Account",
+                        "TermsNote": "By creating an account, you agree to our <a href='' class='static-link'>Terms</a> and have read and acknowledge the <a href='' class='static-link'>Global Privacy Statement.</a>"
                     }
                 },
                 "Success": {
