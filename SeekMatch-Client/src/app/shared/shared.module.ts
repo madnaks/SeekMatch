@@ -13,7 +13,7 @@ import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButto
 import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
 import { SanitizedHtmlPipe } from './pipes/sanitizedHtml.pipe';
 import { StepperComponent } from './ui/stepper/stepper.component';
-import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset-password-modal.component';
+import { ChangePasswordModalComponent } from './modals/change-password-modal/change-password-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +21,13 @@ import { ResetPasswordModalComponent } from './modals/reset-password-modal/reset
     HeaderSimplifiedComponent,
     FooterComponent,
     LoginModalComponent,
-    ResetPasswordModalComponent,
     ToastComponent,
     CountryNamePipe,
     GeoNamePipe,
     SanitizedHtmlPipe,
     BreadCrumbComponent,
-    StepperComponent
+    StepperComponent,
+    ChangePasswordModalComponent
   ],
   imports: [
     CommonModule,

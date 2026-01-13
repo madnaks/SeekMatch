@@ -4,14 +4,14 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
-import { createResetPasswordForm } from './reset-password-modal.config';
+import { createChangePasswordForm } from './change-password-modal.config';
 
 @Component({
-  selector: 'app-reset-password-modal',
-  templateUrl: './reset-password-modal.component.html',
-  styleUrl: './reset-password-modal.component.scss'
+  selector: 'app-change-password-modal',
+  templateUrl: './change-password-modal.component.html',
+  styleUrl: './change-password-modal.component.scss'
 })
-export class ResetPasswordModalComponent {
+export class ChangePasswordModalComponent {
 
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
@@ -24,7 +24,7 @@ export class ResetPasswordModalComponent {
     private authService: AuthService,
     private toastService: ToastService,
     private router: Router) {
-    this.resetPasswordForm = createResetPasswordForm(this.fb);
+    this.resetPasswordForm = createChangePasswordForm(this.fb);
   }
 
   public onSubmit(): void {
@@ -50,6 +50,8 @@ export class ResetPasswordModalComponent {
         this.authService.logout();
         this.router.navigate(['/home']);
       },
+      error: (error) => {
+        this.toastService.showErrorMessage('Rese
       error: (error) => {
         this.toastService.showErrorMessage('Reset password failed', error);
       }
