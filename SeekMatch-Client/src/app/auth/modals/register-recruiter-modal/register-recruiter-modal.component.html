@@ -93,7 +93,7 @@
         <!-- Confirm Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <be-confirm-password-input [form]="registerFreelancerForm" />
+                <be-password-input [form]="registerFreelancerForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
@@ -147,7 +147,7 @@
                 <!-- Confirm Password -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <be-confirm-password-input [form]="registerFreelancerForm" />
+                        <be-password-input [form]="registerRepresentativeForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
                     </div>
                 </div>
             </div>

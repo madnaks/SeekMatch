@@ -186,7 +186,7 @@
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <be-confirm-password-input [form]="signupForm" />
+              <be-password-input [form]="signupForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
             </div>
             <button type="submit" class="btn btn-primary w-100 mb-3">
               <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>

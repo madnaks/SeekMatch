@@ -7,7 +7,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 import { CountryNamePipe } from './pipes/country-name.pipe';
 import { GeoNamePipe } from './pipes/geo-name.pipe';
-import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent, ConfirmPasswordInputComponent } from "@app/shared/form-controls";
+import { EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { FooterComponent, HeaderComponent, HeaderSimplifiedComponent, LoginButtonComponent, ToastComponent } from './ui';
 import { BreadCrumbComponent } from './ui/breadcrumb/breadcrumb.component';
@@ -40,8 +40,7 @@ import { ChangePasswordModalComponent } from './modals/change-password-modal/cha
     EmailInputComponent,
     PasswordInputComponent,
     LoginButtonComponent,
-    DatePickerInputComponent,
-    ConfirmPasswordInputComponent
+    DatePickerInputComponent
 ],
   exports: [
     HeaderComponent,

@@ -5,6 +5,7 @@ import { AuthService } from '@app/shared/services/auth.service';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { getPhoneNumberValue } from '@app/shared/utils';
+import { BePasswordsMatchValidator, BePasswordValidator } from '@app/shared/validators/password-validator';
 import { finalize } from 'rxjs';
 
 @Component({
@@ -62,9 +63,9 @@ export class ExpressApplyModalComponent {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, BePasswordValidator()]],
       confirmPassword: ['', [Validators.required]]
-    });
+    }, { validators: BePasswordsMatchValidator() } );
   }
 
   public dismiss(reason: string = '') {

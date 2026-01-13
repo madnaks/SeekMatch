@@ -1,13 +1,14 @@
 import { AbstractControl, FormGroup, NonNullableFormBuilder, ValidatorFn, Validators } from "@angular/forms";
+import { BePasswordsMatchValidator, BePasswordValidator } from "@app/shared/validators/password-validator";
 
 export function createRegisterFreelancerForm(fb: NonNullableFormBuilder): FormGroup {
     return fb.group({
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, BePasswordValidator()]],
         confirmPassword: ['', Validators.required]
-    }, { validators: passwordsMatchValidator() });
+    }, { validators: BePasswordsMatchValidator() });
 }
 
 export function createRegisterRepresentativeForm(fb: NonNullableFormBuilder): FormGroup {
@@ -19,16 +20,7 @@ export function createRegisterRepresentativeForm(fb: NonNullableFormBuilder): Fo
         lastName: ['', Validators.required],
         position: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, BePasswordValidator()]],
         confirmPassword: ['', Validators.required]
-    }, { validators: passwordsMatchValidator() });
-}
-
-export function passwordsMatchValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: boolean } | null => {
-        const formGroup = control as FormGroup;
-        const password = formGroup.get('password')?.value;
-        const confirmPassword = formGroup.get('confirmPassword')?.value;
-        return password === confirmPassword ? null : { mismatch: true };
-    };
+    }, { validators: BePasswordsMatchValidator() });
 }
