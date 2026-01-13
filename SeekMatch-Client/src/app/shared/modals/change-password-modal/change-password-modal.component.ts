@@ -16,7 +16,7 @@ export class ChangePasswordModalComponent {
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
 
-  public resetPasswordForm: FormGroup;
+  public changePasswordForm: FormGroup;
   public isLoading: boolean = false;
 
   constructor(
@@ -24,36 +24,34 @@ export class ChangePasswordModalComponent {
     private authService: AuthService,
     private toastService: ToastService,
     private router: Router) {
-    this.resetPasswordForm = createChangePasswordForm(this.fb);
+    this.changePasswordForm = createChangePasswordForm(this.fb);
   }
 
   public onSubmit(): void {
-    if (this.resetPasswordForm.valid) {
+    if (this.changePasswordForm.valid) {
       this.isLoading = true;
-      this.resetPassword();
+      this.changePassword();
     } else {
-      this.resetPasswordForm.markAllAsTouched();
+      this.changePasswordForm.markAllAsTouched();
     }
   }
 
-  private resetPassword(): void {
-    const formValues = this.resetPasswordForm.value;
+  private changePassword(): void {
+    const formValues = this.changePasswordForm.value;
 
-    this.authService.resetPassword(formValues.currentPassword, formValues.newPassword).pipe(
+    this.authService.changePassword(formValues.currentPassword, formValues.newPassword).pipe(
       finalize(() => {
         this.isLoading = false;
       })
     ).subscribe({
       next: () => {
-        this.dismissModal('Reset password succed');
-        this.toastService.showSuccessMessage('Reset password succed');
+        this.dismissModal('Change password succed');
+        this.toastService.showSuccessMessage('Change password succed');
         this.authService.logout();
         this.router.navigate(['/home']);
       },
       error: (error) => {
-        this.toastService.showErrorMessage('Rese
-      error: (error) => {
-        this.toastService.showErrorMessage('Reset password failed', error);
+        this.toastService.showErrorMessage('Change password failed', error);
       }
     });
   }

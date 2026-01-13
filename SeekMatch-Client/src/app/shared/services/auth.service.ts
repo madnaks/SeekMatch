@@ -29,8 +29,8 @@ export class AuthService {
     );
   }
 
-  resetPassword(currentPassword: string, newPassword: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/reset-password`, { currentPassword, newPassword });
+  changePassword(currentPassword: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/change-password`, { currentPassword, newPassword });
   }
 
   register(talent: Talent | Recruiter, userRole: UserRole): Observable<any> {

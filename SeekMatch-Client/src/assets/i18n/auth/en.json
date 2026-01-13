@@ -114,15 +114,15 @@
             }
         }
     },
-    "ResetPassword": {
+    "ChangePassword": {
         "Modal": {
-            "Title": "Reset Your Password",
-            "Description": "Please enter your current password and a new password to reset your password.",
+            "Title": "Change your password",
+            "Description": "Please enter your current password and a new password to change your password.",
             "Form": {
                 "CurrentPassword": "Current Password",
                 "NewPassword": "New Password",
                 "ConfirmNewPassword": "Confirm New Password",
-                "SubmitButton": "Reset Password",
+                "SubmitButton": "Change Password",
                 "Validation": {
                     "CurrentPassword": "Current password is required.",
                     "NewPassword": "New password is required.",
