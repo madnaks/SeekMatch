@@ -120,9 +120,20 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Educations & Experiences & Resumes Tabs -->
+                    <!-- Application & Educations & Experiences & Resumes Tabs -->
                     <div class="row">
                         <nav ngbNav #nav="ngbNav" class="nav-tabs" (activeIdChange)="onTabChange($event)">
+                            <ng-container ngbNavItem="application">
+                                <a ngbNavLink>
+                                    <i class="fa-solid fa-graduation-cap me-2"></i>
+                                    Application
+                                </a>
+                                <ng-template ngbNavContent>
+                                    @if (jobApplication) {
+                                    
+                                    }
+                                </ng-template>
+                            </ng-container>
                             <ng-container ngbNavItem="experiences">
                                 <a ngbNavLink>
                                     <i class="fa-solid fa-graduation-cap me-2"></i>

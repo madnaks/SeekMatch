@@ -4,6 +4,9 @@ import { Router, RouterOutlet } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { SharedModule } from './shared/shared.module';
 import { HomeModule } from './home/home.module';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from './shared/services/auth.service';
+import { ChangePasswordModalComponent } from './shared/modals/change-password-modal/change-password-modal.component';
 
 @Component({
   selector: 'app-root',
@@ -22,15 +25,57 @@ export class AppComponent {
 
   public isHomePage: boolean = true;
 
-  constructor(private translate: TranslateService, private router: Router) {
+  private modalOpen = false;
+
+  constructor(
+    private translate: TranslateService,
+    private router: Router,
+    private auth: AuthService,
+    private modal: NgbModal) {
+
     translate.setDefaultLang('en');
     translate.use('en');
 
     this.router.events.subscribe(() => {
       const currentRoute = this.router.routerState.snapshot.root.firstChild?.routeConfig?.path;
       this.isHomePage = currentRoute === '' || currentRoute === 'home';
+      this.enforcePasswordChange();
+    });
+  }
+
+  
+  /**
+   * Enforces a password change for authenticated users(company recruiters) with temporary passwords.
+   * 
+   * Opens a modal dialog for changing the password if:
+   * - User is authenticated
+   * - User has a temporary password
+   * - No modal is currently open
+   * 
+   * The modal is configured to prevent closing via backdrop click or keyboard escape.
+   * Sets the {@link modalOpen} flag to prevent multiple modal instances.
+   * 
+   * @private
+   * @returns {void}
+   */
+  private enforcePasswordChange(): void {
+    if (!this.auth.isAuthenticated()) return;
+
+    if (!this.auth.isTemporaryPassword()) return;
+
+    if (this.modalOpen) return;
+
+    this.modalOpen = true;
+
+    const ref = this.modal.open(ChangePasswordModalComponent, {
+      backdrop: 'static',
+      keyboard: false,
+      centered: true
     });
 
+    ref.result.finally(() => {
+      this.modalOpen = false;
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toast.service';
 import { createChangePasswordForm } from './change-password-modal.config';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-change-password-modal',
@@ -23,7 +24,8 @@ export class ChangePasswordModalComponent {
     private fb: FormBuilder, 
     private authService: AuthService,
     private toastService: ToastService,
-    private router: Router) {
+    private router: Router,
+    private activeModal: NgbActiveModal) {
     this.changePasswordForm = createChangePasswordForm(this.fb);
   }
 
@@ -45,21 +47,15 @@ export class ChangePasswordModalComponent {
       })
     ).subscribe({
       next: () => {
-        this.dismissModal('Change password succed');
+        this.activeModal.close();
         this.toastService.showSuccessMessage('Change password succed');
         this.authService.logout();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/']);
       },
       error: (error) => {
         this.toastService.showErrorMessage('Change password failed', error);
       }
     });
-  }
-
-  public dismiss(reason: string): void {
-    if (this.dismissModal) {
-      this.dismissModal(reason);
-    }
   }
 
 }

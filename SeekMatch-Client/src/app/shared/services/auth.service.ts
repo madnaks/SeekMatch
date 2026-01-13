@@ -6,6 +6,7 @@ import { UserRole } from '../enums/enums';
 import { Talent } from '../models/talent';
 import { Recruiter } from '../models/recruiter';
 import { TranslateService } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,12 @@ export class AuthService {
 
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient, private translate: TranslateService) { }
+  constructor(private http: HttpClient, private translate: TranslateService, private router: Router) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((response: any) => {
+        this.router.navigate(['/']);
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
         localStorage.setItem('isTemporaryPassword', response.isTemporaryPassword);
@@ -67,7 +69,18 @@ export class AuthService {
     return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
 
-  isTemporaryPassword(): boolean {
+  
+  /**
+   * Checks if the current user's password is a temporary password.
+   * 
+   * This method retrieves the value of 'isTemporaryPassword' from local storage
+   * and returns true if it is set to 'true', indicating that the user is using
+   * a temporary password. If the value is not found or is not 'true', it returns
+   * false.
+   * 
+   * @returns {boolean} - Returns true if the password is temporary, otherwise false.
+   */
+  public isTemporaryPassword(): boolean {
     const isTemporaryPassword = localStorage.getItem('isTemporaryPassword');
 
     if (!isTemporaryPassword) {
@@ -76,7 +89,7 @@ export class AuthService {
     return isTemporaryPassword === 'true';
   }
 
-  logout(): void {
+  public logout(): void {
     localStorage.clear();
   }
 

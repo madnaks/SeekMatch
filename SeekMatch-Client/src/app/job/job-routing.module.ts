@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { JobOffersComponent } from './components/job-offers/job-offers.component';
 
 const routes: Routes = [
-  { path: 'job-offers', component: JobOffersComponent }, // Default path for the JobModule
+  { path: '', component: JobOffersComponent }, // Default path for the JobModule
 ];
 
 @NgModule({

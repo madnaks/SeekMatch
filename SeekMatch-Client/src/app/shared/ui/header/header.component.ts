@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
 
-        const authRoutes = ['/log=in', '/sign-up', '/auth'];
+        const authRoutes = ['/log-in', '/sign-up', '/auth'];
 
         this.showHeader = !authRoutes.some(route => event.url.includes(route));
         this.isAuthenticated = this.authService.isAuthenticated();
@@ -110,7 +110,7 @@ export class HeaderComponent implements OnInit {
     this.offcanvasService.dismiss();
   }
 
-  public open(content: any) {
+  public openModal(content: any) {
     this.modalService.open(content, { centered: true, backdrop: 'static' });
   }
 
