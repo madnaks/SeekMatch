@@ -62,8 +62,8 @@
                                 <div class="row mb-4">
                                     <div class="col-9">
                                         <span *ngFor="let activeFilter of activeFilters"
-                                            class="fs-6 badge bg-custom me-4 mt-2"
-                                            (click)="deleteFilter(activeFilter.key)" style="cursor: pointer;">
+                                            class="fs-6 badge bg-custom me-4 mt-2 cursor-pointer"
+                                            (click)="deleteFilter(activeFilter.key)">
                                             <span class="me-2">{{ activeFilter.value }}</span>
                                             <i class="fa-solid fa-circle-xmark"></i>
                                         </span>

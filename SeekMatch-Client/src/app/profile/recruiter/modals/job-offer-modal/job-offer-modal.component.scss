@@ -15,6 +15,7 @@ quill-editor {
     overflow-y: auto;
   }
 }
+
 .ql-editor.ql-blank::before {
   color: $text-color;
   opacity: 0.4;
@@ -23,4 +24,8 @@ quill-editor {
 .ql-toolbar {
   background-color: $text-color;
   border-radius: 6px 6px 0 0;
+}
+
+.company-info {
+  height: 20vh;
 }

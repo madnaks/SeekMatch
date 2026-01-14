@@ -100,10 +100,8 @@
                             <div ngbDropdownMenu aria-labelledby="dropdownBasic">
                                 <form [formGroup]="filterForm" class="d-flex flex-column gap-2">
                                     <!-- STATUSES -->
-                                    <label class="form-check" *ngFor="let status of statuses"
-                                        style="margin-left: 15px;">
-                                        <input type="checkbox" class="form-check-input" [formControlName]="status"
-                                            style="cursor: pointer;" />
+                                    <label class="form-check status-label" *ngFor="let status of statuses">
+                                        <input type="checkbox" class="form-check-input cursor-pointer" [formControlName]="status" />
                                         <span class="form-check-label">
                                             {{ ('Enum.JobApplicationStatus.' + status) | translate }}
                                         </span>
@@ -119,7 +117,7 @@
                 @if (jobOffer.jobApplications.length === 0) {
                 <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
                     <div class="col-6">
-                        <h5 style="text-align: center;">
+                        <h5 class="text-center">
                             {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
                         </h5>
                     </div>

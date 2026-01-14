@@ -138,7 +138,7 @@
           <i class="fa-regular fa-user me-2"></i>{{ "BUTTON.LOGIN" | translate }}
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto" style="max-width: 400px;" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <form class="mx-auto max-width-400" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <!-- Email -->
             <div class="mb-3">
               <be-email-input [form]="loginForm" />
@@ -171,7 +171,7 @@
           <i class="fa-solid fa-user-plus me-2"></i>{{ "BUTTON.SIGN-UP" | translate }}
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto" style="max-width: 400px;" [formGroup]="signupForm">
+          <form class="mx-auto max-width-400" [formGroup]="signupForm">
             <!-- Full Name -->
             <div class="mb-4">
               <app-full-name-input [form]="signupForm"/>
