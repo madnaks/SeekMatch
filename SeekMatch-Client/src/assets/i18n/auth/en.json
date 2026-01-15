@@ -24,8 +24,7 @@
                     "Title": "There's a problem",
                     "Body": {
                         "Message1": "We're sorry, something went wrong when attempting to sign up.",
-                        "Message2": "Please try again.",
-                        "ReturnButton": "Return"
+                        "Message2": "Please try again."
                     }
                 }
             }
@@ -91,14 +90,15 @@
                     "Title": "There's a problem",
                     "Body": {
                         "Message1": "We're sorry, something went wrong when attempting to sign up.",
-                        "Message2": "Please try again.",
-                        "ReturnButton": "Return"
+                        "Message2": "Please try again."
                     }
                 }
             }
         },
         "HaveAccount": "Already have an account ?",
-        "Login": "Login"
+        "DoNotHaveAccount": "Don't have an account ?",
+        "Login": "Login",
+        "SignUp": "Sign up"
     },
     "Login": {
         "Modal": {

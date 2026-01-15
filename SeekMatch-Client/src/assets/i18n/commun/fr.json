@@ -4,11 +4,13 @@
         "SAVE": "Enregistrer",
         "DELETE": "Supprimer",
         "BACK": "Retour",
+        "RETURN": "Retour",
         "NEXT": "Suivant",
         "PREVIOUS": "Précédent",
         "LOGIN": "Connexion",
         "SIGN-UP": "S'inscrire",
         "CREATE-ACCOUNT": "Créer un compte",
+        "APPLY": "Postuler",
         "CONTINUE-WITH-GOOGLE": "Continuer avec Google",
         "YES": "Oui",
         "NO": "Non"
@@ -51,8 +53,7 @@
             "Description": "Description",
             "PositionDetails": "Détails du poste",
             "Qualifications": "Qualifications",
-            "AdditionalRequirements": "Exigences supplémentaires",
-            "Apply": "Postuler"
+            "AdditionalRequirements": "Exigences supplémentaires"
         }
     },
     "Profile": {

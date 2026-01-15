@@ -77,7 +77,7 @@ export class JobDetailsComponent implements OnInit, OnChanges {
           }
         });
     } else {
-      this.modalService.open(this.expressApplyContent, { centered: true, backdrop: 'static' });
+      this.modalService.open(this.expressApplyContent, { centered: true, backdrop: 'static'});
     }
   }
 

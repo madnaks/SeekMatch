@@ -80,17 +80,17 @@
             }
         },
         "ExpressApplyModal": {
-            "Header": {
-                "Title": {
-                    "ApplyJob": "Postuler à cette offre"
-                }
-            },
             "FistPage": {
+                "HeaderTitle": "Postuler à cet emploi",
                 "FirstLine": "Postulez en quelques secondes sans créer de profil.",
                 "SecondLine": "Vous pouvez choisir comment postuler :",
-                "ThirdLine": "En postulant, vous acceptez nos Conditions d'utilisation",
                 "LoginSignup": "Connexion / Inscription",
                 "ExpressApply": "Postuler Rapidement"
+            },
+            "ExpressApplyPage": {
+                "HeaderTitle": "Postuler Rapidement",
+                "FirstLine": "Téléchargez simplement votre CV et postulez instantanément.",
+                "SecondLine": "Astuce : Créez un profil complet pour suivre votre candidature et obtenir des mises à jour plus rapidement."
             }
         }
     }

@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
 import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
 import { SharedModule } from "@app/shared/shared.module";
-import { LoaderComponent, LoginButtonComponent } from '@app/shared/ui';
+import { LoaderComponent, LoginButtonComponent, AlertComponent } from '@app/shared/ui';
 
 @NgModule({
   declarations: [
@@ -34,8 +34,9 @@ import { LoaderComponent, LoginButtonComponent } from '@app/shared/ui';
     LoaderComponent,
     PasswordInputComponent,
     SharedModule,
-    LoginButtonComponent
-  ]
+    LoginButtonComponent,
+    AlertComponent
+]
 })
 
 export class JobModule { }

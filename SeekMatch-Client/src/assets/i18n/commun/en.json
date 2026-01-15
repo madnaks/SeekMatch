@@ -4,11 +4,13 @@
         "SAVE": "Save",
         "DELETE": "Delete",
         "BACK": "Back",
+        "RETURN": "Return",
         "NEXT": "Next",
         "PREVIOUS": "Previous",
         "LOGIN": "Login",
         "SIGN-UP": "Sign Up",
         "CREATE-ACCOUNT": "Create Account",
+        "APPLY": "Apply",
         "CONTINUE-WITH-GOOGLE": "Continue with Google",
         "YES": "Yes",
         "NO": "No"
@@ -51,8 +53,7 @@
             "Description": "Description",
             "PositionDetails": "Position details",
             "Qualifications": "Qualifications",
-            "AdditionalRequirements": "Additional requirements",
-            "Apply": "Apply"
+            "AdditionalRequirements": "Additional requirements"
         }
     },
     "Profile": {

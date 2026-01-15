@@ -14,11 +14,11 @@
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
         <div class="mb-4">
-            <app-full-name-input [form]="registerForm"/>
+            <app-full-name-input [form]="registerForm" />
         </div>
         <!-- Email -->
         <div class="mb-4">
-            <be-email-input [form]="registerForm"/>
+            <be-email-input [form]="registerForm" />
         </div>
         <!-- Password -->
         <div class="row mb-4">
@@ -29,7 +29,8 @@
         <!-- Confirm Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <be-password-input [form]="registerForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
+                <be-password-input [form]="registerForm" [controlName]="'confirmPassword'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
@@ -87,7 +88,7 @@
     <div class="mb-3 d-flex justify-content-center">
         <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-circle-arrow-left me-2"></i>
-            {{ 'SignUp.Talent.Modal.Error.Body.ReturnButton' | translate }}
+            {{ 'BUTTON.RETURN' | translate }}
         </button>
     </div>
 </div>

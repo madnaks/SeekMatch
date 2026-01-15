@@ -19,12 +19,8 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <p class="m-0">
-                    {{ 'SignUp.HaveAccount' | translate }}
+                    {{ 'SignUp.HaveAccount' | translate }} <a (click)="open(loginContent, UserRole.Talent)" class="static-link">{{ 'SignUp.Login' | translate }}</a>
                 </p>
-                <button class="btn btn-sign-up btn-important job-seeker mt-2" (click)="open(loginContent, UserRole.Talent)">
-                    <i class="fa-solid fa-right-to-bracket me-2"></i>
-                    {{ 'SignUp.Login' | translate }}
-                </button>
             </div>
 
         </div>
@@ -46,12 +42,8 @@
 
             <div class="d-flex justify-content-center align-items-center flex-column">
                 <p class="m-0">
-                    {{ 'SignUp.HaveAccount' | translate }}
+                    {{ 'SignUp.HaveAccount' | translate }} <a (click)="open(loginContent, UserRole.Recruiter)" class="static-link">{{ 'SignUp.Login' | translate }}</a>
                 </p>
-                <button class="btn btn-sign-up btn-important recruiter mt-2" (click)="open(loginContent, UserRole.Recruiter)">
-                    <i class="fa-solid fa-right-to-bracket me-2"></i>
-                    {{ 'SignUp.Login' | translate }}
-                </button>
             </div>
 
         </div>

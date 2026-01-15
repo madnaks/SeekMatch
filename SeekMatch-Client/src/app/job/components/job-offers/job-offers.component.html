@@ -4,7 +4,7 @@
         <div ngbAccordion class="p-0">
             <div ngbAccordionItem #item="ngbAccordionItem">
                 <h2 ngbAccordionHeader>
-                    <button ngbAccordionButton> 
+                    <button ngbAccordionButton>
                         <i class="fa-solid fa-filter me-2"></i> Filtre
                         <i class="fa-solid ms-auto" [ngClass]="item.collapsed ? 'fa-angle-down' : 'fa-angle-up'"></i>
                     </button>
@@ -75,7 +75,7 @@
                                                 Reset filters
                                             </button>
                                         </span>
-                                            
+
                                     </div>
                                 </div>
                             </form>
@@ -102,7 +102,7 @@
                     @if (isSaving) {
                     <i class="fa fa-spin fa-spinner"></i>
                     } @else {
-                    {{ 'JobOffers.JobDetails.Apply' | translate }}
+                    {{ 'BUTTON.APPLY' | translate }}
                     }
                 </button>
                 <button class="btn btn-primary">

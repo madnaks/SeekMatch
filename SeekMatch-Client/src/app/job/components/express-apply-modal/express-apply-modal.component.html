@@ -4,37 +4,36 @@
 <div class="modal-header">
   <div class="fs-3">
     <i class="me-2 fa-regular fa-user"></i>
-    {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
+    {{ 'Recruiter.ExpressApplyModal.FistPage.HeaderTitle' | translate }}
   </div>
   <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 
 </div>
+
 <!-- Modal Body -->
 <div class="modal-body">
   <!-- First and second line -->
   <div class="row">
     <div class="col-12">
-      <p>{{ "Recruiter.ExpressApplyModal.FistPage.FirstLine" | translate }}</p>
-      <p>{{ "Recruiter.ExpressApplyModal.FistPage.SecondLine" | translate }}</p>
+      <p>{{ 'Recruiter.ExpressApplyModal.FistPage.FirstLine' | translate }}</p>
+      <p>{{ 'Recruiter.ExpressApplyModal.FistPage.SecondLine' | translate }}</p>
     </div>
   </div>
   <!-- Buttons -->
-  <div class="row justify-content-center mb-2">
-    <button class="btn btn-primary col-9" (click)="expressApplyLoginSignUpMode=true">
-      <i class="me-2 fa-solid fa-key"></i>
-      {{ "Recruiter.ExpressApplyModal.FistPage.LoginSignup" | translate }}
-    </button>
-  </div>
-  <div class="row justify-content-center mb-2">
-    <button class="btn btn-light col-9" (click)="expressApplyMode=true">
+  <div class="row justify-content-around mb-3">
+    <button class="btn btn-light col-5" (click)="expressApplyMode=true">
       <i class="me-2 fa-solid fa-rocket"></i>
-      {{ "Recruiter.ExpressApplyModal.FistPage.ExpressApply" | translate }}
+      {{ 'Recruiter.ExpressApplyModal.FistPage.ExpressApply' | translate }}
+    </button>
+    <button class="btn btn-primary col-5" (click)="expressApplyLoginSignUpMode=true">
+      <i class="me-2 fa-solid fa-key"></i>
+      {{ 'Recruiter.ExpressApplyModal.FistPage.LoginSignup' | translate }}
     </button>
   </div>
   <!-- Third line -->
   <div class="row">
     <div class="col-12">
-      <p> {{ "Recruiter.ExpressApplyModal.FistPage.ThirdLine" | translate }} </p>
+      <p class="fs-6 fw-light" [innerHTML]="'SignUp.Talent.Modal.Body.Form.TermsNote' | translate"></p>
     </div>
   </div>
 </div>
@@ -46,27 +45,32 @@
 <div class="modal-header">
   <div class="fs-3">
     <i class="me-2 fa-solid fa-rocket"></i>
-    {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.HeaderTitle" | translate }}
+    {{ 'Recruiter.ExpressApplyModal.ExpressApplyPage.HeaderTitle' | translate }}
   </div>
   <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
+
 <!-- Modal Body -->
 <div class="modal-body">
+  <be-alert [type]="'info'" [messageKey]="'Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine'" />
+
   <!-- First line -->
   <div class="row">
     <div class="col-12">
-      {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.FirstLine" | translate }}
+      {{ 'Recruiter.ExpressApplyModal.ExpressApplyPage.FirstLine' | translate }}
     </div>
   </div>
+
+  <!-- Form -->
   <div class="row">
     <div class="col-12">
       <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
         <!-- Line 1: Full name -->
-        <app-full-name-input [form]="expressApplyForm"/>
+        <app-full-name-input [form]="expressApplyForm" />
         <!-- Line 2: Email -->
         <div class="row mt-3">
           <div class="col-12">
-            <be-email-input [form]="expressApplyForm"/>
+            <be-email-input [form]="expressApplyForm" />
           </div>
         </div>
         <!-- Line 3: CV-->
@@ -75,11 +79,10 @@
             <input class="form-control" type="file" id="formFile" accept="application/pdf"
               (change)="onFileSelected($event)">
             @if((expressApplyForm.get('cv')?.errors?.['required'] && expressApplyForm.get('cv')?.touched)) {
-            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-REQUIRED'"></app-error-message>
+            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-REQUIRED'" />
             }
             @if((expressApplyForm.get('cv')?.errors?.['invalidFileType'] && expressApplyForm.get('cv')?.touched)) {
-            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-INVALID'"></app-error-message>
-            }
+            <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.CV-INVALID'" />            }
           </div>
         </div>
         <!-- Line 4: Phone-->
@@ -89,11 +92,11 @@
           </div>
         </div>
         <!-- Line 5: Submit application / Return-->
-        <div class="row mt-3">
+        <div class="row mt-5 mb-3">
           <div class="col-md-6">
             <button class="btn btn-light w-100" (click)="expressApplyMode=false">
               <i class="me-2 fa-solid fa-circle-left"></i>
-              Return
+              {{ 'BUTTON.RETURN' | translate }}
             </button>
           </div>
           <div class="col-md-6">
@@ -102,7 +105,7 @@
               <i class="fa fa-spin fa-spinner"></i>
               } @else {
               <i class="me-2 fa-solid fa-clipboard-check"></i>
-              Apply
+              {{ 'BUTTON.APPLY' | translate }}
               }
             </button>
           </div>
@@ -110,57 +113,59 @@
       </form>
     </div>
   </div>
-  <!-- Bottom line -->
-  <div class="row mt-3">
-    <div class="col-12">
-      <i class="me-2 fa-solid fa-lightbulb"></i> {{ "Recruiter.ExpressApplyModal.ExpressApplyPage.SecondLine" |
-      translate }}
-    </div>
-  </div>
+
 </div>
 }
 
 <!-- Page 3 : Express Apply Login / Sign Up  -->
 @if (expressApplyLoginSignUpMode) {
+<!-- Modal Header -->
 <div class="modal-header">
   <div class="fs-3">
     <i class="me-2 fa-regular fa-user"></i>
-    {{ "Recruiter.ExpressApplyModal.FistPage.HeaderTitle" | translate }}
+    {{ 'Recruiter.ExpressApplyModal.FistPage.HeaderTitle' | translate }}
   </div>
   <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
+
+<!-- Modal Body -->
 <div class="modal-body">
   <div class="container py-4">
     <ul ngbNav #nav="ngbNav" [(activeId)]="activeTab" class="nav-pills justify-content-center mb-4">
       <!-- Tab 1: Login -->
       <li [ngbNavItem]="1">
         <button ngbNavLink>
-          <i class="fa-regular fa-user me-2"></i>{{ "BUTTON.LOGIN" | translate }}
+          <i class="fa-regular fa-user me-2"></i>{{ 'BUTTON.LOGIN' | translate }}
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto max-width-400" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <form class="mx-auto max-width-450" [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <!-- Email -->
             <div class="mb-3">
               <be-email-input [form]="loginForm" />
-            </div>
-            <div class="mb-3 d-flex justify-content-end">
-              <a href="#" class="small text-decoration-none">{{"LINK.FORGOT-PASSWORD" | translate }}</a>
             </div>
             <!-- Password -->
             <div class="mb-3">
               <be-password-input [form]="loginForm" />
             </div>
+            <!-- Forgot Password Link -->
+            <div class="mb-3 d-flex justify-content-end">
+              <a href="#" class="static-link">
+                {{ 'LINK.FORGOT-PASSWORD' | translate }}
+              </a>
+            </div>
             <div class="mb-3">
               <app-login-button [isLoading]="isLoading" />
             </div>
-            <div class="text-center my-3 text-muted">
-              <span>{{"LABEL.OR" | translate}}</span>
+            <div class="text-center my-3">
+              <span>{{ 'LABEL.OR' | translate}}</span>
             </div>
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-google me-2"></i>{{ "BUTTON.CONTINUE-WITH-GOOGLE" | translate }}
+              <i class="fab fa-google me-2"></i>{{ 'BUTTON.CONTINUE-WITH-GOOGLE' | translate }}
             </button>
             <div class="text-center mt-3">
-              <span>Don't have an account yet? <a href="#" class="fw-bold" (click)="activeTab = 2">Sign up</a></span>
+              <span>
+                {{ 'SignUp.DoNotHaveAccount' | translate }} <a href="#" class="static-link" (click)="activeTab = 2">{{ 'SignUp.SignUp' | translate}}</a>
+                </span>
             </div>
           </form>
         </ng-template>
@@ -168,17 +173,17 @@
       <!-- Tab 2: Sign Up -->
       <li [ngbNavItem]="2">
         <button ngbNavLink>
-          <i class="fa-solid fa-user-plus me-2"></i>{{ "BUTTON.SIGN-UP" | translate }}
+          <i class="fa-solid fa-user-plus me-2"></i>{{ 'BUTTON.SIGN-UP' | translate }}
         </button>
         <ng-template ngbNavContent>
-          <form class="mx-auto max-width-400" [formGroup]="signupForm">
+          <form class="mx-auto max-width-450" [formGroup]="signupForm">
             <!-- Full Name -->
             <div class="mb-4">
-              <app-full-name-input [form]="signupForm"/>
+              <app-full-name-input [form]="signupForm" />
             </div>
             <!-- Email -->
             <div class="mb-3">
-              <be-email-input [form]="signupForm"/>
+              <be-email-input [form]="signupForm" />
             </div>
             <!-- Password -->
             <div class="mb-3">
@@ -186,20 +191,23 @@
             </div>
             <!-- Confirm Password -->
             <div class="mb-3">
-              <be-password-input [form]="signupForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
+              <be-password-input [form]="signupForm" [controlName]="'confirmPassword'"
+                [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
             </div>
-            <button type="submit" class="btn btn-primary w-100 mb-3">
+            <button type="submit" class="btn btn-primary w-100">
               <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
               {{ 'BUTTON.CREATE-ACCOUNT' | translate }}
             </button>
-            <div class="text-center my-3 text-muted">
-              <span>{{"LABEL.OR" | translate}}</span>
+            <div class="text-center my-3">
+              <p> {{ 'LABEL.OR' | translate}} </p>
             </div>
             <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-google me-2"></i>{{ "BUTTON.CONTINUE-WITH-GOOGLE" | translate }}
+              <i class="fab fa-google me-2"></i>{{ 'BUTTON.CONTINUE-WITH-GOOGLE' | translate }}
             </button>
             <div class="text-center mt-3">
-              <span>Already have an account? <a href="#" class="fw-bold" (click)="activeTab = 1">Login</a></span>
+              <span>
+                {{ 'SignUp.HaveAccount' | translate }} <a href="#" class="static-link" (click)="activeTab = 1">{{ 'SignUp.Login' | translate }}</a>
+              </span>
             </div>
           </form>
         </ng-template>

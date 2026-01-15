@@ -24,7 +24,7 @@
 <div class="row mt-3">
 
     <!-- Stepper -->
-    <be-stepper [steps]="['Options', 'Informations', 'UserInformations']" [currentStep]="currentStep"  />
+    <be-stepper [steps]="['Options', 'Informations', 'UserInformations']" [currentStep]="currentStep" />
 
 </div>
 
@@ -78,11 +78,11 @@
     <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
         <!-- Full Name -->
         <div class="mb-4">
-            <app-full-name-input [form]="registerFreelancerForm"/>
+            <app-full-name-input [form]="registerFreelancerForm" />
         </div>
         <!-- Email -->
         <div class="mb-4">
-            <be-email-input [form]="registerFreelancerForm"/>
+            <be-email-input [form]="registerFreelancerForm" />
         </div>
         <!-- Password -->
         <div class="row mb-4">
@@ -93,7 +93,8 @@
         <!-- Confirm Password -->
         <div class="row mb-4">
             <div class="col-12">
-                <be-password-input [form]="registerFreelancerForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
+                <be-password-input [form]="registerFreelancerForm" [controlName]="'confirmPassword'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
@@ -117,7 +118,7 @@
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
                 <!-- Full Name -->
                 <div class="mb-4">
-                    <app-full-name-input [form]="registerRepresentativeForm"/>
+                    <app-full-name-input [form]="registerRepresentativeForm" />
                 </div>
                 <!-- Position -->
                 <div class="mb-4">
@@ -131,12 +132,12 @@
                     </div>
                     @if (registerRepresentativeForm.get('position')?.invalid &&
                     registerRepresentativeForm.get('position')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'"/>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'" />
                     }
                 </div>
                 <!-- Email -->
                 <div class="mb-4">
-                    <be-email-input [form]="registerRepresentativeForm"/>
+                    <be-email-input [form]="registerRepresentativeForm" />
                 </div>
                 <!-- Password -->
                 <div class="row mb-4">
@@ -147,7 +148,8 @@
                 <!-- Confirm Password -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <be-password-input [form]="registerRepresentativeForm" [controlName]="'confirmPassword'" [label]="'SHARED.FORM-CONTROLS.VALIDATION.PASSWORD-MISMATCH'" />
+                        <be-password-input [form]="registerRepresentativeForm" [controlName]="'confirmPassword'"
+                            [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
                     </div>
                 </div>
             </div>
@@ -166,7 +168,7 @@
                     </div>
                     @if (registerRepresentativeForm.get('name')?.invalid &&
                     registerRepresentativeForm.get('name')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"/>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'" />
                     }
                 </div>
                 <!-- Phone Number -->
@@ -182,7 +184,7 @@
                     </div>
                     @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
                     registerRepresentativeForm.get('phoneNumber')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'"/>
+                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'" />
                     }
                 </div>
                 <!-- Company Address -->
@@ -208,8 +210,8 @@
         <!-- Terms & Privacy Statement -->
         <div class="row mt-4 mb-4">
             <p class="fs-6 fw-light">
-                By creating an accout, you agree to our <a href="" class="static-link">Terms</a> and have read and acknowledge the <a
-                    href="" class="static-link">Global Privacy Statement.</a>
+                By creating an accout, you agree to our <a href="" class="static-link">Terms</a> and have read and
+                acknowledge the <a href="" class="static-link">Global Privacy Statement.</a>
             </p>
         </div>
     </form>
@@ -278,7 +280,7 @@
     <div class="mb-3 d-flex justify-content-center">
         <button type="button" class="btn btn-primary w-50" (click)="isError = false">
             <i class="fa-solid fa-circle-arrow-left me-2"></i>
-            {{ 'SignUp.Recruiter.Modal.Error.Body.ReturnButton' | translate }}
+            {{ 'BUTTON.RETURN' | translate }}
         </button>
     </div>
 </div>

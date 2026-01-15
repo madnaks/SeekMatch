@@ -14,7 +14,7 @@
                 <i class="fa fa-spin fa-spinner"></i>
                 } @else {
                 <i class="me-2 fa-solid fa-clipboard-check"></i>
-                {{ 'JobOffers.JobDetails.Apply' | translate }}
+                {{ 'BUTTON.APPLY' | translate }}
                 }
             </button>
             <!-- Bookmark button -->
@@ -90,8 +90,7 @@
 
 <!-- express apply modal -->
 <ng-template #expressApplyContent let-c="close" let-d="dismiss">
-    <app-express-apply-modal [closeModal]="c" [dismissModal]="d" [jobOfferId]="jobOffer?.id">
-    </app-express-apply-modal>
+    <app-express-apply-modal [closeModal]="c" [dismissModal]="d" [jobOfferId]="jobOffer?.id" />
 </ng-template>
 
 <!-- login modal -->

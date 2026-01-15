@@ -24,8 +24,7 @@
                     "Title": "Il y a un problème",
                     "Body": {
                         "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
-                        "Message2": "Veuillez réessayer.",
-                        "ReturnButton": "Retourner"
+                        "Message2": "Veuillez réessayer."
                     }
                 }
             }
@@ -90,14 +89,15 @@
                     "Title": "Il y a un problème",
                     "Body": {
                         "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
-                        "Message2": "Veuillez réessayer.",
-                        "ReturnButton": "Retourner"
+                        "Message2": "Veuillez réessayer."
                     }
                 }
             }
         },
         "HaveAccount": "Vous avez déjà un compte ?",
-        "Login": "Connexion"
+        "DoNotHaveAccount": "Vous n'avez pas de compte ?",
+        "Login": "Connexion",
+        "SignUp": "Inscription"
     },
     "Login": {
         "Modal": {

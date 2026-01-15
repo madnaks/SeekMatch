@@ -11,6 +11,9 @@ nav {
 
 .nav-link {
   font-size: 18px;
+  &.active .nav-text {
+      color: $accent-color !important;
+  }
 }
 
 .nav-text {
