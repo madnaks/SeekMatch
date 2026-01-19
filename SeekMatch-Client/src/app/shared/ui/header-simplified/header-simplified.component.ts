@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LanguageService } from '@app/shared/services/language.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -8,14 +9,14 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeaderSimplifiedComponent {
 
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService, private languageService: LanguageService) {
   }
 
   changeLanguage() {
-    if (this.translate.currentLang == 'en') {
-      this.translate.use('fr');
+    if (this.translate.currentLang) {
+      this.translate.use(this.translate.currentLang);
     } else {
-      this.translate.use('en');
+      this.translate.use(this.languageService.getBrowserLanguageCode());
     }
   }
 

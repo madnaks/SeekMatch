@@ -7,6 +7,7 @@ import { HomeModule } from './home/home.module';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './shared/services/auth.service';
 import { ChangePasswordModalComponent } from './shared/modals/change-password-modal/change-password-modal.component';
+import { LanguageService } from './shared/services/language.service';
 
 @Component({
   selector: 'app-root',
@@ -31,10 +32,11 @@ export class AppComponent {
     private translate: TranslateService,
     private router: Router,
     private auth: AuthService,
-    private modal: NgbModal) {
+    private modal: NgbModal,
+    private languageService: LanguageService) {
 
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang(this.languageService.getBrowserLanguageCode());
+    translate.use(this.languageService.getBrowserLanguageCode());
 
     this.router.events.subscribe(() => {
       const currentRoute = this.router.routerState.snapshot.root.firstChild?.routeConfig?.path;

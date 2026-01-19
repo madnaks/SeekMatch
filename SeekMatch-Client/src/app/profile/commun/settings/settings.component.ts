@@ -49,9 +49,8 @@ export class SettingsComponent {
 
   private initSettingFormValues() {
     this.settingService.loadSetting().subscribe(setting => {
-
       this.settingForm.patchValue({
-        language: setting.language || this.languageService.getBrowserLanguageCode()
+        language: setting?.language || this.languageService.getBrowserLanguageCode()
       });
 
       this.isLoading = false;

@@ -7,6 +7,7 @@ import { Talent } from '../models/talent';
 import { Recruiter } from '../models/recruiter';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { LanguageService } from './language.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,7 @@ export class AuthService {
 
   private jwtHelper = new JwtHelperService();
 
-  constructor(private http: HttpClient, private translate: TranslateService, private router: Router) { }
+  constructor(private http: HttpClient, private translate: TranslateService, private router: Router, private languageService: LanguageService) { }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
@@ -26,7 +27,7 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
         localStorage.setItem('isTemporaryPassword', response.isTemporaryPassword);
-        this.translate.use(response.language || 'fr');
+        this.translate.use(response.language || this.languageService.getBrowserLanguageCode());
       })
     );
   }
