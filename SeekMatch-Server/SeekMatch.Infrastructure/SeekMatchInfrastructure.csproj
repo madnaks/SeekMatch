@@ -28,6 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Email\Templates\CompanyRecruterCreation.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Email\Templates\ExpressApplicationRejection.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

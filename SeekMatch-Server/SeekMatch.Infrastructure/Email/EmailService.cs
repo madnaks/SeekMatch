@@ -34,7 +34,6 @@ namespace SeekMatch.Application.Services
 
         public async Task SendExpressApplicationConfirmationAsync(ExpressApplication expressApplication, JobOffer jobOffer)
         {
-            // TODO : Change YourCompanyName
             var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "ExpressApplicationConfirmation.html");
             var html = await File.ReadAllTextAsync(templatePath);
 
@@ -43,14 +42,12 @@ namespace SeekMatch.Application.Services
                        .Replace("{{JobTitle}}", jobOffer.Title)
                        .Replace("{{DateSubmitted}}", DateTime.UtcNow.ToString("MMMM dd, yyyy"));
 
-
             var subject = "Your job application has been received!";
             await SendEmailAsync(expressApplication.Email, subject, html);
         }
 
         public async Task SendExpressApplicationRejectionAsync(JobApplication jobApplication)
         {
-            // TODO : Change YourCompanyName
             var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "ExpressApplicationRejection.html");
             var html = await File.ReadAllTextAsync(templatePath);
 
@@ -64,6 +61,25 @@ namespace SeekMatch.Application.Services
 
                 var subject = "Your job application has been rejected!";
                 await SendEmailAsync(jobApplication.ExpressApplication.Email, subject, html);
+            }
+
+        }
+
+        public async Task SendCompanyRecruterCreationAsync(Recruiter recruiter, string temporaryPassword)
+        {
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "CompanyRecruterCreation.html");
+            var html = await File.ReadAllTextAsync(templatePath);
+
+            if (recruiter != null)
+            {
+                html = html.Replace("{{FirstName}}", recruiter.FirstName)
+                           .Replace("{{LastName}}", recruiter.LastName)
+                           .Replace("{{Email}}", recruiter.User.Email)
+                           .Replace("{{TemporaryPassword}}", temporaryPassword);
+
+
+                var subject = "Your Recruiter Account Is Ready – Temporary Password Inside";
+                await SendEmailAsync(recruiter.User.Email!, subject, html);
             }
 
         }

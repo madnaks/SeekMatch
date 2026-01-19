@@ -130,13 +130,7 @@ namespace SeekMatch.Application.Services
 
             await recruiterRepository.CreateAsync(recruiter);
 
-            var subject = "Your Temporary Password";
-            var body = $"Hello { recruiter.FirstName } { recruiter.LastName },<br/>" +
-                       $"Your account has been created. Here is your temporary password: <strong>{ temporaryPassword }</strong><br/>" +
-                       "Please change it after logging in.";
-
-            await emailService.SendEmailAsync(recruiterDto.Email, subject, body);
-
+            await emailService.SendCompanyRecruterCreationAsync(recruiter, temporaryPassword);
 
             return IdentityResult.Success;
         }
