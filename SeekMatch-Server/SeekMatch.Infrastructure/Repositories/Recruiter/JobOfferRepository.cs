@@ -54,6 +54,25 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
+        public async Task<IList<JobOffer>?> GetAllByCompanyAsync(string companyId)
+        {
+            try
+            {
+                return await dbContext.JobOffers
+                    .Where(e => e.Recruiter.CompanyId == companyId)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(t => t.Talent)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(ex => ex.ExpressApplication)
+                    .OrderBy(e => e.CreatedAt)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("An error occurred while fetching the job offer", ex);
+            }
+        }
+
         public async Task<JobOffer?> GetByIdAsync(string id)
         {
             try

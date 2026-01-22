@@ -7,6 +7,7 @@ namespace SeekMatch.Application.Interfaces
         Task<IList<JobOfferDto>?> GetAllAsync(JobOfferFilterDto filters);
         Task<JobOfferDto?> GetByIdAsync(string jobOfferId);
         Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId);
+        Task<IList<JobOfferDto>?> GetAllByCompanyAsync(string userId);
         Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId);
         Task<bool> UpdateAsync(JobOfferDto jobOfferDto);
         Task<bool> DeleteAsync(string jobOfferId);

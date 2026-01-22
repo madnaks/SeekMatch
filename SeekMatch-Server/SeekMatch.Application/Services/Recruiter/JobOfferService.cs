@@ -1,14 +1,19 @@
 ﻿using AutoMapper;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
-using SeekMatch.Infrastructure.Repositories;
 
 namespace SeekMatch.Application.Services
 {
-    public class JobOfferService(IJobOfferRepository jobOfferRepository, IMapper mapper) : IJobOfferService
+    public class JobOfferService(
+        IJobOfferRepository jobOfferRepository, 
+        IMapper mapper,
+        UserManager<User> userManager,
+        IRepresentativeService representativeService,
+        IRecruiterService recruiterService) : IJobOfferService
     {
         public async Task<IList<JobOfferDto>?> GetAllAsync(JobOfferFilterDto filters)
         {
@@ -24,6 +29,38 @@ namespace SeekMatch.Application.Services
         public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId)
         {
             return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
+        }
+
+        public async Task<IList<JobOfferDto>?> GetAllByCompanyAsync(string userId)
+        {
+            var user = await userManager.FindByIdAsync(userId);
+
+            var companyId = string.Empty;
+
+            if (user != null && user.Role == UserRole.Representative)
+            {
+                var representativeDto = await representativeService.GetAsync(userId);
+
+                if (representativeDto == null)
+                    return null;
+
+                companyId = representativeDto.CompanyId;
+            }
+
+            if (user != null && user.Role == UserRole.Recruiter)
+            {
+                var recruiterDto = await recruiterService.GetAsync(userId);
+
+                if (recruiterDto == null)
+                    return null;
+
+                companyId = recruiterDto.CompanyId;
+            }
+
+            if (string.IsNullOrEmpty(companyId))
+                return null;
+
+            return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByCompanyAsync(companyId));
         }
 
         public async Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId)

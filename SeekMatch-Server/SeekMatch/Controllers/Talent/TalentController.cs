@@ -18,7 +18,6 @@ namespace SeekMatch.Controllers
 
             var result = await talentService.RegisterAsync(registerTalentDto);
 
-
             if (!result.Succeeded)
                 return BadRequest(new
                 {

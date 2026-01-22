@@ -6,6 +6,7 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task<IList<JobOffer>?> GetAllAsync(JobOfferFilter filters);
         Task<IList<JobOffer>?> GetAllByRecruiterAsync(string recruiterId);
+        Task<IList<JobOffer>?> GetAllByCompanyAsync(string companyId);
         Task<JobOffer?> GetByIdAsync(string id);
         Task<bool> CreateAsync(JobOffer jobOffer);
         Task<bool> UpdateAsync(JobOffer jobOffer);

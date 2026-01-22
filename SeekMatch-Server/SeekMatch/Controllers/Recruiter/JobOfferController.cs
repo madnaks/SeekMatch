@@ -58,6 +58,25 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
+        [HttpGet("get-all-by-company")]
+        public async Task<IActionResult> GetAllByCompany()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            var jobOffersDto = await jobOfferService.GetAllByCompanyAsync(userId);
+
+            if (jobOffersDto == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(jobOffersDto);
+        }
+
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] JobOfferDto jobOfferDto)
         {
