@@ -7,10 +7,8 @@ namespace SeekMatch.Application.Services
 {
     public class SettingService(ISettingRepository settingRepository, IMapper mapper) : ISettingService
     {
-        public async Task<Setting?> GetUserSettingAsync(string userId)
-        {
-            return await settingRepository.GetAsync(userId);
-        }
+        public async Task<Setting?> GetUserSettingAsync(string userId) => 
+            await settingRepository.GetAsync(userId);
 
         public async Task<bool> UpdateUserSettingAsync(SettingDto settingDto, string userId)
         {

@@ -15,15 +15,11 @@ namespace SeekMatch.Application.Services
             INotificationService notificationService,
             IMapper mapper) : IJobApplicationService
     {
-        public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync(string talentId)
-        {
-            return mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByTalentAsync(talentId));
-        }
+        public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync(string talentId) => 
+            mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByTalentAsync(talentId));
 
-        public async Task<IList<JobApplicationDto>?> GetAllByRecruiterAsync()
-        {
-            return mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByRecruiterAsync());
-        }
+        public async Task<IList<JobApplicationDto>?> GetAllByRecruiterAsync() =>
+            mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByRecruiterAsync());
 
         public async Task<bool> ApplyAsync(string talentId, string jobOfferId)
         {
@@ -32,9 +28,7 @@ namespace SeekMatch.Application.Services
                 .FindByTalentAndJobOfferAsync(talentId, jobOfferId);
 
             if (existingApplication != null)
-            {
                 throw new Exception("You have already applied for this job offer.");
-            }
 
             var jobApplication = new JobApplication() { 
                 Id = Guid.NewGuid().ToString(),
@@ -54,16 +48,11 @@ namespace SeekMatch.Application.Services
                 .FindByEmailAndExpressApplicationAsync(expressApplication.Email, jobOfferId);
 
             if (existingApplication != null)
-            {
                 throw new Exception("You have already applied for this job offer with this email.");
-            }
 
             var existingJobOffer = await jobOfferRepository.GetByIdAsync(jobOfferId);
-
             if (existingJobOffer == null)
-            {
                 throw new Exception("Job offer not found");
-            }
 
             var jobApplication = new JobApplication()
             {
@@ -86,26 +75,14 @@ namespace SeekMatch.Application.Services
             return await jobApplicationRepository.ExpressApplyAsync(jobApplication, expressApplication);
         }
 
-        public async Task<bool> ShortList(string jobApplicationId)
-        {
-            var result = await jobApplicationRepository.ShortList(jobApplicationId);
-            
-            return result;
-        }
+        public async Task<bool> ShortList(string jobApplicationId) => 
+            await jobApplicationRepository.ShortList(jobApplicationId);
 
-        public async Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto)
-        {
-            var result = await jobApplicationRepository.InterviewScheduled(jobApplicationId, interviewScheduleDto.Platform, interviewScheduleDto.Date);
-
-            return result;
-        }
+        public async Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto) => 
+            await jobApplicationRepository.InterviewScheduled(jobApplicationId, interviewScheduleDto.Platform, interviewScheduleDto.Date);
         
-        public async Task<bool> Hire(string jobApplicationId)
-        {
-            var result = await jobApplicationRepository.Hire(jobApplicationId);
-
-            return result;
-        }
+        public async Task<bool> Hire(string jobApplicationId) => 
+            await jobApplicationRepository.Hire(jobApplicationId);
 
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
@@ -131,9 +108,8 @@ namespace SeekMatch.Application.Services
         {
             var jobApplication = await jobApplicationRepository.GetByIdWithTalentDetailsAsync(jobApplicationId);
 
-            if (jobApplication == null) {
+            if (jobApplication == null) 
                 return ServiceResult<FileDownloadResult>.Fail(HttpStatusCode.NotFound, "Job application not found");
-            }
 
             string? filePath = null;
 
@@ -147,12 +123,10 @@ namespace SeekMatch.Application.Services
             }
 
             if (string.IsNullOrEmpty(filePath))
-            {
                 return ServiceResult<FileDownloadResult>.Fail(
                     HttpStatusCode.NotFound,
                     "This talent has no resume uploaded"
                 );
-            }
 
             try
             {
@@ -167,13 +141,9 @@ namespace SeekMatch.Application.Services
             {
                 return ServiceResult<FileDownloadResult>.Fail(HttpStatusCode.InternalServerError, ex.Message);
             }
-
         }
 
-        public async Task<bool> DeleteAsync(string jobApplicationId)
-        {
-            return await jobApplicationRepository.DeleteAsync(jobApplicationId);
-        }
-
+        public async Task<bool> DeleteAsync(string jobApplicationId) => 
+            await jobApplicationRepository.DeleteAsync(jobApplicationId);
     }
 }

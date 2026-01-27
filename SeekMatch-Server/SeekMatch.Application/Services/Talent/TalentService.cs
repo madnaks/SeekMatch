@@ -24,7 +24,6 @@ namespace SeekMatch.Application.Services
             };
 
             var result = await userManager.CreateAsync(user, registerTalentDto.Password);
-
             if (!result.Succeeded)
                 return result;
 
@@ -48,10 +47,8 @@ namespace SeekMatch.Application.Services
             return IdentityResult.Success;
         } 
         
-        public async Task<TalentDto?> GetAsync(string userId)
-        {
-            return mapper.Map<TalentDto>(await talentRepository.GetAsync(userId));
-        } 
+        public async Task<TalentDto?> GetAsync(string userId) => 
+            mapper.Map<TalentDto>(await talentRepository.GetAsync(userId));
         
         public async Task<bool> SaveProfileAsync(TalentDto talentDto, string userId)
         {
@@ -80,11 +77,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
             var talent = await talentRepository.GetAsync(userId);
-
             if (talent == null)
-            {
                 return false;
-            }
 
             talent.ProfilePicture = profilePictureData;
             await talentRepository.SaveChangesAsync(talent);
@@ -96,11 +90,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
             var talent = await talentRepository.GetAsync(userId);
-
             if (talent == null)
-            {
                 return false;
-            }
 
             talent.ProfilePicture = null;
             await talentRepository.SaveChangesAsync(talent);

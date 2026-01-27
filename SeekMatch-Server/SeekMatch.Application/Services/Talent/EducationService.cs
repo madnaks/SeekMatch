@@ -8,10 +8,8 @@ namespace SeekMatch.Application.Services
 {
     public class EducationService(IEducationRepository educationRepository, IMapper mapper) : IEducationService
     {
-        public async Task<IList<EducationDto>?> GetAllAsync(string talentId)
-        {
-            return mapper.Map<IList<EducationDto>>(await educationRepository.GetAllAsync(talentId));
-        }
+        public async Task<IList<EducationDto>?> GetAllAsync(string talentId) => 
+            mapper.Map<IList<EducationDto>>(await educationRepository.GetAllAsync(talentId));
 
         public async Task<bool> CreateAsync(EducationDto educationDto, string talentId)
         {
@@ -27,9 +25,7 @@ namespace SeekMatch.Application.Services
             {
                 var existingEducation = await educationRepository.GetByIdAsync(educationDto.Id);
                 if (existingEducation == null)
-                {
                     throw new Exception("Education not found");
-                }
 
                 mapper.Map(educationDto, existingEducation);
 
@@ -39,10 +35,6 @@ namespace SeekMatch.Application.Services
             return false;
         }
 
-        public async Task<bool> DeleteAsync(string educationId)
-        {
-            return await educationRepository.DeleteAsync(educationId);
-        }
-
+        public async Task<bool> DeleteAsync(string educationId) => await educationRepository.DeleteAsync(educationId);
     }
 }

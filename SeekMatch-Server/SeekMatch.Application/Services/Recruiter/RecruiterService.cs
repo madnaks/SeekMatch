@@ -25,7 +25,6 @@ namespace SeekMatch.Application.Services
             };
 
             var result = await userManager.CreateAsync(user, registerRecruiterDto.Password);
-            
             if (!result.Succeeded)
                 return result;
 
@@ -50,15 +49,11 @@ namespace SeekMatch.Application.Services
             return IdentityResult.Success;
         }
 
-        public async Task<RecruiterDto?> GetAsync(string userId)
-        {
-            return mapper.Map<RecruiterDto>(await recruiterRepository.GetAsync(userId));
-        }
+        public async Task<RecruiterDto?> GetAsync(string userId) => mapper.Map<RecruiterDto>(await recruiterRepository.GetAsync(userId));
 
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)
         {
             var recruiter = await recruiterRepository.GetAsync(userId);
-
             if (recruiter != null)
             {
                 recruiter.FirstName = aboutYouDto.FirstName;
@@ -74,11 +69,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
             var recruiter = await recruiterRepository.GetAsync(userId);
-
             if (recruiter == null)
-            {
                 return false;
-            }
 
             recruiter.ProfilePicture = profilePictureData;
             await recruiterRepository.SaveChangesAsync(recruiter);
@@ -89,11 +81,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
             var recruiter = await recruiterRepository.GetAsync(userId);
-
             if (recruiter == null)
-            {
                 return false;
-            }
 
             recruiter.ProfilePicture = null;
             await recruiterRepository.SaveChangesAsync(recruiter);
@@ -116,7 +105,6 @@ namespace SeekMatch.Application.Services
             var temporaryPassword = Utils.GenerateTemporaryPassword();
 
             var result = await userManager.CreateAsync(user, temporaryPassword);
-
             if (!result.Succeeded)
                 return result;
 
@@ -142,12 +130,9 @@ namespace SeekMatch.Application.Services
             {
                 var existingRecruiter = await recruiterRepository.GetAsync(recruiterDto.Id);
                 if (existingRecruiter == null)
-                {
                     throw new Exception("Recruiter not found");
-                }
 
                 mapper.Map(recruiterDto, existingRecruiter);
-
                 return await recruiterRepository.UpdateAsync(existingRecruiter);
             }
 

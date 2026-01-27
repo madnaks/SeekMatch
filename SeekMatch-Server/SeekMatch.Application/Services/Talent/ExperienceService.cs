@@ -8,10 +8,8 @@ namespace SeekMatch.Application.Services
 {
     public class ExperienceService(IExperienceRepository experienceRepository, IMapper mapper) : IExperienceService
     {
-        public async Task<IList<ExperienceDto>?> GetAllAsync(string talentId)
-        {
-            return mapper.Map<IList<ExperienceDto>>(await experienceRepository.GetAllAsync(talentId));
-        }
+        public async Task<IList<ExperienceDto>?> GetAllAsync(string talentId) => 
+            mapper.Map<IList<ExperienceDto>>(await experienceRepository.GetAllAsync(talentId));
 
         public async Task<bool> CreateAsync(ExperienceDto experienceDto, string talentId)
         {
@@ -27,9 +25,7 @@ namespace SeekMatch.Application.Services
             {
                 var existingExperience = await experienceRepository.GetByIdAsync(experienceDto.Id);
                 if (existingExperience == null)
-                {
                     throw new Exception("Experience not found");
-                }
 
                 mapper.Map(experienceDto, existingExperience);
 
@@ -39,10 +35,7 @@ namespace SeekMatch.Application.Services
             return false;
         }
 
-        public async Task<bool> DeleteAsync(string experienceId)
-        {
-            return await experienceRepository.DeleteAsync(experienceId);
-        }
-
+        public async Task<bool> DeleteAsync(string experienceId) => 
+            await experienceRepository.DeleteAsync(experienceId);
     }
 }

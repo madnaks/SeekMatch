@@ -28,7 +28,6 @@ namespace SeekMatch.Application.Services
             };
 
             var result = await userManager.CreateAsync(user, registerRepresentativeDto.Password);
-
             if (!result.Succeeded)
                 return result;
 
@@ -38,7 +37,6 @@ namespace SeekMatch.Application.Services
                 Address = registerRepresentativeDto.CompanyAddress,
                 Phone = registerRepresentativeDto.CompanyPhoneNumber
             };
-
             await companyService.CreateAsync(company);
 
             var representative = new Representative()
@@ -64,15 +62,11 @@ namespace SeekMatch.Application.Services
             return IdentityResult.Success;
         }
 
-        public async Task<RepresentativeDto?> GetAsync(string userId)
-        {
-            return mapper.Map<RepresentativeDto>(await representativeRepository.GetAsync(userId));
-        }
+        public async Task<RepresentativeDto?> GetAsync(string userId) => mapper.Map<RepresentativeDto>(await representativeRepository.GetAsync(userId));
 
         public async Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId)
         {
             var representative = await representativeRepository.GetAsync(userId);
-
             if (representative != null)
             {
                 representative.FirstName = aboutYouDto.FirstName;
@@ -88,11 +82,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId)
         {
             var representative = await representativeRepository.GetAsync(userId);
-
             if (representative == null)
-            {
                 return false;
-            }
 
             representative.ProfilePicture = profilePictureData;
             await representativeRepository.SaveChangesAsync(representative);
@@ -103,11 +94,8 @@ namespace SeekMatch.Application.Services
         public async Task<bool> DeleteProfilePictureAsync(string userId)
         {
             var representative = await representativeRepository.GetAsync(userId);
-
             if (representative == null)
-            {
                 return false;
-            }
 
             representative.ProfilePicture = null;
             await representativeRepository.SaveChangesAsync(representative);
@@ -120,7 +108,7 @@ namespace SeekMatch.Application.Services
         public async Task<List<RecruiterDto>> GetAllRecruitersAsync(string userId)
         {
             var representative = await representativeRepository.GetAsync(userId);
-
+            
             if (representative != null)
             {
                 var recruiters = representative.Company.Recruiters;

@@ -21,15 +21,11 @@ namespace SeekMatch.Application.Services
             return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllAsync(jobOfferFilters));
         }
 
-        public async Task<JobOfferDto?> GetByIdAsync(string jobOfferId)
-        {
-            return mapper.Map<JobOfferDto>(await jobOfferRepository.GetByIdAsync(jobOfferId));
-        }
+        public async Task<JobOfferDto?> GetByIdAsync(string jobOfferId) => 
+            mapper.Map<JobOfferDto>(await jobOfferRepository.GetByIdAsync(jobOfferId));
 
-        public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId)
-        {
-            return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
-        }
+        public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId) => 
+            mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
 
         public async Task<IList<JobOfferDto>?> GetAllByCompanyAsync(string userId)
         {
@@ -77,9 +73,7 @@ namespace SeekMatch.Application.Services
             {
                 var existingJobOffer = await jobOfferRepository.GetByIdAsync(jobOfferDto.Id);
                 if (existingJobOffer == null)
-                {
                     throw new Exception("Job offer not found");
-                }
 
                 mapper.Map(jobOfferDto, existingJobOffer);
 
@@ -89,15 +83,9 @@ namespace SeekMatch.Application.Services
             return false;
         }
 
-        public async Task<bool> DeleteAsync(string jobOfferId)
-        {
-            return await jobOfferRepository.DeleteAsync(jobOfferId);
-        }
+        public async Task<bool> DeleteAsync(string jobOfferId) => await jobOfferRepository.DeleteAsync(jobOfferId);
 
-        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId)
-        {
-            return await jobOfferRepository.IsBookmarkedAsync(jobOfferId, talentId);
-        }
+        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId) => await jobOfferRepository.IsBookmarkedAsync(jobOfferId, talentId);
 
         public async Task<bool> BookmarkAsync(string jobOfferId, string talentId)
         {

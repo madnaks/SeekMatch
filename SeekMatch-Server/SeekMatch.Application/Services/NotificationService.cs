@@ -6,10 +6,8 @@ namespace SeekMatch.Application.Services
 {
     public class NotificationService(INotificationRepository notificationRepository) : INotificationService
     {
-        public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId)
-        {
-            return await notificationRepository.GetUserNotificationsAsync(userId);
-        }
+        public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId) => 
+            await notificationRepository.GetUserNotificationsAsync(userId);
 
         public async Task CreateNotificationAsync(string userId, string message)
         {
@@ -22,10 +20,8 @@ namespace SeekMatch.Application.Services
             await notificationRepository.AddNotificationAsync(notification);
         }
 
-        public async Task MarkAsReadAsync(string notificationId)
-        {
+        public async Task MarkAsReadAsync(string notificationId) =>
             await notificationRepository.MarkAsReadAsync(notificationId);
-        }
     }
 
 }
