@@ -6,13 +6,11 @@ namespace SeekMatch.Infrastructure.Repositories
 {
     public class NotificationRepository(SeekMatchDbContext dbContext) : INotificationRepository
     {
-        public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId)
-        {
-            return await dbContext.Notifications
+        public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId) => 
+            await dbContext.Notifications
                 .Where(n => n.userId == userId)
                 .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
-        }
 
         public async Task AddNotificationAsync(Notification notification)
         {

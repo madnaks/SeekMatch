@@ -17,9 +17,7 @@ namespace SeekMatch.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
-            {
                 return Unauthorized();
-            }
 
             var setting = await settingService.GetUserSettingAsync(userId);
             return Ok(setting);
@@ -29,24 +27,16 @@ namespace SeekMatch.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateSetting([FromBody] SettingDto settingDto)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (settingDto == null)
-            {
                 return BadRequest("Setting data is null");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             var result = await settingService.UpdateUserSettingAsync(settingDto, userId);
-
             if (result)
-            {
                 return Ok(new { message = "User setting updated successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while updating the user setting" });
         }

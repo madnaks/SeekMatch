@@ -20,9 +20,7 @@ namespace SeekMatch.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
-            {
                 return Unauthorized();
-            }
 
             var notifications = await notificationService.GetUserNotificationsAsync(userId);
             return Ok(notifications);

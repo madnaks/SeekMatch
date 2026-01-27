@@ -21,7 +21,6 @@ namespace SeekMatch.Controllers
                     return BadRequest(ModelState);
 
                 var result = await representativeService.RegisterAsync(registerRepresentativeDto);
-
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
 
@@ -38,19 +37,13 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var representativeDto = await representativeService.GetAsync(userId);
-
             if (representativeDto == null)
-            {
                 return NotFound();
-            }
-
+            
             return Ok(representativeDto);
         }
 
@@ -58,24 +51,16 @@ namespace SeekMatch.Controllers
         [HttpPut("about-you")]
         public async Task<IActionResult> SaveProfile([FromBody] AboutYouDto aboutYouDto)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (aboutYouDto == null)
-            {
                 return BadRequest("Representative data is null");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             var result = await representativeService.SaveAboutYouAsync(aboutYouDto, userId);
-
             if (result)
-            {
                 return Ok(new { message = "Representative profile saved successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
@@ -85,17 +70,12 @@ namespace SeekMatch.Controllers
         [HttpPost("upload-profile-picture")]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (profilePicture == null || profilePicture.Length == 0)
-            {
                 return BadRequest("No file uploaded.");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             using (var memoryStream = new MemoryStream())
             {
@@ -104,13 +84,10 @@ namespace SeekMatch.Controllers
 
                 var isSuccess = await representativeService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
-                {
                     return NotFound("Representative not found.");
-                }
             }
 
             return Ok(new { message = "Profile picture uploaded successfully." });
-
         }
 
         [Authorize]
@@ -118,18 +95,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> DeleteProfilePicture()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var result = await representativeService.DeleteProfilePictureAsync(userId);
-
             if (!result)
-            {
                 return NotFound("Profile picture not found.");
-            }
 
             return NoContent();
         }
@@ -141,18 +112,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetCompany()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var representativeDto = await representativeService.GetAsync(userId);
-
             if (representativeDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(representativeDto.CompanyDto);
         }
@@ -162,30 +127,19 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> UpdateCompany([FromBody] CompanyDto companyDto)
         {
             if (companyDto == null)
-            {
                 return BadRequest("Company data is null");
-            }
 
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var representativeDto = await representativeService.GetAsync(userId);
-
             if (representativeDto == null)
-            {
                 return NotFound();
-            }
 
             var result = await companyService.UpdateAsync(companyDto, representativeDto.CompanyId);
-
             if (result)
-            {
                 return Ok(new { message = "Representative profile saved successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
@@ -197,18 +151,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetAllRecruiter()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var recruitersDto = await representativeService.GetAllRecruitersAsync(userId);
-
             if (recruitersDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(recruitersDto);
         }
@@ -221,20 +169,14 @@ namespace SeekMatch.Controllers
                 return BadRequest(ModelState);
 
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var representativeDto = await representativeService.GetAsync(userId);
-
-            if (representativeDto == null) { 
+            if (representativeDto == null) 
                 return NotFound(); 
-            }
 
             var result = await recruiterService.CreateAsync(recruiterDto, representativeDto.CompanyId);
-
             if (!result.Succeeded)
                 return BadRequest(result.Errors);
 
@@ -249,35 +191,19 @@ namespace SeekMatch.Controllers
                 return BadRequest(ModelState);
 
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var representativeDto = await representativeService.GetAsync(userId);
-
             if (representativeDto == null)
-            {
                 return NotFound();
-            }
 
             var result = await recruiterService.UpdateAsync(recruiterDto, representativeDto.CompanyId);
-
             if (result)
-            {
                 return Ok(new { message = "Recruiter update successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while updating the recruiter" });
         }
-
-        //[Authorize]
-        //[HttpPost("delete-recruiter")]
-        //public async Task<IActionResult> DeleteRecruiter([FromBody] RecruiterDto recruiterDto)
-        //{
-
-        //}
         #endregion
     }
 }

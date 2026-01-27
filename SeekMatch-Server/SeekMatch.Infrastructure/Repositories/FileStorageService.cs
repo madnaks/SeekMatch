@@ -10,9 +10,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             _uploadsFolder = uploadsFolder;
             if (!Directory.Exists(_uploadsFolder))
-            {
                 Directory.CreateDirectory(_uploadsFolder);
-            }
         }
 
         public async Task<string> SaveFileAsync(Stream fileStream, string fileName)

@@ -16,9 +16,7 @@ namespace SeekMatch.Controllers
             var jobOffersDto = await jobOfferService.GetAllAsync(filters);
 
             if (jobOffersDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(jobOffersDto);
         }
@@ -29,10 +27,8 @@ namespace SeekMatch.Controllers
             var jobOfferDto = await jobOfferService.GetByIdAsync(jobOfferId);
 
             if (jobOfferDto == null)
-            {
                 return NotFound();
-            }
-
+            
             return Ok(jobOfferDto);
         }
 
@@ -43,16 +39,12 @@ namespace SeekMatch.Controllers
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             var jobOffersDto = await jobOfferService.GetAllByRecruiterAsync(recruiterId);
 
             if (jobOffersDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(jobOffersDto);
         }
@@ -69,9 +61,7 @@ namespace SeekMatch.Controllers
             var jobOffersDto = await jobOfferService.GetAllByCompanyAsync(userId);
 
             if (jobOffersDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(jobOffersDto);
         }
@@ -84,21 +74,15 @@ namespace SeekMatch.Controllers
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             if (jobOfferDto == null)
-            {
                 return BadRequest("Job offer data is null");
-            }
 
             var result = await jobOfferService.CreateAsync(jobOfferDto, recruiterId);
 
             if (result)
-            {
                 return Ok(new { message = "Job offer created successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while creating the job offer" });
         }
@@ -108,25 +92,18 @@ namespace SeekMatch.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] JobOfferDto jobOfferDto)
         {
-
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             if (jobOfferDto == null)
-            {
                 return BadRequest("Job offer data is null");
-            }
 
             var result = await jobOfferService.UpdateAsync(jobOfferDto);
 
             if (result)
-            {
                 return Ok(new { message = "Job offer update successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while updating the job offer" });
         }
@@ -139,21 +116,15 @@ namespace SeekMatch.Controllers
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             if (jobOfferId == null)
-            {
                 return BadRequest("Job offer id is null");
-            }
 
             var result = await jobOfferService.DeleteAsync(jobOfferId);
 
             if (result)
-            {
                 return Ok(new { message = "Job offer deleted successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while deleting the job offer" });
         }
@@ -165,16 +136,12 @@ namespace SeekMatch.Controllers
             try
             {
                 if (jobOfferId == null)
-                {
                     return BadRequest("Job offer data is null");
-                }
 
                 var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                 if (talentId == null)
-                {
                     return Unauthorized();
-                }
 
                 var result = await jobOfferService.IsBookmarkedAsync(jobOfferId, talentId);
 
@@ -194,23 +161,17 @@ namespace SeekMatch.Controllers
             try
             {
                 if (jobOfferId == null)
-                {
                     return BadRequest("Job offer data is null");
-                }
 
                 var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                 if (talentId == null)
-                {
                     return Unauthorized();
-                }
 
                 var result = await jobOfferService.BookmarkAsync(jobOfferId, talentId);
 
                 if (result)
-                {
                     return Ok(new { message = "Job offer bookmarked successfully" });
-                }
 
                 return StatusCode(500, new { message = "An error occurred while bookmarking the job offer" });
             }
@@ -227,23 +188,17 @@ namespace SeekMatch.Controllers
             try
             {
                 if (jobOfferId == null)
-                {
                     return BadRequest("Job offer data is null");
-                }
 
                 var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                 if (talentId == null)
-                {
                     return Unauthorized();
-                }
 
                 var result = await jobOfferService.UnBookmarkAsync(jobOfferId, talentId);
 
                 if (result)
-                {
                     return Ok(new { message = "Job offer unbookmarked successfully" });
-                }
 
                 return StatusCode(500, new { message = "An error occurred while unbookmarking the job offer" });
             }

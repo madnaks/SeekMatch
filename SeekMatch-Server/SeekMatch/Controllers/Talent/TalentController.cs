@@ -17,10 +17,8 @@ namespace SeekMatch.Controllers
                 return BadRequest(ModelState);
 
             var result = await talentService.RegisterAsync(registerTalentDto);
-
             if (!result.Succeeded)
-                return BadRequest(new
-                {
+                return BadRequest(new{
                     errors = result.Errors.Select(e => e.Description)
                 });
 
@@ -32,16 +30,11 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetById(string talentId)
         {
             if (string.IsNullOrWhiteSpace(talentId))
-            {
                 return BadRequest("Talent Id cannot be empty.");
-            }
 
             var talentDto = await talentService.GetAsync(talentId);
-
             if (talentDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(talentDto);
         }
@@ -51,18 +44,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var talentDto = await talentService.GetAsync(userId);
-
             if (talentDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(talentDto);
         }
@@ -71,24 +58,16 @@ namespace SeekMatch.Controllers
         [HttpPut("save-profile")]
         public async Task<IActionResult> SaveProfile([FromBody] TalentDto talentDto)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (talentDto == null)
-            {
                 return BadRequest("Talent data is null");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             var result = await talentService.SaveProfileAsync(talentDto, userId);
-
             if (result)
-            {
                 return Ok(new { message = "Talent profile saved successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
@@ -97,17 +76,12 @@ namespace SeekMatch.Controllers
         [HttpPost("upload-profile-picture")]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (profilePicture == null || profilePicture.Length == 0)
-            {
                 return BadRequest("No file uploaded.");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             using (var memoryStream = new MemoryStream())
             {
@@ -116,13 +90,10 @@ namespace SeekMatch.Controllers
 
                 var isSuccess = await talentService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
-                {
                     return NotFound("Talent not found.");
-                }
             }
 
             return Ok(new { message = "Profile picture uploaded successfully." });
-
         }
 
         [Authorize]
@@ -130,18 +101,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> DeleteProfilePicture()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var result = await talentService.DeleteProfilePictureAsync(userId);
-
             if (!result)
-            {
                 return NotFound("Profile picture not found.");
-            }
 
             return NoContent();
         }
@@ -151,18 +116,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetAllBookmarks()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var bookmarks = await talentService.GetAllBookmarksAsync(userId);
-
             if (bookmarks == null)
-            {
                 return NotFound();
-            }
 
             return Ok(bookmarks);
         }

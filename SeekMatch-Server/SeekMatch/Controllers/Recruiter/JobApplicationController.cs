@@ -17,16 +17,12 @@ namespace SeekMatch.Controllers
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (talentId == null)
-            {
                 return Unauthorized();
-            }
 
             var jobApplicationsDto = await jobApplicationService.GetAllByTalentAsync(talentId);
 
             if (jobApplicationsDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(jobApplicationsDto);
         }
@@ -36,18 +32,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetAllByRecruiter()
         {
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             var jobApplicationsDto = await jobApplicationService.GetAllByRecruiterAsync();
-
             if (jobApplicationsDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(jobApplicationsDto);
         }
@@ -59,23 +49,15 @@ namespace SeekMatch.Controllers
             try
             {
                 if (jobOfferId == null)
-                {
                     return BadRequest("Job application data is null");
-                }
 
                 var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
                 if (talentId == null)
-                {
                     return Unauthorized();
-                }
 
                 var result = await jobApplicationService.ApplyAsync(talentId, jobOfferId);
-
                 if (result)
-                {
                     return Ok(new { message = "Job application created successfully" });
-                }
 
                 return StatusCode(500, new { message = "An error occurred while creating the job application" });
             } 
@@ -90,24 +72,16 @@ namespace SeekMatch.Controllers
             try
             {
                 if (jobOfferId == null)
-                {
                     return BadRequest("Job application data is null");
-                }
 
                 if (cv == null || cv.Length == 0)
-                {
                     return BadRequest("CV file is required.");
-                }
 
                 using var stream = cv.OpenReadStream();
 
-                var result = await jobApplicationService
-                    .ExpressApplyAsync(expressApplicationDto, jobOfferId, stream, cv.FileName);
-
+                var result = await jobApplicationService.ExpressApplyAsync(expressApplicationDto, jobOfferId, stream, cv.FileName);
                 if (result)
-                {
                     return Ok(new { message = "Job application created successfully" });
-                }
 
                 return StatusCode(500, new { message = "An error occurred while creating the job application" });
             }
@@ -121,18 +95,12 @@ namespace SeekMatch.Controllers
         [HttpPut("short-list/{jobApplicationId}")]
         public async Task<IActionResult> ShortList(string jobApplicationId)
         {
-
             if (jobApplicationId == null)
-            {
                 return BadRequest("Job application id is null");
-            }
 
             var result = await jobApplicationService.ShortList(jobApplicationId);
-
             if (result)
-            {
                 return Ok(new { message = "Job application is now in short list" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while short listed the job application" });
         }
@@ -141,19 +109,13 @@ namespace SeekMatch.Controllers
         [HttpPut("interview-scheduled/{jobApplicationId}")]
         public async Task<IActionResult> interviewScheduled(string jobApplicationId, [FromBody] InterviewScheduleDto interviewScheduleDto)
         {
-
             if (jobApplicationId == null)
-            {
                 return BadRequest("Job application id is null");
-            }
 
             var result = await jobApplicationService.InterviewScheduled(jobApplicationId, interviewScheduleDto);
-
             if (result)
-            {
                 return Ok(new { message = "Job application is now in short list" });
-            }
-
+            
             return StatusCode(500, new { message = "An error occurred while short listed the job application" });
         }
 
@@ -161,18 +123,12 @@ namespace SeekMatch.Controllers
         [HttpPut("hire/{jobApplicationId}")]
         public async Task<IActionResult> Hire(string jobApplicationId)
         {
-
             if (jobApplicationId == null)
-            {
                 return BadRequest("Job application id is null");
-            }
 
             var result = await jobApplicationService.Hire(jobApplicationId);
-
             if (result)
-            {
                 return Ok(new { message = "Talent is now hired" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while hiring the talent" });
         }
@@ -181,25 +137,16 @@ namespace SeekMatch.Controllers
         [HttpPut("{jobApplicationId}")]
         public async Task<IActionResult> Reject(string jobApplicationId, [FromBody] string rejectionReason)
         {
-
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
 
             if (jobApplicationId == null)
-            {
                 return BadRequest("Job application id is null");
-            }
 
             var result = await jobApplicationService.RejectAsync(jobApplicationId, rejectionReason);
-
             if (result)
-            {
                 return Ok(new { message = "Job application rejected successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while rejecting the job application" });
         }
@@ -209,11 +156,8 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> DownloadResume(string jobApplicationId)
         {
             var result = await jobApplicationService.DownloadResume(jobApplicationId);
-
             if (!result.Success)
-            {
                 return StatusCode((int) result.StatusCode, result.Message);
-            }
 
             return File(result.Value!.FileStream, result.Value.ContentType, result.Value.FileName);
         }
@@ -222,25 +166,16 @@ namespace SeekMatch.Controllers
         [HttpDelete("{jobApplicationId}")]
         public async Task<IActionResult> Delete([FromRoute] string jobApplicationId)
         {
+            if (jobApplicationId == null)
+                return BadRequest("Job application id is null");
 
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (recruiterId == null)
-            {
                 return Unauthorized();
-            }
-
-            if (jobApplicationId == null)
-            {
-                return BadRequest("Job application id is null");
-            }
 
             var result = await jobApplicationService.DeleteAsync(jobApplicationId);
-
             if (result)
-            {
                 return Ok(new { message = "Job application deleted successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while deleting the job application" });
         }

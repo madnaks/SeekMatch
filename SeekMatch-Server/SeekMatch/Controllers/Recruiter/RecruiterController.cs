@@ -16,10 +16,9 @@ namespace SeekMatch.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+                    return BadRequest(ModelState);
 
                 var result = await recruiterService.RegisterAsync(registerRecruiterDto);
-
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
 
@@ -36,18 +35,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var recruiterDto = await recruiterService.GetAsync(userId);
-
             if (recruiterDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(recruiterDto);
         }
@@ -57,16 +50,11 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetById(string recruiterId)
         {
             if (string.IsNullOrWhiteSpace(recruiterId))
-            {
                 return BadRequest("Recruiter Id cannot be empty.");
-            }
 
             var recruiterDto = await recruiterService.GetAsync(recruiterId);
-
             if (recruiterDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(recruiterDto);
         }
@@ -75,24 +63,17 @@ namespace SeekMatch.Controllers
         [HttpPut("about-you")]
         public async Task<IActionResult> SaveProfile([FromBody] AboutYouDto aboutYouDto)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (aboutYouDto == null)
-            {
                 return BadRequest("Recruiter data is null");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
+
 
             var result = await recruiterService.SaveAboutYouAsync(aboutYouDto, userId);
-
             if (result)
-            {
                 return Ok(new { message = "Recruiter profile saved successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while saving the profile" });
         }
@@ -101,17 +82,12 @@ namespace SeekMatch.Controllers
         [HttpPost("upload-profile-picture")]
         public async Task<IActionResult> UploadProfilePicture(IFormFile profilePicture)
         {
-            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            if (userId == null)
-            {
-                return Unauthorized();
-            }
-
             if (profilePicture == null || profilePicture.Length == 0)
-            {
                 return BadRequest("No file uploaded.");
-            }
+
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null)
+                return Unauthorized();
 
             using (var memoryStream = new MemoryStream())
             {
@@ -120,13 +96,10 @@ namespace SeekMatch.Controllers
 
                 var isSuccess = await recruiterService.UpdateProfilePictureAsync(profilePictureData, userId);
                 if (!isSuccess)
-                {
                     return NotFound("Recruiter not found.");
-                }
             }
 
             return Ok(new { message = "Profile picture uploaded successfully." });
-
         }
 
         [Authorize]
@@ -134,18 +107,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> DeleteProfilePicture()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (userId == null)
-            {
                 return Unauthorized();
-            }
 
             var result = await recruiterService.DeleteProfilePictureAsync(userId);
-
             if (!result)
-            {
                 return NotFound("Profile picture not found.");
-            }
 
             return NoContent();
         }

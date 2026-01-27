@@ -10,9 +10,8 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                if (userId == null) {
+                if (userId == null)
                     throw new ArgumentNullException(nameof(userId));
-                }
 
                 return await dbContext.Settings.FirstOrDefaultAsync(t => t.UserId == userId) ?? null;
             }

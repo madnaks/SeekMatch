@@ -60,13 +60,10 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
-        public async Task<IList<Bookmark>?> GetBookmarks(string userId)
-        {
-            return await dbContext.Bookmarks
+        public async Task<IList<Bookmark>?> GetBookmarks(string userId) => 
+            await dbContext.Bookmarks
                 .Include(t => t.JobOffer)
                 .Where(t => t.TalentId == userId)
                 .ToListAsync();
-        }
-
     }
 }

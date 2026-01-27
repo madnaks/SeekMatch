@@ -15,18 +15,12 @@ namespace SeekMatch.Controllers
         public async Task<IActionResult> GetAll()
         {
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (talentId == null)
-            {
                 return Unauthorized();
-            }
 
             var eduationsDto = await educationService.GetAllAsync(talentId);
-
             if (eduationsDto == null)
-            {
                 return NotFound();
-            }
 
             return Ok(eduationsDto);
         }
@@ -35,25 +29,16 @@ namespace SeekMatch.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] EducationDto educationDto)
         {
+            if (educationDto == null)
+                return BadRequest("Education data is null");
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (talentId == null)
-            {
                 return Unauthorized();
-            }
-
-            if (educationDto == null)
-            {
-                return BadRequest("Education data is null");
-            }
 
             var result = await educationService.CreateAsync(educationDto, talentId);
-
             if (result)
-            {
                 return Ok(new { message = "Education created successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while creating the education" });
         }
@@ -63,25 +48,16 @@ namespace SeekMatch.Controllers
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] EducationDto educationDto)
         {
+            if (educationDto == null)
+                return BadRequest("Education data is null");
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (talentId == null)
-            {
                 return Unauthorized();
-            }
-
-            if (educationDto == null)
-            {
-                return BadRequest("Education data is null");
-            }
 
             var result = await educationService.UpdateAsync(educationDto);
-
             if (result)
-            {
                 return Ok(new { message = "Education update successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while updating the education" });
         }
@@ -90,25 +66,16 @@ namespace SeekMatch.Controllers
         [HttpDelete("{educationId}")]
         public async Task<IActionResult> Delete([FromRoute] string educationId)
         {
+            if (educationId == null)
+                return BadRequest("Education id is null");
 
             var talentId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
             if (talentId == null)
-            {
                 return Unauthorized();
-            }
-
-            if (educationId == null)
-            {
-                return BadRequest("Education id is null");
-            }
 
             var result = await educationService.DeleteAsync(educationId);
-
             if (result)
-            {
                 return Ok(new { message = "Education deleted successfully" });
-            }
 
             return StatusCode(500, new { message = "An error occurred while deleting the education" });
         }
