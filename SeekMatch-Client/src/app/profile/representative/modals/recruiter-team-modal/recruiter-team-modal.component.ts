@@ -99,7 +99,6 @@ export class AddRecruiterTeamModalComponent implements OnInit {
   }
 
   private update(): void {
-    debugger
     const formValues = this.recruiterForm.value;
     let recruiter = new Recruiter(formValues);
     recruiter.id = this.selectedRecruiter?.id;

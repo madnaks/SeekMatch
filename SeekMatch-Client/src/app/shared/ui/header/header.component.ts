@@ -78,7 +78,8 @@ export class HeaderComponent implements OnInit {
           }
         });
         break;
-      case UserRole.Recruiter:
+      case UserRole.Recruiter: 
+      case UserRole.CompanyRecruiter:
         this.recruiterService.getProfile().subscribe(recruiter => {
           if (recruiter.profilePicture) {
             this.profilePicture = `data:image/jpeg;base64,${recruiter.profilePicture}`;
@@ -118,7 +119,8 @@ export class HeaderComponent implements OnInit {
     switch (this.userRole) {
       case UserRole.Talent:
         return "/profile/talent";
-      case UserRole.Recruiter:
+      case UserRole.Recruiter: 
+      case UserRole.CompanyRecruiter:
         return "/profile/recruiter";
       case UserRole.Representative:
         return "/profile/representative";

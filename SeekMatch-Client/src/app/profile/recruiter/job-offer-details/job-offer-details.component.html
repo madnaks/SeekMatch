@@ -89,6 +89,17 @@
                 Job Applications
             </a>
             <ng-template ngbNavContent>
+                <!-- No job applications -->
+                @if (jobOffer.jobApplications.length === 0) {
+                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
+                    <div class="col-6">
+                        <h5 class="text-center">
+                            {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
+                        </h5>
+                    </div>
+                </div>
+                }
+                @else {
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-end">
 
@@ -113,17 +124,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- No job applications -->
-                @if (jobOffer.jobApplications.length === 0) {
-                <div class="empty-list row d-flex justify-content-center align-items-center flex-column">
-                    <div class="col-6">
-                        <h5 class="text-center">
-                            {{ 'Recruiter.JobApplication.NoJobApplicationMessage' | translate }}
-                        </h5>
-                    </div>
-                </div>
-                }
-                @else {
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-hover">
