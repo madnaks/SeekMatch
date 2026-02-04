@@ -13,22 +13,38 @@ import { NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, N
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, DatePickerInputComponent, DataTableComponent, InfoComponent, AddressGroupComponent, TextFloatInputComponent, TextAreaFloatInputComponent } from '@app/shared/form-controls';
 import { JobModule } from "@app/job/job.module";
-import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
-import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 import { ResumeComponent } from './resume/resume.component';
-import { InfoComponent } from "@app/shared/form-controls/info/info.component";
 import { BookmarkComponent } from './bookmark/bookmark.component';
-import { AddressGroupComponent } from "@app/shared/form-controls/address-group/address-group.component";
-import { TextFloatInputComponent } from "@app/shared/form-controls/text-float-input/text-float-input.component";
-import { TextAreaFloatInputComponent } from "@app/shared/form-controls/text-area-float-input/text-area-float-input.component";
 import { LoaderComponent } from '@app/shared/ui';
 import { ExperienceModalComponent } from './modals/experience-modal/experience-modal.component';
 import { EditProfileModalComponent } from './modals/edit-profile-modal/edit-profile-modal.component';
 import { ResumeModalComponent } from './modals/resume-modal/resume-modal.component';
 import { TalentPreviewModalComponent } from './modals/talent-preview-modal/talent-preview-modal.component';
 import { JobOfferPreviewModalComponent } from '../recruiter/modals/job-offer-preview-modal/job-offer-preview-modal.component';
+
+const NgbModules = [
+  NgbDropdown,
+  NgbDropdownToggle,
+  NgbDropdownMenu,
+  NgbDropdownItem,
+  NgbDropdownButtonItem,
+  NgbNavModule
+];
+
+const FormControls = [
+  FullNameInputComponent, 
+  PhoneInputComponent, 
+  ErrorMessageComponent, 
+  EmailInputComponent, 
+  DatePickerInputComponent, 
+  DataTableComponent, 
+  InfoComponent, 
+  AddressGroupComponent, 
+  TextFloatInputComponent, 
+  TextAreaFloatInputComponent
+];
 
 @NgModule({
   declarations: [
@@ -53,26 +69,12 @@ import { JobOfferPreviewModalComponent } from '../recruiter/modals/job-offer-pre
     BsDatepickerModule,
     TalentRoutingModule,
     SharedModule,
-    NgbNavModule,
     NgxIntlTelInputModule,
-    FullNameInputComponent,
-    PhoneInputComponent,
-    ErrorMessageComponent,
-    EmailInputComponent,
     JobModule,
     LoaderComponent,
-    DatePickerInputComponent,
-    DataTableComponent,
-    InfoComponent,
-    AddressGroupComponent,
-    TextFloatInputComponent,
-    TextAreaFloatInputComponent,
-    NgbDropdown,
-    NgbDropdownToggle,
-    NgbDropdownMenu,
-    NgbDropdownItem,
-    NgbDropdownButtonItem,
-    JobOfferPreviewModalComponent
+    JobOfferPreviewModalComponent,
+    NgbModules,
+    FormControls
   ]
 })
 export class TalentModule { }

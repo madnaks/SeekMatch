@@ -64,8 +64,9 @@
         },
         "Sections": {
             "Profile": "Profile",
-            "AboutYou": "About You",
+            "AboutYou": "About you",
             "JobOffers": "Job offers",
+            "CompanyJobOffers": "Company job offers",
             "Education": "Education",
             "Experience": "Experience",
             "JobApplications": "Job applications",

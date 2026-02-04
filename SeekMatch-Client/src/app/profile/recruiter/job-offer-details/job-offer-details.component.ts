@@ -5,7 +5,7 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { JobApplicationStatus, JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobApplication } from '../../../shared/models/job-application';
-import { FormBuilder, FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JobOfferService } from '@app/shared/services/job-offer.service';
 
@@ -25,7 +25,6 @@ export class JobOfferDetailsComponent implements OnInit {
   public jobTypesList = jobTypes;
   public workplaceTypeList = workplaceTypeList;
   public filterForm!: FormGroup;
-  // public statuses = ['Hired', 'Rejected', 'Submitted', 'Interview', 'Shortlisted'];
   public statuses: string[] = [];
   public filteredJobApplications: JobApplication[] = [];
 
@@ -114,17 +113,14 @@ export class JobOfferDetailsComponent implements OnInit {
   }
   //#endregion
 
-  public getJobTypeName(jobType: JobType): string {
-    return JobType[jobType];
-  }
+  public getJobTypeName = (jobType: JobType): string =>
+    JobType[jobType];
 
-  public getWorkplaceTypeName(workplaceType: WorkplaceType): string {
-    return WorkplaceType[workplaceType];
-  }
+  public etWorkplaceTypeName = (workplaceType: WorkplaceType): string =>
+    WorkplaceType[workplaceType];
 
-  public getJobApplicationStatus(jobApplicationStatus: JobApplicationStatus): string {
-    return JobApplicationStatus[jobApplicationStatus];
-  }
+  public getJobApplicationStatus = (jobApplicationStatus: JobApplicationStatus): string =>
+    JobApplicationStatus[jobApplicationStatus];
 
   public getStatusClass(jobApplicationStatus: JobApplicationStatus): string {
     switch (jobApplicationStatus) {
@@ -146,7 +142,13 @@ export class JobOfferDetailsComponent implements OnInit {
   }
 
   public goBack(): void {
-    this.router.navigate(['/profile/recruiter/job-offer']);
+    const currentUrl = this.router.url;
+
+    if (currentUrl.includes('profile/recruiter')) {
+      this.router.navigate(['/profile/recruiter/job-offer']);
+    } else if (currentUrl.includes('profile/representative')) {
+      this.router.navigate(['/profile/representative/company-job-offer']);
+    }
   }
 
   onFilterChanged(value: any) {

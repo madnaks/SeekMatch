@@ -68,7 +68,14 @@ export class CompanyJobOfferComponent implements OnInit {
 
   public navigateToJobOfferDetail(jobOffer: JobOffer): void {
     this.selectedJobOffer = jobOffer;
-    this.router.navigate(['/profile/recruiter/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
+
+    const currentUrl = this.router.url;
+
+    if (currentUrl.includes('profile/recruiter')) {
+      this.router.navigate(['/profile/recruiter/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
+    } else if (currentUrl.includes('profile/representative')) {
+      this.router.navigate(['/profile/representative/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
+    }
   }
 
 }

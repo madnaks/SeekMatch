@@ -7,6 +7,8 @@ import { CompanyInfoComponent } from './company-info/company-info.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
 import { SecurityComponent } from '../commun/security/security.component';
 import { RecruiterDetailsComponent } from './recruiter-details/recruiter-details.component';
+import { CompanyJobOfferComponent } from '../recruiter/company-job-offer/company-job-offer.component';
+import { JobOfferDetailsComponent } from '../recruiter/job-offer-details/job-offer-details.component';
 
 const routes: Routes = [
   {
@@ -21,7 +23,16 @@ const routes: Routes = [
       {
         path: 'company-info',
         component: CompanyInfoComponent,
-        data: { breadcrumb: 'Company iFnfo' }
+        data: { breadcrumb: 'Company info' }
+      },
+      {
+        path: 'company-job-offer',
+        component: CompanyJobOfferComponent,
+        data: { breadcrumb: 'Company job offers' }
+      },
+      {
+        path: 'job-offer/details/:id',
+        component: JobOfferDetailsComponent
       },
       {
         path: 'recruiter-team',
@@ -32,7 +43,6 @@ const routes: Routes = [
         path: 'recruiter-team/details/:id',
         component: RecruiterDetailsComponent,
         data: { breadcrumb: 'Details' },
-
       },
       {
         path: 'settings',
