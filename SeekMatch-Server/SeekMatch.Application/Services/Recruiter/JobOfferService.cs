@@ -43,7 +43,7 @@ namespace SeekMatch.Application.Services
                 companyId = representativeDto.CompanyId;
             }
 
-            if (user != null && user.Role == UserRole.Recruiter)
+            if (user != null && user.Role == UserRole.CompanyRecruiter)
             {
                 var recruiterDto = await recruiterService.GetAsync(userId);
 

@@ -4,7 +4,8 @@
     {
         Talent = 1,
         Recruiter = 2,
-        Representative = 3
+        Representative = 3,
+        CompanyRecruiter = 4
     }
 
     public enum JobType
