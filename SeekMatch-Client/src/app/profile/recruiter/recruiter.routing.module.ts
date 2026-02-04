@@ -6,6 +6,7 @@ import { JobOfferComponent } from './job-offer/job-offer.component';
 import { SettingsComponent } from '../commun/settings/settings.component';
 import { SecurityComponent } from '../commun/security/security.component';
 import { JobOfferDetailsComponent } from './job-offer-details/job-offer-details.component';
+import { CompanyJobOfferComponent } from './company-job-offer/company-job-offer.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'about-you', component: AboutYouComponent },
       { path: 'job-offer', component: JobOfferComponent },
       { path: 'job-offer/details/:id', component: JobOfferDetailsComponent },
+      { path: 'company-job-offer', component: CompanyJobOfferComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }

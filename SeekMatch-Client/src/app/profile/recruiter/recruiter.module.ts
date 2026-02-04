@@ -20,6 +20,7 @@ import { JobOfferModalComponent } from './modals/job-offer-modal/job-offer-modal
 import { RejectJobApplicationModalComponent } from './modals/reject-job-application-modal/reject-job-application-modal.component';
 import { JobApplicationDetailsModalComponent } from './modals/job-application-details-modal/job-application-details-modal.component';
 import { JobApplicationStepsComponent } from './job-application-steps/job-application-steps.component';
+import { CompanyJobOfferComponent } from './company-job-offer/company-job-offer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { JobApplicationStepsComponent } from './job-application-steps/job-applic
     AboutYouComponent,
     JobOfferComponent,
     JobOfferDetailsComponent,
+    CompanyJobOfferComponent,
     JobOfferModalComponent,
     DeleteJobOfferModalComponent,
     RejectJobApplicationModalComponent,
