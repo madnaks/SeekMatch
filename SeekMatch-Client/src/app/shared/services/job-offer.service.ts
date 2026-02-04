@@ -29,40 +29,33 @@ export class JobOfferService {
     return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all`, { params });
   }
 
-  getById(id: string): Observable<JobOffer> {
-    return this.http.get<JobOffer>(`${this.apiUrl}/get-by-id/${id}`);
-  }
+  getById = (id: string): Observable<JobOffer> =>
+     this.http.get<JobOffer>(`${this.apiUrl}/get-by-id/${id}`);
 
-  getAllByRecruiter(): Observable<any> {
-    return this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-recruiter`);
-  }
+  getAllByRecruiter = (): Observable<any> =>
+    this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-recruiter`);
 
-  create(jobOffer: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, jobOffer);
-  }
+  getAllByCompany = (): Observable<any> =>
+    this.http.get<JobOffer[]>(`${this.apiUrl}/get-all-by-company`);
 
-  update(jobOffer: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}`, jobOffer);
-  }
+  create = (jobOffer: any): Observable<any> =>
+    this.http.post(`${this.apiUrl}`, jobOffer);
 
-  delete(jobOfferId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${jobOfferId}`);
-  }
+  update = (jobOffer: any): Observable<any> =>
+    this.http.put(`${this.apiUrl}`, jobOffer);
 
-  setSelectedJobOffer(jobOffer: JobOffer) {
+  delete = (jobOfferId: string): Observable<any> =>
+    this.http.delete(`${this.apiUrl}/${jobOfferId}`);
+
+  setSelectedJobOffer = (jobOffer: JobOffer) =>
     this.selectedJobOffer.next(jobOffer);
-  }
 
-  isBookmarked(jobOfferId: string): Observable<boolean> {
-    return this.http.get<boolean>(`${this.apiUrl}/is-bookmarked/${jobOfferId}`);
-  }
+  isBookmarked = (jobOfferId: string): Observable<boolean> =>
+    this.http.get<boolean>(`${this.apiUrl}/is-bookmarked/${jobOfferId}`);
 
-  bookmark(jobOfferId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/bookmark/${jobOfferId}`, null);
-  }
+  bookmark = (jobOfferId: string): Observable<any> =>
+    this.http.post(`${this.apiUrl}/bookmark/${jobOfferId}`, null);
 
-  unbookmark(jobOfferId: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/unbookmark/${jobOfferId}`, null);
-  }
-
+  unbookmark = (jobOfferId: string): Observable<any> =>
+    this.http.post(`${this.apiUrl}/unbookmark/${jobOfferId}`, null);
 }

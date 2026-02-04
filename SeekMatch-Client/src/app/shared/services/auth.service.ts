@@ -47,14 +47,12 @@ export class AuthService {
   getUserRole(): UserRole | null {
     const role = localStorage.getItem('role');
 
-    if (!role) {
+    if (!role) 
       return null;
-    }
 
-    const roleNumber = parseInt(role, 4);
-    if (roleNumber in UserRole) {
+    const roleNumber = parseInt(role, 10);
+    if (roleNumber in UserRole)
       return roleNumber as UserRole;
-    }
 
     return null;
   }
@@ -69,7 +67,6 @@ export class AuthService {
     const token = this.getToken();
     return token ? !this.jwtHelper.isTokenExpired(token) : false;
   }
-
   
   /**
    * Checks if the current user's password is a temporary password.
@@ -84,9 +81,9 @@ export class AuthService {
   public isTemporaryPassword(): boolean {
     const isTemporaryPassword = localStorage.getItem('isTemporaryPassword');
 
-    if (!isTemporaryPassword) {
+    if (!isTemporaryPassword) 
       return false;
-    }
+
     return isTemporaryPassword === 'true';
   }
 

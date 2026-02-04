@@ -12,49 +12,38 @@ export class JobApplicationService {
 
   constructor(private http: HttpClient) { }
 
-  getAllByTalent(): Observable<any> {
-    return this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-talent`);
-  }
+  getAllByTalent = ():Observable<any> => 
+    this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-talent`);
 
-  getAllByRecruiter(): Observable<any> {
-    return this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-recruiter`);
-  }
+  getAllByRecruiter = (): Observable<any> => 
+    this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-recruiter`);
 
-  apply(jobOfferId: string | undefined): Observable<any> {
-    return this.http.post(`${this.apiUrl}/apply/${jobOfferId}`, null);
-  }
+  apply = (jobOfferId: string | undefined): Observable<any> => 
+    this.http.post(`${this.apiUrl}/apply/${jobOfferId}`, null);
 
-  expressApply(jobOfferId: string | undefined, formData: FormData): Observable<any> {
-    return this.http.post(`${this.apiUrl}/express-apply/${jobOfferId}`, formData);
-  }
+  expressApply = (jobOfferId: string | undefined, formData: FormData): Observable<any> => 
+    this.http.post(`${this.apiUrl}/express-apply/${jobOfferId}`, formData);
+  
+  shortList = (jobApplicationId: string): Observable<any> =>
+    this.http.put(`${this.apiUrl}/short-list/${jobApplicationId}`, null);
 
-  shortList(jobApplicationId: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/short-list/${jobApplicationId}`, null);
-  }
+  interviewScheduled = (jobApplicationId: string | undefined, interviewData: any): Observable<any> =>
+    this.http.put(`${this.apiUrl}/interview-scheduled/${jobApplicationId}`, interviewData);
 
-  interviewScheduled(jobApplicationId: string | undefined, interviewData: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/interview-scheduled/${jobApplicationId}`, interviewData);
-  }
+  hire = (jobApplicationId: string | undefined): Observable<any> =>
+    this.http.put(`${this.apiUrl}/hire/${jobApplicationId}`, null);
 
-  hire(jobApplicationId: string | undefined): Observable<any> {
-    return this.http.put(`${this.apiUrl}/hire/${jobApplicationId}`, null);
-  }
-
-  reject(jobApplicationId: string, rejectionReason: string): Observable<any> {
-    return this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
+  reject = (jobApplicationId: string, rejectionReason: string): Observable<any> =>
+    this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {
       headers: { 'Content-Type': 'application/json' }
     });
-  }
 
-  downloadResume(jobApplicationId: string): Observable<HttpResponse<Blob>> {
-    return this.http.get(
+  downloadResume = (jobApplicationId: string): Observable<HttpResponse<Blob>> =>
+    this.http.get(
       `${this.apiUrl}/job-applications/${jobApplicationId}/resume`,
       { observe: 'response', responseType: 'blob' }
     );
-  }
 
-  delete(jobApplicationId: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${jobApplicationId}`);
-  }
-
+  delete = (jobApplicationId: string): Observable<any> =>
+    this.http.delete(`${this.apiUrl}/${jobApplicationId}`);
 }
