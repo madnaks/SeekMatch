@@ -24,8 +24,14 @@ namespace SeekMatch.Application.Services
         public async Task<JobOfferDto?> GetByIdAsync(string jobOfferId) => 
             mapper.Map<JobOfferDto>(await jobOfferRepository.GetByIdAsync(jobOfferId));
 
-        public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId) => 
-            mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
+        public async Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId)
+        {
+            var jobOffers = mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByRecruiterAsync(recruiterId));
+
+            addJobOfferStats(jobOffers);
+
+            return jobOffers;
+        }
 
         public async Task<IList<JobOfferDto>?> GetAllByCompanyAsync(string userId)
         {
@@ -56,7 +62,11 @@ namespace SeekMatch.Application.Services
             if (string.IsNullOrEmpty(companyId))
                 return null;
 
-            return mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByCompanyAsync(companyId));
+            var jobOffers = mapper.Map<IList<JobOfferDto>>(await jobOfferRepository.GetAllByCompanyAsync(companyId));
+
+            addJobOfferStats(jobOffers);
+
+            return jobOffers;
         }
 
         public async Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId)
@@ -83,9 +93,11 @@ namespace SeekMatch.Application.Services
             return false;
         }
 
-        public async Task<bool> DeleteAsync(string jobOfferId) => await jobOfferRepository.DeleteAsync(jobOfferId);
+        public async Task<bool> DeleteAsync(string jobOfferId) => 
+            await jobOfferRepository.DeleteAsync(jobOfferId);
 
-        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId) => await jobOfferRepository.IsBookmarkedAsync(jobOfferId, talentId);
+        public async Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId) => 
+            await jobOfferRepository.IsBookmarkedAsync(jobOfferId, talentId);
 
         public async Task<bool> BookmarkAsync(string jobOfferId, string talentId)
         {
@@ -105,6 +117,21 @@ namespace SeekMatch.Application.Services
                 JobOfferId = jobOfferId
             };
             return await jobOfferRepository.UnBookmarkAsync(bookmark);
+        }
+
+        private void addJobOfferStats(IList<JobOfferDto> jobOffers) {
+            foreach (var jobOffer in jobOffers)
+            {
+                jobOffer.Stats = new JobApplicationStatsDto
+                {
+                    Total = jobOffer.JobApplications.Count,
+                    Submitted = jobOffer.JobApplications.Count(a => a.Status == JobApplicationStatus.Submitted),
+                    Shortlisted = jobOffer.JobApplications.Count(a => a.Status == JobApplicationStatus.Shortlisted),
+                    InterviewScheduled = jobOffer.JobApplications.Count(a => a.Status == JobApplicationStatus.InterviewScheduled),
+                    Hired = jobOffer.JobApplications.Count(a => a.Status == JobApplicationStatus.Hired),
+                    Rejected = jobOffer.JobApplications.Count(a => a.Status == JobApplicationStatus.Rejected)
+                };
+            }
         }
 
     }
