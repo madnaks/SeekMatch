@@ -52,7 +52,11 @@
                 "JobType": "Job type",
                 "WorkplaceType": "Workplace type",
                 "Salary": "Salary",
-                "IsActive": "Active"
+                "IsActive": "Active",
+                "Submitted": "Submitted",
+                "Shortlisted": "Shortlisted",
+                "InterviewScheduled": "Interview Scheduled",
+                "Hired": "Hired"
             },
             "Card": {
                 "Company": "Company :",

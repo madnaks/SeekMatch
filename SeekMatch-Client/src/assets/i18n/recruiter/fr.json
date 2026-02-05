@@ -52,7 +52,11 @@
                 "JobType": "Type d'emploi",
                 "WorkplaceType": "Type de lieu de travail",
                 "Salary": "Salaire",
-                "IsActive": "Actif"
+                "IsActive": "Actif",
+                "Submitted": "Soumis",
+                "Shortlisted": "Présélectionné",
+                "InterviewScheduled": "Entretien programmé",
+                "Hired": "Embauché"
             },
             "Card": {
                 "Company": "Entreprise :",

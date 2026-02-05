@@ -37,6 +37,10 @@
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.WorkplaceType' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Salary' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.IsActive' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Submitted' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Shortlisted' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.InterviewScheduled' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Hired' | translate }}</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -59,6 +63,26 @@
                     </td>
                     <td>
                         <input class="form-check-input me-2" type="checkbox" [(ngModel)]="jobOffer.isActive" disabled>
+                    </td>
+                    <td>
+                        <span class="circle">
+                            {{ jobOffer.stats.submitted }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="circle">
+                            {{ jobOffer.stats.shortlisted }}
+                        </span>
+                    </td>
+                    <td>
+                         <span class="circle">
+                            {{ jobOffer.stats.interviewScheduled }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="circle">
+                            {{ jobOffer.stats.hired }}
+                        </span>
                     </td>
                 </tr>
                 }

@@ -7,3 +7,15 @@
         text-align: center;
     }
 }
+
+.circle {
+    width: 25px;
+    height: 25px;
+    border-radius: 33%;
+    display: inline-block;
+    margin-right: 5px;
+    background-color: $accent-color;
+    color: $secondary-color;
+    text-align: center;
+    font-weight: bold;
+}
