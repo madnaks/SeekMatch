@@ -53,6 +53,7 @@
                 "WorkplaceType": "Workplace type",
                 "Salary": "Salary",
                 "IsActive": "Active",
+                "Total": "Total",
                 "Submitted": "Submitted",
                 "Shortlisted": "Shortlisted",
                 "InterviewScheduled": "Interview Scheduled",
