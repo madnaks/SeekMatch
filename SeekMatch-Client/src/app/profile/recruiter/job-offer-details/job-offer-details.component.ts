@@ -28,6 +28,8 @@ export class JobOfferDetailsComponent implements OnInit {
   public statuses: string[] = [];
   public filteredJobApplications: JobApplication[] = [];
 
+  private currentJobOfferId: string | null = null;
+
   constructor(
     private modalService: NgbModal,
     private toastService: ToastService,
@@ -42,19 +44,8 @@ export class JobOfferDetailsComponent implements OnInit {
     this.jobOffer = nav?.extras?.state?.['jobOffer'];
 
     if (!this.jobOffer) {
-      const id = this.route.snapshot.paramMap.get('id');
-      if (id) {
-        this.jobOfferService.getById(id).subscribe((jobOffer: JobOffer) => {
-          this.jobOffer = jobOffer;
-          this.filteredJobApplications = this.jobOffer.jobApplications;
-          this.isLoading = false;
-        });
-      }
-    } else {
-
-      this.filteredJobApplications = this.jobOffer.jobApplications;
-
-      this.isLoading = false;
+      this.currentJobOfferId = this.route.snapshot.paramMap.get('id');
+      this.getJobOfferDetails();
     }
   }
 
@@ -69,6 +60,21 @@ export class JobOfferDetailsComponent implements OnInit {
 
     this.filterForm.valueChanges.subscribe(value => {
       this.onFilterChanged(value);
+    });
+  }
+
+  private getJobOfferDetails(): void {
+    if (!this.currentJobOfferId) {
+      this.filteredJobApplications = this.jobOffer.jobApplications;
+      this.isLoading = false;
+      return;
+    } 
+    
+    this.isLoading = true;
+    this.jobOfferService.getById(this.currentJobOfferId).subscribe((jobOffer: JobOffer) => {
+      this.jobOffer = jobOffer;
+      this.filteredJobApplications = this.jobOffer.jobApplications;
+      this.isLoading = false;
     });
   }
 
@@ -107,6 +113,7 @@ export class JobOfferDetailsComponent implements OnInit {
       this.toastService.showSuccessMessage('Job offer created successfully');
     } else if (action == ModalActionType.Update) {
       this.toastService.showSuccessMessage('Job offer updated successfully');
+      this.getJobOfferDetails();
     } else if (action == ModalActionType.Delete) {
       this.goBack();
     }
