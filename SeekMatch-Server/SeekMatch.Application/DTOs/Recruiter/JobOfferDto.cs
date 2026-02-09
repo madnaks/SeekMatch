@@ -21,5 +21,6 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public bool IsActive { get; set; }
         public List<JobApplicationDto> JobApplications { get; set; } = new List<JobApplicationDto>();
         public JobApplicationStatsDto? Stats { get; set; }
+        public RecruiterDto? Recruiter { get; set; }
     }
 }

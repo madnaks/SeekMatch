@@ -2,6 +2,7 @@ import { JobType, WorkplaceType } from "../enums/enums";
 import { formatDateToISO } from "../utils";
 import { JobApplication } from "./job-application";
 import { JobApplicationStats } from "./job-application-stats";
+import { Recruiter } from "./recruiter";
 
 export class JobOffer {
 
@@ -22,6 +23,7 @@ export class JobOffer {
   public isActive: Boolean = false;
   public jobApplications : JobApplication[] = [];
   public stats: JobApplicationStats = new JobApplicationStats();
+  public recruiter: Recruiter = new Recruiter();
   
   constructor(init?:Partial<JobOffer>) {
     Object.assign(this, init);
