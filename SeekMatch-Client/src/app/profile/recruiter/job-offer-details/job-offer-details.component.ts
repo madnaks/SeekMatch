@@ -27,6 +27,7 @@ export class JobOfferDetailsComponent implements OnInit {
   public filterForm!: FormGroup;
   public statuses: string[] = [];
   public filteredJobApplications: JobApplication[] = [];
+  public isViewMode: boolean = false;
 
   private currentJobOfferId: string | null = null;
 
@@ -51,6 +52,8 @@ export class JobOfferDetailsComponent implements OnInit {
       this.filteredJobApplications = this.jobOffer.jobApplications;
       this.isLoading = false;
     }
+
+    this.isViewMode = this.router.url.includes('company-job-offer/details'); 
   }
 
   ngOnInit(): void {
@@ -154,6 +157,11 @@ export class JobOfferDetailsComponent implements OnInit {
 
   public goBack(): void {
     const currentUrl = this.router.url;
+
+    if(currentUrl.includes('recruiter/company-job-offer/details')) {
+      this.router.navigate(['/profile/recruiter/company-job-offer']);
+      return;
+    }
 
     if (currentUrl.includes('profile/recruiter')) {
       this.router.navigate(['/profile/recruiter/job-offer']);

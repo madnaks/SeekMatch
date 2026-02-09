@@ -10,31 +10,33 @@
         </button>
     </div>
 
-    <div class="col-md-6 d-flex justify-content-end">
-
-        <div ngbDropdown class="d-inline-block">
-            <button type="button" id="dropdownBasic" ngbDropdownToggle>
-                <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-            <div ngbDropdownMenu aria-labelledby="dropdownBasic">
-                <button type="button" class="btn btn-link" ngbDropdownItem
-                    (click)="openJobOfferModal(previewJobOfferContent)" [disabled]="isLoading">
-                    <i class="fa-solid fa-eye me-2"></i>
-                    Preview Job Offer
+    @if (!isViewMode) {
+        <div class="col-md-6 d-flex justify-content-end">
+    
+            <div ngbDropdown class="d-inline-block">
+                <button type="button" id="dropdownBasic" ngbDropdownToggle>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
                 </button>
-                <button type="button" class="btn btn-link" ngbDropdownItem
-                    (click)="openJobOfferModal(updateJobOfferContent)" [disabled]="isLoading">
-                    <i class="fa-solid fa-pen me-2"></i>
-                    Edit Job Offer
-                </button>
-                <button type="button" class="btn btn-link" ngbDropdownItem
-                    (click)="openDeleteModal(deleteJobOfferContent)" [disabled]="isLoading">
-                    <i class="fa-solid fa-trash me-2"></i>
-                    Delete Job Offer
-                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                    <button type="button" class="btn btn-link" ngbDropdownItem
+                        (click)="openJobOfferModal(previewJobOfferContent)" [disabled]="isLoading">
+                        <i class="fa-solid fa-eye me-2"></i>
+                        Preview Job Offer
+                    </button>
+                    <button type="button" class="btn btn-link" ngbDropdownItem
+                        (click)="openJobOfferModal(updateJobOfferContent)" [disabled]="isLoading">
+                        <i class="fa-solid fa-pen me-2"></i>
+                        Edit Job Offer
+                    </button>
+                    <button type="button" class="btn btn-link" ngbDropdownItem
+                        (click)="openDeleteModal(deleteJobOfferContent)" [disabled]="isLoading">
+                        <i class="fa-solid fa-trash me-2"></i>
+                        Delete Job Offer
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>
 <div class="row">
     <div class="col-12">

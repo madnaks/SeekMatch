@@ -50,7 +50,7 @@ export class CompanyJobOfferComponent implements OnInit {
     const currentUrl = this.router.url;
 
     if (currentUrl.includes('profile/recruiter')) {
-      this.router.navigate(['/profile/recruiter/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
+      this.router.navigate(['/profile/recruiter/company-job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
     } else if (currentUrl.includes('profile/representative')) {
       this.router.navigate(['/profile/representative/company-job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
     }

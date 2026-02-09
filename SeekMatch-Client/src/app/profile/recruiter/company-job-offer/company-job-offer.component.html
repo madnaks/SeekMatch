@@ -46,7 +46,9 @@
                         {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
                     </td>
                     <td>
-                        {{ jobOffer.recruiter.firstName }} {{ jobOffer.recruiter.lastName }}
+                        @if (jobOffer.recruiter) {
+                            {{ jobOffer.recruiter.firstName }} {{ jobOffer.recruiter.lastName }}
+                        }
                     </td>
                     <td>
                         <span class="circle">

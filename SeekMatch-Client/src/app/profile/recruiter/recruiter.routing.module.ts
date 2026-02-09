@@ -16,6 +16,7 @@ const routes: Routes = [
       { path: 'job-offer', component: JobOfferComponent },
       { path: 'job-offer/details/:id', component: JobOfferDetailsComponent },
       { path: 'company-job-offer', component: CompanyJobOfferComponent },
+      { path: 'company-job-offer/details/:id', component: JobOfferDetailsComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'security', component: SecurityComponent },
       { path: '', redirectTo: 'about-you', pathMatch: 'full' }
