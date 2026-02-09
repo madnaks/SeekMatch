@@ -48,6 +48,7 @@
             },
             "Table": {
                 "Title": "Title",
+                "JobOffer": "Job Offer",
                 "CompanyName": "Company Name",
                 "JobType": "Job type",
                 "WorkplaceType": "Workplace type",
@@ -57,7 +58,8 @@
                 "Submitted": "Submitted",
                 "Shortlisted": "Shortlisted",
                 "InterviewScheduled": "Interview Scheduled",
-                "Hired": "Hired"
+                "Hired": "Hired",
+                "Recruiter": "Recruiter"
             },
             "Card": {
                 "Company": "Company :",

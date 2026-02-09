@@ -31,7 +31,7 @@ const routes: Routes = [
         data: { breadcrumb: 'Company job offers' }
       },
       {
-        path: 'job-offer/details/:id',
+        path: 'company-job-offer/details/:id',
         component: JobOfferDetailsComponent
       },
       {

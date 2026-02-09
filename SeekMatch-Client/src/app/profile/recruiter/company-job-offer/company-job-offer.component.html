@@ -10,33 +10,15 @@
             {{ 'Recruiter.JobOffer.NoJobOfferMessage' | translate }}
         </p>
     </div>
-    <div class="col-md-6 d-flex justify-content-center">
-        <button class="btn btn-primary" (click)="openAddJobOfferModal(addJobOfferContent)">
-            <i class="fa-solid fa-plus"></i>
-            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
-        </button>
-    </div>
 </div>
 } @else {
-<div class="row mb-3">
-    <div class="col-md-12 d-flex justify-content-end">
-        <button class="btn btn-primary" (click)="openAddJobOfferModal(addJobOfferContent)">
-            <i class="fa-solid fa-circle-plus me-2"></i>
-            {{ 'Recruiter.JobOffer.AddJobOffer' | translate }}
-        </button>
-    </div>
-</div>
 <div class="row">
     <div class="col-md-12">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Title' | translate }}</th>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.CompanyName' | translate }}</th>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.JobType' | translate }}</th>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.WorkplaceType' | translate }}</th>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Salary' | translate }}</th>
-                    <th scope="col">{{ 'Recruiter.JobOffer.Table.IsActive' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.JobOffer' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Recruiter' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Total' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Submitted' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Shortlisted' | translate }}</th>
@@ -49,23 +31,22 @@
                 <tr (click)="navigateToJobOfferDetail(jobOffer)">
                     <td>
                         {{ jobOffer.title }}
+                        @if(jobOffer.companyName) {
+                            <br>
+                            {{ jobOffer.companyName }}
+                        }
                         <br>
-                        <small>Test</small>
-                    </td>
-                    <td>
-                        {{ jobOffer.companyName }}
-                    </td>
-                    <td>
+                        @if(jobOffer.isActive) {
+                            <span class="dot"></span>
+                        } @else {
+                            <span class="dot inactive"></span>
+                        }
                         {{ 'Enum.JobType.' + getJobTypeName(jobOffer.type) | translate }}
-                    </td>
-                    <td>
+                        <span class="sep">•</span>
                         {{ 'Enum.WorkplaceType.' + getWorkplaceTypeName(jobOffer.workplaceType) | translate }}
                     </td>
                     <td>
-                        {{ jobOffer.salary }}
-                    </td>
-                    <td>
-                        <input class="form-check-input me-2" type="checkbox" [(ngModel)]="jobOffer.isActive" disabled>
+                        {{ jobOffer.recruiter.firstName }} {{ jobOffer.recruiter.lastName }}
                     </td>
                     <td>
                         <span class="circle">
@@ -101,7 +82,3 @@
 
 }
 }
-<!-- Job offer creation modal -->
-<ng-template #addJobOfferContent let-c="close" let-d="dismiss">
-    <app-job-offer-modal [closeModal]="c" [dismissModal]="d" (modalActionComplete)="modalActionComplete($event)" />
-</ng-template>

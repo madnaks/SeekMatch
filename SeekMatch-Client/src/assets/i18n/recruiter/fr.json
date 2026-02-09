@@ -48,6 +48,7 @@
             },
             "Table": {
                 "Title": "Titre",
+                "JobOffer": "Offre d'emploi",
                 "CompanyName": "Nom de l'entreprise",
                 "JobType": "Type d'emploi",
                 "WorkplaceType": "Type de lieu de travail",
@@ -57,7 +58,8 @@
                 "Submitted": "Soumis",
                 "Shortlisted": "Présélectionné",
                 "InterviewScheduled": "Entretien programmé",
-                "Hired": "Embauché"
+                "Hired": "Embauché",
+                "Recruiter": "Recruteur"
             },
             "Card": {
                 "Company": "Entreprise :",

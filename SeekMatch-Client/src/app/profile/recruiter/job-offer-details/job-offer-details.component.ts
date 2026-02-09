@@ -43,9 +43,13 @@ export class JobOfferDetailsComponent implements OnInit {
     const nav = this.router.getCurrentNavigation();
     this.jobOffer = nav?.extras?.state?.['jobOffer'];
 
+    // If job offer details are not passed through navigation state, fetch details from api using route parameter id
     if (!this.jobOffer) {
       this.currentJobOfferId = this.route.snapshot.paramMap.get('id');
       this.getJobOfferDetails();
+    } else {
+      this.filteredJobApplications = this.jobOffer.jobApplications;
+      this.isLoading = false;
     }
   }
 

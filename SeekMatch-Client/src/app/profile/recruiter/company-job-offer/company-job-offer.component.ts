@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { jobTypes, workplaceTypeList } from '../../../shared/constants/constants';
-import { ToastService } from '../../../shared/services/toast.service';
-import { JobType, ModalActionType, WorkplaceType } from '../../../shared/enums/enums';
+import { JobType, WorkplaceType } from '../../../shared/enums/enums';
 import { JobOffer } from '../../../shared/models/job-offer';
 import { JobOfferService } from '../../../shared/services/job-offer.service';
 import { Router } from '@angular/router';
@@ -23,33 +21,13 @@ export class CompanyJobOfferComponent implements OnInit {
   public workplaceTypeList = workplaceTypeList;
 
   constructor(
-    private modalService: NgbModal,
     private jobOfferService: JobOfferService,
-    private toastService: ToastService,
     private router: Router) {
   }
 
   ngOnInit(): void {
     this.getJobOffers();
   }
-
-  //#region : Modal functions
-  public openAddJobOfferModal(content: any, jobOffer?: JobOffer): void {
-    this.modalService.open(content, { centered: true, backdrop: 'static', size: 'xl' });
-    if (jobOffer != undefined) {
-      this.selectedJobOffer = jobOffer;
-    }
-  }
-
-  public modalActionComplete(action: ModalActionType): void {
-    if (action == ModalActionType.Create) {
-      this.toastService.showSuccessMessage('Job offer created successfully');
-    } else if (action == ModalActionType.Update) {
-      this.toastService.showSuccessMessage('Job offer updated successfully');
-    }
-    this.getJobOffers();
-  }
-  //#endregion
 
   private getJobOffers(): void {
     this.jobOfferService.getAllByCompany().subscribe((jobOffers) => {
@@ -74,7 +52,7 @@ export class CompanyJobOfferComponent implements OnInit {
     if (currentUrl.includes('profile/recruiter')) {
       this.router.navigate(['/profile/recruiter/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
     } else if (currentUrl.includes('profile/representative')) {
-      this.router.navigate(['/profile/representative/job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
+      this.router.navigate(['/profile/representative/company-job-offer/details', jobOffer.id], { state: { jobOffer: jobOffer } });
     }
   }
 
