@@ -64,6 +64,7 @@ namespace SeekMatch.Infrastructure.Repositories
                         .ThenInclude(t => t.Talent)
                     .Include(e => e.JobApplications)
                         .ThenInclude(ex => ex.ExpressApplication)
+                    .Include(e => e.Recruiter)
                     .OrderBy(e => e.CreatedAt)
                     .ToListAsync();
             }
