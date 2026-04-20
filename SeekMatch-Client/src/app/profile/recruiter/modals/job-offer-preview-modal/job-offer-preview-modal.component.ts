@@ -4,6 +4,7 @@ import { JobType, WorkplaceType } from '@app/shared/enums/enums';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '@app/shared/shared.module';
+import { LoaderComponent } from "@app/shared/ui";
 
 @Component({
   selector: 'app-job-offer-preview-modal',
@@ -11,16 +12,14 @@ import { SharedModule } from '@app/shared/shared.module';
   styleUrl: './job-offer-preview-modal.component.scss',
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [CommonModule, TranslateModule, SharedModule]
+  imports: [CommonModule, TranslateModule, SharedModule, LoaderComponent]
 })
 export class JobOfferPreviewModalComponent {
 
+  @Input() isLoading: boolean = false;
   @Input() closeModal: () => void = () => { };
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedJobOffer: JobOffer | undefined = undefined;
-
-  constructor() {
-  }
 
   public dismiss(reason: string = '') {
     if (this.dismissModal) {
@@ -28,12 +27,10 @@ export class JobOfferPreviewModalComponent {
     }
   }
 
-  public getJobTypeName(type: JobType): string {
-    return JobType[type];
-  }
+  public getJobTypeName = (type: JobType): string =>
+    JobType[type];
 
-  public getWorkplaceTypeName(workplaceType: WorkplaceType): string {
-    return WorkplaceType[workplaceType];
-  }
+  public getWorkplaceTypeName = (workplaceType: WorkplaceType): string =>
+    WorkplaceType[workplaceType];
 
 }

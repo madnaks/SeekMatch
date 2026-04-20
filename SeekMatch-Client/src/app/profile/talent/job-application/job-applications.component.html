@@ -14,8 +14,13 @@
     } @else {
         <div class="row">
             <div class="col-md-12">
-                <be-data-table [data]="jobApplications" [columns]="jobApplicationsColumns" />
+                <be-data-table [data]="jobApplications" [columns]="jobApplicationsColumns" (rowClicked)="rowClicked($event)"/>
             </div>
         </div>
     }
 }
+
+<!-- Job offer preview modal -->
+<ng-template #previewJobOfferContent let-c="close" let-d="dismiss">
+    <app-job-offer-preview-modal [closeModal]="c" [dismissModal]="d" [selectedJobOffer]="selectedJobOffer!" [isLoading]="jobOfferLoading" />
+</ng-template>  
