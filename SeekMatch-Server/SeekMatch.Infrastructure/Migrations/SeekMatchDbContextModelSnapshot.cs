@@ -180,7 +180,7 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.HasIndex("TalentId", "JobOfferId")
                         .IsUnique();
 
-                    b.ToTable("Bookmarks");
+                    b.ToTable("Bookmarks", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Company", b =>
@@ -223,7 +223,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companies");
+                    b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Education", b =>
@@ -270,7 +270,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("TalentId");
 
-                    b.ToTable("Educations");
+                    b.ToTable("Educations", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Experience", b =>
@@ -320,7 +320,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("TalentId");
 
-                    b.ToTable("Experiences");
+                    b.ToTable("Experiences", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.ExpressApplication", b =>
@@ -361,7 +361,7 @@ namespace SeekMatch.Infrastructure.Migrations
                     b.HasIndex("JobApplicationId")
                         .IsUnique();
 
-                    b.ToTable("ExpressApplications");
+                    b.ToTable("ExpressApplications", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.JobApplication", b =>
@@ -409,7 +409,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("TalentId");
 
-                    b.ToTable("JobApplications");
+                    b.ToTable("JobApplications", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.JobOffer", b =>
@@ -476,7 +476,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("RecruiterId");
 
-                    b.ToTable("JobOffers");
+                    b.ToTable("JobOffers", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Notification", b =>
@@ -505,7 +505,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Recruiter", b =>
@@ -546,7 +546,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Recruiters");
+                    b.ToTable("Recruiters", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Representative", b =>
@@ -582,7 +582,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("CompanyId");
 
-                    b.ToTable("Representatives");
+                    b.ToTable("Representatives", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Resume", b =>
@@ -615,7 +615,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasIndex("TalentId");
 
-                    b.ToTable("Resumes");
+                    b.ToTable("Resumes", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Setting", b =>
@@ -628,7 +628,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.Talent", b =>
@@ -682,7 +682,7 @@ namespace SeekMatch.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Talents");
+                    b.ToTable("Talents", (string)null);
                 });
 
             modelBuilder.Entity("SeekMatch.Core.Entities.User", b =>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.11.35312.102
+# Visual Studio Version 18
+VisualStudioVersion = 18.2.11415.280 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeekMatch", "SeekMatch\SeekMatch.csproj", "{BDE1CB39-1C53-4851-9127-33EC94BC91A2}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeekMatchCore", "SeekMatch.Core\SeekMatchCore.csproj", "{F847FBB2-9848-451D-B275-75B24DC27B96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeekMatchInfrastructure", "SeekMatch.Infrastructure\SeekMatchInfrastructure.csproj", "{11B3236A-3F28-4694-8B89-01E79F4C385A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{298599C9-7178-43B6-86D4-F377AAC6205C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{11B3236A-3F28-4694-8B89-01E79F4C385A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B3236A-3F28-4694-8B89-01E79F4C385A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B3236A-3F28-4694-8B89-01E79F4C385A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{298599C9-7178-43B6-86D4-F377AAC6205C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298599C9-7178-43B6-86D4-F377AAC6205C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298599C9-7178-43B6-86D4-F377AAC6205C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298599C9-7178-43B6-86D4-F377AAC6205C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,8 +39,7 @@ public class JobOfferServiceTests
             _recruiterServiceMock.Object);
     }
 
-    // ─── GetAllAsync ────────────────────────────────────────────────────────────
-
+    #region GetAllAsync
     [Fact]
     public async Task GetAllAsync_ReturnsMappedJobOffers()
     {
@@ -71,9 +70,9 @@ public class JobOfferServiceTests
 
         Assert.Null(result);
     }
+    #endregion
 
-    // ─── GetByIdAsync ────────────────────────────────────────────────────────────
-
+    #region GetByIdAsync
     [Fact]
     public async Task GetByIdAsync_WhenFound_ReturnsMappedDto()
     {
@@ -99,9 +98,9 @@ public class JobOfferServiceTests
 
         Assert.Null(result);
     }
+    #endregion
 
-    // ─── GetAllByRecruiterAsync ──────────────────────────────────────────────────
-
+    #region GetAllByRecruiterAsync
     [Fact]
     public async Task GetAllByRecruiterAsync_ReturnsDtosWithStats()
     {
@@ -126,9 +125,9 @@ public class JobOfferServiceTests
         Assert.Equal(1, result[0].Stats!.Total);
         Assert.Equal(1, result[0].Stats!.Submitted);
     }
+    #endregion
 
-    // ─── GetAllByCompanyAsync ────────────────────────────────────────────────────
-
+    #region GetAllByCompanyAsync
     [Fact]
     public async Task GetAllByCompanyAsync_WhenUserIsRepresentative_ReturnsJobOffers()
     {
@@ -196,9 +195,9 @@ public class JobOfferServiceTests
 
         Assert.Null(result);
     }
+    #endregion
 
-    // ─── CreateAsync ─────────────────────────────────────────────────────────────
-
+    #region CreateAsync
     [Fact]
     public async Task CreateAsync_WhenSuccessful_ReturnsTrue()
     {
@@ -226,9 +225,9 @@ public class JobOfferServiceTests
 
         Assert.False(result);
     }
+    #endregion
 
-    // ─── UpdateAsync ─────────────────────────────────────────────────────────────
-
+    #region UpdateAsync
     [Fact]
     public async Task UpdateAsync_WhenJobOfferExists_ReturnsTrue()
     {
@@ -270,9 +269,9 @@ public class JobOfferServiceTests
 
         Assert.False(result);
     }
+    #endregion
 
-    // ─── DeleteAsync ─────────────────────────────────────────────────────────────
-
+    #region DeleteAsync
     [Fact]
     public async Task DeleteAsync_WhenSuccessful_ReturnsTrue()
     {
@@ -282,9 +281,9 @@ public class JobOfferServiceTests
 
         Assert.True(result);
     }
+    #endregion
 
-    // ─── BookmarkAsync / UnBookmarkAsync ─────────────────────────────────────────
-
+    #region BookmarkAsync / UnBookmarkAsync
     [Fact]
     public async Task BookmarkAsync_CreatesCorrectBookmarkAndReturnsTrue()
     {
@@ -318,9 +317,9 @@ public class JobOfferServiceTests
 
         Assert.True(result);
     }
+    #endregion
 
-    // ─── Helpers ─────────────────────────────────────────────────────────────────
-
+    #region Helpers
     private static JobOffer CreateJobOffer() => new()
     {
         Id = "job-1",
@@ -330,4 +329,5 @@ public class JobOfferServiceTests
         RecruiterId = "recruiter-1",
         Recruiter = new Core.Entities.Recruiter { Id = "recruiter-1", FirstName = "John", LastName = "Doe", User = new User() }
     };
+    #endregion
 }

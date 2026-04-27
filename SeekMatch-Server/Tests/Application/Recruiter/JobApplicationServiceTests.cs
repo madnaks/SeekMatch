@@ -37,7 +37,7 @@ public class JobApplicationServiceTests
             _mapperMock.Object);
     }
 
-    // ─── ApplyAsync ──────────────────────────────────────────────────────────────
+    #region ApplyAsync
 
     [Fact]
     public async Task ApplyAsync_WhenNotAlreadyApplied_CreatesApplicationAndReturnsTrue()
@@ -68,7 +68,9 @@ public class JobApplicationServiceTests
         await Assert.ThrowsAsync<Exception>(() => _sut.ApplyAsync("talent-1", "job-1"));
     }
 
-    // ─── ExpressApplyAsync ───────────────────────────────────────────────────────
+    #endregion
+
+    #region ExpressApplyAsync
 
     [Fact]
     public async Task ExpressApplyAsync_WhenValid_SavesFileAndCreatesApplication()
@@ -107,7 +109,7 @@ public class JobApplicationServiceTests
     {
         var dto = new ExpressApplicationDto { Email = "john@test.com", FirstName = "John", LastName = "Doe" };
         _mapperMock.Setup(m => m.Map<ExpressApplication>(dto))
-            .Returns(new ExpressApplication { Email = "john@test.com", FirstName = "John", LastName = "Doe", JobApplicationId = "1"});
+            .Returns(new ExpressApplication { Email = "john@test.com", FirstName = "John", LastName = "Doe", JobApplicationId = "1" });
         _jobApplicationRepositoryMock
             .Setup(r => r.FindByEmailAndExpressApplicationAsync("john@test.com", "job-1"))
             .ReturnsAsync(new JobApplication { JobOfferId = "job-1" });
@@ -121,7 +123,7 @@ public class JobApplicationServiceTests
     {
         var dto = new ExpressApplicationDto { Email = "john@test.com", FirstName = "John", LastName = "Doe" };
         _mapperMock.Setup(m => m.Map<ExpressApplication>(dto))
-            .Returns(new ExpressApplication { Email = "john@test.com", FirstName = "John", LastName = "Doe", JobApplicationId = "1"});
+            .Returns(new ExpressApplication { Email = "john@test.com", FirstName = "John", LastName = "Doe", JobApplicationId = "1" });
         _jobApplicationRepositoryMock
             .Setup(r => r.FindByEmailAndExpressApplicationAsync(It.IsAny<string>(), It.IsAny<string>()))
             .ReturnsAsync((JobApplication?)null);
@@ -131,7 +133,9 @@ public class JobApplicationServiceTests
             _sut.ExpressApplyAsync(dto, "missing", Stream.Null, "cv.pdf"));
     }
 
-    // ─── RejectAsync ─────────────────────────────────────────────────────────────
+    #endregion
+
+    #region RejectAsync
 
     [Fact]
     public async Task RejectAsync_WhenTalentApplication_SendsNotification()
@@ -174,7 +178,9 @@ public class JobApplicationServiceTests
         _notificationServiceMock.Verify(n => n.CreateNotificationAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
     }
 
-    // ─── DownloadResume ──────────────────────────────────────────────────────────
+    #endregion
+
+    #region DownloadResume
 
     [Fact]
     public async Task DownloadResume_WhenApplicationNotFound_ReturnsNotFound()
@@ -192,7 +198,7 @@ public class JobApplicationServiceTests
     [Fact]
     public async Task DownloadResume_WhenTalentHasNoPrimaryResume_ReturnsNotFound()
     {
-        var talent = new Talent { FirstName = "John", LastName = "Doe", User = new User() };
+        var talent = new Core.Entities.Talent { FirstName = "John", LastName = "Doe", User = new User() };
         var jobApp = new JobApplication
         {
             Id = "app-1",
@@ -244,7 +250,9 @@ public class JobApplicationServiceTests
         Assert.Equal("cv.pdf", result.Value!.FileName);
     }
 
-    // ─── StatusTransitions ───────────────────────────────────────────────────────
+    #endregion
+
+    #region StatusTransitions
 
     [Fact]
     public async Task ShortList_WhenSuccessful_ReturnsTrue()
@@ -266,4 +274,6 @@ public class JobApplicationServiceTests
         _jobApplicationRepositoryMock.Setup(r => r.DeleteAsync("app-1")).ReturnsAsync(true);
         Assert.True(await _sut.DeleteAsync("app-1"));
     }
+
+    #endregion
 }
