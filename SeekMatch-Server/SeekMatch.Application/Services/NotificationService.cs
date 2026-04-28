@@ -13,7 +13,7 @@ namespace SeekMatch.Application.Services
         {
             var notification = new Notification
             {
-                userId = userId,
+                UserId = userId,
                 Message = message
             };
 

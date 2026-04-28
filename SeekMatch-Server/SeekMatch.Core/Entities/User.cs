@@ -12,6 +12,6 @@ namespace SeekMatch.Core.Entities
         public Talent? Talent { get; set; }
         public Recruiter? Recruiter { get; set; }
         public Representative? Representative { get; set; }
+        public ICollection<RefreshToken> RefreshTokens { get; set; } = [];
     }
-
 }

@@ -4,7 +4,7 @@
     {
         public string Message { get; set; } = string.Empty;
         public bool IsRead { get; set; } = false;
-        public required string userId { get; set; }
-        public User? user { get; set; }
+        public required string UserId { get; set; }
+        public User? User { get; set; }
     }
 }

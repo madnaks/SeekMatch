@@ -19,13 +19,13 @@ namespace SeekMatch.Infrastructure
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Resume> Resumes { get; set; }
         public DbSet<Bookmark> Bookmarks { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
 
         public SeekMatchDbContext(DbContextOptions<SeekMatchDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure relationships
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Talent)
                 .WithOne(t => t.User)
@@ -86,9 +86,9 @@ namespace SeekMatch.Infrastructure
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Notification>()
-                .HasOne(n => n.user)
+                .HasOne(n => n.User)
                 .WithMany()
-                .HasForeignKey(n => n.userId)
+                .HasForeignKey(n => n.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Resume>()
@@ -114,7 +114,6 @@ namespace SeekMatch.Infrastructure
                       .IsUnique();
             });
 
-
             modelBuilder.Entity<Setting>(entity =>
             {
                 entity.HasKey(s => s.UserId);
@@ -125,6 +124,18 @@ namespace SeekMatch.Infrastructure
                       .OnDelete(DeleteBehavior.Cascade);
             });
 
+            modelBuilder.Entity<RefreshToken>(entity =>
+            {
+                entity.HasKey(r => r.Id);
+
+                entity.HasOne(r => r.User)
+                      .WithMany(u => u.RefreshTokens)
+                      .HasForeignKey(r => r.UserId)
+                      .OnDelete(DeleteBehavior.Cascade);
+
+                entity.HasIndex(r => r.Token).IsUnique();
+                entity.HasIndex(r => r.UserId);
+            });
         }
     }
 }

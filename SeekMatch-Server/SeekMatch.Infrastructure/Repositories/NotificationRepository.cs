@@ -8,7 +8,7 @@ namespace SeekMatch.Infrastructure.Repositories
     {
         public async Task<IEnumerable<Notification>> GetUserNotificationsAsync(string userId) => 
             await dbContext.Notifications
-                .Where(n => n.userId == userId)
+                .Where(n => n.UserId == userId)
                 .OrderByDescending(n => n.CreatedAt)
                 .ToListAsync();
 
