@@ -9,6 +9,7 @@ using SeekMatch.Core.Entities;
 using SeekMatch.Infrastructure;
 using SeekMatch.Infrastructure.Interfaces;
 using SeekMatch.Infrastructure.Repositories;
+using SeekMatch.Infrastructure.Services;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -130,6 +131,7 @@ builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ISettingRepository, SettingRepository>();
 builder.Services.AddScoped<IResumeRepository, ResumeRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 #endregion
 
 builder.Services.AddCors(options =>
