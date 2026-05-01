@@ -71,17 +71,17 @@ export class RecruiterTeamComponent implements OnInit {
     return [
       {
         field: 'lastName',
-        header: 'Last Name',
+        header: 'Representative.Recruiter.Table.LastName',
         type: 'text'
       },
       {
         field: 'firstName',
-        header: 'First Name',
+        header: 'Representative.Recruiter.Table.FirstName',
         type: 'text'
       },
       {
         field: 'email',
-        header: 'Email',
+        header: 'Representative.Recruiter.Table.Email',
         type: 'text'
       }
     ];

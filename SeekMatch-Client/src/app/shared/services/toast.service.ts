@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastType } from '../enums/enums';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,8 @@ import { ToastType } from '../enums/enums';
 export class ToastService {
 
   toasts: any[] = [];
+
+  constructor(private translate: TranslateService) {}
 
   private show(message: string, type: ToastType = ToastType.Info, delay = 3000): void {
     let classname = 'toast-info';
@@ -40,17 +43,22 @@ export class ToastService {
   }
 
   public showSuccessMessage(defaultMessage: string): void {
-    this.show(defaultMessage, ToastType.Success);
+    this.show(this.translateMessage(defaultMessage), ToastType.Success);
   }
 
   public showErrorMessage(defaultMessage: string, error?: any): void {
     // Check if the error has a `message` property
-    let errorMessage = defaultMessage;
+    let errorMessage = this.translateMessage(defaultMessage);
     if (error && error.error && error.error.message) {
-      errorMessage = `${defaultMessage}: ${error.error.message}`;
+      errorMessage = `${errorMessage}: ${error.error.message}`;
     }
     
     this.show(errorMessage, ToastType.Error);
+  }
+
+  private translateMessage(message: string): string {
+    const translatedMessage = this.translate.instant(message);
+    return translatedMessage === message ? message : translatedMessage;
   }
 
 }

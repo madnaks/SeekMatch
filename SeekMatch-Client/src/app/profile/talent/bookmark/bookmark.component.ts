@@ -45,12 +45,12 @@ export class BookmarkComponent {
     return [
       {
         field: 'jobOffer.title',
-        header: 'Job Offer Title',
+        header: 'Talent.Bookmark.Table.JobOfferTitle',
         type: 'text'
       },
       {
         field: 'createdAt',
-        header: 'Created At',
+        header: 'Talent.Bookmark.Table.CreatedAt',
         type: 'date'
       }
     ];

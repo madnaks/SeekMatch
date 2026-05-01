@@ -43,7 +43,13 @@
         "Title": "Discover Your Dream Job Today!",
         "WelcomeParagraph1": "Connecting talented individuals with top employers is our mission. Explore a wide range of job opportunities tailored just for you.",
         "WelcomeParagraph2": "Feel free to explore our website and learn more about what we do.",
-        "SearchJobsButton": "Search for jobs"
+        "SearchJobsButton": "Search for jobs",
+        "ImageAlt": "Business professional receiving support",
+        "Tags": {
+            "New": "New",
+            "Old": "Old",
+            "Test": "Test"
+        }
     },
     "JobOffers": {
         "SearchOffersInput": "Job title, keywords or company",
@@ -53,7 +59,8 @@
             "Description": "Description",
             "PositionDetails": "Position details",
             "Qualifications": "Qualifications",
-            "AdditionalRequirements": "Additional requirements"
+            "AdditionalRequirements": "Additional requirements",
+            "SelectJob": "Select a job to see details"
         }
     },
     "Profile": {
@@ -122,11 +129,46 @@
     "Table": {
         "Actions": "Actions"
     },
+    "Toast": {
+        "Type": {
+            "success": "Success",
+            "error": "Error",
+            "warning": "Warning",
+            "info": "Info"
+        }
+    },
     "Settings" : {
         "Language":  {
             "Label": "Language",
             "French": "French", 
             "English": "English"
+        }
+    },
+    "Security": {
+        "Placeholder": "Security settings"
+    },
+    "Footer": {
+        "AddressLabel": "Address:",
+        "Address": "Level 1, 12 Sample St, Sydney NSW 2000",
+        "ContactLabel": "Contact:",
+        "Contact": "1800 123 4567<br>inforelume.com",
+        "Copyright": "© 2025 Relume. All rights reserved.",
+        "Links": {
+            "JobListings": "Job Listings",
+            "AboutUs": "About Us",
+            "ContactSupport": "Contact Support",
+            "CareerAdvice": "Career Advice",
+            "UserGuide": "User Guide",
+            "BlogPosts": "Blog Posts",
+            "FAQs": "FAQs",
+            "SuccessStories": "Success Stories",
+            "CommunityForum": "Community Forum",
+            "FeedbackForm": "Feedback Form"
+        },
+        "Legal": {
+            "PrivacyPolicy": "Privacy Policy",
+            "TermsOfService": "Terms of Service",
+            "CookiesSettings": "Cookies Settings"
         }
     }
 }

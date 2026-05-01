@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  tags: string[] = ['New', 'Old', 'Test'];
+  tags: string[] = ['Home.Tags.New', 'Home.Tags.Old', 'Home.Tags.Test'];
 
 }

@@ -9,7 +9,7 @@
         <div class="toast-content">
             <!-- Header -->
             <p class="toast-type mb-1">
-                {{ toast.type | titlecase }}
+                {{ 'Toast.Type.' + toast.type | translate }}
             </p>
             <!-- Message -->
             <p class="toast-message m-0">

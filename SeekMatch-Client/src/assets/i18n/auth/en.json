@@ -3,6 +3,7 @@
         "Talent": {
             "Title": "HERE TO FIND MY NEXT OPPORTUNITY ?",
             "Button": "SIGNUP AS A JOB SEEKER",
+            "ImageAlt": "Job seeker illustration",
             "Modal": {
                 "Title": "Hi there! 👋",
                 "Body": {
@@ -32,6 +33,7 @@
         "Recruiter": {
             "Title": "HERE TO HIRE GREAT TALENT ?",
             "Button": "SIGNUP AS A RECRUITER",
+            "ImageAlt": "Recruiter illustration",
             "Modal": {
                 "Step1": {
                     "Title": "Hi there! 👋",
@@ -66,6 +68,7 @@
                             "Address": "Address",
                             "Position": "Position",
                             "Password": "Password",
+                            "TermsNote": "By creating an account, you agree to our <a href='' class='static-link'>Terms</a> and have read and acknowledge the <a href='' class='static-link'>Global Privacy Statement.</a>",
                             "Validation": {
                                 "CompanyName": "Company name is required.",
                                 "PhoneNumber": "Phone number is required.",

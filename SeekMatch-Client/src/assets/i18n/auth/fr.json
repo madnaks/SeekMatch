@@ -3,6 +3,7 @@
         "Talent": {
             "Title": "ICI POUR TROUVER MA PROCHAINE OPPORTUNITÉ ?",
             "Button": "INSCRIPTION EN TANT QUE CANDIDAT",
+            "ImageAlt": "Illustration d'un candidat",
             "Modal": {
                 "Title": "Bienvenue! 👋",
                 "Body": {
@@ -32,6 +33,7 @@
         "Recruiter": {
             "Title": "ICI POUR RECRUTER DE GRANDS TALENTS ?",
             "Button": "INSCRIPTION EN TANT QUE RECRUTEUR",
+            "ImageAlt": "Illustration d'un recruteur",
             "Modal": {
                 "Step1": {
                     "Title": "Bonjour ! 👋",
@@ -65,6 +67,7 @@
                             "PhoneNumber": "Numéro de téléphone",
                             "Address": "Adresse",
                             "Position": "Poste",
+                            "TermsNote": "En créant un compte, vous acceptez nos <a href='' class='static-link'>Conditions d'utilisation</a> et avez lu et pris connaissance de la <a href='' class='static-link'>Déclaration de confidentialité mondiale.</a>",
                             "Validation": {
                                 "CompanyName": "Le nom de l'entreprise est requis.",
                                 "PhoneNumber": "Le numéro de téléphone est requis.",

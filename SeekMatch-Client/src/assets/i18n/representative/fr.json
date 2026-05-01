@@ -17,6 +17,11 @@
         "Recruiter": {
             "AddRecruiter": "Ajouter un recruteur",
             "NoRecruiterMessage": "Commencez à ajouter des recruteurs",
+            "Table": {
+                "LastName": "Nom",
+                "FirstName": "Prénom",
+                "Email": "E-mail"
+            },
             "Modal": {
                 "CreationTitle": "Nouveau recruteur",
                 "UpdateTitle": "Mettre à jour le recruteur",

@@ -2,7 +2,8 @@
     <!-- Last name -->
     <div class="col-md-6">
         <div class="form-floating">
-            <input type="text" class="form-control" id="inputLastName" placeholder="LastName"
+            <input type="text" class="form-control" id="inputLastName"
+                [placeholder]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate"
                 formControlName="lastName">
             <label for="inputLastName" class="form-label">
                 <i class="fa-regular fa-user me-2"></i>
@@ -16,7 +17,8 @@
     <!-- First name -->
     <div class="col-md-6">
         <div class="form-floating">
-            <input type="text" class="form-control" id="inputFirstName" placeholder="FirstName"
+            <input type="text" class="form-control" id="inputFirstName"
+                [placeholder]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate"
                 formControlName="firstName">
             <label for="inputFirstName" class="form-label">
                 <i class="fa-regular fa-user me-2"></i>

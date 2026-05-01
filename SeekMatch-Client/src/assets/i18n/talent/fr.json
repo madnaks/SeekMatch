@@ -130,6 +130,12 @@
                 "Status": "Statut"
             }
         },
+        "Bookmark": {
+            "Table": {
+                "JobOfferTitle": "Titre de l'offre",
+                "CreatedAt": "Créé le"
+            }
+        },
         "PreviewModal": {
             "Headers": {
                 "TalentCard": "Carte du talent",

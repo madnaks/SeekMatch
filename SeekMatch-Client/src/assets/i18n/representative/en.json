@@ -17,6 +17,11 @@
         "Recruiter": {
             "AddRecruiter": "Add recruiter",
             "NoRecruiterMessage": "Start adding recruiters",
+            "Table": {
+                "LastName": "Last name",
+                "FirstName": "First name",
+                "Email": "Email"
+            },
             "Modal": {
                 "CreationTitle": "New recruiter",
                 "UpdateTitle": "Update recruiter",

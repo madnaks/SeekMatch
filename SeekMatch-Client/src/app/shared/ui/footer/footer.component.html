@@ -13,10 +13,10 @@
 
           </span>
         </div>
-        <div class="mb-2 fw-bold">Address:</div>
-        <div class="mb-3">Level 1, 12 Sample St, Sydney NSW 2000</div>
-        <div class="mb-2 fw-bold">Contact:</div>
-        <div class="mb-3">1800 123 4567<br>inforelume.com</div>
+        <div class="mb-2 fw-bold">{{ 'Footer.AddressLabel' | translate }}</div>
+        <div class="mb-3">{{ 'Footer.Address' | translate }}</div>
+        <div class="mb-2 fw-bold">{{ 'Footer.ContactLabel' | translate }}</div>
+        <div class="mb-3" [innerHTML]="'Footer.Contact' | translate"></div>
         <div>
           <a href="#" class="static-link me-2"><i class="fab fa-facebook fa-lg"></i></a>
           <a href="#" class="static-link me-2"><i class="fab fa-instagram fa-lg"></i></a>
@@ -28,18 +28,18 @@
       <div class="col-md-8">
         <div class="row">
           <div class="col-6 col-lg-4 mb-2">
-            <div class="fw-bold mb-2">Job Listings</div>
-            <div class="fw-bold mb-2">About Us</div>
-            <div class="fw-bold mb-2">Contact Support</div>
-            <div class="fw-bold mb-2">Career Advice</div>
-            <div class="fw-bold mb-2">User Guide</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.JobListings' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.AboutUs' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.ContactSupport' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.CareerAdvice' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.UserGuide' | translate }}</div>
           </div>
           <div class="col-6 col-lg-4 mb-2">
-            <div class="fw-bold mb-2">Blog Posts</div>
-            <div class="fw-bold mb-2">FAQs</div>
-            <div class="fw-bold mb-2">Success Stories</div>
-            <div class="fw-bold mb-2">Community Forum</div>
-            <div class="fw-bold mb-2">Feedback Form</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.BlogPosts' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.FAQs' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.SuccessStories' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.CommunityForum' | translate }}</div>
+            <div class="fw-bold mb-2">{{ 'Footer.Links.FeedbackForm' | translate }}</div>
           </div>
         </div>
       </div>
@@ -48,12 +48,12 @@
   <div class="container text-center mt-3">
     <div class="row">
       <div class="col-12">
-        <small>© 2025 Relume. All rights reserved.</small>
+        <small>{{ 'Footer.Copyright' | translate }}</small>
       </div>
       <div class="col-12 mt-2">
-        <a href="#" class="static-link me-3">Privacy Policy</a>
-        <a href="#" class="static-link me-3">Terms of Service</a>
-        <a href="#" class="static-link">Cookies Settings</a>
+        <a href="#" class="static-link me-3">{{ 'Footer.Legal.PrivacyPolicy' | translate }}</a>
+        <a href="#" class="static-link me-3">{{ 'Footer.Legal.TermsOfService' | translate }}</a>
+        <a href="#" class="static-link">{{ 'Footer.Legal.CookiesSettings' | translate }}</a>
       </div>
     </div>
   </div>

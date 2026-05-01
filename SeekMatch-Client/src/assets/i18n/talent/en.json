@@ -132,6 +132,12 @@
                 "Status": "Status"
             }
         },
+        "Bookmark": {
+            "Table": {
+                "JobOfferTitle": "Job offer title",
+                "CreatedAt": "Created at"
+            }
+        },
         "PreviewModal": {
             "Headers": {
                 "TalentCard": "Talent card",

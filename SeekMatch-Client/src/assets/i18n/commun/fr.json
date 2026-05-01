@@ -43,7 +43,13 @@
         "Title": "Découvrez l'emploi de vos rêves aujourd'hui !",
         "WelcomeParagraph1": "Ceci est une brève introduction à nos services et à ce que nous proposons. Nous fournissons des solutions de haute qualité pour vous aider à atteindre vos objectifs.",
         "WelcomeParagraph2": "N'hésitez pas à explorer notre site Web et à en savoir plus sur ce que nous faisons.",
-        "SearchJobsButton": "Rechercher des emplois"
+        "SearchJobsButton": "Rechercher des emplois",
+        "ImageAlt": "Professionnel recevant du soutien",
+        "Tags": {
+            "New": "Nouveau",
+            "Old": "Ancien",
+            "Test": "Test"
+        }
     },
     "JobOffers": {
         "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
@@ -53,7 +59,8 @@
             "Description": "Description",
             "PositionDetails": "Détails du poste",
             "Qualifications": "Qualifications",
-            "AdditionalRequirements": "Exigences supplémentaires"
+            "AdditionalRequirements": "Exigences supplémentaires",
+            "SelectJob": "Sélectionnez une offre pour voir les détails"
         }
     },
     "Profile": {
@@ -122,11 +129,46 @@
     "Table": {
         "Actions": "Actions"
     },
+    "Toast": {
+        "Type": {
+            "success": "Succès",
+            "error": "Erreur",
+            "warning": "Avertissement",
+            "info": "Info"
+        }
+    },
     "Settings" : {
         "Language":  {
             "Label": "Language",
             "French": "French", 
             "English": "English"
+        }
+    },
+    "Security": {
+        "Placeholder": "Paramètres de sécurité"
+    },
+    "Footer": {
+        "AddressLabel": "Adresse :",
+        "Address": "Niveau 1, 12 Sample St, Sydney NSW 2000",
+        "ContactLabel": "Contact :",
+        "Contact": "1800 123 4567<br>inforelume.com",
+        "Copyright": "© 2025 Relume. Tous droits réservés.",
+        "Links": {
+            "JobListings": "Offres d'emploi",
+            "AboutUs": "À propos de nous",
+            "ContactSupport": "Contacter le support",
+            "CareerAdvice": "Conseils carrière",
+            "UserGuide": "Guide utilisateur",
+            "BlogPosts": "Articles de blogue",
+            "FAQs": "FAQ",
+            "SuccessStories": "Histoires de réussite",
+            "CommunityForum": "Forum communautaire",
+            "FeedbackForm": "Formulaire de commentaires"
+        },
+        "Legal": {
+            "PrivacyPolicy": "Politique de confidentialité",
+            "TermsOfService": "Conditions d'utilisation",
+            "CookiesSettings": "Paramètres des cookies"
         }
     }
 }
