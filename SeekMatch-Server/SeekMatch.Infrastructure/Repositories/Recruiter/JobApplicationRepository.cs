@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SeekMatch.Core.Entities;
+using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
 
 namespace SeekMatch.Infrastructure.Repositories
@@ -13,6 +14,7 @@ namespace SeekMatch.Infrastructure.Repositories
                 return await dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
                     .Include(j => j.ExpressApplication)
                     .Include(j => j.JobOffer)
+                    .Include(j => j.JobApplicationSteps)
                     .FirstAsync();
             }
             catch (Exception ex)
@@ -27,6 +29,7 @@ namespace SeekMatch.Infrastructure.Repositories
             {
                 return await dbContext.JobApplications.Where(j => j.Id == jobApplicationId)
                     .Include(j => j.ExpressApplication)
+                    .Include(j => j.JobApplicationSteps)
                     .Include(j => j.Talent)
                         .ThenInclude(t => t.Resumes)
                     .FirstAsync();
@@ -44,6 +47,7 @@ namespace SeekMatch.Infrastructure.Repositories
                 return await dbContext.JobApplications
                     .Where(j => j.TalentId == talentId)
                     .Include(j => j.JobOffer)
+                    .Include(j => j.JobApplicationSteps)
                     .ToListAsync();
             }
             catch (Exception ex)
@@ -80,6 +84,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
+                AddStep(jobApplication, jobApplication.Status);
                 dbContext.JobApplications.Add(jobApplication);
                 return await dbContext.SaveChangesAsync() > 0;
             }
@@ -93,6 +98,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
+                AddStep(jobApplication, jobApplication.Status);
                 dbContext.JobApplications.Add(jobApplication);
                 dbContext.ExpressApplications.Add(expressApplication);
                 return await dbContext.SaveChangesAsync() > 0;
@@ -110,7 +116,8 @@ namespace SeekMatch.Infrastructure.Repositories
                 var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
-                    jobApplication.Status = Core.Enums.JobApplicationStatus.Shortlisted;
+                    jobApplication.Status = JobApplicationStatus.Shortlisted;
+                    AddStep(jobApplication, jobApplication.Status);
                     
                     return await dbContext.SaveChangesAsync() > 0;
                 }
@@ -129,9 +136,10 @@ namespace SeekMatch.Infrastructure.Repositories
                 var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
-                    jobApplication.Status = Core.Enums.JobApplicationStatus.InterviewScheduled;
+                    jobApplication.Status = JobApplicationStatus.InterviewScheduled;
                     jobApplication.InterviewPlatform = interviewPlatform;
                     jobApplication.InterviewDate = interviewDate;
+                    AddStep(jobApplication, jobApplication.Status, $"Interview scheduled on {interviewDate:u} via {interviewPlatform}");
 
                     return await dbContext.SaveChangesAsync() > 0;
                 }
@@ -150,7 +158,8 @@ namespace SeekMatch.Infrastructure.Repositories
                 var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
-                    jobApplication.Status = Core.Enums.JobApplicationStatus.Hired;
+                    jobApplication.Status = JobApplicationStatus.Hired;
+                    AddStep(jobApplication, jobApplication.Status);
 
                     return await dbContext.SaveChangesAsync() > 0;
                 }
@@ -169,8 +178,9 @@ namespace SeekMatch.Infrastructure.Repositories
                 var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
                 if (jobApplication != null)
                 {
-                    jobApplication.Status = Core.Enums.JobApplicationStatus.Rejected;
+                    jobApplication.Status = JobApplicationStatus.Rejected;
                     jobApplication.RejectionReason = rejectionReason;
+                    AddStep(jobApplication, jobApplication.Status, rejectionReason);
                     
                     return await dbContext.SaveChangesAsync() > 0;
                 }
@@ -198,6 +208,16 @@ namespace SeekMatch.Infrastructure.Repositories
             {
                 throw new Exception("An error occurred while deleting the job application", ex);
             }
+        }
+
+        private static void AddStep(JobApplication jobApplication, JobApplicationStatus status, string? note = null)
+        {
+            jobApplication.JobApplicationSteps.Add(new JobApplicationStep
+            {
+                Status = status,
+                Note = note,
+                JobApplicationId = jobApplication.Id
+            });
         }
     }
 }

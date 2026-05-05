@@ -14,6 +14,7 @@ namespace SeekMatch.Infrastructure
         public DbSet<Education> Educations { get; set; }
         public DbSet<Experience> Experiences { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
+        public DbSet<JobApplicationStep> JobApplicationSteps { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<ExpressApplication> ExpressApplications { get; set; }
         public DbSet<Setting> Settings { get; set; }
@@ -83,6 +84,12 @@ namespace SeekMatch.Infrastructure
                 .HasOne(j => j.ExpressApplication)
                 .WithOne(e => e.JobApplication)
                 .HasForeignKey<ExpressApplication>(e => e.JobApplicationId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<JobApplicationStep>()
+                .HasOne(j => j.JobApplication)
+                .WithMany(a => a.JobApplicationSteps)
+                .HasForeignKey(j => j.JobApplicationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Notification>()

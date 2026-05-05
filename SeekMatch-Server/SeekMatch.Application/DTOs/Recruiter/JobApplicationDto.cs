@@ -14,5 +14,6 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public string? RejectionReason { get; set; }
         public bool IsExpress { get; set; } = false;
         public ExpressApplicationDto? ExpressApplication { get; set; }
+        public List<JobApplicationStepDto> JobApplicationSteps { get; set; } = new List<JobApplicationStepDto>();
     }
 }

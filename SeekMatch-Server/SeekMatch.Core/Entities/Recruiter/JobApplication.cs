@@ -16,5 +16,6 @@ namespace SeekMatch.Core.Entities
         public string? InterviewPlatform { get; set; }
         public DateTime? InterviewDate { get; set; }
         public ExpressApplication? ExpressApplication { get; set; }
+        public List<JobApplicationStep> JobApplicationSteps { get; set; } = new List<JobApplicationStep>();
     }
 }
