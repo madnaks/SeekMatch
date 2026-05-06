@@ -1,5 +1,6 @@
 import { JobApplicationStatus } from "../enums/enums";
 import { ExpressApplication } from "./express-application";
+import { JobApplicationStep } from "./job-application-step";
 
 export class JobApplication {
 
@@ -16,6 +17,7 @@ export class JobApplication {
   public interviewPlatform?: string;
   public interviewDate?: string;
   public expressApplication?: ExpressApplication = new ExpressApplication();
+  public jobApplicationSteps : JobApplicationStep[] = [];
 
   constructor(init?:Partial<JobApplication>) {
     Object.assign(this, init);
