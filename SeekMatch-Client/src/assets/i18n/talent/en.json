@@ -13,16 +13,8 @@
             "Summary": "Summary",
             "Website": "Website",
             "LinkedIn": "LinkedIn",
-            "Password": "Password",
             "DateOfBirth": "Date of birth",
-            "Country": "Country",
-            "ChooseCountry": "Country",
-            "Region": "Region/Province",
-            "ChooseRegion": "Choose a region or province",
-            "City": "City",
-            "ChooseCity": "Choose a city",
             "AddressNotSpecified": "Address not specified",
-            "ProfilePicture": "Profile picture",
             "ChoosePicture": "Choose picture",
             "Remove": "Remove",
             "Validation": {
@@ -94,13 +86,8 @@
             }
         },
         "Resume": {
-            "Title": "Resumes",
             "AddResume": "Add Resume",
             "NoResumeMessage": "You have not added any resumes yet. Start by uploading your resume to showcase your skills and experience to potential employers.",
-            "Table": {
-                "Title": "Title",
-                "IsPrimary": "Is Primary"
-            },
             "Modal": {
                 "CreationTitle": "Upload Resume",
                 "UpdateTitle": "Update Resume",
@@ -113,7 +100,6 @@
                         "IsPrimary": "Set as primary resume",
                         "IsPrimaryInfo": "Making this your primary resume means it will be the default one employers see when they view your profile.",
                         "File": "Select Resume File",
-                        "FilePlaceHolder": "Choose a file...",
                         "Validation": {
                             "Title": "Title is required.",
                             "FileRequired": "Please select a resume file to upload.",
@@ -125,7 +111,6 @@
         },
         "JobApplication": {
             "NoJobApplicationMessage": "There are currently no job applications",
-            "NumberOfApplications": "Number of Job Applications:",
             "Table": {
                 "Title": "Title",
                 "AppliedAt": "Applied at",
@@ -140,17 +125,9 @@
         },
         "PreviewModal": {
             "Headers": {
-                "TalentCard": "Talent card",
-                "Education": "Education",
-                "Experience": "Experience"
+                "TalentCard": "Talent card"
             },
-            "FullName": "Full name:",
-            "ProfileTitle": "Profile title:",
-            "DateOfBirth": "Date of birth:",
-            "Phone": "Phone:",
-            "Address": "Address:",
             "Institution": "Institution:",
-            "Description": "Description:",
             "NoEducations": "This talent has not shared any education information.",
             "NoExperiences": "This talent has not shared any professional experience.",
             "In": "in",
@@ -164,7 +141,6 @@
                 "INTERVIEW-SCHEDULED": "Interview Scheduled",
                 "HIRED": "Hired",
                 "REJECTED": "Rejected",
-                "WITHDRAWN": "Withdrawn",
                 "SHORTLISTED-MODAL": {
                     "TITLE": "Shortlist this candidate ?",
                     "BODY": "Are you sure you want to shortlist this candidate ?"

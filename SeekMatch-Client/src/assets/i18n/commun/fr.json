@@ -12,8 +12,7 @@
         "CREATE-ACCOUNT": "Créer un compte",
         "APPLY": "Postuler",
         "CONTINUE-WITH-GOOGLE": "Continuer avec Google",
-        "YES": "Oui",
-        "NO": "Non"
+        "YES": "Oui"
     },
     "LABEL": {
         "OR": "OU"
@@ -28,8 +27,7 @@
             "Training": "Formations",
             "CVCreation": "Créations d'un CV",
             "SignUp": "S'inscrire",
-            "LogIn": "Connexion",
-            "Language": "Langue"
+            "LogIn": "Connexion"
         },
         "Account": {
             "Profile": "Profil",
@@ -52,8 +50,6 @@
         }
     },
     "JobOffers": {
-        "SearchOffersInput": "Titre de poste, mots-clés ou entreprise",
-        "WhereInput": "Où ?",
         "BackToList": "Retour à la liste",
         "JobDetails": {
             "Description": "Description",
@@ -64,26 +60,18 @@
         }
     },
     "Profile": {
-        "Headers": {
-            "Profile": "Profil",
-            "JobManagement": "Gestion des offres",
-            "AccountSecurity": "Compte et Sécurité"
-        },
         "Sections": {
             "Profile": "Profil",
             "AboutYou": "À propos de vous",
             "JobOffers": "Offers d'emplois",
             "CompanyJobOffers": "Offres d'emploi de l'entreprise",
-            "Education": "Éducation",
-            "Experience": "Expérience",
             "JobApplications": "Candidatures",
             "Bookmarks": "Offres enregistrées",
             "CompanyInfo": "Infos entreprise",
             "RecruiterTeam": "Équipe de recruteurs",
             "Settings": "Paramètres",
             "Security": "Sécurité"
-        },
-        "MyProfile": "Mon profil"
+        }
     },
     "Date": {
         "SelectMonth": "Sélectionner un mois",
@@ -137,10 +125,10 @@
             "info": "Info"
         }
     },
-    "Settings" : {
-        "Language":  {
+    "Settings": {
+        "Language": {
             "Label": "Language",
-            "French": "French", 
+            "French": "French",
             "English": "English"
         }
     },

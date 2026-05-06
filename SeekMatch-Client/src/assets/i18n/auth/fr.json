@@ -56,8 +56,6 @@
                 "Step3": {
                     "Title": "Apprenons à vous connaître",
                     "Body": {
-                        "RepresentCompany": "Représenter une entreprise",
-                        "FreelanceRecruiter": "Recruteur indépendant",
                         "FirstLine": "Prêt à passer à l'étape suivante ?",
                         "SecondLine": "Créez un compte.",
                         "Form": {
@@ -108,10 +106,7 @@
             "Body": {
                 "Form": {
                     "Password": "Mot de passe",
-                    "Login": "Connexion",
-                    "Validation": {
-                        "Password": "Mot de passe est requis."
-                    }
+                    "Login": "Connexion"
                 }
             }
         }
@@ -124,13 +119,7 @@
                 "CurrentPassword": "Mot de passe actuel",
                 "NewPassword": "Nouveau mot de passe",
                 "ConfirmNewPassword": "Confirmer le nouveau mot de passe",
-                "SubmitButton": "Changer le mot de passe",
-                "Validation": {
-                    "CurrentPassword": "Le mot de passe actuel est requis.",
-                    "NewPassword": "Le nouveau mot de passe est requis.",
-                    "ConfirmNewPassword": "La confirmation du nouveau mot de passe est requise.",
-                    "PasswordMismatch": "Le nouveau mot de passe et la confirmation ne correspondent pas."
-                }
+                "SubmitButton": "Changer le mot de passe"
             }
         }
     }

@@ -1,8 +1,6 @@
 {
     "Recruiter": {
         "AboutYou": {
-            "Password": "Password",
-            "ProfilePicture": "Profile Picture",
             "ChoosePicture": "Choose Picture",
             "Remove": "Remove"
         },
@@ -33,15 +31,11 @@
                         "Salary": "Salary",
                         "SalaryPlaceholder": "e.g., $60,000 - $80,000 per year",
                         "PostedAt": "Posted at",
-                        "ExpiresAt": "Expires at",
                         "IsActive": "Active",
                         "Validation": {
                             "Title": "Title is required.",
                             "Location": "Location is required.",
-                            "Description": "Description is required.",
-                            "StartDate": "Please enter both the month and year for the start date.",
-                            "InvalidDateRange": "End date cannot be earlier than start date.",
-                            "InvalidEndDateTwoFields": "Both end year and end month must be filled, or neither should be."
+                            "Description": "Description is required."
                         }
                     }
                 }
@@ -69,13 +63,10 @@
         },
         "JobApplication": {
             "NoJobApplicationMessage": "There are currently no job applications",
-            "NumberOfApplications":"Number of Job Applications:",
             "Table": {
                 "FullName": "Full name",
                 "AppliedAt": "Applied at",
-                "Status": "Status",
-                "Salary": "Salary",
-                "IsActive": "Active"
+                "Status": "Status"
             },
             "RejectModal": {
                 "Title": "Reject this job application ?",

@@ -12,8 +12,7 @@
         "CREATE-ACCOUNT": "Create Account",
         "APPLY": "Apply",
         "CONTINUE-WITH-GOOGLE": "Continue with Google",
-        "YES": "Yes",
-        "NO": "No"
+        "YES": "Yes"
     },
     "LABEL": {
         "OR": "OR"
@@ -28,8 +27,7 @@
             "Training": "Training",
             "CVCreation": "CV creation",
             "SignUp": "Sign-up",
-            "LogIn": "Login",
-            "Language": "Language"
+            "LogIn": "Login"
         },
         "Account": {
             "Profile": "Profile",
@@ -52,8 +50,6 @@
         }
     },
     "JobOffers": {
-        "SearchOffersInput": "Job title, keywords or company",
-        "WhereInput": "Where ?",
         "BackToList": "Back to list",
         "JobDetails": {
             "Description": "Description",
@@ -64,26 +60,18 @@
         }
     },
     "Profile": {
-        "Headers": {
-            "Profile": "Profile",
-            "JobManagement": "Job management",
-            "AccountSecurity": "Account & Security"
-        },
         "Sections": {
             "Profile": "Profile",
             "AboutYou": "About you",
             "JobOffers": "Job offers",
             "CompanyJobOffers": "Company job offers",
-            "Education": "Education",
-            "Experience": "Experience",
             "JobApplications": "Job applications",
             "Bookmarks": "Bookmarks",
             "CompanyInfo": "Company info",
             "RecruiterTeam": "Recruiter team",
             "Settings": "Settings",
             "Security": "Security"
-        },
-        "MyProfile": "My profile"
+        }
     },
     "Date": {
         "SelectMonth": "Select month",
@@ -137,10 +125,10 @@
             "info": "Info"
         }
     },
-    "Settings" : {
-        "Language":  {
+    "Settings": {
+        "Language": {
             "Label": "Language",
-            "French": "French", 
+            "French": "French",
             "English": "English"
         }
     },

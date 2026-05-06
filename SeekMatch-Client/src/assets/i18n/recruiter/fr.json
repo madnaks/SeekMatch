@@ -1,8 +1,6 @@
 {
     "Recruiter": {
         "AboutYou": {
-            "Password": "Mot de passe",
-            "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer"
         },
@@ -33,15 +31,11 @@
                         "Salary": "Salaire",
                         "SalaryPlaceholder": "par ex., 60 000 $ - 80 000 $ par an",
                         "PostedAt": "Publié le",
-                        "ExpiresAt": "Expire le",
                         "IsActive": "Actif",
                         "Validation": {
                             "Title": "Le titre est obligatoire.",
                             "Location": "Le Lieu est obligatoire.",
-                            "Description": "Description est obligatoire.",
-                            "StartDate": "Veuillez indiquer à la fois le mois et l'année pour la date de début.",
-                            "InvalidDateRange": "La date de fin ne peut pas être antérieure à la date de début.",
-                            "InvalidEndDateTwoFields": "L'année et le mois de fin doivent tous deux être renseignés, ou aucun des deux."
+                            "Description": "Description est obligatoire."
                         }
                     }
                 }
@@ -69,13 +63,10 @@
         },
         "JobApplication": {
             "NoJobApplicationMessage": "Il n'y a actuellement aucune candidature",
-            "NumberOfApplications": "Nombre de candidatures :",
             "Table": {
                 "FullName": "Nom complet",
                 "AppliedAt": "Postulé le",
-                "Status": "Statut",
-                "Salary": "Salaire",
-                "IsActive": "Actif"
+                "Status": "Statut"
             },
             "RejectModal": {
                 "Title": "Rejeter cette candidature ?",

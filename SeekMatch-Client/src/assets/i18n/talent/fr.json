@@ -13,16 +13,8 @@
             "Summary": "Résumé",
             "Website": "Site web",
             "LinkedIn": "LinkedIn",
-            "Password": "Mot de passe",
             "DateOfBirth": "Date de naissance",
-            "Country": "Pays",
-            "ChooseCountry": "Choisir un pays",
-            "Region": "Région/Province",
-            "ChooseRegion": "Choisir une région ou province",
-            "City": "Ville",
-            "ChooseCity": "Choisir une ville",
             "AddressNotSpecified": "Adresse non précisée",
-            "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer",
             "Validation": {
@@ -64,10 +56,6 @@
         "Resume": {
             "AddResume": "Ajouter un CV",
             "NoResumeMessage": "Commencez à construire votre profil en ajoutant votre CV",
-            "Table": {
-                "Title": "Titre",
-                "IsPrimary": "Principal"
-            },
             "Modal": {
                 "CreationTitle": "Nouveau CV",
                 "UpdateTitle": "Mettre à jour le CV",
@@ -80,7 +68,6 @@
                         "IsPrimary": "Définir comme CV principal",
                         "IsPrimaryInfo": "Définir ce CV comme principal signifie qu'il sera celui que les employeurs verront par défaut lorsqu'ils consulteront votre profil.",
                         "File": "Fichier",
-                        "FilePlaceHolder": "Choisir un fichier...",
                         "Validation": {
                             "Title": "Le titre est requis.",
                             "File": "Le fichier est requis."
@@ -123,7 +110,6 @@
         },
         "JobApplication": {
             "NoJobApplicationMessage": "Il n'y a actuellement aucune candidature",
-            "NumberOfApplications": "Nombre de candidatures :",
             "Table": {
                 "Title": "Titre",
                 "AppliedAt": "Postulé le",
@@ -138,17 +124,9 @@
         },
         "PreviewModal": {
             "Headers": {
-                "TalentCard": "Carte du talent",
-                "Education": "Éducation",
-                "Experience": "Expérience"
+                "TalentCard": "Carte du talent"
             },
-            "FullName": "Nom complet :",
-            "ProfileTitle": "Titre du profil :",
-            "DateOfBirth": "Date de naissance :",
-            "Phone": "Téléphone :",
-            "Address": "Adresse :",
             "Institution": "Établissement :",
-            "Description": "Description :",
             "NoEducations": "Ce talent n'a partagé aucune information sur son éducation.",
             "NoExperiences": "Ce talent n'a partagé aucune information sur son expérience professionnelle.",
             "In": "en",

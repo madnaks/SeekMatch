@@ -2,15 +2,11 @@
     "Representative": {
         "Profile": {
             "Position": "Position",
-            "Password": "Password",
-            "ProfilePicture": "Profile Picture",
             "ChoosePicture": "Choose Picture",
             "Remove": "Remove"
         },
         "Company": {
             "Name": "Name",
-            "PhoneNumber": "Phone number",
-            "Address": "Address",
             "Description": "Description",
             "Website": "Website"
         },
@@ -31,7 +27,7 @@
                 },
                 "Alert": {
                     "DeleteWarning": "Before disabling this recruiter account, you must transfer all associated job applications to another active employee.",
-                    "CreateInformation" : "An email will be sent to the new recruiter with instructions to set up their account."
+                    "CreateInformation": "An email will be sent to the new recruiter with instructions to set up their account."
                 }
             }
         }

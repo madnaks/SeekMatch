@@ -2,15 +2,11 @@
     "Representative": {
         "Profile": {
             "Position": "Poste",
-            "Password": "Mot de passe",
-            "ProfilePicture": "Photo de profil",
             "ChoosePicture": "Choisir une photo",
             "Remove": "Supprimer"
         },
         "Company": {
             "Name": "Nom",
-            "PhoneNumber": "Numéro de téléphone",
-            "Address": "Adresse",
             "Description": "Description",
             "Website": "Site web"
         },
@@ -31,7 +27,7 @@
                 },
                 "Alert": {
                     "DeleteWarning": "Avant de désactiver ce compte recruteur, vous devez transférer toutes les candidatures associées à un autre employé actif.",
-                    "CreateInformation" : "Un e-mail sera envoyé au nouveau recruteur avec des instructions pour configurer son compte."
+                    "CreateInformation": "Un e-mail sera envoyé au nouveau recruteur avec des instructions pour configurer son compte."
                 }
             }
         }
