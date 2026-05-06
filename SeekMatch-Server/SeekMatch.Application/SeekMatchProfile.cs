@@ -24,7 +24,11 @@ namespace SeekMatch.Application
             CreateMap<Recruiter, RecruiterDto>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.User.Email)).ReverseMap();
             CreateMap<JobOffer, JobOfferDto>()
-                .ForMember(d => d.Stats, opt => opt.Ignore()).ReverseMap();
+                .ForMember(d => d.Stats, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(d => d.Recruiter, opt => opt.Ignore())
+                .ForMember(d => d.JobApplications, opt => opt.Ignore())
+                .ForMember(d => d.Bookmarks, opt => opt.Ignore());
             CreateMap<JobOfferFilter, JobOfferFilterDto>().ReverseMap();
             CreateMap<JobApplication, JobApplicationDto>()
                 .ForMember(dest => dest.TalentFullName, opt => opt.MapFrom(src => src.Talent != null ? $"{src.Talent.FirstName} {src.Talent.LastName}" : string.Empty))

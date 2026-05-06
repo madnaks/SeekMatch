@@ -12,7 +12,7 @@ namespace SeekMatch.Application.DTOs.Recruiter
         public bool IsActive { get; set; } = true;
         public bool CanDeleteJobOffers { get; set; } = true;
         public byte[]? ProfilePicture { get; set; }
-        public required string CompanyId { get; set; }
-        public required CompanyDto CompanyDto { get; set; }
+        public string? CompanyId { get; set; }
+        public CompanyDto? CompanyDto { get; set; }
     }
 }
