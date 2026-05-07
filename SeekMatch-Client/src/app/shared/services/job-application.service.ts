@@ -2,6 +2,7 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JobApplication } from '../models/job-application';
+import { JobApplicationStep } from '../models/job-application-step';
 
 @Injectable({
   providedIn: 'root'
@@ -30,8 +31,8 @@ export class JobApplicationService {
   interviewScheduled = (jobApplicationId: string | undefined, interviewData: any): Observable<any> =>
     this.http.put(`${this.apiUrl}/interview-scheduled/${jobApplicationId}`, interviewData);
 
-  hire = (jobApplicationId: string | undefined): Observable<any> =>
-    this.http.put(`${this.apiUrl}/hire/${jobApplicationId}`, null);
+  hire = (jobApplicationStep: JobApplicationStep): Observable<any> =>
+    this.http.put(`${this.apiUrl}/hire`, jobApplicationStep);
 
   reject = (jobApplicationId: string, rejectionReason: string): Observable<any> =>
     this.http.put(`${this.apiUrl}/${jobApplicationId}`, JSON.stringify(rejectionReason), {

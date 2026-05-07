@@ -2,6 +2,7 @@ import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobApplicationStatus } from '@app/shared/enums/enums';
 import { JobApplication } from '@app/shared/models/job-application';
+import { JobApplicationStep } from '@app/shared/models/job-application-step';
 import { JobApplicationService } from '@app/shared/services/job-application.service';
 import { ToastService } from '@app/shared/services/toast.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -22,11 +23,11 @@ export class JobApplicationStepsComponent {
     @ViewChild('rejectJobApplicationModal') rejectJobApplicationModal!: TemplateRef<any>;
 
     public jobApplicationSteps = [
-        { icon: 'fas fa-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SUBMITTED', value: JobApplicationStatus.Submitted },
-        { icon: 'fa-solid fa-list-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED', value: JobApplicationStatus.Shortlisted },
-        { icon: 'fa-solid fa-calendar-check', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED', value: JobApplicationStatus.InterviewScheduled },
-        { icon: 'fa-solid fa-handshake', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED', value: JobApplicationStatus.Hired },
-        { icon: 'fas fa-xmark', text: 'Talent.PreviewModal.JOB-APPLICATION-STEPS.REJECTED', value: JobApplicationStatus.Rejected }
+        { icon: 'fas fa-check', text: 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.SUBMITTED', value: JobApplicationStatus.Submitted },
+        { icon: 'fa-solid fa-list-check', text: 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.SHORTLISTED', value: JobApplicationStatus.Shortlisted },
+        { icon: 'fa-solid fa-calendar-check', text: 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED', value: JobApplicationStatus.InterviewScheduled },
+        { icon: 'fa-solid fa-handshake', text: 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.HIRED', value: JobApplicationStatus.Hired },
+        { icon: 'fas fa-xmark', text: 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.REJECTED', value: JobApplicationStatus.Rejected }
     ];
     public platforms = [
         { name: 'Teams' },
@@ -36,6 +37,7 @@ export class JobApplicationStepsComponent {
     ];
 
     public interviewForm: FormGroup;
+    public hiredForm: FormGroup;
     public rejectionForm: FormGroup;
     public isSaving: boolean = false;
 
@@ -45,6 +47,7 @@ export class JobApplicationStepsComponent {
         private jobApplicationService: JobApplicationService,
         private toastService: ToastService) {
         this.interviewForm = this.initInterviewForm();
+        this.hiredForm = this.initHiredForm();
         this.rejectionForm = this.initRejectionForm();
     }
 
@@ -52,6 +55,13 @@ export class JobApplicationStepsComponent {
         return this.fb.group({
             platform: ['', Validators.required],
             date: [null, Validators.required]
+        });
+    }
+
+    private initHiredForm(): FormGroup {
+        return this.fb.group({
+            note: [''],
+            status: [JobApplicationStatus.Hired]
         });
     }
 
@@ -168,7 +178,12 @@ export class JobApplicationStepsComponent {
 
     public onHireConfirmed(modal: any): void {
         this.isSaving = true;
-        this.jobApplicationService.hire(this.jobApplication?.id || '').pipe(
+
+        let jobApplicationStep = new JobApplicationStep();
+        jobApplicationStep.note = this.hiredForm.get('note')?.value || null;
+        jobApplicationStep.jobApplicationId = this.jobApplication?.id || null;
+
+        this.jobApplicationService.hire(jobApplicationStep).pipe(
             finalize(() => {
                 this.isSaving = false;
             })).subscribe({
@@ -179,8 +194,8 @@ export class JobApplicationStepsComponent {
                         modal.close('Yes');
                     }
                 },
-                error: (err) => {
-                    console.error('Error while hiring the talent', err);
+                error: (error) => {
+                    this.toastService.showErrorMessage('Hiring Job application failed', error);
                 }
             });
     }

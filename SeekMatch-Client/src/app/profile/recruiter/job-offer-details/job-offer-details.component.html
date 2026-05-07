@@ -195,7 +195,7 @@
         (modalActionComplete)="modalActionComplete($event)" />
 </ng-template>
 
-<!-- Job application details  Modal -->
+<!-- Job application details Modal -->
 <ng-template #jobApplicationDetailsContent let-c="close" let-d="dismiss">
     <app-job-application-details-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId"
         [jobApplication]="selectedJobApplication" (modalActionComplete)="jobApplicationDetailsModalCloased($event)" />

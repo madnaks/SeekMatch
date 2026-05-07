@@ -75,7 +75,32 @@
                 "Validation": {
                     "Reason": "La raison est obligatoire."
                 }
-            }
+            },
+            "JOB-APPLICATION-STEPS": {
+                "NOTE": "Note",
+                "Submitted": "Soumis",
+                "Shortlisted": "Présélectionné",
+                "Interview-Scheduled": "Entretien programmé",
+                "Hired": "Embauché",
+                "Rejected": "Rejeté",
+                "Withdrawn": "Retiré",
+                "SHORTLISTED-MODAL": {
+                    "TITLE": "Présélectionner ce candidat ?",
+                    "BODY": "Êtes-vous sûr de vouloir présélectionner ce candidat ?"
+                },
+                "INTERVIEW-SCHEDULED-MODAL": {
+                    "TITLE": "Planifier un entretien pour ce candidat ?",
+                    "BODY": "Lorsque vous planifiez un entretien, le candidat en sera informé par courriel."
+                },
+                "HIRED-MODAL": {
+                    "TITLE": "Embaucher ce candidat ?",
+                    "BODY": "Êtes-vous sûr de vouloir embaucher ce candidat ?"
+                }
+             },
+             "HireModal": {
+                "Title": "Embaucher ce candidat ?",
+                "Hire": "Embaucher"
+             }
         },
         "ExpressApplyModal": {
             "FistPage": {

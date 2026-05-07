@@ -5,4 +5,5 @@ export class JobApplicationStep {
     public createdAt: string | null = null;
     public status: JobApplicationStatus = JobApplicationStatus.Submitted;
     public note: string | null = null;
+    public jobApplicationId: string | null = null;
 }

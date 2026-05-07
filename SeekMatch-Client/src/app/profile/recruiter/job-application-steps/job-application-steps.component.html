@@ -33,13 +33,13 @@
 <ng-template #shortListedConfirmationModal let-modal>
     <div class="modal-header">
         <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
+            {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.TITLE' | translate }}
         </h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <p>
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.BODY' | translate }}
+            {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.SHORTLISTED-MODAL.BODY' | translate }}
         </p>
     </div>
     <div class="modal-footer">
@@ -54,14 +54,14 @@
 <ng-template #interviewScheduledModal let-modal2>
     <div class="modal-header">
         <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.TITLE' | translate }}
+            {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.TITLE' | translate }}
         </h5>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal2.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <div class="row mb-3">
             <div class="col">
-                {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.BODY' | translate }}
+                {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.INTERVIEW-SCHEDULED-MODAL.BODY' | translate }}
             </div>
         </div>
         <div class="row">
@@ -91,23 +91,30 @@
 
 <!-- Job application Hire Modal -->
 <ng-template #hireConfirmationModal let-modal>
-    <div class="modal-header">
-        <h5 class="modal-title">
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.TITLE' | translate }}
-        </h5>
-        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
-    </div>
-    <div class="modal-body">
-        <p>
-            {{ 'Talent.PreviewModal.JOB-APPLICATION-STEPS.HIRED-MODAL.BODY' | translate }}
-        </p>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-primary" (click)="onHireConfirmed(modal)">
-            <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
-            {{ 'BUTTON.YES' | translate }}
-        </button>
-    </div>
+    <form [formGroup]="hiredForm" (ngSubmit)="onHireConfirmed(modal)">
+        <div class="modal-header">
+            <h5 class="modal-title">
+                {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.HIRED-MODAL.TITLE' | translate }}
+            </h5>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <p>
+                {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.HIRED-MODAL.BODY' | translate }}
+            </p>
+                <label for="inputHireNote" class="form-label">
+                        {{ 'Recruiter.JobApplication.JOB-APPLICATION-STEPS.NOTE' | translate }}
+                </label>
+                <textarea rows="5" class="form-control" id="inputHireNote" #inputHireNote
+                    formControlName="note"></textarea>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" [disabled]="isSaving">
+                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isSaving, 'fa-solid fa-address-book': !isSaving }"></i>
+                {{ 'BUTTON.YES' | translate }}
+            </button>
+        </div>
+    </form>
 </ng-template>
 
 <!-- Job application Rejection Modal -->

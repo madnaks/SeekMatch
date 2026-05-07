@@ -133,27 +133,7 @@
             "At": "chez",
             "ShowResume": "Voir le CV",
             "HideResume": "Masquer le CV",
-            "NoResumeAvailable": "Aucun CV disponible à afficher.",
-            "JOB-APPLICATION-STEPS": {
-                "Submitted": "Soumis",
-                "Shortlisted": "Présélectionné",
-                "Interview-Scheduled": "Entretien programmé",
-                "Hired": "Embauché",
-                "Rejected": "Rejeté",
-                "Withdrawn": "Retiré",
-                "SHORTLISTED-MODAL": {
-                    "TITLE": "Présélectionner ce candidat ?",
-                    "BODY": "Êtes-vous sûr de vouloir présélectionner ce candidat ?"
-                },
-                "INTERVIEW-SCHEDULED-MODAL": {
-                    "TITLE": "Planifier un entretien pour ce candidat ?",
-                    "BODY": "Lorsque vous planifiez un entretien, le candidat en sera informé par courriel."
-                },
-                "HIRED-MODAL": {
-                    "TITLE": "Embaucher ce candidat ?",
-                    "BODY": "Êtes-vous sûr de vouloir embaucher ce candidat ?"
-                }
-            }
+            "NoResumeAvailable": "Aucun CV disponible à afficher."
         }
     }
 }

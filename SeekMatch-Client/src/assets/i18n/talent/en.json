@@ -134,26 +134,7 @@
             "At": "at",
             "ShowResume": "Show Resume",
             "HideResume": "Hide Resume",
-            "NoResumeAvailable": "No resume available to display.",
-            "JOB-APPLICATION-STEPS": {
-                "SUBMITTED": "Submitted",
-                "SHORTLISTED": "Shortlisted",
-                "INTERVIEW-SCHEDULED": "Interview Scheduled",
-                "HIRED": "Hired",
-                "REJECTED": "Rejected",
-                "SHORTLISTED-MODAL": {
-                    "TITLE": "Shortlist this candidate ?",
-                    "BODY": "Are you sure you want to shortlist this candidate ?"
-                },
-                "INTERVIEW-SCHEDULED-MODAL": {
-                    "TITLE": "Schedule an interview for this candidate ?",
-                    "BODY": "When you schedule an interview, the candidate will be notified via email."
-                },
-                "HIRED-MODAL": {
-                    "TITLE": "Hire this candidate ?",
-                    "BODY": "Are you sure you want to hire this candidate ?"
-                }
-            }
+            "NoResumeAvailable": "No resume available to display."
         }
     }
 }
