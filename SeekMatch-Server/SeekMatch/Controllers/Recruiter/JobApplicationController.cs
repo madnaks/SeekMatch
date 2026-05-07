@@ -120,13 +120,13 @@ namespace SeekMatch.Controllers
         }
 
         [Authorize]
-        [HttpPut("hire/{jobApplicationId}")]
-        public async Task<IActionResult> Hire(string jobApplicationId)
+        [HttpPut("hire")]
+        public async Task<IActionResult> Hire([FromBody] JobApplicationStepDto jobApplicationStepDto)
         {
-            if (jobApplicationId == null)
-                return BadRequest("Job application id is null");
+            if (jobApplicationStepDto == null)
+                return BadRequest("Job application step is null");
 
-            var result = await jobApplicationService.Hire(jobApplicationId);
+            var result = await jobApplicationService.Hire(jobApplicationStepDto);
             if (result)
                 return Ok(new { message = "Talent is now hired" });
 

@@ -151,15 +151,15 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> Hire(string jobApplicationId)
+        public async Task<bool> Hire(JobApplicationStep jobApplicationStep)
         {
             try
             {
-                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationId);
+                var jobApplication = await dbContext.JobApplications.FindAsync(jobApplicationStep.JobApplicationId);
                 if (jobApplication != null)
                 {
                     jobApplication.Status = JobApplicationStatus.Hired;
-                    AddStep(jobApplication, jobApplication.Status);
+                    AddStep(jobApplication, jobApplication.Status, jobApplicationStep.Note);
 
                     return await dbContext.SaveChangesAsync() > 0;
                 }

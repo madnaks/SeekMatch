@@ -81,8 +81,11 @@ namespace SeekMatch.Application.Services
         public async Task<bool> InterviewScheduled(string jobApplicationId, InterviewScheduleDto interviewScheduleDto) => 
             await jobApplicationRepository.InterviewScheduled(jobApplicationId, interviewScheduleDto.Platform, interviewScheduleDto.Date);
         
-        public async Task<bool> Hire(string jobApplicationId) => 
-            await jobApplicationRepository.Hire(jobApplicationId);
+        public async Task<bool> Hire(JobApplicationStepDto jobApplicationStepDto)
+        {
+            var jobApplicationStep = mapper.Map<JobApplicationStep>(jobApplicationStepDto);
+            return await jobApplicationRepository.Hire(jobApplicationStep);
+        } 
 
         public async Task<bool> RejectAsync(string jobApplicationId, string rejectionReason)
         {
