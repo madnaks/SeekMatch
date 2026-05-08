@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
 import { JobApplicationStatus, ModalActionType } from '@app/shared/enums/enums';
 import { HttpResponse } from '@angular/common/http';
 import { ToastService } from '@app/shared/services/toast.service';
 import { Education, Experience, JobApplication, Talent } from '@app/shared/models';
 import { EducationService, ExperienceService, JobApplicationService, TalentService } from '@app/shared/services';
+import { JobApplicationStep } from '@app/shared/models/job-application-step';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-job-application-details-modal',
@@ -37,8 +38,8 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     private educationService: EducationService,
     private experienceService: ExperienceService,
     private sanitizer: DomSanitizer,
-    private translate: TranslateService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private translate: TranslateService) {
   }
 
   ngOnInit(): void {
@@ -62,6 +63,14 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     }
   }
 
+  public get orderedJobApplicationSteps(): JobApplicationStep[] {
+    return [...(this.jobApplication?.jobApplicationSteps ?? [])]
+      .sort((a, b) => Number(a.status) - Number(b.status));
+  }
+
+  public getJobApplicationStepStatusKey = (status: JobApplicationStatus): string => 
+     this.translate.instant(`Enum.JobApplicationStatus.${JobApplicationStatus[status]}`);
+
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
       this.profilePicture = `data:image/jpeg;base64,${this.currentTalent.profilePicture}`;
@@ -77,17 +86,14 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     }
   }
 
-  public get hasLongSummary(): boolean {
-    return !!this.currentTalent?.summary && this.currentTalent.summary.length > 150;
-  }
+  public hasLongSummary = (): boolean =>
+    !!this.currentTalent?.summary && this.currentTalent.summary.length > 150;
 
-  public getEducationDuration(education: Education): string {
-    return this.educationService.getDurationString(education);
-  }
+  public getEducationDuration = (education: Education): string =>
+    this.educationService.getDurationString(education);
 
-  public getExperienceDuration(experience: Experience): string {
-    return this.experienceService.getDurationString(experience);
-  }
+  public getExperienceDuration = (experience: Experience): string =>
+    this.experienceService.getDurationString(experience);
 
   public onShowResume(jobApplicationId: string | undefined): void {
     if (!jobApplicationId) return;

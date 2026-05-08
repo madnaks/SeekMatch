@@ -130,7 +130,24 @@
                                 </a>
                                 <ng-template ngbNavContent>
                                     @if (jobApplication) {
-                                    
+                                        @for (jobApplicationStep of orderedJobApplicationSteps; track i; let i = $index) {
+                                            <div class="mb-4">
+                                                <h5>
+                                                    
+                                                    {{ getJobApplicationStepStatusKey(jobApplicationStep.status) }}
+                                                </h5>
+                                                <p>
+                                                    <i class="fa-regular fa-clock me-2"></i>
+                                                    {{ jobApplicationStep.createdAt | date:'medium' }}
+                                                </p>
+                                                @if (jobApplicationStep.note) {
+                                                    <p>
+                                                        <i class="fa-regular fa-note-sticky me-2"></i>
+                                                        {{ jobApplicationStep.note }}
+                                                    </p>
+                                                }
+                                            </div>
+                                        }
                                     }
                                 </ng-template>
                             </ng-container>
