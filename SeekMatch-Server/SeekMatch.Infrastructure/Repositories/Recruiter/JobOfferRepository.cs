@@ -45,6 +45,8 @@ namespace SeekMatch.Infrastructure.Repositories
                         .ThenInclude(t => t.Talent)
                     .Include(e => e.JobApplications)
                         .ThenInclude(ex => ex.ExpressApplication)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(ex => ex.JobApplicationSteps)
                     .OrderBy(e => e.CreatedAt)
                     .ToListAsync();
             }
@@ -83,6 +85,8 @@ namespace SeekMatch.Infrastructure.Repositories
                         .ThenInclude(ja => ja.Talent)
                     .Include(e => e.JobApplications)
                         .ThenInclude(ex => ex.ExpressApplication)
+                    .Include(e => e.JobApplications)
+                        .ThenInclude(jb => jb.JobApplicationSteps)
                     .FirstOrDefaultAsync(j => j.Id == id);
             }
             catch (Exception ex)
