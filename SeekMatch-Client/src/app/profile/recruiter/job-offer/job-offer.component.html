@@ -42,6 +42,7 @@
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Shortlisted' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.InterviewScheduled' | translate }}</th>
                     <th scope="col">{{ 'Recruiter.JobOffer.Table.Hired' | translate }}</th>
+                    <th scope="col">{{ 'Recruiter.JobOffer.Table.Rejected' | translate }}</th>
                 </tr>
             </thead>
             <tbody class="table-group-divider">
@@ -71,23 +72,28 @@
                         </span>
                     </td>
                     <td>
-                        <span class="circle">
+                        <span class="circle info">
                             {{ jobOffer.stats.submitted }}
                         </span>
                     </td>
                     <td>
-                        <span class="circle">
+                        <span class="circle info">
                             {{ jobOffer.stats.shortlisted }}
                         </span>
                     </td>
                     <td>
-                         <span class="circle">
+                         <span class="circle info">
                             {{ jobOffer.stats.interviewScheduled }}
                         </span>
                     </td>
                     <td>
-                        <span class="circle">
+                        <span class="circle hired">
                             {{ jobOffer.stats.hired }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="circle rejected">
+                            {{ jobOffer.stats.rejected }}
                         </span>
                     </td>
                 </tr>

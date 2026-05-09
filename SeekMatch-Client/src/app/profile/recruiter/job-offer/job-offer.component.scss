@@ -19,3 +19,15 @@
     text-align: center;
     font-weight: bold;
 }
+
+.info {
+    background-color: $info-color;
+}
+
+.hired {
+    background-color: $success-color;
+}
+
+.rejected {
+    background-color: $error-color;
+}

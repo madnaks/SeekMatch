@@ -53,6 +53,7 @@
                 "Shortlisted": "Shortlisted",
                 "InterviewScheduled": "Interview Scheduled",
                 "Hired": "Hired",
+                "Rejected": "Rejected",
                 "Recruiter": "Recruiter"
             },
             "Card": {
