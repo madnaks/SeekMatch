@@ -31,7 +31,7 @@ namespace SeekMatch.Infrastructure.Repositories
                     .Include(j => j.ExpressApplication)
                     .Include(j => j.JobApplicationSteps)
                     .Include(j => j.Talent)
-                        .ThenInclude(t => t.Resumes)
+                        .ThenInclude(t => t!.Resumes)
                     .FirstAsync();
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace SeekMatch.Infrastructure.Repositories
         public async Task<JobApplication?> FindByEmailAndExpressApplicationAsync(string email, string jobOfferId)
         {
             return await dbContext.JobApplications
-                .FirstOrDefaultAsync(ja => ja.JobOfferId == jobOfferId && ja.ExpressApplication.Email == email);
+                .FirstOrDefaultAsync(ja => ja.JobOfferId == jobOfferId && ja.ExpressApplication!.Email == email);
         }
 
         public async Task<bool> ApplyAsync(JobApplication jobApplication)
@@ -139,7 +139,7 @@ namespace SeekMatch.Infrastructure.Repositories
                     jobApplication.Status = JobApplicationStatus.InterviewScheduled;
                     jobApplication.InterviewPlatform = interviewPlatform;
                     jobApplication.InterviewDate = interviewDate;
-                    AddStep(jobApplication, jobApplication.Status, $"Interview scheduled on {interviewDate:u} via {interviewPlatform}");
+                    AddStep(jobApplication, jobApplication.Status, $"Interview scheduled on {interviewDate:g} via {interviewPlatform}");
 
                     return await dbContext.SaveChangesAsync() > 0;
                 }
@@ -179,7 +179,6 @@ namespace SeekMatch.Infrastructure.Repositories
                 if (jobApplication != null)
                 {
                     jobApplication.Status = JobApplicationStatus.Rejected;
-                    jobApplication.RejectionReason = rejectionReason;
                     AddStep(jobApplication, jobApplication.Status, rejectionReason);
                     
                     return await dbContext.SaveChangesAsync() > 0;

@@ -264,8 +264,17 @@ public class JobApplicationServiceTests
     [Fact]
     public async Task Hire_WhenSuccessful_ReturnsTrue()
     {
-        _jobApplicationRepositoryMock.Setup(r => r.Hire("app-1")).ReturnsAsync(true);
-        Assert.True(await _sut.Hire("app-1"));
+        var jobApplicationStep = new JobApplicationStep()
+        {
+            JobApplicationId = "app-1"
+        };
+        var jobApplicationStepDto = new JobApplicationStepDto()
+        {
+            JobApplicationId = "app-1"
+        };
+        _mapperMock.Setup(m => m.Map<JobApplicationStep>(jobApplicationStepDto)).Returns(jobApplicationStep);
+        _jobApplicationRepositoryMock.Setup(r => r.Hire(jobApplicationStep)).ReturnsAsync(true);
+        Assert.True(await _sut.Hire(jobApplicationStepDto));
     }
 
     [Fact]

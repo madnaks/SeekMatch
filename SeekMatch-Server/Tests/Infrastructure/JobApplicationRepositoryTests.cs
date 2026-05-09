@@ -283,7 +283,11 @@ public class JobApplicationRepositoryTests : IDisposable
         var (_, talent, jobOffer) = await SeedBaseEntitiesAsync();
         await SeedApplicationAsync("app-1", jobOffer, talent);
 
-        var result = await _sut.Hire("app-1");
+        var jobApplicationStep = new JobApplicationStep()
+        {
+            JobApplicationId = "app-1"
+        };
+        var result = await _sut.Hire(jobApplicationStep);
 
         Assert.True(result);
         var updated = await _dbContext.JobApplications.FindAsync("app-1");
@@ -293,7 +297,11 @@ public class JobApplicationRepositoryTests : IDisposable
     [Fact]
     public async Task Hire_WhenNotFound_ReturnsFalse()
     {
-        var result = await _sut.Hire("ghost");
+        var jobApplicationStep = new JobApplicationStep()
+        {
+            JobApplicationId = "ghost"
+        };
+        var result = await _sut.Hire(jobApplicationStep);
 
         Assert.False(result);
     }
@@ -313,7 +321,6 @@ public class JobApplicationRepositoryTests : IDisposable
         Assert.True(result);
         var updated = await _dbContext.JobApplications.FindAsync("app-1");
         Assert.Equal(JobApplicationStatus.Rejected, updated!.Status);
-        Assert.Equal("Not a fit", updated.RejectionReason);
     }
 
     [Fact]
