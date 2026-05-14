@@ -6,6 +6,6 @@ namespace SeekMatch.Infrastructure.Interfaces
     {
         Task RegisterAsync(Representative representative);
         Task<Representative?> GetAsync(string userId);
-        Task<bool> SaveChangesAsync(Representative representative);
+        Task<bool> UpdateAsync(Representative representative);
     }
 }

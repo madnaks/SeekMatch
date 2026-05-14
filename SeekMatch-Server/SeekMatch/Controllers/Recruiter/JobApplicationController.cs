@@ -11,6 +11,17 @@ namespace SeekMatch.Controllers
     [ApiController]
     public class JobApplicationController(IJobApplicationService jobApplicationService) : ControllerBase
     {
+        [HttpGet("get-by-id/{jobApplicaitonId}")]
+        public async Task<IActionResult> GetAllByTalent([FromRoute] string jobApplicaitonId)
+        {
+            var jobApplicationsDto = await jobApplicationService.GetById(jobApplicaitonId);
+
+            if (jobApplicationsDto == null)
+                return NotFound();
+
+            return Ok(jobApplicationsDto);
+        }
+
         [HttpGet("get-all-by-talent")]
         public async Task<IActionResult> GetAllByTalent()
         {

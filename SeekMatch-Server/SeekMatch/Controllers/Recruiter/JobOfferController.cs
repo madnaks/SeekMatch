@@ -90,17 +90,17 @@ namespace SeekMatch.Controllers
 
         [Authorize]
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] JobOfferDto jobOfferDto)
+        public async Task<IActionResult> Update([FromBody] UpdateJobOfferDto updateJobOfferDto)
         {
             var recruiterId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             if (recruiterId == null)
                 return Unauthorized();
 
-            if (jobOfferDto == null)
+            if (updateJobOfferDto == null)
                 return BadRequest("Job offer data is null");
 
-            var result = await jobOfferService.UpdateAsync(jobOfferDto);
+            var result = await jobOfferService.UpdateAsync(updateJobOfferDto);
 
             if (result)
                 return Ok(new { message = "Job offer update successfully" });

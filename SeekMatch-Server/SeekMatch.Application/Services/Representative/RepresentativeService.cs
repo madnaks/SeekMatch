@@ -72,7 +72,7 @@ namespace SeekMatch.Application.Services
                 representative.FirstName = aboutYouDto.FirstName;
                 representative.LastName = aboutYouDto.LastName;
 
-                return await representativeRepository.SaveChangesAsync(representative);
+                return await representativeRepository.UpdateAsync(representative);
             }
 
             return false;
@@ -86,7 +86,7 @@ namespace SeekMatch.Application.Services
                 return false;
 
             representative.ProfilePicture = profilePictureData;
-            await representativeRepository.SaveChangesAsync(representative);
+            await representativeRepository.UpdateAsync(representative);
 
             return true;
         }
@@ -98,7 +98,7 @@ namespace SeekMatch.Application.Services
                 return false;
 
             representative.ProfilePicture = null;
-            await representativeRepository.SaveChangesAsync(representative);
+            await representativeRepository.UpdateAsync(representative);
 
             return true;
         }

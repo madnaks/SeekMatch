@@ -28,12 +28,10 @@ namespace SeekMatch.Infrastructure.Repositories
             }
         }
 
-        public async Task<bool> SaveChangesAsync(Representative representative)
+        public async Task<bool> UpdateAsync(Representative representative)
         {
             try
             {
-                dbContext.Representatives.Update(representative);
-
                 var result = await dbContext.SaveChangesAsync(true);
 
                 return result > 0;

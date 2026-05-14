@@ -53,10 +53,6 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                dbContext.Experiences.Attach(experience);
-
-                dbContext.Entry(experience).State = EntityState.Modified;
-
                 var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;

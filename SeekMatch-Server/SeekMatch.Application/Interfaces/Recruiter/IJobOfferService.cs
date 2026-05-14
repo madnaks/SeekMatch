@@ -9,7 +9,7 @@ namespace SeekMatch.Application.Interfaces
         Task<IList<JobOfferDto>?> GetAllByRecruiterAsync(string recruiterId);
         Task<IList<JobOfferDto>?> GetAllByCompanyAsync(string userId);
         Task<bool> CreateAsync(JobOfferDto jobOfferDto, string recruiterId);
-        Task<bool> UpdateAsync(JobOfferDto jobOfferDto);
+        Task<bool> UpdateAsync(UpdateJobOfferDto updateJobOfferDto);
         Task<bool> DeleteAsync(string jobOfferId);
         Task<bool> IsBookmarkedAsync(string jobOfferId, string talentId);
         Task<bool> BookmarkAsync(string jobOfferId, string talentId);

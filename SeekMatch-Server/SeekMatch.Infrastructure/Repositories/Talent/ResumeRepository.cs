@@ -54,10 +54,6 @@ namespace SeekMatch.Infrastructure.Repositories
             try
             {
                 UpdatePrimaryResume(resume);
-                dbContext.Resumes.Attach(resume);
-
-                dbContext.Entry(resume).State = EntityState.Modified;
-
                 var result = await dbContext.SaveChangesAsync();
 
                 return result > 0;

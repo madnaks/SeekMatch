@@ -114,12 +114,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                dbContext.JobOffers.Attach(jobOffer);
-
-                dbContext.Entry(jobOffer).State = EntityState.Modified;
-
                 var result = await dbContext.SaveChangesAsync();
-
                 return result > 0;
             }
             catch (Exception ex)

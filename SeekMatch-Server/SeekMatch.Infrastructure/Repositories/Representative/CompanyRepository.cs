@@ -29,10 +29,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
-                dbContext.Companies.Update(company);
-
                 var result = await dbContext.SaveChangesAsync(true);
-
                 return result > 0;
             }
             catch (Exception ex)

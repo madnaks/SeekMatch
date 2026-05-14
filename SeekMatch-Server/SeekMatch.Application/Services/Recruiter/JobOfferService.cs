@@ -77,15 +77,15 @@ namespace SeekMatch.Application.Services
             return await jobOfferRepository.CreateAsync(jobOffer);
         }
 
-        public async Task<bool> UpdateAsync(JobOfferDto jobOfferDto)
+        public async Task<bool> UpdateAsync(UpdateJobOfferDto updateJobOfferDto)
         {
-            if (jobOfferDto != null && !string.IsNullOrEmpty(jobOfferDto.Id))
+            if (updateJobOfferDto != null && !string.IsNullOrEmpty(updateJobOfferDto.Id))
             {
-                var existingJobOffer = await jobOfferRepository.GetByIdAsync(jobOfferDto.Id);
+                var existingJobOffer = await jobOfferRepository.GetByIdAsync(updateJobOfferDto.Id);
                 if (existingJobOffer == null)
                     throw new Exception("Job offer not found");
 
-                mapper.Map(jobOfferDto, existingJobOffer);
+                mapper.Map(updateJobOfferDto, existingJobOffer);
 
                 return await jobOfferRepository.UpdateAsync(existingJobOffer);
             }

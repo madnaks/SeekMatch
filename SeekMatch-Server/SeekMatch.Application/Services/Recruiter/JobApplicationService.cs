@@ -15,6 +15,9 @@ namespace SeekMatch.Application.Services
             INotificationService notificationService,
             IMapper mapper) : IJobApplicationService
     {
+        public async Task<JobApplicationDto?> GetById(string jobApplicationId) =>
+            mapper.Map<JobApplicationDto>(await jobApplicationRepository.GetByIdAsync(jobApplicationId));
+
         public async Task<IList<JobApplicationDto>?> GetAllByTalentAsync(string talentId) => 
             mapper.Map<IList<JobApplicationDto>>(await jobApplicationRepository.GetAllByTalentAsync(talentId));
 
