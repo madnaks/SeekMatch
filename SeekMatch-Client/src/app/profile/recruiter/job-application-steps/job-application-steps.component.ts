@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { JobApplicationStatus } from '@app/shared/enums/enums';
 import { JobApplication } from '@app/shared/models/job-application';
@@ -16,6 +16,8 @@ import { finalize } from 'rxjs';
 export class JobApplicationStepsComponent {
 
     @Input() jobApplication: JobApplication | null = null;
+
+    @Output() jobApplicationUpdated = new EventEmitter<void>();
 
     @ViewChild('shortListedConfirmationModal') shortListedConfirmationModal!: TemplateRef<any>;
     @ViewChild('interviewScheduledModal') interviewScheduledModal!: TemplateRef<any>;
@@ -93,46 +95,39 @@ export class JobApplicationStepsComponent {
         }
     }
 
-    public isCompleted(stepValue: number): boolean {
-        return stepValue <= this.jobApplication!.status;
-    }
+    public isCompleted = (stepValue: number): boolean => 
+        stepValue <= this.jobApplication!.status;
 
-    public isNext(stepValue: number): boolean {
-        return stepValue === this.jobApplication!.status + 1;
-    }
+    public isNext = (stepValue: number): boolean =>
+        stepValue === this.jobApplication!.status + 1;
 
-    public isRejectedStep(index: number): boolean {
-        return index === JobApplicationStatus.Rejected;
-    }
+    public isRejectedStep = (index: number): boolean =>
+        index === JobApplicationStatus.Rejected;
 
-    public isRejected(): boolean {
-        return this.jobApplication!.status === JobApplicationStatus.Rejected;
-    }
+    public isRejected = () : boolean =>
+        this.jobApplication!.status === JobApplicationStatus.Rejected;
 
-    public canClick(stepValue: number): boolean {
-        return (
+    public canClick = (stepValue: number): boolean => 
+        (
             this.isCompleted(stepValue) ||
             this.isNext(stepValue) ||
             stepValue === JobApplicationStatus.Rejected
         );
-    }
 
-    public getStepIconClasses(stepValue: number, index: number): any {
-        return {
+    public getStepIconClasses = (stepValue: number, index: number): any => 
+        ({
             'bg-success text-white': this.isCompleted(stepValue) && !this.isRejected(),
             'bg-danger text-white': this.isRejectedStep(index),
             'bg-secondary text-white': this.isRejected() && !this.isRejectedStep(index),
             'bg-light text-secondary border border-2 border-secondary': !this.isCompleted(stepValue),
             'active': this.isNext(stepValue),
-        };
-    }
+        });
 
-    public getStepTextClasses(stepValue: number): any {
-        return {
+    public getStepTextClasses = (stepValue: number): any =>
+        ({
             'fw-bold': stepValue <= this.jobApplication!.status,
             'text-secondary': stepValue > this.jobApplication!.status
-        };
-    }
+        });    
 
     public onShortlistConfirmed(modal: any): void {
         this.isSaving = true;
@@ -141,11 +136,9 @@ export class JobApplicationStepsComponent {
                 this.isSaving = false;
             })).subscribe({
                 next: () => {
-                    if (this.jobApplication) {
-                        this.jobApplication.status = JobApplicationStatus.Shortlisted;
-                        this.toastService.showSuccessMessage('Job application shortlisted successfully');
-                        modal.close('Yes');
-                    }
+                    this.jobApplicationUpdated.emit();
+                    this.toastService.showSuccessMessage('Job application shortlisted successfully');
+                    modal.close('Yes');
                 },
                 error: (err) => {
                     console.error('Error shortlisting application', err);
@@ -164,11 +157,9 @@ export class JobApplicationStepsComponent {
                 this.isSaving = false;
             })).subscribe({
                 next: () => {
-                    if (this.jobApplication) {
-                        this.jobApplication.status = JobApplicationStatus.InterviewScheduled;
-                        this.toastService.showSuccessMessage('Interview scheduled successfully');
-                        modal.close('Yes');
-                    }
+                    this.jobApplicationUpdated.emit();
+                    this.toastService.showSuccessMessage('Interview scheduled successfully');
+                    modal.close('Yes');
                 },
                 error: (err) => {
                     console.error('Error scheduling application', err);
@@ -188,11 +179,9 @@ export class JobApplicationStepsComponent {
                 this.isSaving = false;
             })).subscribe({
                 next: () => {
-                    if (this.jobApplication) {
-                        this.jobApplication.status = JobApplicationStatus.Hired;
-                        this.toastService.showSuccessMessage('Talent hired successfully');
-                        modal.close('Yes');
-                    }
+                    this.jobApplicationUpdated.emit();
+                    this.toastService.showSuccessMessage('Talent hired successfully');
+                    modal.close('Yes');
                 },
                 error: (error) => {
                     this.toastService.showErrorMessage('Hiring Job application failed', error);
@@ -210,14 +199,11 @@ export class JobApplicationStepsComponent {
             this.jobApplicationService.reject(this.jobApplication.id, this.rejectionForm.value.reason).pipe(
                 finalize(() => {
                     this.isSaving = false;
-                    this.modalService.dismissAll();
                 })).subscribe({
                     next: () => {
-                        if (this.jobApplication) {
-                            this.jobApplication.status = JobApplicationStatus.Rejected;
-                        }
                         this.toastService.showSuccessMessage('Job application rejected successfully');
                         modal.close('Yes');
+                        this.jobApplicationUpdated.emit();
                     },
                     error: (error) => {
                         this.toastService.showErrorMessage('Rejecting Job application failed', error);

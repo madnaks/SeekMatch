@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row mb-5">
             <div class="col-12">
-                <app-job-application-steps [jobApplication]="jobApplication" />
+                <app-job-application-steps [jobApplication]="currentJobApplication" (jobApplicationUpdated)="refreshJobApplication()" />
             </div>
         </div>
         <div class="row">
@@ -19,23 +19,23 @@
                             <div class="row mb-3">
                                 <div class="col-md-6">
                                     <h3>
-                                        {{ jobApplication?.expressApplication?.lastName }}, {{
-                                        jobApplication?.expressApplication?.firstName }}
+                                        {{ currentJobApplication?.expressApplication?.lastName }}, {{
+                                        currentJobApplication?.expressApplication?.firstName }}
                                     </h3>
                                     <h5>
                                         <i class="fa-solid fa-envelope me-2"></i>
-                                        {{ jobApplication?.expressApplication?.email }}
+                                        {{ currentJobApplication?.expressApplication?.email }}
                                     </h5>
                                     <h5>
                                         <i class="fa-solid fa-phone me-2"></i>
-                                        {{ jobApplication?.expressApplication?.phone }}
+                                        {{ currentJobApplication?.expressApplication?.phone }}
                                     </h5>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     @if(!showResume) {
-                                    <button class="btn btn-primary btn-sm" (click)="onShowResume(jobApplication?.id)">
+                                    <button class="btn btn-primary btn-sm" (click)="onShowResume(currentJobApplication?.id)">
                                         <i class="fa-solid fa-eye me-2"></i>
                                         {{ 'Talent.PreviewModal.ShowResume' | translate }}
                                     </button>
@@ -129,7 +129,7 @@
                                     Application
                                 </a>
                                 <ng-template ngbNavContent>
-                                    @if (jobApplication) {
+                                    @if (currentJobApplication) {
                                         @for (jobApplicationStep of orderedJobApplicationSteps; track i; let i = $index) {
                                             <div class="mb-4">
                                                 <h5>

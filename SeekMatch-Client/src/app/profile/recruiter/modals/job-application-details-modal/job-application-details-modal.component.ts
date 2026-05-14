@@ -7,6 +7,7 @@ import { Education, Experience, JobApplication, Talent } from '@app/shared/model
 import { EducationService, ExperienceService, JobApplicationService, TalentService } from '@app/shared/services';
 import { JobApplicationStep } from '@app/shared/models/job-application-step';
 import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-job-application-details-modal',
@@ -19,11 +20,12 @@ export class JobApplicationDetailsModalComponent implements OnInit {
   @Input() dismissModal: (reason: string) => void = () => { };
   @Input() selectedTalent: Talent | null = null;
   @Input() selectedTalentId: string = "";
-  @Input() jobApplication: JobApplication | null = null;
+  @Input() jobApplicationId: string | undefined = "";
 
   @Output() modalActionComplete = new EventEmitter<ModalActionType>();
 
   public currentTalent: Talent | null = null;
+  public currentJobApplication: JobApplication | null = null;
   public profilePicture: SafeUrl | string | null = null;
   public isSummaryExpanded = false;
   public isExpressApplication: boolean = false;
@@ -42,10 +44,11 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     private translate: TranslateService) {
   }
 
-  ngOnInit(): void {
+  public async ngOnInit(): Promise<void> {
+    await this.loadJobApplicationDetails();
     // If came from job offer applications list
-    if (this.jobApplication) {
-      if (this.jobApplication.expressApplication && this.selectedTalent == null) {
+    if (this.currentJobApplication) {
+      if (this.currentJobApplication.expressApplication && this.selectedTalent == null) {
         this.isExpressApplication = true;
       } else {
         if (this.selectedTalentId !== "") {
@@ -63,13 +66,28 @@ export class JobApplicationDetailsModalComponent implements OnInit {
     }
   }
 
+  public async loadJobApplicationDetails(): Promise<void> {
+    if (!this.jobApplicationId) return;
+
+    try {
+      this.currentJobApplication = await firstValueFrom(
+        this.jobApplicationService.getById(this.jobApplicationId)
+      );
+    } catch (error) {
+      this.toastService.showErrorMessage(
+        'Error loading job application details',
+        error
+      );
+    }
+  }
+
   public get orderedJobApplicationSteps(): JobApplicationStep[] {
-    return [...(this.jobApplication?.jobApplicationSteps ?? [])]
+    return [...(this.currentJobApplication?.jobApplicationSteps ?? [])]
       .sort((a, b) => Number(a.status) - Number(b.status));
   }
 
-  public getJobApplicationStepStatusKey = (status: JobApplicationStatus): string => 
-     this.translate.instant(`Enum.JobApplicationStatus.${JobApplicationStatus[status]}`);
+  public getJobApplicationStepStatusKey = (status: JobApplicationStatus): string =>
+    this.translate.instant(`Enum.JobApplicationStatus.${JobApplicationStatus[status]}`);
 
   private loadProfilePicture(): void {
     if (this.currentTalent?.profilePicture) {
@@ -117,7 +135,13 @@ export class JobApplicationDetailsModalComponent implements OnInit {
 
   public onTabChange(activeId: string | number): void {
     if (activeId === 'resumes') {
-      this.onShowResume(this.jobApplication?.id);
+      this.onShowResume(this.currentJobApplication?.id);
     }
   }
+
+  public refreshJobApplication(): void {
+    this.loadJobApplicationDetails();
+    this.modalActionComplete.emit(ModalActionType.Refresh);
+  }
+
 }

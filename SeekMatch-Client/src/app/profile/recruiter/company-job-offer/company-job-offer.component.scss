@@ -40,3 +40,11 @@
 table td {
     vertical-align: middle;
 }
+
+.hired {
+    background-color: $success-color;
+}
+
+.rejected {
+    background-color: $error-color;
+}

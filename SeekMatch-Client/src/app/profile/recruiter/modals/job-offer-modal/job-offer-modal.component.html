@@ -61,6 +61,7 @@
                 <!-- Location -->
                 <div class="mb-4">
                     <label for="inputLocation" class="form-label">
+                        <i class="fa-solid fa-location-crosshairs me-2"></i>
                         {{ 'Recruiter.JobOffer.Modal.Body.Form.Location' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputLocation" formControlName="location"
@@ -73,6 +74,7 @@
                 <!-- Salary -->
                 <div class="mb-4">
                     <label for="inputSalary" class="form-label">
+                        <i class="fa-solid fa-hand-holding-dollar me-2"></i>
                         {{ 'Recruiter.JobOffer.Modal.Body.Form.Salary' | translate }}
                     </label>
                     <input type="text" class="form-control" id="inputSalary" formControlName="salary"
@@ -85,8 +87,8 @@
                 </div>
                 <!-- ExpiresAt -->
                 <div class="mb-4">
-                    <be-date-picker-input [form]="jobOfferForm" [controlName]="'postedAt'"
-                        [label]="'Recruiter.JobOffer.Modal.Body.Form.PostedAt'" [id]="'inputPostedAt'" />
+                    <be-date-picker-input [form]="jobOfferForm" [controlName]="'expiresAt'"
+                        [label]="'Recruiter.JobOffer.Modal.Body.Form.ExpiresAt'" [id]="'inputExpiresAt'" />
                 </div>
                 <!-- IsActive -->
                 <div class="mb-4">

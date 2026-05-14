@@ -31,6 +31,7 @@
                         "Salary": "Salary",
                         "SalaryPlaceholder": "e.g., $60,000 - $80,000 per year",
                         "PostedAt": "Posted at",
+                        "ExpiresAt": "Expires at",
                         "IsActive": "Active",
                         "Validation": {
                             "Title": "Title is required.",

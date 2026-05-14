@@ -112,6 +112,8 @@ export class JobOfferDetailsComponent implements OnInit {
     if (action == ModalActionType.Close) {
       this.selectedTalentId = '';
       this.selectedJobApplication = null;
+    } else if (action == ModalActionType.Refresh) {
+      this.getJobOfferDetails();
     }
   }
 

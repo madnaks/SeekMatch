@@ -13,6 +13,9 @@ export class JobApplicationService {
 
   constructor(private http: HttpClient) { }
 
+  getById = (jobApplicationId: string):Observable<any> => 
+    this.http.get<JobApplication>(`${this.apiUrl}/get-by-id/${jobApplicationId}`);
+
   getAllByTalent = ():Observable<any> => 
     this.http.get<JobApplication[]>(`${this.apiUrl}/get-all-by-talent`);
 

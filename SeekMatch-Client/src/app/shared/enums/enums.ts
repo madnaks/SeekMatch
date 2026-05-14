@@ -31,7 +31,8 @@ export enum ModalActionType {
     Create = 1,
     Update = 2,
     Delete = 3,
-    Close = 4
+    Close = 4,
+    Refresh = 5
 }
 
 export enum JobApplicationStatus

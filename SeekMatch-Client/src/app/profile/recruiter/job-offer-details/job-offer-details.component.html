@@ -38,17 +38,24 @@
         </div>
     }
 </div>
-<div class="row">
+<div class="row mb-3">
     <div class="col-12">
         <h5>{{ jobOffer.title }}</h5>
-        <p>
+        <div>
+            <i class="fa-solid fa-building me-2"></i>
             <strong>{{ 'Recruiter.JobOffer.Card.Company' | translate }} </strong>
-            {{ jobOffer.companyName }}<br>
+            {{ jobOffer.companyName }}
+        </div>
+        <div>
+            <i class="fa-solid fa-location-crosshairs me-2"></i>
             <strong>{{ 'Recruiter.JobOffer.Card.Location' | translate }} </strong>
             {{ jobOffer.location }}<br>
+        </div>
+        <div>
+            <i class="fa-solid fa-hand-holding-dollar me-2"></i>
             <strong>{{ 'Recruiter.JobOffer.Card.Salary' | translate }}</strong>
             {{ jobOffer.salary }}<br>
-        </p>
+        </div>
     </div>
 </div>
 <div class="row">
@@ -212,5 +219,5 @@
 <!-- Job application details Modal -->
 <ng-template #jobApplicationDetailsContent let-c="close" let-d="dismiss">
     <app-job-application-details-modal [closeModal]="c" [dismissModal]="d" [selectedTalentId]="selectedTalentId"
-        [jobApplication]="selectedJobApplication" (modalActionComplete)="jobApplicationDetailsModalCloased($event)" />
+        [jobApplicationId]="selectedJobApplication?.id"  (modalActionComplete)="jobApplicationDetailsModalCloased($event)" />
 </ng-template>

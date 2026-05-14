@@ -1,7 +1,7 @@
 <div class="container-fluid dashboard-container col-lg-10 col-12 mt-5 p-3">
 
     <div class="row mt-3">
-        <div class="col-md-3">
+        <div class="col-md-2">
             <ul class="nav dashboard-nav flex-column">
                 <!-- Profile -->
                 <li class="nav-item">
@@ -24,6 +24,7 @@
                         {{ 'Profile.Sections.Bookmarks' | translate }}
                     </a>
                 </li>
+                <hr>
                 <!-- Settings -->
                 <li class="nav-item">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
@@ -40,7 +41,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-10">
             <router-outlet></router-outlet>
         </div>
     </div>
