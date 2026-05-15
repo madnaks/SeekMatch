@@ -36,7 +36,8 @@
                         "Validation": {
                             "Title": "Le titre est obligatoire.",
                             "Location": "Le Lieu est obligatoire.",
-                            "Description": "Description est obligatoire."
+                            "Description": "Description est obligatoire.",
+                            "CurrentStep": "Veuillez remplir les champs obligatoires avant de continuer."
                         }
                     }
                 }

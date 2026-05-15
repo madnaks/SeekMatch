@@ -36,7 +36,8 @@
                         "Validation": {
                             "Title": "Title is required.",
                             "Location": "Location is required.",
-                            "Description": "Description is required."
+                            "Description": "Description is required.",
+                            "CurrentStep": "Please complete the required fields before continuing."
                         }
                     }
                 }

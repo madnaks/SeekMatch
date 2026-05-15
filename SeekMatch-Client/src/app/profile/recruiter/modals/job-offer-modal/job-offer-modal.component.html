@@ -10,7 +10,6 @@
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
-
 <div class="modal-body">
 
     <!-- Stepper -->
@@ -21,6 +20,12 @@
     </div>
 
     <form [formGroup]="jobOfferForm">
+        @if(stepValidationError) {
+        <div class="mb-3">
+            <app-error-message
+                [message]="'Recruiter.JobOffer.Modal.Body.Form.Validation.CurrentStep'"></app-error-message>
+        </div>
+        }
         @if(currentStep === 1) {
         <div class="row">
             <div class="col-6">

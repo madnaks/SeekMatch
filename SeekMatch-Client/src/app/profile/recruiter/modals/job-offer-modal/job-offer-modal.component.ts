@@ -32,6 +32,30 @@ export class JobOfferModalComponent implements OnInit {
   //#region  Stepping variables
   currentStep: number = 1;
   maxSteps: number = 3;
+  stepValidationError: boolean = false;
+
+  private readonly controlsByStep: Record<number, string[]> = {
+    1: [
+      'title',
+      'type',
+      'workplaceType',
+      'location',
+      'salary',
+      'postedAt',
+      'expiresAt',
+      'isActive',
+      'companyName',
+      'companyInfo'
+    ],
+    2: [
+      'description',
+      'positionDetails'
+    ],
+    3: [
+      'qualifications',
+      'additionalRequirements'
+    ]
+  };
   //#endregion
 
   constructor(
@@ -88,7 +112,7 @@ export class JobOfferModalComponent implements OnInit {
 
   //#region : Form controls events 
   public onSubmit(): void {
-    if (this.jobOfferForm.valid) {
+    if (this.validateAllSteps()) {
 
       this.isSaving = true;
 
@@ -102,7 +126,10 @@ export class JobOfferModalComponent implements OnInit {
       }
 
     } else {
-      this.jobOfferForm.markAllAsTouched();
+      const firstInvalidStep = this.getFirstInvalidStep();
+      this.currentStep = firstInvalidStep ?? this.currentStep;
+      this.markStepControlsAsTouched(this.currentStep);
+      this.stepValidationError = true;
     }
   }
   //#endregion
@@ -149,24 +176,62 @@ export class JobOfferModalComponent implements OnInit {
 
   //#region Stepping functions
   public goToNextStep(): void {
+    if (!this.validateCurrentStep()) {
+      this.stepValidationError = true;
+      return;
+    }
+
+    this.stepValidationError = false;
     this.currentStep++;
-    // this.updateModalSize();
   }
 
   public goToPreviousStep(): void {
+    this.stepValidationError = false;
     this.currentStep--;
-    // this.updateModalSize();
   }
 
-  private updateModalSize(): void {
-    const modalElement = document.querySelector('.modal-dialog');
-    if (modalElement) {
-      if (this.currentStep === 2) {
-        modalElement.classList.add('modal-xl'); // Add xl size at step 3
-      } else {
-        modalElement.classList.remove('modal-xl'); // Remove xl size at other steps
-      }
-    }
+  private validateCurrentStep(): boolean {
+    this.markStepControlsAsTouched(this.currentStep);
+
+    return this.getStepControls(this.currentStep).every((controlName) => {
+      return this.jobOfferForm.get(controlName)?.valid ?? true;
+    });
+  }
+
+  private validateAllSteps(): boolean {
+    Object.keys(this.controlsByStep).forEach((step) => {
+      this.markStepControlsAsTouched(Number(step));
+    });
+
+    return Object.keys(this.controlsByStep).every((step) => {
+      return this.getStepControls(Number(step)).every((controlName) => {
+        return this.jobOfferForm.get(controlName)?.valid ?? true;
+      });
+    });
+  }
+
+  private markStepControlsAsTouched(step: number): void {
+    this.getStepControls(step).forEach((controlName) => {
+      const control = this.jobOfferForm.get(controlName);
+
+      control?.markAsTouched();
+      control?.updateValueAndValidity();
+    });
+  }
+
+  private getFirstInvalidStep(): number | undefined {
+    const invalidEntry = Object.entries(this.controlsByStep)
+      .find(([, controlNames]) => {
+        return controlNames.some((controlName) => {
+          return this.jobOfferForm.get(controlName)?.invalid;
+        });
+      });
+
+    return invalidEntry ? Number(invalidEntry[0]) : undefined;
+  }
+
+  private getStepControls(step: number): string[] {
+    return this.controlsByStep[step] ?? [];
   }
   //#endregion
 }
