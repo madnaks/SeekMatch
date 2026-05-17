@@ -11,11 +11,11 @@
     </ngx-intl-tel-input>
 
     @if (form.get('phone')?.errors?.['required'] && form.get('phone')?.touched) {
-        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-REQUIRED'"></app-error-message>
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-REQUIRED'" />
     }
 
     @if (form.get('phone')?.errors?.['validatePhoneNumber'] && form.get('phone')?.touched) {
-        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-INVALID'"></app-error-message>
+        <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.PHONE-INVALID'" />
     }
 
 </div>

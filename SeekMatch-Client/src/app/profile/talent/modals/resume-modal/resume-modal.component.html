@@ -37,7 +37,8 @@
                 <!-- File -->
                 <div class="mb-4">
                     <label for="formFile" class="form-label">
-                        {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
+<i class="fa-solid fa-file-lines me-2"></i>                        {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
+
                     </label>
                     <input class="form-control" type="file" id="formFile" accept="application/pdf"
                         (change)="onFileSelected($event)">

@@ -1,30 +1,26 @@
 <div [formGroup]="form" class="row mt-3">
     <!-- Last name -->
     <div class="col-md-6">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="inputLastName"
-                [placeholder]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate"
-                formControlName="lastName">
-            <label for="inputLastName" class="form-label">
-                <i class="fa-regular fa-user me-2"></i>
-                {{ 'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate }}
-            </label>
-        </div>
+        <label for="inputLastName" class="form-label">
+            <i class="fa-regular fa-user me-2"></i>
+            {{ 'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate }}
+        </label>
+        <input type="text" class="form-control" id="inputLastName"
+            [placeholder]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate"
+            formControlName="lastName" />
         @if ((form.get('lastName')?.invalid && form.get('lastName')?.touched)) {
         <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'"></app-error-message>
         }
     </div>
     <!-- First name -->
     <div class="col-md-6">
-        <div class="form-floating">
-            <input type="text" class="form-control" id="inputFirstName"
-                [placeholder]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate"
-                formControlName="firstName">
-            <label for="inputFirstName" class="form-label">
-                <i class="fa-regular fa-user me-2"></i>
-                {{ 'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate }}
-            </label>
-        </div>
+        <label for="inputFirstName" class="form-label">
+            <i class="fa-regular fa-user me-2"></i>
+            {{ 'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate }}
+        </label>
+        <input type="text" class="form-control" id="inputFirstName"
+            [placeholder]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate"
+            formControlName="firstName" />
         @if ((form.get('firstName')?.invalid && form.get('firstName')?.touched)) {
         <app-error-message [message]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'"></app-error-message>
         }

@@ -5,13 +5,13 @@ import { ErrorMessageComponent } from "../error-message/error-message.component"
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'be-text-area-float-input',
+  selector: 'be-text-area-input',
   standalone: true,
   imports: [ReactiveFormsModule, TranslateModule, ErrorMessageComponent, CommonModule],
-  templateUrl: './text-area-float-input.component.html',
-  styleUrl: './text-area-float-input.component.scss'
+  templateUrl: './text-area-input.component.html',
+  styleUrl: './text-area-input.component.scss'
 })
-export class TextAreaFloatInputComponent {
+export class TextAreaInputComponent {
 
   @Input({ required: true }) form!: FormGroup;
   @Input({ required: true }) controlName!: string;

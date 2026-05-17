@@ -8,7 +8,7 @@ import { RepresentativeRoutingModule } from './representative.routing.module';
 import { RecruiterTeamComponent } from './recruiter-team/recruiter-team.component';
 import { AddRecruiterTeamModalComponent } from './modals/recruiter-team-modal/recruiter-team-modal.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
-import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, PhoneInputComponent, AddressGroupComponent, TextFloatInputComponent, TextAreaFloatInputComponent } from '@app/shared/form-controls';
+import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent, PhoneInputComponent, AddressGroupComponent, TextInputComponent, TextAreaInputComponent } from '@app/shared/form-controls';
 import { AlertComponent, LoaderComponent } from '@app/shared/ui';
 import { DataTableComponent } from "@app/shared/form-controls/data-table/data-table.component";
 import { NgbCarouselModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
@@ -33,8 +33,8 @@ const FormControls = [
   EmailInputComponent,
   PhoneInputComponent,
   AddressGroupComponent,
-  TextFloatInputComponent,
-  TextAreaFloatInputComponent
+  TextInputComponent,
+  TextAreaInputComponent
 ];
 
 @NgModule({

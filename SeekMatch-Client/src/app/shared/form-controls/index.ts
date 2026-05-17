@@ -7,5 +7,5 @@ export * from './full-name-input/full-name-input.component';
 export * from './info/info.component';
 export * from './password-input/password-input.component';
 export * from './phone-input/phone-input.component';
-export * from './text-area-float-input/text-area-float-input.component';
-export * from './text-float-input/text-float-input.component';
+export * from './text-area-input/text-area-input.component';
+export * from './text-input/text-input.component';

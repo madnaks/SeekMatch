@@ -4,13 +4,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
 
 @Component({
-  selector: 'be-text-float-input',
+  selector: 'be-text-input',
   standalone: true,
   imports: [ReactiveFormsModule, TranslateModule, ErrorMessageComponent],
-  templateUrl: './text-float-input.component.html',
-  styleUrl: './text-float-input.component.scss'
+  templateUrl: './text-input.component.html',
+  styleUrl: './text-input.component.scss'
 })
-export class TextFloatInputComponent {
+export class TextInputComponent {
 
   @Input({ required: true }) form!: FormGroup;
   @Input({ required: true }) controlName!: string;

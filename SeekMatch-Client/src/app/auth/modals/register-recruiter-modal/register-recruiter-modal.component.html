@@ -119,18 +119,9 @@
                 </div>
                 <!-- Position -->
                 <div class="mb-4">
-                    <div class="form-floating">
-                        <input class="form-control" type="text" id="inputPosition"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate"
-                            formControlName="position">
-                        <label for="inputPosition" class="form-label">
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Position' | translate }}
-                        </label>
-                    </div>
-                    @if (registerRepresentativeForm.get('position')?.invalid &&
-                    registerRepresentativeForm.get('position')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'" />
-                    }
+                    <be-text-input [form]="registerRepresentativeForm" [controlName]="'position'" [id]="'inputPosition'"
+                        [label]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position'" [hasIcon]="true"
+                        [iconClass]="'fa-regular fa-address-card'" [errorMessageKey]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'" />
                 </div>
                 <!-- Email -->
                 <div class="mb-4">
@@ -154,51 +145,44 @@
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
                 <!-- Company Name -->
                 <div class="mt-3 mb-4">
-                    <div class="form-floating">
-                        <input class="form-control" type="text" id="inputCompanyName"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate"
-                            formControlName="name">
-                        <label for="inputCompanyName" class="form-label">
-                            <i class="fa-solid fa-building me-2"></i>
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
-                        </label>
-                    </div>
+                    <label for="inputCompanyName" class="form-label">
+                        <i class="fa-solid fa-building me-2"></i>
+                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
+                    </label>
+                    <input class="form-control" type="text" id="inputCompanyName"
+                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate"
+                        formControlName="name">
                     @if (registerRepresentativeForm.get('name')?.invalid &&
-                    registerRepresentativeForm.get('name')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'" />
+                        registerRepresentativeForm.get('name')?.touched) {
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'" />
                     }
                 </div>
                 <!-- Phone Number -->
                 <div class="mb-4">
-                    <div class="form-floating">
-                        <input class="form-control" type="text" id="inputCompanyPhoneNumber"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate"
-                            formControlName="phoneNumber">
-                        <label for="inputCompanyPhoneNumber" class="form-label">
-                            <i class="fa-solid fa-phone me-2"></i>
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
-                        </label>
-                    </div>
+                    <label for="inputCompanyPhoneNumber" class="form-label">
+                        <i class="fa-solid fa-phone me-2"></i>
+                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
+                    </label>
+                    <input class="form-control" type="text" id="inputCompanyPhoneNumber"
+                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate"
+                        formControlName="phoneNumber">
                     @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
-                    registerRepresentativeForm.get('phoneNumber')?.touched) {
-                    <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'" />
+                        registerRepresentativeForm.get('phoneNumber')?.touched) {
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'" />
                     }
                 </div>
                 <!-- Company Address -->
                 <div class="mb-4">
-                    <div class="form-floating">
-                        <input class="form-control" type="text" id="inputCompanyAddress"
-                            [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"
-                            formControlName="address">
-                        <label for="inputCompanyAddress" class="form-label">
-                            <i class="fa-solid fa-location-dot me-2"></i>
-                            {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
-                        </label>
-                    </div>
+                    <label for="inputCompanyAddress" class="form-label">
+                        <i class="fa-solid fa-location-dot me-2"></i>
+                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
+                    </label>
+                    <input class="form-control" type="text" id="inputCompanyAddress"
+                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"
+                        formControlName="address">
                     @if (registerRepresentativeForm.get('address')?.invalid &&
-                    registerRepresentativeForm.get('address')?.touched) {
-                    <app-error-message
-                        [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'"></app-error-message>
+                        registerRepresentativeForm.get('address')?.touched) {
+                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'" />
                     }
                 </div>
             </div>
