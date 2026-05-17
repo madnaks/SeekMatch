@@ -6,6 +6,9 @@
             <i [class]="getIconClass()"></i>
             }
             {{ label | translate }}
+            @if (isRequired()) {
+            <span class="text-danger">*</span>
+            }
         </label>
         <input type="text" class="form-control" [id]="id" [placeholder]="placeholder ? placeholder : label | translate"
             [formControlName]="controlName">

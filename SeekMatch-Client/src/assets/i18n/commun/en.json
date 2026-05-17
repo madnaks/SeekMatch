@@ -15,7 +15,9 @@
         "YES": "Yes"
     },
     "LABEL": {
-        "OR": "OR"
+        "OR": "OR",
+        "DATE": "Date",
+        "PLATFORM": "Platform"
     },
     "LINK": {
         "FORGOT-PASSWORD": "Forgot Password?"

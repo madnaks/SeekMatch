@@ -76,6 +76,9 @@
         <!-- Line 3: CV-->
         <div class="row mt-3">
           <div class="col-md-12">
+            <label for="formFile" class="form-label">
+              {{ 'SHARED.FORM-CONTROLS.LABEL.CV' | translate }} <span class="text-danger">*</span>
+            </label>
             <input class="form-control" type="file" id="formFile" accept="application/pdf"
               (change)="onFileSelected($event)">
             @if((expressApplyForm.get('cv')?.errors?.['required'] && expressApplyForm.get('cv')?.touched)) {

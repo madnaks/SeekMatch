@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GeonamesService } from '@app/shared/services/geonames.service';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
@@ -91,6 +91,10 @@ export class AddressGroupComponent implements OnInit {
         this.cities = cities;
       });
     }
+  }
+
+  public isRequired(controlName: string): boolean {
+    return this.form.get(controlName)?.hasValidator(Validators.required) ?? false;
   }
 
 }

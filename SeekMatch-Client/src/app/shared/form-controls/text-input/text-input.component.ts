@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
 
@@ -23,5 +23,9 @@ export class TextInputComponent {
 
   public getIconClass(): string {
     return this.iconClass + ' me-2';
+  }
+
+  public isRequired(): boolean {
+    return this.form.get(this.controlName)?.hasValidator(Validators.required) ?? false;
   }
 }

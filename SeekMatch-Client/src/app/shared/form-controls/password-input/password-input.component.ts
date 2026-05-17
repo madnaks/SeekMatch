@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
 import { CommonModule } from '@angular/common';
@@ -30,5 +30,8 @@ export class PasswordInputComponent implements OnInit {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  public isRequired(): boolean {
+    return this.form.get(this.controlName)?.hasValidator(Validators.required) ?? false;
+  }
 
 }

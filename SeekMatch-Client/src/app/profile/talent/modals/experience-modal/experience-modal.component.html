@@ -19,6 +19,7 @@
                     <label for="inputCompanyName" class="form-label">
                         <i class="fa-solid fa-building me-2"></i>
                         {{ 'Talent.Experience.Modal.Body.Form.CompanyName' | translate }}
+                        <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" id="inputCompanyName" formControlName="companyName"
                         [placeholder]="'Talent.Experience.Modal.Body.Form.CompanyNamePlaceholder' | translate">
@@ -53,6 +54,7 @@
                     <div class="col-md-6">
                         <label for="selectStartMonth" class="form-label">
                             {{ 'Talent.Experience.Modal.Body.Form.StartMonth' | translate }}
+                            <span class="text-danger">*</span>
                         </label>
                         <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
                             <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }}
@@ -62,6 +64,7 @@
                     <div class="col-md-6">
                         <label for="selectStartYear" class="form-label">
                             {{ 'Talent.Experience.Modal.Body.Form.StartYear' | translate }}
+                            <span class="text-danger">*</span>
                         </label>
                         <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
                             <option value="0">

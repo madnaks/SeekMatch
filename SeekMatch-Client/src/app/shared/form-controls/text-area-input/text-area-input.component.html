@@ -7,6 +7,9 @@
             <i [class]="getIconClass()"></i>
             }
             {{ label | translate }}
+            @if (isRequired()) {
+            <span class="text-danger">*</span>
+            }
         </label>
         
         <textarea [ngStyle]="{'height': height }" class="form-control" [placeholder]="placeholder" [id]="id" [formControlName]="controlName" ></textarea>

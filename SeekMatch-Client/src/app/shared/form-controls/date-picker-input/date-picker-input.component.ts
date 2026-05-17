@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
@@ -43,5 +43,9 @@ export class DatePickerInputComponent {
       isAnimated: true,
       showWeekNumbers: false,
     });
+  }
+
+  public isRequired(): boolean {
+    return this.form.get(this.controlName)?.hasValidator(Validators.required) ?? false;
   }
 }

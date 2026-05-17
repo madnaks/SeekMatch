@@ -2,6 +2,9 @@
     <label for="inputPhone" class="form-label">
         <i class="fa-solid fa-phone me-2"></i>
         {{ 'SHARED.FORM-CONTROLS.LABEL.PHONE' | translate }}
+        @if (isRequired()) {
+        <span class="text-danger">*</span>
+        }
     </label>
     <ngx-intl-tel-input [cssClass]="'form-control'" [enableAutoCountrySelect]="false" [enablePlaceholder]="true"
         [searchCountryFlag]="true" [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"

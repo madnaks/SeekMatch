@@ -6,6 +6,9 @@
                 <label for="inputAddress" class="form-label">
                     <i class="fa-solid fa-location-dot me-2"></i>
                     {{ 'SHARED.FORM-CONTROLS.LABEL.ADDRESS' | translate }}
+                    @if (isRequired('address')) {
+                    <span class="text-danger">*</span>
+                    }
                 </label>
                 <input type="text" class="form-control" id="inputAddress" formControlName="address">
             </div>
@@ -18,6 +21,9 @@
             <label for="inputCountry" class="form-label">
                 <i class="fa-solid fa-earth-africa me-2"></i>
                 {{ 'SHARED.FORM-CONTROLS.LABEL.COUNTRY' | translate }}
+                @if (isRequired('country')) {
+                <span class="text-danger">*</span>
+                }
             </label>
             <select id="inputCountry" class="form-select" formControlName="country" (change)="onCountrySelect($event)"d >
                 <option *ngIf="!form.get('country')?.value" value="" selected>
@@ -33,6 +39,9 @@
             <label for="inputRegion" class="form-label">
                 <i class="fa-solid fa-map me-2"></i>
                 {{ 'SHARED.FORM-CONTROLS.LABEL.REGION' | translate }}
+                @if (isRequired('region')) {
+                <span class="text-danger">*</span>
+                }
             </label>
             <select id="inputRegion" class="form-select" formControlName="region" (change)="onRegionSelect($event)">
                 <option [value]="null" selected>
@@ -48,6 +57,9 @@
             <label for="inputCity" class="form-label">
                 <i class="fa-solid fa-city me-2"></i>
                 {{ 'SHARED.FORM-CONTROLS.LABEL.CITY' | translate }}
+                @if (isRequired('city')) {
+                <span class="text-danger">*</span>
+                }
             </label>
             <select id="inputCity" class="form-select" formControlName="city">
                 <option [value]="null" selected>

@@ -15,6 +15,7 @@
         <div class="mb-4">
             <label for="inputInstitution" class="form-label">
                 {{ 'Talent.Education.Modal.Body.Form.Institution' | translate }}
+                <span class="text-danger">*</span>
             </label>
             <input type="text" class="form-control" id="inputInstitution" formControlName="institution"
                 [placeholder]="'Talent.Education.Modal.Body.Form.InstitutionPlaceHolder' | translate">
@@ -44,6 +45,7 @@
             <div class="col-md-6">
                 <label for="selectStartMonth" class="form-label">
                     {{ 'Talent.Education.Modal.Body.Form.StartMonth' | translate }}
+                    <span class="text-danger">*</span>
                 </label>
                 <select class="form-select form-select-sm" id="selectStartMonth" formControlName="startMonth">
                     <option *ngFor="let month of monthsList" [value]="month.id"> {{ month.value | translate }} </option>
@@ -52,6 +54,7 @@
             <div class="col-md-6">
                 <label for="selectStartYear" class="form-label">
                     {{ 'Talent.Education.Modal.Body.Form.StartYear' | translate }}
+                    <span class="text-danger">*</span>
                 </label>
                 <select class="form-select form-select-sm" id="selectStartYear" formControlName="startYear">
                     <option value="0">

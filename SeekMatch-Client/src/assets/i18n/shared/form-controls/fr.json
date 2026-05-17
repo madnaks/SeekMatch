@@ -14,7 +14,8 @@
                 "REGION": "Région/État",
                 "CHOOSE-REGION": "Choisir une région/état",
                 "CITY": "Ville",
-                "CHOOSE-CITY": "Choisir une ville"
+                "CHOOSE-CITY": "Choisir une ville",
+                "CV": "CV"
             },
             "VALIDATION": {
                 "LASTNAME": "Le nom de famille est requis.",

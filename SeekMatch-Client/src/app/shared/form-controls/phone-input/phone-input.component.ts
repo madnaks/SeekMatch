@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { CountryISO, NgxIntlTelInputModule, SearchCountryField } from 'ngx-intl-tel-input';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
@@ -21,5 +21,9 @@ export class PhoneInputComponent {
 
   public onPhoneCountryChange(): void {
     this.form.patchValue({ phone: '' });
+  }
+
+  public isRequired(): boolean {
+    return this.form.get('phone')?.hasValidator(Validators.required) ?? false;
   }
 }

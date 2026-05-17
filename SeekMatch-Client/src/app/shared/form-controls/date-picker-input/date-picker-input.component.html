@@ -3,6 +3,9 @@
         <label [for]="id" class="form-label">
             <i class="fa-regular fa-calendar me-2"></i>
             {{ label | translate }}
+            @if (isRequired()) {
+            <span class="text-danger">*</span>
+            }
         </label>
     }
     <div class="input-group" [ngClass]="{'mt-3': !label}">

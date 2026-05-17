@@ -17,6 +17,7 @@
                 <div class="mb-4">
                     <label for="inputTitle" class="form-label">
                         {{ 'Talent.Resume.Modal.Body.Form.Title' | translate }}
+                        <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" id="inputTitle" formControlName="title"
                         [placeholder]="'Talent.Resume.Modal.Body.Form.TitlePlaceHolder' | translate">
@@ -37,8 +38,9 @@
                 <!-- File -->
                 <div class="mb-4">
                     <label for="formFile" class="form-label">
-<i class="fa-solid fa-file-lines me-2"></i>                        {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
-
+                        <i class="fa-solid fa-file-lines me-2"></i>                        
+                        {{ 'Talent.Resume.Modal.Body.Form.File' | translate }}
+                        <span class="text-danger">*</span>
                     </label>
                     <input class="form-control" type="file" id="formFile" accept="application/pdf"
                         (change)="onFileSelected($event)">

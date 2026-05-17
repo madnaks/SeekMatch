@@ -4,6 +4,9 @@
         <label for="inputLastName" class="form-label">
             <i class="fa-regular fa-user me-2"></i>
             {{ 'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate }}
+            @if (isRequired('lastName')) {
+            <span class="text-danger">*</span>
+            }
         </label>
         <input type="text" class="form-control" id="inputLastName"
             [placeholder]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME' | translate"
@@ -17,6 +20,9 @@
         <label for="inputFirstName" class="form-label">
             <i class="fa-regular fa-user me-2"></i>
             {{ 'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate }}
+            @if (isRequired('firstName')) {
+            <span class="text-danger">*</span>
+            }
         </label>
         <input type="text" class="form-control" id="inputFirstName"
             [placeholder]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME' | translate"

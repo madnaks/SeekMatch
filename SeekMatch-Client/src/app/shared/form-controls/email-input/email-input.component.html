@@ -3,6 +3,9 @@
         <label for="inputEmail" class="form-label">
             <i class="fa-regular fa-envelope me-2"></i>
             {{ 'SHARED.FORM-CONTROLS.LABEL.EMAIL' | translate }}
+            @if (isRequired()) {
+            <span class="text-danger">*</span>
+            }
         </label>
         <input type="email" class="form-control" id="inputEmail"
             [placeholder]="'SHARED.FORM-CONTROLS.LABEL.EMAIL' | translate" formControlName="email" />

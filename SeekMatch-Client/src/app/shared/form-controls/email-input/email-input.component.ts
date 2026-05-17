@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
 
@@ -13,4 +13,8 @@ import { ErrorMessageComponent } from "../error-message/error-message.component"
 export class EmailInputComponent {
 
   @Input({ required: true }) form!: FormGroup;
+
+  public isRequired(): boolean {
+    return this.form.get('email')?.hasValidator(Validators.required) ?? false;
+  }
 }

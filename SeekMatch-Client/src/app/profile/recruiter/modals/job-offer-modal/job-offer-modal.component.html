@@ -33,6 +33,7 @@
                 <div class="mb-4">
                     <label for="inputTitle" class="form-label">
                         {{ 'Recruiter.JobOffer.Modal.Body.Form.Title' | translate }}
+                        <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" id="inputTitle" formControlName="title"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.TitlePlaceholder' | translate">
@@ -68,6 +69,7 @@
                     <label for="inputLocation" class="form-label">
                         <i class="fa-solid fa-location-crosshairs me-2"></i>
                         {{ 'Recruiter.JobOffer.Modal.Body.Form.Location' | translate }}
+                        <span class="text-danger">*</span>
                     </label>
                     <input type="text" class="form-control" id="inputLocation" formControlName="location"
                         [placeholder]="'Recruiter.JobOffer.Modal.Body.Form.LocationPlaceholder' | translate">
@@ -131,6 +133,7 @@
                 <!-- Description -->
                 <label class="form-label" for="inputDescription">
                     {{ 'Recruiter.JobOffer.Modal.Body.Form.Description' | translate }}
+                    <span class="text-danger">*</span>
                 </label>
                 <quill-editor formControlName="description" [modules]="editorModules" id="inputDescription">
                 </quill-editor>
