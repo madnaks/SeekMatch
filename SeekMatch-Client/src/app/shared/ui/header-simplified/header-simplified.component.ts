@@ -13,11 +13,9 @@ export class HeaderSimplifiedComponent {
   }
 
   changeLanguage() {
-    if (this.translate.currentLang) {
-      this.translate.use(this.translate.currentLang);
-    } else {
-      this.translate.use(this.languageService.getBrowserLanguageCode());
-    }
+    const language = this.translate.currentLang === 'fr' ? 'en' : 'fr';
+    this.languageService.saveLanguageCode(language);
+    this.translate.use(language);
   }
 
 }

@@ -35,8 +35,9 @@ export class AppComponent {
     private modal: NgbModal,
     private languageService: LanguageService) {
 
-    translate.setDefaultLang(this.languageService.getBrowserLanguageCode());
-    translate.use(this.languageService.getBrowserLanguageCode());
+    const language = this.languageService.getCurrentLanguageCode();
+    translate.setDefaultLang(language);
+    translate.use(language);
 
     this.router.events.subscribe(() => {
       const currentRoute = this.router.routerState.snapshot.root.firstChild?.routeConfig?.path;

@@ -27,7 +27,9 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
         localStorage.setItem('isTemporaryPassword', response.isTemporaryPassword);
-        this.translate.use(response.language || this.languageService.getBrowserLanguageCode());
+        const language = response.language || this.languageService.getBrowserLanguageCode();
+        this.languageService.saveLanguageCode(language);
+        this.translate.use(language);
       })
     );
   }

@@ -127,9 +127,9 @@
     },
     "Settings": {
         "Language": {
-            "Label": "Language",
-            "French": "French",
-            "English": "English"
+            "Label": "Langue",
+            "French": "Français",
+            "English": "Anglais"
         }
     },
     "Security": {

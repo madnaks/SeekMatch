@@ -50,7 +50,7 @@ export class SettingsComponent {
   private initSettingFormValues() {
     this.settingService.loadSetting().subscribe(setting => {
       this.settingForm.patchValue({
-        language: setting?.language || this.languageService.getBrowserLanguageCode()
+        language: setting?.language || this.languageService.getCurrentLanguageCode()
       });
 
       this.isLoading = false;
@@ -63,6 +63,7 @@ export class SettingsComponent {
       const settingData = this.settingForm.value;
       this.settingService.updateSetting(settingData).subscribe({
         next: () => {
+          this.languageService.saveLanguageCode(settingData.language);
           this.translate.use(settingData.language);
           this.isSaving = false;
           this.toastService.showSuccessMessage('Setting updated successfully!');
