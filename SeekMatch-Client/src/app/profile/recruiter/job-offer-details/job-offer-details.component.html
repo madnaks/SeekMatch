@@ -149,46 +149,48 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
-                                    <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
-                                    <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider">
-                                @for (jobApplication of filteredJobApplications; track jobApplication.id; let i =
-                                $index) {
-                                <tr
-                                    (click)="openJobApplicationDetailsModal(jobApplicationDetailsContent, jobApplication)">
-                                    <th scope="row">
-                                        {{ i + 1 }}
-                                    </th>
-                                    <td>
-                                        @if (jobApplication.isExpress) {
-                                        {{ jobApplication.expressApplication?.lastName }} {{
-                                        jobApplication.expressApplication?.firstName }}
-                                        } @else {
-                                        {{ jobApplication.talentFullName }}
-                                        }
-                                    </td>
-                                    <td>
-                                        {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
-                                    </td>
-                                    <td>
-                                        <span class="badge rounded-pill"
-                                            [ngClass]="getStatusClass(jobApplication.status)">
-                                            {{ 'Enum.JobApplicationStatus.' +
-                                            getJobApplicationStatus(jobApplication.status) |
-                                            translate }}
-                                        </span>
-                                    </td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">{{ 'Recruiter.JobApplication.Table.FullName' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobApplication.Table.AppliedAt' | translate }}</th>
+                                        <th scope="col">{{ 'Recruiter.JobApplication.Table.Status' | translate }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    @for (jobApplication of filteredJobApplications; track jobApplication.id; let i =
+                                    $index) {
+                                    <tr
+                                        (click)="openJobApplicationDetailsModal(jobApplicationDetailsContent, jobApplication)">
+                                        <th scope="row">
+                                            {{ i + 1 }}
+                                        </th>
+                                        <td>
+                                            @if (jobApplication.isExpress) {
+                                            {{ jobApplication.expressApplication?.lastName }} {{
+                                            jobApplication.expressApplication?.firstName }}
+                                            } @else {
+                                            {{ jobApplication.talentFullName }}
+                                            }
+                                        </td>
+                                        <td>
+                                            {{ jobApplication.appliedAt | date:'yyyy-MM-dd HH:mm:ss' }}
+                                        </td>
+                                        <td>
+                                            <span class="badge rounded-pill"
+                                                [ngClass]="getStatusClass(jobApplication.status)">
+                                                {{ 'Enum.JobApplicationStatus.' +
+                                                getJobApplicationStatus(jobApplication.status) |
+                                                translate }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 }

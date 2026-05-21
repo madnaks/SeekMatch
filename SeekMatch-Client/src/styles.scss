@@ -7,18 +7,39 @@
     scroll-behavior: smooth;
 }
 
+html,
+body {
+    min-width: 320px;
+    overflow-x: clip;
+}
+
 body {
     background-color: $primary-color;
     color: $text-color;
 }
 
+img,
+svg {
+    max-width: 100%;
+}
+
+button,
+.btn {
+    white-space: normal;
+}
+
+.row > * {
+    min-width: 0;
+}
+
 // Containers
 .dashboard-container {
     background-color: white;
-    height: 87vh;
+    min-height: 87vh;
     border-radius: 5px;
     background-color: $secondary-color !important;
     color: $text-color !important;
+    overflow: auto;
 }
 
 .container-card {
@@ -361,11 +382,13 @@ body {
 
 // boostrap table style
 .table {
+    min-width: max-content;
 
     th,
     td {
         background-color: $secondary-color;
         color: $text-color;
+        vertical-align: middle;
     }
 
     td {
@@ -465,4 +488,56 @@ a {
 
 .display-none {
     display: none;
+}
+
+@media (max-width: 767.98px) {
+    .dashboard-container {
+        min-height: auto;
+        margin-top: 1rem !important;
+        padding: 0.75rem !important;
+        overflow: visible;
+    }
+
+    .dashboard-nav {
+        flex-direction: row !important;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+
+        .nav-item {
+            flex: 0 0 auto;
+        }
+
+        .nav-link {
+            white-space: nowrap;
+        }
+
+        hr {
+            display: none;
+        }
+    }
+
+    .container-card {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+
+    .modal-body,
+    .card,
+    .card-body,
+    .dropdown-menu {
+        overflow-wrap: anywhere;
+    }
+
+    .nav-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        .nav-link {
+            white-space: nowrap;
+        }
+    }
 }

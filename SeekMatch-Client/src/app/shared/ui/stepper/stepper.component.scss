@@ -1,8 +1,13 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 .stepper {
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+
     .step {
         display: flex;
+        flex: 0 0 auto;
         justify-content: center;
         align-items: center;
         width: 30px;
@@ -33,7 +38,9 @@
 
     .line {
         background-color: $third-color;
-        width: 100px;
+        flex: 1 1 100px;
+        min-width: 32px;
+        max-width: 100px;
         height: 2px;
 
         &.active {

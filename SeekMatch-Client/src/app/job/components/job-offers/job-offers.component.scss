@@ -29,10 +29,12 @@
     padding: 20px;
     background-color: $secondary-color;
     border: 0.606061px solid rgba(0, 0, 0, 0.176);
+    overflow-y: auto;
 }
 
 .button-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
 }
 
@@ -42,5 +44,19 @@
     box-shadow: unset;
     &:focus {
         box-shadow: unset;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #job-list-container,
+    #job-details-container {
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        overflow: visible;
+    }
+
+    #job-details-container {
+        padding: 1rem;
     }
 }

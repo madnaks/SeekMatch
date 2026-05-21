@@ -1,20 +1,21 @@
 @import '../../../../assets/styles/styles-variables.scss';
 
 .container-fluid {
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
 
     .row {
         display: flex;
-        height: 100vh;
+        min-height: 100vh;
 
         .column {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             flex: 1;
-            overflow: hidden;
+            overflow: auto;
             transition: all 0.5s ease;
             color: white;
             
@@ -51,6 +52,11 @@
         // Media query to switch to vertical layout on smaller screens
         @media (max-width: 767.98px) {
             flex-direction: column; // Switch to vertical layout
+
+            .column {
+                min-height: 50vh;
+                padding: 2rem 1rem;
+            }
         }
     }
 }
