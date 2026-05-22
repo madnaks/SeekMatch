@@ -10,6 +10,7 @@ import { RepresentativeService } from '../../../shared/services/representative.s
 import { Company } from '../../../shared/models/company';
 import { LanguageService } from '@app/shared/services/language.service';
 import { createRegisterFreelancerForm, createRegisterRepresentativeForm } from './register-recruiter-modal.config';
+import { getPhoneNumberValue } from '@app/shared/utils';
 
 @Component({
   selector: 'app-register-recruiter-modal',
@@ -131,6 +132,7 @@ export class RegisterRecruiterModalComponent {
 
       let representative = new Representative(formRepresentativeValues);
       let company = new Company(formRepresentativeValues);
+      company.phone = getPhoneNumberValue(company.phone);
 
       representative.setting.language = this.languageService.getBrowserLanguageCode();
 

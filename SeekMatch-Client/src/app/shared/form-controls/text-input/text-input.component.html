@@ -1,20 +1,17 @@
-<div [formGroup]="form" class="row mt-3">
-    <div class="col-md-12">
-
-        <label class="form-label" [for]="id">
-            @if(hasIcon) {
-            <i [class]="getIconClass()"></i>
-            }
-            {{ label | translate }}
-            @if (isRequired()) {
-            <span class="text-danger">*</span>
-            }
-        </label>
-        <input type="text" class="form-control" [id]="id" [placeholder]="placeholder ? placeholder : label | translate"
-            [formControlName]="controlName">
-
-        @if ((form.get(controlName)?.invalid && form.get(controlName)?.touched)) {
-            <app-error-message [message]="errorMessageKey" />
+<div [formGroup]="form">
+    <label class="form-label" [for]="id">
+        @if(hasIcon) {
+        <i [class]="getIconClass()"></i>
         }
-    </div>
+        {{ label | translate }}
+        @if (isRequired()) {
+        <span class="text-danger">*</span>
+        }
+    </label>
+    <input type="text" class="form-control" [id]="id" [placeholder]="placeholder | translate"
+        [formControlName]="controlName">
+
+    @if ((form.get(controlName)?.invalid && form.get(controlName)?.touched)) {
+        <app-error-message [message]="errorMessageKey" />
+    }
 </div>

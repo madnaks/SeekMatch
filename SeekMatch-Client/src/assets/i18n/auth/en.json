@@ -71,6 +71,12 @@
                                 "PhoneNumber": "Phone number is required.",
                                 "Address": "Company address is required.",
                                 "Position": "Position is required."
+                            },
+                            "PLACEHOLDER": {
+                                "CompanyName": "Enter your company name",
+                                "PhoneNumber": "Enter your phone number",
+                                "Address": "Enter your company address",
+                                "Position": "Enter your position in the company"
                             }
                         }
                     }

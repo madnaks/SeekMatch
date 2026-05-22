@@ -9,18 +9,20 @@
 <div class="modal-body">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <!-- Email -->
-        <be-email-input [form]="loginForm" />
+        <div class="row">
+            <be-email-input [form]="loginForm" />
+        </div>
         <!-- Password -->
-         <div class="row mb-3">
-            <div class="col-12">
-                <be-password-input [form]="loginForm" />
-            </div>
-         </div>
+        <div class="row mt-3">
+        <div class="col-12">
+            <be-password-input [form]="loginForm" />
+        </div>
+        </div>
         <!-- Login button -->
-         <div class="row d-flex justify-content-center mb-3">
-            <div class="col-6">
-                <app-login-button [isLoading]="isLoading" />
-            </div>
-         </div>
+        <div class="row d-flex justify-content-center mt-3">
+        <div class="col-6">
+            <app-login-button [isLoading]="isLoading" />
+        </div>
+        </div>
     </form>
 </div>

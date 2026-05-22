@@ -25,11 +25,13 @@ namespace SeekMatch.Application.DTOs.Representative
         public required string CompanyName { get; set; }        
         
         [Required]
-        public required string CompanyAddress { get; set; }        
-        
+        public required string CompanyAddress { get; set; }
+        public string? CompanyCountry { get; set; }
+        public int? CompanyRegion { get; set; }
+        public int? CompanyCity { get; set; }
         [Required]
-        public required string CompanyPhoneNumber { get; set; }
-
+        public required string CompanyPhone { get; set; }
+        public required string CompanyWebsite { get; set; }
         public SettingDto? Setting { get; set; }
     }
 }

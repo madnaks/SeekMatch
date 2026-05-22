@@ -35,7 +35,10 @@ namespace SeekMatch.Application.Services
             {
                 Name = registerRepresentativeDto.CompanyName,
                 Address = registerRepresentativeDto.CompanyAddress,
-                Phone = registerRepresentativeDto.CompanyPhoneNumber
+                Region = registerRepresentativeDto.CompanyRegion,
+                City = registerRepresentativeDto.CompanyCity,
+                Phone = registerRepresentativeDto.CompanyPhone,
+                Website = registerRepresentativeDto.CompanyWebsite
             };
             await companyService.CreateAsync(company);
 

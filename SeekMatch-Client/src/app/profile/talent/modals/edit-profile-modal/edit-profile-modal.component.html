@@ -41,11 +41,21 @@
                 </div>
                 <!-- Line 2: Full name -->
                 <div class="row mt-3">
-                    <app-full-name-input [form]="profileForm" />
+                    <div class="col-md-6">
+                        <be-text-input [form]="profileForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                            [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                            [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+                    </div>
+                    <div class="col-md-6">
+                            <be-text-input [form]="profileForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                            [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                            [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+                    </div>
                 </div>
                 <!-- Line 3: Profile title -->
                 <div class="row mt-3">
-                    <!-- Profile title -->
                     <div class="col-md-12">
                         <be-text-input [form]="profileForm" [controlName]="'profileTitle'"
                             [id]="'inputProfileTitle'" [label]="'Talent.EditProfile.ProfileTitle'" [hasIcon]="true"
@@ -54,12 +64,9 @@
                 </div>
                 <!-- Line 4: Summary -->
                 <div class="row mt-3">
-                    <!-- Summary -->
-                    <div class="col-md-12">
-                        <be-text-area-input [form]="profileForm" [controlName]="'summary'"
-                            [id]="'inputSummaryFloat'" [label]="'Talent.EditProfile.Summary'" [hasIcon]="true"
-                            [iconClass]="'fa-regular fa-clipboard'" [height]="'150px'" />
-                    </div>
+                    <be-text-area-input [form]="profileForm" [controlName]="'summary'"
+                        [id]="'inputSummaryFloat'" [label]="'Talent.EditProfile.Summary'" [hasIcon]="true"
+                        [iconClass]="'fa-regular fa-clipboard'" [height]="'150px'" />
                 </div>
                 <!-- Line 5: Email/Website/LinkedIn-->
                 <div class="row mt-3">

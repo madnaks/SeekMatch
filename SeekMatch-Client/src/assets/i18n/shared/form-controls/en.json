@@ -17,6 +17,15 @@
                 "CHOOSE-CITY": "Choose a city",
                 "CV": "CV"
             },
+            "PLACEHOLDER": {
+                "LASTNAME": "Enter your last name",
+                "FIRSTNAME": "Enter your first name",
+                "EMAIL": "Enter your email address",
+                "PHONE": "Enter your phone number",
+                "PASSWORD": "Enter your password",
+                "CONFIRM-PASSWORD": "Confirm your password",
+                "ADDRESS": "Enter your address"
+            },
             "VALIDATION": {
                 "LASTNAME": "Last name is required.",
                 "FIRSTNAME": "First name is required.",
@@ -32,7 +41,8 @@
                 "PASSWORD-UPPERCASE": "Password must contain at least one uppercase letter.",
                 "PASSWORD-LOWERCASE": "Password must contain at least one lowercase letter.",
                 "PASSWORD-NUMBER": "Password must contain at least one number.",
-                "PASSWORD-SPECIAL": "Password must contain at least one special character."
+                "PASSWORD-SPECIAL": "Password must contain at least one special character.",
+                "ADDRESS": "Address is required."
             }
         }
     }

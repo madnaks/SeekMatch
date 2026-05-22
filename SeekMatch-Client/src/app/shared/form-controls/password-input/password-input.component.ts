@@ -17,6 +17,7 @@ export class PasswordInputComponent implements OnInit {
   @Input({ required: true }) form!: FormGroup;
   @Input() controlName: string = 'password';
   @Input() label: string = 'SHARED.FORM-CONTROLS.LABEL.PASSWORD';
+  @Input() placeholder: string = 'SHARED.FORM-CONTROLS.PLACEHOLDER.PASSWORD';
 
   public id!: string;
 

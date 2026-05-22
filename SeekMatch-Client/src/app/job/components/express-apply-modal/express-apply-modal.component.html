@@ -66,7 +66,20 @@
     <div class="col-12">
       <form [formGroup]="expressApplyForm" (ngSubmit)="onSubmit()">
         <!-- Line 1: Full name -->
-        <app-full-name-input [form]="expressApplyForm" />
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <be-text-input [form]="expressApplyForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+            </div>
+            <div class="col-md-6">
+                    <be-text-input [form]="expressApplyForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+            </div>
+        </div>
         <!-- Line 2: Email -->
         <div class="row mt-3">
           <div class="col-12">
@@ -181,32 +194,47 @@
         <ng-template ngbNavContent>
           <form class="mx-auto max-width-450" [formGroup]="signupForm">
             <!-- Full Name -->
-            <div class="mb-4">
-              <app-full-name-input [form]="signupForm" />
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <be-text-input [form]="expressApplyForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                        [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                        [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                        [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+                </div>
+                <div class="col-md-6">
+                        <be-text-input [form]="expressApplyForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                        [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                        [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                        [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+                </div>
             </div>
             <!-- Email -->
-            <div class="mb-3">
+            <div class="row mt-3">
               <be-email-input [form]="signupForm" />
             </div>
             <!-- Password -->
-            <div class="mb-3">
+            <div class="row mt-3">
               <be-password-input [form]="signupForm" />
             </div>
             <!-- Confirm Password -->
-            <div class="mb-3">
+            <div class="row mt-3">
               <be-password-input [form]="signupForm" [controlName]="'confirmPassword'"
                 [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
             </div>
-            <button type="submit" class="btn btn-primary w-100">
-              <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
-              {{ 'BUTTON.CREATE-ACCOUNT' | translate }}
-            </button>
+            <div class="row mt-3 d-flex justify-content-center">
+              <button type="submit" class="btn btn-primary w-75">
+                <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
+                {{ 'BUTTON.CREATE-ACCOUNT' | translate }}
+              </button>
+            </div>
             <div class="text-center my-3">
               <p> {{ 'LABEL.OR' | translate}} </p>
             </div>
-            <button type="button" class="btn btn-outline-secondary w-100 mb-2">
-              <i class="fab fa-google me-2"></i>{{ 'BUTTON.CONTINUE-WITH-GOOGLE' | translate }}
-            </button>
+            <div class="row d-flex justify-content-center">
+              <button type="button" class="btn btn-outline-secondary w-75 mb-2">
+                <i class="fab fa-google me-2"></i>{{ 'BUTTON.CONTINUE-WITH-GOOGLE' | translate }}
+              </button>
+            </div>
             <div class="text-center mt-3">
               <span>
                 {{ 'SignUp.HaveAccount' | translate }} <a href="#" class="static-link" (click)="activeTab = 1">{{ 'SignUp.Login' | translate }}</a>

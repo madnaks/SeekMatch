@@ -8,7 +8,7 @@ import { JobDetailsComponent } from './components/job-details/job-details.compon
 import { NgbAccordionModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExpressApplyModalComponent } from './components/express-apply-modal/express-apply-modal.component';
-import { PhoneInputComponent, FullNameInputComponent, EmailInputComponent, ErrorMessageComponent, PasswordInputComponent } from "@app/shared/form-controls";
+import { PhoneInputComponent, EmailInputComponent, ErrorMessageComponent, PasswordInputComponent, TextInputComponent } from "@app/shared/form-controls";
 import { SharedModule } from "@app/shared/shared.module";
 import { LoaderComponent, LoginButtonComponent, AlertComponent } from '@app/shared/ui';
 
@@ -28,14 +28,14 @@ import { LoaderComponent, LoginButtonComponent, AlertComponent } from '@app/shar
     FormsModule,
     ReactiveFormsModule,
     PhoneInputComponent,
-    FullNameInputComponent,
     EmailInputComponent,
     ErrorMessageComponent,
     LoaderComponent,
     PasswordInputComponent,
     SharedModule,
     LoginButtonComponent,
-    AlertComponent
+    AlertComponent,
+    TextInputComponent
 ]
 })
 

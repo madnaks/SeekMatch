@@ -5,11 +5,12 @@ import { GeonamesService } from '@app/shared/services/geonames.service';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { environment } from 'environments/environment.development';
+import { TextInputComponent } from "../text-input/text-input.component";
 
 @Component({
   selector: 'be-address-group',
   standalone: true,
-  imports: [ReactiveFormsModule, TranslateModule, NgbPopoverModule, CommonModule],
+  imports: [ReactiveFormsModule, TranslateModule, NgbPopoverModule, CommonModule, TextInputComponent],
   templateUrl: './address-group.component.html',
   styleUrl: './address-group.component.scss'
 })

@@ -14,13 +14,17 @@ export function createRegisterFreelancerForm(fb: NonNullableFormBuilder): FormGr
 export function createRegisterRepresentativeForm(fb: NonNullableFormBuilder): FormGroup {
     return fb.group({
         name: ['', Validators.required],
-        phoneNumber: ['', Validators.required],
-        address: ['', Validators.required],
+        phone: ['', Validators.required],
+        website: [''],
+        address: ['',Validators.required],
+        country: [''],
+        region: [null],
+        city: [null],
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
         position: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.required, BePasswordValidator()]],
-        confirmPassword: ['', Validators.required]
+        confirmPassword: ['']
     }, { validators: BePasswordsMatchValidator() });
 }

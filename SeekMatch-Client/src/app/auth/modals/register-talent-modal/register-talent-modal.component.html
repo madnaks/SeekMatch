@@ -12,33 +12,44 @@
     </div>
     <!-- Form -->
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-        <!-- Full Name -->
-        <div class="mb-4">
-            <app-full-name-input [form]="registerForm" />
+        <!-- Full name  -->
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <be-text-input [form]="registerForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+            </div>
+            <div class="col-md-6">
+                    <be-text-input [form]="registerForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+            </div>
         </div>
         <!-- Email -->
-        <div class="mb-4">
+        <div class="row mt-3">
             <be-email-input [form]="registerForm" />
         </div>
         <!-- Password -->
-        <div class="row mb-4">
+        <div class="row mt-3">
             <div class="col-12">
                 <be-password-input [form]="registerForm" />
             </div>
         </div>
         <!-- Confirm Password -->
-        <div class="row mb-4">
+        <div class="row mt-3">
             <div class="col-12">
                 <be-password-input [form]="registerForm" [controlName]="'confirmPassword'"
                     [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
-        <div class="mt-4 mb-4">
+        <div class="row mt-4 mb-4">
             <p class="fs-6 fw-light" [innerHTML]="'SignUp.Talent.Modal.Body.Form.TermsNote' | translate"></p>
         </div>
         <!-- Create button -->
-        <div class="mb-4 d-flex justify-content-center">
+        <div class="row mb-4 d-flex justify-content-center">
             <button type="submit" class="btn btn-primary w-50" [disabled]="isLoading">
                 <i class="me-2" [ngClass]="{'fa fa-spin fa-spinner': isLoading, 'fa-solid fa-lock': !isLoading}"></i>
                 {{ 'SignUp.Talent.Modal.Body.Form.SubmitButton' | translate }}

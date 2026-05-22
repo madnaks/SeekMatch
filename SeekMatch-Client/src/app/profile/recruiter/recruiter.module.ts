@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { JobOfferComponent } from './job-offer/job-offer.component';
 import { QuillModule } from 'ngx-quill';
 import { SharedModule } from '../../shared/shared.module';
-import { FullNameInputComponent, ErrorMessageComponent, EmailInputComponent } from '@app/shared/form-controls';
+import { ErrorMessageComponent, EmailInputComponent, TextInputComponent } from '@app/shared/form-controls';
 import { DatePickerInputComponent } from "@app/shared/form-controls/date-picker-input/date-picker-input.component";
 import { NgbAccordionModule, NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoaderComponent } from '@app/shared/ui';
@@ -44,7 +44,6 @@ import { CompanyJobOfferComponent } from './company-job-offer/company-job-offer.
     TranslateModule,
     QuillModule.forRoot(),
     SharedModule,
-    FullNameInputComponent,
     ErrorMessageComponent,
     EmailInputComponent,
     LoaderComponent,
@@ -56,7 +55,8 @@ import { CompanyJobOfferComponent } from './company-job-offer/company-job-offer.
     NgbDropdownItem,
     NgbDropdownButtonItem,
     NgbModule,
-    JobOfferPreviewModalComponent
-  ]
+    JobOfferPreviewModalComponent,
+    TextInputComponent
+]
 })
 export class RecruiterModule { }

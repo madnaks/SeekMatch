@@ -17,6 +17,15 @@
                 "CHOOSE-CITY": "Choisir une ville",
                 "CV": "CV"
             },
+            "PLACEHOLDER": {
+                "LASTNAME": "Entrez votre nom de famille",
+                "FIRSTNAME": "Entrez votre prénom",
+                "EMAIL": "Entrez votre adresse e-mail",
+                "PHONE": "Entrez votre numéro de téléphone",
+                "PASSWORD": "Entrez votre mot de passe",
+                "CONFIRM-PASSWORD": "Confirmez votre mot de passe",
+                "ADDRESS": "Entrez votre adresse"
+            },
             "VALIDATION": {
                 "LASTNAME": "Le nom de famille est requis.",
                 "FIRSTNAME": "Le Prénom est requis.",
@@ -32,7 +41,8 @@
                 "PASSWORD-UPPERCASE": "Le mot de passe doit contenir au moins une lettre majuscule.",
                 "PASSWORD-LOWERCASE": "Le mot de passe doit contenir au moins une lettre minuscule.",
                 "PASSWORD-NUMBER": "Le mot de passe doit contenir au moins un chiffre.",
-                "PASSWORD-SPECIAL": "Le mot de passe doit contenir au moins un caractère spécial."
+                "PASSWORD-SPECIAL": "Le mot de passe doit contenir au moins un caractère spécial.",
+                "ADDRESS": "L'adresse est requise."
             }
         }
     }

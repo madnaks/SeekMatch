@@ -5,11 +5,21 @@
         @if(currentStep === 1) {
         {{ 'SignUp.Recruiter.Modal.Step1.Title' | translate }}
         }
-        @else if(currentStep === 2) {
+        
+        @if(currentStep === 2) {
         {{ 'SignUp.Recruiter.Modal.Step2.Title' | translate }}
         }
-        @else if(currentStep === 3) {
+        
+        @if(currentStep === 3) {
         {{ 'SignUp.Recruiter.Modal.Step3.Title' | translate }}
+        }
+
+        @if(isSuccess) {
+        {{ 'SignUp.Recruiter.Modal.Success.Title' | translate }}
+        }
+
+        @if (isError) {
+        {{ 'SignUp.Recruiter.Modal.Error.Title' | translate }}
         }
     </h4>
 
@@ -76,29 +86,40 @@
         <p> {{ 'SignUp.Recruiter.Modal.Step3.Body.SecondLine' | translate }} </p>
     </div>
     <form [formGroup]="registerFreelancerForm" (ngSubmit)="onSubmit()">
-        <!-- Full Name -->
-        <div class="mb-4">
-            <app-full-name-input [form]="registerFreelancerForm" />
+        <!-- Full name  -->
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <be-text-input [form]="registerFreelancerForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+            </div>
+            <div class="col-md-6">
+                    <be-text-input [form]="registerFreelancerForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                    [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                    [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+            </div>
         </div>
         <!-- Email -->
-        <div class="mb-4">
+        <div class="row mt-3">
             <be-email-input [form]="registerFreelancerForm" />
         </div>
         <!-- Password -->
-        <div class="row mb-4">
+        <div class="row mt-3">
             <div class="col-12">
                 <be-password-input [form]="registerFreelancerForm" />
             </div>
         </div>
         <!-- Confirm Password -->
-        <div class="row mb-4">
+        <div class="row mt-3">
             <div class="col-12">
                 <be-password-input [form]="registerFreelancerForm" [controlName]="'confirmPassword'"
-                    [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
+                    [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.CONFIRM-PASSWORD'" />
             </div>
         </div>
         <!-- Terms & Privacy Statement -->
-        <div class="mt-4 mb-4">
+        <div class="row mt-4 mb-4">
             <p class="fs-6 fw-light" [innerHTML]="'SignUp.Recruiter.Modal.Step3.Body.Form.TermsNote' | translate"></p>
         </div>
     </form>
@@ -114,79 +135,59 @@
             <div class="col-md-6">
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Representative' | translate }}</h4>
                 <!-- Full Name -->
-                <div class="mb-4">
-                    <app-full-name-input [form]="registerRepresentativeForm" />
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <be-text-input [form]="registerRepresentativeForm" [controlName]="'lastName'" [id]="'inputLastName'"
+                            [label]="'SHARED.FORM-CONTROLS.LABEL.LASTNAME'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.LASTNAME'" 
+                            [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.LASTNAME'" />
+                    </div>
+                    <div class="col-md-6">
+                         <be-text-input [form]="registerRepresentativeForm" [controlName]="'firstName'" [id]="'inputFirstName'"
+                            [label]="'SHARED.FORM-CONTROLS.LABEL.FIRSTNAME'" [hasIcon]="true"
+                            [iconClass]="'fa-regular fa-user'" [errorMessageKey]="'SHARED.FORM-CONTROLS.VALIDATION.FIRSTNAME'" 
+                            [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.FIRSTNAME'" />
+                    </div>
                 </div>
                 <!-- Position -->
-                <div class="mb-4">
+                <div class="row mt-3">
                     <be-text-input [form]="registerRepresentativeForm" [controlName]="'position'" [id]="'inputPosition'"
                         [label]="'SignUp.Recruiter.Modal.Step3.Body.Form.Position'" [hasIcon]="true"
-                        [iconClass]="'fa-regular fa-address-card'" [errorMessageKey]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'" />
+                        [iconClass]="'fa-regular fa-address-card'" [errorMessageKey]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Position'" 
+                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PLACEHOLDER.Position'" />
                 </div>
                 <!-- Email -->
-                <div class="mb-4">
+                <div class="row mt-3">
                     <be-email-input [form]="registerRepresentativeForm" />
                 </div>
                 <!-- Password -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <be-password-input [form]="registerRepresentativeForm" />
-                    </div>
+                <div class="row mt-3">
+                    <be-password-input [form]="registerRepresentativeForm" />
                 </div>
                 <!-- Confirm Password -->
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <be-password-input [form]="registerRepresentativeForm" [controlName]="'confirmPassword'"
-                            [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" />
-                    </div>
+                <div class="row mt-3">
+                    <be-password-input [form]="registerRepresentativeForm" [controlName]="'confirmPassword'"
+                        [label]="'SHARED.FORM-CONTROLS.LABEL.CONFIRM-PASSWORD'" [placeholder]="'SHARED.FORM-CONTROLS.PLACEHOLDER.CONFIRM-PASSWORD'" />
                 </div>
             </div>
             <div class="col-md-6">
                 <h4>{{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Company' | translate }}</h4>
-                <!-- Company Name -->
-                <div class="mt-3 mb-4">
-                    <label for="inputCompanyName" class="form-label">
-                        <i class="fa-solid fa-building me-2"></i>
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate }}
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" type="text" id="inputCompanyName"
-                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName' | translate"
-                        formControlName="name">
-                    @if (registerRepresentativeForm.get('name')?.invalid &&
-                        registerRepresentativeForm.get('name')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'" />
-                    }
-                </div>
-                <!-- Phone Number -->
-                <div class="mb-4">
-                    <label for="inputCompanyPhoneNumber" class="form-label">
-                        <i class="fa-solid fa-phone me-2"></i>
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate }}
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" type="text" id="inputCompanyPhoneNumber"
-                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.PhoneNumber' | translate"
-                        formControlName="phoneNumber">
-                    @if (registerRepresentativeForm.get('phoneNumber')?.invalid &&
-                        registerRepresentativeForm.get('phoneNumber')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.PhoneNumber'" />
-                    }
+                <!-- Company name and website -->
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <be-text-input [form]="registerRepresentativeForm" [controlName]="'name'" [id]="'inputCompanyName'" [errorMessageKey]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.CompanyName'"
+                            [label]="'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName'" [hasIcon]="true" [iconClass]="'fa-solid fa-building'" [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.CompanyName'"/>
+                    </div>
+                    <div class="col-6">
+                        <be-text-input [form]="registerRepresentativeForm" [controlName]="'website'" [id]="'inputWebsite'"
+                            [label]="'Representative.Company.Website'" [hasIcon]="true" [iconClass]="'fa-solid fa-link'" />
+                    </div>
                 </div>
                 <!-- Company Address -->
-                <div class="mb-4">
-                    <label for="inputCompanyAddress" class="form-label">
-                        <i class="fa-solid fa-location-dot me-2"></i>
-                        {{ 'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate }}
-                        <span class="text-danger">*</span>
-                    </label>
-                    <input class="form-control" type="text" id="inputCompanyAddress"
-                        [placeholder]="'SignUp.Recruiter.Modal.Step3.Body.Form.Address' | translate"
-                        formControlName="address">
-                    @if (registerRepresentativeForm.get('address')?.invalid &&
-                        registerRepresentativeForm.get('address')?.touched) {
-                        <app-error-message [message]="'SignUp.Recruiter.Modal.Step3.Body.Form.Validation.Address'" />
-                    }
+                <be-address-group  [form]="registerRepresentativeForm" [isCompany]="true" />
+                <!-- Phone Number -->
+                <div class="row mt-3">
+                    <be-phone-input [form]="registerRepresentativeForm" />
                 </div>
             </div>
         </div>
@@ -223,13 +224,6 @@
 
 <!-- Success / Error Display -->
 @if (isSuccess) {
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Recruiter.Modal.Success.Title' | translate }}
-    </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
-</div>
-
 <div class="modal-body main-success">
     <div class="d-flex flex-column justify-content-center align-items-center">
         <img src="assets\images\man-happy.svg" width="200">
@@ -242,13 +236,6 @@
     </div>
 </div>
 } @else if (isError) {
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Recruiter.Modal.Error.Title' | translate }}
-    </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
-</div>
-
 <div class="modal-body main-error">
     <div class="mb-3">
         <p>{{ 'SignUp.Recruiter.Modal.Error.Body.Message1' | translate }}</p>

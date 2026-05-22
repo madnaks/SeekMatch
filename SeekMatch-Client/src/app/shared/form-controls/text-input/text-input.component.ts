@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { ErrorMessageComponent } from "../error-message/error-message.component";
@@ -10,7 +10,7 @@ import { ErrorMessageComponent } from "../error-message/error-message.component"
   templateUrl: './text-input.component.html',
   styleUrl: './text-input.component.scss'
 })
-export class TextInputComponent {
+export class TextInputComponent implements OnInit  {
 
   @Input({ required: true }) form!: FormGroup;
   @Input({ required: true }) controlName!: string;
@@ -20,6 +20,10 @@ export class TextInputComponent {
   @Input() iconClass: string = '';
   @Input() placeholder!: string;
   @Input() errorMessageKey: string = '';
+
+  ngOnInit(): void {
+    this.placeholder = this.placeholder ? this.placeholder : this.label;
+  }
 
   public getIconClass(): string {
     return this.iconClass + ' me-2';

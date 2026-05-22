@@ -53,7 +53,7 @@ public class RepresentativeServiceTests
             Position = "HR Manager",
             CompanyName = "Acme Corp",
             CompanyAddress = "123 Main St",
-            CompanyPhoneNumber = "514-000-0000",
+            CompanyPhone = "514-000-0000",
             Setting = new SettingDto { Language = "fr" }
         };
 
@@ -87,7 +87,7 @@ public class RepresentativeServiceTests
             LastName = "Martin",
             CompanyName = "Acme Corp",
             CompanyAddress = "123 Street",
-            CompanyPhoneNumber = "123"
+            CompanyPhone = "123"
         };
 
         _userManagerMock
@@ -113,7 +113,7 @@ public class RepresentativeServiceTests
             LastName = "Martin",
             CompanyName = "Acme Corp",
             CompanyAddress = "123 Street",
-            CompanyPhoneNumber = "123"
+            CompanyPhone = "123"
         };
 
         _userManagerMock
@@ -141,7 +141,7 @@ public class RepresentativeServiceTests
             LastName = "Martin",
             CompanyName = "Acme Corp",
             CompanyAddress = "123 Street",
-            CompanyPhoneNumber = "123"
+            CompanyPhone = "123"
         };
 
         _userManagerMock

@@ -23,7 +23,11 @@ export class RepresentativeService {
       position: representative.position,
       companyName: company.name,
       companyAddress: company.address,
-      companyPhoneNumber: company.phone
+      companyCountry: company.country,
+      companyRegion: company.region,
+      companyCity: company.city,
+      companyPhone: company.phone,
+      companyWebsite: company.website
     };
     
     return this.http.post(`${this.apiUrl}/register`, registerRepresentativeDto);
