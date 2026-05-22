@@ -13,7 +13,7 @@ import { NgbDropdown, NgbDropdownButtonItem, NgbDropdownItem, NgbDropdownMenu, N
 import { TalentDashboardComponent } from './talent-dashboard/talent-dashboard.component';
 import { TalentProfileComponent } from './talent-profile/talent-profile.component';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
-import { FullNameInputComponent, PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, DatePickerInputComponent, DataTableComponent, InfoComponent, AddressGroupComponent, TextInputComponent, TextAreaInputComponent } from '@app/shared/form-controls';
+import { PhoneInputComponent, ErrorMessageComponent, EmailInputComponent, DatePickerInputComponent, DataTableComponent, InfoComponent, AddressGroupComponent, TextInputComponent, TextAreaInputComponent } from '@app/shared/form-controls';
 import { JobModule } from "@app/job/job.module";
 import { ResumeComponent } from './resume/resume.component';
 import { BookmarkComponent } from './bookmark/bookmark.component';
@@ -34,7 +34,6 @@ const NgbModules = [
 ];
 
 const FormControls = [
-  FullNameInputComponent, 
   PhoneInputComponent, 
   ErrorMessageComponent, 
   EmailInputComponent, 
