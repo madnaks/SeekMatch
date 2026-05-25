@@ -42,6 +42,9 @@
     <None Update="Email\Templates\ExpressApplicationConfirmation.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Email\Templates\AccountActivationResult.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
