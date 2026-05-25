@@ -12,7 +12,8 @@ namespace SeekMatch.Application.Services
             ITalentRepository talentRepository,
             ISettingRepository settingRepository,
             IMapper mapper,
-            UserManager<User> userManager) : ITalentService
+            UserManager<User> userManager,
+            IEmailService emailService) : ITalentService
     {
         public async Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto)
         {
@@ -43,6 +44,8 @@ namespace SeekMatch.Application.Services
             await settingRepository.CreateAsync(setting);
 
             await talentRepository.CreateAsync(talent);
+
+            await emailService.SendTalentAccountCreationAsync(talent);
 
             return IdentityResult.Success;
         } 

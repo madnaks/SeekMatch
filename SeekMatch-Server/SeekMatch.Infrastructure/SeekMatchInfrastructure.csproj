@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+    <PackageReference Include="Resend" Version="0.5.1" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.1.1" />
   </ItemGroup>
 
@@ -29,6 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Email\Templates\TalentAccountCreation.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Email\Templates\CompanyRecruterCreation.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -8,5 +8,6 @@ namespace SeekMatch.Infrastructure.Interfaces
         Task SendExpressApplicationConfirmationAsync(ExpressApplication expressApplication, JobOffer jobOffer);
         Task SendExpressApplicationRejectionAsync(JobApplication jobApplication);
         Task SendCompanyRecruterCreationAsync(Recruiter recruiter, string temporaryPassword);
+        Task SendTalentAccountCreationAsync(Talent talent);
     }
 }
