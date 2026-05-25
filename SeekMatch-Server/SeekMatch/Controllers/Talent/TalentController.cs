@@ -16,13 +16,34 @@ namespace SeekMatch.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await talentService.RegisterAsync(registerTalentDto);
+            var activationUrlBase = Url.Action(
+                nameof(ActivateAccount),
+                "Talent",
+                values: null,
+                protocol: Request.Scheme)!;
+
+            var result = await talentService.RegisterAsync(registerTalentDto, activationUrlBase);
             if (!result.Succeeded)
                 return BadRequest(new{
                     errors = result.Errors.Select(e => e.Description)
                 });
 
             return Ok(result);
+        }
+
+        [HttpGet("activate-account")]
+        public async Task<IActionResult> ActivateAccount([FromQuery] string userId, [FromQuery] string token)
+        {
+            var result = await talentService.ActivateAccountAsync(userId, token);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new
+                {
+                    errors = result.Errors.Select(e => e.Description)
+                });
+            }
+
+            return Ok(new { message = "Talent account activated successfully." });
         }
 
         [Authorize]

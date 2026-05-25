@@ -6,7 +6,8 @@ namespace SeekMatch.Application.Interfaces
 {
     public interface ITalentService
     {
-        Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto);
+        Task<IdentityResult> RegisterAsync(RegisterTalentDto registerTalentDto, string activationUrlBase);
+        Task<IdentityResult> ActivateAccountAsync(string userId, string token);
         Task<TalentDto?> GetAsync(string userId);
         Task<bool> SaveProfileAsync(TalentDto talentDto, string userId);
         Task<bool> UpdateProfilePictureAsync(byte[] profilePictureData, string userId);

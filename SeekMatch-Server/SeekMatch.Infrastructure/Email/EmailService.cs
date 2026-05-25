@@ -84,7 +84,7 @@ namespace SeekMatch.Application.Services
 
         }
 
-        public async Task SendTalentAccountCreationAsync(Talent talent)
+        public async Task SendTalentAccountCreationAsync(Talent talent, string activationUrl)
         {
             var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "TalentAccountCreation.html");
             var html = await File.ReadAllTextAsync(templatePath);
@@ -93,7 +93,7 @@ namespace SeekMatch.Application.Services
             {
                 html = html.Replace("{{FirstName}}", talent.FirstName)
                            .Replace("{{LastName}}", talent.LastName)
-                           .Replace("{{ActivationUrl", "api/activation");
+                           .Replace("{{ActivationUrl}}", activationUrl);
 
                 var subject = "Your Talent Account Is Ready";
                 await SendEmailAsync(talent.User.Email!, subject, html);

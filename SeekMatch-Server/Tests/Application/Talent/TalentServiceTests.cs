@@ -15,6 +15,7 @@ public class TalentServiceTests
     private readonly Mock<ISettingRepository> _settingRepositoryMock;
     private readonly Mock<IMapper> _mapperMock;
     private readonly Mock<UserManager<User>> _userManagerMock;
+    private readonly Mock<IEmailService> _emailServiceMock;
     private readonly TalentService _sut;
 
     public TalentServiceTests()
@@ -22,6 +23,7 @@ public class TalentServiceTests
         _talentRepositoryMock = new Mock<ITalentRepository>();
         _settingRepositoryMock = new Mock<ISettingRepository>();
         _mapperMock = new Mock<IMapper>();
+        _emailServiceMock = new Mock<IEmailService>();
 
         var store = new Mock<IUserStore<User>>();
         _userManagerMock = new Mock<UserManager<User>>(
@@ -31,7 +33,8 @@ public class TalentServiceTests
             _talentRepositoryMock.Object,
             _settingRepositoryMock.Object,
             _mapperMock.Object,
-            _userManagerMock.Object);
+            _userManagerMock.Object,
+            _emailServiceMock.Object);
     }
 
     #region RegisterAsync
@@ -52,12 +55,20 @@ public class TalentServiceTests
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(IdentityResult.Success);
 
-        var result = await _sut.RegisterAsync(dto);
+        _userManagerMock
+            .Setup(u => u.GenerateEmailConfirmationTokenAsync(It.IsAny<User>()))
+            .ReturnsAsync("activation-token");
+
+        var result = await _sut.RegisterAsync(dto, "https://localhost/api/Talent/activate-account");
 
         Assert.True(result.Succeeded);
         _settingRepositoryMock.Verify(s => s.CreateAsync(It.Is<Setting>(st => st.Language == "en")), Times.Once);
         _talentRepositoryMock.Verify(t => t.CreateAsync(It.Is<SeekMatch.Core.Entities.Talent>(ta =>
             ta.FirstName == "John" && ta.LastName == "Doe")), Times.Once);
+        _emailServiceMock.Verify(e => e.SendTalentAccountCreationAsync(
+            It.IsAny<SeekMatch.Core.Entities.Talent>(),
+            It.Is<string>(url => url.StartsWith("https://localhost/api/Talent/activate-account?userId=") &&
+                                 url.Contains("token=activation-token"))), Times.Once);
     }
 
     [Fact]
@@ -77,11 +88,14 @@ public class TalentServiceTests
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(failedResult);
 
-        var result = await _sut.RegisterAsync(dto);
+        var result = await _sut.RegisterAsync(dto, "https://localhost/api/Talent/activate-account");
 
         Assert.False(result.Succeeded);
         _talentRepositoryMock.Verify(t => t.CreateAsync(It.IsAny<SeekMatch.Core.Entities.Talent>()), Times.Never);
         _settingRepositoryMock.Verify(s => s.CreateAsync(It.IsAny<Setting>()), Times.Never);
+        _emailServiceMock.Verify(e => e.SendTalentAccountCreationAsync(
+            It.IsAny<SeekMatch.Core.Entities.Talent>(),
+            It.IsAny<string>()), Times.Never);
     }
 
     [Fact]
@@ -99,11 +113,49 @@ public class TalentServiceTests
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(IdentityResult.Success);
 
-        await _sut.RegisterAsync(dto);
+        _userManagerMock
+            .Setup(u => u.GenerateEmailConfirmationTokenAsync(It.IsAny<User>()))
+            .ReturnsAsync("activation-token");
+
+        await _sut.RegisterAsync(dto, "https://localhost/api/Talent/activate-account");
 
         _userManagerMock.Verify(u => u.CreateAsync(
             It.Is<User>(user => user.Role == UserRole.Talent && user.Email == "john@test.com"),
             dto.Password), Times.Once);
+    }
+
+    #endregion
+
+    #region ActivateAccountAsync
+
+    [Fact]
+    public async Task ActivateAccountAsync_WhenTokenIsValid_ActivatesTalentAccount()
+    {
+        var user = new User { Id = "user-1", Email = "john@test.com", Role = UserRole.Talent };
+
+        _userManagerMock.Setup(u => u.FindByIdAsync("user-1")).ReturnsAsync(user);
+        _userManagerMock.Setup(u => u.ConfirmEmailAsync(user, "token")).ReturnsAsync(IdentityResult.Success);
+        _userManagerMock.Setup(u => u.UpdateAsync(user)).ReturnsAsync(IdentityResult.Success);
+
+        var result = await _sut.ActivateAccountAsync("user-1", "token");
+
+        Assert.True(result.Succeeded);
+        Assert.True(user.EmailConfirmed);
+        _userManagerMock.Verify(u => u.UpdateAsync(user), Times.Once);
+    }
+
+    [Fact]
+    public async Task ActivateAccountAsync_WhenUserIsNotTalent_ReturnsFailedResult()
+    {
+        var user = new User { Id = "user-1", Email = "rep@test.com", Role = UserRole.Representative };
+
+        _userManagerMock.Setup(u => u.FindByIdAsync("user-1")).ReturnsAsync(user);
+
+        var result = await _sut.ActivateAccountAsync("user-1", "token");
+
+        Assert.False(result.Succeeded);
+        _userManagerMock.Verify(u => u.ConfirmEmailAsync(It.IsAny<User>(), It.IsAny<string>()), Times.Never);
+        _userManagerMock.Verify(u => u.UpdateAsync(It.IsAny<User>()), Times.Never);
     }
 
     #endregion
