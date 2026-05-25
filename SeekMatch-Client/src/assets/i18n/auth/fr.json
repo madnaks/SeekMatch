@@ -25,7 +25,8 @@
                     "Title": "Il y a un problème",
                     "Body": {
                         "Message1": "Nous sommes désolés, quelque chose s'est mal passé lors de votre inscription.",
-                        "Message2": "Veuillez réessayer."
+                        "Message2": "Veuillez réessayer.",
+                        "Message3": "Nous sommes désolés, une erreur est survenue. Détails de l'erreur:"
                     }
                 }
             }

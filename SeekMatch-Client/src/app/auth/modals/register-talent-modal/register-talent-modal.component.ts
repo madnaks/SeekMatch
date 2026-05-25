@@ -23,6 +23,7 @@ export class RegisterTalentModalComponent {
   isLoading: boolean = false;
   isSuccess: boolean = false;
   isError: boolean = false;
+  errorMessages: string[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -59,7 +60,9 @@ export class RegisterTalentModalComponent {
           this.toastService.showSuccessMessage('Register account succeeded');
         },
         error: (error) => {
+          debugger;
           this.toastService.showErrorMessage('Register failed', error);
+          this.errorMessages = error?.error?.errors || ['An error occurred during registration.'];
           this.isError = true;
         }
       })
@@ -69,5 +72,10 @@ export class RegisterTalentModalComponent {
     if (this.dismissModal) {
       this.dismissModal(reason);
     }
+  }
+
+  public return() {
+    this.isError = false;
+    this.errorMessages = [];
   }
 }

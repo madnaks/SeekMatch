@@ -1,11 +1,56 @@
-@if (!isSuccess && !isError) {
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Talent.Modal.Title' | translate }}
+        @if (isSuccess) {
+            {{ 'SignUp.Talent.Modal.Success.Title' | translate }}
+        }
+        @else if (isError) {
+            {{ 'SignUp.Talent.Modal.Error.Title' | translate }}
+        }
+        @else {
+            {{ 'SignUp.Talent.Modal.Title' | translate }}
+        }
     </h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
 </div>
 
+@if (isSuccess) {
+<div class="modal-body main-success">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <img src="assets\images\man-happy.svg" width="200">
+        <h5> {{ 'SignUp.Talent.Modal.Success.Body.Title' | translate }}</h5>
+        <p>{{ 'SignUp.Talent.Modal.Success.Body.Message' | translate }}</p>
+        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
+            <i class="fa-solid fa-paper-plane me-2"></i>
+            {{ 'SignUp.Talent.Modal.Success.Body.ResendEmailButton' | translate }}
+        </button>
+    </div>
+</div>
+} @else if (isError) {
+<div class="modal-body main-error">
+    <div class="mb-3">
+        @if (!errorMessages || errorMessages.length === 0) {
+            <p>{{ 'SignUp.Talent.Modal.Error.Body.Message1' | translate }}</p>
+            <p>{{ 'SignUp.Talent.Modal.Error.Body.Message2' | translate }}</p>
+        } @else {
+            <p>{{ 'SignUp.Talent.Modal.Error.Body.Message3' | translate }}</p>
+            <p *ngFor="let error of errorMessages">
+                {{ error }}
+            </p>
+            <p>{{ 'SignUp.Talent.Modal.Error.Body.Message2' | translate }}</p>
+        }
+    </div>
+
+    <div class="mb-3 d-flex justify-content-center align-items-center">
+        <img src="assets\images\female-something-went-wrong.svg" width="200">
+    </div>
+    <div class="mb-3 d-flex justify-content-center">
+        <button type="button" class="btn btn-primary w-50" (click)="return()">
+            <i class="fa-solid fa-circle-arrow-left me-2"></i>
+            {{ 'BUTTON.RETURN' | translate }}
+        </button>
+    </div>
+</div>
+} @else {
 <div class="modal-body">
     <div class="row mb-3">
         <p> {{ 'SignUp.Talent.Modal.Body.FirstLine' | translate }} </p>
@@ -56,51 +101,5 @@
             </button>
         </div>
     </form>
-</div>
-}
-
-<!-- Success / Error Display -->
-@if (isSuccess) {
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Talent.Modal.Success.Title' | translate }}
-    </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
-</div>
-
-<div class="modal-body main-success">
-    <div class="d-flex flex-column justify-content-center align-items-center">
-        <img src="assets\images\man-happy.svg" width="200">
-        <h5> {{ 'SignUp.Talent.Modal.Success.Body.Title' | translate }}</h5>
-        <p>{{ 'SignUp.Talent.Modal.Success.Body.Message' | translate }}</p>
-        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
-            <i class="fa-solid fa-paper-plane me-2"></i>
-            {{ 'SignUp.Talent.Modal.Success.Body.ResendEmailButton' | translate }}
-        </button>
-    </div>
-</div>
-} @else if (isError) {
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">
-        {{ 'SignUp.Talent.Modal.Error.Title' | translate }}
-    </h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')"></button>
-</div>
-
-<div class="modal-body main-error">
-    <div class="mb-3">
-        <p>{{ 'SignUp.Talent.Modal.Error.Body.Message1' | translate }}</p>
-        <p>{{ 'SignUp.Talent.Modal.Error.Body.Message2' | translate }}</p>
-    </div>
-
-    <div class="mb-3 d-flex justify-content-center align-items-center">
-        <img src="assets\images\female-something-went-wrong.svg" width="200">
-    </div>
-    <div class="mb-3 d-flex justify-content-center">
-        <button type="button" class="btn btn-primary w-50" (click)="isError = false">
-            <i class="fa-solid fa-circle-arrow-left me-2"></i>
-            {{ 'BUTTON.RETURN' | translate }}
-        </button>
-    </div>
-</div>
-}
+</div
+>}

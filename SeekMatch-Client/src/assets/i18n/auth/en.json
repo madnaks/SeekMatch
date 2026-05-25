@@ -25,7 +25,8 @@
                     "Title": "There's a problem",
                     "Body": {
                         "Message1": "We're sorry, something went wrong when attempting to sign up.",
-                        "Message2": "Please try again."
+                        "Message2": "Please try again.",
+                        "Message3": "We're sorry, an error occurred. Error details:"
                     }
                 }
             }
