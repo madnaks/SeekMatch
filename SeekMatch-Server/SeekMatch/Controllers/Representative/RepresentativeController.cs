@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.DTOs.Representative;
 using SeekMatch.Application.Interfaces;
+using System.Net;
 using System.Security.Claims;
 using AboutYouDto = SeekMatch.Application.DTOs.Representative.AboutYouDto;
 
@@ -20,7 +21,13 @@ namespace SeekMatch.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var result = await representativeService.RegisterAsync(registerRepresentativeDto);
+                var activationUrlBase = Url.Action(
+                    nameof(ActivateAccount),
+                    "Representative",
+                    values: null,
+                    protocol: Request.Scheme)!;
+
+                var result = await representativeService.RegisterAsync(registerRepresentativeDto, activationUrlBase);
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
 
@@ -30,6 +37,23 @@ namespace SeekMatch.Controllers
             {
                 return BadRequest(new { Error = "An error occurred while registering the representative." + ex.Message });
             }
+        }
+
+        [HttpGet("activate-account")]
+        public async Task<IActionResult> ActivateAccount([FromQuery] string userId, [FromQuery] string token)
+        {
+            var result = await representativeService.ActivateAccountAsync(userId, token);
+            if (!result.Succeeded)
+            {
+                return await ActivationPageAsync(
+                    "Activation link is invalid",
+                    "We could not activate this account. The link may be invalid or expired.",
+                    400);
+            }
+
+            return await ActivationPageAsync(
+                "Account is now activated",
+                "Your representative account has been activated successfully. You can close this page and sign in to Bedaya.");
         }
 
         [Authorize]
@@ -205,5 +229,21 @@ namespace SeekMatch.Controllers
             return StatusCode(500, new { message = "An error occurred while updating the recruiter" });
         }
         #endregion
+
+        private static async Task<ContentResult> ActivationPageAsync(string title, string message, int statusCode = 200)
+        {
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "AccountActivationResult.html");
+            var html = await System.IO.File.ReadAllTextAsync(templatePath);
+
+            html = html.Replace("{{Title}}", WebUtility.HtmlEncode(title))
+                       .Replace("{{Message}}", WebUtility.HtmlEncode(message));
+
+            return new ContentResult
+            {
+                Content = html,
+                ContentType = "text/html",
+                StatusCode = statusCode
+            };
+        }
     }
 }

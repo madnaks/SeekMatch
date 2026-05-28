@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Email\Templates\TalentAccountCreation.html">
+    <None Update="Email\Templates\AccountCreation.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Email\Templates\CompanyRecruterCreation.html">

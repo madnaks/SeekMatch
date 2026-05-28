@@ -7,7 +7,8 @@ namespace SeekMatch.Application.Interfaces
 {
     public interface IRepresentativeService
     {
-        Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto);
+        Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto, string activationUrlBase);
+        Task<IdentityResult> ActivateAccountAsync(string userId, string token);
         Task<RepresentativeDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
 

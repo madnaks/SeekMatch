@@ -7,6 +7,7 @@ using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
+using System.Net;
 using AboutYouDto = SeekMatch.Application.DTOs.Representative.AboutYouDto;
 
 namespace SeekMatch.Application.Services
@@ -16,9 +17,10 @@ namespace SeekMatch.Application.Services
             ISettingRepository settingRepository,
             IMapper mapper,
             ICompanyService companyService,
-            UserManager<User> userManager) : IRepresentativeService
+            UserManager<User> userManager,
+            IEmailService emailService) : IRepresentativeService
     {
-        public async Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto)
+        public async Task<IdentityResult> RegisterAsync(RegisterRepresentativeDto registerRepresentativeDto, string activationUrlBase)
         {
             var user = new User
             {
@@ -62,7 +64,44 @@ namespace SeekMatch.Application.Services
 
             await representativeRepository.RegisterAsync(representative);
 
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var activationUrl = BuildActivationUrl(activationUrlBase, user.Id, token);
+
+            await emailService.SendRepresentativeAccountCreationAsync(representative, activationUrl);
+
             return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> ActivateAccountAsync(string userId, string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Activation link is invalid."
+                });
+            }
+
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null || user.Role != UserRole.Representative)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Representative account was not found."
+                });
+            }
+
+            if (user.EmailConfirmed)
+                return IdentityResult.Success;
+
+            var confirmResult = await userManager.ConfirmEmailAsync(user, token);
+            if (!confirmResult.Succeeded)
+                return confirmResult;
+
+            user.EmailConfirmed = true;
+            user.UpdatedAt = DateTime.UtcNow;
+
+            return await userManager.UpdateAsync(user);
         }
 
         public async Task<RepresentativeDto?> GetAsync(string userId) => mapper.Map<RepresentativeDto>(await representativeRepository.GetAsync(userId));
@@ -121,5 +160,12 @@ namespace SeekMatch.Application.Services
             return new List<RecruiterDto>();
         }
         #endregion
+
+        private static string BuildActivationUrl(string activationUrlBase, string userId, string token)
+        {
+            var separator = activationUrlBase.Contains('?') ? '&' : '?';
+
+            return $"{activationUrlBase}{separator}userId={WebUtility.UrlEncode(userId)}&token={WebUtility.UrlEncode(token)}";
+        }
     }
 }

@@ -5,6 +5,7 @@ using SeekMatch.Application.Interfaces;
 using SeekMatch.Core.Entities;
 using SeekMatch.Core.Enums;
 using SeekMatch.Infrastructure.Interfaces;
+using System.Net;
 
 namespace SeekMatch.Application.Services
 {
@@ -15,7 +16,7 @@ namespace SeekMatch.Application.Services
             IMapper mapper,
             UserManager<User> userManager) : IRecruiterService
     {
-        public async Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto)
+        public async Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto, string activationUrlBase)
         {
             var user = new User
             {
@@ -46,7 +47,44 @@ namespace SeekMatch.Application.Services
 
             await recruiterRepository.CreateAsync(recruiter);
 
+            var token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+            var activationUrl = BuildActivationUrl(activationUrlBase, user.Id, token);
+
+            await emailService.SendRecruiterAccountCreationAsync(recruiter, activationUrl);
+
             return IdentityResult.Success;
+        }
+
+        public async Task<IdentityResult> ActivateAccountAsync(string userId, string token)
+        {
+            if (string.IsNullOrWhiteSpace(userId) || string.IsNullOrWhiteSpace(token))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Activation link is invalid."
+                });
+            }
+
+            var user = await userManager.FindByIdAsync(userId);
+            if (user == null || user.Role != UserRole.Recruiter)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Description = "Recruiter account was not found."
+                });
+            }
+
+            if (user.EmailConfirmed)
+                return IdentityResult.Success;
+
+            var confirmResult = await userManager.ConfirmEmailAsync(user, token);
+            if (!confirmResult.Succeeded)
+                return confirmResult;
+
+            user.EmailConfirmed = true;
+            user.UpdatedAt = DateTime.UtcNow;
+
+            return await userManager.UpdateAsync(user);
         }
 
         public async Task<RecruiterDto?> GetAsync(string userId) => mapper.Map<RecruiterDto>(await recruiterRepository.GetAsync(userId));
@@ -140,6 +178,13 @@ namespace SeekMatch.Application.Services
 
         }
         #endregion
+
+        private static string BuildActivationUrl(string activationUrlBase, string userId, string token)
+        {
+            var separator = activationUrlBase.Contains('?') ? '&' : '?';
+
+            return $"{activationUrlBase}{separator}userId={WebUtility.UrlEncode(userId)}&token={WebUtility.UrlEncode(token)}";
+        }
 
     }
 }

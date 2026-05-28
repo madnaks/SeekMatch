@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SeekMatch.Application.DTOs.Recruiter;
 using SeekMatch.Application.Interfaces;
+using System.Net;
 using System.Security.Claims;
 
 namespace SeekMatch.Controllers
@@ -18,7 +19,13 @@ namespace SeekMatch.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
-                var result = await recruiterService.RegisterAsync(registerRecruiterDto);
+                var activationUrlBase = Url.Action(
+                    nameof(ActivateAccount),
+                    "Recruiter",
+                    values: null,
+                    protocol: Request.Scheme)!;
+
+                var result = await recruiterService.RegisterAsync(registerRecruiterDto, activationUrlBase);
                 if (!result.Succeeded)
                     return BadRequest(result.Errors);
 
@@ -28,6 +35,23 @@ namespace SeekMatch.Controllers
             {
                 return BadRequest(new { Error = "An error occurred while registering the recruiter." + ex.Message });
             }
+        }
+
+        [HttpGet("activate-account")]
+        public async Task<IActionResult> ActivateAccount([FromQuery] string userId, [FromQuery] string token)
+        {
+            var result = await recruiterService.ActivateAccountAsync(userId, token);
+            if (!result.Succeeded)
+            {
+                return await ActivationPageAsync(
+                    "Activation link is invalid",
+                    "We could not activate this account. The link may be invalid or expired.",
+                    400);
+            }
+
+            return await ActivationPageAsync(
+                "Account is now activated",
+                "Your recruiter account has been activated successfully. You can close this page and sign in to Bedaya.");
         }
 
         [Authorize]
@@ -115,6 +139,22 @@ namespace SeekMatch.Controllers
                 return NotFound("Profile picture not found.");
 
             return NoContent();
+        }
+
+        private static async Task<ContentResult> ActivationPageAsync(string title, string message, int statusCode = 200)
+        {
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "AccountActivationResult.html");
+            var html = await System.IO.File.ReadAllTextAsync(templatePath);
+
+            html = html.Replace("{{Title}}", WebUtility.HtmlEncode(title))
+                       .Replace("{{Message}}", WebUtility.HtmlEncode(message));
+
+            return new ContentResult
+            {
+                Content = html,
+                ContentType = "text/html",
+                StatusCode = statusCode
+            };
         }
     }
 }

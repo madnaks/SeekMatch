@@ -231,7 +231,7 @@ public class JobOfferServiceTests
     [Fact]
     public async Task UpdateAsync_WhenJobOfferExists_ReturnsTrue()
     {
-        var dto = new JobOfferDto { Id = "job-1", Title = "Updated", Description = "Desc", Location = "MTL" };
+        var dto = new UpdateJobOfferDto { Id = "job-1", Title = "Updated", Description = "Desc", Location = "MTL" };
         var existing = CreateJobOffer();
 
         _jobOfferRepositoryMock.Setup(r => r.GetByIdAsync("job-1")).ReturnsAsync(existing);
@@ -246,7 +246,7 @@ public class JobOfferServiceTests
     [Fact]
     public async Task UpdateAsync_WhenJobOfferNotFound_ThrowsException()
     {
-        var dto = new JobOfferDto { Id = "missing", Title = "X", Description = "D", Location = "L" };
+        var dto = new UpdateJobOfferDto { Id = "missing", Title = "X", Description = "D", Location = "L" };
         _jobOfferRepositoryMock.Setup(r => r.GetByIdAsync("missing")).ReturnsAsync((JobOffer?)null);
 
         await Assert.ThrowsAsync<Exception>(() => _sut.UpdateAsync(dto));
@@ -263,7 +263,7 @@ public class JobOfferServiceTests
     [Fact]
     public async Task UpdateAsync_WhenIdIsEmpty_ReturnsFalse()
     {
-        var dto = new JobOfferDto { Id = "", Title = "X", Description = "D", Location = "L" };
+        var dto = new UpdateJobOfferDto { Id = "", Title = "X", Description = "D", Location = "L" };
 
         var result = await _sut.UpdateAsync(dto);
 

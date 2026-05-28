@@ -55,8 +55,11 @@ public class RecruiterServiceTests
         _userManagerMock
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(IdentityResult.Success);
+        _userManagerMock
+            .Setup(u => u.GenerateEmailConfirmationTokenAsync(It.IsAny<User>()))
+            .ReturnsAsync("activation-token");
 
-        var result = await _sut.RegisterAsync(dto);
+        var result = await _sut.RegisterAsync(dto, "https://localhost/api/Recruiter/activate-account");
 
         Assert.True(result.Succeeded);
         _recruiterRepositoryMock.Verify(r => r.CreateAsync(It.Is<Core.Entities.Recruiter>(rec =>
@@ -65,6 +68,10 @@ public class RecruiterServiceTests
             rec.IsFreelancer == true)), Times.Once);
         _settingRepositoryMock.Verify(s => s.CreateAsync(It.Is<Setting>(st =>
             st.Language == "en")), Times.Once);
+        _emailServiceMock.Verify(e => e.SendRecruiterAccountCreationAsync(
+            It.IsAny<Core.Entities.Recruiter>(),
+            It.Is<string>(url => url.StartsWith("https://localhost/api/Recruiter/activate-account?userId=") &&
+                                 url.Contains("token=activation-token"))), Times.Once);
     }
 
     [Fact]
@@ -84,11 +91,13 @@ public class RecruiterServiceTests
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(failedResult);
 
-        var result = await _sut.RegisterAsync(dto);
+        var result = await _sut.RegisterAsync(dto, "https://localhost/api/Recruiter/activate-account");
 
         Assert.False(result.Succeeded);
         _recruiterRepositoryMock.Verify(r => r.CreateAsync(It.IsAny<Core.Entities.Recruiter>()), Times.Never);
         _settingRepositoryMock.Verify(s => s.CreateAsync(It.IsAny<Setting>()), Times.Never);
+        _emailServiceMock.Verify(e => e.SendRecruiterAccountCreationAsync(
+            It.IsAny<Core.Entities.Recruiter>(), It.IsAny<string>()), Times.Never);
     }
 
     [Fact]
@@ -105,8 +114,11 @@ public class RecruiterServiceTests
         _userManagerMock
             .Setup(u => u.CreateAsync(It.IsAny<User>(), dto.Password))
             .ReturnsAsync(IdentityResult.Success);
+        _userManagerMock
+            .Setup(u => u.GenerateEmailConfirmationTokenAsync(It.IsAny<User>()))
+            .ReturnsAsync("activation-token");
 
-        await _sut.RegisterAsync(dto);
+        await _sut.RegisterAsync(dto, "https://localhost/api/Recruiter/activate-account");
 
         _userManagerMock.Verify(u => u.CreateAsync(
             It.Is<User>(user =>
@@ -114,6 +126,22 @@ public class RecruiterServiceTests
                 user.Email == "recruiter@test.com" &&
                 user.UserName == "recruiter@test.com"),
             dto.Password), Times.Once);
+    }
+
+    [Fact]
+    public async Task ActivateAccountAsync_WhenRecruiterExists_ConfirmsEmail()
+    {
+        var user = new User { Id = "user-1", Email = "recruiter@test.com", Role = UserRole.Recruiter };
+
+        _userManagerMock.Setup(u => u.FindByIdAsync("user-1")).ReturnsAsync(user);
+        _userManagerMock.Setup(u => u.ConfirmEmailAsync(user, "token")).ReturnsAsync(IdentityResult.Success);
+        _userManagerMock.Setup(u => u.UpdateAsync(user)).ReturnsAsync(IdentityResult.Success);
+
+        var result = await _sut.ActivateAccountAsync("user-1", "token");
+
+        Assert.True(result.Succeeded);
+        _userManagerMock.Verify(u => u.ConfirmEmailAsync(user, "token"), Times.Once);
+        _userManagerMock.Verify(u => u.UpdateAsync(user), Times.Once);
     }
 
     #endregion

@@ -114,6 +114,7 @@ namespace SeekMatch.Infrastructure.Repositories
         {
             try
             {
+                dbContext.JobOffers.Update(jobOffer);
                 var result = await dbContext.SaveChangesAsync();
                 return result > 0;
             }

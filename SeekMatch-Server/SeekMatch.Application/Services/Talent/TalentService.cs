@@ -80,6 +80,7 @@ namespace SeekMatch.Application.Services
             if (!confirmResult.Succeeded)
                 return confirmResult;
 
+            user.EmailConfirmed = true;
             user.UpdatedAt = DateTime.UtcNow;
 
             return await userManager.UpdateAsync(user);

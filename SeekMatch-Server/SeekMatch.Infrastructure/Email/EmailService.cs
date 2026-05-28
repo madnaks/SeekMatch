@@ -26,7 +26,7 @@ namespace SeekMatch.Application.Services
             var resp = await _resend.EmailSendAsync(new EmailMessage()
             {
                 From = _fromEmail,
-                To = "med.haouam@gmail.com", // replace it by //to h
+                To = "med.haouam@gmail.com", // to
                 Subject = subject,
                 HtmlBody = body,
             });
@@ -86,19 +86,57 @@ namespace SeekMatch.Application.Services
 
         public async Task SendTalentAccountCreationAsync(Talent talent, string activationUrl)
         {
-            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "TalentAccountCreation.html");
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "AccountCreation.html");
             var html = await File.ReadAllTextAsync(templatePath);
 
             if (talent != null)
             {
                 html = html.Replace("{{FirstName}}", talent.FirstName)
                            .Replace("{{LastName}}", talent.LastName)
-                           .Replace("{{ActivationUrl}}", activationUrl);
+                           .Replace("{{AccountType}}", "talent")
+                           .Replace("{{ActivationUrl}}", activationUrl)
+                           .Replace("{{ActivationText}}", "Activate your talent account");
 
                 var subject = "Your Talent Account Is Ready";
                 await SendEmailAsync(talent.User.Email!, subject, html);
             }
 
+        }
+
+        public async Task SendRecruiterAccountCreationAsync(Recruiter recruiter, string activationUrl)
+        {
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "AccountCreation.html");
+            var html = await File.ReadAllTextAsync(templatePath);
+
+            if (recruiter != null)
+            {
+                html = html.Replace("{{FirstName}}", recruiter.FirstName)
+                           .Replace("{{LastName}}", recruiter.LastName)
+                           .Replace("{{AccountType}}", "recruiter")
+                           .Replace("{{ActivationUrl}}", activationUrl)
+                           .Replace("{{ActivationText}}", "Activate your recruiter account");
+
+                var subject = "Your Recruiter Account Is Ready";
+                await SendEmailAsync(recruiter.User.Email!, subject, html);
+            }
+        }
+
+        public async Task SendRepresentativeAccountCreationAsync(Representative representative, string activationUrl)
+        {
+            var templatePath = Path.Combine(AppContext.BaseDirectory, "Email", "Templates", "AccountCreation.html");
+            var html = await File.ReadAllTextAsync(templatePath);
+
+            if (representative != null)
+            {
+                html = html.Replace("{{FirstName}}", representative.FirstName)
+                           .Replace("{{LastName}}", representative.LastName)
+                           .Replace("{{AccountType}}", "representative")
+                           .Replace("{{ActivationUrl}}", activationUrl)
+                           .Replace("{{ActivationText}}", "Activate your representative account");
+
+                var subject = "Your Representative Account Is Ready";
+                await SendEmailAsync(representative.User.Email!, subject, html);
+            }
         }
 
     }

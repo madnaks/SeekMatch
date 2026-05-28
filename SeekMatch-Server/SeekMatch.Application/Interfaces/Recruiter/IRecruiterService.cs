@@ -5,7 +5,8 @@ namespace SeekMatch.Application.Interfaces
 {
     public interface IRecruiterService
     {
-        Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto);
+        Task<IdentityResult> RegisterAsync(RegisterRecruiterDto registerRecruiterDto, string activationUrlBase);
+        Task<IdentityResult> ActivateAccountAsync(string userId, string token);
         Task<RecruiterDto?> GetAsync(string userId);
         Task<bool> SaveAboutYouAsync(AboutYouDto aboutYouDto, string userId);
 
