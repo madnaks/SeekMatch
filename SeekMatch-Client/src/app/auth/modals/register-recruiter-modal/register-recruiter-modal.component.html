@@ -2,25 +2,26 @@
 <div class="modal-header">
 
     <h4 class="modal-title" id="modal-basic-title">
-        @if(currentStep === 1) {
-        {{ 'SignUp.Recruiter.Modal.Step1.Title' | translate }}
-        }
-        
-        @if(currentStep === 2) {
-        {{ 'SignUp.Recruiter.Modal.Step2.Title' | translate }}
-        }
-        
-        @if(currentStep === 3) {
-        {{ 'SignUp.Recruiter.Modal.Step3.Title' | translate }}
-        }
-
         @if(isSuccess) {
         {{ 'SignUp.Recruiter.Modal.Success.Title' | translate }}
         }
-
-        @if (isError) {
+        @else if (isError) {
         {{ 'SignUp.Recruiter.Modal.Error.Title' | translate }}
         }
+        @else {
+            @if(currentStep === 1) {
+            {{ 'SignUp.Recruiter.Modal.Step1.Title' | translate }}
+            }
+            
+            @if(currentStep === 2) {
+            {{ 'SignUp.Recruiter.Modal.Step2.Title' | translate }}
+            }
+            
+            @if(currentStep === 3) {
+            {{ 'SignUp.Recruiter.Modal.Step3.Title' | translate }}
+            }
+        }
+        
     </h4>
 
     <button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cross click')">
