@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/seek-match-client/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
