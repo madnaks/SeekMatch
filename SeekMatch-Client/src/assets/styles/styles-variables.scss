@@ -1,45 +1,102 @@
+// Old theme (for reference)
+// :root {
+//     --primary-color: #001A33;
+//     --secondary-color: #003366;
+//     --third-color: #194775;
+//     --fourth-color: #325b84;
+
+//     --accent-color: #F4A460;
+//     --background-color: #F4F4F4;
+//     --text-color: #F4F4F4;
+
+//     --success-color: #2BDE3F;
+//     --error-color: #F44336;
+//     --warning-color: #FFC007;
+//     --info-color: #1D72F3;
+// }
+
+// .light-mode {
+//     --primary-color: #f0f4ff;
+//     --secondary-color: #99bbff;
+//     --third-color: #5577aa;
+//     --fourth-color: #334466;
+
+//     --accent-color: #FFB347;
+//     --background-color: #1A1A1A;
+//     --text-color: #000000;
+
+//     --success-color: #00E676;
+//     --error-color: #FF5252;
+//     --warning-color: #FFC107;
+//     --info-color: #64B5F6;
+// }
+
+// $primary-color: var(--primary-color);
+// $secondary-color: var(--secondary-color);
+// $third-color: var(--third-color);
+// $fourth-color: var(--fourth-color);
+
+// $accent-color: var(--accent-color);
+// $background-color: var(--background-color);
+// $text-color: var(--text-color);
+
+// $success-color: var(--success-color);
+// $error-color: var(--error-color);
+// $warning-color: var(--warning-color);
+// $info-color: var(--info-color);
+
 :root {
-    --primary-color: #001A33;
-    --secondary-color: #003366;
-    --third-color: #194775;
-    --fourth-color: #325b84;
+    /* Brand scale — deep charcoal → dark violet */
+    --primary-color:   #0D0D12;
+    --secondary-color: #18182A;
+    --third-color:     #23233D;
+    --fourth-color:    #2E2E55;
 
-    --accent-color: #F4A460;
-    --background-color: #F4F4F4;
-    --text-color: #F4F4F4;
+    /* Accents */
+    --accent-color:     #7C5CFC;   /* electric violet */
+    --highlight-color:  #F5A623;   /* warm amber gold */
 
-    --success-color: #2BDE3F;
-    --error-color: #F44336;
-    --warning-color: #FFC007;
-    --info-color: #1D72F3;
+    --background-color: #0D0D12;
+    --text-color:       #E0DCFF;
+
+    /* Semantic */
+    --success-color: #34D399;
+    --error-color:   #F87171;
+    --warning-color: #FCD34D;
+    --info-color:    #60A5FA;
 }
 
 .light-mode {
-    --primary-color: #f0f4ff;
-    --secondary-color: #99bbff;
-    --third-color: #5577aa;
-    --fourth-color: #334466;
+    /* Brand scale — pale violet → rich violet */
+    --primary-color:   #F2F0FC;
+    --secondary-color: #E4E0FA;
+    --third-color:     #C4BAF5;
+    --fourth-color:    #8A72F0;
 
-    --accent-color: #FFB347;
-    --background-color: #1A1A1A;
-    --text-color: #000000;
+    /* Accents */
+    --accent-color:    #6340E8;   /* deep violet */
+    --highlight-color: #E8860A;   /* burnt amber */
 
-    --success-color: #00E676;
-    --error-color: #FF5252;
-    --warning-color: #FFC107;
-    --info-color: #64B5F6;
+    --background-color: #FAF9F6;  /* warm off-white */
+    --text-color:       #1A1040;
+
+    /* Semantic */
+    --success-color: #059669;
+    --error-color:   #EF4444;
+    --warning-color: #D97706;
+    --info-color:    #2563EB;
 }
 
-$primary-color: var(--primary-color);
-$secondary-color: var(--secondary-color);
-$third-color: var(--third-color);
-$fourth-color: var(--fourth-color);
-
-$accent-color: var(--accent-color);
+/* SCSS bridge */
+$primary-color:    var(--primary-color);
+$secondary-color:  var(--secondary-color);
+$third-color:      var(--third-color);
+$fourth-color:     var(--fourth-color);
+$accent-color:     var(--accent-color);
+$highlight-color:  var(--highlight-color);
 $background-color: var(--background-color);
-$text-color: var(--text-color);
-
-$success-color: var(--success-color);
-$error-color: var(--error-color);
-$warning-color: var(--warning-color);
-$info-color: var(--info-color);
+$text-color:       var(--text-color);
+$success-color:    var(--success-color);
+$error-color:      var(--error-color);
+$warning-color:    var(--warning-color);
+$info-color:       var(--info-color);
