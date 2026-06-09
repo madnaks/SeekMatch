@@ -12,14 +12,14 @@ export class GeonamesService {
     constructor(private http: HttpClient) { }
 
     getCountryGeoId(countryCode: string): Observable<number | null> {
-        const url = `http://api.geonames.org/searchJSON?username=${this.username}&q=${countryCode}&featureClass=A&maxRows=1`;
+        const url = `https://secure.geonames.org/searchJSON?username=${this.username}&q=${countryCode}&featureClass=A&maxRows=1`;
         return this.http.get<any>(url).pipe(
             map(response => response.geonames?.[0]?.geonameId || null)
         );
     }
 
     getRegions(countryGeoId: number): Observable<any[]> {
-        const url = `http://api.geonames.org/childrenJSON?geonameId=${countryGeoId}&username=${this.username}`;
+        const url = `https://secure.geonames.org/childrenJSON?geonameId=${countryGeoId}&username=${this.username}`;
         return this.http.get<any>(url).pipe(
             map(response => response.geonames || [])
         );
@@ -28,14 +28,14 @@ export class GeonamesService {
     getCities(provinceGeoId: number): Observable<any[]> {
         if (!provinceGeoId) return of([]);
 
-        const url = `http://api.geonames.org/childrenJSON?geonameId=${provinceGeoId}&username=${this.username}`;
+        const url = `https://secure.geonames.org/childrenJSON?geonameId=${provinceGeoId}&username=${this.username}`;
         return this.http.get<any>(url).pipe(
             map(response => response.geonames || [])
         );
     }
 
     getGeoNameById(geonameId: number): Observable<any> {
-        const url = `http://api.geonames.org/getJSON?geonameId=${geonameId}&username=${this.username}`;
+        const url = `https://secure.geonames.org/getJSON?geonameId=${geonameId}&username=${this.username}`;
         return this.http.get<any>(url).pipe(
             map(response => response || null)
         );
