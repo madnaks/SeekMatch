@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Education } from '../models/education';
 import { TranslateService } from '@ngx-translate/core';
 import { months } from '../constants/constants';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EducationService {
 
-  private readonly apiUrl = 'https://localhost:7216/api/Education';
+  private readonly apiUrl = `${environment.apiBaseUrl}/Education`;
 
   constructor(private http: HttpClient, private translate: TranslateService) { }
 

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { JobOffer } from '../models/job-offer';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { JobOffer } from '../models/job-offer';
 export class JobOfferService {
 
   private selectedJobOffer = new BehaviorSubject<any>(null);
-  private readonly apiUrl = 'https://localhost:7216/api/JobOffer';
+  private readonly apiUrl = `${environment.apiBaseUrl}/JobOffer`;
 
   selectedJobOffer$ = this.selectedJobOffer.asObservable();
 

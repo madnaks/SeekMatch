@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "bedaya-client"
-  }
+    "default": "bedaya-client",
+    "staging": "bedaya-client-staging",
+    "production": "bedaya-client"
+  },
+  "targets": {},
+  "etags": {}
 }

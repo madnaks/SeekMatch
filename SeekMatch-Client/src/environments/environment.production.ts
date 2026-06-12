@@ -1,5 +1,6 @@
 export const environment = {
     production: true,
+    apiBaseUrl: 'https://replace-with-your-production-api-url/api',
     address: {
         countries: [
             { name: 'Canada', code: 'CA' },

@@ -8,13 +8,14 @@ import { Recruiter } from '../models/recruiter';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { LanguageService } from './language.service';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly apiUrl = 'https://localhost:7216/api/Auth';
+  private readonly apiUrl = `${environment.apiBaseUrl}/Auth`;
 
   private jwtHelper = new JwtHelperService();
 

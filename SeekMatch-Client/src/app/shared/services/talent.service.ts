@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Talent } from '../models/talent';
 import { Bookmark } from '../models/bookmark';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TalentService {
 
-  private readonly apiUrl = 'https://localhost:7216/api/Talent';
+  private readonly apiUrl = `${environment.apiBaseUrl}/Talent`;
 
   constructor(private http: HttpClient) { }
 

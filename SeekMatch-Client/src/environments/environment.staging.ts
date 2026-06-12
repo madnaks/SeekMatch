@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
+    apiBaseUrl: 'https://replace-with-your-cloud-run-service-url/api',
     address: {
         countries: [
             { name: 'Canada', code: 'CA' },

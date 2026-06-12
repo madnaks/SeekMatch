@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { Experience } from '../models/experience';
 import { TranslateService } from '@ngx-translate/core';
 import { months } from '../constants/constants';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExperienceService {
 
-  private readonly apiUrl = 'https://localhost:7216/api/Experience';
+  private readonly apiUrl = `${environment.apiBaseUrl}/Experience`;
 
   constructor(private http: HttpClient, private translate: TranslateService) { }
 

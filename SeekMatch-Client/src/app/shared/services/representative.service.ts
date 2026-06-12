@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Representative } from '../models/representative';
 import { Company } from '../models/company';
+import { environment } from 'environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RepresentativeService {
 
-  private readonly apiUrl = 'https://localhost:7216/api/Representative';
+  private readonly apiUrl = `${environment.apiBaseUrl}/Representative`;
 
   constructor(private http: HttpClient) { }
 

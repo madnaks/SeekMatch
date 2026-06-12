@@ -4,7 +4,7 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { GeonamesService } from '@app/shared/services/geonames.service';
 import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { environment } from 'environments/environment.development';
+import { environment } from 'environments/environment';
 import { TextInputComponent } from "../text-input/text-input.component";
 
 @Component({
