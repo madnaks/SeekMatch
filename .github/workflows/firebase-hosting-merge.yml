@@ -23,7 +23,7 @@ jobs:
         run: npm ci && npm run build -- --configuration production
 
       - name: Deploy to Firebase (Production)
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           entryPoint: SeekMatch-Client
           repoToken: ${{ secrets.GITHUB_TOKEN }}
