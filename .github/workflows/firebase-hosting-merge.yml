@@ -20,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Install and build
-        run: npm ci && npm run build --configuration production
+        run: npm ci && npm run build -- --configuration production
 
       - name: Deploy to Firebase (Production)
       - uses: FirebaseExtended/action-hosting-deploy@v0
